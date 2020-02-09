@@ -322,6 +322,14 @@ var 刷宝获取当前余额=function(){
    }
 }
 var 可以提现=function(){
+    t= textContains("今日已解锁").findOne()
+    if(t){
+        return true
+    }
+    t= textContains("今日已使用").findOne()
+    if(t){
+        return false
+    }
   t=  textContains("已得").findOne()
   if(t){
       ss=t.text().split("已得")[1]
@@ -351,6 +359,14 @@ var 刷宝提现=function(){
                 }
                 if(textclick("每日可提")){
                     alter("点击每日")
+                    return false
+                }
+                if(textclick("仅当日有效")){
+                    alter("仅当日有效")
+                    return true
+                }
+                if(textclick("已解锁")){
+                    alter("点击每日")
                     break
                 }
             }
@@ -358,13 +374,16 @@ var 刷宝提现=function(){
            if(可以提现()){
             if(textclick("立即提现")){
                 sleep(2000)
-                今日已提现()
+                if(text("提现详情").exists()){
+                    今日已提现()
+                }
+                
                 回到刷宝视频页()
-                return
+                return true
             }
            }else{
             回到刷宝视频页()
-            return
+            return false
            }
            
         }
@@ -539,5 +558,6 @@ threads.start(function(){
         回到刷宝视频页()
     }
 });
-启动线程()
+ 启动线程()
 //使用否定判断不在此界面进行回到界面的操作
+ //刷宝提现()
