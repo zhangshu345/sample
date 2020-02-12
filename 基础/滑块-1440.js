@@ -1,4 +1,4 @@
-var y = 650//设置滑动按钮高度
+//设置滑动按钮高度
 //y=className("android.widget.Image").text("tag-bar").findOne().bounds().centerY()
 /**
  *脚本来源：浩然
@@ -18,17 +18,6 @@ var y = 650//设置滑动按钮高度
  */
  
  
- //显示控制台
-console.show()
-console.setPosition(100, 1200)
-
-//请求权限
-if (!requestScreenCapture()) {
-    alert("请求截图权限失败！");
-    exit();
-}
-//启动
-start()
 
 /** 
  * 识别滑块位置
@@ -170,31 +159,6 @@ function checknumber() {
     return 
 }
 
-
-
-function start() {
-    auto.waitFor()
-    for(var i=0;i<0;i++){sleep(1000);log(i);}
-    while (true) {
-        img = images.captureScreen();
-        if (img) {
-            log("截图成功。进行识别滑块！");
-            break;
-        } else {
-            log('截图失败,重新截图');
-        }
-    }
-    var x = discernSlidingblock(img,1080)
-    console.info("识别结果滑块X坐标：" + x);
-
-    if (x > -1) {
-        randomSwipe(135, 980, x, 980)
-        //滑动完成
-    } else {
-        console.log("识别有误，请确认是否在滑块界面");
-    }
-}
-
 function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
     //构建参数
     var h=100;
@@ -298,5 +262,50 @@ function imgBy1080(){
 }
 
 
-
-
+function 滑块验证() {
+    var y = 650
+    auto.waitFor()
+    for(var i=0;i<0;i++){sleep(1000);log(i);}
+    while (true) {
+        img = images.captureScreen();
+        if (img) {
+            log("截图成功。进行识别滑块！");
+            break;
+        } else {
+            log('截图失败,重新截图');
+        }
+    }
+    var x
+    if(device.width<=720){
+        x = discernSlidingblock(img,720)
+    }else if(device.width==1080){
+        x = discernSlidingblock(img,1080)
+    }else if(device.width>1080){
+        x = discernSlidingblock(imgBy1080,1080)
+    }
+     console.info("识别结果滑块X坐标：" + x);
+    if (x > -1) {
+        if(device.width<=720){
+            randomSwipe(80, 650, x, 650)
+        }else if(device.width==1080){
+            randomSwipe(135, 980, x, 980)
+        }else if(device.width>1080){
+            randomSwipe(140,980,x,980)
+        }
+        //滑动完成
+        
+    } else {
+        console.log("识别有误，请确认是否在滑块界面");
+    }
+}
+ //显示控制台
+ console.show()
+ console.setPosition(100, 1200)
+  //请求权限
+ if (!requestScreenCapture()) {
+     alert("请求截图权限失败！");
+     exit();
+ }
+ //启动
+ 滑块验证()
+ 

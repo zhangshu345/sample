@@ -38,7 +38,6 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 
-
 var fw=floaty.window(
     <frame gravity="center">
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>

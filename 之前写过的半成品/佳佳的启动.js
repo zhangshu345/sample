@@ -755,11 +755,9 @@ function sysinit(){
 }
 
 function download(name) {
-
     var app_name2 = name
     // console.log('下载的名字是'+name);
-    
-    var url = 'http://apk.fuzhifutech.com/' + app_name2 + ".apk"
+        var url = 'http://apk.fuzhifutech.com/' + app_name2 + ".apk"
     if(getPackageName(app_name2))
     {
         return
