@@ -11,6 +11,7 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 var starttime=date.getTime()
+var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
 
 var fw=floaty.window(
     <frame gravity="center">
@@ -513,11 +514,11 @@ function 滑块验证尝试(){
               log("快手滑块验证")
               c=c+1
               if(device.width<=720){
-                  swipe(720, 645, w * 0.7, 650, random(1220, 1505)) 
+                  swipe(720, 645, w * 0.63, 650, random(1220, 1505)) 
               }else if(device.width<=1080){
-                  swipe(125, 980, w * 0.7, 980, random(1220, 1505))
+                  swipe(125, 980, w * 0.62, 980, random(1220, 1505))
               }else{
-                  swipe(135, 980, w * 0.7, 980, random(1220, 1505))
+                  swipe(135, 980, w * 0.63, 980, random(1220, 1505))
               }
           
               sleep(1000)
@@ -571,7 +572,7 @@ function 滑块验证精确() {
 
 var 滑块验证=function(){
     i=0
-    while(id("com.kuaishou.nebula:id/title_tv").exists()&&i<20||text("拖动滑块").exists()){
+    while(text("拖动滑块").exists()){
 
     if (requestScreenCapture()) {
         alert("请求截图权限失败！");
@@ -730,19 +731,69 @@ var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道�
 var 快手极速弹窗id集合=["btn_privacy_action","close"]
 var 快手极速首次登录点击id集合=[快手极速首次立即领取id,快手极速登录微信登录按钮id,快手极速微信确认登录按钮id]
 var 快手极速摄像头图标id="com.kuaishou.nebula:id/home_shot_view"
-
+var 快手极速左边框按钮id="com.kuaishou.nebula:id/left_btn"
+var 快手极速左边作者名称id="com.kuaishou.nebula:id/tab_name"  //text 是作者的昵称
+var 快手极速左边设置按钮id="com.kuaishou.nebula:id/tab_settings" //设置
+var 快手极速首页="com.yxcorp.gifshow.HomeActivity" 
+var 快手极速首页奖励悬浮="com.kuaishou.nebula:id/red_packet"   //悬浮按钮
 var 快手极速设置密码=function(){
+    if(打开快手极速左边框()){
+        while(!idclick(快手极速左边设置按钮id)){}
+        
+    }
 
 }
-var 快手极速判断登录=function(){
 
+var 打开快手极速左边框=function(){
+    if(回到快手极速首页()){
+       while(!idclick(快手极速左边框按钮id))
+       return true
+    }
+    return false
+}
+var 回到快手极速首页=function(){
+    alter("回到快手极速首页")
+    while(true){
+        快手极速弹窗()
+        if(currentPackage()!=apppackage){
+            app.launchPackage(apppackage)
+            sleep(2000)
+        }
+        if(currentActivity()==快手极速首页){
+            return true
+        }
+        if(id(快手极速摄像头图标id).exists()){
+            return true
+        }
+        back()
+    }
+}
+
+
+var 快手极速判断登录=function(){
+ if(回到快手极速首页()){
+    while(id(快手极速左边作者名称id).exists()){
+        
+    }
+    if(id(快手极速左边作者名称id).findOne(500).text()){
+
+    }
+ }else{
+     强制关闭(appname)
+     app.launchApp(appname)
+     sleep(1000)
+     return 快手极速判断登录()
+ }
 }
 var 快手极速弹窗=function(){
-    clickids(快手极速弹窗id集合)
+     clickids(快手极速弹窗id集合)
     clicktexts(快手极速弹窗文本集合)
     if(text("立即邀请").exists){
         back()
         sleep(500)
+    }
+    if(text("点击重播").exists()){
+        快手极速视频上滑()
     }
 }
 
@@ -754,9 +805,20 @@ var 快手极速登录=function(){
     }
 
 }
+var 快手极速提现=function(){
+
+}
+var 快手极速签到=function(){
+    if(回到快手极速首页()){
+        while(true){
+
+        }
+    }
+}
 
 var 快手极速视频上滑=function(){
- 滑动(20,13,16,10,6,500,500)
+  
+ 滑动(20,13,16,10,3,500,500)
  }
 
 var 快手极速视频滑动操作=function(){
@@ -764,14 +826,19 @@ var 快手极速视频滑动操作=function(){
     i=今日滑动次数()
     while(i<1000){
         if(i%5==0){
-            回到快手极速页()
+            设置今日滑动次数(i)
+            回到快手极速首页()
         }
-        快手极速弹窗()
+       滑块验证()
+        if(currentPackage()!=apppackage){
+            回到快手极速首页()
+        }
         快手极速视频上滑()
         i=i+1
-        if(i%100==0){
-            设置今日滑动次数(i)
+        if(i%300==0){
+           快手极速提现()
         }
+        sleepr(8000,15000)
     }
 }
 
@@ -783,8 +850,9 @@ if(!getPackageName("com.kuaishou.nebula")){
 }
 
 firstrunapp("快手极速版")
-if(islogin&&!快手极速判断登录()){
-    快手极速登录()
+
+if(今日签到()){
+    快手极速签到()
 }
 快手极速视频滑动操作()
 

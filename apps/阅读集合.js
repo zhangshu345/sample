@@ -382,3 +382,5 @@ var checkinstallapp=function(){
     })
 
 }
+
+checkinstallapp()
