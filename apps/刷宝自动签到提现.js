@@ -299,35 +299,35 @@ var 刷宝搜索用户=function(author){
 function 回到刷宝首页(){
     alter("回到刷宝首页")
     i=0
-    while(i<20&&currentActivity()!=刷宝首页){
+    while(i<20){
         cp=currentPackage()
         alter("刷宝:检测当前包名："+cp)
         if(cp!=刷宝包名){
            app.launchPackage(刷宝包名)
-                sleep(1000)
+            sleep(1000)
          }
          if(textclick("首页")){
-                return true
+            return true
         }
          if(id(刷宝视频页搜索按钮id).exists){
                 textclick("推荐",0,0,device.width,300)
                 return true
         }
-      
-       
+
         ca=currentActivity()
         alter("当前activity："+ca)
         if(ca==刷宝首页){
              return true
         }else{
             back()
-            sleep(1000)
-        }
+          }
         弹窗()
+        sleep(1000)
         i=i+1
       }
       if(i==20){
-          return false
+          强制关闭("刷宝短视频")
+          return 回到刷宝首页()
       }
       return true
 }
@@ -415,50 +415,55 @@ var 刷宝提现=function(){
               }
            
         }
+        if(可以提现()){
+            i=0
+             while(i<10){
+                 sleep(1000)
+                 textclick("立即提现")
+                             
+                 if(textclick("同意")){
+                     alter("微信同意")
+                 }
+                 if(text("提现详情").exists()){
+ 
+                     今日已提现()
+                     back()
+                     back()
+                     回到刷宝视频页()
+                     return true
+                 }
+                 if(text("去邀请好友").exists()){
+                     back()
+                     back()
+                     今日已提现()
+                     回到刷宝视频页()
+                     return true
+                 }
+                 i=i+1
+             }
+             back()
+             sleep(1000)
+             back()
+             回到刷宝视频页()
+             return false
+        }else{
+            back()
+            sleep(1000)
+            back()
+         回到刷宝视频页()
+         return false
+        }
+        
+
+
+
+
      }else{
          回到刷宝视频页()
          return false
      }
 
-     if(可以提现()){
-           i=0
-            while(i<10){
-                sleep(1000)
-                textclick("立即提现")
-                            
-                if(textclick("同意")){
-                    alter("微信同意")
-                }
-                if(text("提现详情").exists()){
-
-                    今日已提现()
-                    back()
-                    back()
-                    回到刷宝视频页()
-                    return true
-                }
-                if(text("去邀请好友").exists()){
-                    back()
-                    back()
-                    今日已提现()
-                    回到刷宝视频页()
-                    return true
-                }
-                i=i+1
-            }
-            back()
-            sleep(1000)
-            back()
-            回到刷宝视频页()
-            return false
-       }else{
-           back()
-           sleep(1000)
-           back()
-        回到刷宝视频页()
-        return false
-       }
-       
+    
 }
 
 function 弹窗() {

@@ -243,7 +243,10 @@ var firstrunapp=function(appname){
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
     允许启动文字=['允许',"确定","始终允许","打开"]
-    while(currentPackage()!=packagename){
+    while(true){
+        if(回到快手极速首页()){
+            return true
+        }
         clicktexts(允许启动文字)
     }
     
