@@ -5,7 +5,7 @@ auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
-var appname="阅读集合"
+var apppackage="阅读集合"
 
 var 数据库= storages.create("hongshuyuedujihe");
 
@@ -41,34 +41,34 @@ var alter=sync(function(txt){
 
 });
 var 今日签到=function(){
-    cs=数据库.get(appname+"_"+today()+"_sign", false)
+    cs=数据库.get(apppackage+"_"+today()+"_sign", false)
     alter("今日签到:"+cs)
     return cs
 }
 var 今日已签到=function(){
     
-     数据库.put(appname+"_"+today()+"_sign", true)
+     数据库.put(apppackage+"_"+today()+"_sign", true)
      alter("今日已签到")
 }
 var 今日时长=function(){
-    return 数据库.get(appname+"_"+today()+"_time", 0)
+    return 数据库.get(apppackage+"_"+today()+"_time", 0)
 }
 var 记录今日时长=function(t){
-    数据库.put(appname+"_"+today()+"_time",今日时长()+t)
+    数据库.put(apppackage+"_"+today()+"_time",今日时长()+t)
 }
 
 var 今日提现=function(){
-    return 数据库.get(appname+"_"+today()+"_cashout",false)
+    return 数据库.get(apppackage+"_"+today()+"_cashout",false)
 }
 var 今日已提现=function(){
-    数据库.put(appname+"_"+today()+"_cashout",true)
+    数据库.put(apppackage+"_"+today()+"_cashout",true)
     alter("今日已提现")
 }
 var 上次金币=function(){ 
-    return    数据库.get(appname+"_"+today()+"_lastcoin", 0)
+    return    数据库.get(apppackage+"_"+today()+"_lastcoin", 0)
  } //可以通过上次的金币来判断是否 还可以获取金币
  var 上次余额=function(){ 
-    return   数据库.get(appname+"_"+"lastmoney", 0.0)
+    return   数据库.get(apppackage+"_"+"lastmoney", 0.0)
  } //可以通过上次的金币来判断是否 还可以获取金币
 function httpget(varurl) {
     alter("脚本url:"+varurl)
@@ -98,7 +98,7 @@ var 强制关闭=function(appname){
   alter("强制关闭停止")
 }
 var 关闭快手极速=function(){
-     强制关闭(appname)
+     强制关闭(apppackage)
 }
 function idclick(i,left,top,right,bottom){
     left = left || 0;

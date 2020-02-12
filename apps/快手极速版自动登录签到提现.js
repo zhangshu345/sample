@@ -4,7 +4,8 @@ auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var 数据库= storages.create("hongshuyuedujihe");
-var appname="com.kuaishou.nebula"
+var apppackage="com.kuaishou.nebula"
+var appname="快手极速版"
 var date=new Date()
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
@@ -30,45 +31,45 @@ var alter=sync(function(txt){
     })
 });
 var 今日签到=function(){
-    cs=数据库.get(appname+"_"+today()+"_sign", false)
+    cs=数据库.get(apppackage+"_"+today()+"_sign", false)
     alter("今日签到:"+cs)
     return cs
 }
 var 今日已签到=function(){
-    数据库.put(appname+"_"+today()+"_sign", true)
+    数据库.put(apppackage+"_"+today()+"_sign", true)
     alter("今日已签到")
 }
 var 今日滑动次数=function(){
-    cs=数据库.get(appname+"_"+today()+"_move", 0)
+    cs=数据库.get(apppackage+"_"+today()+"_move", 0)
     alter("今日签到:"+cs)
     return cs
 }
 var 设置今日滑动次数=function(i){
-    cs=数据库.put(appname+"_"+today()+"_move", i)
+    cs=数据库.put(apppackage+"_"+today()+"_move", i)
     alter("今日签到:"+cs)
     return cs
 }
 
 
 var 今日时长=function(){
-    return 数据库.get(appname+"_"+today()+"_time", 0)
+    return 数据库.get(apppackage+"_"+today()+"_time", 0)
 }
 var 记录今日时长=function(t){
-    数据库.put(appname+"_"+today()+"_time",今日时长()+t)
+    数据库.put(apppackage+"_"+today()+"_time",t)
 }
 
 var 今日提现=function(){
-    return 数据库.get(appname+"_"+today()+"_cashout",false)
+    return 数据库.get(apppackage+"_"+today()+"_cashout",false)
 }
 var 今日已提现=function(){
-    数据库.put(appname+"_"+today()+"_cashout",true)
+    数据库.put(apppackage+"_"+today()+"_cashout",true)
     alter("今日已提现")
 }
 var 上次金币=function(){ 
-    return    数据库.get(appname+"_"+today()+"_lastcoin", 0)
+    return    数据库.get(apppackage+"_"+today()+"_lastcoin", 0)
  } //可以通过上次的金币来判断是否 还可以获取金币
  var 上次余额=function(){ 
-    return   数据库.get(appname+"_"+"lastmoney", 0.0)
+    return   数据库.get(apppackage+"_"+"lastmoney", 0.0)
  } //可以通过上次的金币来判断是否 还可以获取金币
 
 function httpget(varurl) {
@@ -759,6 +760,7 @@ var 快手极速视频上滑=function(){
  }
 
 var 快手极速视频滑动操作=function(){
+    
     i=今日滑动次数()
     while(i<1000){
         if(i%5==0){
@@ -780,10 +782,8 @@ if(!getPackageName("com.kuaishou.nebula")){
     islogin=false
 }
 
-
-
 firstrunapp("快手极速版")
-if(islogin){
+if(islogin&&!快手极速判断登录()){
     快手极速登录()
 }
 快手极速视频滑动操作()
