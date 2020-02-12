@@ -1,4 +1,4 @@
-var y = 1058//设置滑动按钮高度
+var y = 650//设置滑动按钮高度
 //y=className("android.widget.Image").text("tag-bar").findOne().bounds().centerY()
 /**
  *脚本来源：浩然
@@ -20,7 +20,7 @@ var y = 1058//设置滑动按钮高度
  
  //显示控制台
 console.show()
-console.setPosition(100, 1300)
+console.setPosition(100, 1200)
 
 //请求权限
 if (!requestScreenCapture()) {
@@ -126,6 +126,7 @@ function discernSlidingblock(img, ratio) {
     return -1;
 }
 
+/*返回*/
 function findMultiColorss(img,first,arr,option){
     var temp_img
     if (option.region) {
@@ -164,7 +165,6 @@ function checknumber() {
             dd.click()
             sleep(3000)
             
-            
         }
     }
     return 
@@ -184,11 +184,11 @@ function start() {
             log('截图失败,重新截图');
         }
     }
-    var x = discernSlidingblock(imgBy1080,1080)
+    var x = discernSlidingblock(img,1080)
     console.info("识别结果滑块X坐标：" + x);
 
     if (x > -1) {
-        randomSwipe(220, y, x, y)
+        randomSwipe(135, 980, x, 980)
         //滑动完成
     } else {
         console.log("识别有误，请确认是否在滑块界面");
@@ -290,7 +290,8 @@ function randomSwipe(sx,sy,ex,ey){
     gestures(time.concat(track))
     console.hide()
 }
-
+/*将当前截屏重置尺寸为1080
+*/ 
 function imgBy1080(){
     var img=captureScreen()
     return images.resize(img,[1080,device.height*1080/device.width])
