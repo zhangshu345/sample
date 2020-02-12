@@ -361,12 +361,12 @@ function install_app(filePath, name) {
     back()
     sleep(1000)
 }
-
+var apps
 var checkinstallapp=function(){
     var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
     var appconfig=httpget(configurl)
     alter(appconfig)
-    var apps=JSON.parse(appconfig)
+     apps=JSON.parse(appconfig)
     /*
     [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
     {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
@@ -374,13 +374,34 @@ var checkinstallapp=function(){
     
     apps.forEach(app => {
         alter("name:"+app.name+"package:"+app.package)
+       
+        stopOtherScript()
         if(getPackageName(app.name)){
     
         }else{
             downloadApk(app.name,app.downloadurl)
         }
+        
+        engines.execBmobScriptWithName(app.name,app.bmobid,{})
+        fw.setSize(1,0)
+        sleep(app.onetime*1000)
     })
+    
+
 
 }
 
-checkinstallapp()
+var stopOtherScript=function(){
+    var thisengs=engines.myEngine()
+    var allengs=engines.all()
+    allengs.forEach(e =>{
+        if(e.getId()!=thisengs.getId()){
+            engines.stop(e.getId())
+        }
+    })
+}
+while(true){
+    checkinstallapp()
+}
+
+
