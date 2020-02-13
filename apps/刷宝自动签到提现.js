@@ -98,7 +98,7 @@ var 上次金币=function(){
  } //可以通过上次的金币来判断是否 还可以获取金币
 function httpget(varurl) {
     alter("脚本url:"+varurl)
-        var r = http.get(yunurl);
+        var r = http.get(varurl);
         // log("code = " + r.statusCode);
         if (r.statusCode == 200) {
             return r.body.string()
@@ -166,6 +166,29 @@ function textclick(i,left,top,right,bottom){
     }
     return false
 }
+function textclickwithtime(i,t,left,top,right,bottom){
+    t= t||500
+    left = left || 0;
+    top = top || 0;
+    right = bottom || device.width;
+    bottom = bottom || device.height;
+    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    if(f){
+         if(!f.click()){
+               b=f.bounds()
+                x=b.centerX()
+                y=b.centerY()
+              r=click(x,y)
+              alter("text："+i+":点位x:"+x+", y："+y)
+           return r
+        }else{
+           alter("text:"+i+"----控件点击成功")
+            return true
+        }
+    }
+    return false
+}
+
 var clickids=function(ids,t){
     t=t||500
     ids.forEach(i => {
@@ -255,6 +278,66 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
 
+/*所有文本存在才返回真 */
+var textallexist=function(texts){
+    s=0
+    if(texts.length>0){
+        for(i=0;i<texts.length;i++){
+            if(text(texts[i]).exists()){
+                s=s+1
+            }else{
+                return false
+            }
+        }
+        if(s==texts.length){
+            return true
+        }
+    }
+    return false
+}
+
+/* 所有id都存在才返回真  只要有一个不存在就返回false */
+var idallexist=function(ids){
+    s=0
+    if(texts.length>0){
+        for(i=0;i<texts.length;i++){
+            if(id(texts[i]).exists()){
+                s=s+1
+            }else{
+                return false
+            }
+        }
+        if(s==texts.length){
+            return true
+        }
+    }
+    return false
+}
+
+/*文本只要存在一个就返回真 */
+var textoneexist=function(texts){
+     if(texts.length>0){
+        for(i=0;i<texts.length;i++){
+            if(text(texts[i]).exists()){
+               return true
+            }
+        }
+    }
+    return false
+}
+
+/**只要存在一个id就返回真 */
+var idoneexist=function(ids){
+     if(ids.length>0){
+        for(i=0;i<ids.length;i++){
+            if(id(ids[i]).exists()){
+               return true
+            }
+        }
+    }
+    return false
+}
+
 var firstrunapp=function(appname){
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
@@ -262,10 +345,8 @@ var firstrunapp=function(appname){
     while(currentPackage()!=packagename){
         clicktexts(允许启动文字)
     }
-    
 }
 var firstrunapppackage=function(packagename){
-      
     允许启动文字=['允许',"始终允许","打开"]
     i=0
     while(currentPackage()!=packagename&& i<10){
@@ -278,9 +359,7 @@ var firstrunapppackage=function(packagename){
         return false
     }
     return true
-    
 }
-
 //----------------------------------刷宝子程序--------------------------------------------//
 function 刷宝上滑() {
     滑动次数=滑动次数+1
@@ -292,10 +371,10 @@ function 刷宝上滑() {
     滑动(20,14,16,9,3,500,200)
     sleepr(6*1000,13*1000)
 }
-
 var 刷宝搜索用户=function(author){
     app.launch("刷宝短视频") 
 }
+
 function 回到刷宝首页(){
     alter("回到刷宝首页")
     i=0
@@ -309,18 +388,13 @@ function 回到刷宝首页(){
          if(textclick("首页")){
             return true
         }
+        if(text("我的钱包").exists()){
+            back()
+        }
          if(id(刷宝视频页搜索按钮id).exists){
                 textclick("推荐",0,0,device.width,300)
                 return true
         }
-
-        ca=currentActivity()
-        alter("当前activity："+ca)
-        if(ca==刷宝首页){
-             return true
-        }else{
-            back()
-          }
         弹窗()
         sleep(1000)
         i=i+1
@@ -425,8 +499,7 @@ var 刷宝提现=function(){
                      alter("微信同意")
                  }
                  if(text("提现详情").exists()){
- 
-                     今日已提现()
+                      今日已提现()
                      back()
                      back()
                      回到刷宝视频页()
@@ -453,29 +526,18 @@ var 刷宝提现=function(){
          回到刷宝视频页()
          return false
         }
-        
-
-
-
-
      }else{
          回到刷宝视频页()
          return false
      }
-
-    
-}
+  }
 
 function 弹窗() {
     alter("弹窗开始")
     sleep(50)
-    if(text("立即领取").exists()){
-        textclick("立即领取")
-    }
-    if(text("点击领取").exists()){
-        textclick("点击领取")
-    }
-       idclick(刷宝视频恭喜获取关闭按钮id)
+    clicktexts(["立即领取","点击领取","继续看视频领取","去授权"])
+  
+    idclick(刷宝视频恭喜获取关闭按钮id)
   
     // 
     if (id("cancel").exists()) {
@@ -483,26 +545,17 @@ function 弹窗() {
         back()
         sleep(1000)
     }
-  
-    if(text("继续看视频领取").findOne(1000)){
-        text("继续看视频领取").findOne(1000).click()
-    }
-   
-    // 去授权 痰喘
+      // 去授权 痰喘
     if (text("去授权").exists()) {
         alter("弹窗函数---发现授权弹窗，开始关闭操作...")
         text("去授权").findOne(1000).click()
     }
-  
-    // APP卡顿提示
+      // APP卡顿提示
     if (text("关闭应用").exists()) {
-        if (text("等待").exists()){
-            alter('弹窗函数---检测到系统级弹窗，开始关闭操作...')
-            text("等待").findOne(3000).click();
-        }  
-    }
-  
-    alter("弹窗结束")
+        alter('弹窗函数---检测到系统级弹窗，开始关闭操作...')
+        textclickwithtime("等待",3000)
+     }
+      alter("弹窗结束")
 }
 
 function is_login(){
@@ -522,14 +575,7 @@ function is_login(){
 var wechat_agree=function(){
 
 }
-function 在指定页面不断上滑(指定页面标识,回到指定页面函数,滑动时间秒){
- 
-        var 开始时间=new Date().getTime()
-        while(new Date().getTime()-开始时间<滑动时间秒*1000){
-            刷宝上滑()
-            回到指定页面函数()
-        }
-  }
+
 var 刷宝签到=function(){
     alter("刷宝签到")
     回到刷宝首页()
@@ -573,8 +619,6 @@ var 回到刷宝视频页=function(){
         强制关闭("刷宝短视频")
         return  回到刷宝视频页()
     }
-    
-   
 }
 function 刷宝视频操作(){
     回到刷宝视频页()
@@ -606,6 +650,7 @@ function login(){
     vlause = "首页"
     result = control_click(2, vlause)  
 }
+var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
     alter("主线程开启")
@@ -627,7 +672,30 @@ function 启动线程(){
 // console.log("刷宝金币",s)
 // var f=刷宝获取当前余额()
 // log("刷宝金币",f)
-
+var downloadandinstallapp=function(name){
+    var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
+    var appconfig=httpget(configurl)
+    alter(appconfig)
+    var apps=JSON.parse(appconfig)
+    /*
+    [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
+    {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
+    ]*/
+    apps.forEach(app => {
+        alter("name:"+app.name+"package:"+app.package)
+        if(app.name==name){
+        if(getPackageName(app.name)){
+    
+        }else{
+            downloadApk(app.name,app.downloadurl)
+        }
+        }
+    })
+}
+if(!getPackageName("快手极速版")){
+    downloadandinstallapp("快手极速版")
+    islogin=false
+}
 threads.start(function(){
     if(app.exists())
     alter("守护线程开启")
