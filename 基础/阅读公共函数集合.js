@@ -1,6 +1,7 @@
 var 数据库= storages.create("hsshuabao");
 var date=new Date()
 var starttime=date.getTime()
+
 var 滑动次数=0
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
