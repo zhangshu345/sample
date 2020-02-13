@@ -16,7 +16,8 @@ var alter=sync(function(txt,t,left,top,width,height){
         <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
         </frame>
     );
-    fw.setAdjustEnabled(false)
+    fw.setAdjustEnabled(true)
+    fw.setTouchable(false)
     fw.setSize(1, 1)
     fw.setPosition(50,85)
       ui.run(function(){
