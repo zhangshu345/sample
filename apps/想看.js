@@ -11,14 +11,35 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 var starttime=date.getTime()
-var islogin=true
 
+
+function httpget(url) {
+    log("脚本url:"+url)
+        var r = http.get(url);
+           if (r.statusCode == 200) {
+            return r.body.string()
+        } else {
+            return ""
+        }
+}
+
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/%E9%98%85%E8%AF%BB%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88.js"
+var  公共函数文本=httpget(公共函数url)
+log(公共函数文本)
+
+if (公共函数文本 != "") {
+    eval(公共函数文本)
+    log("公共函数实例化成功")
+}
+else {
+    log("公共函数实例化失败,程序返回")
+}
 
 
 
 
 if(!getPackageName("想看")){
-    downloadandinstallapp("快手极速版")
+    downloadandinstallapp("想看")
     islogin=false
 }
 
