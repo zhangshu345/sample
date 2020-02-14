@@ -583,19 +583,18 @@ var startallapp=function(){
                强制关闭应用(last.name)
            }
         stopOtherScript()
-        if(getPackageName(app.name)){
-    
-        }else{
-            downloadApk(app.name,app.downloadurl)
+        if(!getPackageName(app.name)){
+            if(app.downloadurl){
+                downloadApk(app.name,app.downloadurl)
+            }
         }
-        if(app.bmobid){
+        if(app.bmobid&&getPackageName(app.name)){
             engines.execBmobScriptWithName(app.name,app.bmobid,{})
             last=app
             fw.setSize(1,0)
             sleep(app.onetime*1000)
         }
-      
-      
+     
     })
 }
 
