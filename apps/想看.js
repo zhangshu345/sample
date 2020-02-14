@@ -38,17 +38,17 @@ else {
 
 
 
-if(!getPackageName("想看")){
-    downloadandinstallapp("想看")
+if(!getPackageName(appname)){
+    downloadandinstallapp(appname)
     islogin=false
 }
 
-firstrunapp("快手极速版")
+firstrunapp(appname)
 
-if(今日签到()){
-    快手极速签到()
+if(今日签到(apppackage)){
+    想看签到()
 }
-快手极速视频滑动操作()
+想看签到()
 
 
 

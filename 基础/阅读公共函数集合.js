@@ -2,7 +2,7 @@ var 数据库= storages.create("hsshuabao");
 var date=new Date()
 var starttime=date.getTime()
 
-var 滑动次数=0
+
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
@@ -31,37 +31,100 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
-var 今日签到=function(){
-    cs=数据库.get(today()+"_sign", false)
-    alter("今日签到:"+cs)
+var 今日签到=function(name){
+    cs=数据库.get(name+"_sign_"+today(), false)
+    alter(name+"今日签到:"+cs)
     return cs
 }
-var 今日已签到=function(){
-    
-     数据库.put(today()+"_sign", true)
-     alter("今日已签到")
+var 今日已签到=function(name){
+     数据库.put(name+"_sign_"+today(), true)
 }
-var 今日时长=function(t){
-    return 数据库.get(today()+"_time", 0)
+var 今日时长=function(name){
+   s=数据库.get(name+"_time_"+today(), 0)
+   alter(name+"今日时长:"+s)
+   return s
 }
-var 记录今日时长=function(t){
-    数据库.put(today()+"_time",今日时长()+t)
+var 记录今日时长=function(name,t){
+    t=t||0
+    数据库.put(name+"_time_"+today(),今日时长()+t)
 }
 
-var 今日提现=function(appname){
-    appname=appname || ""
-    return 数据库.get(today()+"_cashout",false)
+var 今日提现=function(name){
+    name=name || ""
+    return 数据库.get(name+"_cashout_"+today(),false)
 }
-var 今日已提现=function(t){
-    数据库.put(today()+"_cashout",true)
-    alter("今日已提现")
+var 今日已提现=function(name){
+    数据库.put(name+"_cashout_"+today(),true)
+    alter(name+"今日已提现")
 }
-var 上次金币=function(){ 
-    return    数据库.get(today()+"_lastcoin", 0)
+var 记录现在金币=function(name,i){
+    数据库.put(name+"_lastcoin_"+today(),i)
+
+}
+var 上次金币=function(name){ 
+       s= 数据库.get(name+"_lastcoin_"+today(), 0)
+       alter(name+"上次金币："+s)
+       return s
  } //可以通过上次的金币来判断是否 还可以获取金币
- var 上次余额=function(){ 
-    return   数据库.get("lastmoney", 0.0)
+ var 记录现在余额=function(name,f){ 
+   数据库.put(name+"_lastmoney_"+today(),f)
  } //可以通过上次的金币来判断是否 还可以获取金币
+
+ var 上次余额=function(name){ 
+    s=   数据库.get(name+"_lastmoney_"+today(), 0.0)
+    alter(name+"上次余额"+s)
+    return s
+ } //可以通过上次的金币来判断是否 还可以获取金币
+
+
+ var 记录现在滑动次数=function(name,f){ 
+    数据库.put(name+"_lastswipetime_"+today(),f)
+  } //可以通过上次的金币来判断是否 还可以获取金币
+ 
+  var 上次滑动次数=function(name){ 
+     s=   数据库.get(name+"_lastswipetime_"+today(), 0)
+     alter(name+"上次滑动次数"+s)
+     return s
+  } 
+ 
+
+  var 记录现在观看视频数=function(name,f){ 
+    数据库.put(name+"_lastvideonumber_"+today(),f)
+  } //可以通过上次的金币来判断是否 还可以获取金币
+ 
+  var 上次观看视频数=function(name){ 
+     s=   数据库.get(name+"_lastvideonumber_"+today(), 0)
+     alter(name+"上次观看视频个数"+s)
+     return s
+  } 
+ 
+  var 记录现在观看文章数=function(name,f){ 
+    数据库.put(name+"_lastwenzhangnumber_"+today(),f)
+  } //可以通过上次的金币来判断是否 还可以获取金币
+ 
+  var 上次观看文章数=function(name){ 
+     s=   数据库.get(name+"_lastwenzhangnumber_"+today(), 0)
+     alter(name+"上次观看视频个数"+s)
+     return s
+  } 
+ 
+var 记录=function(name,key,n){
+      数据库.put(name+"_"+key,n)
+}
+
+ var 获取记录=function(name,key){
+    数据库.get(name+"_"+key,0)
+}
+
+var 今日记录=function(name,key,n){
+    数据库.put(name+"_"+key+"_"+today(),n)
+}
+
+var 获取今日记录=function(name,key){
+  数据库.get(name+"_"+key+"_"+today(),0)
+}
+
+
 
 function httpget(url) {
     alter("脚本url:"+url)
@@ -525,11 +588,14 @@ var startallapp=function(){
         }else{
             downloadApk(app.name,app.downloadurl)
         }
-        
-        engines.execBmobScriptWithName(app.name,app.bmobid,{})
-        last=app
-        fw.setSize(1,0)
-        sleep(app.onetime*1000)
+        if(app.bmobid){
+            engines.execBmobScriptWithName(app.name,app.bmobid,{})
+            last=app
+            fw.setSize(1,0)
+            sleep(app.onetime*1000)
+        }
+      
+      
     })
 }
 
