@@ -1,7 +1,6 @@
-var 数据库= storages.create("hsshuabao");
+var 数据库= storages.create("hongshuyuedu");
 var date=new Date()
 var starttime=date.getTime()
-
 
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
@@ -12,7 +11,7 @@ var alter=sync(function(txt,t,left,top,width,height){
     top =top || device.height/20
     width =width|| device.height/20*19
     height =height || device.height/15
-    var fw=floaty.window(
+    var fw=floaty.rawWindow(
         <frame gravity="center">
         <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
         </frame>
@@ -123,8 +122,6 @@ var 今日记录=function(name,key,n){
 var 获取今日记录=function(name,key){
   数据库.get(name+"_"+key+"_"+today(),0)
 }
-
-
 
 function httpget(url) {
     alter("脚本url:"+url)
@@ -313,7 +310,6 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
 
-
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
     s=0
@@ -373,46 +369,51 @@ var idoneexist=function(ids){
     }
     return false
 }
-var firstrunapp=function(appname,maxtime){
-    if(!getPackageName(appname)){
-        downloadandinstallapp(appname)
-    }
-    maxtime=maxtime||15000
+var firstrunapp=function(appname){
+    importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
+    app.launchPackage(packagename)
     允许启动文字=['允许',"确定","始终允许","打开"]
-    i=0
-    d=new Date()
-    starttime=d.getTime()
-    while(currentPackage()!=packagename){
-      app.launchApp(appname)
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
         sleep(2000)
         clicktexts(允许启动文字)
         i=i+1
-        if(i>=10){
-            return false
-        }
-        if(d.getTime()-starttime>maxtime){
-            downloadandinstallapp(appname)
-        }
+    }
+    if(i>=4){
+        return false
     }
     return true
 }
 var firstrunapppackage=function(packagename){
+    importClass(com.hongshu.utils.AppUtils);
     允许启动文字=['允许',"始终允许","打开","确定"]
     i=0
-    while(currentPackage()!=packagename){
-        app.launch(packagename)
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
         sleep(2000)
         clicktexts(允许启动文字)
         i=i+1
-        if(i>=10){
-            return false
-        }
     }
-      return true
+    if(i>=4){
+        return false
+    }
+    return true
 }
-
-
 
 //下载app
 function downloadApk(name,url) {
@@ -593,6 +594,7 @@ var startallapp=function(){
             last=app
             fw.setSize(1,0)
             sleep(app.onetime*1000)
+            强制关闭应用(last.name)
         }
      
     })
