@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+importClass(com.hongshu.utils.AppUtils);
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var 刷宝包名="com.jm.video"
@@ -47,24 +48,29 @@ fw.setAdjustEnabled(false)
 fw.setSize(1, 1)
 fw.setPosition(50,85)
 var fwshow=false
-var alter=sync(function(txt){
-    // if(fwshow){
-    //     setTimeout(() =>{
-    //         alter(txt)
-    //     },1501)
-    // }else{
+var alter=sync(function(txt,t,left,top,width,height){
+    t=t||1500
+    left= left ||device.width/20
+    top =top || device.height/20
+    width =width|| device.height/20*19
+    height =height || device.height/15
+    var fw=floaty.rawWindow(
+        <frame gravity="center">
+        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
+        </frame>
+    );
+    
+    fw.setTouchable(false);
+    fw.setSize(1, 1)
+    fw.setPosition(50,85)
       ui.run(function(){
           console.log(txt)
         fw.text.setText(txt)
-        fw.setSize(device.width-100, device.height/15)
-        fwshow=true
-    //     setTimeout(()=>{
-    //         fwshow=false
-    //         fw.setSize(1,1)
-    //     },1500)
-    })
-// }
-
+        fw.setSize(device.width-100, 120)
+        setTimeout(()=>{
+            fw.close()
+        },t)
+     })
 });
 var 今日签到=function(){
     cs=数据库.get(today()+"_sign", false)
@@ -342,20 +348,42 @@ var firstrunapp=function(appname){
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
     允许启动文字=['允许',"确定","始终允许","打开"]
-    while(currentPackage()!=packagename){
-        clicktexts(允许启动文字)
-    }
-}
-var firstrunapppackage=function(packagename){
-    允许启动文字=['允许',"始终允许","打开"]
-    i=0
-    while(currentPackage()!=packagename&& i<10){
-        app.launchPackage(packagename)
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
         sleep(2000)
         clicktexts(允许启动文字)
         i=i+1
     }
-    if(i>=10){
+    if(i>=4){
+        return false
+    }
+    return true
+}
+var firstrunapppackage=function(packagename){
+
+    允许启动文字=['允许',"始终允许","打开","确定"]
+    i=0
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
+        sleep(2000)
+        clicktexts(允许启动文字)
+        i=i+1
+    }
+    if(i>=4){
         return false
     }
     return true
@@ -380,8 +408,8 @@ function 回到刷宝首页(){
     i=0
     while(i<20){
         cp=currentPackage()
-        alter("刷宝:检测当前包名："+cp)
         if(cp!=刷宝包名){
+            alter("刷宝:检测当前包名："+cp)
            app.launchPackage(刷宝包名)
             sleep(1000)
          }
@@ -392,8 +420,10 @@ function 回到刷宝首页(){
             back()
         }
          if(id(刷宝视频页搜索按钮id).exists){
-                textclick("推荐",0,0,device.width,300)
-                return true
+              textclick("推荐",0,0,device.width,300)
+             return true
+        }else{
+            back()
         }
         弹窗()
         sleep(1000)
@@ -555,7 +585,7 @@ function 弹窗() {
         alter('弹窗函数---检测到系统级弹窗，开始关闭操作...')
         textclickwithtime("等待",3000)
      }
-      alter("弹窗结束")
+     
 }
 
 function is_login(){
@@ -653,11 +683,11 @@ function login(){
 var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
-    alter("主线程开启")
+    alter("刷宝自动刷视频")
     firstrunapppackage(刷宝包名)
    todaytime=今日时长()
    alter("刷宝今日时长:"+todaytime)
-   sleep(2000)
+   sleep(1000)
    if(!今日签到()){
        刷宝签到()
    }
@@ -696,13 +726,13 @@ if(!getPackageName("快手极速版")){
     downloadandinstallapp("快手极速版")
     islogin=false
 }
-threads.start(function(){
-    if(app.exists())
-    alter("守护线程开启")
-    while(滑动次数<1000){
-        sleep(60*1000)
-        alter("判断是不是回到刷宝首页")
-        回到刷宝视频页()
-    }
-});
+// threads.start(function(){
+//     if(app.exists())
+//     alter("守护线程开启")
+//     while(滑动次数<1000){
+//         sleep(60*1000)
+//         alter("判断是不是回到刷宝首页")
+//         回到刷宝视频页()
+//     }
+// });
 启动线程()

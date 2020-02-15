@@ -11,37 +11,79 @@ function 快手上滑() {
     // swipe(w * 0.6 - random(10, 30), h * 0.7 + random(10, 20), w * 0.6 + random(50, 80), h * 0.4 + random(10, 30), random(220, 235))
     swipe(w * 0.6, h * 0.8, w * 0.6, h * 0.3, random(220, 235))
 }
+var alter=sync(function(txt,t,left,top,width,height){
+    t=t||2000
+    left= left ||device.width/20
+    top =top || device.height/20
+    width =width|| device.height/20*19
+    height =height || device.height/15
+    var fw=floaty.window(
+        <frame gravity="center">
+        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
+        </frame>
+    );
+    fw.setAdjustEnabled(false)
+    fw.setTouchable(false)
+    fw.setSize(1, 1)
+    fw.setPosition(50,85)
+      ui.run(function(){
+          console.log(txt)
+        fw.text.setText(txt)
+        fw.setSize(device.width-100, 120)
+        setTimeout(()=>{
+            fw.close()
+        },t)
+     })
+});
+
+
+
+function httpget(url) {
+    log("脚本url:"+url)
+        var r = http.get(url);
+           if (r.statusCode == 200) {
+            return r.body.string()
+        } else {
+            return ""
+        }
+}
+
+
+
+
 function 初始化() {
-    log("初始化")
+    alter("初始化")
     // 首页分享的ID
     while (true) {
-        console.log("进入初始化操作");
-        sleep(1000)
+     sleep(2000)
+    
         var 首页标识控件 = id("circular_progress_bar").exists();
-        console.log('首页标识控件' + 首页标识控件);
+        
         if (首页标识控件) {
-            console.log("初始化完成");
+            alter("初始化完成");
             break
+        }else{
+            alter("未找到首页标识,返回");
+            back()
+
         }
-        back()
-        console.log("初始化完成");
-        sleep(3000)
+
     }
 }
 function 弹窗() {
     sleep(200)
     if (id("btn_privacy_action").exists()) {
-        log("其中一个窗口")
+        alter("其中一个窗口")
         id("btn_privacy_action").findOne(1000).click()
     }
     if (id("close").exists()) {
         //要支持的动作
-        log('存在关闭按钮')
+        alter('存在关闭按钮')
         id("close").findOne().click();
     }
     if (text("我知道了").exists()) {
         //要支持的动作
-        log('存在我知道了')
+        alter('存在我知道了')
         text("我知道了").findOne().click();
     }
 }
@@ -170,7 +212,22 @@ function 验证滑块(){
       }
   }
 }
+/*
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/%E9%98%85%E8%AF%BB%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88.js"
+var  公共函数文本=httpget(公共函数url)
+log(公共函数文本)
+
+if (公共函数文本 != "") {
+    eval(公共函数文本)
+    log("公共函数实例化成功")
+}
+else {
+    log("公共函数实例化失败,程序返回")
+}
+*/
+
 app.launch("com.kuaishou.nebula")
+alter("开始")
     初始化()
     var i=0
     var hk=0

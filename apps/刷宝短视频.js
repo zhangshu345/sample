@@ -28,7 +28,6 @@ function 弹窗(){
         }
        
     }
-
 }
 
 app.launchApp("刷宝短视频")

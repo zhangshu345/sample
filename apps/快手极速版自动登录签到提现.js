@@ -157,7 +157,7 @@ var clickids=function(ids,t){
 }
 
 var clicktexts=function(texts,t){
-    alter("点击文本集合:")
+    alter("点击文本集合:"+t)
     t=t||500
     texts.forEach(i => {
         if(textclick(i)){
@@ -241,27 +241,47 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
 }
 
 var firstrunapp=function(appname){
+    importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
     允许启动文字=['允许',"确定","始终允许","打开"]
-    while(true){
-        if(回到快手极速首页()){
-            return true
-        }
-        clicktexts(允许启动文字)
-    }
-    
-}
-var firstrunapppackage=function(packagename){
-    允许启动文字=['允许',"始终允许","打开"]
     i=0
-    while(currentPackage()!=packagename&& i<10){
-        app.launchPackage(packagename)
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
         sleep(2000)
         clicktexts(允许启动文字)
         i=i+1
     }
-    if(i>=10){
+    if(i>=4){
+        return false
+    }
+    return true
+}
+var firstrunapppackage=function(packagename){
+    importClass(com.hongshu.utils.AppUtils);
+    允许启动文字=['允许',"始终允许","打开","确定"]
+    i=0
+    while(i<5){
+        a=AppUtils.isAppForeground(packagename)
+        if(a){
+            alter(packagename+" 在前台：")
+            return true
+        }else{
+            alter(packagename+" 不在在前台：")
+            app.launchPackage(packagename)
+        }
+        sleep(2000)
+        clicktexts(允许启动文字)
+        i=i+1
+    }
+    if(i>=4){
         return false
     }
     return true
@@ -504,12 +524,13 @@ function imgBy1080(){
     var img=captureScreen()
     return images.resize(img,[1080,device.height*1080/device.width])
 }
-
+var hk=0
+var hkc=0
 function 滑块验证尝试(){
              hk=hk+1
             var c=0
             while(text("拖动滑块").exists()){
-                clicktexts(["允许","确定"])
+              clicktexts(["允许","确定"])
               log("快手滑块验证")
               c=c+1
               if(device.width<=720){
@@ -521,7 +542,7 @@ function 滑块验证尝试(){
               }
           
               sleep(1000)
-              if(text("发现").exists()||text("关注").exists()){
+              if(idoneexist[快手极速首页奖励悬浮,快手极速摄像头图标id]){
                   hkc=hkc+1
                   log("滑块验证成功:"+hk+":"+hkc)
                   return
@@ -835,10 +856,67 @@ function downloadApk(name,url) {
         }
         }
     })
-
 }
 
+/*所有文本存在才返回真 */
+var textallexist=function(texts){
+    s=0
+    if(texts.length>0){
+        for(i=0;i<texts.length;i++){
+            if(text(texts[i]).exists()){
+                s=s+1
+            }else{
+                return false
+            }
+        }
+        if(s==texts.length){
+            return true
+        }
+    }
+    return false
+}
 
+/* 所有id都存在才返回真  只要有一个不存在就返回false */
+var idallexist=function(ids){
+    s=0
+    if(ids.length>0){
+        for(i=0;i<ids.length;i++){
+            if(id(ids[i]).exists()){
+                s=s+1
+            }else{
+                return false
+            }
+        }
+        if(s==ids.length){
+            return true
+        }
+    }
+    return false
+}
+
+/*文本只要存在一个就返回真 */
+var textoneexist=function(texts){
+     if(texts.length>0){
+        for(i=0;i<texts.length;i++){
+            if(text(texts[i]).exists()){
+               return true
+            }
+        }
+    }
+    return false
+}
+
+/**只要存在一个id就返回真 */
+var idoneexist=function(ids){
+     if(ids.length>0){
+        for(i=0;i<ids.length;i++){
+            if(id(ids[i]).exists()){
+               return true
+            }
+        }
+    }
+    return false
+}
 
 
 var 快手极速首次协议同意并继续id ="com.kuaishou.nebula:id/positive" //  text 同意并继续 点击 
@@ -849,7 +927,7 @@ var 快手极速协议勾选框id="com.kuaishou.nebula:id/cb_verify_service_line
 var 快手极速微信登录显示标题id="com.kuaishou.nebula:id/qm"   //显示登录app 的名称 这里是快手极速版   当前活动 com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI
 var 快手极速微信确认登录按钮id="com.tencent.mm:id/d17"  //确认登录  包名是com.tencent.mm  
 var 快手极速微信关闭按钮id="android:id/text1"  //关闭 
-var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了"]
+var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了","点击重播"]
 var 快手极速弹窗id集合=["btn_privacy_action","close"]
 var 快手极速首次登录点击id集合=[快手极速首次立即领取id,快手极速登录微信登录按钮id,快手极速微信确认登录按钮id]
 var 快手极速摄像头图标id="com.kuaishou.nebula:id/home_shot_view"
@@ -881,32 +959,17 @@ var 回到快手极速首页=function(){
             app.launchPackage(apppackage)
             sleep(2000)
         }
-        if(currentActivity()==快手极速首页){
+        if(currentActivity()==快手极速首页||idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
             return true
+        }else{
+            back()
         }
-        if(id(快手极速摄像头图标id).exists()){
-            return true
-        }
-        back()
-    }
-}
-
-
-var 快手极速判断登录=function(){
- if(回到快手极速首页()){
-    while(id(快手极速左边作者名称id).exists()){
         
+        sleep(1000)
     }
-    if(id(快手极速左边作者名称id).findOne(500).text()){
-
-    }
- }else{
-     强制关闭(appname)
-     app.launchApp(appname)
-     sleep(1000)
-     return 快手极速判断登录()
- }
 }
+
+
 var 快手极速弹窗=function(){
      clickids(快手极速弹窗id集合)
     clicktexts(快手极速弹窗文本集合)
@@ -914,14 +977,18 @@ var 快手极速弹窗=function(){
         back()
         sleep(500)
     }
-    if(text("点击重播").exists()){
-        快手极速视频上滑()
+    if (textclick("立即重播")){
+            快手极速视频上滑()
     }
+    
+}
+
+var 快手极速判断登录=function(){
+
 }
 
 var 快手极速登录=function(){
     while(!快手极速判断登录()){
-        
         clickids(快手极速首次登录点击id集合)
         sleep(1000)
     }
@@ -930,31 +997,35 @@ var 快手极速登录=function(){
 var 快手极速提现=function(){
 
 }
+
+
 var 快手极速签到=function(){
     if(回到快手极速首页()){
         while(true){
-
+            快手极速弹窗()
+            clickids([快手极速首页奖励悬浮])
+            if(textclick("立即签到")){
+                return true
+            }
         }
     }
 }
 
 var 快手极速视频上滑=function(){
-  
- 滑动(20,13,16,10,3,500,500)
+   滑动(20,13,12,10,3,200,300)
  }
 
 var 快手极速视频滑动操作=function(){
-    
     i=今日滑动次数()
     while(i<1000){
         if(i%5==0){
             设置今日滑动次数(i)
             回到快手极速首页()
         }
-       滑块验证()
-        if(currentPackage()!=apppackage){
-            回到快手极速首页()
-        }
+       滑块验证尝试()
+       if(idoneexist([快手极速摄像头图标id,快手极速首页奖励悬浮])){
+        回到快手极速首页()
+       }
         快手极速视频上滑()
         i=i+1
         if(i%300==0){
@@ -977,6 +1048,3 @@ if(今日签到()){
     快手极速签到()
 }
 快手极速视频滑动操作()
-
-
-
