@@ -31,11 +31,15 @@ if (公共函数文本 != "") {
     eval(公共函数文本)
     log("公共函数实例化成功")
 }
+
 else {
     log("公共函数实例化失败,程序返回")
 }
 
 
+var 想看签到=function(){
+    
+}
 
 
 if(!getPackageName(appname)){
@@ -43,12 +47,13 @@ if(!getPackageName(appname)){
     islogin=false
 }
 
-firstrunapp(appname)
 
+firstrunapp(appname)
 if(今日签到(apppackage)){
     想看签到()
 }
-想看签到()
+
+
 
 
 

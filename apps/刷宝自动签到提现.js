@@ -153,20 +153,21 @@ function idclick(i,left,top,right,bottom){
     }
     return false
 }
-function textclick(i,left,top,right,bottom){
+function textclick(i,t,left,top,right,bottom){
+    t=t || 500
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(1500);
+    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
          if(!f.click()){
-            alter("text："+i+":点位开始成功")
+             alter("text："+i+":点位开始成功")
                 b=f.bounds()
               r=click(b.centerX(),b.centerY())
            return r
         }else{
-           alter("text:"+i+"----控件点击成功")
+            alter("text:"+i+"----控件点击成功")
             return true
         }
     }
@@ -203,16 +204,21 @@ var clickids=function(ids,t){
        }
     });
 }
-var clicktexts=function(texts,t){
-    alter("点击文本集合控件:"+texts)
-    t=t||500
-    texts.forEach(i => {
-        if(textclick(i)){
-            sleep(t)
+
+var clicktexts=function(texts,t,st){
+  
+    st=st || 500
+    t=t || 500
+
+    for(i=0;i<texts.length;i++){
+        if(textclick(texts[i],t)){
+            sleep(st)
         }
-    });
-    alter("结束 点击文本集合控件 :"+texts)
+    }
+
 }
+
+
 var clicktextsbefore=function(clicktexts,stoptexts,t){
     t=t||500
     clicktexts.forEach(i => {
@@ -565,7 +571,7 @@ var 刷宝提现=function(){
 function 弹窗() {
     alter("弹窗开始")
     sleep(50)
-    clicktexts(["立即领取","点击领取","继续看视频领取","去授权"])
+    clicktexts(["立即领取","点击领取","继续看视频领取","关闭应用","去授权"])
   
     idclick(刷宝视频恭喜获取关闭按钮id)
   
@@ -575,16 +581,7 @@ function 弹窗() {
         back()
         sleep(1000)
     }
-      // 去授权 痰喘
-    if (text("去授权").exists()) {
-        alter("弹窗函数---发现授权弹窗，开始关闭操作...")
-        text("去授权").findOne(1000).click()
-    }
-      // APP卡顿提示
-    if (text("关闭应用").exists()) {
-        alter('弹窗函数---检测到系统级弹窗，开始关闭操作...')
-        textclickwithtime("等待",3000)
-     }
+  
      
 }
 
@@ -609,7 +606,7 @@ var wechat_agree=function(){
 var 刷宝签到=function(){
     alter("刷宝签到")
     回到刷宝首页()
-    clicktexts(["任务",'立即签到',"看视频签到"])
+    clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     while(true){
         弹窗()
         t= idclick(刷宝视频广告关闭按钮1id)
@@ -633,7 +630,7 @@ var 刷宝签到=function(){
         }
         alter("等待视频广告3秒")
         sleep(3000)
-        clicktexts(["任务",'立即签到',"看视频签到"])
+        clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     }
 }
 var 回到刷宝视频页=function(){
@@ -694,14 +691,7 @@ function 启动线程(){
    log("接下来就是刷视频操作")
    刷宝视频操作()
 }
- //启动线程()
-//强制停止("刷宝短视频")
-// log("上次金币",上次金币())
-// log("上次余额",上次余额())
-// var s=刷宝获取金币数()
-// console.log("刷宝金币",s)
-// var f=刷宝获取当前余额()
-// log("刷宝金币",f)
+
 var downloadandinstallapp=function(name){
     var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
     var appconfig=httpget(configurl)
@@ -726,13 +716,5 @@ if(!getPackageName("快手极速版")){
     downloadandinstallapp("快手极速版")
     islogin=false
 }
-// threads.start(function(){
-//     if(app.exists())
-//     alter("守护线程开启")
-//     while(滑动次数<1000){
-//         sleep(60*1000)
-//         alter("判断是不是回到刷宝首页")
-//         回到刷宝视频页()
-//     }
-// });
+
 启动线程()

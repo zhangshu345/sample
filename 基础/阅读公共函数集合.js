@@ -6,16 +6,28 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 var alter=sync(function(txt,t,left,top,width,height){
+    var issleep=false
     t=t||1200
     left= left ||device.width/20
     top =top || device.height/20
     width =width|| device.height/20*19
     height =height || device.height/15
     var fw=floaty.rawWindow(
-        <frame gravity="center">
-        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
-        </frame>
+        <horizontal gravity="center">
+            <text id="sleep" w="50dp"  >暂停</text>
+        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+        <text id="stop" w="50dp">退出</text>
+        </horizontal>
     );
+    fw.sleep.click(function(){
+        issleep=!issleep
+        while(issleep){
+            sleep(1000)
+        }
+    })
+    fw.stop.click(function(){
+        exit()
+    })
     fw.setAdjustEnabled(true)
     fw.setTouchable(false)
     fw.setSize(1, 1)
@@ -190,12 +202,12 @@ function textclick(i,t,left,top,right,bottom){
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
          if(!f.click()){
-               alter("text："+i+":点位开始成功")
+             alter("text："+i+":点位开始成功")
                 b=f.bounds()
               r=click(b.centerX(),b.centerY())
            return r
         }else{
-           alter("text:"+i+"----控件点击成功")
+            alter("text:"+i+"----控件点击成功")
             return true
         }
     }
@@ -210,16 +222,22 @@ var clickids=function(ids,t,st){
        }
     });
 }
+
 var clicktexts=function(texts,t,st){
     alter("开始点击文本集合控件:"+texts)
     st=st || 500
     t=t || 500
-    texts.forEach(i => {
-        if(textclick(i,t)){
+
+    for(i=0;i<texts.length;i++){
+        if(textclick(texts[i],t)){
             sleep(st)
         }
-    });
+    }
+
 }
+
+
+
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
