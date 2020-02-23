@@ -12,24 +12,44 @@ var today=function(){
 }
 var starttime=date.getTime()
 var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
-
-var fw=floaty.window(
-    <frame gravity="center">
-    <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
-    </frame>
-
+var fw=floaty.rawWindow(
+    <horizontal gravity="center">
+     
+    <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+   
+    </horizontal>
 );
-fw.setAdjustEnabled(false)
+// fw.sleep.click(function(){
+//     issleep=!issleep
+//     while(issleep){
+//         sleep(1000)
+//     }
+// })
+// fw.stop.click(function(){
+//     exit()
+// })
+
+ fw.setTouchable(false)
 fw.setSize(1, 1)
-fw.setPosition(50,device.height/15)
-var fwshow=false
-var alter=sync(function(txt){
+fw.setPosition(50,85)
+fw.setSize(device.width-100, 120)
+var alter=sync(function(txt,t,left,top,width,height){
+    var issleep=false
+    t=t||1200
+    left= left ||device.width/20
+    top =top || device.height/20
+    width =width|| device.height/20*19
+    height =height || device.height/15
+ 
       ui.run(function(){
           console.log(txt)
         fw.text.setText(txt)
-        fw.setSize(device.width-100, device.height/15)
-        fwshow=true
-    })
+        fw.setPosition(left,top)
+        fw.setSize(device.width-100, 120)
+        // setTimeout(()=>{
+        //     fw.close()
+        // },t)
+     })
 });
 var 今日签到=function(){
     cs=数据库.get(apppackage+"_"+today()+"_sign", false)
@@ -149,26 +169,28 @@ function textclick(i,left,top,right,bottom){
 var clickids=function(ids,t){
     alter("点击id集合:")
     t=t||500
-    ids.forEach(i => {
-       if (idclick(i)){
-        sleep(t)
-       }
-    });
+    for(i=0;i<ids.length;i++){
+        if(idclick(ids[i])){
+            sleep(t)
+        }
+    }
+   
 }
 
 var clicktexts=function(texts,t){
-    alter("点击文本集合:"+t)
+    alter("点击文本集合:")
     t=t||500
-    texts.forEach(i => {
-        if(textclick(i)){
+    for(i=0;i<texts.length;i++){
+        if(textclick(texts[i])){
             sleep(t)
         }
-    });
+    }
  
 }
 
 var clicktextsbefore=function(clicktexts,stoptexts,t){
     t=t||500
+
     clicktexts.forEach(i => {
         if(textclick(i)){
             sleep(t)
@@ -516,7 +538,7 @@ function randomSwipe(sx,sy,ex,ey){
     
     //滑动
     gestures(time.concat(track))
-    console.hide()
+    
 }
 /*将当前截屏重置尺寸为1080
 */ 
@@ -527,6 +549,7 @@ function imgBy1080(){
 var hk=0
 var hkc=0
 function 滑块验证尝试(){
+        w=device.width
              hk=hk+1
             var c=0
             while(text("拖动滑块").exists()){
@@ -551,10 +574,8 @@ function 滑块验证尝试(){
 }
 
 function 滑块验证精确() {
-    clicktexts(["确定","允许"])
+    log("当前宽 ："+device.width+":"+device.height)
       var y = 650
-    auto.waitFor()
-    for(var i=0;i<0;i++){sleep(1000);log(i);}
     while (true) {
         img = images.captureScreen();
         if (img) {
@@ -563,6 +584,7 @@ function 滑块验证精确() {
         } else {
             log('截图失败,重新截图');
         }
+        clicktexts(["确定","允许"])
     }
     var x
     if(device.width<=720){
@@ -572,36 +594,42 @@ function 滑块验证精确() {
     }else if(device.width>1080){
         x = discernSlidingblock(imgBy1080,1080)
     }
-     info("识别结果滑块X坐标：" + x);
+     log("识别结果滑块X坐标：" + x);
     if (x > -1) {
         if(device.width<=720){
-            randomSwipe(80, 650, x, 650)
+            randomSwipe(80, 650, x-10, 650)
         }else if(device.width==1080){
             randomSwipe(135, 980, x, 980)
         }else if(device.width>1080){
             randomSwipe(140,980,x,980)
         }
         //滑动完成
-        
     } else {
        log("识别有误，请确认是否在滑块界面");
     }
+   
     
 }
 
 var 滑块验证=function(){
+    
+    while(!requestScreenCapture()){
+       if(clicktexts(["立即开始"])){
+       
+       }
+       sleep(1000)
+    }
     i=0
     while(text("拖动滑块").exists()){
-        
-    if (requestScreenCapture()) {
-       clicktexts("立即开始")
+   
+        sleep(1000)
         滑块验证精确()
-    }else{
-        滑块验证尝试()
-    }
-    sleep(1000)
+        if(i%3==0){
+            滑块验证尝试()
+        }
+    sleep(3000)
     i=i+1
-       }
+    }
 }
  //显示控制台
 //  console.show()
@@ -1012,7 +1040,7 @@ var 快手极速签到=function(){
 }
 
 var 快手极速视频上滑=function(){
-   滑动(20,13,12,10,3,200,300)
+   滑动(20,13,16,10,3,800,300)
  }
 
 var 快手极速视频滑动操作=function(){
@@ -1037,14 +1065,17 @@ var 快手极速视频滑动操作=function(){
 
 var islogin=true
 
-if(!getPackageName("com.kuaishou.nebula")){
-    downloadandinstallapp("快手极速版")
-    islogin=false
-}
 
-firstrunapp("快手极速版")
-
-if(今日签到()){
-    快手极速签到()
+var 启动=function(){
+    if(!getPackageName("com.kuaishou.nebula")){
+        downloadandinstallapp("快手极速版")
+        islogin=false
+    }
+    
+    firstrunapp("快手极速版")
+    if(今日签到()){
+        快手极速签到()
+    }
+    快手极速视频滑动操作()
 }
-快手极速视频滑动操作()
+启动()
