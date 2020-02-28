@@ -496,8 +496,8 @@ function downloadApk(name,url) {
  function install_app(filePath, name) {
      ////--------------安装--------------////
      //  读取 apk
-     installapp(filePath)
-     clickarray=["继续","始终允许","允许","安装","完成","继续安装","下一步"]
+     app.viewFile(filePath)
+     clickarray=["继续","始终允许","允许","安装","继续安装","下一步"]
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
@@ -553,8 +553,7 @@ function downloadApk(name,url) {
              downloadApk(app.name,app.downloadurl)
          }
      })
- 
- }
+  }
  //根据app名下载并安装应用
  var downloadandinstallapp=function(name){
     var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"

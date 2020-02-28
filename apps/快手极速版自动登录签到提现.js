@@ -167,7 +167,7 @@ function textclick(i,left,top,right,bottom){
 }
 
 var clickids=function(ids,t){
-    alter("点击id集合:")
+  
     t=t||500
     for(i=0;i<ids.length;i++){
         if(idclick(ids[i])){
@@ -178,7 +178,7 @@ var clickids=function(ids,t){
 }
 
 var clicktexts=function(texts,t){
-    alter("点击文本集合:")
+ 
     t=t||500
     for(i=0;i<texts.length;i++){
         if(textclick(texts[i])){
@@ -262,6 +262,11 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
 
+var isfrontapp=function(appname){
+    importClass(com.hongshu.utils.AppUtils);
+    packagename=app.getPackageName(appname)
+    return   AppUtils.isAppForeground(packagename)
+}
 var firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
@@ -269,15 +274,16 @@ var firstrunapp=function(appname){
     允许启动文字=['允许',"确定","始终允许","打开"]
     i=0
     while(i<5){
+        sleep(2000)
         a=AppUtils.isAppForeground(packagename)
         if(a){
-            alter(packagename+" 在前台：")
+            alter(appname+" 在前台：")
             return true
         }else{
-            alter(packagename+" 不在在前台：")
+            alter(appname+" 不在在前台：")
             app.launchPackage(packagename)
         }
-        sleep(2000)
+    
         clicktexts(允许启动文字)
         i=i+1
     }
@@ -291,6 +297,7 @@ var firstrunapppackage=function(packagename){
     允许启动文字=['允许',"始终允许","打开","确定"]
     i=0
     while(i<5){
+        sleep(2000)
         a=AppUtils.isAppForeground(packagename)
         if(a){
             alter(packagename+" 在前台：")
@@ -299,7 +306,7 @@ var firstrunapppackage=function(packagename){
             alter(packagename+" 不在在前台：")
             app.launchPackage(packagename)
         }
-        sleep(2000)
+        
         clicktexts(允许启动文字)
         i=i+1
     }
@@ -614,10 +621,10 @@ function 滑块验证精确() {
 var 滑块验证=function(){
     
     while(!requestScreenCapture()){
-       if(clicktexts(["立即开始"])){
-       
+       if(clicktexts(["不再提醒","立即开始"])){
+        
        }
-       sleep(1000)
+       sleep(2000)
     }
     i=0
     while(text("拖动滑块").exists()){
@@ -641,8 +648,7 @@ var 滑块验证=function(){
 //下载app
 function downloadApk(name,url) {
     // console.log('下载的名字是'+name);
- 
-     // 获取APP的名字
+      // 获取APP的名字
      // 在每个空格字符处进行分解。
      file_name_url = url
      file_name = name+".apk"
@@ -936,13 +942,13 @@ var textoneexist=function(texts){
 
 /**只要存在一个id就返回真 */
 var idoneexist=function(ids){
-     if(ids.length>0){
-        for(i=0;i<ids.length;i++){
+         for(i=0;i<ids.length;i++){
             if(id(ids[i]).exists()){
+                alter("id:"+ids[i]+"--存在")
                return true
             }
         }
-    }
+   
     return false
 }
 
@@ -983,11 +989,11 @@ var 回到快手极速首页=function(){
     alter("回到快手极速首页")
     while(true){
         快手极速弹窗()
-        if(currentPackage()!=apppackage){
-            app.launchPackage(apppackage)
-            sleep(2000)
+        滑块验证()
+        if(!isfrontapp("快手极速版")){
+            app.launchApp("快手极速版")
         }
-        if(currentActivity()==快手极速首页||idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
+        if(idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
             return true
         }else{
             back()
@@ -1031,10 +1037,13 @@ var 快手极速签到=function(){
     if(回到快手极速首页()){
         while(true){
             快手极速弹窗()
-            clickids([快手极速首页奖励悬浮])
+           if(clickids([快手极速首页奖励悬浮])){
+               sleep(2000)
+           }
             if(textclick("立即签到")){
                 return true
             }
+            滑块验证()
         }
     }
 }
@@ -1046,14 +1055,13 @@ var 快手极速视频上滑=function(){
 var 快手极速视频滑动操作=function(){
     i=今日滑动次数()
     while(i<1000){
-        if(i%5==0){
+        if(i%15==0){
             设置今日滑动次数(i)
-            回到快手极速首页()
         }
        滑块验证尝试()
-       if(idoneexist([快手极速摄像头图标id,快手极速首页奖励悬浮])){
-        回到快手极速首页()
-       }
+       if(!idoneexist([快手极速摄像头图标id,快手极速首页奖励悬浮])){
+            回到快手极速首页()
+        }
         快手极速视频上滑()
         i=i+1
         if(i%300==0){
