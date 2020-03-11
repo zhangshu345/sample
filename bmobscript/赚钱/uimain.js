@@ -136,8 +136,6 @@ threads.start(function(){
     
 } )
 
-
-
 // addnewapp("有颜短视频", 2, 100)
 // addnewapp("小吃货短视频", 2, 100)
 // addnewapp("看点快报", 2, 15)
@@ -228,10 +226,12 @@ ui.bt_start.on("click", function () {
     })
     ui.finish()
     home()
+    exit()
 })
 
 ui.bt_exit.on("click", function () {
     ui.finish()
+    
 })
 
 ui.bt_update.on("click", function () {
@@ -250,7 +250,6 @@ ui.bt_update.on("click", function () {
 
 })
 
-
 function httpget(url) {
        var r = http.get(url);
         log("code = " + r.statusCode);
@@ -259,10 +258,7 @@ function httpget(url) {
         } else {
             return ""
         }
-    
-
 }
-
 
 function geteval(varrurl) {
     var yunurl = "http://yuedu.xiequbo.cn/"

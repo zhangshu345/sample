@@ -136,7 +136,6 @@ var 获取今日记录=function(name,key){
 }
 
 function httpget(url) {
-    alter("脚本url:"+url)
         var r = http.get(url);
         // log("code = " + r.statusCode);
         if (r.statusCode == 200) {
@@ -235,8 +234,6 @@ var clicktexts=function(texts,t,st){
     }
 
 }
-
-
 
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间
@@ -410,6 +407,7 @@ var firstrunapp=function(appname){
     }
     return true
 }
+
 var firstrunapppackage=function(packagename){
     importClass(com.hongshu.utils.AppUtils);
     允许启动文字=['允许',"始终允许","打开","确定"]
