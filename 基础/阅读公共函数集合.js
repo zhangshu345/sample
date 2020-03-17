@@ -1,7 +1,7 @@
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date()
 var starttime=date.getTime()
-
+var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
@@ -534,44 +534,50 @@ function downloadApk(name,url) {
  }
  
  var checkinstallapp=function(){
-     var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
-     var appconfig=httpget(configurl)
-     alter(appconfig)
-     var apps=JSON.parse(appconfig)
+     var appconfigs=httpget(rewardapplisturl)
+       var apps=JSON.parse(appconfigs)
      /*
-     [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-     {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
-     ]*/
+     [{"name":"快手极速版","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","快手"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.kuaishou.nebula","bmobid":"q7B36667","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
+{"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
+{"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
+]*/
      
      apps.forEach(app => {
          alter("name:"+app.name+"package:"+app.package)
          if(getPackageName(app.name)){
      
          }else{
+             alter("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
              downloadApk(app.name,app.downloadurl)
          }
      })
   }
+
  //根据app名下载并安装应用
  var downloadandinstallapp=function(name){
-    var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
-    var appconfig=httpget(configurl)
-    alter(appconfig)
-    var apps=JSON.parse(appconfig)
-    /*
-    [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-    {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
-    ]*/
-       apps.forEach(app => {
-        alter("name:"+app.name+"package:"+app.package)
-        if(app.name==name){
-        if(getPackageName(app.name)){
     
-        }else{
+    var appconfiglist=httpget(rewardapplisturl)
+   
+    var apps=JSON.parse(appconfiglist)
+     /*
+     [{"name":"快手极速版","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","快手"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.kuaishou.nebula","bmobid":"q7B36667","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
+{"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
+{"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
+]*/
+    var isok=false
+       apps.forEach(app => {
+          alter("name:"+app.name+"package:"+app.package)
+             if(app.name==name){
+                isok=true
+                  if(getPackageName(app.name)){
+    
+                 }else{
             downloadApk(app.name,app.downloadurl)
+                }
+             }
         }
-        }
-    })
+ 
+    )
 }
 
 //关闭其他应用
@@ -585,14 +591,12 @@ var stopOtherScript=function(){
     })
 }
 
+
+
 var startallapp=function(){
-    var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
-    var appconfig=httpget(configurl)
+    var appconfig=httpget(rewardapplisturl)
      apps=JSON.parse(appconfig)
-    /*
-    [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-    {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
-    ]*/
+
     var last
     apps.forEach(app => {
            if(last){
