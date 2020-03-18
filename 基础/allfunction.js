@@ -5,6 +5,20 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
+var gfw=floaty.rawWindow(
+    <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+);
+gfw.setSize(device.width0, 120)
+gfw.setTouchable(false)
+gfw.setSize(1, 1)
+gfw.setPosition(0,85)
+
+var show=function(txt){
+    ui.run(function(){
+       console.log(txt)
+       gfw.text.setText(txt)
+    })
+}
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||1200
@@ -14,7 +28,7 @@ var alter=sync(function(txt,t,left,top,width,height){
     height =height || device.height/15
     var fw=floaty.rawWindow(
         <horizontal gravity="center">
-            <text id="sleep" w="50dp"  >暂停</text>
+            <text id="sleep" w="50dp">暂停</text>
         <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         <text id="stop" w="50dp">退出</text>
         </horizontal>
@@ -33,7 +47,7 @@ var alter=sync(function(txt,t,left,top,width,height){
     fw.setSize(1, 1)
     fw.setPosition(50,85)
       ui.run(function(){
-          console.log(txt)
+         console.log(txt)
         fw.text.setText(txt)
         fw.setSize(device.width-100, 120)
         setTimeout(()=>{
@@ -64,19 +78,20 @@ var 今日提现=function(name){
     name=name || ""
     return 数据库.get(name+"_cashout_"+today(),false)
 }
+
 var 今日已提现=function(name){
     数据库.put(name+"_cashout_"+today(),true)
     alter(name+"今日已提现")
 }
 var 记录现在金币=function(name,i){
     数据库.put(name+"_lastcoin_"+today(),i)
-
 }
 var 上次金币=function(name){ 
        s= 数据库.get(name+"_lastcoin_"+today(), 0)
        alter(name+"上次金币："+s)
        return s
- } //可以通过上次的金币来判断是否 还可以获取金币
+ } 
+ //可以通过上次的金币来判断是否 还可以获取金币
  var 记录现在余额=function(name,f){ 
    数据库.put(name+"_lastmoney_"+today(),f)
  } //可以通过上次的金币来判断是否 还可以获取金币
@@ -87,28 +102,26 @@ var 上次金币=function(name){
     return s
  } //可以通过上次的金币来判断是否 还可以获取金币
 
-
  var 记录现在滑动次数=function(name,f){ 
     数据库.put(name+"_lastswipetime_"+today(),f)
-  } //可以通过上次的金币来判断是否 还可以获取金币
+} //可以通过上次的金币来判断是否 还可以获取金币
  
-  var 上次滑动次数=function(name){ 
+var 上次滑动次数=function(name){ 
      s=   数据库.get(name+"_lastswipetime_"+today(), 0)
      alter(name+"上次滑动次数"+s)
      return s
-  } 
+} 
  
 
-  var 记录现在观看视频数=function(name,f){ 
+var 记录现在观看视频数=function(name,f){ 
     数据库.put(name+"_lastvideonumber_"+today(),f)
-  } //可以通过上次的金币来判断是否 还可以获取金币
+} //可以通过上次的金币来判断是否 还可以获取金币
  
-  var 上次观看视频数=function(name){ 
+var 上次观看视频数=function(name){ 
      s=   数据库.get(name+"_lastvideonumber_"+today(), 0)
      alter(name+"上次观看视频个数"+s)
      return s
-  } 
- 
+} 
   var 记录现在观看文章数=function(name,f){ 
     数据库.put(name+"_lastwenzhangnumber_"+today(),f)
   } //可以通过上次的金币来判断是否 还可以获取金币
@@ -147,10 +160,10 @@ function httpget(url) {
 
 var 强制关闭应用=function(appname,st){
     if(!getPackageName(appname)){
-        alter(appname+"：没有安装")
+        show(appname+"：没有安装")
         return 
     }
-  alter("强制关闭应用:"+appname)
+    show("强制关闭应用:"+appname)
   st=st||10000
   var packagename=app.getPackageName(appname)
   app.openAppSetting(packagename)
@@ -192,6 +205,7 @@ function idclick(id,t,left,top,right,bottom){
     }
     return false
 }
+//文本点击
 function textclick(i,t,left,top,right,bottom){
     t=t || 500
     left = left || 0;
@@ -201,32 +215,33 @@ function textclick(i,t,left,top,right,bottom){
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
          if(!f.click()){
-             alter("text："+i+":点位开始成功")
-                b=f.bounds()
+             show("text："+i+":点位开始成功")
+             b=f.bounds()
               r=click(b.centerX(),b.centerY())
            return r
         }else{
-            alter("text:"+i+"----控件点击成功")
+            show("text:"+i+"----控件点击成功")
             return true
         }
     }
     return false
 }
+//ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
     t=t||500
     st=st||500
     ids.forEach(i => {
        if (idclick(i,t)){
-        sleep(st)
+            sleep(st)
        }
     });
 }
 
+//点击文本集合
 var clicktexts=function(texts,t,st){
-    alter("开始点击文本集合控件:"+texts)
+    show("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
-
     for(i=0;i<texts.length;i++){
         if(textclick(texts[i],t)){
             sleep(st)
@@ -236,9 +251,9 @@ var clicktexts=function(texts,t,st){
 }
 
 
-//在文本标志出现之前一直点击文本的 t 是最长等待时间
+//在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
-    t=t||10000
+    t=t||10000   
     date=new Date()
     st=date.getTime()
     while(true){
@@ -267,7 +282,6 @@ var whileclickidsbeforeids=function(ids,stopids,t){
        }
     }
  }
-
 
 function control_click(button, vlause, left, top, right, bottom) {
     // 功能---点击控件
@@ -434,8 +448,7 @@ var firstrunapppackage=function(packagename){
 //下载app
 function downloadApk(name,url) {
     // console.log('下载的名字是'+name);
- 
-     // 获取APP的名字
+      // 获取APP的名字
      // 在每个空格字符处进行分解。
      file_name_url = url
      file_name = name+".apk"
@@ -596,7 +609,6 @@ var stopOtherScript=function(){
 var startallapp=function(){
     var appconfig=httpget(rewardapplisturl)
      apps=JSON.parse(appconfig)
-
     var last
     apps.forEach(app => {
            if(last){
