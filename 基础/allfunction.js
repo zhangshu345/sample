@@ -169,11 +169,11 @@ var 强制关闭应用=function(appname,st){
   app.openAppSetting(packagename)
   var closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
   var i=0
-  while(i<4){
+  while(i<2){
     closetexts.forEach(t=>{
         if(textclick(t)){
             i=i+1
-            alter("成功点击关闭："+i)
+          sleep(2000)
         }
     })
   }
