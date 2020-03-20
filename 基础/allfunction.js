@@ -150,6 +150,7 @@ var 获取今日记录=function(name,key){
   数据库.get(name+"_"+key+"_"+today(),0)
 }
 
+//
 function httpget(url) {
         var r = http.get(url);
         // log("code = " + r.statusCode);
@@ -646,7 +647,7 @@ var startallapp=function(){
                 downloadApk(app.name,app.downloadurl)
             }
         }
-        if(app.bmobid&&getPackageName(app.name)){
+        if(app.bmobid && getPackageName(app.name)){
             engines.execBmobScriptWithName(app.name,app.bmobid,{})
             last=app
             fw.setSize(1,0)
@@ -658,6 +659,45 @@ var startallapp=function(){
      
     })
 }
+
+
+
+
+
+
+//本地配置启用脚本
+var localstartallapp=function(){
+let apps=数据库.get("runlist","")
+var last
+apps.forEach(app =>{
+  if(last){
+    记录今日时长(last.name,last.onetime)
+    forcestop(last.name)
+  }
+  stopOtherScript()
+ if(!getPackageName(app.name)){
+     if(app.downloadurl){
+         //下载并安装
+         downloadApk(app.name,app.downloadurl)
+     }
+ }
+
+ if(app.scripturl && getPackageName(app.name)){
+     content=httpget(app.scripturl)
+     if(content){
+        engines.execScript(app.name,content, {})
+        last=app
+        sleep(app.onetime*1000)
+     }
+}else if(app.bmobid && getPackageName(app.name)){
+    engines.execBmobScriptWithName(app.name,app.bmobid,{})
+    last=app
+    sleep(app.onetime*1000)
+}
+
+
+}
+
 
 // PermissionUtils.manageDrawOverlays()
 // pkg=getPackageName("刷宝短视频")
