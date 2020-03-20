@@ -8,9 +8,9 @@ var today=function(){
 var gfw=floaty.rawWindow(
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
 );
-gfw.setSize(device.width0, 120)
+gfw.setSize(device.width, 120)
 gfw.setTouchable(false)
-gfw.setSize(1, 1)
+
 gfw.setPosition(0,85)
 
 var show=function(txt){
@@ -19,12 +19,13 @@ var show=function(txt){
        gfw.text.setText(txt)
     })
 }
+
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
-    t=t||1200
-    left= left ||device.width/20
-    top =top || device.height/20
-    width =width|| device.height/20*19
+    t=t||5000
+    left= left ||0
+    top =top || device.height/15
+    width =width|| device.height
     height =height || device.height/15
     var fw=floaty.rawWindow(
         <horizontal gravity="center">
@@ -49,7 +50,7 @@ var alter=sync(function(txt,t,left,top,width,height){
       ui.run(function(){
          console.log(txt)
         fw.text.setText(txt)
-        fw.setSize(device.width-100, 120)
+        fw.setSize(width, height)
         setTimeout(()=>{
             fw.close()
         },t)
@@ -158,17 +159,17 @@ function httpget(url) {
         }
   }
 
-var 强制关闭应用=function(appname,st){
+var forcestop=function(appname,st){
     if(!getPackageName(appname)){
         show(appname+"：没有安装")
         return 
     }
     show("强制关闭应用:"+appname)
   st=st||10000
-  var packagename=app.getPackageName(appname)
+   packagename=app.getPackageName(appname)
   app.openAppSetting(packagename)
-  var closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
-  var i=0
+  closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
+  i=0
   while(i<2){
     closetexts.forEach(t=>{
         if(textclick(t)){
@@ -178,6 +179,22 @@ var 强制关闭应用=function(appname,st){
     })
   }
 }
+
+
+function tofloatysetting(){
+   let i = app.intent({
+        action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
+        flags:["activity_new_task"]
+        // data: "file:///sdcard/1.png"
+    });
+    context.startActivity(i);
+}
+
+var checkfloaty=function(){
+    importClass(android.provider.Settings);
+    return Settings.canDrawOverlays(context)
+}
+
 
 function idclick(id,t,left,top,right,bottom){
     t= t|| 500
@@ -329,7 +346,7 @@ function control_click(button, vlause, left, top, right, bottom) {
 }
 var sleepr=function(short,long){
     rt=random(short,long)
-    alter("等待:"+rt +" 毫秒")
+    show("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 function 滑动(z,x1,y1,x2,y2,t,r) {
@@ -398,27 +415,40 @@ var idoneexist=function(ids){
     }
     return false
 }
+
+var isAppForground=function(packagename){
+    importClass(com.hongshu.utils.AppUtils);
+    a =AppUtils.isAppForeground(packagename)
+    if(a){
+        show("apputils 判断正确")
+        return true
+    }else{
+        show("apputils 判断错误")
+        return false 
+        
+    }
+}
+
 var firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
     允许启动文字=['允许',"确定","始终允许","打开"]
-    while(i<5){
-        a=AppUtils.isAppForeground(packagename)
-        if(a){
-            alter(packagename+" 在前台：")
+    cfirsti=0
+    while(cfirsti<5){
+        if(currentPackage()==packagename){
+            show(packagename+" 在前台："+currentPackage())
+      
             return true
         }else{
-            alter(packagename+" 不在在前台：")
+            show(packagename+" 不在在前台："+currentPackage())
             app.launchPackage(packagename)
         }
         sleep(2000)
         clicktexts(允许启动文字)
-        i=i+1
+        cfirsti=cfirsti+1
     }
-    if(i>=4){
-        return false
-    }
+  
     return true
 }
 
@@ -426,9 +456,8 @@ var firstrunapppackage=function(packagename){
     importClass(com.hongshu.utils.AppUtils);
     允许启动文字=['允许',"始终允许","打开","确定"]
     i=0
-    while(i<5){
-        a=AppUtils.isAppForeground(packagename)
-        if(a){
+    while(i<2){
+        if(currentPackage()==packagename){
             alter(packagename+" 在前台：")
             return true
         }else{
@@ -439,9 +468,7 @@ var firstrunapppackage=function(packagename){
         clicktexts(允许启动文字)
         i=i+1
     }
-    if(i>=4){
-        return false
-    }
+  
     return true
 }
 
@@ -554,13 +581,12 @@ function downloadApk(name,url) {
 {"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
 {"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
 ]*/
-     
      apps.forEach(app => {
-         alter("name:"+app.name+"package:"+app.package)
+         show("name:"+app.name+"package:"+app.package)
          if(getPackageName(app.name)){
      
          }else{
-             alter("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
+             show("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
              downloadApk(app.name,app.downloadurl)
          }
      })
@@ -579,7 +605,7 @@ function downloadApk(name,url) {
 ]*/
     var isok=false
        apps.forEach(app => {
-          alter("name:"+app.name+"package:"+app.package)
+          show("name:"+app.name+"package:"+app.package)
              if(app.name==name){
                 isok=true
                   if(getPackageName(app.name)){
@@ -612,9 +638,9 @@ var startallapp=function(){
     var last
     apps.forEach(app => {
            if(last){
-               强制关闭应用(last.name)
+               forcestop(last.name)
            }
-        stopOtherScript()
+            stopOtherScript()
         if(!getPackageName(app.name)){
             if(app.downloadurl){
                 downloadApk(app.name,app.downloadurl)
@@ -625,9 +651,16 @@ var startallapp=function(){
             last=app
             fw.setSize(1,0)
             sleep(app.onetime*1000)
-            强制关闭应用(last.name)
+            forcestop(last.name)
+        }else if(app.scripturl && getPackageName(app.name)){
+            engines.run
         }
      
     })
 }
 
+// PermissionUtils.manageDrawOverlays()
+// pkg=getPackageName("刷宝短视频")
+// a=AppUtils.isAppForeground(pkg)
+// show("jieguo:"+a)
+// sleep(5000)

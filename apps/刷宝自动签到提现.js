@@ -1,3 +1,4 @@
+ui
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils);
@@ -36,41 +37,29 @@ var date=new Date()
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
+
+log("屏幕宽度"+device)
+log("imei"+device.getIMEI())
+
 var starttime=date.getTime()
 var 滑动次数=0
-var fw=floaty.window(
+var fwshow=false
+var fw=floaty.rawWindow(
     <frame gravity="center">
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
     </frame>
-
 );
-fw.setAdjustEnabled(false)
-fw.setSize(1, 1)
-fw.setPosition(50,85)
-var fwshow=false
+fw.setSize(device.width, 120)
+fw.setTouchable(false);
+fw.setPosition(0,100)
+
 var alter=sync(function(txt,t,left,top,width,height){
-    t=t||1500
-    left= left ||device.width/20
-    top =top || device.height/20
-    width =width|| device.height/20*19
-    height =height || device.height/15
-    var fw=floaty.rawWindow(
-        <frame gravity="center">
-        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">悬浮文字</text>
-        </frame>
-    );
-    
-    fw.setTouchable(false);
-    fw.setSize(1, 1)
-    fw.setPosition(50,85)
-      ui.run(function(){
-          console.log(txt)
-        fw.text.setText(txt)
-        fw.setSize(device.width-100, 120)
-        setTimeout(()=>{
-            fw.close()
-        },t)
+   console.log(txt)
+   fw.text.setText(txt)
+
+     ui.run(function(){
      })
+  
 });
 var 今日签到=function(){
     cs=数据库.get(today()+"_sign", false)
@@ -128,46 +117,46 @@ var 强制关闭=function(appname){
   }
   alter("强制关闭停止")
 }
-function idclick(i,left,top,right,bottom){
+function idclick(id,left,top,right,bottom){
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=id(i).boundsInside(left, top, right, bottom).findOne(1500);
+    var f=id(id).boundsInside(left, top, right, bottom).findOne(1500);
     if(f){
         if(!f.click()){
             b=f.bounds()
             bc=click(b.centerX(),b.centerY())
             if(bc){
-                alter("id："+i+"----点位成功点击")
+                alter("id："+id+"----点位成功点击")
                 return true
             }else{
-                alter("id："+i+"----点位失败点击")
+                alter("id："+id+"----点位失败点击")
                 return false
             }
            
         }else{
-            alter("id："+i+"----控件点击成功")
+            alter("id："+id+"----控件点击成功")
             return true
         }
     }
     return false
 }
-function textclick(i,t,left,top,right,bottom){
+function textclick(txt,t,left,top,right,bottom){
     t=t || 500
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(txt).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
          if(!f.click()){
-             alter("text："+i+":点位开始成功")
+             alter("text："+txt+":点位开始成功")
                 b=f.bounds()
               r=click(b.centerX(),b.centerY())
            return r
         }else{
-            alter("text:"+i+"----控件点击成功")
+            alter("text:"+txt+"----控件点击成功")
             return true
         }
     }
@@ -285,7 +274,9 @@ var sleepr=function(short,long){
 }
 function 滑动(z,x1,y1,x2,y2,t,r) {
     var w = device.width/z;
+   
     var h = device.height/z;
+    alter("单位宽度："+w+"--"+h)
     r=r||1000
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
@@ -398,11 +389,10 @@ var firstrunapppackage=function(packagename){
 function 刷宝上滑() {
     滑动次数=滑动次数+1
     alter("第 "+滑动次数+" 次上滑")
-   
-    if(!id(刷宝视频页搜索按钮id).exists()){
+     if(!id(刷宝视频页搜索按钮id).exists()){
        回到刷宝视频页()
     }
-    滑动(20,14,16,9,3,500,200)
+    滑动(20,12,16,9,3,500,200)
     sleepr(6*1000,13*1000)
 }
 var 刷宝搜索用户=function(author){
@@ -719,9 +709,22 @@ if(!getPackageName("快手极速版")){
 
 // 启动线程()
 
-刷宝上滑()
-刷宝上滑()
-刷宝上滑()
-刷宝上滑()
-刷宝上滑()
-刷宝上滑()
+// 刷宝上滑()
+// 刷宝上滑()
+// 刷宝上滑()
+// 刷宝上滑()
+// 刷宝上滑()
+// 刷宝上滑()
+
+
+app.launchApp("看点快报")
+ var ii=0
+while(ii<30){
+       alter("第"+ii)
+    ii=ii+1
+    log("l-"+ii)
+    sleep(1000)
+
+     clicktexts(["允许"])
+    log("sss-"+ii)
+}

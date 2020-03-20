@@ -19,9 +19,9 @@ function 弹窗(){
     if (刷宝红包关闭) {
         log("红包按钮存在")
         var 坐标 = id("imgClose").findOne();
-        log(坐标.bounds())
-        var 坐标 = 坐标.bounds()
         if(root){
+            log(坐标.bounds())
+            var 坐标 = 坐标.bounds()
             Tap(坐标.left + 5, 坐标.bottom - 2)
         }else{
             click(坐标.left + 5, 坐标.bottom - 2)
