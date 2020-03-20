@@ -10,9 +10,7 @@ var gfw=floaty.rawWindow(
 );
 gfw.setSize(device.width, 120)
 gfw.setTouchable(false)
-
 gfw.setPosition(0,85)
-
 var show=function(txt){
     ui.run(function(){
        console.log(txt)
@@ -43,7 +41,7 @@ var alter=sync(function(txt,t,left,top,width,height){
     fw.stop.click(function(){
         exit()
     })
-    fw.setAdjustEnabled(true)
+   
     fw.setTouchable(false)
     fw.setSize(1, 1)
     fw.setPosition(50,85)
@@ -62,14 +60,17 @@ var 今日签到=function(name){
     alter(name+"今日签到:"+cs)
     return cs
 }
+
 var 今日已签到=function(name){
      数据库.put(name+"_sign_"+today(), true)
 }
+
 var 今日时长=function(name){
    s=数据库.get(name+"_time_"+today(), 0)
    alter(name+"今日时长:"+s)
    return s
 }
+
 var 记录今日时长=function(name,t){
     t=t||0
     数据库.put(name+"_time_"+today(),今日时长()+t)
@@ -631,7 +632,6 @@ var stopOtherScript=function(){
 }
 
 
-
 var startallapp=function(){
     var appconfig=httpget(rewardapplisturl)
      apps=JSON.parse(appconfig)
@@ -664,3 +664,15 @@ var startallapp=function(){
 // a=AppUtils.isAppForeground(pkg)
 // show("jieguo:"+a)
 // sleep(5000)
+
+// let apps=数据库.get("runlist","")
+
+// apps.forEach(a =>{
+//     for( x in a){
+//         log(x,a[x])
+//     }
+// })
+
+
+
+// 今日签到("快手")
