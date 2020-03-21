@@ -22,6 +22,7 @@ if (公共函数文本 != "") {
 else {
     log("公共函数实例化失败,程序返回")
 }
+
 while(true){
     localstartallapp()
 }
