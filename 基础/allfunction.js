@@ -1,10 +1,12 @@
 var 数据库= storages.create("hongshuyuedu");
-var date=new Date()
+var date=new Date();
 var starttime=date.getTime()
+
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
+
 var gfw=floaty.rawWindow(
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
 );
@@ -660,43 +662,37 @@ var startallapp=function(){
     })
 }
 
-
-
-
-
-
 //本地配置启用脚本
 var localstartallapp=function(){
-let apps=数据库.get("runlist","")
-var last
-apps.forEach(app =>{
-  if(last){
-    记录今日时长(last.name,last.onetime)
-    forcestop(last.name)
-  }
-  stopOtherScript()
- if(!getPackageName(app.name)){
-     if(app.downloadurl){
-         //下载并安装
-         downloadApk(app.name,app.downloadurl)
+    let apps=数据库.get("runlist","")
+    var last
+    apps.forEach(app =>{
+      if(last){
+        记录今日时长(last.name,last.onetime)
+        forcestop(last.name)
+      }
+      stopOtherScript()
+     if(!getPackageName(app.name)){
+         if(app.downloadurl){
+             //下载并安装
+             downloadApk(app.name,app.downloadurl)
+         }
      }
- }
-
- if(app.scripturl && getPackageName(app.name)){
-     content=httpget(app.scripturl)
-     if(content){
-        engines.execScript(app.name,content, {})
+    
+     if(app.scripturl && getPackageName(app.name)){
+         content=httpget(app.scripturl)
+         if(content){
+            engines.execScript(app.name,content, {})
+            last=app
+            sleep(app.onetime*1000)
+         }
+    }else if(app.bmobid && getPackageName(app.name)){
+        engines.execBmobScriptWithName(app.name,app.bmobid,{})
         last=app
-        sleep(app.onetime*1000)
-     }
-}else if(app.bmobid && getPackageName(app.name)){
-    engines.execBmobScriptWithName(app.name,app.bmobid,{})
-    last=app
-    sleep(app.onetime*1000)
-}
-
-
-}
+       
+    }
+    }
+    
 
 
 // PermissionUtils.manageDrawOverlays()
@@ -712,7 +708,3 @@ apps.forEach(app =>{
 //         log(x,a[x])
 //     }
 // })
-
-
-
-// 今日签到("快手")
