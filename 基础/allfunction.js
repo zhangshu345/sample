@@ -663,7 +663,7 @@ var startallapp=function(){
 }
 
 //本地配置启用脚本
-var localstartallapp=function(){
+var localstartallapp = function(){
     let apps=数据库.get("runlist","")
     var last
     apps.forEach(app =>{
@@ -691,20 +691,31 @@ var localstartallapp=function(){
         last=app
        
     }
-    }
+    })
+}
     
+var isNotificationManager=function(){
+ importClass(com.hongshu.utils.PermissionUtils);
+    return PermissionUtils.isnotificationListenerEnable()
+}
 
-
-// PermissionUtils.manageDrawOverlays()
+var toNotificationManager=function(){
+    importClass(com.hongshu.utils.IntentUtils);
+    IntentUtils.toNotificationAccessSetting()
+    
+}
+   
+//     log("jia")
+//   }else{
+//       log("真")
+//   }
 // pkg=getPackageName("刷宝短视频")
+// log(pkg)
 // a=AppUtils.isAppForeground(pkg)
+// log(a)
+// firstrunapp("刷宝短视频")
+
 // show("jieguo:"+a)
 // sleep(5000)
 
 // let apps=数据库.get("runlist","")
-
-// apps.forEach(a =>{
-//     for( x in a){
-//         log(x,a[x])
-//     }
-// })
