@@ -1,2 +1,7 @@
-[{}
+[{"name":"循环上滑","desc":"循环不间断上滑，依赖于无障碍服务循环间隔时间执行上滑操作","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10},
+    {"name":"护眼模式","desc":"屏幕变为护眼色调","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10},
+    {"name":"清理空文件夹","desc":"清除手机存储的空白文件夹","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10},
+    {"name":"导出微信图片","desc":"备份微信图片，可选打包为压缩包 分享到微信收藏和百度网盘,下载到电脑时，请自行修改格式为.zip","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10},
+    {"name":"画板","desc":"一个画板","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10},
+    {"name":"二维码扫描","desc":"便捷二维码搜索工具","root":false,"coin":0,"money":0,"path":"","source":1,"author":"","level":0,"version":1,"appversion":10,"requestapi":10}
 ]
