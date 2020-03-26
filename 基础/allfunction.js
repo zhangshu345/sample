@@ -154,6 +154,7 @@ var 获取今日记录=function(name,key){
 
 //
 function httpget(url) {
+
         var r = http.get(url);
         // log("code = " + r.statusCode);
         if (r.statusCode == 200) {
@@ -553,7 +554,6 @@ function downloadApk(name,url) {
              // click(坐标.left + 5, 坐标.bottom - 2)
              while (true) {
                  idclick("security_install_protection_switch")
-              
                  sleep(500)
                  is_first = id("security_install_protection_switch").findOne(500)
                  if (!is_first.checked()) {
@@ -577,9 +577,11 @@ function downloadApk(name,url) {
      sleep(1000)
  }
  
+
  var checkinstallapp=function(){
+    runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
-       var apps=JSON.parse(appconfigs)
+     var apps=JSON.parse(appconfigs)
      /*
      [{"name":"快手极速版","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","快手"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.kuaishou.nebula","bmobid":"q7B36667","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
 {"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
@@ -702,9 +704,15 @@ var isNotificationManager=function(){
 var toNotificationManager=function(){
     importClass(com.hongshu.utils.IntentUtils);
     IntentUtils.toNotificationAccessSetting()
-    
+}
+
+var alltest=function(){
+    log("全部测试")
+    // localstartallapp()
+    checkinstallapp()
 }
    
+alltest()
 //     log("jia")
 //   }else{
 //       log("真")
@@ -713,7 +721,7 @@ var toNotificationManager=function(){
 // log(pkg)
 // a=AppUtils.isAppForeground(pkg)
 // log(a)
-// firstrunapp("刷宝短视频")
+
 
 // show("jieguo:"+a)
 // sleep(5000)
