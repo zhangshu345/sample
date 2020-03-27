@@ -14,7 +14,7 @@
     "notificationsurl":"",
     "lineme":"",
     "messagesurl":"",
-    "advice":{"isshowad":true,"gdtappid":"1107884137","gdtsplash":"3050556016547077","gdtbanner":"7050874243306523","gdtchaping":"9000477233208574","gdtnative_stxw":"1090258046130763"
+"advice":{"isshowad":true,"gdtappid":"1107884137","gdtsplash":"3050556016547077","gdtbanner":"7050874243306523","gdtchaping":"9000477233208574","gdtnative_stxw":"1090258046130763"
         ,"gdtnative_swxt":"7010157076631784","gdtnative_ztyw":"5060557076533745","gdtnative_zwyt":"8090355066439830",  "gdtnative_stsw":"2010951036132844","gdtnative_ct_1280_720":"4000852076232865","gdtnative_ct_800_1200":"4030650096938888","gdtnative_sxt":"2070555046032971",
         "gdtnative_w_swxt":"4060754016635903","gdtnative_w_stxw":"4060754016635903","gdtnative_w_dt":"3030650056040021",
         "gdtnative_ct_1080_1920":"","gdtrewardvideo":"5070296571590830","jg_chaping":600,"jg_banner":30,"jg_native":5,"ttappid":"5055078","ttnative":"945093652","ttbanner_600_300":"945093662","ttbanner_600_400":"945093663"
@@ -23,7 +23,8 @@
         ,"ttdrawvideo":"945093677","ttnative_video":"945093678","adviewkey":"","adviewsplash":"","adviewbanner":"","adviewchaping":"","adviewnative":"","adviewvideo":"","adviewhudong":""
         ,"s360appid":"1241773","s360banner":"auP7IAELy1","s360chaping":"kaucIAtgJh"
     },
-    "tags":[{"name":"推荐","level":0,"desc":"推荐使用的脚本","url":""},
+"tags":[{"name":"限免","level":0,"desc":"今日免费脚本","url":""},
+    {"name":"推荐","level":0,"desc":"推荐使用的脚本","url":""},
     {"name":"热门","level":0,"desc":"推荐使用的脚本","url":""},
     {"name":"应用","level":0,"desc":"本机App操作集合:卸载,安装，备份，查看信息，分享，禁止安装，图标提取，意图过滤，定时启动，定时关闭，冻结，解冻","url":""},
     {"name":"工具","level":0,"desc":"小工具","url":""},
@@ -43,13 +44,13 @@
     {"name":"购物","level":0,"desc":"购物省钱领券辅助，淘宝优惠券，京东内购券，拼多多购物券，拼多多助力，优惠活动监控","url":""},
     {"name":"阅读","level":0,"desc":"书籍全网查找，小说阅读，小说更新提醒，小说更新自动下载","url":""},
     {"name":"音乐","level":0,"desc":"本地音乐","url":""},
-    {"name":"赚钱","level":0,"desc":"可以辅助赚钱的小工具，广告词朗读器，广告词生成语音，宣传标语展示，走马灯，快捷分享到其他应用","url":""},
+    {"name":"赚钱","level":5,"desc":"可以辅助赚钱的小工具，广告词朗读器，广告词生成语音，宣传标语展示，走马灯，快捷分享到其他应用","url":""},
     {"name":"二维码","level":0,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","url":""},
     {"name":"推广","level":0,"desc":"推广的app，每个APP都是宝库","url":""},
-    {"name":"微信","level":0,"desc":"微信相关的插件工具，空间清理，微信小视频备份","url":""},
+    {"name":"微信","level":3,"desc":"微信相关的插件工具，空间清理，微信小视频备份","url":""},
     {"name":"任务","level":0,"desc":"完成任务获取金币","url":""},
     {"name":"无障碍","level":0,"desc":"基于无障碍服务的工具，盲人模式，自动朗读，自动点击，抢红包","url":""},
-    {"name":"VIP","level":50,"desc":"推荐使用的脚本","url":""}
+    {"name":"VIP","level":5,"desc":"推荐使用的脚本","url":""}
 ],
 "activity":[{"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":true,"coin":10000,"money":0,"event":24,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_use","script":""},
     {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_finish_parent","script":""},
@@ -63,8 +64,8 @@
     {"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"https://pp.myapp.com/ma_icon/0/icon_52764540_1584105418/96","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
     {"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
     ],
- "uiconfig":{},
-    "levelconfig":[{"level":0,"nickname":"0级","maxmoney":5.0,"daymoney":0.5,"separate":0.2,"tax":17,"coin":100000,"money":0,"experience":100000,"son1":3,"son2":10,"son3":20},
+
+ "levelconfig":[{"level":0,"nickname":"0级","maxmoney":5.0,"daymoney":0.5,"separate":0.2,"tax":17,"coin":100000,"money":0,"experience":100000,"son1":3,"son2":10,"son3":20},
         {"level":1,"nickname":"一级","maxmoney":10.0,"daymoney":1.2,"separate":0.22,"tax":15,"coin":1000000,"money":0,"experience":100000,"son1":5,"son2":20,"son3":300},
         {"level":2,"nickname":"二级","maxmoney":15.0,"daymoney":1.9,"separate":0.25,"tax":15,"coin":10000000,"money":0,"experience":100000,"son1":10,"son2":70,"son3":1500},
         {"level":3,"nickname":"三级","maxmoney":20.0,"daymoney":2.5,"separate":0.28,"tax":13,"coin":100000000,"money":0,"experience":100000,"son1":20,"son2":100,"son3":150},
@@ -77,7 +78,13 @@
         {"level":10,"nickname":"10级","maxmoney":70.0,"daymoney":10,"separate":0.38,"tax":10,"coin":100000000000000,"money":0,"experience":100000,"son1":1000,"son2":20000,"son3":150},
         {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":100000000000000,"money":0,"experience":100000,"son1":2000,"son2":35000,"son3":150},
         {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":100000000000000,"money":0,"experience":100000,"son1":5000,"son2":500000,"son3":150},
-
     ],
-    "rewardconfig":{}
-}
+    "uiconfig":{"spalsh":{"logo":"","img":"","desc":"","versioninfo":"","waittime":2000,"nextactivitypath":"/dongdongsuibian/main"},
+                    "usermain":{"tintcolor":"#ffff0000",
+                                "menus":[{"icon":"","title":"首页","fragment":"toolbox"},
+                                            {"icon":"","title":"发现","fragment":"scriptmarket"},
+                                            {"icon":"","title":"希望","fragment":"scripttask"},
+                                            {"icon":"","title":"我的","frgment":"scriptme"}
+                                        ]
+                                }
+                    }
