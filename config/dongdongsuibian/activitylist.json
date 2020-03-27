@@ -4,5 +4,4 @@
     {"title":"看福利视频","summary":"每日看福利视频，每次可获取100金币，每日100次","level":0,"open":true,"coin":100,"money":0,"event":27,"time":100,"interval":300,"finishname":"领取奖励","nofinishname":"看视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
     {"title":"幸运转盘抽奖","summary":"每日转盘抽奖，轻轻松松中大奖","level":0,"open":true,"coin":100,"money":0,"event":28,"time":100,"interval":600,"finishname":"领取奖励","nofinishname":"去抽奖","icon":"","rewardtype":1,"key":"key_action_reward_luck","script":""},
     {"title":"每日分享","summary":"每日分享App给好友，分享到朋友圈，独乐乐不如众乐乐","level":0,"open":true,"coin":100,"money":0,"event":29,"time":5,"interval":1800,"finishname":"领取奖励","nofinishname":"去分享","icon":"","rewardtype":1,"key":"key_action_reward_share","script":""}
-
 ]
