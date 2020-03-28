@@ -1,29 +1,20 @@
 [{"name":"东东随便",
     "pkg":"com.dongdong.suibian",
-    "baseurl":"",
-    "mtaappid":"",
-    "bmobappid":"",
-    "jpush":"",
     "channel":"androidjs",
-    "versioni":10,
-    "adviceconfig":"",
-    "rewardapplist":"",
-    "userguide":"",
-    "settingdescription":"",
-    "lineme":"",
-    "scripttags":"",
-    "rewardconfig":"",
-    "activityconfig":"",
-    "version":"",
+    "versioni":20,
+    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+    "version":"1.2.0",
     "downloadurl":"",
-    "uiconfig":"",
-    "privacy":"",
-    "announce":"",
-    "levelconfig":"",
-    "notificationsurl":"",
-    "messagesurl":"",
-    "configurl":""
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/dongdongsuibian/allconfig.json"
+},
+{"name":"东东随便",
+    "pkg":"com.dongdong.suibian",
+    "channel":"yangyang",
+    "versioni":20,
+    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+    "version":"1.2.0",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/dongdongsuibian/allconfig.json"
 }
-
 
 ]

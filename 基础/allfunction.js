@@ -164,6 +164,7 @@ function httpget(url) {
         }
   }
 
+  
 var forcestop=function(appname,st){
     if(!getPackageName(appname)){
         show(appname+"：没有安装")
@@ -712,7 +713,7 @@ var alltest=function(){
     checkinstallapp()
 }
    
-alltest()
+// alltest()
 //     log("jia")
 //   }else{
 //       log("真")

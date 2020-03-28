@@ -8,12 +8,12 @@
     "sign":"",
     "versioni":10,
     "version":"1.1.0",
-    "ratio_splash":"gdt-10:tt-10",
-    "ratio_banner":"gdt-10:tt-10",
-    "ratio_chaping":"gdt-10:tt-10",
-    "ratio_native":"gdt-10:tt-10",
-    "ratio_rewardvideo":"gdt-10:tt-10",
-    "ratio_fullvideo":"gdt-10:tt-10",
+    "ratio_splash":"gdt-10|tt-10",
+    "ratio_banner":"gdt-10|tt-10",
+    "ratio_chaping":"gdt-10|tt-10",
+    "ratio_native":"gdt-10|tt-10",
+    "ratio_rewardvideo":"gdt-10|tt-10",
+    "ratio_fullvideo":"gdt-10|tt-10",
     "gdt":{
     "open":true,
     "appid":"1107884137",
@@ -34,7 +34,7 @@
     "native_ct_1080_1920":"",
     "rewardvideo":"5070296571590830"
     },
-   
+
     "toutiao":{
     "open":true,
     "appid":"5055078",
@@ -78,4 +78,5 @@
         "native":"",
         "rewardvideo":""
     }
+ 
 }
