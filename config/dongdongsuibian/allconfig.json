@@ -97,7 +97,7 @@
  
 }
 ,
-"tags":[{"name":"限免","level":0,"desc":"今日免费脚本","url":""},
+"tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":""},
     {"name":"推荐","level":0,"desc":"推荐使用的脚本","url":""},
     {"name":"热门","level":0,"desc":"推荐使用的脚本","url":""},
     {"name":"应用","level":0,"desc":"本机App操作集合:卸载,安装，备份，查看信息，分享，禁止安装，图标提取，意图过滤，定时启动，定时关闭，冻结，解冻","url":""},
@@ -139,19 +139,19 @@
     {"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
     ],
 
- "levelconfig":[{"level":0,"nickname":"0级","maxmoney":5.0,"daymoney":0.5,"separate":0.2,"tax":17,"coin":100000,"money":0,"experience":100000,"son1":3,"son2":10,"son3":20},
-        {"level":1,"nickname":"一级","maxmoney":10.0,"daymoney":1.2,"separate":0.22,"tax":15,"coin":1000000,"money":0,"experience":100000,"son1":5,"son2":20,"son3":300},
-        {"level":2,"nickname":"二级","maxmoney":15.0,"daymoney":1.9,"separate":0.25,"tax":15,"coin":10000000,"money":0,"experience":100000,"son1":10,"son2":70,"son3":1500},
-        {"level":3,"nickname":"三级","maxmoney":20.0,"daymoney":2.5,"separate":0.28,"tax":13,"coin":100000000,"money":0,"experience":100000,"son1":20,"son2":100,"son3":150},
-        {"level":4,"nickname":"四级","maxmoney":35.0,"daymoney":4,"separate":0.30,"tax":13,"coin":1000000000,"money":0,"experience":100000,"son1":50,"son2":300,"son3":150},
-        {"level":5,"nickname":"五级","maxmoney":40.0,"daymoney":5,"separate":0.32,"tax":12,"coin":10000000000,"money":0,"experience":100000,"son1":70,"son2":500,"son3":150},
-        {"level":6,"nickname":"六级","maxmoney":45.0,"daymoney":8,"separate":0.33,"tax":12,"coin":10000000000,"money":0,"experience":100000,"son1":100,"son2":1000,"son3":150},
-        {"level":7,"nickname":"七级","maxmoney":50.0,"daymoney":7,"separate":0.34,"tax":11,"coin":100000000000,"money":0,"experience":100000,"son1":150,"son2":2000,"son3":150},
-        {"level":8,"nickname":"八级","maxmoney":55.0,"daymoney":8,"separate":0.35,"tax":10,"coin":1000000000000,"money":0,"experience":100000,"son1":300,"son2":5000,"son3":150},
-        {"level":9,"nickname":"九级","maxmoney":60.0,"daymoney":9,"separate":0.36,"tax":10,"coin":10000000000000,"money":0,"experience":100000,"son1":500,"son2":10000,"son3":150},
-        {"level":10,"nickname":"10级","maxmoney":70.0,"daymoney":10,"separate":0.38,"tax":10,"coin":100000000000000,"money":0,"experience":100000,"son1":1000,"son2":20000,"son3":150},
-        {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":100000000000000,"money":0,"experience":100000,"son1":2000,"son2":35000,"son3":150},
-        {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":100000000000000,"money":0,"experience":100000,"son1":5000,"son2":500000,"son3":150},
+ "level":[{"level":0,"nickname":"0级","maxmoney":5.0,"daymoney":0.5,"separate":0.2,"tax":17,"coin":100,"money":0,"experience":100000,"son1":3,"son2":10,"son3":20},
+        {"level":1,"nickname":"一级","maxmoney":10.0,"daymoney":1.2,"separate":0.22,"tax":15,"coin":1000,"money":0,"experience":100000,"son1":5,"son2":20,"son3":300},
+        {"level":2,"nickname":"二级","maxmoney":15.0,"daymoney":1.9,"separate":0.25,"tax":15,"coin":10000,"money":0,"experience":100000,"son1":10,"son2":70,"son3":1500},
+        {"level":3,"nickname":"三级","maxmoney":20.0,"daymoney":2.5,"separate":0.28,"tax":13,"coin":100000,"money":0,"experience":100000,"son1":20,"son2":100,"son3":150},
+        {"level":4,"nickname":"四级","maxmoney":35.0,"daymoney":4,"separate":0.30,"tax":13,"coin":1000000,"money":0,"experience":100000,"son1":50,"son2":300,"son3":150},
+        {"level":5,"nickname":"五级","maxmoney":40.0,"daymoney":5,"separate":0.32,"tax":12,"coin":10000000,"money":0,"experience":100000,"son1":70,"son2":500,"son3":150},
+        {"level":6,"nickname":"六级","maxmoney":45.0,"daymoney":8,"separate":0.33,"tax":12,"coin":100000000,"money":0,"experience":100000,"son1":100,"son2":1000,"son3":150},
+        {"level":7,"nickname":"七级","maxmoney":50.0,"daymoney":7,"separate":0.34,"tax":11,"coin":1000000000,"money":0,"experience":100000,"son1":150,"son2":2000,"son3":150},
+        {"level":8,"nickname":"八级","maxmoney":55.0,"daymoney":8,"separate":0.35,"tax":10,"coin":10000000000,"money":0,"experience":100000,"son1":300,"son2":5000,"son3":150},
+        {"level":9,"nickname":"九级","maxmoney":60.0,"daymoney":9,"separate":0.36,"tax":10,"coin":100000000000,"money":0,"experience":100000,"son1":500,"son2":10000,"son3":150},
+        {"level":10,"nickname":"10级","maxmoney":70.0,"daymoney":10,"separate":0.38,"tax":10,"coin":100000000000,"money":0,"experience":100000,"son1":1000,"son2":20000,"son3":150},
+        {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":1000000000000,"money":0,"experience":100000,"son1":2000,"son2":35000,"son3":150},
+        {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":1000000000000,"money":0,"experience":100000,"son1":5000,"son2":500000,"son3":150},
     ],
     "uiconfig":{"spalsh":{"logo":"","img":"","desc":"","versioninfo":"","waittime":2000,"nextactivitypath":"/dongdongsuibian/main"},
                     "usermain":{"tintcolor":"#ffff0000",
@@ -162,4 +162,4 @@
                                         ]
                                 }
                     }
-                }
+}
