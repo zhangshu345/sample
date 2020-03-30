@@ -1,5 +1,5 @@
 [
-    {"name":"循环上滑",
+    {"name":"ce循环上滑",
         "desc":{"summary":"循环不间断上滑，依赖于无障碍服务循环间隔时间执行上滑操作","html":""},
         "tags":["推荐","工具","简单"],
         "pay":{"coin":0,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
