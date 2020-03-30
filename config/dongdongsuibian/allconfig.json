@@ -97,9 +97,9 @@
  
 }
 ,
-"tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":"","img":""},
+"tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E9%99%90%E5%85%8D.json","img":""},
     {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E6%8E%A8%E8%8D%90.json"},
-    {"name":"热门","level":0,"desc":"推荐使用的脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E7%83%AD%E9%97%A8.json"},
+    {"name":"热门","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E7%83%AD%E9%97%A8.json"},
     {"name":"应用","level":0,"desc":"本机App操作集合:卸载,安装，备份，查看信息，分享，禁止安装，图标提取，意图过滤，定时启动，定时关闭，冻结，解冻","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E5%BA%94%E7%94%A8.json"},
     {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E8%A7%86%E9%A2%91.json"},
     {"name":"视频","level":0,"desc":"本地视频搜索，视频分类信心查看，看视频，提取无水印视频，视频剪辑，视频分割，视频提取音频，视频加水印","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/%E8%A7%86%E9%A2%91.json"},
