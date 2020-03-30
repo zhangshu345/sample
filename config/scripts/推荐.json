@@ -6,7 +6,7 @@
         "root":false,
         "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
         "money":{"perdaymoney":0.3,"permonthmoney":60.1,"peryearmoney":360.0},
-        "path":"",
+        "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/%E6%8E%A8%E8%8D%90/%E5%BE%AA%E7%8E%AF%E4%B8%8A%E6%BB%91.js",
         "source":2,
         "author":{"name":"作者","id":"","icon":""},
         "level":0,
