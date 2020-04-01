@@ -480,8 +480,7 @@ var firstrunapppackage=function(packagename){
 
 //下载app
 function downloadApk(name,url) {
-    // console.log('下载的名字是'+name);
-      // 获取APP的名字
+    runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      // 在每个空格字符处进行分解。
      file_name_url = url
      file_name = name+".apk"
@@ -583,41 +582,28 @@ function downloadApk(name,url) {
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
-     /*
-     [{"name":"快手极速版","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","快手"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.kuaishou.nebula","bmobid":"q7B36667","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-{"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
-{"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
-]*/
      apps.forEach(app => {
          show("name:"+app.name+"package:"+app.package)
-         if(getPackageName(app.name)){
-     
-         }else{
-             show("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
-             downloadApk(app.name,app.downloadurl)
+         if(!getPackageName(app.name)&&app.install){
+            show("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
+            downloadApk(app.name+"_"+app.appversion,app.downloadurl)
          }
      })
   }
 
+  
  //根据app名下载并安装应用
  var downloadandinstallapp=function(name){
     var appconfiglist=httpget(rewardapplisturl)
     var apps=JSON.parse(appconfiglist)
-     /*
-     [{"name":"快手极速版","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","快手"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.kuaishou.nebula","bmobid":"q7B36667","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-{"name":"刷宝短视频","open":true,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["赚钱","视频","刷宝"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"com.jm.video","bmobid":"waVs777U","scripturl":"","money":1.0,"onetime":1800,"maxtime":10800,"version":100,"appversion":0,"icon":"","downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"},
-{"name":"微信","open":false,"install":true,"wx":true,"zfb":true,"phone":false,"permoney":0.7,"tag":["养号","营销","微信"],"level":0,"coin":100,"root":false,"desc":"脚本描述","package":"","bmobid":"","scripturl":"","money":1.0,"onetime":0,"maxtime":0,"version":0,"appversion":0,"icon":"","downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"}
-]*/
     var isok=false
        apps.forEach(app => {
           show("name:"+app.name+"package:"+app.package)
              if(app.name==name){
                 isok=true
-                  if(getPackageName(app.name)){
-    
-                 }else{
-            downloadApk(app.name,app.downloadurl)
-                }
+                  if(!getPackageName(app.name)){
+                    downloadApk(app.name+"_"+app.appversion,app.downloadurl)
+                 }
              }
         }
  
@@ -642,6 +628,7 @@ var startallapp=function(){
     var last
     apps.forEach(app => {
            if(last){
+                记录今日时长(last.name,last.onetime)
                forcestop(last.name)
            }
             stopOtherScript()
@@ -674,14 +661,14 @@ var localstartallapp = function(){
      if(!getPackageName(app.name)){
          if(app.downloadurl){
              //下载并安装
-             downloadApk(app.name,app.downloadurl)
+             downloadApk(app.name+"_"+app.appversion,app.downloadurl)
          }
      }
     
      if(app.scripturl && getPackageName(app.name)){
          content=httpget(app.scripturl)
          if(content){
-            engines.execScript(app.name,content, {})
+            engines.execScript(app.name,content, {"useFeatures":["continuation"]})
             last=app
             sleep(app.onetime*1000)
          }
@@ -709,7 +696,7 @@ var alltest=function(){
     checkinstallapp()
 }
    
-// alltest()
+//  alltest()
 //     log("jia")
 //   }else{
 //       log("真")
