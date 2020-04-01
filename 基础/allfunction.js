@@ -188,7 +188,6 @@ var forcestop=function(appname,st){
   }
 }
 
-
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
@@ -198,33 +197,44 @@ var  tofloatysetting=function(){
     context.startActivity(i);
 }
 
-var checkfloaty=function(){
+var isfloaty=function(){
     importClass(android.provider.Settings);
     return Settings.canDrawOverlays(context)
 }
 
 
-function idclick(id,t,left,top,right,bottom){
+var checkfloaty=function(){
+   if(isfloaty){
+       tofloatysetting()
+       while(true){
+
+
+       }
+   }
+}
+
+
+function idclick(idstr,t,left,top,right,bottom){
     t= t|| 500
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=id(id).boundsInside(left, top, right, bottom).findOne(t);
+    var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
         if(!f.click()){
             b=f.bounds()
             bc=click(b.centerX(),b.centerY())
             if(bc){
-                alter("id："+id+"----点位成功点击")
+                alter("id："+idstr+"----点位成功点击")
                 return true
             }else{
-                alter("id："+id+"----点位失败点击")
+                alter("id："+idstr+"----点位失败点击")
                 return false
             }
            
         }else{
-            alter("id："+id+"----控件点击成功")
+            alter("id："+idstr+"----控件点击成功")
             return true
         }
     }
@@ -319,7 +329,7 @@ function control_click(button, vlause, left, top, right, bottom) {
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    alter(left, top, right, bottom);
+
     sleep(200)
     if (button == 1) {
         button_info = id(vlause).boundsInside(left, top, right, bottom).findOne(3000);
@@ -359,12 +369,14 @@ var sleepr=function(short,long){
     show("等待:"+rt +" 毫秒")
     sleep(rt)
 }
+
 function 滑动(z,x1,y1,x2,y2,t,r) {
     var w = device.width/z;
     var h = device.height/z;
     r=r||1000
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
+
 
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
@@ -483,7 +495,8 @@ var firstrunapppackage=function(packagename){
 }
 
 //下载app
-function downloadApk(name,url) {
+function downloadApk(name,url,isinstall) {
+    isinstall=isinstall || false
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      // 在每个空格字符处进行分解。
      file_name_url = url
@@ -491,8 +504,14 @@ function downloadApk(name,url) {
      console.log('要下载的APP的：' + file_name);
      // 设置APP的路径
      file_path_root = files.getSdcardPath()
- 
-     filePath = file_path_root + "/" + file_name
+      filePath = file_path_root + "/" + file_name
+      if(files.exists(filePath)){
+        if(isinstall){
+            install_app(filePath,name)
+            return
+         }
+      }
+
      importClass('java.io.FileOutputStream');
      importClass('java.io.IOException');
      importClass('java.io.InputStream');
@@ -537,7 +556,10 @@ function downloadApk(name,url) {
      }
      threadId && threadId.isAlive() && threadId.interrupt();
      toastLog(name+'下载完成');
-     install_app(filePath,name)
+     if(isinstall){
+        install_app(filePath,name)
+     }
+     
      
  }
  function install_app(filePath, name) {
@@ -548,11 +570,14 @@ function downloadApk(name,url) {
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
-         toast("检测中....")
-         if(text("允许此来源").exists()){
-             clickids(["android:id/switch_widget"])
-         }
+            toast("检测中....")
+        
            clicktexts(clickarray)
+           if(text("允许此来源").exists()){
+              if(idclick("android:id/switch_widget")){
+                  control_click(3,"向上导航")
+              }
+            }
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
              toast("安全保护安全保护安全保护")
@@ -594,7 +619,7 @@ function downloadApk(name,url) {
          show("name:"+app.name+"package:"+app.package)
          if(!getPackageName(app.name)&&app.install){
             show("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
-            downloadApk(app.name+"_"+app.appversion,app.downloadurl)
+            downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
          }
      })
   }
@@ -610,7 +635,7 @@ function downloadApk(name,url) {
              if(app.name==name){
                 isok=true
                   if(!getPackageName(app.name)){
-                    downloadApk(app.name+"_"+app.appversion,app.downloadurl)
+                    downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
                  }
              }
         }
@@ -642,7 +667,7 @@ var startallapp=function(){
             stopOtherScript()
         if(!getPackageName(app.name)){
             if(app.downloadurl){
-                downloadApk(app.name,app.downloadurl)
+                downloadApk(app.name,app.downloadurl,true)
             }
         }
         if(app.bmobid && getPackageName(app.name)){
@@ -671,7 +696,7 @@ var localstartallapp = function(){
      if(!getPackageName(app.name)){
          if(app.downloadurl){
              //下载并安装
-             downloadApk(app.name+"_"+app.appversion,app.downloadurl)
+             downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
          }
      }
     
@@ -718,7 +743,37 @@ var alltest=function(){
     // localstartallapp()
     checkinstallapp()
 }
+//检测权限
+var checkpermission=function(permissions){
+    permissions.forEach(p =>{
+        switch (p) {
+            case "悬浮":
+                checkfloaty()
+                break;
+
+            case "悬浮":
+                
+                 break;
+            case "悬浮":
+                
+                  break;
+             case "悬浮":
+                
+                   break;
+            default:
+                break;
+        }
+    })
+}
    
+
+
+var uninstallalluserlessapp=function(){
+  
+}
+
+
+
 //  alltest()
 //     log("jia")
 //   }else{
