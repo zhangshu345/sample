@@ -544,11 +544,14 @@ function downloadApk(name,url) {
      ////--------------安装--------------////
      //  读取 apk
      app.viewFile(filePath)
-     clickarray=["继续","始终允许","允许","安装","继续安装","下一步"]
+     clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
          toast("检测中....")
+         if(text("允许此来源").exists()){
+             clickids(["android:id/switch_widget"])
+         }
            clicktexts(clickarray)
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
