@@ -1,11 +1,11 @@
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
-
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
+
 
 var gfw=floaty.rawWindow(
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
@@ -115,26 +115,28 @@ var 上次滑动次数=function(name){
      alter(name+"上次滑动次数"+s)
      return s
 } 
- 
+
 
 var 记录现在观看视频数=function(name,f){ 
     数据库.put(name+"_lastvideonumber_"+today(),f)
 } //可以通过上次的金币来判断是否 还可以获取金币
  
+
 var 上次观看视频数=function(name){ 
      s=   数据库.get(name+"_lastvideonumber_"+today(), 0)
      alter(name+"上次观看视频个数"+s)
      return s
 } 
-  var 记录现在观看文章数=function(name,f){ 
+
+var 记录现在观看文章数=function(name,f){ 
     数据库.put(name+"_lastwenzhangnumber_"+today(),f)
-  } //可以通过上次的金币来判断是否 还可以获取金币
+} //可以通过上次的金币来判断是否 还可以获取金币
  
-  var 上次观看文章数=function(name){ 
+var 上次观看文章数=function(name){ 
      s=   数据库.get(name+"_lastwenzhangnumber_"+today(), 0)
      alter(name+"上次观看视频个数"+s)
      return s
-  } 
+} 
  
 var 记录=function(name,key,n){
       数据库.put(name+"_"+key,n)
@@ -187,7 +189,7 @@ var forcestop=function(appname,st){
 }
 
 
-function tofloatysetting(){
+var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
         flags:["activity_new_task"]
@@ -350,6 +352,8 @@ function control_click(button, vlause, left, top, right, bottom) {
         return false
     }
 }
+
+
 var sleepr=function(short,long){
     rt=random(short,long)
     show("等待:"+rt +" 毫秒")
@@ -579,6 +583,7 @@ function downloadApk(name,url) {
  
 
  var checkinstallapp=function(){
+    
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -648,8 +653,10 @@ var startallapp=function(){
     })
 }
 
+
 //本地配置启用脚本
 var localstartallapp = function(){
+    addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
     apps.forEach(app =>{
@@ -689,7 +696,20 @@ var toNotificationManager=function(){
     importClass(com.hongshu.utils.IntentUtils);
     IntentUtils.toNotificationAccessSetting()
 }
+var addbmobchannel=function(channels){
+    importClass(com.hongshu.bmob.push.BmobPushUtils)
+    BmobPushUtils.addchannel(channels)
+}
 
+var removebmobchannel=function(channels){
+    importClass(com.hongshu.bmob.push.BmobPushUtils)
+    BmobPushUtils.removechannel(channels)
+}
+
+var bmobpushmessage=function(channels,message){
+    importClass(com.hongshu.bmob.push.BmobPushUtils)
+    BmobPushUtils.pushmessage(channels,message)
+}
 var alltest=function(){
     log("全部测试")
     // localstartallapp()

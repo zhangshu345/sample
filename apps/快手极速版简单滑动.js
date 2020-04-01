@@ -49,8 +49,6 @@ function httpget(url) {
 }
 
 
-
-
 function 初始化() {
     alter("初始化")
     // 首页分享的ID
@@ -70,6 +68,8 @@ function 初始化() {
 
     }
 }
+
+
 function 弹窗() {
     sleep(200)
     if (id("btn_privacy_action").exists()) {
