@@ -15,9 +15,9 @@
     "lineme":"",
     "messagesurl":"",
 "advice":{   
-    "jg_chaping":60,
-    "jg_banner":30,
-    "jg_native":5,
+    "jgchaping":60,
+    "jgbanner":30,
+    "jgnative":5,
     "name":"东东随便",
     "pkg":"com.dongdong.suibian",
     "channel":"yangyang",
@@ -54,7 +54,7 @@
     "toutiao":{
     "open":true,
     "appid":"5055078",
-    "native":"945093652",
+    "nativeid":"945093652",
     "banner600300":"945093662",
     "banner600400":"945093663",
     "banner600500":"945093664",
