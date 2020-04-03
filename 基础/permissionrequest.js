@@ -3,7 +3,7 @@
 ui.layout(
     <vertical>
         <appbar>
-            <toolbar id="toolbar" title="卡片布局"/>
+            <toolbar id="toolbar" title="卡片布局sssss"/>
         </appbar>
         <button id="devicemanger" w="auto" h="auto" text="开" />
         <smartrefreshlayout >

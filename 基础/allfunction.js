@@ -687,6 +687,11 @@ var localstartallapp = function(){
     addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
+    if(!apps){
+        var appconfig=httpget(rewardapplisturl)
+        apps=JSON.parse(appconfig)
+        
+    }
     apps.forEach(app =>{
       if(last){
         记录今日时长(last.name,last.onetime)
