@@ -206,14 +206,7 @@ var  todevelopersetting=function(){
      context.startActivity(i);
  }
 
- var  toquicklaunchsetting=function(){
-    let i = app.intent({
-         action: "android.settings.QUICK_LAUNCH_SETTINGS",
-         flags:["activity_new_task"]
-         // data: "file:///sdcard/1.png"
-     });
-     context.startActivity(i);
- }
+
 
  
 var toPkgandClass=function(pkg,classname){
@@ -224,6 +217,7 @@ var toPkgandClass=function(pkg,classname){
          });
          context.startActivity(i);
 }
+
 var todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
@@ -237,7 +231,10 @@ var toinputsettings=function(){
     context.startActivity(i);
 }
 
-var tolocalsettings=function(){
+var toinputmethodsubtypesetting=function(){
+    tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
+}
+var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
         flags:["activity_new_task"]
@@ -245,12 +242,6 @@ var tolocalsettings=function(){
     });
     context.startActivity(i);
 }
-
-var toairpalnemodesetting=function(){
-    tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
-}
-
-
 var tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
@@ -259,25 +250,84 @@ var tosettingsbyaction=function(actionname){
     });
     context.startActivity(i);
 }
+var toairpalnemodesetting=function(){
+    tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
+}
+
+var tosearchsetting=function(){
+    tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
+}
+
  //到android设置页面
  var  toandroidsetting=function(classname){
      toPkgandClass("com.android.settings",classname)
  }
+
+
  //到用户使用情况页面
 var tousagestate=function(){
     tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")
+}
+var toaccessibilitysetting=function(){
+    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")
+}
+
+var tosystemsetting=function(){
+    tosettingsbyaction("android.settings.SETTINGS")
 }
 var towifisetting=function(){
     tosettingsbyaction("android.settings.WIFI_SETTINGS")
 }
 
-var tovpnsetting=tosettingsbyaction("android.settings.VPN_SETTINGS")
+var toapnsetting=function(){
+    tosettingsbyaction("android.settings.APN_SETTINGS")
+}
+var todatesetting=function(){
+    tosettingsbyaction("android.settings.DATE_SETTINGS")
+}
+
+var towifiipsetting=function(){
+    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")
+}
+
+var tovpnsetting=function(){
+    tosettingsbyaction("android.settings.VPN_SETTINGS")
+}
+
+var tophonenetsetting=function(){
+    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")
+}
+
+var tosecuritysetting=function(){
+    tosettingsbyaction("android.settings.SECURITY_SETTINGS")
+}
+
+var todisplaysetting=function(){
+    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")
+}
+var toappmanagesetting=function(){
+    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")
+}
+var toallappmanagesetting=function(){
+    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")
+}
+
+
+var tomangerwritesetting=function(){
+    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")
+}
+
+
+var toignorebatteryoptintizationsetting=function(){
+   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")
+}
+
+
 
 var isfloaty=function(){
     importClass(android.provider.Settings);
     return Settings.canDrawOverlays(context)
 }
-
 
 var checkfloaty=function(){
    if(isfloaty){
@@ -801,10 +851,13 @@ var isNotificationManager=function(){
     return PermissionUtils.isnotificationListenerEnable()
 }
 
+
 var toNotificationManager=function(){
-    importClass(com.hongshu.utils.IntentUtils);
-    IntentUtils.toNotificationAccessSetting()
+    // importClass(com.hongshu.utils.IntentUtils);
+    // IntentUtils.toNotificationAccessSetting()
+    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
 }
+
 var addbmobchannel=function(channels){
     importClass(com.hongshu.bmob.push.BmobPushUtils)
     BmobPushUtils.addchannel(channels)
