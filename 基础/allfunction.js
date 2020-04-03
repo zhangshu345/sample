@@ -216,7 +216,7 @@ var toinputsettings=function(){
 
  //到android设置页面
  var  toandroidsetting=function(classname){
-     toPkgandClass("com.android.settings",className)
+     toPkgandClass("com.android.settings",classname)
    
  }
  //到用户使用情况页面
