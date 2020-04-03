@@ -1,32 +1,5 @@
 [
-	{
-		"name": "刷宝短视频",
-		"open": true,
-		"install": true,
-		"wx": true,
-		"zfb": true,
-		"phone": false,
-		"permoney": 0.7,
-		"tag": [
-			"赚钱",
-			"视频",
-			"刷宝"
-		],
-		"level": 0,
-		"coin": 100,
-		"root": false,
-		"desc": "脚本描述",
-		"package": "com.jm.video",
-		"bmobid": "waVs777U",
-		"scripturl": "",
-		"money": 1.0,
-		"onetime": 1800,
-		"maxtime": 10800,
-		"version": 100,
-		"appversion": 0,
-		"icon": "https://pp.myapp.com/ma_icon/0/icon_52764540_1584105418/96",
-		"downloadurl": "https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"
-	},
+	
 	{
 		"name": "微信",
 		"open": false,
@@ -867,34 +840,7 @@
 		"icon": "https://pp.myapp.com/ma_icon/0/icon_52605503_1584064637/96",
 		"downloadurl": "https://bbb88b05e8082b5daf49d94a606789c7.dd.cdntips.com/imtt.dd.qq.com/16891/apk/988B4265DC4E5E0616E8747174162678.apk"
 	},
-	{
-		"name": "聚看点",
-		"open": false,
-		"install": true,
-		"wx": true,
-		"zfb": true,
-		"phone": false,
-		"permoney": 0.7,
-		"tag": [
-			"养号",
-			"营销",
-			"微信"
-		],
-		"level": 0,
-		"coin": 100,
-		"root": false,
-		"desc": "脚本描述",
-		"package": "com.xiangzi.jukandian",
-		"bmobid": "",
-		"scripturl": "",
-		"money": 1.0,
-		"onetime": 0,
-		"maxtime": 0,
-		"version": 0,
-		"appversion": 0,
-		"icon": "https://pp.myapp.com/ma_icon/0/icon_52605503_1584064637/96",
-		"downloadurl": "https://bbb88b05e8082b5daf49d94a606789c7.dd.cdntips.com/imtt.dd.qq.com/16891/apk/988B4265DC4E5E0616E8747174162678.apk"
-	},
+	
 	{
 		"name": "趣看视频",
 		"open": true,
