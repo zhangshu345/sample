@@ -33,12 +33,13 @@ ui.layout(
 );
 
 var  todeviceadmin=function(){
-    let i = app.intent({
-         packageName: "com.android.settings",
-         className:"com.android.settings.DeviceAdminSettings"
-         // data: "file:///sdcard/1.png"
-     });
-     context.startActivity(i);
+    toandroidsetting("com.android.settings.DeviceAdminSettings")
+    // let i = app.intent({
+    //      packageName: "com.android.settings",
+    //      className:"com.android.settings.DeviceAdminSettings"
+    //      // data: "file:///sdcard/1.png"
+    //  });
+    //  context.startActivity(i);
  }
 
 ui.devicemanger.on("click",function(){
@@ -102,7 +103,7 @@ var  tofloatysetting=function(){
   }
   //到用户使用情况页面
  var tousagestate=function(){
-     toandroidsetting("com.android.settings.UsageStats")
+     im
  }
  var towifisetting=function(){
      toandroidsetting("com.android.settings.WirelessSettings")

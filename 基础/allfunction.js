@@ -197,8 +197,26 @@ var  tofloatysetting=function(){
     context.startActivity(i);
 }
 
+var  todevelopersetting=function(){
+    let i = app.intent({
+         action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS",
+         flags:["activity_new_task"]
+         // data: "file:///sdcard/1.png"
+     });
+     context.startActivity(i);
+ }
+
+ var  toquicklaunchsetting=function(){
+    let i = app.intent({
+         action: "android.settings.QUICK_LAUNCH_SETTINGS",
+         flags:["activity_new_task"]
+         // data: "file:///sdcard/1.png"
+     });
+     context.startActivity(i);
+ }
+
+ 
 var toPkgandClass=function(pkg,classname){
-    
         let i = app.intent({
              packageName: pkg,
              className:classname
@@ -211,21 +229,49 @@ var todeviceadmin=function(){
 }
 
 var toinputsettings=function(){
-    toandroidsetting("com.android.settings.VoiceInputOutputSettings")
+    let i = app.intent({
+        action: "android.settings.INPUT_METHOD_SETTINGS",
+        flags:["activity_new_task"]
+        // data: "file:///sdcard/1.png"
+    });
+    context.startActivity(i);
 }
 
+var tolocalsettings=function(){
+    let i = app.intent({
+        action: "android.settings.LOCALE_SETTINGS",
+        flags:["activity_new_task"]
+        // data: "file:///sdcard/1.png"
+    });
+    context.startActivity(i);
+}
+
+var toairpalnemodesetting=function(){
+    tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
+}
+
+
+var tosettingsbyaction=function(actionname){
+    let i = app.intent({
+        action: actionname,
+        flags:["activity_new_task"]
+        // data: "file:///sdcard/1.png"
+    });
+    context.startActivity(i);
+}
  //到android设置页面
  var  toandroidsetting=function(classname){
      toPkgandClass("com.android.settings",classname)
-   
  }
  //到用户使用情况页面
 var tousagestate=function(){
-    toandroidsetting("com.android.settings.UsageStats")
+    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")
 }
 var towifisetting=function(){
-    toandroidsetting("com.android.settings.WirelessSettings")
+    tosettingsbyaction("android.settings.WIFI_SETTINGS")
 }
+
+var tovpnsetting=tosettingsbyaction("android.settings.VPN_SETTINGS")
 
 var isfloaty=function(){
     importClass(android.provider.Settings);
@@ -467,10 +513,10 @@ var idoneexist=function(ids){
     }
     return false
 }
-
-var isAppForground=function(packagename){
+//只能判断自身app
+var isAppForground=function(){
     importClass(com.hongshu.utils.AppUtils);
-    a =AppUtils.isAppForeground(packagename)
+    a =AppUtils.isAppForeground()
     if(a){
         show("apputils 判断正确")
         return true
