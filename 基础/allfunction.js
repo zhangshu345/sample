@@ -197,14 +197,35 @@ var  tofloatysetting=function(){
     context.startActivity(i);
 }
 
-var  todeviceadmin=function(){
-    let i = app.intent({
-         packagename: "com.android.settings",
-         className:"com.android.settings.DeviceAdminSettings"
-         // data: "file:///sdcard/1.png"
-     });
-     context.startActivity(i);
+var toPkgandClass=function(pkg,classname){
+    
+        let i = app.intent({
+             packageName: pkg,
+             className:classname
+             // data: "file:///sdcard/1.png"
+         });
+         context.startActivity(i);
+}
+var todeviceadmin=function(){
+       toandroidsetting("com.android.settings.DeviceAdminSettings")
+}
+
+var toinputsettings=function(){
+    toandroidsetting("com.android.settings.VoiceInputOutputSettings")
+}
+
+ //到android设置页面
+ var  toandroidsetting=function(classname){
+     toPkgandClass("com.android.settings",className)
+   
  }
+ //到用户使用情况页面
+var tousagestate=function(){
+    toandroidsetting("com.android.settings.UsageStats")
+}
+var towifisetting=function(){
+    toandroidsetting("com.android.settings.WirelessSettings")
+}
 
 var isfloaty=function(){
     importClass(android.provider.Settings);

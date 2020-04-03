@@ -26,12 +26,23 @@ ui.layout(
       
     </vertical>
 );
+
+var  todeviceadmin=function(){
+    let i = app.intent({
+         packageName: "com.android.settings",
+         className:"com.android.settings.DeviceAdminSettings"
+         // data: "file:///sdcard/1.png"
+     });
+     context.startActivity(i);
+ }
+
 ui.devicemanger.on("click",function(){
-importClass(com.hongshu.utils.PermissionUtils)
-importClass(com.hongshu.receiver.DeviceManger)
-toast("申请设备管理")
-log("nihao ")
-PermissionUtils.requestDeviceAdmin()
-var dm=new DeviceManger(context)
+// importClass(com.hongshu.utils.PermissionUtils)
+// importClass(com.hongshu.receiver.DeviceManger)
+// toast("申请设备管理")
+// log("nihao ")
+// PermissionUtils.requestDeviceAdmin()
+// var dm=new DeviceManger(context)
+todeviceadmin()
 //dm.enableDeviceManager()
 })
