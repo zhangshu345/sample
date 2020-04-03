@@ -72,39 +72,3 @@ ui.input.on("click",function(){
 })
 
 
-
-var  tofloatysetting=function(){
-    let i = app.intent({
-         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
-         flags:["activity_new_task"]
-     
-     });
-     context.startActivity(i);
- }
- 
- var toPkgandClass=function(pkg,classname){
-          let i = app.intent({
-              packageName: pkg,
-              className:classname
-     
-          });
-          context.startActivity(i);
- }
-
- 
- var toinputsettings=function(){
-     toandroidsetting("com.android.settings.VoiceInputOutputSettings")
- }
- 
-  //到android设置页面
-  var  toandroidsetting=function(classname){
-      toPkgandClass("com.android.settings",classname)
-    
-  }
-  //到用户使用情况页面
- var tousagestate=function(){
-     im
- }
- var towifisetting=function(){
-     toandroidsetting("com.android.settings.WirelessSettings")
- }
