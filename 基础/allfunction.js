@@ -197,6 +197,15 @@ var  tofloatysetting=function(){
     context.startActivity(i);
 }
 
+var  todeviceadmin=function(){
+    let i = app.intent({
+         packagename: "com.android.settings",
+         className:"com.android.settings.DeviceAdminSettings"
+         // data: "file:///sdcard/1.png"
+     });
+     context.startActivity(i);
+ }
+
 var isfloaty=function(){
     importClass(android.provider.Settings);
     return Settings.canDrawOverlays(context)
