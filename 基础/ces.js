@@ -10,7 +10,7 @@ ui.layout(
         <button id="accessibility" w="auto" h="auto" text="无障碍" />
         <button id="usagestate" w="auto" h="auto" text="使用情况" />
         <button id="input" w="auto" h="auto" text="输入法" />
-     
+        <button id="wifi" w="auto" h="auto" text="WIFI" />
         <smartrefreshlayout >
        
    <list>
@@ -53,6 +53,10 @@ todeviceadmin()
 })
 ui.floaty.on("click",function(){
     tofloatysetting()
+
+})
+ui.wifi.on("click",function(){
+    towifisetting()
 
 })
 
