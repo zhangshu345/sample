@@ -5,7 +5,12 @@ ui.layout(
         <appbar>
             <toolbar id="toolbar" title="卡片布局"/>
         </appbar>
-        <button id="devicemanger" w="auto" h="auto" text="开" />
+        <button id="devicemanger" w="auto" h="auto" text="设备管理" />
+        <button id="floaty" w="auto" h="auto" text="悬浮" />
+        <button id="accessibility" w="auto" h="auto" text="无障碍" />
+        <button id="usagestate" w="auto" h="auto" text="使用情况" />
+        <button id="input" w="auto" h="auto" text="输入法" />
+     
         <smartrefreshlayout >
        
    <list>
@@ -45,4 +50,17 @@ ui.devicemanger.on("click",function(){
 // var dm=new DeviceManger(context)
 todeviceadmin()
 //dm.enableDeviceManager()
+})
+ui.floaty.on("click",function(){
+    tofloatysetting()
+})
+
+ui.accessibility.on("click",function(){
+    
+})
+ui.usagestate.on("click",function(){
+    tousagestate()
+})
+ui.input.on("click",function(){
+    toinputsettings()
 })
