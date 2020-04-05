@@ -872,6 +872,7 @@ var bmobpushmessage=function(channels,message){
     importClass(com.hongshu.bmob.push.BmobPushUtils)
     BmobPushUtils.pushmessage(channels,message)
 }
+
 var alltest=function(){
     log("全部测试")
     // localstartallapp()
