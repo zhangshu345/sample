@@ -754,34 +754,7 @@
 		"icon": "https://pp.myapp.com/ma_icon/0/icon_52454212_1585312656/96",
 		"downloadurl": "https://ee26e8ea948d60b3b938f84747a99bfc.dd.cdntips.com/imtt.dd.qq.com/16891/apk/207A288EC0D40941855D1BA51C55C0C2.apk"
 	},
-	{
-		"name": "快看点",
-		"open": false,
-		"install": true,
-		"wx": true,
-		"zfb": true,
-		"phone": false,
-		"permoney": 0.7,
-		"tag": [
-			"养号",
-			"营销",
-			"微信"
-		],
-		"level": 0,
-		"coin": 100,
-		"root": false,
-		"desc": "脚本描述",
-		"package": "com.yuncheapp.android.pearl",
-		"bmobid": "",
-		"scripturl": "",
-		"money": 1.0,
-		"onetime": 0,
-		"maxtime": 0,
-		"version": 0,
-		"appversion": 0,
-		"icon": "https://pp.myapp.com/ma_icon/0/icon_52816767_1584949572/96",
-		"downloadurl": "https://6c001c5e039e05a6513b023198250ef8.dd.cdntips.com/imtt.dd.qq.com/16891/apk/056F6FCE57D544E6133BD36F603D468B.apk"
-	},
+	
 	{
 		"name": "追看视频",
 		"open": true,
