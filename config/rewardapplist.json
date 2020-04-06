@@ -1,6 +1,4 @@
-[
-	
-	{
+[	{
 		"name": "微信",
 		"open": false,
 		"install": true,
@@ -46,7 +44,7 @@
 		"root": false,
 		"desc": "脚本描述",
 		"package": "com.kuaishou.nebula",
-		"bmobid": "q7B36667",
+		"bmobid": "c5a7475495",
 		"scripturl": "",
 		"money": 1.0,
 		"onetime": 1800,
@@ -74,7 +72,7 @@
 		"root": false,
 		"desc": "脚本描述",
 		"package": "com.jm.video",
-		"bmobid": "waVs777U",
+		"bmobid": "",
 		"scripturl": "",
 		"money": 1.0,
 		"onetime": 1800,

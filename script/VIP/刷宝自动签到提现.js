@@ -23,7 +23,6 @@ else {
 
 
 
-
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var 刷宝包名="com.jm.video"
@@ -61,8 +60,6 @@ var today=function(){
 log("屏幕宽度"+device)
 log("imei"+device.getIMEI())
 var 滑动次数=0
-
-
 
 
 
@@ -387,6 +384,7 @@ var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
     alter("刷宝自动刷视频")
+    if(app.getPackageName("刷宝短视频"))
     firstrunapppackage(刷宝包名)
    todaytime=今日时长()
    alter("刷宝今日时长:"+todaytime)
@@ -397,8 +395,6 @@ function 启动线程(){
    log("接下来就是刷视频操作")
    刷宝视频操作()
 }
-
-
 
 
  启动线程()
