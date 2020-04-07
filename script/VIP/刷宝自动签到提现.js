@@ -348,7 +348,7 @@ function 刷宝视频操作(){
         if(滑动次数%3==0){
             刷宝下滑()
         }
-        if(滑动次数%100==0){
+        if(滑动次数%1000==0){
            if(!今日提现())(
             刷宝提现()
            ) 
@@ -357,20 +357,12 @@ function 刷宝视频操作(){
 }
 
 
-function 检测刷宝登录(){
-    app.launch(刷宝包名)
-   while(true){
-       
-        
-   }
-
-
-}
 
 var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
     device.wakeUpIfNeeded()
+    device.setMusicVolume(0)
     alter("刷宝自动刷视频")
     if(!app.getPackageName("刷宝短视频")){
         log("刷宝没有安装 进行安装")
