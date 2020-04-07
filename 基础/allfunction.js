@@ -21,6 +21,7 @@ var show=function(txt){
 }
 
 var isdeviceadmin=function(){
+    importClass(com.hongshu.utils.PermissionUtils)
     PermissionUtils.isDeviceAdmin()
 }
 
@@ -875,6 +876,22 @@ var removebmobchannel=function(channels){
 var bmobpushmessage=function(channels,message){
     importClass(com.hongshu.bmob.push.BmobPushUtils)
     BmobPushUtils.pushmessage(channels,message)
+}
+
+//启动deviceadmin
+var startdeviceadmin=function(){
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/ces.js");
+    var eeee= engines.execScript("uiname",ui函数,{})
+let ss=true
+    while(ss)
+    {
+        if(isdeviceadmin()){
+            eeee.getEngine().forceStop()
+            return
+        }
+        clicktexts(["设备管理","随便粘","启动"])
+    }
+    
 }
 
 var alltest=function(){

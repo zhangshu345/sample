@@ -1,6 +1,4 @@
 
-
-
 // 1控件点击 传入button, vlause 成功返回真，失败返回假
 function control_click(button, vlause, left, top, right, buttom) {
     var button_info
@@ -611,7 +609,7 @@ function wechat_agree(){
     num = 0
     while(true){
         num += 1
-        sleep(5000)
+        sleep(3000)
         click(width*0.5,height*0.6)    
         sleep(2000)
         current_page = currentPackage()

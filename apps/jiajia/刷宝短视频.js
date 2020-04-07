@@ -1,8 +1,8 @@
 /*---------------------------------lib-------------------------------*/
 function instantiation(varrurl) {
     yun = 1
-    var yunurl = "http://yuedu.xiequbo.cn/"
-    yunurl = yunurl + varrurl + ".js"
+    // var yunurl = "http://yuedu.xiequbo.cn/"
+    yunurl = varrurl 
     if (yun == 1) {
         var r = http.get(yunurl);
         // log("code = " + r.statusCode);
@@ -21,7 +21,7 @@ function instantiation(varrurl) {
     }
 }
 
-subapp = instantiation("apps/fucation_lib1")
+subapp = instantiation("https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js")
 if (subapp != "") {
     eval(subapp)
     log("公共函数实例化成功")
@@ -35,9 +35,7 @@ var  button_arr = [
     ['id', 'cancel',1],// 未知
     ['text', '取消',1],// 未知
     ['id', 'btn_back',1],// 返回按钮
-    
-
-]
+ ]
 
 function 初始化() {
     close_windows(button_arr)
@@ -343,10 +341,11 @@ function is_login(){
 
     }
 }
-// 启动线程(2,1)
+// 
 function 启动线程(type, sign) {
     // exports.启动线程 = function (type,sign) {
         // write_cfg_j(app_name, "have_sign", "no")
+        app.launchApp("刷宝短视频")
     var istype = type || 2;
     var issign = sign || 0;
     button = "text"
@@ -428,3 +427,4 @@ function login(){
 
 // invite()
 
+启动线程(2,1)

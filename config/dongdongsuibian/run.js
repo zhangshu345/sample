@@ -15,6 +15,8 @@ function httpget(url) {
 }
 var  公共函数文本
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
+
+eval(httpget(公共函数url))
 function evalfun(url){
    funstr=httpget(url)
     if (funstr != "") {
