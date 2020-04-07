@@ -11,6 +11,7 @@ ui.layout(
         <button id="usagestate" w="auto" h="auto" text="使用情况" />
         <button id="input" w="auto" h="auto" text="输入法" />
         <button id="wifi" w="auto" h="auto" text="WIFI" />
+        <button id="cl" w="auto" h="auto" text="DeviceAdmin" />
         <smartrefreshlayout >
        
    <list>
@@ -23,24 +24,64 @@ ui.layout(
        <View bg="#ff5722" h="*" w="10"/>
    </card>
    </list>
-
-
         </smartrefreshlayout>
-    
-      
-      
-    </vertical>
+   </vertical>
 );
 
-var  todeviceadmin=function(){
+
+// var  todeviceadmin=function(){
+//     toandroidsetting("com.android.settings.DeviceAdminSettings")
+//     // let i = app.intent({
+//     //      packageName: "com.android.settings",
+//     //      className:"com.android.settings.DeviceAdminSettings"
+//     //      // data: "file:///sdcard/1.png"
+//     //  });
+//     //  context.startActivity(i);
+//  }
+ function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
+    } else {
+        return ""
+    }
+}
+var  公共函数文本
+// const myEE = events.emitter();
+// myEE.once('foo', () => eval(公共函数文本));
+
+// threads.start(function(){
+//     var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
+//     公共函数文本=httpget(公共函数url)
+//     if (公共函数文本 != "") {
+//      myEE.emit("foo")
+//     log("公共函数实例化成功")
+//     }
+//     else {
+//     log("公共函数实例化失败,程序返回")
+//     }
+// }, )
+
+
+
+var todeviceadmin=function(){
     toandroidsetting("com.android.settings.DeviceAdminSettings")
-    // let i = app.intent({
-    //      packageName: "com.android.settings",
-    //      className:"com.android.settings.DeviceAdminSettings"
-    //      // data: "file:///sdcard/1.png"
-    //  });
-    //  context.startActivity(i);
- }
+}
+
+ //到android设置页面
+ var  toandroidsetting=function(classname){
+    toPkgandClass("com.android.settings",classname)
+}
+
+var toPkgandClass=function(pkg,classname){
+    let i = app.intent({
+         packageName: pkg,
+         className:classname
+         // data: "file:///sdcard/1.png"
+     });
+     context.startActivity(i);
+}
+
 
 ui.devicemanger.on("click",function(){
 // importClass(com.hongshu.utils.PermissionUtils)
