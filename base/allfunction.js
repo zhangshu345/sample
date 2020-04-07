@@ -857,7 +857,6 @@ var localstartallapp = function(){
                log("配置App"+app.name+" 下载链接不存在存在")
             }
         }
-       
         if(app.scripturl && getPackageName(app.name)){
             log(app.name+":云端url脚本存在："+app.scripturl)
             content=httpget(app.scripturl)
@@ -870,12 +869,10 @@ var localstartallapp = function(){
            log(app.name+":bmob脚本存在："+app.bmobid)
            engines.execBmobScriptWithName(app.name,app.bmobid,{})
            last=app
-          
        }else{
            log(app.name+":没有找到可以运行脚本存在：")
        }
       }
-  
     })
 }
     

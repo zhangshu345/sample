@@ -63,37 +63,6 @@ var 滑动次数=0
 
 
 
-/* 所有id都存在才返回真  只要有一个不存在就返回false */
-var idallexist=function(ids){
-    s=0
-    if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(id(texts[i]).exists()){
-                s=s+1
-            }else{
-                return false
-            }
-        }
-        if(s==texts.length){
-            return true
-        }
-    }
-    return false
-}
-
-/*文本只要存在一个就返回真 */
-var textoneexist=function(texts){
-     if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(text(texts[i]).exists()){
-               return true
-            }
-        }
-    }
-    return false
-}
-
-
 //----------------------------------刷宝子程序--------------------------------------------//
 function 刷宝上滑() {
     滑动次数=滑动次数+1
@@ -384,7 +353,9 @@ var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
     alter("刷宝自动刷视频")
-    if(app.getPackageName("刷宝短视频"))
+    if(!app.getPackageName("刷宝短视频")){
+        downloadandinstallapp("刷宝短视频")
+    }
     firstrunapppackage(刷宝包名)
    todaytime=今日时长()
    alter("刷宝今日时长:"+todaytime)
