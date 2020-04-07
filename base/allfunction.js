@@ -42,8 +42,8 @@ var alter=sync(function(txt,t,left,top,width,height){
     })
    
     fw.setTouchable(false)
-    fw.setSize(1, 1)
-    fw.setPosition(50,85)
+   
+    fw.setPosition(0,85)
       ui.run(function(){
          console.log(txt)
         fw.text.setText(txt)

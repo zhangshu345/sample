@@ -22,7 +22,6 @@ else {
 }
 
 
-
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var 刷宝包名="com.jm.video"
@@ -71,18 +70,26 @@ function 刷宝上滑() {
     滑动(20,12,16,9,3,500,200)
     sleepr(6*1000,13*1000)
 }
+function 刷宝下滑() {
+    滑动次数=滑动次数+1
+    alter("第 "+滑动次数/3+" 次下滑")
+     if(!id(刷宝视频页搜索按钮id).exists()){
+       回到刷宝视频页()
+    }
+    滑动(20,12,3,9,17,500,400)
+    sleepr(6*1000,13*1000)
+}
+
 var 刷宝搜索用户=function(author){
     app.launch("刷宝短视频") 
 }
+
 function firststartapp(){
     log("第一次登录刷宝去 进行登录操作")
-    while(true){
-        clicktexts(["去授权","允许","允许","取消","我","微信账号登录","同意"],1500,10000)
-        sleep(1000)
-        if(is_login()){
-            return
-        }
-    }
+    clicktexts(["去授权","允许","允许","允许","取消","我","微信账号登录","同意"],1500,10000)
+    sleep(1000)
+  
+   
 }
 
 
@@ -147,7 +154,7 @@ var 刷宝获取当前余额=function(){
  if(回到刷宝首页()){
    while(true){
     textclick("我")
-    sleep(300)
+    sleep(500)
     money=id(刷宝余额id).findOne(1000)
     if(money){
         f=parseFloat(money.text())
@@ -155,7 +162,12 @@ var 刷宝获取当前余额=function(){
         return f
     }
     clicktexts(["微信账号登录","同意"])
-   }}else{
+    closedialog()
+    if(currentPackage!=刷宝包名){
+        回到刷宝首页()
+    }
+   }
+    }else{
        强制关闭("刷宝短视频")
        return 刷宝获取当前余额()
    }
@@ -333,6 +345,9 @@ function 刷宝视频操作(){
     回到刷宝视频页()
     while(滑动次数<1000){
         刷宝上滑()
+        if(滑动次数%3==0){
+            刷宝下滑()
+        }
         if(滑动次数%100==0){
            if(!今日提现())(
             刷宝提现()
@@ -345,9 +360,7 @@ function 刷宝视频操作(){
 function 检测刷宝登录(){
     app.launch(刷宝包名)
    while(true){
-        if(刷宝获取当前余额()){
-            return
-        }
+       
         
    }
 
@@ -362,7 +375,9 @@ function 启动线程(){
         log("刷宝没有安装 进行安装")
         downloadandinstallapp("刷宝短视频")
     }
-     检测刷宝登录()
+    刷宝获取当前余额()
+      
+  
     log("完毕")
 
 //    todaytime=今日时长()
