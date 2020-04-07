@@ -879,6 +879,8 @@ var localstartallapp = function(){
     })
 }
     
+
+
 var isNotificationManager=function(){
     importClass(com.hongshu.utils.PermissionUtils);
     return PermissionUtils.isnotificationListenerEnable()
