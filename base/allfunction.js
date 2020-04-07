@@ -626,7 +626,7 @@ var firstrunapppackage=function(packagename){
     importClass(com.hongshu.utils.AppUtils);
     允许启动文字=['允许',"始终允许","打开","确定"]
     i=0
-    while(i<2){
+    while(i<3){
         if(currentPackage()==packagename){
             alter(packagename+" 在前台：")
             return true
@@ -930,11 +930,7 @@ let ss=true
 }
 
 
-var alltest=function(){
-    log("全部测试")
-    // localstartallapp()
-    checkinstallapp()
-}
+
 
 //检测权限
 var checkpermission=function(permissions){
@@ -964,6 +960,11 @@ var uninstallalluserlessapp=function(){
 }
 // 
 
+var alltest=function(){
+    log("全部测试")
+    // localstartallapp()
+    checkinstallapp()
+}
 
 //forcestop("刷宝短视频")
 

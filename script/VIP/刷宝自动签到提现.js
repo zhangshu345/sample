@@ -11,7 +11,7 @@ function httpget(url) {
             return ""
         }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
     eval(公共函数文本)
@@ -52,15 +52,13 @@ var im_rewardvideo_close_id="com.jm.video:id/iv_close"
 var 数据库= storages.create("hsshuabao");
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
-var date=new Date()
-var today=function(){
-    return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
-}
+
+
 
 log("屏幕宽度"+device)
 log("imei"+device.getIMEI())
 var 滑动次数=0
-
+var islogin=false;
 
 
 //----------------------------------刷宝子程序--------------------------------------------//
@@ -76,6 +74,17 @@ function 刷宝上滑() {
 var 刷宝搜索用户=function(author){
     app.launch("刷宝短视频") 
 }
+function firststartapp(){
+    log("第一次登录刷宝去 进行登录操作")
+    while(true){
+        clicktexts(["去授权","允许","允许","取消","我","微信账号登录","同意"],1500,10000)
+        sleep(1000)
+        if(is_login()){
+            return
+        }
+    }
+}
+
 
 function 回到刷宝首页(){
     alter("回到刷宝首页")
@@ -84,10 +93,16 @@ function 回到刷宝首页(){
         cp=currentPackage()
         if(cp!=刷宝包名){
             alter("刷宝:检测当前包名："+cp)
-           app.launchPackage(刷宝包名)
+            app.launchPackage(刷宝包名)
             sleep(1000)
          }
-         if(textclick("首页")){
+         if(textclick("去授权")){
+            islogin=false
+            firststartapp()
+         }
+         closedialog()
+
+        if(textclick("首页")){
             return true
         }
         if(text("我的钱包").exists()){
@@ -99,13 +114,11 @@ function 回到刷宝首页(){
         }else{
             back()
         }
-        弹窗()
-        sleep(1000)
         i=i+1
-      }
-      if(i==20){
-          强制关闭("刷宝短视频")
-          return 回到刷宝首页()
+        if(i>=10){
+            强制关闭("刷宝短视频")
+            return 回到刷宝首页()
+        }
       }
       return true
 }
@@ -128,6 +141,8 @@ function 刷宝获取金币数(){
         return 刷宝获取金币数()
     }
 }
+
+
 var 刷宝获取当前余额=function(){
  if(回到刷宝首页()){
    while(true){
@@ -139,6 +154,7 @@ var 刷宝获取当前余额=function(){
         数据库.put("lastmoney",f)
         return f
     }
+    clicktexts(["微信账号登录","同意"])
    }}else{
        强制关闭("刷宝短视频")
        return 刷宝获取当前余额()
@@ -237,16 +253,13 @@ var 刷宝提现=function(){
      }
   }
 
-function 弹窗() {
-    alter("弹窗开始")
+function closedialog() {
+    alter("关闭弹窗开始")
     sleep(50)
-    clicktexts(["立即领取","点击领取","继续看视频领取","关闭应用","去授权"])
-  
+    clicktexts(["立即领取","点击领取","继续看视频领取","关闭应用","允许","取消"])
     idclick(刷宝视频恭喜获取关闭按钮id)
-  
-    // 
+      // 
     if (id("cancel").exists()) {
-        //id("commit").findOne(1000).click()
         back()
         sleep(1000)
     }
@@ -277,7 +290,7 @@ var 刷宝签到=function(){
     回到刷宝首页()
     clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     while(true){
-        弹窗()
+        closedialog()
         t= idclick(刷宝视频广告关闭按钮1id)
         alter("点击关闭按钮")
        if(t ) {
@@ -328,43 +341,38 @@ function 刷宝视频操作(){
      }
 }
 
-function login(){
-    // 进入个人中心
-    button = "text"
-    vlause = "我"
-    result = control_click(2, vlause)  
-        // 微信一键登录
-    button = "text"
-    vlause = "微信账号登录"
-    result = control_click(2, vlause)  
-    if(!result){
-        alter("已经登录")
-        return
-    }
-    // 微信授权 
-    wechat_agree()
-    button = "text"
-    vlause = "首页"
-    result = control_click(2, vlause)  
-}
 
+function 检测刷宝登录(){
+    app.launch(刷宝包名)
+   while(true){
+        if(刷宝获取当前余额()){
+            return
+        }
+        
+   }
+
+
+}
 
 var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
     alter("刷宝自动刷视频")
     if(!app.getPackageName("刷宝短视频")){
+        log("刷宝没有安装 进行安装")
         downloadandinstallapp("刷宝短视频")
     }
-    firstrunapppackage(刷宝包名)
-   todaytime=今日时长()
-   alter("刷宝今日时长:"+todaytime)
-   sleep(1000)
-   if(!今日签到("刷宝短视频")){
-       刷宝签到()
-   }
-   log("接下来就是刷视频操作")
-   刷宝视频操作()
+     检测刷宝登录()
+    log("完毕")
+
+//    todaytime=今日时长()
+//    alter("刷宝今日时长:"+todaytime)
+//    sleep(1000)
+//    if(!今日签到("刷宝短视频")){
+//        刷宝签到()
+//    }
+//    log("接下来就是刷视频操作")
+    刷宝视频操作()
 }
 
 
