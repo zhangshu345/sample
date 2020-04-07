@@ -846,36 +846,36 @@ var localstartallapp = function(){
         forcestop(last.name)
       }
       stopOtherScript()
-      if(!app.open){
-          continue
-      }
-     if(!getPackageName(app.name)){
-         log("没有安装："+app.name)
-         if(app.downloadurl){
-             log("配置App "+app.name+"下载链接存在")
-             //下载并安装
-             downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
-         }else{
-            log("配置App"+app.name+" 下载链接不存在存在")
-         }
-     }
-    
-     if(app.scripturl && getPackageName(app.name)){
-         log(app.name+":云端url脚本存在："+app.scripturl)
-         content=httpget(app.scripturl)
-         if(content){
-            engines.execScript(app.name,content, {"useFeatures":["continuation"]})
-            last=app
-            sleep(app.onetime*1000)
-         }
-    }else if(app.bmobid && getPackageName(app.name)){
-        log(app.name+":bmob脚本存在："+app.bmobid)
-        engines.execBmobScriptWithName(app.name,app.bmobid,{})
-        last=app
+      if(app.open){
+        if(!getPackageName(app.name)){
+            log("没有安装："+app.name)
+            if(app.downloadurl){
+                log("配置App "+app.name+"下载链接存在")
+                //下载并安装
+                downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
+            }else{
+               log("配置App"+app.name+" 下载链接不存在存在")
+            }
+        }
        
-    }else{
-        log(app.name+":没有找到可以运行脚本存在：")
-    }
+        if(app.scripturl && getPackageName(app.name)){
+            log(app.name+":云端url脚本存在："+app.scripturl)
+            content=httpget(app.scripturl)
+            if(content){
+               engines.execScript(app.name,content, {"useFeatures":["continuation"]})
+               last=app
+               sleep(app.onetime*1000)
+            }
+       }else if(app.bmobid && getPackageName(app.name)){
+           log(app.name+":bmob脚本存在："+app.bmobid)
+           engines.execBmobScriptWithName(app.name,app.bmobid,{})
+           last=app
+          
+       }else{
+           log(app.name+":没有找到可以运行脚本存在：")
+       }
+      }
+  
     })
 }
     
