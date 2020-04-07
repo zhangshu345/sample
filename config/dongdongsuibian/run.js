@@ -4,7 +4,6 @@ auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
 
-
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppackage="阅读集合"
 function httpget(url) {
@@ -27,7 +26,6 @@ function evalfun(url){
          log("实例化失败,程序返回")
      }
  }
-
  
 eval(httpget(公共函数url))
 
