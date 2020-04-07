@@ -24,7 +24,6 @@ var isdeviceadmin=function(){
     PermissionUtils.isDeviceAdmin()
 }
 
-
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
