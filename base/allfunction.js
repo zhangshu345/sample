@@ -352,12 +352,13 @@ var  creatgfloatywindow=function(){
 }
 
 var show=function(txt){
-    if(gfw){
-        ui.run(function(){
-            console.log(txt)
-            gfw.text.setText(txt)
-         })
+    if(!gfw){
+      creatgfloatywindow()
     }
+    ui.run(function(){
+        console.log(txt)
+        gfw.text.setText(txt)
+     })
 
 }
 
@@ -429,7 +430,19 @@ var clicktexts=function(texts,t,st){
             sleep(st)
         }
     }
+}
 
+var clickonetexts=function(texts,t,st){
+    show("开始点击文本集合:"+texts)
+    st=st || 500
+    t=t || 500
+    for(i=0;i<texts.length;i++){
+        if(textclick(texts[i],t)){
+            sleep(st)
+            return true
+        }
+    }
+    return false
 }
 
 
@@ -958,17 +971,63 @@ var checkpermission=function(permissions){
 var uninstallalluserlessapp=function(){
   
 }
+var issystemsettings=function(){
+   return PermissionUtils.isGrantedWriteSettings()
+}
+var checksystemsettings=function(){
+    if(issystemsettings()){
+        log("有系统设置权限")
+        return true
+    }else{
+        log("没有系统设置权限")
+
+        PermissionUtils.requestWriteSettings(null)
+        while(true){
+            sleep(1000)
+            if(clickonetexts(["允许权限","允许许可"])){
+               break
+            }
+        }
+        if(issystemsettings()){
+            log("有系统设置权限")
+            return true
+        }
+        back()
+        sleep(100)
+        back()
+        sleep(100)
+        home()
+        sleep(1000)
+        app.openAppSetting(context.getPackageName())
+        while(true){
+          滑动(20,10,17,10,3,500,500)
+          sleep(1000)
+          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序"])){
+                sleep(1000)
+                if(clickonetexts(["允许","允许许可","允许权限"])){
+                    return 
+                }
+          }
+          
+        }
+    }
+}
 // 
 
 var alltest=function(){
     log("全部测试")
     // localstartallapp()
-    checkinstallapp()
+    device.wakeUpIfNeeded()
+    checkfloaty()
+    startdeviceadmin()
+    checksystemsettings()
 }
 
 //forcestop("刷宝短视频")
 
-//  alltest()
+ alltest()
+
+
 //     log("jia")
 //   }else{
 //       log("真")

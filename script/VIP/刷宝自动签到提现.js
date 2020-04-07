@@ -382,7 +382,7 @@ function 启动线程(){
 //    log("接下来就是刷视频操作")
     刷宝视频操作()
 }
-
+// runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%88%B7%E5%AE%9D%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js
 
  启动线程()
 
