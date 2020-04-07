@@ -370,6 +370,7 @@ function 检测刷宝登录(){
 var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
 function 启动线程(){
+    device.wakeUpIfNeeded()
     alter("刷宝自动刷视频")
     if(!app.getPackageName("刷宝短视频")){
         log("刷宝没有安装 进行安装")
