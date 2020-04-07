@@ -6,23 +6,15 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 importClass(com.hongshu.utils.PermissionUtils)
+importClass(android.content.ComponentName)
+importClass(com.hongshu.receiver.DeviceReceiver)
 
-var gfw=floaty.rawWindow(
-    <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
-);
-gfw.setSize(device.width, 120)
-gfw.setTouchable(false)
-gfw.setPosition(0,85)
-var show=function(txt){
-    ui.run(function(){
-       console.log(txt)
-       gfw.text.setText(txt)
-    })
-}
-
+var dpm
+var  deviceadmincomponent
 var isdeviceadmin=function(){
-    importClass(com.hongshu.utils.PermissionUtils)
-    PermissionUtils.isDeviceAdmin()
+      deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
+     dpm=context.getSystemService("device_policy")
+    return dpm.isAdminActive( deviceadmincomponent)
 }
 
 var alter=sync(function(txt,t,left,top,width,height){
@@ -161,7 +153,6 @@ var 获取今日记录=function(name,key){
 
 //
 function httpget(url) {
-
         var r = http.get(url);
         // log("code = " + r.statusCode);
         if (r.statusCode == 200) {
@@ -334,16 +325,43 @@ var isfloaty=function(){
     return Settings.canDrawOverlays(context)
 }
 
-var checkfloaty=function(){
-   if(isfloaty){
+var checkfloaty=function(appname){
+     appname=appname||app.getAppName(context.getPackageName())
+     log("appname:"+appname)
+   if(!isfloaty){
        tofloatysetting()
+       sleep(2000)
        while(true){
-
-
+            if (textclick(appname)){
+                break
+            }
+           滑动(20,10,15,10,5,500,300)
+           sleep(2000)
        }
    }
 }
 
+checkfloaty()
+
+var gfw
+var  creatgfloatywindow=function(){
+    gfw=floaty.rawWindow(
+        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+    );
+    gfw.setSize(device.width, 120)
+    gfw.setTouchable(false)
+    gfw.setPosition(0,85)
+}
+
+var show=function(txt){
+    if(gfw){
+        ui.run(function(){
+            console.log(txt)
+            gfw.text.setText(txt)
+         })
+    }
+
+}
 
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 500
@@ -505,6 +523,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     var w = device.width/z;
     var h = device.height/z;
     r=r||1000
+   // show("滑动"+x1+","+y1+"->"+x2+","+y2)
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
 
@@ -812,7 +831,6 @@ var startallapp=function(){
     })
 }
 
-
 //本地配置启用脚本
 var localstartallapp = function(){
     addbmobchannel("hongshuyuedu")
@@ -880,25 +898,36 @@ var bmobpushmessage=function(channels,message){
 
 //启动deviceadmin
 var startdeviceadmin=function(){
+    if(isdeviceadmin()){
+        
+        return
+    }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/ces.js");
     var eeee= engines.execScript("uiname",ui函数,{})
 let ss=true
     while(ss)
     {
         if(isdeviceadmin()){
-            eeee.getEngine().forceStop()
+            log("设备管理 ok")
+            if(eeee.getId()){
+                log("getid："+eeee.getId())
+                engines.stop(eeee.getId())
+            }
             return
+        }else{
+            log("设备管理 no")
         }
         clicktexts(["设备管理","随便粘","启动"])
     }
-    
 }
+
 
 var alltest=function(){
     log("全部测试")
     // localstartallapp()
     checkinstallapp()
 }
+
 //检测权限
 var checkpermission=function(permissions){
     permissions.forEach(p =>{
@@ -922,13 +951,18 @@ var checkpermission=function(permissions){
     })
 }
    
-
-
 var uninstallalluserlessapp=function(){
   
 }
+// 
+滑动(20,10,17,10,3,500,500)
+sleep(1000)
+滑动(20,10,17,10,3,500,500)
+sleep(1000)
+滑动(20,10,17,10,3,500,500)
+sleep(1000)
 
-
+//forcestop("刷宝短视频")
 
 //  alltest()
 //     log("jia")
