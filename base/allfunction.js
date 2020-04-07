@@ -202,8 +202,6 @@ var  todevelopersetting=function(){
      context.startActivity(i);
  }
 
-
-
  
 var toPkgandClass=function(pkg,classname){
         let i = app.intent({
@@ -341,7 +339,7 @@ var checkfloaty=function(appname){
    }
 }
 
-checkfloaty()
+
 
 var gfw
 var  creatgfloatywindow=function(){
@@ -837,6 +835,7 @@ var localstartallapp = function(){
     let apps=数据库.get("runlist","")
     var last
     if(!apps){
+        log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(rewardapplisturl)
         apps=JSON.parse(appconfig)
         
@@ -847,14 +846,22 @@ var localstartallapp = function(){
         forcestop(last.name)
       }
       stopOtherScript()
+      if(!app.open){
+          continue
+      }
      if(!getPackageName(app.name)){
+         log("没有安装："+app.name)
          if(app.downloadurl){
+             log("配置App "+app.name+"下载链接存在")
              //下载并安装
              downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
+         }else{
+            log("配置App"+app.name+" 下载链接不存在存在")
          }
      }
     
      if(app.scripturl && getPackageName(app.name)){
+         log(app.name+":云端url脚本存在："+app.scripturl)
          content=httpget(app.scripturl)
          if(content){
             engines.execScript(app.name,content, {"useFeatures":["continuation"]})
@@ -862,9 +869,12 @@ var localstartallapp = function(){
             sleep(app.onetime*1000)
          }
     }else if(app.bmobid && getPackageName(app.name)){
+        log(app.name+":bmob脚本存在："+app.bmobid)
         engines.execBmobScriptWithName(app.name,app.bmobid,{})
         last=app
        
+    }else{
+        log(app.name+":没有找到可以运行脚本存在：")
     }
     })
 }
@@ -899,7 +909,6 @@ var bmobpushmessage=function(channels,message){
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
-        
         return
     }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/ces.js");
