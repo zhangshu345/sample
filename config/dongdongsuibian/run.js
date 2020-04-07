@@ -13,15 +13,20 @@ function httpget(url) {
             return ""
         }
 }
+var  公共函数文本
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
-var  公共函数文本=httpget(公共函数url)
-if (公共函数文本 != "") {
-    eval(公共函数文本)
-    log("公共函数实例化成功")
+function evalfun(url){
+   funstr=httpget(url)
+    if (funstr != "") {
+        eval(funstr)
+        log("实例化成功："+url)
+    }
+    else {
+        log("实例化失败,程序返回")
+    }
 }
-else {
-    log("公共函数实例化失败,程序返回")
-}
+
+evalfun(公共函数url)
 
 //checkinstallapp()
 while(true){

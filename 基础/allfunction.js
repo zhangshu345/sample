@@ -5,7 +5,7 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
-
+importClass(com.hongshu.utils.PermissionUtils)
 
 var gfw=floaty.rawWindow(
     <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
@@ -19,6 +19,11 @@ var show=function(txt){
        gfw.text.setText(txt)
     })
 }
+
+var isdeviceadmin=function(){
+    PermissionUtils.isDeviceAdmin()
+}
+
 
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
