@@ -434,6 +434,11 @@ var 快手悬浮球之后页面操作=function(){
 
        }
         
+       if(textclick("立即签到")){
+           sleep(1000)
+           back()
+           return true
+       }
         sleep(1000)
         if(text("签到领金币").exists()){
             if(textclick("去签到")){

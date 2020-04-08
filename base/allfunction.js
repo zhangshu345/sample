@@ -9,10 +9,11 @@ importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(com.hongshu.utils.FileUtils)
-
+var scriptappname=app.getAppName(context.getPackageName())
+log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
-var dpm
+var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
       deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
@@ -86,7 +87,6 @@ var 设置今日滑动次数=function(name,i){
     alter("今日签到:"+cs)
     return cs
 }
-
 
 var 记录今日时长=function(name,t){
     t=t||0
@@ -209,6 +209,7 @@ var forcestop=function(appname,st){
   }
 }
 
+
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
@@ -250,9 +251,12 @@ var toinputsettings=function(){
     context.startActivity(i);
 }
 
+
 var toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
+
+
 var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
@@ -261,6 +265,8 @@ var tolanguagesetting=function(){
     });
     context.startActivity(i);
 }
+
+
 var tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
@@ -269,6 +275,8 @@ var tosettingsbyaction=function(actionname){
     });
     context.startActivity(i);
 }
+
+
 var toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
@@ -430,7 +438,10 @@ function textclick(i,t,left,top,right,bottom){
          if(!f.click()){
              show("text："+i+":点位开始成功")
              b=f.bounds()
-              r=click(b.centerX(),b.centerY())
+             if(b.centerX()>0&&b.centerY()>0){
+                r=click(b.centerX(),b.centerY())
+             }
+             
            return r
         }else{
             show("text:"+i+"----控件点击成功")
@@ -972,11 +983,15 @@ var bmobpushmessage=function(channels,message){
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
+        log("设备管理器激活了")
         return
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/ces.js");
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/ces.js");
+    app.launch(context.getPackageName())
+    sleep(1000)
     var eeee= engines.execScript("uiname",ui函数,{})
-let ss=true
+    sleep(1000)
+    let ss=true
     while(ss)
     {
         if(isdeviceadmin()){
@@ -989,7 +1004,10 @@ let ss=true
         }else{
             log("设备管理 no")
         }
-        clicktexts(["设备管理","随便粘","启动"])
+        
+        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用"],500,3000)
+        滑动(20,10,17,10,5,500,300)
+        sleepr(500,1000)
     }
 }
 
@@ -1035,7 +1053,7 @@ var checksystemsettings=function(){
         PermissionUtils.requestWriteSettings(null)
         while(true){
             sleep(1000)
-            if(clickonetexts(["允许权限","允许许可"])){
+            if(clickonetexts(["允许权限","允许许可","允许修改系统设置"])){
                break
             }
         }
@@ -1053,9 +1071,9 @@ var checksystemsettings=function(){
         while(true){
           滑动(20,10,17,10,3,500,500)
           sleep(1000)
-          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序"])){
+          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置"])){
                 sleep(1000)
-                if(clickonetexts(["允许","允许许可","允许权限"])){
+                if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                     return 
                 }
           }
@@ -1070,8 +1088,10 @@ var alltest=function(){
     // localstartallapp()
     device.wakeUpIfNeeded()
     checkfloaty()
-    startdeviceadmin()
+   
     checksystemsettings()
+
+    startdeviceadmin()
 }
 
 //forcestop("刷宝短视频")

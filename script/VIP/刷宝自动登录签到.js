@@ -48,7 +48,6 @@ var tv_tab_我_text="我"
 var tv_tab_首页_text="首页"
 var tv_tab_直播_text="直播"
 var im_rewardvideo_close_id="com.jm.video:id/iv_close"
-var 数据库= storages.create("hsshuabao");
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
 
@@ -68,7 +67,7 @@ function 刷宝上滑() {
        回到刷宝视频页()
     }
     滑动(20,12,16,9,3,500,200)
-    sleepr(6*1000,13*1000)
+
 }
 function 刷宝下滑() {
     滑动次数=滑动次数+1
@@ -77,26 +76,24 @@ function 刷宝下滑() {
        回到刷宝视频页()
     }
     滑动(20,12,3,9,17,500,400)
-    sleepr(6*1000,13*1000)
-}
 
+}
 var 刷宝搜索用户=function(author){
     app.launch("刷宝短视频") 
 }
 
+//第一次登录
 function firststartapp(){
     log("第一次登录刷宝去 进行登录操作")
     clicktexts(["去授权","允许","允许","允许","取消","我","微信账号登录","同意"],1500,10000)
     sleep(1000)
-  
-   
-}
 
+}
 
 function 回到刷宝首页(){
     alter("回到刷宝首页")
     i=0
-    while(i<20){
+    while(i<10){
         cp=currentPackage()
         if(cp!=刷宝包名){
             alter("刷宝:检测当前包名："+cp)
@@ -141,7 +138,7 @@ function 刷宝获取金币数(){
         记录现在金币("shuabao",n)
        // 数据库.put(today+"_lastcoin",n)
        return n
-     }
+        }
     }
     }else{
         强制关闭("刷宝短视频")
@@ -177,18 +174,24 @@ var 检测绑定邀请=function(){
             }
         }
       i=i+1
-   
     }
-    
+
+}
+
+
+var 检测账号登录状态=function(){
+
 }
 
 
 var 刷宝获取账号信息=function(){
+    app.launch(刷宝包名)
+    sleep(2000)
  if(回到刷宝首页()){
    while(true){
     if (textclick("我")){
-        刷宝下滑()
         sleep(1500)
+
     }
     
     sleep(500)
@@ -241,7 +244,8 @@ var 刷宝提现=function(){
     alter("刷宝提现")
      f=刷宝获取金币数()
      if(f>6800){
-        while(true){
+         n=0
+        while(n<10){
            if(idclick(刷宝余额id)){
              alter("点击刷宝余额成功")
                 sleep(1000)
@@ -261,7 +265,7 @@ var 刷宝提现=function(){
                     alter("点击每日")
                   break
               }
-           
+           n=n+1
         }
         if(刷宝可以提现()){
             i=0
@@ -308,7 +312,7 @@ var 刷宝提现=function(){
          回到刷宝视频页()
          return false
      }
-  }
+}
 
 function closedialog() {
     alter("关闭弹窗开始")
@@ -320,8 +324,6 @@ function closedialog() {
         back()
         sleep(1000)
     }
-  
-     
 }
 
 var 刷宝签到=function(){
@@ -358,14 +360,14 @@ var 刷宝签到=function(){
                     i=i+1
                 }
             }
-
-
         }
         closedialog()
-
         clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     }
 }
+
+
+
 var 回到刷宝视频页=function(){
     alter("刷宝回到刷视频页")
    if(回到刷宝首页()){
@@ -380,6 +382,7 @@ var 回到刷宝视频页=function(){
         return  回到刷宝视频页()
     }
 }
+
 function 刷宝观看视频(){
     回到刷宝视频页()
     while(滑动次数<1000){
