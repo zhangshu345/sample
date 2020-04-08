@@ -935,7 +935,7 @@ var clickscreencapture=function(){
 }
 
 var checkscreencapture=function(){
-    engines.execScript("checkscreencapture", clickscreencapture.toString(),{} )
+    engines.execUrl("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js")
     requestScreenCapture()
 }
 
