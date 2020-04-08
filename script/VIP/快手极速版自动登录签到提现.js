@@ -549,13 +549,33 @@ function firstlogin(){
     while(true){
         log("第一次登录")
         clicktexts(["同意并继续","立即领取","立即提现","立即提现","提取","登录领金币"])
+        if(idclick("com.kuaishou.nebula:id/protocol_checkbox")){
+           if( textclick("微信登录")){
+               text("确认登录").waitFor()
+              if( textclick("确认登录")){
+                  sleep(2000)
+              }
+
+           }
+        }
+        if(text("绑定手机号").exists()){
+           ph= text("请输入手机号").findOne()
+           if(ph){
+               if(phone()){
+                ph.setText(phone())
+               }else{
+                   textclick("跳过")
+               }
+               
+           }
+        }
+
         if(idoneexist(快手极速版首页标志)){
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
             if(id("com.kuaishou.nebula:id/tabs").exists()){
                log("点击首页的发现")
                id("com.kuaishou.nebula:id/tabs").findOne().children(0).children(2).click()
             }
-
            return true
        }
     }

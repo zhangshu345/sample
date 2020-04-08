@@ -869,6 +869,13 @@ var startallapp=function(){
     })
 }
 
+
+var phone=function(){
+    runtime.requestPermissions(["READ_PHONE_STATE"])
+    var telephoneservice = context.getSystemService("phone")
+     pnumber = telephoneservice.getLine1Number()
+    return pnumber
+}
 //本地配置启用脚本
 var localstartallapp = function(){
     addbmobchannel("hongshuyuedu")
