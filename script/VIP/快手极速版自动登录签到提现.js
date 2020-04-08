@@ -631,6 +631,7 @@ function firststartapp(){
 
 
 var 启动=function(){
+    device.wakeUpIfNeeded()
     if(!getPackageName(快手极速版)){
         downloadandinstallapp(快手极速版)
         islogin=false
@@ -643,4 +644,4 @@ var 启动=function(){
     快手极速视频滑动操作()
 }
 启动()
-//  runurl:
+//  runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%BF%AB%E6%89%8B%E6%9E%81%E9%80%9F%E7%89%88%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js
