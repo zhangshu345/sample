@@ -104,8 +104,7 @@ function 回到刷宝首页(){
             islogin=false
             firststartapp()
          }
-         closedialog()
-
+         
         if(textclick("首页")){
             return true
         }
@@ -118,6 +117,7 @@ function 回到刷宝首页(){
         }else{
             back()
         }
+        closedialog()
         i=i+1
         if(i>=10){
             强制关闭("刷宝短视频")
