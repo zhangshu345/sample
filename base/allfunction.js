@@ -935,7 +935,7 @@ var clickscreencapture=function(){
 }
 
 var checkscreencapture=function(){
-    engines.execUrlScript("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js")
+    engines.execUrlScript("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js",{})
     requestScreenCapture()
 }
 
