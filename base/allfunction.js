@@ -709,14 +709,14 @@ function downloadApk(name,url,isinstall) {
      var byteSum = 0; //总共读取的文件大小
      var byteRead; //每次读取的byte数
      // log('要下载的文件大小=');
-     // log(connLength);
-     if(files.exists(filePath)&&FileUtils.getContentLength(files)==connLength){
-        log("本地文件是源文件")
-        if(isinstall){
-            install_app(filePath,name)
-            return
-         }
-      }
+    //   log('要下载的文件大小='+connLength);
+    //  if(files.exists(filePath)&&FileUtils.getContentLength(files)==connLength){
+    //     log("本地文件是源文件")
+    //     if(isinstall){
+    //         install_app(filePath,name)
+    //         return
+    //      }
+    //   }
 
      var threadId = threads.start(function () {
          while (1) {
