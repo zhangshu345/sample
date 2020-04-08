@@ -149,28 +149,35 @@ function 刷宝获取金币数(){
     }
 }
 var 检测绑定邀请=function(){
-    while(true){
+    i=0
+    while(i<5){
         滑动(20,12,16,9,3,500,300)
         sleep(1000)
-        if(textclick("补填邀请码")){
-            sleep(1500)
+        if(text("我要借钱").exists()){
+            if(textclick("补填邀请码")){
+                sleep(1500)
+                v= className("EditText").findOne()
+                if(v){
+                     v.setText(getrandforstrs(刷宝邀请码))
+                     sleep(100)
+                    if( textclick("提交领奖励")){
+                        sleep(1000)
+                    }
+                }
+                 sleep(100)
+                 if(textContains("填写邀请码成功").exists()){
+                     back()
+                     sleep(1000)
+                     back()
+                     
+                     return true
+                 }
+            }else{
+                return false
+            }
         }
-       v= className("EditText").findOne()
-       if(v){
-            v.setText(getrandforstrs(刷宝邀请码))
-            sleep(100)
-           if( textclick("提交领奖励")){
-               sleep(1000)
-           }
-       }
-        sleep(100)
-        if(textContains("填写邀请码成功").exists()){
-            back()
-            sleep(1000)
-            back()
-            
-            return true
-        }
+      i=i+1
+   
     }
     
 }
