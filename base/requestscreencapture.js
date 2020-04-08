@@ -23,8 +23,10 @@ log("公共函数实例化失败,程序返回")
 
 while(true){
     if(clicktexts(["不再提醒","不在显示"])){
+        log("不再出现")
     }
    if(textclick("立即开始")){
+       log("点击 立即开始")
         break
    }
     sleep(2000)

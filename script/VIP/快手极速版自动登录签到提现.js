@@ -332,10 +332,7 @@ var 滑块验证=function(){
     while(text("拖动滑块").exists()){
         
        checkscreencapture()
-           
-         
          i=0
-
          sleep(1000)
         滑块验证精确()
         if(i%3==0){
