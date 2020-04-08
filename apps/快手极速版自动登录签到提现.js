@@ -21,21 +21,11 @@ else {
 log("公共函数实例化失败,程序返回")
 }
 
-
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
-
-
-
-
-
-
 var 快手极速版包名="com.kuaishou.nebula"
 var 快手极速版="快手极速版"
-
 var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
-
-
 /** 
  * 识别滑块位置
  * 
@@ -335,12 +325,10 @@ function 滑块验证精确() {
     } else {
        log("识别有误，请确认是否在滑块界面");
     }
-   
     
 }
 
 var 滑块验证=function(){
-
     while(text("拖动滑块").exists()){
         while(!requestScreenCapture()){
             if(clicktexts(["不再提醒","立即开始"])){
@@ -372,7 +360,7 @@ var 快手极速登录微信登录按钮id="com.kuaishou.nebula:id/wechat_login_
 var 快手极速一键登录按钮id="com.kuaishou.nebula:id/btn_onekey_login" //本机一键登录
 var 快手极速协议勾选框id="com.kuaishou.nebula:id/cb_verify_service_line"  // 勾选上就是同意
 var 快手极速微信登录显示标题id="com.kuaishou.nebula:id/qm"   //显示登录app 的名称 这里是快手极速版   当前活动 com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI
-var 快手极速微信确认登录按钮id="com.tencent.mm:id/d17"  //确认登录  包名是com.tencent.mm  
+var 快手极速微信确认登录按钮id="com.tencent.mm:id/d17"  //确认登录  包名是com.tencent.mm  "com.kuaishou.nebula:id/wechat_login_view"
 var 快手极速微信关闭按钮id="android:id/text1"  //关闭 
 var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了","点击重播"]
 var 快手极速弹窗id集合=["btn_privacy_action","close"]
@@ -383,7 +371,7 @@ var 快手极速左边作者名称id="com.kuaishou.nebula:id/tab_name"  //text �
 var 快手极速左边设置按钮id="com.kuaishou.nebula:id/tab_settings" //设置
 var 快手极速首页="com.yxcorp.gifshow.HomeActivity" 
 var 快手极速首页奖励悬浮="com.kuaishou.nebula:id/red_packet"   //悬浮按钮
-var 快手极速版首页标志=[快手极速首页奖励悬浮]
+var 快手极速版首页标志=[快手极速首页奖励悬浮,快手极速摄像头图标id]
 var 快手极速设置密码=function(){
     if(打开快手极速左边框()){
         while(!idclick(快手极速左边设置按钮id)){}
@@ -391,6 +379,8 @@ var 快手极速设置密码=function(){
     }
 
 }
+
+var  快手极速微信登录按钮id="com.kuaishou.nebula:id/wechat_login_view"
 
 var 打开快手极速左边框=function(){
     if(回到快手极速首页()){
@@ -402,7 +392,7 @@ var 打开快手极速左边框=function(){
 var 回到快手极速首页=function(){
     alter("回到快手极速首页")
     while(true){
-         if(idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
+         if(idoneexist(快手极速版首页标志)){
             return true
         }else{
             back()
@@ -426,28 +416,53 @@ var 快手极速弹窗=function(){
     }
     
 }
+var 快手悬浮球之后页面操作=function(){
+    log("快手悬浮球之后页面操作")
+    s=0
+    while(s<5){
+        if(text("填写邀请码").exists()){
+            log("找到填写邀请码，是新用户")
+            if(textclick("去填写")){
+               if (快手极速填写邀请码()){
+                   back()
+                   break
+               }
+            }
+        }else{
+           log("没有找到填写邀请码，不是新用户")
+           滑动(20,10,18,10,3,500,500)
+        }
+       if(idclick(快手极速微信登录按钮id)){
+           log("微信登录id存在点击")
+           sleep(2000)
 
-var 快手极速判断登录=function(){
-
-}
-
-var 快手极速登录=function(){
-    while(!快手极速判断登录()){
-        clickids(快手极速首次登录点击id集合)
+       }
+        
         sleep(1000)
+        if(text("签到领金币").exists()){
+            if(textclick("去签到")){
+                log("去签到 ")
+            }
+            if(text("去查看").exists()){
+                log("去查看 ")
+                return true
+            }
+        }
+        
+       s=s+1
     }
-
-}
-var 快手极速提现=function(){
-
 }
 
 var 快手极速签到=function(){
-    
-        while(true){
+    log("快手极速签到")
+    n=0
+         while(n<10){
             if(回到快手极速首页()){
+                log("签到  已经回到首页")
                 if(clickids([快手极速首页奖励悬浮])){
-                    sleep(2000)
+                    sleep(1500)
+                    快手悬浮球之后页面操作()
+                  
                 }
                  if(textclick("立即签到")){
                      return true
@@ -459,26 +474,72 @@ var 快手极速签到=function(){
  
 }
 
+var 快手极速填写邀请码=function(){
+    i=0
+    while(i<10){
+        if(text("填邀请码领现金").exists()){
+            v= className("EditText").findOne()
+            if(v){
+                 v.setText(getrandforstrs(快手极速版邀请码))
+                 sleep(100)
+                if( textclick("提交领现金")){
+                    sleep(1000)
+                }
+            }
+             sleep(100)
+             if(textContains("填写邀请码成功").exists()){
+                 back()
+                 sleep(1000)
+                 back()
+                 
+                 return true
+              }
+        }else{
+            sleep(1500)
+        }
+       i=i+1
+       
+    }
+   return false
+}
 var 快手极速视频上滑=function(){
-   滑动(20,13,16,10,3,800,300)
+   滑动(20,13,16,10,3,400,300)
  }
 
+ var 快手极速视频下滑=function(){
+    滑动(20,13,3,10,17,400,200)
+  }
+
+  var 滑动次数=今日滑动次数()
 var 快手极速视频滑动操作=function(){
-    i=今日滑动次数()
-    while(i<1000){
-        if(i%15==0){
-            设置今日滑动次数(i)
+   
+    while(滑动次数<1000){
+        if(i%500==0){
+            设置今日滑动次数(滑动次数)
         }
        滑块验证尝试()
        if(!idoneexist([快手极速摄像头图标id,快手极速首页奖励悬浮])){
             回到快手极速首页()
         }
-        快手极速视频上滑()
-        i=i+1
-        if(i%300==0){
+        
+       
+        if(滑动次数%5==0){
+            快手极速视频上滑()
+        }else if(滑动次数%5==1){
+            快手极速视频上滑()
+        }else if(滑动次数%5==2){
+            快手极速视频下滑()
+        }else if(滑动次数%5==3){
+            快手极速视频下滑()
+        }else{
+            快手极速视频上滑() 
+        }
+        滑动次数=滑动次数+1
+        if(滑动次数%1000==0){
            快手极速提现()
         }
-        sleepr(8000,15000)
+
+        sleepr(6000,12000)
     }
 }
 
@@ -486,10 +547,12 @@ var islogin=false
 
 function firstlogin(){
     while(true){
+        log("第一次登录")
         clicktexts(["同意并继续","立即领取","立即提现","立即提现","提取","登录领金币"])
-        if(idoneexist(快手极速首页奖励悬浮)){
+        if(idoneexist(快手极速版首页标志)){
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
             if(id("com.kuaishou.nebula:id/tabs").exists()){
+               log("点击首页的发现")
                id("com.kuaishou.nebula:id/tabs").findOne().children(0).children(2).click()
             }
 
@@ -503,54 +566,80 @@ function firststartapp(){
     log("第一次登录快手极速版 进行登录操作")
     app.launch(快手极速版包名)
     while(true){
-
+        log("第一次开始")
         if(currentPackage()!=快手极速版包名){
-            app.launch(快手极速版包名)
-        }
-
-        if(textclick("同意并继续")){
-            islogin=true
-            firstlogin()
-        }
-
-        clicktexts(["立即领取","立即提现","立即提现","登录领金币"],1500,5000)
-        
-        clickids(快手极速首次登录点击id集合,1500,10000)
-
-        if(textclick("提取")){
-            back()
-            sleep(1000)
-            back()
-        }
-
-        if(idoneexist(快手极速首页奖励悬浮)){
-            //快手actionbar "com.kuaishou.nebula:id/action_bar"
-            if(id("com.kuaishou.nebula:id/tabs").exists()){
-               id("com.kuaishou.nebula:id/tabs").findOne().children(0).children(2).click()
+            if(!getPackageName(快手极速版)){
+                downloadandinstallapp(快手极速版)
+                islogin=false
             }
+            app.launch(快手极速版包名)
+            sleepr(1000,2500)
+        }else{
+            if(textclick("同意并继续")){
+                islogin=true
+                firstlogin()
+            }
+    
+            if(textclick("提取")){
+                back()
+                sleep(1000)
+                back()
+            }
+    
+            if(idoneexist(快手极速版首页标志)){
+                log("找到快手首页悬浮标记")
+                //快手actionbar "com.kuaishou.nebula:id/action_bar"
+                if(id("com.kuaishou.nebula:id/tabs").exists()){
+                    
+                  childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
+                    childs.forEach(e => {
+                        log(e.className())
+                        if(e.className()=="android.widget.LinearLayout"){
+                            e.child(2).click()
+                        }
+                    });
+                }
+         
+                if(idclick(快手极速首页奖励悬浮)){
+                    sleep(1000)
+                  
+                        if ( 快手悬浮球之后页面操作()){
+                             return
+                        }
+                   
+                }
+             
+           }else{
+                log("没有找到快手首页悬浮标记")
+               back()
+               sleep(1000)
+            
+           }
+           clicktexts(["立即领取","立即提现","立即提现","登录领金币"],1500,5000)
+            
+           clickids(快手极速首次登录点击id集合,1500,10000)
 
-           return true
-       }
+
+        }
+
+       
         sleep(1000)
     }
   
- 
+ log("结束 firststartapp")
 }
 
 
 var 启动=function(){
-    if(!getPackageName(快手极速版包名)){
+    if(!getPackageName(快手极速版)){
         downloadandinstallapp(快手极速版)
         islogin=false
     }
-    
-
     firststartapp(快手极速版)
-
-    if(!今日签到("kuaishoujisu")){
-        log("快手极速版今日未签到")
-        快手极速签到()
-    }
+    // if(!今日签到("kuaishoujisu")){
+    //     log("快手极速版今日未签到")
+    //     快手极速签到()
+    // }
     快手极速视频滑动操作()
 }
 启动()
