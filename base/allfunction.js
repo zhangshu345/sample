@@ -936,7 +936,10 @@ var clickscreencapture=function(){
 
 var checkscreencapture=function(){
     engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
-    requestScreenCapture()
+   while(! requestScreenCapture()){
+       sleep(1000)
+       log("等待截屏")
+   }
 }
 
 var isNotificationManager=function(){
