@@ -150,13 +150,27 @@ function 刷宝获取金币数(){
 }
 var 检测绑定邀请=function(){
     while(true){
-        刷宝上滑()
+        滑动(20,12,16,9,3,500,300)
         sleep(1000)
         if(textclick("补填邀请码")){
             sleep(1500)
         }
-        uiselector.className("EditText").findOne().setText(getrandforstrs(刷宝邀请码))
-        sleep(1000)
+       v= className("EditText").findOne()
+       if(v){
+            v.setText(getrandforstrs(刷宝邀请码))
+            sleep(100)
+           if( textclick("提交领奖励")){
+               sleep(1000)
+           }
+       }
+        sleep(100)
+        if(textContains("填写邀请码成功").exists()){
+            back()
+            sleep(1000)
+            back()
+            
+            return true
+        }
     }
     
 }
@@ -303,55 +317,45 @@ function closedialog() {
      
 }
 
-function is_login(){
-    // 进入个人中心
-    vlause = "我"
-    result = control_click(2, vlause)  
-    result = text("微信账号登录").findOne(3000)
-    if(result){
-        back()
-        return false
-    }else{
-        vlause = "首页"
-        result = control_click(2, vlause)  
-        return true
-    }
-}
-var wechat_agree=function(){
-
-}
-
 var 刷宝签到=function(){
     alter("刷宝签到")
     回到刷宝首页()
-    clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
-    
-
     while(true){
-        
-
-        closedialog()
-        t= idclick(刷宝视频广告关闭按钮1id)
-        alter("点击关闭按钮")
-       if(t ) {
-         alter("成功点击关闭按钮")
-         今日已签到()
-         return true
-        }
-        t= idclick(刷宝视频广告关闭按钮2id)
-        alter("点击关闭按钮")
-       if(t ) {
-         alter("成功点击关闭按钮")
-         今日已签到()
-         return true
-        }
+        clicktexts(["任务"],1000,2000)
         close=text("继续赚元宝").findOne(1000)
         if(close){
             今日已签到()
            return true
         }
-        alter("等待视频广告3秒")
-        sleep(3000)
+        if(textclick("立即签到")){
+            sleep(1000)
+            if(textclick("看视频签到")){
+                i=0
+                while(i<20){
+                    alter("等待视频广告3秒")
+                    sleep(3000)
+                    t= idclick(刷宝视频广告关闭按钮1id)
+                    alter("点击关闭按钮")
+                   if(t ) {
+                     alter("成功点击关闭按钮")
+                     今日已签到()
+                     return true
+                    }
+                    t= idclick(刷宝视频广告关闭按钮2id)
+                    alter("点击关闭按钮")
+                   if(t ) {
+                     alter("成功点击关闭按钮")
+                     今日已签到()
+                     return true
+                    }
+                    i=i+1
+                }
+            }
+
+
+        }
+        closedialog()
+
         clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     }
 }
@@ -376,15 +380,13 @@ function 刷宝视频操作(){
         if(滑动次数%3==0){
             刷宝下滑()
         }
-        if(滑动次数%1000==0){
+        if(滑动次数%2000==0){
            if(!今日提现("shuabao"))(
             刷宝提现()
            ) 
         }
      }
 }
-
-
 
 var 刷宝视频页没有视频文本集合=["空空如也","点击刷新"]
 
@@ -397,21 +399,15 @@ function 启动线程(){
         downloadandinstallapp("刷宝短视频")
     }
     刷宝获取当前余额()
-    刷宝签到()
-  
     log("完毕")
-
-//    todaytime=今日时长()
-//    alter("刷宝今日时长:"+todaytime)
+    todaytime=今日时长("shuabao")
+    alter("刷宝今日时长:"+todaytime)
 //    sleep(1000)
-//    if(!今日签到("刷宝短视频")){
-//        刷宝签到()
-//    }
-//    log("接下来就是刷视频操作")
+   if(!今日签到("shuabao")){
+       刷宝签到()
+   }
     刷宝视频操作()
 }
 // runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%88%B7%E5%AE%9D%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js
 
- //启动线程()
-
- 检测绑定邀请()
+启动线程()
