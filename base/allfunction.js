@@ -8,7 +8,7 @@ var today=function(){
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
-
+importClass(com.hongshu.utils.FileUtils)
 
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
@@ -690,14 +690,8 @@ function downloadApk(name,url,isinstall) {
      console.log('要下载的APP的：' + file_name);
      // 设置APP的路径
      file_path_root = files.getSdcardPath()
-      filePath = file_path_root + "/" + file_name
-      if(files.exists(filePath)){
-        if(isinstall){
-            install_app(filePath,name)
-            return
-         }
-      }
-
+     filePath = file_path_root + "/" + file_name
+   
      importClass('java.io.FileOutputStream');
      importClass('java.io.IOException');
      importClass('java.io.InputStream');
@@ -705,7 +699,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URL');
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
- 
+    
      var url = new URL(url);
      var conn = url.openConnection(); //URLConnection
      var inStream = conn.getInputStream(); //InputStream
@@ -716,6 +710,14 @@ function downloadApk(name,url,isinstall) {
      var byteRead; //每次读取的byte数
      // log('要下载的文件大小=');
      // log(connLength);
+     if(files.exists(filePath)&&FileUtils.getContentLength(files)==connLength){
+        log("本地文件是源文件")
+        if(isinstall){
+            install_app(filePath,name)
+            return
+         }
+      }
+
      var threadId = threads.start(function () {
          while (1) {
              var 当前写入的文件大小 = byteSum;
