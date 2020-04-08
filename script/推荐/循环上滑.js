@@ -1,29 +1,49 @@
-/*我的阅读集合  使用 配置直接从码云获取 配置文件
- */
 auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
-/*明明标准为 作者昵称 简称+app全拼 */
-var apppackage="阅读集合"
-function httpget(url) {
-        var r = http.get(url);
-           if (r.statusCode == 200) {
-            return r.body.string()
-        } else {
-            return ""
-        }
+
+function 滑动(z,x1,y1,x2,y2,t,r) {
+    var w = device.width/z;
+    var h = device.height/z;
+    r=r||1000
+     show("滑动"+x1+","+y1+"->"+x2+","+y2)
+    swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
-var  公共函数文本=httpget(公共函数url)
-if (公共函数文本 != "") {
-    eval(公共函数文本)
-    log("公共函数实例化成功")
+var sleepr=function(short,long){
+    rt=random(short,long)
+    show("等待:"+rt +" 毫秒")
+    sleep(rt)
 }
-else {
-    log("公共函数实例化失败,程序返回")
-}
-while(true){
-    startallapp()
+var gfw
+var  creatgfloatywindow=function(){
+    gfw=floaty.rawWindow(
+        <horizontal >
+           <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000">停止</text>
+        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+        </horizontal>
+        
+    );
+    gfw.setSize(device.width, 120)
+    
+    gfw.setPosition(0,85)
+    gfw.stop.on("click",function(){
+        engines.stopAllAndToast()
+    })
 }
 
+var show=function(txt){
+    if(!gfw){
+      creatgfloatywindow()
+    }
+    ui.run(function(){
+     
+        gfw.text.setText(txt)
+     })
+
+}
+
+while(true){
+    滑动(20,10,18,10,3,500,500)
+    sleepr(8000,15000)
+}
 

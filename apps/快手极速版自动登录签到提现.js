@@ -1,320 +1,40 @@
 //快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
 auto.waitFor()
 auto.setMode("normal")
+
+
+function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
+    } else {
+        return ""
+    }
+}
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction.js"
+var  公共函数文本=httpget(公共函数url)
+if (公共函数文本 != "") {
+eval(公共函数文本)
+log("公共函数实例化成功")
+}
+else {
+log("公共函数实例化失败,程序返回")
+}
+
+
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
-var 数据库= storages.create("hongshuyuedujihe");
-var apppackage="com.kuaishou.nebula"
-var appname="快手极速版"
-var date=new Date()
-var today=function(){
-    return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
-}
-var starttime=date.getTime()
+
+
+
+
+
+
+var 快手极速版包名="com.kuaishou.nebula"
+var 快手极速版="快手极速版"
+
 var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
-var fw=floaty.rawWindow(
-    <horizontal gravity="center">
-     
-    <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
-   
-    </horizontal>
-);
-// fw.sleep.click(function(){
-//     issleep=!issleep
-//     while(issleep){
-//         sleep(1000)
-//     }
-// })
-// fw.stop.click(function(){
-//     exit()
-// })
 
- fw.setTouchable(false)
-fw.setSize(1, 1)
-fw.setPosition(50,85)
-fw.setSize(device.width-100, 120)
-var alter=sync(function(txt,t,left,top,width,height){
-    var issleep=false
-    t=t||1200
-    left= left ||device.width/20
-    top =top || device.height/20
-    width =width|| device.height/20*19
-    height =height || device.height/15
- 
-      ui.run(function(){
-          console.log(txt)
-        fw.text.setText(txt)
-        fw.setPosition(left,top)
-        fw.setSize(device.width-100, 120)
-        // setTimeout(()=>{
-        //     fw.close()
-        // },t)
-     })
-});
-var 今日签到=function(){
-    cs=数据库.get(apppackage+"_"+today()+"_sign", false)
-    alter("今日签到:"+cs)
-    return cs
-}
-var 今日已签到=function(){
-    数据库.put(apppackage+"_"+today()+"_sign", true)
-    alter("今日已签到")
-}
-var 今日滑动次数=function(){
-    cs=数据库.get(apppackage+"_"+today()+"_move", 0)
-    alter("今日签到:"+cs)
-    return cs
-}
-var 设置今日滑动次数=function(i){
-    cs=数据库.put(apppackage+"_"+today()+"_move", i)
-    alter("今日签到:"+cs)
-    return cs
-}
-
-
-var 今日时长=function(){
-    return 数据库.get(apppackage+"_"+today()+"_time", 0)
-}
-var 记录今日时长=function(t){
-    数据库.put(apppackage+"_"+today()+"_time",t)
-}
-
-var 今日提现=function(){
-    return 数据库.get(apppackage+"_"+today()+"_cashout",false)
-}
-var 今日已提现=function(){
-    数据库.put(apppackage+"_"+today()+"_cashout",true)
-    alter("今日已提现")
-}
-var 上次金币=function(){ 
-    return    数据库.get(apppackage+"_"+today()+"_lastcoin", 0)
- } //可以通过上次的金币来判断是否 还可以获取金币
- var 上次余额=function(){ 
-    return   数据库.get(apppackage+"_"+"lastmoney", 0.0)
- } //可以通过上次的金币来判断是否 还可以获取金币
-
-function httpget(varurl) {
-    alter("脚本url:"+varurl)
-        var r = http.get(varurl);
-        // log("code = " + r.statusCode);
-        if (r.statusCode == 200) {
-            return r.body.string()
-        } else {
-            return ""
-        }
-  }
-var 强制关闭=function(appname){
-  alter("强制关闭应用:"+appname)
-  var packagename=app.getPackageName(appname)
-  app.openAppSetting(packagename)
-   var i=0
-  while(i<4){
-    强制关闭按钮文本集合.forEach(t=>{
-        if(textclick(t)){
-            i=i+1
-            alter("成功点击关闭："+i)
-        }
-    })
-  }
-  alter("强制关闭停止")
-}
-
-function idclick(i,left,top,right,bottom){
-    left = left || 0;
-    top = top || 0;
-    right = bottom || device.width;
-    bottom = bottom || device.height;
-    var f=id(i).boundsInside(left, top, right, bottom).findOne(1500);
-    if(f){
-        if(!f.click()){
-            
-            b=f.bounds()
-            bc=click(b.centerX(),b.centerY())
-            if(bc){
-                alter("id："+i+"----点位成功点击")
-                return true
-            }else{
-                alter("id："+i+"----点位失败点击")
-                return false
-            }
-           
-        }else{
-            alter("id："+i+"----控件点击成功")
-            return true
-        }
-    }
-    return false
-}
-
-function textclick(i,left,top,right,bottom){
-    left = left || 0;
-    top = top || 0;
-    right = bottom || device.width;
-    bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(1500);
-    if(f){
-         if(!f.click()){
-            alter("text："+i+":点位开始成功")
-                b=f.bounds()
-              r=click(b.centerX(),b.centerY())
-           return r
-        }else{
-           alter("text:"+i+"----控件点击成功")
-            return true
-        }
-    }
-    return false
-}
-
-var clickids=function(ids,t){
-  
-    t=t||500
-    for(i=0;i<ids.length;i++){
-        if(idclick(ids[i])){
-            sleep(t)
-        }
-    }
-   
-}
-
-var clicktexts=function(texts,t){
- 
-    t=t||500
-    for(i=0;i<texts.length;i++){
-        if(textclick(texts[i])){
-            sleep(t)
-        }
-    }
- 
-}
-
-var clicktextsbefore=function(clicktexts,stoptexts,t){
-    t=t||500
-
-    clicktexts.forEach(i => {
-        if(textclick(i)){
-            sleep(t)
-        }
-        stoptexts.forEach(s=>{
-            if(text(s).exists()){
-                return 
-            }
-        })
-    });
-}
-
-function control_click(button, vlause, left, top, right, bottom) {
-    // 功能---点击控件
-    // 输入---参数1:元素[id、text 、desc、className],参数2:元素值,剩余参数:left, top, right, buttom
-    // 默认后四位为当前屏幕
-    // 返回---真假
-    var result
-    var button_info
-    left = left || 0;
-    top = top || 0;
-    right = bottom || device.width;
-    bottom = bottom || device.height;
-    // console.log(button);
-    // console.log(vlause);
-    alter(left, top, right, bottom);
- // 1'id' 2 'text' 3'desc' 4'className' 5 'textContains'
-    sleep(200)
-    if (button == 1) {
-        button_info = id(vlause).boundsInside(left, top, right, bottom).findOne(3000);
-    } else if (button == 2) {
-        button_info = text(vlause).boundsInside(left, top, right, bottom).findOne(3000);
-    } else if (button == 3 ) {
-        button_info = desc(vlause).boundsInside(left, top, right, bottom).findOne(3000);
-    } else if (button == 4) {
-        button_info = className(vlause).boundsInside(left, top, right, bottom).findOne(3000);
-     } else if (button == 5) {
-        button_info = textContains(vlause).boundsInside(left, top, right, bottom).findOne(3000);
-    } else {
-        console.log("传参错误");
-        result = false
-    }
-    if (button_info) {
-        if(button_info.click()){
-            return true
-        }
-        var xy_info = button_info.bounds()
-        if (  0 < xy_info.centerX() && xy_info.centerX() < device.width 
-        	&&0 < xy_info.centerY() && xy_info.centerY() < device.height){
-        	click(xy_info.centerX(), xy_info.centerY());
-        	return true
-        }else{
-            return false
-        }
-    } else {
-        return false
-    }
-}
-var sleepr=function(short,long){
-    rt=random(short,long)
-    alter("等待:"+rt +" 毫秒")
-    sleep(rt)
-}
-
-function 滑动(z,x1,y1,x2,y2,t,r) {
-    var w = device.width/z;
-    var h = device.height/z;
-    r=r||1000
-    swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
-}
-
-var isfrontapp=function(appname){
-    importClass(com.hongshu.utils.AppUtils);
-    packagename=app.getPackageName(appname)
-    return   AppUtils.isAppForeground(packagename)
-}
-var firstrunapp=function(appname){
-    importClass(com.hongshu.utils.AppUtils);
-    packagename=app.getPackageName(appname)
-    app.launchPackage(packagename)
-    允许启动文字=['允许',"确定","始终允许","打开"]
-    i=0
-    while(i<5){
-        sleep(2000)
-        a=AppUtils.isAppForeground(packagename)
-        if(a){
-            alter(appname+" 在前台：")
-            return true
-        }else{
-            alter(appname+" 不在在前台：")
-            app.launchPackage(packagename)
-        }
-    
-        clicktexts(允许启动文字)
-        i=i+1
-    }
-    if(i>=4){
-        return false
-    }
-    return true
-}
-var firstrunapppackage=function(packagename){
-    importClass(com.hongshu.utils.AppUtils);
-    允许启动文字=['允许',"始终允许","打开","确定"]
-    i=0
-    while(i<5){
-        sleep(2000)
-        a=AppUtils.isAppForeground(packagename)
-        if(a){
-            alter(packagename+" 在前台：")
-            return true
-        }else{
-            alter(packagename+" 不在在前台：")
-            app.launchPackage(packagename)
-        }
-        
-        clicktexts(允许启动文字)
-        i=i+1
-    }
-    if(i>=4){
-        return false
-    }
-    return true
-}
 
 /** 
  * 识别滑块位置
@@ -502,6 +222,7 @@ function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
     return array
 }
 
+
 /**
  * 真人模拟滑动函数
  * 
@@ -619,17 +340,16 @@ function 滑块验证精确() {
 }
 
 var 滑块验证=function(){
-    
-    while(!requestScreenCapture()){
-       if(clicktexts(["不再提醒","立即开始"])){
-        
-       }
-       sleep(2000)
-    }
-    i=0
+
     while(text("拖动滑块").exists()){
-   
-        sleep(1000)
+        while(!requestScreenCapture()){
+            if(clicktexts(["不再提醒","立即开始"])){
+            }
+            sleep(2000)
+         }
+         i=0
+
+         sleep(1000)
         滑块验证精确()
         if(i%3==0){
             滑块验证尝试()
@@ -644,313 +364,6 @@ var 滑块验证=function(){
   //请求权限
 
  //启动
-
-//下载app
-function downloadApk(name,url) {
-    // console.log('下载的名字是'+name);
-      // 获取APP的名字
-     // 在每个空格字符处进行分解。
-     file_name_url = url
-     file_name = name+".apk"
-     console.log('要下载的APP的：' + file_name);
-     // 设置APP的路径
-     file_path_root = files.getSdcardPath()
- 
-     filePath = file_path_root + "/" + file_name
- 
-     importClass('java.io.FileOutputStream');
-     importClass('java.io.IOException');
-     importClass('java.io.InputStream');
-     importClass('java.net.MalformedURLException');
-     importClass('java.net.URL');
-     importClass('java.net.URLConnection');
-     importClass('java.util.ArrayList');
- 
-     var url = new URL(url);
-     var conn = url.openConnection(); //URLConnection
-     var inStream = conn.getInputStream(); //InputStream
-     var fs = new FileOutputStream(filePath); //FileOutputStream
-     var connLength = conn.getContentLength(); //int
-     var buffer = util.java.array('byte', 1024); //byte[]
-     var byteSum = 0; //总共读取的文件大小
-     var byteRead; //每次读取的byte数
-     // log('要下载的文件大小=');
-     // log(connLength);
-     var threadId = threads.start(function () {
-         while (1) {
-             var 当前写入的文件大小 = byteSum;
-             var progress = (当前写入的文件大小 / connLength) * 100;
-             if (progress > 0.1) {
-                 var progress = parseInt(progress).toString() + '%';
-                 ui.run(function () {
-                     // console.log(name + "下载进度", progress);
-                     toast(name + "下载进度" + progress)
-                     // w.progressNum.setText(progress);
-                 });
-                 if (当前写入的文件大小 >= connLength) {
-                     break;
-                 }
-             }
-             sleep(1000);
-         }
-     });
-     while ((byteRead = inStream.read(buffer)) != -1) {
-         byteSum += byteRead;
-         //当前时间
-         currentTime = java.lang.System.currentTimeMillis();
-         fs.write(buffer, 0, byteRead); //读取
-     }
-     threadId && threadId.isAlive() && threadId.interrupt();
-     toastLog(name+'下载完成');
-     install_app(filePath,name)
- 
- }
- function install_app(filePath, name) {
-     ////--------------安装--------------////
-     //  读取 apk
-     installapp(filePath)
-     clickarray=["继续","始终允许","允许","安装","完成","继续安装","下一步"]
-    // installappwithfilepath(filePath)
-     for (let i = 0; i < 100; i++) {
-         // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
-         toast("检测中....")
-           clicktexts(clickarray)
-          //这里是佳佳的那个hd1的 特殊设置
-         if (textclick("安全保护")) {
-             toast("安全保护安全保护安全保护")
-             sleep(500)
-             // var 坐标 = is_button.bounds()
-             // click(坐标.left + 5, 坐标.bottom - 2)
-             while (true) {
-                 idclick("security_install_protection_switch")
-              
-                 sleep(500)
-                 is_first = id("security_install_protection_switch").findOne(500)
-                 if (!is_first.checked()) {
-                     console.log("已取消保护");
-                     toast("已取消保护")
-                     sleep(1000)
-                     break;
-                 }
-             }
-             back()
-            
-         }
-         if (textclick("完成")){
-             return
-         }
-         if (textclick("打开")){
-             return
-         }
-     }
-     back()
-     sleep(1000)
- }
- 
-function downloadApk(name,url) {
-    // console.log('下载的名字是'+name);
- 
-     // 获取APP的名字
-     // 在每个空格字符处进行分解。
-     file_name_url = url
-     file_name = name+".apk"
-     console.log('要下载的APP的：' + file_name);
-     // 设置APP的路径
-     file_path_root = files.getSdcardPath()
- 
-     filePath = file_path_root + "/" + file_name
- 
-     importClass('java.io.FileOutputStream');
-     importClass('java.io.IOException');
-     importClass('java.io.InputStream');
-     importClass('java.net.MalformedURLException');
-     importClass('java.net.URL');
-     importClass('java.net.URLConnection');
-     importClass('java.util.ArrayList');
- 
-     var url = new URL(url);
-     var conn = url.openConnection(); //URLConnection
-     var inStream = conn.getInputStream(); //InputStream
-     var fs = new FileOutputStream(filePath); //FileOutputStream
-     var connLength = conn.getContentLength(); //int
-     var buffer = util.java.array('byte', 1024); //byte[]
-     var byteSum = 0; //总共读取的文件大小
-     var byteRead; //每次读取的byte数
-     // log('要下载的文件大小=');
-     // log(connLength);
-     var threadId = threads.start(function () {
-         while (1) {
-             var 当前写入的文件大小 = byteSum;
-             var progress = (当前写入的文件大小 / connLength) * 100;
-             if (progress > 0.1) {
-                 var progress = parseInt(progress).toString() + '%';
-                 ui.run(function () {
-                     // console.log(name + "下载进度", progress);
-                     toast(name + "下载进度" + progress)
-                     // w.progressNum.setText(progress);
-                 });
-                 if (当前写入的文件大小 >= connLength) {
-                     break;
-                 }
-             }
-             sleep(1000);
-         }
-     });
-     while ((byteRead = inStream.read(buffer)) != -1) {
-         byteSum += byteRead;
-         //当前时间
-         currentTime = java.lang.System.currentTimeMillis();
-         fs.write(buffer, 0, byteRead); //读取
-     }
-     threadId && threadId.isAlive() && threadId.interrupt();
-     toastLog(name+'下载完成');
-     install_app(filePath,name)
- 
- }
- function install_app(filePath, name) {
-     ////--------------安装--------------////
-     //  读取 apk
-     installapp(filePath)
-     clickarray=["继续","始终允许","允许","安装","完成","继续安装","下一步"]
-    // installappwithfilepath(filePath)
-     for (let i = 0; i < 100; i++) {
-         // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
-         toast("检测中....")
-           clicktexts(clickarray)
-          //这里是佳佳的那个hd1的 特殊设置
-         if (textclick("安全保护")) {
-             toast("安全保护安全保护安全保护")
-             sleep(500)
-             // var 坐标 = is_button.bounds()
-             // click(坐标.left + 5, 坐标.bottom - 2)
-             while (true) {
-                 idclick("security_install_protection_switch")
-              
-                 sleep(500)
-                 is_first = id("security_install_protection_switch").findOne(500)
-                 if (!is_first.checked()) {
-                     console.log("已取消保护");
-                     toast("已取消保护")
-                     sleep(1000)
-                     break;
-                 }
-             }
-             back()
-            
-         }
-         if (textclick("完成")){
-             return
-         }
-         if (textclick("打开")){
-             return
-         }
-     }
-     back()
-     sleep(1000)
- }
- 
- var checkinstallapp=function(){
-     var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
-     var appconfig=httpget(configurl)
-     alter(appconfig)
-     var apps=JSON.parse(appconfig)
-     /*
-     [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-     {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
-     ]*/
-     
-     apps.forEach(app => {
-         alter("name:"+app.name+"package:"+app.package)
-         if(getPackageName(app.name)){
-     
-         }else{
-             downloadApk(app.name,app.downloadurl)
-         }
-     })
- 
- }
- 
- var downloadandinstallapp=function(name){
-    var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
-    var appconfig=httpget(configurl)
-    alter(appconfig)
-    var apps=JSON.parse(appconfig)
-    /*
-    [{"name":"快手极速版","package":"com.kuaishou.nebula","bmobid":"q7B36667","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"},
-    {"name":"刷宝短视频","package":"com.jm.video","bmobid":"waVs777U","onetime":1800,"maxtime":10800,"version":100,"downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https"}
-    ]*/
-    
-    apps.forEach(app => {
-        alter("name:"+app.name+"package:"+app.package)
-        if(app.name==name){
-        if(getPackageName(app.name)){
-    
-        }else{
-            downloadApk(app.name,app.downloadurl)
-        }
-        }
-    })
-}
-
-/*所有文本存在才返回真 */
-var textallexist=function(texts){
-    s=0
-    if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(text(texts[i]).exists()){
-                s=s+1
-            }else{
-                return false
-            }
-        }
-        if(s==texts.length){
-            return true
-        }
-    }
-    return false
-}
-
-/* 所有id都存在才返回真  只要有一个不存在就返回false */
-var idallexist=function(ids){
-    s=0
-    if(ids.length>0){
-        for(i=0;i<ids.length;i++){
-            if(id(ids[i]).exists()){
-                s=s+1
-            }else{
-                return false
-            }
-        }
-        if(s==ids.length){
-            return true
-        }
-    }
-    return false
-}
-
-/*文本只要存在一个就返回真 */
-var textoneexist=function(texts){
-     if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(text(texts[i]).exists()){
-               return true
-            }
-        }
-    }
-    return false
-}
-
-/**只要存在一个id就返回真 */
-var idoneexist=function(ids){
-         for(i=0;i<ids.length;i++){
-            if(id(ids[i]).exists()){
-                alter("id:"+ids[i]+"--存在")
-               return true
-            }
-        }
-   
-    return false
-}
 
 
 var 快手极速首次协议同意并继续id ="com.kuaishou.nebula:id/positive" //  text 同意并继续 点击 
@@ -970,6 +383,7 @@ var 快手极速左边作者名称id="com.kuaishou.nebula:id/tab_name"  //text �
 var 快手极速左边设置按钮id="com.kuaishou.nebula:id/tab_settings" //设置
 var 快手极速首页="com.yxcorp.gifshow.HomeActivity" 
 var 快手极速首页奖励悬浮="com.kuaishou.nebula:id/red_packet"   //悬浮按钮
+var 快手极速版首页标志=[快手极速首页奖励悬浮]
 var 快手极速设置密码=function(){
     if(打开快手极速左边框()){
         while(!idclick(快手极速左边设置按钮id)){}
@@ -988,17 +402,13 @@ var 打开快手极速左边框=function(){
 var 回到快手极速首页=function(){
     alter("回到快手极速首页")
     while(true){
-        快手极速弹窗()
-        滑块验证()
-        if(!isfrontapp("快手极速版")){
-            app.launchApp("快手极速版")
-        }
-        if(idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
+         if(idoneexist([快手极速首页奖励悬浮,快手极速摄像头图标id])){
             return true
         }else{
             back()
         }
-        
+        快手极速弹窗()
+        滑块验证()
         sleep(1000)
     }
 }
@@ -1032,20 +442,21 @@ var 快手极速提现=function(){
 
 }
 
-
 var 快手极速签到=function(){
-    if(回到快手极速首页()){
+    
         while(true){
-            快手极速弹窗()
-           if(clickids([快手极速首页奖励悬浮])){
-               sleep(2000)
-           }
-            if(textclick("立即签到")){
-                return true
+            if(回到快手极速首页()){
+                if(clickids([快手极速首页奖励悬浮])){
+                    sleep(2000)
+                }
+                 if(textclick("立即签到")){
+                     return true
+                 }
             }
+            快手极速弹窗()
             滑块验证()
         }
-    }
+ 
 }
 
 var 快手极速视频上滑=function(){
@@ -1071,17 +482,73 @@ var 快手极速视频滑动操作=function(){
     }
 }
 
-var islogin=true
+var islogin=false
+
+function firstlogin(){
+    while(true){
+        clicktexts(["同意并继续","立即领取","立即提现","立即提现","提取","登录领金币"])
+        if(idoneexist(快手极速首页奖励悬浮)){
+            //快手actionbar "com.kuaishou.nebula:id/action_bar"
+            if(id("com.kuaishou.nebula:id/tabs").exists()){
+               id("com.kuaishou.nebula:id/tabs").findOne().children(0).children(2).click()
+            }
+
+           return true
+       }
+    }
+}
+
+//第一次登陆验证是否登录 和登录操作 和绑定邀请
+function firststartapp(){
+    log("第一次登录快手极速版 进行登录操作")
+    app.launch(快手极速版包名)
+    while(true){
+
+        if(currentPackage()!=快手极速版包名){
+            app.launch(快手极速版包名)
+        }
+
+        if(textclick("同意并继续")){
+            islogin=true
+            firstlogin()
+        }
+
+        clicktexts(["立即领取","立即提现","立即提现","登录领金币"],1500,5000)
+        
+        clickids(快手极速首次登录点击id集合,1500,10000)
+
+        if(textclick("提取")){
+            back()
+            sleep(1000)
+            back()
+        }
+
+        if(idoneexist(快手极速首页奖励悬浮)){
+            //快手actionbar "com.kuaishou.nebula:id/action_bar"
+            if(id("com.kuaishou.nebula:id/tabs").exists()){
+               id("com.kuaishou.nebula:id/tabs").findOne().children(0).children(2).click()
+            }
+
+           return true
+       }
+        sleep(1000)
+    }
+  
+ 
+}
 
 
 var 启动=function(){
-    if(!getPackageName("com.kuaishou.nebula")){
-        downloadandinstallapp("快手极速版")
+    if(!getPackageName(快手极速版包名)){
+        downloadandinstallapp(快手极速版)
         islogin=false
     }
     
-    firstrunapp("快手极速版")
-    if(今日签到()){
+
+    firststartapp(快手极速版)
+
+    if(!今日签到("kuaishoujisu")){
+        log("快手极速版今日未签到")
         快手极速签到()
     }
     快手极速视频滑动操作()

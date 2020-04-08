@@ -73,6 +73,21 @@ var 今日时长=function(name){
    return s
 }
 
+var 今日滑动次数=function(name){
+    name= name||"glode"
+    cs=数据库.get(name+"_"+today()+"_move", 0)
+    alter("今日签到:"+cs)
+    return cs
+}
+var 设置今日滑动次数=function(name,i){
+    name=name||"glode"
+    i=i||0
+    cs=数据库.put(name+"_"+today()+"_move", i)
+    alter("今日签到:"+cs)
+    return cs
+}
+
+
 var 记录今日时长=function(name,t){
     t=t||0
     数据库.put(name+"_time_"+today(),今日时长()+t)
