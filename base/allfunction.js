@@ -923,7 +923,21 @@ var localstartallapp = function(){
     })
 }
     
+var clickscreencapture=function(){
+    while(true){
+        if(clicktexts(["不再提醒","不在显示"])){
+        }
+       if(textclick("立即开始")){
+            break
+       }
+        sleep(2000)
+    }
+}
 
+var checkscreencapture=function(){
+    engines.execScript("checkscreencapture", clickscreencapture.toString(),{} )
+    requestScreenCapture()
+}
 
 var isNotificationManager=function(){
     importClass(com.hongshu.utils.PermissionUtils);
