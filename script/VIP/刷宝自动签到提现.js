@@ -138,8 +138,8 @@ function 刷宝获取金币数(){
       coin=id(刷宝金币id).findOne(1000)
     if(coin){
         n=parseInt(coin.text())
-        数据库.put(today+"_lastcoin",n)
-        alter("当前金币数:"+n)
+        记录现在金币("shuabao",n)
+       // 数据库.put(today+"_lastcoin",n)
        return n
      }
     }
@@ -230,18 +230,21 @@ var 刷宝提现=function(){
                              
                  if(textclick("同意")){
                      alter("微信同意")
+                     sleep(2000)
+                     今日已提现("shuabao")
+                     forcestop("刷宝短视频")
+                     return true
                  }
                  if(text("提现详情").exists()){
-                      今日已提现()
-                     back()
-                     back()
+                      今日已提现("shuabao")
+                     forcestop("刷宝短视频")
                      回到刷宝视频页()
                      return true
                  }
                  if(text("去邀请好友").exists()){
-                     back()
-                     back()
-                     今日已提现()
+                    back()
+                     今日已提现("shuabao")
+                     forcestop("刷宝短视频")
                      回到刷宝视频页()
                      return true
                  }
@@ -256,6 +259,7 @@ var 刷宝提现=function(){
             back()
             sleep(1000)
             back()
+            forcestop("刷宝短视频")
          回到刷宝视频页()
          return false
         }
@@ -349,7 +353,7 @@ function 刷宝视频操作(){
             刷宝下滑()
         }
         if(滑动次数%1000==0){
-           if(!今日提现())(
+           if(!今日提现("shuabao"))(
             刷宝提现()
            ) 
         }
