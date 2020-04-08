@@ -148,17 +148,36 @@ function 刷宝获取金币数(){
         return 刷宝获取金币数()
     }
 }
+var 检测绑定邀请=function(){
+    while(true){
+        刷宝上滑()
+        sleep(1000)
+        if(textclick("补填邀请码")){
+            sleep(1500)
+        }
+        uiselector.className("EditText").findOne().setText(getrandforstrs(刷宝邀请码))
+        sleep(1000)
+    }
+    
+}
 
 
 var 刷宝获取当前余额=function(){
  if(回到刷宝首页()){
    while(true){
-    textclick("我")
+    if (textclick("我")){
+        刷宝下滑()
+        sleep(1500)
+    }
+    
     sleep(500)
     money=id(刷宝余额id).findOne(1000)
     if(money){
         f=parseFloat(money.text())
         数据库.put("lastmoney",f)
+        
+        sleep(1000)
+        检测绑定邀请()
         return f
     }
     clicktexts(["微信账号登录","同意"])
@@ -172,6 +191,7 @@ var 刷宝获取当前余额=function(){
        return 刷宝获取当前余额()
    }
 }
+
 
 var 刷宝可以提现=function(){
     t= textContains("今日已解锁").findOne()
@@ -305,7 +325,11 @@ var 刷宝签到=function(){
     alter("刷宝签到")
     回到刷宝首页()
     clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
+    
+
     while(true){
+        
+
         closedialog()
         t= idclick(刷宝视频广告关闭按钮1id)
         alter("点击关闭按钮")
@@ -373,7 +397,7 @@ function 启动线程(){
         downloadandinstallapp("刷宝短视频")
     }
     刷宝获取当前余额()
-      
+    刷宝签到()
   
     log("完毕")
 
@@ -388,5 +412,6 @@ function 启动线程(){
 }
 // runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%88%B7%E5%AE%9D%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js
 
- 启动线程()
+ //启动线程()
 
+ 检测绑定邀请()

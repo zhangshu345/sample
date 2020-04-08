@@ -9,6 +9,9 @@ importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
 
+
+var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
+var 快手极速版邀请码=["xps8bz"]
 var dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
@@ -113,6 +116,13 @@ var 上次滑动次数=function(name){
      return s
 } 
 
+var getrandforstrs=function(strs){
+    if(strs==null||strs.length==0){
+        return ""
+    }
+    let r=Math.floor(random()*strs.length)
+    return strs[r]
+}
 
 var 记录现在观看视频数=function(name,f){ 
     数据库.put(name+"_lastvideonumber_"+today(),f)
@@ -339,6 +349,11 @@ var checkfloaty=function(appname){
    }
 }
 
+var sleepr=function(short,long){
+    rt=random(short,long)
+    show("等待:"+rt +" 毫秒")
+    sleep(rt)
+}
 
 
 var gfw
@@ -524,11 +539,6 @@ function control_click(button, vlause, left, top, right, bottom) {
 }
 
 
-var sleepr=function(short,long){
-    rt=random(short,long)
-    show("等待:"+rt +" 毫秒")
-    sleep(rt)
-}
 
 function 滑动(z,x1,y1,x2,y2,t,r) {
     var w = device.width/z;
