@@ -41,7 +41,7 @@ var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
            <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >设置</text>
-            <vertical  w="60" h="60" back="">
+            <vertical  w="60" h="60" >
             <horizontal >
                     <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >加速</text>
                      <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">减速</text>
@@ -65,7 +65,7 @@ var  creatsetfloatywindow=function(){
         if(stoptime==1){
             ui.run(function(){
                 gsfw.stop.setText("停止")
-                gsfw.setSize(device.width,120)
+                gsfw.setSize(device.width,180)
                 toastLog("10秒后自动收缩")
                 setTimeout(() => {
                     gsfw.setSize(90,90)
