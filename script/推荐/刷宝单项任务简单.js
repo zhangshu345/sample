@@ -29,16 +29,13 @@ log("公共函数实例化失败,程序返回")
 }
 
 var appname="刷宝短视频"
-
+show("开始刷宝短视频辅助滑动")
 toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname)
     刷宝邀请()
-}
-else {
-    log("公共函数实例化失败,程序返回")
 }
 
 
