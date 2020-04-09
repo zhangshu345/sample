@@ -21,6 +21,56 @@ var isdeviceadmin=function(){
     return dpm.isAdminActive( deviceadmincomponent)
 }
 
+
+var ratio=1
+var gfw
+var  creatgfloatywindow=function(){
+    gfw=floaty.rawWindow(
+        <horizontal >
+           <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
+           <text id="jiasu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000" >加速</text>
+           <text id="jiansu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000">减速</text>
+            <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+        </horizontal>
+        
+    );
+    gfw.setSize(device.width, 120)
+    
+    gfw.setPosition(0,80)
+    gfw.stop.on("click",function(){
+        engines.stopAllAndToast()
+    })
+    gfw.jiasu.on("click",function(){
+        ratio=ratio*0.9
+        toastLog("加速 1.1倍 当前速度："+ratio)
+    })
+    gfw.jiansu.on("click",function(){
+        
+        ratio=ratio*1.1
+        toastLog("减速 0.1倍 当前速度："+ratio)
+        if(ratio<10){
+            ratio=10
+        }
+    })
+}
+
+
+var show=function(txt){
+    if(!gfw){
+      creatgfloatywindow()
+    }
+    ui.run(function(){
+        gfw.text.setText(txt)
+     })
+
+}
+var 上滑=function(){
+    滑动(20,13,17,10,3,500,500)
+}
+
+var 下滑=function(){
+    滑动(20,10,3,13,17,500,500)
+}
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -378,27 +428,6 @@ var sleepr=function(short,long){
 }
 
 
-var gfw
-var  creatgfloatywindow=function(){
-    gfw=floaty.rawWindow(
-        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
-    );
-    gfw.setSize(device.width, 120)
-    gfw.setTouchable(false)
-    gfw.setPosition(0,85)
-}
-
-var show=function(txt){
-    if(!gfw){
-      creatgfloatywindow()
-    }
-    ui.run(function(){
-        console.log(txt)
-        gfw.text.setText(txt)
-     })
-
-}
-
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 500
     left = left || 0;
@@ -572,7 +601,6 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
    // show("滑动"+x1+","+y1+"->"+x2+","+y2)
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
-
 
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
@@ -1093,23 +1121,10 @@ var alltest=function(){
     startdeviceadmin()
 }
 
-//forcestop("刷宝短视频")
 
 
-
-
-//     log("jia")
-//   }else{
-//       log("真")
-//   }
-// pkg=getPackageName("刷宝短视频")
-// log(pkg)
-// a=AppUtils.isAppForeground(pkg)
-// log(a)
-
-// show("jieguo:"+a)
-// sleep(5000)
-
-// let apps=数据库.get("runlist","")
+var 刷宝邀请=function(){
+    toastLog("自动获取刷宝首次奖励,请勿中断")
+}
 
 
