@@ -40,7 +40,7 @@ var  creatgfloatywindow=function(){
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-           <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
+           <text id="stop" w="30" h="30" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
             <vertical  w="60" h="45">
             <horizontal >
                     <text id="jiasu" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000" >加速</text>
@@ -55,11 +55,25 @@ var  creatsetfloatywindow=function(){
         </horizontal>
         
     );
-    gsfw.setSize(120, 120)
-    
+    coll=true
+    stoptime=0
+    gsfw.setSize(30,30)
     gsfw.setPosition(0,device.height/2)
     gsfw.stop.on("click",function(){
-        engines.stopAllAndToast()
+        stoptime=stoptime+1
+        if(stoptime==1){
+            ui.run(function(){
+                gsfw.setSize(device.width,120)
+                setTimeout(() => {
+                    gsfw.setSize(30,30)
+                    gsfw.setPosition(0,device.height/2)
+                }, 10000);
+             })
+            
+        }else{
+            engines.stopAllAndToast()
+        }
+        
     })
     gsfw.jiasu.on("click",function(){
         ratio=ratio*0.9
