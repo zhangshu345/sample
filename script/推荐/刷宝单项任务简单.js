@@ -61,6 +61,7 @@ while(true){
                 }
                 if(text("首页").exists()){
                     textclick("首页")
+                    textclick("推荐")
                 }
             }else{
                 break
@@ -69,6 +70,8 @@ while(true){
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
         back()
+        textclick("首页")
+        textclick("推荐")
         sleep(2000)
     }
     c=0

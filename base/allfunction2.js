@@ -26,7 +26,7 @@ var ratio=1
 var gfw
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
-        <horizontal >
+        <horizontal clickable="false" >
            <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
             <vertical  w="60" h="45">
             <horizontal >
@@ -38,7 +38,7 @@ var  creatgfloatywindow=function(){
                      <text id="nojl" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000">正常</text>
             </horizontal>
             </vertical>
-            <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+            <text clickable="false" id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
         
     );
