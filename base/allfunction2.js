@@ -57,7 +57,7 @@ var  creatsetfloatywindow=function(){
     );
     coll=true
     stoptime=0
-    gsfw.setSize(30,30)
+    gsfw.setSize(120,120)
     gsfw.setPosition(0,device.height/2)
     gsfw.stop.on("click",function(){
         stoptime=stoptime+1
