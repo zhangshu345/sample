@@ -1083,7 +1083,7 @@ var checksystemsettings=function(){
 }
 // 
 
-var alltest=function(){
+var allcheck=function(){
     log("全部测试")
     // localstartallapp()
     device.wakeUpIfNeeded()
@@ -1095,8 +1095,10 @@ var alltest=function(){
 }
 
 //forcestop("刷宝短视频")
+var 刷宝邀请=function(){
+    toastLog("自动获取刷宝首次奖励,请勿中断")
+}
 
- alltest()
 
 
 //     log("jia")
