@@ -30,12 +30,12 @@ var  creatgfloatywindow=function(){
            <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
             <vertical  w="60" h="45">
             <horizontal >
-                    <text id="jiasu" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000" >加速</text>
-                     <text id="jiansu" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000">减速</text>
+                    <text id="jiasu" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000" >加速</text>
+                     <text id="jiansu" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000">减速</text>
             </horizontal>
             <horizontal >
-                    <text id="jl" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000" >节流+</text>
-                     <text id="nojl" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000">正常</text>
+                    <text id="jl" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000" >节流+</text>
+                     <text id="nojl" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000">正常</text>
             </horizontal>
             </vertical>
             <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
