@@ -438,6 +438,7 @@ function click_a_to_b(button, vlause, button2, vlause2, left, top, right, buttom
     }
 }
 
+
 // // 点击目标控件
 // button1 = "text"
 // vlause1 = "nyCT94PZimmE71vAAAAAElFTkSuQmCC"
@@ -465,7 +466,6 @@ function inspect_app(app_name, index_page, button, vlause,index_page2,index_page
             toast("错误的APP包名"+当前APP包名)
             log("错误的APP包名"+当前APP包名)
         }
-
         toast("检测当前APP中....")
         console.log("检测当前APP中");
         if (i > 20) {
@@ -499,9 +499,6 @@ function inspect_app(app_name, index_page, button, vlause,index_page2,index_page
             }
         }
     }
-
-
-
 
 
     for (var i = 0; i < 30; i++) {
@@ -546,9 +543,9 @@ function inspect_app(app_name, index_page, button, vlause,index_page2,index_page
         }
     }
 
-    
-
 }
+
+
 // // 使用方法
 // button = "text"
 // vlause = "跳过"
@@ -624,7 +621,6 @@ function wechat_agree(){
         } 
 
     }
-
 }
 
 function write_cfg_j(app_name,app_key,app_value){
@@ -640,8 +636,8 @@ function write_cfg_j(app_name,app_key,app_value){
     apps_key = storage.get(app_name)
     log("写入完成----->",apps_key)
     toast("写入完成----->",apps_key)
-
 }
+
 
 function read_cfg_j(app_name,app_key){
 
