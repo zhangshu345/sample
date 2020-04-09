@@ -27,6 +27,7 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
+alltest()
 var 刷宝包名="com.jm.video"
 var 刷宝首页="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
