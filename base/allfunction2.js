@@ -57,20 +57,24 @@ var  creatsetfloatywindow=function(){
     );
     coll=true
     stoptime=0
-    gsfw.setSize(120,120)
+    gsfw.setSize(90,90)
+
     gsfw.setPosition(0,device.height/2)
     gsfw.stop.on("click",function(){
         stoptime=stoptime+1
         if(stoptime==1){
             ui.run(function(){
                 gsfw.setSize(device.width,120)
+                toastLog("10秒后自动收缩")
                 setTimeout(() => {
-                    gsfw.setSize(30,30)
+                    gsfw.setSize(90,90)
                     gsfw.setPosition(0,device.height/2)
+                    stoptime=0
                 }, 10000);
              })
             
         }else{
+            stoptime=0
             engines.stopAllAndToast()
         }
         
