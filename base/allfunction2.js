@@ -21,7 +21,7 @@ var 火山极速版邀请链接=[bbhuoshanjisuurl]
 var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
-      deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
+    deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
      dpm=context.getSystemService("device_policy")
     return dpm.isAdminActive( deviceadmincomponent)
 }
@@ -37,7 +37,7 @@ var  creatgfloatywindow=function(){
         
     );
     gfw.setSize(device.width, 120)
-    gfw.setTouchable(true)
+    gfw.setTouchable(false)
     gfw.setPosition(0,80)
  
 }
@@ -1100,12 +1100,13 @@ var startdeviceadmin=function(){
                 log("getid："+eeee.getId())
                 engines.stop(eeee.getId())
             }
-            return
+            ss=false
+            return true
         }else{
             log("设备管理 no")
         }
         
-        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
+        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
