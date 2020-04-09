@@ -40,6 +40,8 @@ var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
+var 刷宝弹出窗id=[刷宝视频恭喜获取关闭按钮id, 刷宝视频广告关闭按钮2id,刷宝视频广告关闭按钮1id]
+var 刷宝视频页标志id=["com.jm.video:id/image_view","com.jm.video:id/comment"]
 var bt_sign_id=""
 var bt_sign_text="立即签到" 
 var tv_tab_title_id="com.jm.video:id/tv_tab_title"  // 不是唯一的id  改用text 区分
@@ -95,10 +97,18 @@ function 回到刷宝首页(){
     i=0
     while(i<10){
         cp=currentPackage()
+
         if(cp!=刷宝包名){
             alter("刷宝:检测当前包名："+cp)
             app.launchPackage(刷宝包名)
             sleep(1000)
+         }
+
+         if(id(刷宝视频页搜索按钮id).exists()){
+            textclick("推荐",0,0,device.width,300)
+           return true
+            }else{
+             back()
          }
          if(textclick("去授权")){
             islogin=false
@@ -111,21 +121,16 @@ function 回到刷宝首页(){
         if(text("我的钱包").exists()){
             back()
         }
-         if(id(刷宝视频页搜索按钮id).exists){
-              textclick("推荐",0,0,device.width,300)
-             return true
-        }else{
-            back()
-        }
+       
         closedialog()
         i=i+1
-        if(i>=10){
-            强制关闭("刷宝短视频")
-            return 回到刷宝首页()
-        }
+     
       }
       return true
 }
+
+
+
 function 刷宝获取金币数(){
     alter("刷宝获取金币数")
     if (回到刷宝首页()){
@@ -152,7 +157,8 @@ var 检测绑定邀请=function(){
         sleep(1000)
         if(text("我要借钱").exists()){
             if(textclick("补填邀请码")){
-                sleep(1500)
+         
+                className("EditText").waitFor()
                 v= className("EditText").findOne()
                 if(v){
                      v.setText(getrandforstrs(刷宝邀请码))
@@ -204,7 +210,13 @@ var 刷宝获取账号信息=function(){
         检测绑定邀请()
         return f
     }
-    clicktexts(["微信账号登录","同意"])
+    clicktexts(["微信账号登录","同意"],1000,1500)
+    if(textclick("微信账号登录")){
+        sleep(1500)
+       if( textclick("同意")){
+           sleep(1500)
+       }
+    }
     closedialog()
     if(currentPackage!=刷宝包名){
         回到刷宝首页()
@@ -315,8 +327,7 @@ var 刷宝提现=function(){
 }
 
 function closedialog() {
-    alter("关闭弹窗开始")
-    sleep(50)
+   
     clicktexts(["立即领取","点击领取","继续看视频领取","关闭应用","允许","取消"])
     idclick(刷宝视频恭喜获取关闭按钮id)
       // 
@@ -326,13 +337,36 @@ function closedialog() {
     }
 }
 
+var 回到刷宝任务页=function(){
+    i=0
+   while(i<10){
+       i=i+1
+       if(currentPackage()!=刷宝包名){
+           app.launch(刷宝包名)
+           sleep(3000)
+       }else{
+          if(currentActivity()!=刷宝首页){
+                back()
+                sleep()
+          }
+          closedialog()
+       }
+      
+       textclick("任务","推荐")
+   }
+   return false
+}
+
 var 刷宝签到=function(){
-    alter("刷宝签到")
-    回到刷宝首页()
+    show("刷宝签到")
+    回到刷宝任务页()
     while(true){
-        clicktexts(["任务"],1000,2000)
+        if(textclick("任务")){
+
+        }
         close=text("继续赚元宝").findOne(1000)
         if(close){
+
             今日已签到()
            return true
         }
@@ -369,18 +403,25 @@ var 刷宝签到=function(){
 
 
 var 回到刷宝视频页=function(){
-    alter("刷宝回到刷视频页")
-   if(回到刷宝首页()){
     i=0
-    while(!textclick("首页")&&!id(刷宝视频页搜索按钮id).exists()){
-            sleep(1000)
-        }
-        return true
-    }
-    else{
-        强制关闭("刷宝短视频")
-        return  回到刷宝视频页()
-    }
+   while(i<10){
+       i=i+1
+       if(currentPackage()!=刷宝包名){
+           app.launch(刷宝包名)
+           sleep(3000)
+       }else{
+          if(currentActivity()!=刷宝首页){
+                back()
+                sleep(2000)
+          }
+          closedialog()
+       }
+       if(idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+           return true
+       }
+       textclick("首页","推荐")
+   }
+   return false
 }
 
 function 刷宝观看视频(){

@@ -27,8 +27,7 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-var 刷宝包名="com.jm.video"
-var 刷宝首页="com.jm.video.ui.main.MainActivity"
+
 var appname="刷宝短视频"
 show("开始刷宝短视频辅助滑动")
 creatsetfloatywindow()  //创建设置悬浮窗
@@ -38,27 +37,6 @@ if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname)
     刷宝邀请()
-}
-var 回到刷宝视频页=function(){
-    i=0
-   while(i<10){
-       i=i+1
-       if(currentPackage()!=刷宝包名){
-           app.launch(刷宝包名)
-           sleep(3000)
-       }else{
-          if(currentActivity()!=刷宝首页){
-                back()
-                sleep(2000)
-          }
-          closedialog()
-       }
-       if(idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-           return true
-       }
-       textclick("首页","推荐")
-   }
-   return false
 }
 
 var apppkg=app.getPackageName(appname)
@@ -72,7 +50,7 @@ while(true){
         app.launch(apppkg)
         sleep(1000)
         while(true){
-            if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+            if(!id("com.jm.video:id/iv_home_search").exists()){
                 if(currentPackage()!=apppkg){
                     app.launch(apppkg)
                     sleep(2000)

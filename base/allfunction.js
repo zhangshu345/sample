@@ -13,6 +13,11 @@ var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
+var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
+var bbhuoshanjisuurl=""
+var 刷宝邀请链接=[bbshuabao]
+var 火山极速邀请链接=[bbhuoshanjisuurl]
+
 var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
@@ -20,7 +25,124 @@ var isdeviceadmin=function(){
      dpm=context.getSystemService("device_policy")
     return dpm.isAdminActive( deviceadmincomponent)
 }
+var 视频重复次数=2
 
+var ratio=1
+var gfw
+var  creatgfloatywindow=function(){
+    gfw=floaty.rawWindow(
+        <horizontal  >
+            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+        </horizontal>
+        
+    );
+    gfw.setSize(device.width, 120)
+    gfw.setTouchable(true)
+    gfw.setPosition(0,80)
+ 
+}
+
+var  creatsetfloatywindow=function(){
+    gsfw=floaty.rawWindow(
+        <horizontal clickable="false" >
+              <vertical  w="60" h="60" >
+              <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >设置</text>
+              <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >收缩</text>
+
+              </vertical>
+         
+            <vertical  w="60" h="60" >
+            <horizontal >
+                    <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >加速</text>
+                     <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">减速</text>
+            </horizontal>
+            <horizontal >
+                    <text id="jl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >节流+</text>
+                     <text id="nojl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">正常</text>
+            </horizontal>
+            </vertical>
+           
+        </horizontal>
+        
+    );
+    coll=true
+    stoptime=0
+    gsfw.setSize(90,90)
+
+    gsfw.setPosition(0,device.height/2)
+    gsfw.stop.on("click",function(){
+        stoptime=stoptime+1
+        if(stoptime==1){
+            ui.run(function(){
+                gsfw.stop.setText("停止")
+                gsfw.setSize(device.width,180)
+                toastLog("10秒后自动收缩")
+                setTimeout(() => {
+                    gsfw.stop.setText("设置")
+                    gsfw.setSize(90,90)
+                    gsfw.setPosition(0,device.height/2)
+                    stoptime=0
+                }, 10000);
+             })
+            
+        }else{
+            stoptime=0
+            engines.stopAllAndToast()
+        }
+        
+    })
+    gsfw.coll.on("click",function(){
+        stoptime=0
+            ui.run(function(){
+                gsfw.stop.setText("设置")
+                gsfw.setSize(90,90)
+                gsfw.setPosition(0,device.height/2)
+                toastLog("收缩")})
+    })
+    gsfw.jiasu.on("click",function(){
+        ratio=ratio*0.9
+        toastLog("加速 1.1倍 当前速度："+ratio)
+    })
+    gsfw.jiansu.on("click",function(){
+        ratio=ratio*1.1
+        toastLog("减速 0.1倍 当前速度："+ratio)
+        if(ratio<10){
+            ratio=1
+        }
+    })
+    gsfw.jl.on("click",function(){
+        视频重复次数=视频重复次数+1
+        toastLog("省流操作 重复视频播放 次数 +1  当前重复："+视频重复次数)
+        if(ratio<1){
+            视频重复次数=1
+        }
+    })
+    gsfw.nojl.on("click",function(){
+        
+        视频重复次数=1
+        toastLog("恢复正常 视频播放 持续上滑")
+    
+    })
+}
+
+
+
+var show=function(txt){
+    if(!gfw){
+      creatgfloatywindow()
+    }
+    ui.run(function(){
+        gfw.text.setText(txt)
+     })
+
+}
+var 上滑=function(){
+    滑动(20,13,17,10,4,500,500)
+}
+
+var 下滑=function(){
+    滑动(20,10,3,13,17,500,500)
+}
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -295,6 +417,7 @@ var tosearchsetting=function(){
 var tousagestate=function(){
     tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")
 }
+
 var toaccessibilitysetting=function(){
     tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")
 }
@@ -349,8 +472,6 @@ var toignorebatteryoptintizationsetting=function(){
    tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")
 }
 
-
-
 var isfloaty=function(){
     importClass(android.provider.Settings);
     return Settings.canDrawOverlays(context)
@@ -378,27 +499,6 @@ var sleepr=function(short,long){
     sleep(rt)
 }
 
-
-var gfw
-var  creatgfloatywindow=function(){
-    gfw=floaty.rawWindow(
-        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
-    );
-    gfw.setSize(device.width, 120)
-    gfw.setTouchable(false)
-    gfw.setPosition(0,85)
-}
-
-var show=function(txt){
-    if(!gfw){
-      creatgfloatywindow()
-    }
-    ui.run(function(){
-        console.log(txt)
-        gfw.text.setText(txt)
-     })
-
-}
 
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 500
@@ -573,7 +673,6 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
    // show("滑动"+x1+","+y1+"->"+x2+","+y2)
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
-
 
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
@@ -980,6 +1079,7 @@ var bmobpushmessage=function(channels,message){
     BmobPushUtils.pushmessage(channels,message)
 }
 
+
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
@@ -1005,7 +1105,7 @@ var startdeviceadmin=function(){
             log("设备管理 no")
         }
         
-        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用"],500,3000)
+        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
@@ -1083,7 +1183,7 @@ var checksystemsettings=function(){
 }
 // 
 
-var allcheck=function(){
+var alltest=function(){
     log("全部测试")
     // localstartallapp()
     device.wakeUpIfNeeded()
@@ -1094,22 +1194,37 @@ var allcheck=function(){
     startdeviceadmin()
 }
 
-//forcestop("刷宝短视频")
 
 
+var 刷宝邀请=function(){
+    var h=httpget(getrandforstrs(刷宝邀请链接))
+    toastLog(h)
+    setClip(h)
+ 
+    i=0
+    while(i<20){
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        idclick(刷宝视频恭喜获取关闭按钮id)
+        // 
+      if (id("cancel").exists()) {
+          back()
+          sleep(1000)
+      }
+       if (textclick("我")){
+           sleep(1000)
+           if(textclick("微信账号登录")){
+               sleep(1000)
+               if (textclick("同意")){
+                   sleep(1000)
+               }
+           }
+           
+           sleep(1000)
+          
+       }     
+      i=i+1
+    }
 
-//     log("jia")
-//   }else{
-//       log("真")
-//   }
-// pkg=getPackageName("刷宝短视频")
-// log(pkg)
-// a=AppUtils.isAppForeground(pkg)
-// log(a)
-
-// show("jieguo:"+a)
-// sleep(5000)
-
-// let apps=数据库.get("runlist","")
+}
 
 

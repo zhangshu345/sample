@@ -13,6 +13,11 @@ var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
+var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
+var bbhuoshanjisuurl=""
+var 刷宝邀请链接=[bbshuabao]
+var 火山极速邀请链接=[bbhuoshanjisuurl]
+
 var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
@@ -1074,6 +1079,7 @@ var bmobpushmessage=function(channels,message){
     BmobPushUtils.pushmessage(channels,message)
 }
 
+
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
@@ -1099,7 +1105,7 @@ var startdeviceadmin=function(){
             log("设备管理 no")
         }
         
-        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用"],500,3000)
+        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
@@ -1189,9 +1195,36 @@ var alltest=function(){
 }
 
 
-
 var 刷宝邀请=function(){
-    toastLog("自动获取刷宝首次奖励,请勿中断")
+    var h=httpget(getrandforstrs(刷宝邀请链接))
+    toastLog(h)
+    setClip(h)
+ 
+    i=0
+    while(i<20){
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        idclick("com.jm.video:id/imgClose")
+        // 
+      if (id("cancel").exists()) {
+          back()
+          sleep(1000)
+      }
+       if (textclick("我")){
+           sleep(1000)
+           if(textclick("微信账号登录")){
+               sleep(1000)
+               if (textclick("同意")){
+                   sleep(1000)
+               }
+           }
+           
+           sleep(1000)
+          
+       }     
+      i=i+1
+    }
+
 }
 
 
+刷宝邀请()
