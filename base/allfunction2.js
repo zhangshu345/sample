@@ -87,14 +87,14 @@ var  creatsetfloatywindow=function(){
         ratio=ratio*1.1
         toastLog("减速 0.1倍 当前速度："+ratio)
         if(ratio<10){
-            ratio=10
+            ratio=1
         }
     })
     gsfw.jl.on("click",function(){
         视频重复次数=视频重复次数+1
         toastLog("省流操作 重复视频播放 次数 +1  当前重复："+视频重复次数)
-        if(ratio<10){
-            ratio=10
+        if(ratio<1){
+            视频重复次数=1
         }
     })
     gsfw.nojl.on("click",function(){
