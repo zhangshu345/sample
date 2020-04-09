@@ -1195,17 +1195,17 @@ var alltest=function(){
 }
 
 
-
 var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
     setClip(h)
- 
+    
     i=0
     while(i<20){
         clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick(刷宝视频恭喜获取关闭按钮id)
+        idclick("com.jm.video:id/imgClose")
         // 
+      
       if (id("cancel").exists()) {
           back()
           sleep(1000)
@@ -1218,13 +1218,10 @@ var 刷宝邀请=function(){
                    sleep(1000)
                }
            }
-           
            sleep(1000)
-          
        }     
       i=i+1
     }
-
 }
 
 
