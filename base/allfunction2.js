@@ -1202,6 +1202,7 @@ var 刷宝邀请=function(){
     
     i=0
     while(i<20){
+        
         clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
         idclick("com.jm.video:id/imgClose")
         // 
@@ -1230,7 +1231,7 @@ var 火山极速版邀请=function(){
     setClip(h)
     i=0
     while(i<20){
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        clicktexts(["我知道了","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
         idclick("com.jm.video:id/imgClose")
         // 
       

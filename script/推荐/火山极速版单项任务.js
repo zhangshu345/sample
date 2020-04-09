@@ -32,12 +32,13 @@ home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname)
-    火山极速邀请链接()
+   
 }
 
+toastLog("开始火山极速版")
 var apppkg=app.getPackageName(appname)
 app.launchApp(appname)
-
+threads.start(火山极速版邀请(), )
 
 var 视频次数=0
 
