@@ -26,6 +26,19 @@ var ratio=1
 var gfw
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
+        <horizontal  >
+            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+        </horizontal>
+        
+    );
+    gfw.setSize(device.width, 120)
+    gfw.setTouchable(true)
+    gfw.setPosition(0,80)
+ 
+}
+
+var  creatsetfloatywindow=function(){
+    gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
            <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
             <vertical  w="60" h="45">
@@ -38,43 +51,42 @@ var  creatgfloatywindow=function(){
                      <text id="nojl" w="30" h="22" gravity="center" textSize="14sp" background="#55ff0000">正常</text>
             </horizontal>
             </vertical>
-            <text clickable="false" id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+           
         </horizontal>
         
     );
-    gfw.setSize(device.width, 120)
-    gfw.setTouchable(false)
-    gfw.setPosition(0,80)
-    gfw.stop.on("click",function(){
+    gsfw.setSize(120, 120)
+    
+    gsfw.setPosition(0,device.height/2)
+    gsfw.stop.on("click",function(){
         engines.stopAllAndToast()
     })
-    gfw.jiasu.on("click",function(){
+    gsfw.jiasu.on("click",function(){
         ratio=ratio*0.9
         toastLog("加速 1.1倍 当前速度："+ratio)
     })
-    gfw.jiansu.on("click",function(){
-        
+    gsfw.jiansu.on("click",function(){
         ratio=ratio*1.1
         toastLog("减速 0.1倍 当前速度："+ratio)
         if(ratio<10){
             ratio=10
         }
     })
-    gfw.jl.on("click",function(){
-        
+    gsfw.jl.on("click",function(){
         视频重复次数=视频重复次数+1
         toastLog("省流操作 重复视频播放 次数 +1  当前重复："+视频重复次数)
         if(ratio<10){
             ratio=10
         }
     })
-    gfw.nojl.on("click",function(){
+    gsfw.nojl.on("click",function(){
         
         视频重复次数=1
         toastLog("恢复正常 视频播放 持续上滑")
     
     })
 }
+
 
 
 var show=function(txt){
