@@ -65,7 +65,7 @@ var show=function(txt){
 
 }
 var 上滑=function(){
-    滑动(20,13,17,10,3,500,500)
+    滑动(20,13,17,10,4,500,500)
 }
 
 var 下滑=function(){
