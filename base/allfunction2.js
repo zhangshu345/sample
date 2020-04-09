@@ -64,7 +64,7 @@ var  creatsetfloatywindow=function(){
         stoptime=stoptime+1
         if(stoptime==1){
             ui.run(function(){
-                gsfw.setText("停止")
+                gsfw.stop.setText("停止")
                 gsfw.setSize(device.width,120)
                 toastLog("10秒后自动收缩")
                 setTimeout(() => {
