@@ -76,7 +76,8 @@ var todeviceadmin=function(){
 var toPkgandClass=function(pkg,classname){
     let i = app.intent({
          packageName: pkg,
-         className:classname
+         className:classname,
+         flags:["activity_new_task"]
          // data: "file:///sdcard/1.png"
      });
      context.startActivity(i);

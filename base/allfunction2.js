@@ -1086,7 +1086,7 @@ var startdeviceadmin=function(){
         log("设备管理器激活了")
         return
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/ces.js");
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/uideviceadmin.js");
     app.launch(context.getPackageName())
     sleep(1000)
     var eeee= engines.execScript("uiname",ui函数,{})
