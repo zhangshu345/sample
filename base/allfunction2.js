@@ -73,6 +73,7 @@ var  creatsetfloatywindow=function(){
                 gsfw.setSize(device.width,180)
                 toastLog("10秒后自动收缩")
                 setTimeout(() => {
+                    gsfw.stop.setText("设置")
                     gsfw.setSize(90,90)
                     gsfw.setPosition(0,device.height/2)
                     stoptime=0
