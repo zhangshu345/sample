@@ -43,7 +43,7 @@ var  creatgfloatywindow=function(){
         
     );
     gfw.setSize(device.width, 120)
-    
+    gdw.setTouchable(false)
     gfw.setPosition(0,80)
     gfw.stop.on("click",function(){
         engines.stopAllAndToast()
