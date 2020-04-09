@@ -20,7 +20,7 @@ var isdeviceadmin=function(){
      dpm=context.getSystemService("device_policy")
     return dpm.isAdminActive( deviceadmincomponent)
 }
-
+var 视频重复次数=2
 
 var ratio=1
 var gfw
@@ -28,8 +28,16 @@ var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal >
            <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
-           <text id="jiasu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000" >加速</text>
-           <text id="jiansu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000">减速</text>
+            <vertical  w="60" h="45">
+            <horizontal >
+                    <text id="jiasu" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000" >加速</text>
+                     <text id="jiansu" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000">减速</text>
+            </horizontal>
+            <horizontal >
+                    <text id="jl" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000" >节流+</text>
+                     <text id="nojl" w="25" h="22" gravity="center" textSize="16sp" background="#55ff0000">正常</text>
+            </horizontal>
+            </vertical>
             <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
         
@@ -51,6 +59,20 @@ var  creatgfloatywindow=function(){
         if(ratio<10){
             ratio=10
         }
+    })
+    gfw.jl.on("click",function(){
+        
+        视频重复次数=视频重复次数+1
+        toastLog("省流操作 重复视频播放 次数 +1  当前重复："+视频重复次数)
+        if(ratio<10){
+            ratio=10
+        }
+    })
+    gfw.nojl.on("click",function(){
+        
+        视频重复次数=1
+        toastLog("恢复正常 视频播放 持续上滑")
+    
     })
 }
 

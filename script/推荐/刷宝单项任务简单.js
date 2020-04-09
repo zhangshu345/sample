@@ -44,7 +44,7 @@ var apppkg=app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
-
+var 视频次数=0
 
 while(true){
     if(currentPackage()!=apppkg){
@@ -71,32 +71,22 @@ while(true){
         back()
         sleep(2000)
     }
-    
-    if(滑动次数%10==0){
+    c=0
+    while(c<视频重复次数){
+        滑动(20,13,16,10,4,500,500)
+        滑动次数=滑动次数+1
+        sleepr(8000*ratio,12000*ratio)
         下滑()
-    }else if(滑动次数%10==1){
-        上滑()
-    }else if(滑动次数%10==2){
-         上滑()
-    }else if(滑动次数%10==3){
-         上滑()
-    }else if(滑动次数%10==4){
-       下滑()
-    }else if(滑动次数%10==5){
-        下滑()
-    }else if(滑动次数%10==6){
-        上滑()
-    }else if(滑动次数%10==7){
-         上滑()
-    }else if(滑动次数%10==8){
-         下滑()
-    }else if(滑动次数%10==9){
-         上滑()
-    }else {
-        上滑()
+        sleepr(8000*ratio,12000*ratio)
+        滑动次数=滑动次数+1
+        c=c+1
     }
+    视频重复次数=视频重复次数+1
     sleepr(8000*ratio,12000*ratio)
+    滑动(20,13,16,10,4,500,500)
     滑动次数=滑动次数+1
+    视频重复次数=视频重复次数+1
+    sleepr(8000*ratio,12000*ratio)
 }
 
 
