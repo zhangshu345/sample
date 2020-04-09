@@ -80,8 +80,7 @@ var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
     eval(公共函数文本)
     log("公共函数实例化成功")
-    downloadandinstallapp(appname)
-    刷宝邀请()
+   
 }else {
     log("公共函数实例化失败,程序返回")
 }
@@ -93,6 +92,8 @@ toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+    downloadandinstallapp(appname)
+    刷宝邀请()
 }
 else {
     log("公共函数实例化失败,程序返回")
