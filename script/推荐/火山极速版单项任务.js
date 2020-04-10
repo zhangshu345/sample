@@ -53,6 +53,12 @@ var waitvideoad=function(){
    
     }
 }
+var installappanduninstallapp=function(temappname){
+    install_app()
+    if(temappname){
+        uninstallappbyname(temappname)
+    }
+}
 
 var waitvideoadandinstall=function(){
     i=0
@@ -65,10 +71,7 @@ var waitvideoadandinstall=function(){
                temappname=tem.text()
            }
            textclick("安装再领300金币")
-           install_app()
-           if(temappname){
-               uninstallappbyname(temappname)
-           }
+           threads.start(installappanduninstallapp(), )
            return
        }
        i=i+1
