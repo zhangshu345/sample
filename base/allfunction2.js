@@ -877,12 +877,16 @@ function downloadApk(name,url,isinstall) {
         app.viewFile(filePath)
      }
     
-     clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置","允许此来源"]
+     clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+   
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toast("检测中....")
-        
+            if(textclick("允许此来源")){
+                back()
+                sleep(1000)
+            }
            clicktexts(clickarray)
            if(text("允许此来源").exists()){
               if(idclick("android:id/switch_widget")){

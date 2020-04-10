@@ -10,6 +10,8 @@ function httpget(url) {
     }
 }
 
+var 视频次数=0
+ var seevideofinish=false  //看海量视频 任务完成 
 滑动次数=0
 floaty.closeAll()
 engines.stopOther()
@@ -73,13 +75,50 @@ var waitvideoadandinstall=function(){
     }
 }
 
+
+var onlyseevideo=function(){
+    while(true){
+        if(id("com.ss.android.ugc.livelite:id/a2f").exists()){
+            c=1
+            while(c<视频重复次数){
+                if(textclick("领取")){
+
+                }
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
+                滑动(20,13,16,10,4,500,500)
+                滑动次数=滑动次数+1
+                sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
+                下滑()
+                sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
+                滑动次数=滑动次数+1
+                c=c+1
+            }
+            
+        }else{
+            back()
+            sleep(1200)
+            clicktexts(["视频","首页"])
+        }
+
+
+    }
+}
 toastLog("开始火山极速版")
 var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 app.launchApp(appname)
 火山极速版邀请()
 
-var 视频次数=0
- var seevideofinish=false  //看海量视频 任务完成 
 while(true){
          if(!idContains(apppkg).findOne()){
                     app.launch(apppkg)
@@ -122,6 +161,10 @@ while(true){
             sleep(2000)
             if(textclick("看视频 领双倍金币")){
                  waitvideoad() 
+            }else{
+                back()
+                sleep(1000)
+                textclick("视频")
             }
         }
     }
@@ -144,6 +187,8 @@ while(true){
                  seevideofinish=true
              }
         }
+    }else{
+        onlyseevideo()
     }
     back()
     sleep(1000)
