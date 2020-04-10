@@ -1201,6 +1201,7 @@ var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
     setClip(h)
+    
 }
 
 var 火山极速版邀请=function(){

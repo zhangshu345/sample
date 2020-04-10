@@ -43,14 +43,16 @@ if(!app.getPackageName(appname)){
    
 }
 刷宝邀请()
-var apppkg=app.getPackageName(appname)
+toastLog("刷宝邀请完成")
+var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
 var 视频次数=0
 var 刷宝登录=function(){
     while(true){
-           if(!idContains(apppkg).findOne()){
+        log("刷宝登录")
+           if(!idContains("com.jm.video").findOne(1000)){
                 log("找到存在包名id控件")
                 app.launch(apppkg)
                 sleep(3000)
@@ -58,54 +60,101 @@ var 刷宝登录=function(){
                 back()
                 sleep(2000)
             }
-
+            log("刷宝登录2")
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            
                 break
+        }else{
+            back()
+            sleep(1000)
         }
         clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick("com.jm.video:id/imgClose")
         // 
-      
-      if (id("cancel").exists()) {
-          back()
-          sleep(1000)
-      }
-       if (textclick("我")){
-           sleep(1000)
-           if(textclick("微信账号登录")){
-               sleep(1000)
-               if (textclick("同意")){
-                   sleep(1000)
-               }
-           }
-           sleep(1000)
-       }     
+    }
+}
+
+var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
+var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
+var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
+
+var 刷宝签到=function(){
+    while(true){
+        "恭喜获取","去邀请","com.jm.video:id/imgClose"
+        if(textclick("任务")){
+            while(true){
+            if(textclick("立即签到")){
+                sleep(1000)
+                if(text("继续赚元宝").exists()){
+                    return false
+                }
+                sleep(1000)
+                if(textclick("看视频签到")){
+                    i=0
+                    while(i<20){
+                        alter("等待视频广告3秒")
+                        sleep(3000)
+                        t= idclick(刷宝视频广告关闭按钮1id)
+                        alter("点击关闭按钮")
+                       if(t ) {
+                         alter("成功点击关闭按钮")
+                         今日已签到()
+                         return true
+                        }
+                        t= idclick(刷宝视频广告关闭按钮2id)
+                        alter("点击关闭按钮")
+                       if(t ) {
+                         alter("成功点击关闭按钮")
+                         今日已签到()
+                         return true
+                        }
+                        i=i+1
+                    }
+                }else{
+                    下滑()
+                    back()
+                    return false
+                }
+            }
+            if(id("com.jm.video:id/imgClose").exists()){
+                back()
+            }
+            if(text("继续赚元宝").exists()){
+                return false
+            }
+        }
+        }
+
+    
     }
 }
 刷宝登录()
+刷宝签到()
 
 while(true){
-    if(currentPackage()!=apppkg){
-        app.launch(apppkg)
-        sleep(3000)
-        while(true){
-            if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-                if(idContains(apppkg).findOne()){
-                    log("找到存在包名id控件")
-                    app.launch(apppkg)
-                    sleep(3000)
+    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+        if(!idContains(apppkg).findOne(1000)){
+            app.launch(apppkg)
+            sleep(3000)
+            while(true){
+                if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+                    if(idContains(apppkg).findOne(1000)){
+                        log("找到存在包名id控件")
+                        app.launch(apppkg)
+                        sleep(3000)
+                    }else{
+                        back()
+                        sleep(2000)
+                    }
+                    if(text("首页").exists()){
+                        textclick("首页")
+                        textclick("推荐")
+                    }
                 }else{
-                    back()
-                    sleep(2000)
+                    break
                 }
-                if(text("首页").exists()){
-                    textclick("首页")
-                    textclick("推荐")
-                }
-            }else{
-                break
             }
         }
+        clickonetexts(["首页","推荐"])
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
         back()
