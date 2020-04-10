@@ -78,7 +78,7 @@ var waitvideoadandinstall=function(){
 
 var onlyseevideo=function(){
     while(true){
-        if(id("com.ss.android.ugc.livelite:id/a2f").exists()){
+        if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
             c=1
             while(c<视频重复次数){
                 if(textclick("领取")){
@@ -108,7 +108,15 @@ var onlyseevideo=function(){
         }else{
             back()
             sleep(1200)
-            clicktexts(["视频","首页"])
+            if(textclick("视频")){
+                click(100,400)
+                sleep(1000)
+            }else{
+                if(textclick("首页")){
+
+                }
+            }
+            
         }
 
 
