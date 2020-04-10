@@ -37,18 +37,24 @@ if(!app.getPackageName(appname)){
 
 var waitvideoad=function(){
     i=0
-    while(i<20){
+    while(i<15){
         sleep(3000)
-       
-        textclick("关闭广告")
+      if(textclick("关闭广告")){
         sleep(1500)
-        textclick("继续推出")
+          if(textclick("继续观看")){
+              sleep(6000)
+          }else{
+              return
+          }
+      }
+      i=i+1
+   
     }
 }
 
 var waitvideoadandinstall=function(){
     i=0
-    while(i<20){
+    while(i<10){
         sleep(3000)
         
        if(text("安装再领300金币").exists()){
@@ -63,6 +69,7 @@ var waitvideoadandinstall=function(){
            }
            return
        }
+       i=i+1
     }
 }
 
