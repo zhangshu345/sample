@@ -99,7 +99,7 @@
         "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
         "version":""}
     
-},{"name":"火山极速版单项任务",
+},{"name":"火山极速版看广告版",
     "desc":{"summary":"火山极速版 自动点击看海量视频 安装应用 获取金币之后 并卸载安装的应用 ","html":""},
     "tags":["刷宝","短视频","赚钱"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
@@ -119,15 +119,15 @@
         "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
         "version":""}
     
-},{"name":"刷宝短视频",
-    "desc":{"summary":"刷宝短视频自动刷视频 签到 提现","html":""},
+},{"name":"火山极速版近看视频版",
+    "desc":{"summary":"火山极速版 自动看视频 不看广告和","html":""},
     "tags":["刷宝","短视频","赚钱"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
     "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
     "root":false,
     "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
     "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
-    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%88%B7%E5%AE%9D%E8%87%AA%E5%8A%A8%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js",
+    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/推荐/火山极速版仅看视频版.js",
     "source":2,
     "author":{"name":"作者","id":"","icon":""},
     "level":0,
