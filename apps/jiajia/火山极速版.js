@@ -476,7 +476,6 @@ function invite(user_id) {
     button = "text"
     vlause = "马上提交"
     result = control_click(button, vlause)
-
 }
 /*---------------------------------login-------------------------------*/
 function login() {

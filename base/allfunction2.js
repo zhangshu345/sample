@@ -6,7 +6,7 @@ importClass(org.jsoup.Jsoup)
 importClass(org.jsoup.nodes.Document)
 importClass(org.jsoup.select.Elements)
 importClass(org.jsoup.nodes.Element)
-
+importClass(android.net.Uri)
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -21,8 +21,10 @@ var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
 var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
+var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
+var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
 var 刷宝邀请链接=[bbshuabao]
-var 火山极速版邀请链接=[bbhuoshanjisuurl]
+var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 
 var  dpm
 var  deviceadmincomponent
@@ -871,7 +873,10 @@ function downloadApk(name,url,isinstall) {
  function install_app(filePath, name) {
      ////--------------安装--------------////
      //  读取 apk
-     app.viewFile(filePath)
+     if(filePath){
+        app.viewFile(filePath)
+     }
+    
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
@@ -1145,8 +1150,20 @@ var checkpermission=function(permissions){
     })
 }
    
-var uninstallalluserlessapp=function(){
-  
+var uninstallappbyname=function(appname){
+  if(appname){
+    let i = app.intent({
+        action: "android.intent.action.DELETE",
+        flags:["activity_new_task"],
+        data: "package:" + getPackageName(appname) //Uri.parse("package:" + getPackageName(appname))
+    });
+    context.startActivity(i);
+    while(true){
+        if(textclick("确定")){
+            return
+        }
+    }
+  }
 }
 
 var issystemsettings=function(){
@@ -1197,9 +1214,7 @@ var alltest=function(){
     // localstartallapp()
     device.wakeUpIfNeeded()
     checkfloaty()
-   
     checksystemsettings()
-
     startdeviceadmin()
 }
 
@@ -1207,37 +1222,14 @@ var alltest=function(){
 var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
-    setClip(h)
-    
+    setClip(h) 
 }
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))
     toastLog(h)
     setClip(h)
-    i=0
-    while(i<20){
-        clicktexts(["我知道了","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick("com.jm.video:id/imgClose")
-        // 
-      
-      if (id("cancel").exists()) {
-          back()
-          sleep(1000)
-      }
-       if (textclick("我")){
-           sleep(1000)
-           if(textclick("微信账号登录")){
-               sleep(1000)
-               if (textclick("同意")){
-                   sleep(1000)
-               }
-           }
-           sleep(1000)
-       }     
-      i=i+1
-    }
-}
+ }
 
 //直接从应用宝获取应用信息
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
