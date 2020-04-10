@@ -93,11 +93,13 @@ var 回到刷宝视频页=function(){
         }
     }
 }
+
 var 刷宝签到=function(){
     while(true){
         "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){
             while(true){
+                textclick("任务")
             if(textclick("立即签到")){
                 sleep(1000)
                 if(text("继续赚元宝").exists()){
