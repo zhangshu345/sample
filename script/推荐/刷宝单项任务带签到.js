@@ -91,19 +91,19 @@ var 刷宝签到=function(){
                 if(textclick("看视频签到")){
                     i=0
                     while(i<20){
-                        alter("等待视频广告3秒")
+                        show("等待视频广告3秒")
                         sleep(3000)
                         t= idclick(刷宝视频广告关闭按钮1id)
-                        alter("点击关闭按钮")
+                        show("点击关闭按钮")
                        if(t ) {
-                         alter("成功点击关闭按钮")
+                        show("成功点击关闭按钮")
                          今日已签到()
                          return true
                         }
                         t= idclick(刷宝视频广告关闭按钮2id)
-                        alter("点击关闭按钮")
+                        show("点击关闭按钮")
                        if(t ) {
-                         alter("成功点击关闭按钮")
+                         show("成功点击关闭按钮")
                          今日已签到()
                          return true
                         }
