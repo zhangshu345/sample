@@ -95,10 +95,14 @@ var 回到刷宝视频页=function(){
 }
 
 var 刷宝签到=function(){
-    while(true){
+    i=0
+    while(i<10){
+        i=i+1
         "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){
-            while(true){
+            n=0
+            while(n<15){
+                n=n+1
                 textclick("任务")
             if(textclick("立即签到")){
                 sleep(1000)
@@ -172,7 +176,7 @@ while(true){
                 }
             }
         }
-        clickonetexts(["首页","推荐"])
+        clickonetexts(["首页","推荐","等待"])
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
         back()
@@ -182,6 +186,7 @@ while(true){
     }
     c=1
     while(c<视频重复次数){
+        textclick("等待")
         滑动(20,13,16,10,4,500,500)
         回到刷宝视频页()
         滑动次数=滑动次数+1
@@ -191,7 +196,7 @@ while(true){
         滑动次数=滑动次数+1
         c=c+1
     }
-
+    textclick("等待")
     视频次数=视频次数+1
     sleepr(8000*ratio,12000*ratio)
     滑动(20,13,16,10,4,500,500)
