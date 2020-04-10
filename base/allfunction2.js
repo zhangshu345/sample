@@ -1325,4 +1325,4 @@ var getAppdownloadurlbyInfopage=function(infourl){
 
 }
 
-downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
+// downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
