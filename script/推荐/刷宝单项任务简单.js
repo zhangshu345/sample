@@ -64,6 +64,7 @@ var 回到刷宝视频页=function(){
    return false
 }
 
+
 var apppkg=app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
@@ -73,12 +74,13 @@ var 视频次数=0
 while(true){
     if(currentPackage()!=apppkg){
         app.launch(apppkg)
-        sleep(1000)
+        sleep(3000)
         while(true){
             if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-                if(currentPackage()!=apppkg){
+                if(idContains(apppkg).findOne()){
+                    log("找到存在包名id控件")
                     app.launch(apppkg)
-                    sleep(2000)
+                    sleep(3000)
                 }else{
                     back()
                     sleep(2000)
