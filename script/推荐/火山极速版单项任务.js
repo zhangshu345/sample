@@ -136,6 +136,7 @@ while(true){
         }
     }
    
+    
     if(textclick("首页")){
         while(n<30){
             c=1

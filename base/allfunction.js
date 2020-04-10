@@ -1230,25 +1230,5 @@ var 火山极速版邀请=function(){
     toastLog(h)
     setClip(h)
     i=0
-    while(i<20){
-        clicktexts(["我知道了","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick("com.jm.video:id/imgClose")
-        // 
-      
-      if (id("cancel").exists()) {
-          back()
-          sleep(1000)
-      }
-       if (textclick("我")){
-           sleep(1000)
-           if(textclick("微信账号登录")){
-               sleep(1000)
-               if (textclick("同意")){
-                   sleep(1000)
-               }
-           }
-           sleep(1000)
-       }     
-      i=i+1
-    }
+    
 }
