@@ -164,7 +164,10 @@ while(true){
             }else{
                 back()
                 sleep(1000)
-                textclick("视频")
+                if(textclick("视频")){
+                    sleep(1000)
+                }
+               
             }
         }
     }
