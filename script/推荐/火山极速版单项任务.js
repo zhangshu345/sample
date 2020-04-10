@@ -47,7 +47,7 @@ while(true){
         app.launch(apppkg)
         sleep(1000)
         while(true){
-            if(!id("com.jm.video:id/iv_home_search").exists()){
+            
                 if(currentPackage()!=apppkg){
                     app.launch(apppkg)
                     sleep(2000)
@@ -59,9 +59,7 @@ while(true){
                     textclick("首页")
                     textclick("推荐")
                 }
-            }else{
-                break
-            }
+        
         }
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
