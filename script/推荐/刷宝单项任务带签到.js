@@ -77,6 +77,22 @@ var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 
+var 回到刷宝视频页=function(){
+    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+        if(idContains(apppkg).findOne(1000)){
+            log("找到存在包名id控件")
+            app.launch(apppkg)
+            sleep(3000)
+        }else{
+            back()
+            sleep(2000)
+        }
+        if(text("首页").exists()){
+            textclick("首页")
+            textclick("推荐")
+        }
+    }
+}
 var 刷宝签到=function(){
     while(true){
         "恭喜获取","去邀请","com.jm.video:id/imgClose"
@@ -165,6 +181,7 @@ while(true){
     c=1
     while(c<视频重复次数){
         滑动(20,13,16,10,4,500,500)
+        回到刷宝视频页()
         滑动次数=滑动次数+1
         sleepr(8000*ratio,12000*ratio)
         下滑()
@@ -172,6 +189,7 @@ while(true){
         滑动次数=滑动次数+1
         c=c+1
     }
+
     视频次数=视频次数+1
     sleepr(8000*ratio,12000*ratio)
     滑动(20,13,16,10,4,500,500)
