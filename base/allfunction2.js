@@ -126,7 +126,6 @@ var  creatsetfloatywindow=function(){
 }
 
 
-
 var show=function(txt){
     if(!gfw){
       creatgfloatywindow()
@@ -134,8 +133,8 @@ var show=function(txt){
     ui.run(function(){
         gfw.text.setText(txt)
      })
-
 }
+
 var 上滑=function(){
     滑动(20,13,17,10,4,500,500)
 }
@@ -143,6 +142,7 @@ var 上滑=function(){
 var 下滑=function(){
     滑动(20,10,3,13,17,500,500)
 }
+
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -179,6 +179,7 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
+
 
 var 今日签到=function(name){
     cs=数据库.get(name+"_sign_"+today(), false)
@@ -1200,30 +1201,6 @@ var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
     setClip(h)
-    
-    i=0
-    while(i<20){
-        
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick("com.jm.video:id/imgClose")
-        // 
-      
-      if (id("cancel").exists()) {
-          back()
-          sleep(1000)
-      }
-       if (textclick("我")){
-           sleep(1000)
-           if(textclick("微信账号登录")){
-               sleep(1000)
-               if (textclick("同意")){
-                   sleep(1000)
-               }
-           }
-           sleep(1000)
-       }     
-      i=i+1
-    }
 }
 
 var 火山极速版邀请=function(){

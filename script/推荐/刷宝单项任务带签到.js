@@ -28,6 +28,10 @@ log("公共函数实例化成功")
 log("公共函数实例化失败,程序返回")
 }
 
+device.setMusicVolume(0)
+toastLog("自动设置音量为0")
+var 刷宝包名="com.jm.video"
+var 刷宝首页="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
 show("开始刷宝短视频辅助滑动")
 creatsetfloatywindow()  //创建设置悬浮窗
@@ -36,24 +40,60 @@ home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname)
-    刷宝邀请()
+   
 }
-
+刷宝邀请()
 var apppkg=app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
 var 视频次数=0
+var 刷宝登录=function(){
+    while(true){
+           if(!idContains(apppkg).findOne()){
+                log("找到存在包名id控件")
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(2000)
+            }
+
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+                break
+        }
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        idclick("com.jm.video:id/imgClose")
+        // 
+      
+      if (id("cancel").exists()) {
+          back()
+          sleep(1000)
+      }
+       if (textclick("我")){
+           sleep(1000)
+           if(textclick("微信账号登录")){
+               sleep(1000)
+               if (textclick("同意")){
+                   sleep(1000)
+               }
+           }
+           sleep(1000)
+       }     
+    }
+}
+刷宝登录()
 
 while(true){
     if(currentPackage()!=apppkg){
         app.launch(apppkg)
-        sleep(1000)
+        sleep(3000)
         while(true){
-            if(!id("com.jm.video:id/iv_home_search").exists()){
-                if(currentPackage()!=apppkg){
+            if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+                if(idContains(apppkg).findOne()){
+                    log("找到存在包名id控件")
                     app.launch(apppkg)
-                    sleep(2000)
+                    sleep(3000)
                 }else{
                     back()
                     sleep(2000)

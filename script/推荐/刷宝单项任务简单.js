@@ -42,28 +42,6 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname)
     刷宝邀请()
 }
-var 回到刷宝视频页=function(){
-    i=0
-   while(i<10){
-       i=i+1
-       if(currentPackage()!=刷宝包名){
-           app.launch(刷宝包名)
-           sleep(3000)
-       }else{
-          if(currentActivity()!=刷宝首页){
-                back()
-                sleep(2000)
-          }
-          closedialog()
-       }
-       if(idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-           return true
-       }
-       textclick("首页","推荐")
-   }
-   return false
-}
-
 
 var apppkg=app.getPackageName(appname)
 app.launchApp(appname)

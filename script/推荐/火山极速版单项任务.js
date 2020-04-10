@@ -47,8 +47,7 @@ while(true){
         app.launch(apppkg)
         sleep(1000)
         while(true){
-            
-                if(currentPackage()!=apppkg){
+                if(idContains(apppkg).findOne()){
                     app.launch(apppkg)
                     sleep(2000)
                 }else{
@@ -59,7 +58,6 @@ while(true){
                     textclick("首页")
                     textclick("推荐")
                 }
-        
         }
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
