@@ -166,6 +166,7 @@ while(true){
         }
     }
 
+
     sleep(1000)
     vide=text("视频").boundsInside(0,0 ,device.width , 300).findOne(500)
     red=text("红包").boundsInside(0,0 ,device.width , 300).findOne(500)
@@ -217,7 +218,11 @@ while(true){
                 滑动(20,13,16,10,4,500,500)
                 滑动次数=滑动次数+1
                 sleepr(8000*ratio,12000*ratio)
-              
+              if(text("加载中").exists()){
+                滑动(20,13,4,10,16,500,500) 
+                sleep(1000)
+                滑动(20,13,16,10,4,500,500)
+              }
    
 
       
