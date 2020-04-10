@@ -26,7 +26,7 @@ log("公共函数实例化失败,程序返回")
 }
 
 var appname="火山极速版"
-
+var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 show("开始火山极速版辅助滑动")
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
@@ -118,11 +118,13 @@ var onlyseevideo=function(){
             textclick("首页")
             click(100,400)
             sleep(1000)
-
     }
 }
 toastLog("开始火山极速版")
-var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
+
+
+
+
 app.launchApp(appname)
 火山极速版邀请()
 
@@ -179,12 +181,9 @@ while(true){
     
     if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
         n=0
-        while(n<3000){
+          while(n<3000){
             if(!idContains(apppkg).findOne()){
                 app.launch(apppkg)
-                sleep(2000)
-            }else{
-            
                 sleep(2000)
             }
 
@@ -201,46 +200,27 @@ while(true){
             if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
                 
             }else{
+                back()
+                sleep(1000)
                 click(100,400)
                 textclick("首页")
             }
-        
-                if(textclick("领取")){
+              if(textclick("领取")){
+                    滑动(20,13,16,10,4,500,500)
+                    sleepr(8000*ratio,12000*ratio)
+                }
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
+                滑动(20,13,16,10,4,500,500)
+                滑动次数=滑动次数+1
+                sleepr(8000*ratio,12000*ratio)
+              
+   
 
-                }
-                if(textContains("剩余").exists()){
-                    textContains("剩余").findOne(500).click()
-                    sleep(1000)
-                    滑动(20,13,16,10,4,500,500)
-                }
-                滑动(20,13,16,10,4,500,500)
-                滑动次数=滑动次数+1
-                sleepr(8000*ratio,12000*ratio)
-                textclick("领取")
-                if(textContains("剩余").exists()){
-                    textContains("剩余").findOne(500).click()
-                    sleep(1000)
-                    滑动(20,13,16,10,4,500,500)
-                }
-                下滑()
-                sleepr(8000*ratio,12000*ratio)
-                textclick("领取")
-                滑动次数=滑动次数+1
-            
-         
-            
-            视频次数=视频次数+1
-            sleepr(8000*ratio,12000*ratio)
-            if(textContains("剩余").exists()){
-                textContains("剩余").findOne(500).click()
-                sleep(1000)
-                滑动(20,13,16,10,4,500,500)
-            }
-            textclick("领取")
-            滑动(20,13,16,10,4,500,500)
-            滑动次数=滑动次数+1
-            视频次数=视频次数+1
-            sleepr(8000*ratio,12000*ratio)
+      
             n=n+1
         }
     }
