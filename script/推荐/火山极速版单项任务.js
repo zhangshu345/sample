@@ -52,8 +52,10 @@ var waitvideoadandinstall=function(){
         sleep(3000)
         
        if(text("安装再领300金币").exists()){
-           temappname=id("com.ss.android.ugc.livelite").findOne(500).text()
-           
+           tem=id("com.ss.android.ugc.livelite:id/title").findOne(500)
+           if(tem){
+               temappname=tem.text()
+           }
            textclick("安装再领300金币")
            install_app()
            if(temappname){
@@ -67,7 +69,7 @@ var waitvideoadandinstall=function(){
 toastLog("开始火山极速版")
 var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 app.launchApp(appname)
-threads.start(火山极速版邀请(), )
+火山极速版邀请()
 
 var 视频次数=0
  var seevideofinish=false  //看海量视频 任务完成 
@@ -111,7 +113,7 @@ while(true){
     if(text("开宝箱得金币").exists()){
        if( textclick("开宝箱得金币")){
             sleep(2000)
-            if(textclick("看视频 领双倍金币")){
+            if(textclick("看视频 领双倍金币")){
                  waitvideoad() 
             }
         }
@@ -122,10 +124,11 @@ while(true){
             var hlsp=textContains("每次最高得100金币").findOne(500)
              t=hlsp.text()
              log("取出当前提醒："+t)
-             i=t.substring(t.indexOf("成"),t.indexOf("\/"))
+             i=t.substring(t.indexOf("成")+1,t.indexOf("\/"))
              log("取出当前次数："+i)
              i=Number(i)
              if(i<20){
+                 textclick("红包")
                 if( textclick("看视频赚海量金币")){
                     //这个是安装赚金币 之后要卸载
                     waitvideoadandinstall()
@@ -135,29 +138,66 @@ while(true){
              }
         }
     }
+    back()
+    sleep(1000)
+    vide=text("视频").boundsInside(0,0 ,device.width , 300).findOne(500)
+    red=text("红包").boundsInside(0,0 ,device.width , 300).findOne(500)
+    if(vide&&red){
+       rv= className("android.support.v4.view.ViewPager").findOne(500)
+        if(rv){
+            rv.child(1).click()
+        }
+    }
    
-    
-    if(textclick("首页")){
+    if(textContains("剩余").exists()){
+        textContains("剩余").findOne(500).click()
+        sleep(1000)
+        滑动(20,13,16,10,4,500,500)
+    }
+
+    if(id("com.ss.android.ugc.livelite:id/a2f").exists()){
+        n=0
         while(n<30){
             c=1
             while(c<视频重复次数){
+                if(textclick("领取")){
+
+                }
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
                 滑动(20,13,16,10,4,500,500)
                 滑动次数=滑动次数+1
                 sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
                 下滑()
                 sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
                 滑动次数=滑动次数+1
                 c=c+1
             }
+            
             视频次数=视频次数+1
             sleepr(8000*ratio,12000*ratio)
+            if(textContains("剩余").exists()){
+                textContains("剩余").findOne(500).click()
+                sleep(1000)
+                滑动(20,13,16,10,4,500,500)
+            }
+            textclick("领取")
             滑动(20,13,16,10,4,500,500)
             滑动次数=滑动次数+1
             视频次数=视频次数+1
             sleepr(8000*ratio,12000*ratio)
             n=n+1
         }
-      
     }
 
 }

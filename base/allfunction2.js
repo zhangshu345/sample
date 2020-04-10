@@ -877,7 +877,7 @@ function downloadApk(name,url,isinstall) {
         app.viewFile(filePath)
      }
     
-     clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+     clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置","允许此来源"]
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
@@ -1160,6 +1160,9 @@ var uninstallappbyname=function(appname){
     context.startActivity(i);
     while(true){
         if(textclick("确定")){
+            return
+        }
+        if(textclick("卸载")){
             return
         }
     }
