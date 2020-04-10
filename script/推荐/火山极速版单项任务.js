@@ -36,18 +36,14 @@ if(!app.getPackageName(appname)){
 }
 
 toastLog("开始火山极速版")
-var apppkg=app.getPackageName(appname)
+var apppkg="com.ss.android.ugc.livelite:id/yx"  //  app.getPackageName(appname)
 app.launchApp(appname)
 threads.start(火山极速版邀请(), )
 
 var 视频次数=0
 
 while(true){
-    if(currentPackage()!=apppkg){
-        app.launch(apppkg)
-        sleep(1000)
-        while(true){
-                if(idContains(apppkg).findOne()){
+              if(!idContains(apppkg).findOne()){
                     app.launch(apppkg)
                     sleep(2000)
                 }else{
@@ -58,8 +54,8 @@ while(true){
                     textclick("首页")
                     textclick("推荐")
                 }
-        }
-    }
+      
+  
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
         back()
         textclick("首页")
