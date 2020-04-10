@@ -163,80 +163,48 @@ while(true){
             }
         }
     }
-    if(text("开宝箱得金币").exists()){
-       if( textclick("开宝箱得金币")){
-            sleep(2000)
-            if(textclick("看视频 领双倍金币")){
-                 waitvideoad() 
-            }else{
-                back()
-                sleep(1000)
-                if(textclick("视频")){
-                    sleep(1000)
-                }
-               
-            }
-        }
-    }
-    //看海量视频任务
-    if(!seevideofinish){
-        if(text("看视频赚海量金币").exists()){
-            var hlsp=textContains("每次最高得100金币").findOne(500)
-             t=hlsp.text()
-             log("取出当前提醒："+t)
-             i=t.substring(t.indexOf("成")+1,t.indexOf("\/"))
-             log("取出当前次数："+i)
-             i=Number(i)
-             if(i<20){
-                 textclick("红包")
-                if( textclick("看视频赚海量金币")){
-                    //这个是安装赚金币 之后要卸载
-                    waitvideoadandinstall()
-                }
-             }else{
-                 seevideofinish=true
-             }
-        }
-    }else{
-        onlyseevideo()
-    }
-    back()
+
     sleep(1000)
     vide=text("视频").boundsInside(0,0 ,device.width , 300).findOne(500)
     red=text("红包").boundsInside(0,0 ,device.width , 300).findOne(500)
     if(vide&&red){
         log("视频和红包同时在的界面")
        click(100,400)
+       sleep(1000)
     }
-    if( textclick("关闭广告")){
-        sleep(1000)
-       }
-    if(textContains("剩余").exists()){
-        textContains("剩余").findOne(500).click()
-        sleep(1000)
-        滑动(20,13,16,10,4,500,500)
-    }
+
    if( textclick("首页")){
-    sleep(1000)
+     sleep(1000)
    }
     
     if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
         n=0
-        while(n<30){
+        while(n<3000){
             if(!idContains(apppkg).findOne()){
                 app.launch(apppkg)
                 sleep(2000)
             }else{
-                back()
+            
                 sleep(2000)
             }
-            c=1
-            while(c<视频重复次数){
-         
-                if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
-                    textclick("首页")
 
-                }
+            if( textclick("关闭广告")){
+                sleep(1000)
+               }
+            if(textContains("剩余").exists()){
+                textContains("剩余").findOne(500).click()
+                sleep(1000)
+                滑动(20,13,16,10,4,500,500)
+            }
+            c=1
+      
+            if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
+                
+            }else{
+                click(100,400)
+                textclick("首页")
+            }
+        
                 if(textclick("领取")){
 
                 }
@@ -258,8 +226,8 @@ while(true){
                 sleepr(8000*ratio,12000*ratio)
                 textclick("领取")
                 滑动次数=滑动次数+1
-                c=c+1
-            }
+            
+         
             
             视频次数=视频次数+1
             sleepr(8000*ratio,12000*ratio)
