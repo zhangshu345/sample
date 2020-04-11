@@ -825,7 +825,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URL');
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
-    
+     log("开始下载之前："+name)
      var url = new URL(url);
      var conn = url.openConnection(); //URLConnection
      var inStream = conn.getInputStream(); //InputStream
@@ -843,7 +843,7 @@ function downloadApk(name,url,isinstall) {
     //         return
     //      }
     //   }
-
+    log("开始下载："+name)
      var threadId = threads.start(function () {
          while (1) {
              var 当前写入的文件大小 = byteSum;
@@ -1252,6 +1252,7 @@ var 火山极速版邀请=function(){
 
 //直接从应用宝获取应用信息
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
+    log("查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
     if(appinfos){
         log(appinfos)
@@ -1291,7 +1292,6 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
 }
 var getAppdownloadurlByAppName=function(appname){
     let searchurl="https://sj.qq.com/myapp/search.htm?kw="+appname
-    
         log("搜索：应用"+appname+"--"+searchurl)
         try {
             let doc=  Jsoup.connect(searchurl).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400")
