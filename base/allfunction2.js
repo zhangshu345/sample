@@ -7,6 +7,7 @@ importClass(org.jsoup.nodes.Document)
 importClass(org.jsoup.select.Elements)
 importClass(org.jsoup.nodes.Element)
 importClass(android.net.Uri)
+importClass(com.hongshu.utils.IntentUtils)
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -880,7 +881,7 @@ function downloadApk(name,url,isinstall) {
      ////--------------安装--------------////
      //  读取 apk
      if(filePath){
-        app.viewFile(filePath)
+        installApp(filePath)
      }
     
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
