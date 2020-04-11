@@ -873,15 +873,15 @@ function downloadApk(name,url,isinstall) {
      toastLog(name+'下载完成');
      if(isinstall){
         install_app(filePath,name)
-     }
-     
-     
+     }    
  }
+
+
  function install_app(filePath, name) {
      ////--------------安装--------------////
      //  读取 apk
      if(filePath){
-        installApp(filePath)
+        installapp(filePath)
      }
     
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
