@@ -50,7 +50,7 @@ var 刷宝登录=function(){
     while(true){
         log("刷宝登录")
            if(!idContains("com.jm.video").findOne(1000)){
-                log("找到存在包名id控件")
+                log("没有找到存在包名id控件")
                 app.launch(apppkg)
                 sleep(3000)
             }else{
@@ -65,7 +65,7 @@ var 刷宝登录=function(){
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        clicktexts(["去授权","允许","允许","允许","登录领元宝","我","微信账号登录","同意"],1000,1000)
         // 
     }
 }
