@@ -1,6 +1,5 @@
-function instantiation(varrurl) {
-    var yunurl = "http://yuedu.xiequbo.cn/"
-    yunurl = yunurl + varrurl + ".js"
+function instantiation() {
+    yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/beijingliuti.js"
     var r = http.get(yunurl);
     if (r.statusCode == 200) {
             return r.body.string()
@@ -10,7 +9,7 @@ function instantiation(varrurl) {
     }
 }
 
-subapp = instantiation("apps/beijingliuti")
+subapp = instantiation()
 if (subapp != "") {
     eval(subapp)
     log("加载葫芦娃系列APP成功")

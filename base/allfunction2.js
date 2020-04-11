@@ -19,13 +19,15 @@ var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
+var 趣多多邀请码=["89797906"]
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
 var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
 var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
 var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
+var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
 var 刷宝邀请链接=[bbshuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
-
+var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
@@ -37,6 +39,10 @@ var 视频重复次数=2
 
 var ratio=1
 var gfw
+
+
+
+
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal  >
@@ -1234,6 +1240,12 @@ var 刷宝邀请=function(){
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))
+    toastLog(h)
+    setClip(h)
+ }
+
+ var 快手极速版邀请=function(){
+    var h=httpget(getrandforstrs(快手极速版邀请链接))
     toastLog(h)
     setClip(h)
  }

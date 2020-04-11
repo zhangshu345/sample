@@ -640,7 +640,6 @@ function write_cfg_j(app_name,app_key,app_value){
 
 
 function read_cfg_j(app_name,app_key){
-
     var myDate = new Date();
     tady_time = myDate.toLocaleDateString()
     var storage = storages.create("app_runing");

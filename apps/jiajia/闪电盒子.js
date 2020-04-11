@@ -1,27 +1,17 @@
 /*---------------------------------lib-------------------------------*/
-function instantiation(varrurl) {
-    yun = 1
-    var yunurl = "http://yuedu.xiequbo.cn/"
-    yunurl = yunurl + varrurl + ".js"
-    if (yun == 1) {
-        var r = http.get(yunurl);
-        // log("code = " + r.statusCode);
-        if (r.statusCode == 200) {
+function instantiation() {
+  
+    yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
+    var r = http.get(yunurl);
+    if (r.statusCode == 200) {
             return r.body.string()
 
-        } else {
+    } else {
             return ""
-        }
-    }
-    if (yun == 0) {
-        var c = files.cwd()
-        var filepath = files.join(c, varrurl) + ".js"
-        var r = files.read(filepath)
-        return r
     }
 }
 
-subapp = instantiation("apps/fucation_lib1")
+subapp = instantiation()
 if (subapp != "") {
     eval(subapp)
     log("公共函数实例化成功")
@@ -379,7 +369,7 @@ function 启动线程(type, sign) {
 
 
 function invite(user_id) {
-    user_id = user_id || "838563105381";
+    user_id = user_id || "1355579739371";
     console.log(user_id);
     button = "text"
     vlause = "我知道了"

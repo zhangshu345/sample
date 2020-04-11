@@ -1,3 +1,12 @@
+importClass(com.hongshu.utils.PermissionUtils)
+importClass(android.content.ComponentName)
+importClass(com.hongshu.receiver.DeviceReceiver)
+importClass(com.hongshu.utils.FileUtils)
+importClass(org.jsoup.Jsoup)
+importClass(org.jsoup.nodes.Document)
+importClass(org.jsoup.select.Elements)
+importClass(org.jsoup.nodes.Element)
+importClass(android.net.Uri)
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -5,23 +14,24 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
-importClass(com.hongshu.utils.PermissionUtils)
-importClass(android.content.ComponentName)
-importClass(com.hongshu.receiver.DeviceReceiver)
-importClass(com.hongshu.utils.FileUtils)
+
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
+var 趣多多邀请码=["89797906"]
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
 var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
+var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
+var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
+var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
 var 刷宝邀请链接=[bbshuabao]
-var 火山极速版邀请链接=[bbhuoshanjisuurl]
-
+var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
+var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
 var  deviceadmincomponent
 var isdeviceadmin=function(){
-      deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
+    deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
      dpm=context.getSystemService("device_policy")
     return dpm.isAdminActive( deviceadmincomponent)
 }
@@ -29,6 +39,10 @@ var 视频重复次数=2
 
 var ratio=1
 var gfw
+
+
+
+
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal  >
@@ -37,7 +51,7 @@ var  creatgfloatywindow=function(){
         
     );
     gfw.setSize(device.width, 120)
-    gfw.setTouchable(true)
+    gfw.setTouchable(false)
     gfw.setPosition(0,80)
  
 }
@@ -126,7 +140,6 @@ var  creatsetfloatywindow=function(){
 }
 
 
-
 var show=function(txt){
     if(!gfw){
       creatgfloatywindow()
@@ -134,8 +147,8 @@ var show=function(txt){
     ui.run(function(){
         gfw.text.setText(txt)
      })
-
 }
+
 var 上滑=function(){
     滑动(20,13,17,10,4,500,500)
 }
@@ -143,6 +156,7 @@ var 上滑=function(){
 var 下滑=function(){
     滑动(20,10,3,13,17,500,500)
 }
+
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -179,6 +193,7 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
+
 
 var 今日签到=function(name){
     cs=数据库.get(name+"_sign_"+today(), false)
@@ -297,6 +312,7 @@ var 今日记录=function(name,key,n){
 var 获取今日记录=function(name,key){
   数据库.get(name+"_"+key+"_"+today(),0)
 }
+
 
 //
 function httpget(url) {
@@ -809,7 +825,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URL');
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
-    
+     log("开始下载之前："+name)
      var url = new URL(url);
      var conn = url.openConnection(); //URLConnection
      var inStream = conn.getInputStream(); //InputStream
@@ -827,7 +843,7 @@ function downloadApk(name,url,isinstall) {
     //         return
     //      }
     //   }
-
+    log("开始下载："+name)
      var threadId = threads.start(function () {
          while (1) {
              var 当前写入的文件大小 = byteSum;
@@ -863,13 +879,20 @@ function downloadApk(name,url,isinstall) {
  function install_app(filePath, name) {
      ////--------------安装--------------////
      //  读取 apk
-     app.viewFile(filePath)
+     if(filePath){
+        app.viewFile(filePath)
+     }
+    
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+   
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toast("检测中....")
-        
+            if(textclick("允许此来源")){
+                back()
+                sleep(1000)
+            }
            clicktexts(clickarray)
            if(text("允许此来源").exists()){
               if(idclick("android:id/switch_widget")){
@@ -917,28 +940,35 @@ function downloadApk(name,url,isinstall) {
          show("name:"+app.name+"package:"+app.package)
          if(!getPackageName(app.name)&&app.install){
             show("检测到本机没有安装应用："+app.name+"即将自动下载并安装")
-            downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
+            downloadandinstallapp(app.name,app.package)
          }
      })
   }
 
   
  //根据app名下载并安装应用
- var downloadandinstallapp=function(name){
-    var appconfiglist=httpget(rewardapplisturl)
-    var apps=JSON.parse(appconfiglist)
-    var isok=false
-       apps.forEach(app => {
-          show("name:"+app.name+"package:"+app.package)
-             if(app.name==name){
-                isok=true
-                  if(!getPackageName(app.name)){
-                    downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
-                 }
-             }
-        }
+ var downloadandinstallapp=function(appname,apppkg){
+
+    appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
+    if(appinfo){
+        log("应用详情："+appinfo)
+        downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
+    }
+
+    // var appconfiglist=httpget(rewardapplisturl)
+    // var apps=JSON.parse(appconfiglist)
+    // var isok=false
+    //    apps.forEach(app => {
+    //       show("name:"+app.name+"package:"+app.package)
+    //          if(app.name==name){
+    //             isok=true
+    //               if(!getPackageName(app.name)){
+    //                 downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
+    //              }
+    //          }
+    //     }
  
-    )
+    // )
 }
 
 //关闭其他应用
@@ -964,9 +994,8 @@ var startallapp=function(){
            }
             stopOtherScript()
         if(!getPackageName(app.name)){
-            if(app.downloadurl){
-                downloadApk(app.name,app.downloadurl,true)
-            }
+            downloadandinstallapp(app.name,app.package)
+
         }
         if(app.bmobid && getPackageName(app.name)){
             engines.execBmobScriptWithName(app.name,app.bmobid,{})
@@ -1006,13 +1035,8 @@ var localstartallapp = function(){
       if(app.open){
         if(!getPackageName(app.name)){
             log("没有安装："+app.name)
-            if(app.downloadurl){
-                log("配置App "+app.name+"下载链接存在")
-                //下载并安装
-                downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
-            }else{
-               log("配置App"+app.name+" 下载链接不存在存在")
-            }
+            downloadandinstallapp(app.name,app.package)
+          
         }
         if(app.scripturl && getPackageName(app.name)){
             log(app.name+":云端url脚本存在："+app.scripturl)
@@ -1100,18 +1124,17 @@ var startdeviceadmin=function(){
                 log("getid："+eeee.getId())
                 engines.stop(eeee.getId())
             }
-            return
+            ss=false
+            return true
         }else{
             log("设备管理 no")
         }
         
-        clicktexts(["设备管理",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
+        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
 }
-
-
 
 
 //检测权限
@@ -1137,9 +1160,25 @@ var checkpermission=function(permissions){
     })
 }
    
-var uninstallalluserlessapp=function(){
-  
+var uninstallappbyname=function(appname){
+  if(appname){
+    let i = app.intent({
+        action: "android.intent.action.DELETE",
+        flags:["activity_new_task"],
+        data: "package:" + getPackageName(appname) //Uri.parse("package:" + getPackageName(appname))
+    });
+    context.startActivity(i);
+    while(true){
+        if(textclick("确定")){
+            return
+        }
+        if(textclick("卸载")){
+            return
+        }
+    }
+  }
 }
+
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
@@ -1188,9 +1227,7 @@ var alltest=function(){
     // localstartallapp()
     device.wakeUpIfNeeded()
     checkfloaty()
-   
     checksystemsettings()
-
     startdeviceadmin()
 }
 
@@ -1198,37 +1235,105 @@ var alltest=function(){
 var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
-    setClip(h)
-    
-    i=0
-    while(i<20){
-        
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        idclick("com.jm.video:id/imgClose")
-        // 
-      
-      if (id("cancel").exists()) {
-          back()
-          sleep(1000)
-      }
-       if (textclick("我")){
-           sleep(1000)
-           if(textclick("微信账号登录")){
-               sleep(1000)
-               if (textclick("同意")){
-                   sleep(1000)
-               }
-           }
-           sleep(1000)
-       }     
-      i=i+1
-    }
+    setClip(h) 
 }
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))
     toastLog(h)
     setClip(h)
-    i=0
-    
+ }
+
+ var 快手极速版邀请=function(){
+    var h=httpget(getrandforstrs(快手极速版邀请链接))
+    toastLog(h)
+    setClip(h)
+ }
+
+//直接从应用宝获取应用信息
+var getAppInfobyAppNameAndPkg=function(appname,apppkg){
+    log("查找app:"+appname+"--"+apppkg)
+    let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
+    if(appinfos){
+        log(appinfos)
+        data=JSON.parse(appinfos)
+        let obj=data.obj
+  
+        if(obj){
+            let items=obj.items
+            if(items){
+                i=0
+                while(i<items.length){
+                    let e=items[i]
+                    if(e.pkgName==apppkg){
+                        log(e.pkgName+"=="+apppkg)
+                        return e
+                    }else{
+                        log(e.pkgName+"<>"+apppkg)
+                    }
+                    i=i+1
+                }
+                // items.forEach(e =>{
+                //     if(e.pkgName==apppkg){
+                //         log(e.pkgName+"=="+apppkg)
+                //         return e
+                //     }else{
+                //         log(e.pkgName+"<>"+apppkg)
+                //     }
+                // })
+            }else{
+                log("items为空")
+            }
+        }else{
+            log("obj为空")
+        }        
+    }
+    return null
 }
+var getAppdownloadurlByAppName=function(appname){
+    let searchurl="https://sj.qq.com/myapp/search.htm?kw="+appname
+        log("搜索：应用"+appname+"--"+searchurl)
+        try {
+            let doc=  Jsoup.connect(searchurl).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400")
+            .timeout(3000)
+            .get();
+            log(doc)
+            let elements=doc.select("#J_SearchDefaultListBox > li:nth-child(1) > div.search-boutique-data > div.data-box > div.name-line > div.name>a.appName")
+             elements.forEach(e => {
+              if(e.text()==appname){
+                  let infourl=e.absUrl("href");
+                  if(infourl){
+                    log(appname+"详情页："+infourl)
+                    return getAppdownloadurlbyInfopage(infourl)
+                  }
+                
+              }
+             });
+        } catch (error) {
+            
+        }
+
+}
+
+var getAppdownloadurlByPackage=function(apppkg){
+    return getAppdownloadurlbyInfopage("https://sj.qq.com/myapp/detail.htm?apkName="+apppkg)
+}
+
+var getAppdownloadurlbyInfopage=function(infourl){
+    try {
+        let doc=  Jsoup.connect(infourl).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400")
+        .timeout(3000)
+        .get();
+        log(doc)
+        let element=doc.selectFirst("#J_DetDataContainer > div > div.det-ins-container.J_Mod > div.det-ins-btn-box > a.det-down-btn");
+        if(element!=null){
+            return element.absUrl("data-apkurl");
+        }
+    
+    } catch (error) {
+        log("抓取出错"+error)
+    }
+
+}
+
+// downloadandinstallapp("抖音","com.ss.android.ugc.aweme")

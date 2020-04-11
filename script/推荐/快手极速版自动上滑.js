@@ -25,21 +25,106 @@ log("公共函数实例化成功")
 log("公共函数实例化失败,程序返回")
 }
 
-var appname="快手极速版"
-var apppkg="com.kuaishou.nebula"
-show("开始快手极速版辅助滑动")
+var appname="火山极速版"
+
+show("开始火山极速版辅助滑动")
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
+   
 }
 
-toastLog("开始快手极速版")
+var waitvideoad=function(){
+    i=0
+    while(i<15){
+        sleep(3000)
+      if(textclick("关闭广告")){
+        sleep(1500)
+          if(textclick("继续观看")){
+              sleep(6000)
+          }else{
+              return
+          }
+      }
+      i=i+1
+   
+    }
+}
+var installappanduninstallapp=function(temappname){
+    install_app()
+    if(temappname){
+        uninstallappbyname(temappname)
+    }
+}
 
+var waitvideoadandinstall=function(){
+    i=0
+    while(i<10){
+        sleep(3000)
+       if(text("安装再领300金币").exists()){
+           tem=id("com.ss.android.ugc.livelite:id/title").findOne(500)
+           if(tem){
+               temappname=tem.text()
+           }
+           textclick("安装再领300金币")
+           threads.start(installappanduninstallapp)
+           return
+       }
+       i=i+1
+    }
+}
+
+
+var onlyseevideo=function(){
+    while(true){
+        if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
+            c=1
+            while(c<视频重复次数){
+                if(textclick("领取")){
+
+                }
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
+                滑动(20,13,16,10,4,500,500)
+                滑动次数=滑动次数+1
+                sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
+                if(textContains("剩余").exists()){
+                    textContains("剩余").findOne(500).click()
+                    sleep(1000)
+                    滑动(20,13,16,10,4,500,500)
+                }
+                下滑()
+                sleepr(8000*ratio,12000*ratio)
+                textclick("领取")
+                滑动次数=滑动次数+1
+                c=c+1
+            }
+            
+        }
+        
+ 
+            back()
+            sleep(1200)
+           textclick("视频")
+                sleep(1000)
+           
+            textclick("首页")
+            click(100,400)
+            sleep(1000)
+
+    }
+}
+toastLog("开始火山极速版")
+var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 app.launchApp(appname)
-快手极速版邀请()
+火山极速版邀请()
 
 while(true){
          if(!idContains(apppkg).findOne()){

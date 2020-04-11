@@ -210,11 +210,9 @@ function 启动线程(type, sign) {
 
     if (istype == 1) {
         console.log("暂不支持文章操作");
-
     }
     if (issign == 1) {
         console.log("暂不支持签到操作");
-
     }
     if (istype == 2) {
         初始化()
@@ -319,7 +317,6 @@ function inspect_app(app_name,index_page,button, vlause){
             return false
         }
     }
-
 }
 
 // 点击元素

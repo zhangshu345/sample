@@ -8,8 +8,8 @@ h = device.height;
 
 function instantiation(varrurl) {
     yun = 1
-    var yunurl = "http://yuedu.xiequbo.cn/"
-    yunurl = yunurl + varrurl + ".js"
+    var  yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
+   
     if (yun == 1) {
         var r = http.get(yunurl);
         // log("code = " + r.statusCode);
@@ -28,7 +28,7 @@ function instantiation(varrurl) {
     }
 }
 
-subapp = instantiation("apps/fucation_lib1")
+subapp = instantiation()
 if (subapp != "") {
     eval(subapp)
     log("公共函数实例化成功")
@@ -476,9 +476,7 @@ function read(x, y) {
     }
 
     return true
-
-
-    
+  
 
 
 

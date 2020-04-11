@@ -39,6 +39,7 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname)
    
 }
+
 刷宝邀请()
 toastLog("刷宝邀请完成")
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
@@ -192,11 +193,6 @@ while(true){
         sleep(2000)
     }
     c=1
-    if(!idContains(apppkg).findOne(1000)){
-        app.launch(apppkg)
-        sleep(3000)
-        i=0
-    }
     while(c<视频重复次数){
         textclick("等待")
         滑动(20,13,16,10,4,500,500)

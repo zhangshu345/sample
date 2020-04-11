@@ -386,7 +386,7 @@ var 打开快手极速左边框=function(){
     return false
 }
 var 回到快手极速首页=function(){
-    alter("回到快手极速首页")
+    show("回到快手极速首页")
     while(true){
          if(idoneexist(快手极速版首页标志)){
             return true
