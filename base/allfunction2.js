@@ -16,6 +16,8 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 
+var enablegenius=device.sdkInt>=24
+log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
@@ -525,21 +527,43 @@ function idclick(idstr,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
-        if(!f.click()){
-            b=f.bounds()
-            bc=click(b.centerX(),b.centerY())
-            if(bc){
-                alter("id："+idstr+"----点位成功点击")
-                return true
+        if(f.clickable()){
+            if(!f.click()){
+                if(enablegenius){
+                    b=f.bounds()
+                    bc=click(b.centerX(),b.centerY())
+                    if(bc){
+                        alter("id："+idstr+"----点位成功点击")
+                        return true
+                    }else{
+                    
+                        var w = boundsContains(b.left, b.top, b.right, b.bottom).clickable().findOne()
+                        if(w){
+                            return w.click()
+                        }
+                    }
+                } else{
+                    r=f.bounds()
+                    var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                    if(w){
+                        return w.click()
+                    }
+                }            
+               
+               
             }else{
-                alter("id："+idstr+"----点位失败点击")
-                return false
+                alter("id："+idstr+"----控件点击成功")
+                return true
             }
-           
         }else{
-            alter("id："+idstr+"----控件点击成功")
-            return true
+            r=f.bounds()
+            var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+            if(w){
+                return w.click()
+            }
         }
+
+       
     }
     return false
 }
@@ -552,17 +576,38 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
-         if(!f.click()){
-             show("text："+i+":点位开始成功")
-             b=f.bounds()
-             if(b.centerX()>0&&b.centerY()>0){
-                r=click(b.centerX(),b.centerY())
+        if(f.clickable()){
+         if(!f.click()){ 
+             show("text："+i+":控件点击失败")
+             if(enablegenius){
+                b=f.bounds()
+                if(b.centerX()>0&&b.centerY()>0){
+                   r=click(b.centerX(),b.centerY())
+                   return r
+                }else{
+                    log("控件不在屏幕上")
+                    return false
+                }
+                
+             }else{
+                r=f.bounds()
+                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                if(w){
+                
+                    log("text "+i+"范围可点击" )
+                    return w.click()
+                }
              }
-             
-           return r
         }else{
             show("text:"+i+"----控件点击成功")
             return true
+        }
+        }else{
+            r=f.bounds()
+            var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+            if(w){
+                return w.click()
+            }
         }
     }
     return false
