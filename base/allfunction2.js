@@ -1254,6 +1254,7 @@ var 火山极速版邀请=function(){
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     log("查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
+    log("查找app之后:"+appname+"--"+apppkg)
     if(appinfos){
         log(appinfos)
         data=JSON.parse(appinfos)
