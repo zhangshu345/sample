@@ -951,7 +951,7 @@ function downloadApk(name,url,isinstall) {
 
     appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){
-        log("应用详情："+appinfo)
+        log("应用详情：获取成功")
         downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
     }
 
@@ -1256,7 +1256,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
     log("查找app之后:"+appname+"--"+apppkg)
     if(appinfos){
-        log(appinfos)
+        log("获取成功")
         data=JSON.parse(appinfos)
         let obj=data.obj
   

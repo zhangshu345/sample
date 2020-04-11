@@ -39,7 +39,7 @@ toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname)
+    downloadandinstallapp(appname,刷宝包名)
    
 }
 刷宝邀请()

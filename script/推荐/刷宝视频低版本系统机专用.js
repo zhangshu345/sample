@@ -37,7 +37,6 @@ home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,刷宝包名)
-   
 }
 
 刷宝邀请()
