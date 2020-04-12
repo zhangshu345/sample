@@ -1,3 +1,4 @@
+"ui"
 auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
@@ -31,5 +32,7 @@ toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,null)
+    downloadandinstallapp(appname)
+}else{
+    dialogs.alert("安装提醒","已经存在"+appname, )
 }
