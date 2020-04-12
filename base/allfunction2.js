@@ -8,6 +8,7 @@ importClass(org.jsoup.select.Elements)
 importClass(org.jsoup.nodes.Element)
 importClass(android.net.Uri)
 importClass(com.hongshu.utils.IntentUtils)
+importClass(com.hongshu.utils.SPUtils)
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -39,10 +40,31 @@ var isdeviceadmin=function(){
     return dpm.isAdminActive( deviceadmincomponent)
 }
 var 视频重复次数=2
-
 var ratio=1
-var gfw
+var gfw,gsfw
+var spt=SPUtils.getInstance()
 
+var getstrvalue=function(v){
+    return spt.getString(v)
+}
+
+var getintvalue=function(v){
+    return spt.getInt(v)
+}
+var getlongvalue=function(v){
+    return spt.getLong(v)
+}
+var getfloatvalue=function(v){
+    return spt.getLong(v)
+}
+
+var getbooleanvalue=function(v){
+    return spt.getBoolean(v)
+}
+
+var getstrsetvalue=function(v){
+    return spt.getStringSet(v)
+}
 
 
 
@@ -766,7 +788,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         swipe(startx, starty , endx , endy, t+random(0, r))
     }else{
         
-        if(startx>=enx){
+        if(startx>=endx){
             left=endx
             right=startx
         }else{
@@ -791,8 +813,9 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         }
    
     }
-
 }
+
+
 
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
@@ -1211,7 +1234,7 @@ var bmobpushmessage=function(channels,message){
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
-        log("设备管理器激活了")
+        show("设备管理器激活了")
         return
     }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/uideviceadmin.js");
@@ -1223,18 +1246,18 @@ var startdeviceadmin=function(){
     while(ss)
     {
         if(isdeviceadmin()){
-            log("设备管理 ok")
+            show("设备管理 ok")
             if(eeee.getId()){
-                log("getid："+eeee.getId())
+                show("getid："+eeee.getId())
                 engines.stop(eeee.getId())
             }
             ss=false
             return true
         }else{
-            log("设备管理 no")
+            show("设备管理 no")
         }
         
-        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
+        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
@@ -1443,3 +1466,7 @@ var getAppdownloadurlbyInfopage=function(infourl){
 
 // downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
 // clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+// log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
+// log()
+// alltest()
+// device.setMusicVolume(0)

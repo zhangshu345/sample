@@ -86,7 +86,6 @@ var 回到刷宝视频页=function(){
             app.launch(apppkg)
             sleep(3000)
         }else{
-
             back()
             sleep(2000)
         }

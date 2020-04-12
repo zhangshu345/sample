@@ -25,7 +25,6 @@ function control_click(button, vlause, left, top, right, buttom) {
         console.log("点击传参错误"+">>"+button+">>"+vlause);
         toast("点击传参错误"+">>"+button+">>"+vlause)
         result = false
-
     }
     if (button_info) {
         var xy_info = button_info.bounds()

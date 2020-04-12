@@ -3,7 +3,6 @@
 auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
-
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppackage="阅读集合"
 function httpget(url) {
@@ -15,7 +14,7 @@ function httpget(url) {
         }
 }
 var  公共函数文本
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 function evalfun(url){
     funstr=httpget(url)
      if (funstr != "") {
@@ -28,9 +27,7 @@ function evalfun(url){
  }
  
 eval(httpget(公共函数url))
-
-checkfloaty()
-startdeviceadmin()
+alltest()
 
 //checkinstallapp()
 while(true){
