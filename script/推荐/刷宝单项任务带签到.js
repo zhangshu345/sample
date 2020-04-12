@@ -45,27 +45,29 @@ var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
+
 var 视频次数=0
 var 刷宝登录=function(){
     while(true){
         log("刷宝登录")
            if(!idContains("com.jm.video").findOne(1000)){
-                log("找到存在包名id控件")
+                log("没有找到存在包名id控件")
                 app.launch(apppkg)
                 sleep(3000)
             }else{
+                log("找到存在包名id控件")
                 back()
                 sleep(2000)
             }
-            log("刷宝登录2")
+            clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            
                 break
         }else{
-            back()
+            
+            
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+       
         // 
     }
 }
@@ -84,6 +86,7 @@ var 回到刷宝视频页=function(){
             app.launch(apppkg)
             sleep(3000)
         }else{
+
             back()
             sleep(2000)
         }

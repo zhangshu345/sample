@@ -144,6 +144,7 @@ var  creatsetfloatywindow=function(){
 
 
 var show=function(txt){
+    log(txt)
     if(!gfw){
       creatgfloatywindow()
     }
@@ -527,13 +528,12 @@ function idclick(idstr,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
-        if(f.clickable()){
             if(!f.click()){
                 if(enablegenius){
                     b=f.bounds()
                     bc=click(b.centerX(),b.centerY())
                     if(bc){
-                        alter("id："+idstr+"----点位成功点击")
+                        show("id："+idstr+"----点位成功点击")
                         return true
                     }else{
                     
@@ -543,27 +543,21 @@ function idclick(idstr,t,left,top,right,bottom){
                         }
                     }
                 } else{
+                    if(clickparents(f)){
+                        return
+                    }
                     r=f.bounds()
                     var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
                     if(w){
                         return w.click()
                     }
                 }            
-               
-               
+
             }else{
-                alter("id："+idstr+"----控件点击成功")
+                show("id："+idstr+"----控件点击成功")
                 return true
             }
-        }else{
-            r=f.bounds()
-            var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-            if(w){
-                return w.click()
-            }
-        }
 
-       
     }
     return false
 }
@@ -576,42 +570,64 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
+        show("text："+i+":控件找到了")
         if(f.clickable()){
-         if(!f.click()){ 
-             show("text："+i+":控件点击失败")
-             if(enablegenius){
+            show("text："+i+":控件可点击")
+          return  f.click()
+        }else{
+            show("text："+i+":控件不可点击")
+            if(enablegenius){
+                show("text "+i+"可手势 范围可点击" )
                 b=f.bounds()
                 if(b.centerX()>0&&b.centerY()>0){
                    r=click(b.centerX(),b.centerY())
                    return r
                 }else{
-                    log("控件不在屏幕上")
+                    show("控件不在屏幕上")
                     return false
                 }
-                
              }else{
+                show("text "+i+"不可手势 范围可点击" )
+               if (clickparents(f)){
+
+                   return true
+               }
                 r=f.bounds()
                 var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
                 if(w){
-                
-                    log("text "+i+"范围可点击" )
+                    show("text "+i+"找到所在区域可点击控件"+w.toString())
                     return w.click()
                 }
-             }
-        }else{
-            show("text:"+i+"----控件点击成功")
-            return true
-        }
-        }else{
-            r=f.bounds()
-            var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-            if(w){
-                return w.click()
             }
         }
+   
+      
+    }else{
+        show("text:"+i+"----控件没有找到")
     }
     return false
 }
+
+//一直找到可以点击控件向上查找
+var clickparents=function(v,n){
+    i=0
+    n=n||10
+    while(i<n){
+        p=v.parent()
+        if(p&&p.clickable()){
+            show("找到可点击控件"+toString(p))
+            return p.click()
+        }else{
+            
+            i=i+1
+            show("向上查找层数："+i)
+            v=p
+        }
+    }
+    return false
+  
+}
+
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
     t=t||500
@@ -728,12 +744,54 @@ function control_click(button, vlause, left, top, right, bottom) {
 
 
 
+//  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
 function 滑动(z,x1,y1,x2,y2,t,r) {
-    var w = device.width/z;
-    var h = device.height/z;
-    r=r||1000
-   // show("滑动"+x1+","+y1+"->"+x2+","+y2)
-    swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
+    if(z>0){
+        var w = device.width/z;
+        var h = device.height/z;
+        startx=w * x1
+        endx=w*x2
+        starty=h*y1
+        endy=h*y2
+    }else{
+        startx=x1
+        endx=x2
+        starty=y1
+        endy=y2
+    }
+ 
+    if(enablegenius){
+        r=r||1000
+       // show("滑动"+x1+","+y1+"->"+x2+","+y2)
+        swipe(startx, starty , endx , endy, t+random(0, r))
+    }else{
+        
+        if(startx>=enx){
+            left=endx
+            right=startx
+        }else{
+            left=startx
+            right=endx
+        }
+        if(starty>endy){
+            top=endy
+            bottom=starty
+        }else{
+            top=starty
+            bottom=endy
+        }
+
+        var w = boundsContains(left, top, right,bottom).scrollable().findOne();
+        if(w){
+            if(startx<endx){
+                w.scrollBackward()
+            }else{
+                w.scrollForward()
+            }
+        }
+   
+    }
+
 }
 
 /*所有文本存在才返回真 */
@@ -1384,4 +1442,4 @@ var getAppdownloadurlbyInfopage=function(infourl){
 }
 
 // downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
-log("手机号:"+phone())
+// clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
