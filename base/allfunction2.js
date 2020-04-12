@@ -602,6 +602,7 @@ function textclick(i,t,left,top,right,bottom){
                 show("text "+i+"可手势 范围可点击" )
                 b=f.bounds()
                 if(b.centerX()>0&&b.centerY()>0){
+                    show("控件在屏幕上")
                    r=click(b.centerX(),b.centerY())
                    return r
                 }else{
@@ -1393,12 +1394,20 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
                 i=0
                 while(i<items.length){
                     let e=items[i]
-                    if(e.pkgName==apppkg){
-                        log(e.pkgName+"=="+apppkg)
-                        return e
+                    if(apppkg){
+                        if(e.pkgName==apppkg){
+                            log(e.pkgName+"=="+apppkg)
+                            return e
+                        }else{
+                            log(e.pkgName+"<>"+apppkg)
+                        }
                     }else{
-                        log(e.pkgName+"<>"+apppkg)
+                        appDetail=e.appDetail
+                        if(appDetail.appName==appname){
+                            return e
+                        }
                     }
+                   
                     i=i+1
                 }
                 // items.forEach(e =>{
@@ -1465,7 +1474,7 @@ var getAppdownloadurlbyInfopage=function(infourl){
 }
 
 // downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
-// clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+//clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
 // log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 // alltest()
