@@ -51,17 +51,20 @@ var 刷宝登录=function(){
     while(i<10){
         log("刷宝登录")
            if(!idContains("com.jm.video").findOne(1000)){
-                log("找到存在包名id控件")
+                show("找到存在包名id控件")
                 app.launch(apppkg)
                 sleep(3000)
             }else{
                 back()
-                sleep(2000)
+                sleep(1200)
             }
-            log("刷宝登录2")
+
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-                break
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+               return true
         }else{
+            show("没有找到昵称和设置")
             back()
             sleep(1000)
         }
@@ -70,7 +73,10 @@ var 刷宝登录=function(){
         i=i+1
     }
 }
-刷宝登录()
+if(!getbooleanvalue("shuabaologin")){
+    刷宝登录()
+}
+
 
 while(true){
    
