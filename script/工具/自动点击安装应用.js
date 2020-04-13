@@ -1,4 +1,3 @@
-"ui"
 auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
@@ -24,15 +23,9 @@ log("公共函数实例化成功")
 log("公共函数实例化失败,程序返回")
 }
 
-var appname=dialogs.rawInput("请输入指定操作应用名称","" , )
 
-show("开始自动安装应用")
+
+show("开始辅助点击应用安装 自动完成后关闭")
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
-home()
-if(!app.getPackageName(appname)){
-    toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname)
-}else{
-    dialogs.alert("安装提醒","已经存在"+appname, )
-}
+
+install_app()

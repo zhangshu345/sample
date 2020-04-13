@@ -12,6 +12,7 @@
     "privacy":"",
     "announce":"",
     "updatedescription":"",
-    "icon":""
+    "icon":"",
+    "isforce":false
 }
 ]

@@ -1016,7 +1016,7 @@ function downloadApk(name,url,isinstall) {
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
-            toast("检测中....")
+            toastLog("检测中....")
             if(textclick("允许此来源")){
                 back()
                 sleep(1000)
@@ -1038,8 +1038,8 @@ function downloadApk(name,url,isinstall) {
                  sleep(500)
                  is_first = id("security_install_protection_switch").findOne(500)
                  if (!is_first.checked()) {
-                     console.log("已取消保护");
-                     toast("已取消保护")
+                
+                     show("已取消保护")
                      sleep(1000)
                      break;
                  }
