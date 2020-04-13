@@ -1546,4 +1546,4 @@ var getAppdownloadurlbyInfopage=function(infourl){
 // log()
 // alltest()
 // device.setMusicVolume(0)
-maytextclick("查看领取")
+// maytextclick("查看领取")
