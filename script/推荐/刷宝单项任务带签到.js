@@ -81,11 +81,12 @@ var 回到刷宝视频页=function(){
     while (i<10){
         i=i+1
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-        if(idContains(apppkg).findOne(1000)){
-            log("找到存在包名id控件")
+        if(!idContains(apppkg).findOne(1000)){
+            show("没有找到存在包名id控件")
             app.launch(apppkg)
             sleep(3000)
         }else{
+            show("找到存在包名id控件")
             back()
             sleep(2000)
         }
@@ -168,7 +169,7 @@ while(true){
             while(i<10){
                 i=i+1
                 if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-                    if(idContains(apppkg).findOne(1000)){
+                    if(!idContains(apppkg).findOne(1000)){
                         log("找到存在包名id控件")
                         app.launch(apppkg)
                         sleep(3000)

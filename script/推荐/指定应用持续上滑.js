@@ -44,6 +44,6 @@ var show=function(txt){
 
 while(true){
     滑动(20,10,17,10,3,500,500)
-    sleepr(8000,1200)
+    sleepr(8000,15000)
 }
 
