@@ -2,9 +2,6 @@ auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
 
-
-
-
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -50,7 +47,8 @@ var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
 var 视频次数=0
 var 刷宝登录=function(){
-    while(true){
+    i=0
+    while(i<10){
         log("刷宝登录")
            if(!idContains("com.jm.video").findOne(1000)){
                 log("找到存在包名id控件")
@@ -62,7 +60,6 @@ var 刷宝登录=function(){
             }
             log("刷宝登录2")
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            
                 break
         }else{
             back()
@@ -70,6 +67,7 @@ var 刷宝登录=function(){
         }
         clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
         // 
+        i=i+1
     }
 }
 刷宝登录()

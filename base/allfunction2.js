@@ -585,8 +585,7 @@ function textclick(i,t,left,top,right,bottom){
     if(!f){
              return false
     }
-  
-        show("text："+i+":控件找到了")
+     show("text："+i+":控件找到了")
         if(f.clickable()){
             show("text："+i+":控件可点击")
           return  f.click()
@@ -596,11 +595,16 @@ function textclick(i,t,left,top,right,bottom){
                 show("text "+i+"可手势 范围可点击" )
                 b=f.bounds()
                 if(b.centerX()>0&&b.centerY()>0){
-                    show("控件在屏幕上")
-                   r=click(b.centerX(),b.centerY())
-                   return r
+                    show("text："+i+"在屏幕上")
+                  if(click(b.centerX(),b.centerY()))
+                  {
+                      return true
+                  }else{
+                    return   clicknode(f)
+                  }
+                  
                 }else{
-                    show("控件不在屏幕上")
+                    show("text："+i+"不在屏幕上")
                     return false
                 }
              }else{
@@ -644,8 +648,12 @@ function maytextclick(i,t,left,top,right,bottom){
                 b=f.bounds()
                 if(b.centerX()>0&&b.centerY()>0){
                     show("控件在屏幕上")
-                   r=click(b.centerX(),b.centerY())
-                   return r
+                   if(click(b.centerX(),b.centerY())){
+                       return true
+                   }else{
+                       return clicknode(f)
+                   }
+                  
                 }else{
                     show("控件不在屏幕上")
                     return false
