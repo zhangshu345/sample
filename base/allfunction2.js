@@ -66,8 +66,6 @@ var getstrsetvalue=function(v){
     return spt.getStringSet(v)
 }
 
-
-
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal  >
@@ -78,8 +76,7 @@ var  creatgfloatywindow=function(){
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
- 
-}
+ }
 
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
@@ -87,7 +84,6 @@ var  creatsetfloatywindow=function(){
               <vertical  w="60" h="60" >
               <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >设置</text>
               <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >收缩</text>
-
               </vertical>
          
             <vertical  w="60" h="60" >
@@ -107,7 +103,6 @@ var  creatsetfloatywindow=function(){
     coll=true
     stoptime=0
     gsfw.setSize(90,90)
-
     gsfw.setPosition(0,device.height/2)
     gsfw.stop.on("click",function(){
         stoptime=stoptime+1
@@ -160,7 +155,6 @@ var  creatsetfloatywindow=function(){
         
         视频重复次数=1
         toastLog("恢复正常 视频播放 持续上滑")
-    
     })
 }
 
@@ -558,15 +552,14 @@ function idclick(idstr,t,left,top,right,bottom){
                         show("id："+idstr+"----点位成功点击")
                         return true
                     }else{
-                    
                         var w = boundsContains(b.left, b.top, b.right, b.bottom).clickable().findOne()
                         if(w){
                             return w.click()
                         }
                     }
                 } else{
-                    if(clickparents(f)){
-                        return
+                    if(clicknode(f)){
+                        return true
                     }
                     r=f.bounds()
                     var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
@@ -574,12 +567,10 @@ function idclick(idstr,t,left,top,right,bottom){
                         return w.click()
                     }
                 }            
-
             }else{
                 show("id："+idstr+"----控件点击成功")
                 return true
             }
-
     }
     return false
 }
@@ -591,7 +582,10 @@ function textclick(i,t,left,top,right,bottom){
     right = bottom || device.width;
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
-    if(f){
+    if(!f){
+             return false
+    }
+  
         show("text："+i+":控件找到了")
         if(f.clickable()){
             show("text："+i+":控件可点击")
@@ -611,8 +605,7 @@ function textclick(i,t,left,top,right,bottom){
                 }
              }else{
                 show("text "+i+"不可手势 范围可点击" )
-               if (clickparents(f)){
-
+               if (clicknode(f)){
                    return true
                }
                 r=f.bounds()
@@ -622,13 +615,65 @@ function textclick(i,t,left,top,right,bottom){
                     return w.click()
                 }
             }
-        }
-   
-      
-    }else{
-        show("text:"+i+"----控件没有找到")
-    }
+        }     
+    
     return false
+}
+
+function maytextclick(i,t,left,top,right,bottom){
+    t=t || 500
+    left = left || 0;
+    top = top || 0;
+    right = bottom || device.width;
+    bottom = bottom || device.height;
+    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    if(!f){
+         f=textContains(i).boundsInside(left, top, right, bottom).findOne(t)
+         if(!f){
+             return false
+         }
+    }
+          show("text："+i+":控件找到了")
+        if(f.clickable()){
+            show("text："+i+":控件可点击")
+          return  f.click()
+        }else{
+            show("text："+i+":控件不可点击")
+            if(enablegenius){
+                show("text "+i+"可手势 范围可点击" )
+                b=f.bounds()
+                if(b.centerX()>0&&b.centerY()>0){
+                    show("控件在屏幕上")
+                   r=click(b.centerX(),b.centerY())
+                   return r
+                }else{
+                    show("控件不在屏幕上")
+                    return false
+                }
+             }else{
+                show("text "+i+"不可手势 范围可点击" )
+               if (clicknode(f)){
+                   return true
+               }
+                r=f.bounds()
+                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                if(w){
+                    show("text "+i+"找到所在区域可点击控件"+w.toString())
+                    return w.click()
+                }
+            }
+        }     
+    
+    return false
+}
+
+
+var clicknode=function(v){
+    if(!clickparents(v)){
+        return  clickchilds(v)
+    }else{
+        return true
+    }
 }
 
 //一直找到可以点击控件向上查找
@@ -648,8 +693,28 @@ var clickparents=function(v,n){
         }
     }
     return false
-  
 }
+
+//找到子类 点击下去
+var clickchilds=function(v){
+   if(v.childCount()>0){
+       for(i=0;i<v.childCount();i++){
+           c=i.child(i)
+           if(c.clickable()){
+               return c.click()
+           }else{
+             if(clickchilds(v.child(i))){
+                return true
+             }
+           }
+           
+       }
+   }else{
+       return false
+   }
+   return false 
+}
+
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
@@ -661,6 +726,7 @@ var clickids=function(ids,t,st){
        }
     });
 }
+
 
 //点击文本集合
 var clicktexts=function(texts,t,st){
@@ -703,6 +769,7 @@ var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
        }
     }
  }
+
 
 //在文本标志出现之前一直点击id的 t 是最长等待时间
 var whileclickidsbeforeids=function(ids,stopids,t){
@@ -1479,3 +1546,4 @@ var getAppdownloadurlbyInfopage=function(infourl){
 // log()
 // alltest()
 // device.setMusicVolume(0)
+maytextclick("查看领取")

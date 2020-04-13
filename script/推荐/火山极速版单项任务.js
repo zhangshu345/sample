@@ -125,7 +125,7 @@ toastLog("开始火山极速版")
 var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 app.launchApp(appname)
 火山极速版邀请()
-
+视频重复次数=1
 while(true){
          if(!idContains(apppkg).findOne()){
                     app.launch(apppkg)
@@ -134,12 +134,11 @@ while(true){
                     back()
                     sleep(2000)
                 }
-            
                 if(textclick("注册/登录")){
                     text("微信登录").waitFor()
                     textclick("微信登录")
                     sleep(1000)
-          }
+        }
   
     if(text("登录立即可得8元").exists()){
         back()
@@ -174,7 +173,6 @@ while(true){
                 if(textclick("视频")){
                     sleep(1000)
                 }
-               
             }
         }
     }
@@ -219,7 +217,6 @@ while(true){
    if( textclick("首页")){
     sleep(1000)
    }
-    
     if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
         n=0
         while(n<30){
@@ -232,10 +229,8 @@ while(true){
             }
             c=1
             while(c<视频重复次数){
-         
-                if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
+                 if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
                     textclick("首页")
-
                 }
                 if(textclick("领取")){
 
@@ -262,11 +257,20 @@ while(true){
             }
             
             视频次数=视频次数+1
-            sleepr(8000*ratio,12000*ratio)
+           
             if(textContains("剩余").exists()){
                 textContains("剩余").findOne(500).click()
                 sleep(1000)
                 滑动(20,13,16,10,4,500,500)
+            }
+            
+            if(maytextclick("查看领取")){
+                sleep(2000)
+                滑动(20,13,16,10,4,500,500)
+                sleep(2000)
+                滑动(20,13,16,10,4,500,500)
+                sleep(2000)
+                back()
             }
             textclick("领取")
             滑动(20,13,16,10,4,500,500)
