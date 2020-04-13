@@ -73,7 +73,9 @@ var 刷宝登录=function(){
         i=i+1
     }
 }
+
 if(!getbooleanvalue("shuabaologin")){
+    show("刷宝没有登录过")
     刷宝登录()
 }
 
@@ -84,7 +86,7 @@ while(true){
         if(!idContains(apppkg).findOne(1000)){
             app.launch(apppkg)
             sleep(3000)
-            while(true){
+            while(i<10){
                 if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
                     if(idContains(apppkg).findOne(1000)){
                         log("找到存在包名id控件")
@@ -94,13 +96,14 @@ while(true){
                         back()
                         sleep(2000)
                     }
+                   
                     if(text("首页").exists()){
-                        textclick("首页")
-                        textclick("推荐")
+                        clicktexts(["首页","推荐"])
                     }
                 }else{
                     break
                 }
+                i=i+1
             }
         }
         clickonetexts(["首页","推荐"])

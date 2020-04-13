@@ -47,30 +47,6 @@ var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 
 
 var 视频次数=0
-var 刷宝登录=function(){
-    while(true){
-        log("刷宝登录")
-           if(!idContains("com.jm.video").findOne(1000)){
-                log("没有找到存在包名id控件")
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
-                log("找到存在包名id控件")
-                back()
-                sleep(2000)
-            }
-            clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-                break
-        }else{
-            
-            
-            sleep(1000)
-        }
-       
-        // 
-    }
-}
 
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
@@ -88,7 +64,7 @@ var 回到刷宝视频页=function(){
         }else{
             show("找到存在包名id控件")
             back()
-            sleep(2000)
+            sleep(1500)
         }
         if(text("首页").exists()){
             textclick("首页")
@@ -102,7 +78,7 @@ var 回到刷宝视频页=function(){
 
 var 刷宝签到=function(){
     i=0
-    while(i<10){
+    while(i<6){
         i=i+1
         "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){
@@ -110,10 +86,15 @@ var 刷宝签到=function(){
             while(n<15){
                 n=n+1
                 textclick("任务")
+                sleep(1000)
             if(textclick("立即签到")){
                 sleep(1000)
                 if(text("继续赚元宝").exists()){
-                    textclick("首页")
+                    back()
+                    sleep(1000)
+                    if( textclick("首页")){
+                        return true
+                    }
                     return false
                 }
                 sleep(1000)
@@ -157,7 +138,39 @@ var 刷宝签到=function(){
     
     }
 }
-刷宝登录()
+var 刷宝登录=function(){
+    i=0
+    while(i<10){
+        log("刷宝登录")
+           if(!idContains("com.jm.video").findOne(1000)){
+                show("找到存在包名id控件")
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(1200)
+            }
+
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+               return true
+        }else{
+            show("没有找到昵称和设置")
+            back()
+            sleep(1000)
+        }
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        // 
+        i=i+1
+    }
+}
+
+if(!getbooleanvalue("shuabaologin")){
+    show("刷宝没有登录过")
+    刷宝登录()
+}
+
 刷宝签到()
 
 while(true){
@@ -177,20 +190,25 @@ while(true){
                         back()
                         sleep(2000)
                     }
-                    if(text("首页").exists()){
-                        textclick("首页")
-                        textclick("推荐")
-                    }
+                  
                 }else{
                     break
                 }
+                if(text("首页").exists()){
+                    textclick("首页")
+                    textclick("推荐")
+                }
             }
         }
+        back()
+        sleep(1500)
         clickonetexts(["首页","推荐","等待"])
     }
     if(id(刷宝视频恭喜获取关闭按钮id).exists()){
         back()
+        sleep(1000)
         textclick("首页")
+        sleep(1000)
         textclick("推荐")
         sleep(2000)
     }
