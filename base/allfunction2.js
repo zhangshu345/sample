@@ -16,6 +16,7 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
+var onlyscript=true
 
 var enablegenius=device.sdkInt>=24
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
@@ -81,19 +82,19 @@ var  creatgfloatywindow=function(){
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-              <vertical  w="60" h="60" >
-              <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >设置</text>
-              <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >收缩</text>
+              <vertical  w="80" h="80" >
+              <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#99ff0000" margin="5">设置</text>
+              <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#99ff0000" margin="5" >收缩</text>
               </vertical>
          
             <vertical  w="60" h="60" >
             <horizontal >
-                    <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >加速</text>
-                     <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">减速</text>
+                    <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#99000000" >加速</text>
+                     <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#99000000">减速</text>
             </horizontal>
             <horizontal >
-                    <text id="jl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >节流+</text>
-                     <text id="nojl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">正常</text>
+                    <text id="jl" w="30" h="30" gravity="center" textSize="14sp" background="#99000000" >节流+</text>
+                     <text id="nojl" w="30" h="30" gravity="center" textSize="14sp" background="#99000000">正常</text>
             </horizontal>
             </vertical>
            
@@ -287,6 +288,12 @@ var 上次滑动次数=function(name){
      alter(name+"上次滑动次数"+s)
      return s
 } 
+var lastscriptapp=spt.getString("lastscriptapp")
+
+var closelastscriptapp=function(){
+  forcestop(lastscriptapp())
+}
+
 
 var getrandforstrs=function(strs){
     if(strs==null||strs.length==0){
@@ -358,12 +365,14 @@ var forcestop=function(appname,st){
   closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
   i=0
   while(i<2){
+    clicktexts(closetexts,1200,1500)
     closetexts.forEach(t=>{
         if(textclick(t)){
-            i=i+1
+           
           sleep(2000)
         }
     })
+    i=i+1
   }
 }
 
@@ -1147,7 +1156,6 @@ function downloadApk(name,url,isinstall) {
          }
      })
   }
-
   
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
@@ -1279,6 +1287,7 @@ var checkscreencapture=function(){
    }
 }
 
+
 var isNotificationManager=function(){
     importClass(com.hongshu.utils.PermissionUtils);
     return PermissionUtils.isnotificationListenerEnable()
@@ -1332,13 +1341,11 @@ var startdeviceadmin=function(){
         }else{
             show("设备管理 no")
         }
-        
         clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
 }
-
 
 //检测权限
 var checkpermission=function(permissions){
@@ -1385,13 +1392,13 @@ var uninstallappbyname=function(appname){
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
+
 var checksystemsettings=function(){
     if(issystemsettings()){
         log("有系统设置权限")
         return true
     }else{
         log("没有系统设置权限")
-
         PermissionUtils.requestWriteSettings(null)
         while(true){
             sleep(1000)
@@ -1419,7 +1426,6 @@ var checksystemsettings=function(){
                     return 
                 }
           }
-          
         }
     }
 }
@@ -1433,7 +1439,6 @@ var alltest=function(){
     checksystemsettings()
     startdeviceadmin()
 }
-
 
 var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
@@ -1482,7 +1487,6 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
                             return e
                         }
                     }
-                   
                     i=i+1
                 }
                 // items.forEach(e =>{
@@ -1502,6 +1506,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     }
     return null
 }
+
 var getAppdownloadurlByAppName=function(appname){
     let searchurl="https://sj.qq.com/myapp/search.htm?kw="+appname
         log("搜索：应用"+appname+"--"+searchurl)
@@ -1518,15 +1523,11 @@ var getAppdownloadurlByAppName=function(appname){
                     log(appname+"详情页："+infourl)
                     return getAppdownloadurlbyInfopage(infourl)
                   }
-                
               }
              });
         } catch (error) {
-            
         }
-
 }
-
 var getAppdownloadurlByPackage=function(apppkg){
     return getAppdownloadurlbyInfopage("https://sj.qq.com/myapp/detail.htm?apkName="+apppkg)
 }
@@ -1545,7 +1546,6 @@ var getAppdownloadurlbyInfopage=function(infourl){
     } catch (error) {
         log("抓取出错"+error)
     }
-
 }
 
 // downloadandinstallapp("抖音","com.ss.android.ugc.aweme")

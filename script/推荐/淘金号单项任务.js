@@ -24,6 +24,21 @@ log("公共函数实例化成功")
 log("公共函数实例化失败,程序返回")
 }
 
+
+var whileseead=function(){
+    while(i<6){
+        sleep(5000)
+        
+        gxhd=textStartsWith("恭喜获得").findOne()
+        if(gxhd){
+           if( textclick("x")){
+               return true
+           }else if(idclick("com.xubai.taojinhao:id/__overlay_divide_line_countdown_closeddd")){
+               return true
+           }
+        }
+    }
+}
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 var appname="淘金号"
@@ -41,7 +56,7 @@ if(!app.getPackageName(appname)){
 app.launchApp(appname)
 var 视频次数=0
 // 
-//  视频广告页面 广告  今日头条的视频广告关闭按钮  com.xubai.taojinhao:id/tt_video_ad_close_layout   点我砸金蛋   出现弹窗双倍 广告
+//  视频广告页面 广告  今日头条的视频广告关闭按钮  com.xubai.taojinhao:id/tt_video_ad_close_layout   点我砸金蛋   出现弹窗双倍 广告  
 var 滑动页面标记=["com.xubai.taojinhao:id/read_progress_container","com.xubai.taojinhao:id/home_tab_img"]
 while(true){
     if(!idallexist(滑动页面标记)){
@@ -72,14 +87,17 @@ while(true){
         clickonetexts(["首页","推荐"])
     }
   
-    c=1
-    while(c<视频重复次数){
-        滑动(20,13,16,10,4,500,500)
-        滑动次数=滑动次数+1
-        视频次数=视频次数+1
-        sleepr(8000*ratio,12000*ratio)
-        c=c+1
+    if(maytextclick("点击得")){
+        whileseead()
     }
+    if(textclick("领取"))
+
+    if(textclick("翻倍奖励")){
+        whileseead()
+    }
+
+    c=1
+
     滑动(20,13,16,10,4,500,500)
     滑动次数=滑动次数+1
     视频次数=视频次数+1

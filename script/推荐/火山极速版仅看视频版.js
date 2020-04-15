@@ -13,8 +13,7 @@ function httpget(url) {
 var 视频次数=0
  var seevideofinish=false  //看海量视频 任务完成 
 滑动次数=0
-floaty.closeAll()
-engines.stopOther()
+
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -24,7 +23,10 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-
+if(onlyscript){
+    floaty.closeAll()
+    engines.stopOther()
+}
 var appname="火山极速版"
 var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
 show("开始火山极速版辅助滑动")

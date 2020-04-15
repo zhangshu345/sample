@@ -170,9 +170,7 @@ if(!getbooleanvalue("shuabaologin")){
     show("刷宝没有登录过")
     刷宝登录()
 }
-
 刷宝签到()
-
 while(true){
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
         if(!idContains(apppkg).findOne(1000)){
