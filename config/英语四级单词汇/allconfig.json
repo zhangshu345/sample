@@ -1,5 +1,5 @@
 {"name":"英语四级单词汇",
-    "pkg":"com.hongshu.onemore",
+    "pkg":"com.mmenglish.wordsxxc",
     "version":"1.1.0",
     "versioni":10,
     "channel":"androidjs",
@@ -14,13 +14,13 @@
     "notificationsurl":"",
     "lineme":"",
     "messagesurl":"",
-    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/一个就够/apphistory.json",
+    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/英语四级单词汇/apphistory.json",
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
     "jgnative":3,
     "name":"英语四级单词汇",
-    "pkg":"com.hongshu.onemore",
+    "pkg":"com.mmenglish.wordsxxc",
     "channel":"androidjs",
     "sign":"",
     "versioni":10,
@@ -76,7 +76,7 @@
     "nativevideo":"945137426"},
     "adview":
     {
-        "open":true,
+        "open":false,
         "appid":"",
         "splash":"",
         "banner":"",
@@ -86,7 +86,7 @@
         "hudong":"" 
     },
     "mintegral":{
-        "open":true,
+        "open":false,
         "appid":"",
         "splash":"",
         "banner":"",
