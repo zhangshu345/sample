@@ -4,15 +4,10 @@
     "version":"1.1.0",
     "versioni":10,
     "channel":"androidjs",
-    "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "mtaappkey":"AC4WNS79B3ZZ",
-    "bmobappid":"38f53edf777b9fa68717f6b7b237ab24",
-    "jpush":"512a7413b0e067f07ec1edbf",
     "downloadurl":"http://zhangshuhong888.iask.in:8989/休息声音_1.3.1.apk",
-    "privacy":"",
-    "announce":"",
     "updatedescription":"",
     "icon":"",
+    "back":"",
     "isforce":false
 }
 ]

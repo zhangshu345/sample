@@ -14,7 +14,7 @@
     "notificationsurl":"",
     "lineme":"",
     "messagesurl":"",
-    "historys":"",
+    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小白闹钟天气/apphistory.json",
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,

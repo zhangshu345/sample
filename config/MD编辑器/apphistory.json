@@ -4,15 +4,10 @@
     "version":"1.3.1",
     "versioni":31,
     "channel":"androidjs",
-    "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "mtaappkey":"AC4WNS79B3ZZ",
-    "bmobappid":"38f53edf777b9fa68717f6b7b237ab24",
-    "jpush":"abf2942acd27a0a2776f3f36",
     "downloadurl":"http://zhangshuhong888.iask.in:8989/keephealth_1.3.1.apk",
-    "privacy":"",
-    "announce":"",
     "updatedescription":"",
     "icon":"",
+    "back":"",
     "isforce":false
 }
 ]

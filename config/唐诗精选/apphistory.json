@@ -4,15 +4,10 @@
     "version":"1.1.0",
     "versioni":10,
     "channel":"androidjs",
-    "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "mtaappkey":"A36UPXD1R6YL",
-    "bmobappid":"efa559e149be1c89b881eef7f478145d",
-    "jpush":"2e12e4e9ce5957e9c98b4d62",
     "downloadurl":"http://zhangshuhong888.iask.in:8989/唐诗精选_1.1.0.apk",
-    "privacy":"",
-    "announce":"",
     "updatedescription":"",
     "icon":"",
+    "back":"",
     "isforce":false
 }
 ]
