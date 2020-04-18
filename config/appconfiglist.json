@@ -156,7 +156,7 @@
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/keephealth/allconfig.json"
 },
 {"name":"MD编辑器",
-    "pkg":"com.xiaobai.shizhong",
+    "pkg":"com.dongdong.markdowneditors",
     "channel":"androidjs",
     "versioni":10,
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
