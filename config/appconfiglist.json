@@ -111,9 +111,9 @@
 {"name":"小强助理",
     "pkg":"com.xiaoqiang.weather",
     "channel":"androidjs",
-    "versioni":30,
+    "versioni":20,
     "icon":"http://img5.anzhi.com/data1/icon/201804/02/com.dongdong.jiantie_33522300_72.png",
-    "version":"1.3.0",
+    "version":"1.2.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小强助理/allconfig.json"
 }

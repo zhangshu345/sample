@@ -4,10 +4,10 @@
     "versioni":10,
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "mtaappkey":"AC4WNS79B3ZZ",
-    "bmobappid":"38f53edf777b9fa68717f6b7b237ab24",
-    "jpush":"512a7413b0e067f07ec1edbf",
-    "downloadurl":"http://39.104.102.154:62204/down/TlconNj9n8fw",
+    "mtaappkey":"AY4L45CDPN5F",
+    "bmobappid":"a88585b1d19147fe1842edcafb6456c7",
+    "jpush":"0a4d3b2e75219ac724632a6a",
+    "downloadurl":"",
     "privacy":"",
     "announce":"",
     "settingdescription":"",
@@ -18,7 +18,7 @@
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":5,
+    "jgnative":3,
     "name":"一个就够",
     "pkg":"com.hongshu.onemore",
     "channel":"androidjs",
@@ -53,7 +53,7 @@
     "rewardvideo":"5041009962657359"
     },
     "toutiao":{
-    "open":true,
+    "open":false,
     "appid":"",
     "nativeid":"",
     "banner600300":"",
@@ -76,7 +76,7 @@
     "nativevideo":""},
     "adview":
     {
-        "open":true,
+        "open":false,
         "appid":"",
         "splash":"",
         "banner":"",
@@ -86,7 +86,7 @@
         "hudong":"" 
     },
     "mintegral":{
-        "open":true,
+        "open":false,
         "appid":"",
         "splash":"",
         "banner":"",
