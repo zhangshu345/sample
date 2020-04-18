@@ -28,9 +28,9 @@
 {"name":"动物的叫声",
     "pkg":"com.pengyu.animalsoundsandphotos",
     "channel":"androidjs",
-    "versioni":30,
+    "versioni":120,
     "icon":"http://img5.anzhi.com/data4/icon/201810/22/com.pengyu.animalsoundsandphotos_32436500_72.png",
-    "version":"1.3.0",
+    "version":"1.6.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/动物的叫声/allconfig.json"
 },
