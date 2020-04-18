@@ -158,9 +158,9 @@
 {"name":"MD编辑器",
     "pkg":"com.xiaobai.shizhong",
     "channel":"androidjs",
-    "versioni":2,
+    "versioni":10,
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
-    "version":"1.0.1",
+    "version":"1.1.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/MD编辑器/allconfig.json"
 }

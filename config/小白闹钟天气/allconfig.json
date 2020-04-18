@@ -18,7 +18,7 @@
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":5,
+    "jgnative":3,
     "name":"小白闹钟天气",
     "pkg":"com.xiaobai.shizhong",
     "channel":"xiaobai",
