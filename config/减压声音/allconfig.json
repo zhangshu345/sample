@@ -5,9 +5,9 @@
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
     "mtaappkey":"AGZ93Y4P4LIQ",
-    "bmobappid":"38f53edf777b9fa68717f6b7b237ab24",
-    "jpush":"512a7413b0e067f07ec1edbf",
-    "downloadurl":"http://39.104.102.154:62204/down/TlconNj9n8fw",
+    "bmobappid":"cde8d15b9a32de51837f8eb469851328",
+    "jpush":"64e6333b3cc591556ae5bae7",
+    "downloadurl":"",
     "privacy":"",
     "announce":"",
     "settingdescription":"",
@@ -77,7 +77,7 @@
     "nativevideo":"945137457"},
     "adview":
     {
-        "open":true,
+        "open":false,
         "appid":"",
          "splash":"",
         "banner":"",
@@ -88,7 +88,7 @@
     },
 
     "mintegral":{
-        "open":true,
+        "open":false,
         "appid":"",
         "splash":"",
         "banner":"",
