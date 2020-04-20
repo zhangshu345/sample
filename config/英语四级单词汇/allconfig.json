@@ -128,7 +128,7 @@
     {"name":"VIP","level":5,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/VIP.json"}
 ],
 "activity":[{"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":true,"coin":10000,"money":0,"event":24,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_login","script":""},
-    {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_finish_parent","script":""},
+    {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},
     {"title":"每日签到","summary":"每日签到，连续签到更有大礼","level":0,"open":true,"coin":100,"money":0,"event":26,"time":1,"interval":0,"finishname":"领取奖励","nofinishname":"签到","icon":"","rewardtype":1,"key":"key_action_day_sign","script":""},
     {"title":"看福利视频","summary":"每日看福利视频，每次可获取100金币，每日100次","level":0,"open":true,"coin":100,"money":0,"event":27,"time":100,"interval":300,"finishname":"领取奖励","nofinishname":"看视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
     {"title":"幸运转盘抽奖","summary":"每日转盘抽奖，轻轻松松中大奖","level":0,"open":true,"coin":100,"money":0,"event":28,"time":100,"interval":600,"finishname":"领取奖励","nofinishname":"去抽奖","icon":"","rewardtype":1,"key":"key_action_reward_luck","script":""},

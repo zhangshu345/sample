@@ -7,7 +7,7 @@
     "mtaappkey":"AC4WNS79B3ZZ",
     "bmobappid":"84a4f1b3f3c78994b61d04a35120e728",
     "jpushkey":"512a7413b0e067f07ec1edbf",
-    "isbmobpush":false,
+    "isbmobpush":true,
     "isjpush":false,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/东东随便_1.3.1.apk",
     "privacy":"",
@@ -132,9 +132,11 @@
 ],
 "activity":[
     {"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":true,"coin":10000,"money":0,"event":24,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_login","script":""},
-    {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_finish_parent","script":""},
-    {"title":"每日签到","summary":"每日签到，连续签到更有大礼","level":0,"open":true,"coin":100,"money":0,"event":26,"time":1,"interval":0,"finishname":"领取奖励","nofinishname":"签到","icon":"","rewardtype":1,"key":"key_action_day_sign","script":""},
-    {"title":"看福利视频","summary":"每日看福利视频，每次可获取100金币，每日100次","level":0,"open":true,"coin":100,"money":0,"event":27,"time":100,"interval":300,"finishname":"领取奖励","nofinishname":"看视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
+    {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},
+    {"title":"每日签到","summary":"每日签到，连续签到更有大礼","level":0,"open":true,"coin":100,"money":0,"event":7,"time":1,"interval":0,"finishname":"领取奖励","nofinishname":"签到","icon":"","rewardtype":1,"key":"key_action_day_sign","script":""},
+    {"title":"看福利视频","summary":"每日看福利视频，每次可获取100金币，每日100次","level":0,"open":true,"coin":100,"money":0,"event":125,"time":100,"interval":300,"finishname":"领取奖励","nofinishname":"看视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
+    {"title":"看广告视频","summary":"每日看广告视频，赚钱海量金币","level":0,"open":true,"coin":100,"money":0,"event":150,"time":100,"interval":300,"finishname":"领取奖励","nofinishname":"看视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
+    
     {"title":"幸运转盘抽奖","summary":"每日转盘抽奖，轻轻松松中大奖","level":0,"open":true,"coin":100,"money":0,"event":28,"time":100,"interval":600,"finishname":"领取奖励","nofinishname":"去抽奖","icon":"","rewardtype":1,"key":"key_action_reward_luck","script":""},
     {"title":"每日分享","summary":"每日分享App给好友，分享到朋友圈，独乐乐不如众乐乐","level":0,"open":true,"coin":100,"money":0,"event":29,"time":5,"interval":1800,"finishname":"领取奖励","nofinishname":"去分享","icon":"","rewardtype":1,"key":"key_action_reward_share","script":""}
 ],
