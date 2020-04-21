@@ -1,5 +1,4 @@
 "ui";
-
 //音乐文件的后缀名
 var musicExts = [".mp3", ".wma", ".rm", ".wav", ".mid", ".ape", ".flac"];
 //扫描路径
@@ -9,6 +8,7 @@ var musicFiles = [];
 
 ui.layout(
     <vertical  bg="#ffffff">
+        <text w="*" h="48dp" textColor="#FF000000" textStyle="bold" textSize="18sp" gravity="center" text="音乐浏览器"></text>
         <list id="files" layout_weight="1">
             <linear bg="?selectableItemBackground">
                 <img src="@drawable/ic_music_note_black_48dp" tint="white" bg="#ff5722" w="50" h="70" margin="16" />

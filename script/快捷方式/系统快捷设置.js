@@ -1,5 +1,6 @@
 "ui";
 importClass(com.hongshu.advice.AdviceManager)
+importClass(com.hongshu.utils.ActivityUtils)
 ui.layout(
     <vertical>
         <appbar>
@@ -23,7 +24,7 @@ ui.layout(
         <horizontal >
         <button id="appmanager" w="auto" h="auto" text="应用管理" />
         <button id="rewardad" w="auto" h="auto" text="创意视频" />
-        <button id="uninstall" w="auto" h="auto" text="应用卸载" />
+        <button id="uninstall" w="auto" h="auto" text="全屏视频" />
         </horizontal>
         <horizontal id="advice" >
 
@@ -62,10 +63,7 @@ var admanager=AdviceManager.getInstance();
 //     eval(str)
 // })
 ui.uninstall.on("click",function(){
-    threads.start(function(){
-        ss=httpget("https://gitee.com/zhangshu345012/sample/blob/v1/script/工具/音乐浏览器.js")
-        engines.execScript("音乐浏览器",ss ,{} )
-    })
+   admanager.showFullVideo(ActivityUtils.getActivityByContext(context),null)
 
 })
 

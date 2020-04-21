@@ -220,19 +220,29 @@ while(true){
         滑动(20,13,16,10,4,500,500)
         回到刷宝视频页()
         滑动次数=滑动次数+1
-        sleepr(8000*ratio,12000*ratio)
+        sleepr(5000*ratio,10000*ratio)
         下滑()
-        sleepr(8000*ratio,12000*ratio)
+        sleepr(5000*ratio,10000*ratio)
         滑动次数=滑动次数+1
         c=c+1
     }
     textclick("等待")
     视频次数=视频次数+1
-    sleepr(8000*ratio,12000*ratio)
-    滑动(20,13,16,10,4,500,500)
+    滑动(20,13,17,10,4,500,500)
     滑动次数=滑动次数+1
     视频次数=视频次数+1
-    sleepr(8000*ratio,12000*ratio)
+    sleepr(6000*ratio,1000*ratio)
+   if(device.getBattery()<15){
+       toastLog("电量低")
+       if(device.isCharging()){
+        device.setMusicVolume(0)
+        device.setBrightnessMode(0)
+        device.setBrightness(0)
+       }else{
+           sleep(1800000)
+       }
+       
+   }
 }
 
 
