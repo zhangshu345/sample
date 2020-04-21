@@ -1,19 +1,36 @@
 "ui";
+importClass(com.hongshu.advice.AdviceManager)
 ui.layout(
     <vertical>
         <appbar>
             <toolbar id="toolbar" title="系统快速设置"/>
         </appbar>
-        <button id="devicemanger" w="auto" h="auto" text="设备管理" />
-        <button id="floaty" w="auto" h="auto" text="悬浮" />
-        <button id="accessibility" w="auto" h="auto" text="无障碍" />
-        <button id="usagestate" w="auto" h="auto" text="使用情况" />
-        <button id="input" w="auto" h="auto" text="输入法" />
-        <button id="wifi" w="auto" h="auto" text="WIFI" />
-        <button id="vpn" w="auto" h="auto" text="VPN" />
-        <button id="developer" w="auto" h="auto" text="开发者选项" />
-        <button id="lang" w="auto" h="auto" text="显示语音" />
+        <horizontal >  
+            <button id="devicemanger" w="auto" h="auto" text="设备管理" />
+            <button id="floaty" w="auto" h="auto" text="悬浮" />
+            <button id="accessibility" w="auto" h="auto" text="无障碍" />
+         </horizontal>
+        <horizontal >
+            <button id="usagestate" w="auto" h="auto" text="使用情况" />
+            <button id="input" w="auto" h="auto" text="输入法" />
+            <button id="wifi" w="auto" h="auto" text="WIFI" />
+        </horizontal>
+        <horizontal > 
+            <button id="vpn" w="auto" h="auto" text="VPN" />
+            <button id="developer" w="auto" h="auto" text="开发者选项" />
+            <button id="lang" w="auto" h="auto" text="显示语音" />
+        </horizontal>
+        <horizontal >
         <button id="appmanager" w="auto" h="auto" text="应用管理" />
+        <button id="rewardad" w="auto" h="auto" text="创意视频" />
+        <button id="uninstall" w="auto" h="auto" text="应用卸载" />
+        </horizontal>
+        <horizontal id="advice" >
+
+        </horizontal>
+       
+       
+      
    </vertical>
 );
 function httpget(url) {
@@ -24,7 +41,7 @@ function httpget(url) {
         return ""
     }
 }
-
+var admanager=AdviceManager.getInstance();
 
 // var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 
@@ -44,6 +61,24 @@ function httpget(url) {
 //     //log(str)
 //     eval(str)
 // })
+ui.uninstall.on("click",function(){
+    threads.start(function(){
+        ss=httpget("https://gitee.com/zhangshu345012/sample/blob/v1/script/工具/音乐浏览器.js")
+        engines.execScript("音乐浏览器",ss ,{} )
+    })
+
+})
+
+ui.emitter.on("create",function(){
+    admanager.showNative(context,ui.advice,null)
+ })
+
+ui.emitter.on("resume",function(){
+   admanager.showNative(context,ui.advice,null)
+})
+ui.rewardad.on("click",function(){
+   admanager.showRewardVideoAd(context,null)
+})
 
 ui.lang.on("click",function(){
     tolanguagesetting()
@@ -53,7 +88,7 @@ ui.lang.on("click",function(){
 }) 
 
 ui.devicemanger.on("click",function(){
-todeviceadmin()
+    todeviceadmin()
 })
 
 ui.floaty.on("click",function(){
