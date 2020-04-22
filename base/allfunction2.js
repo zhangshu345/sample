@@ -82,12 +82,12 @@ var  creatgfloatywindow=function(){
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-              <vertical  w="90" h="90" margin="5dp">
+              <vertical  w="90" h="90" >
               <text id="stop" w="45" h="45" gravity="center" textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
               <text id="coll" w="48" h="45" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
          
-            <vertical  w="70" h="90" >
+            <vertical  w="80" h="90" >
             <horizontal  >
                     <text id="jiasu" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff" >加速</text>
                      <text id="jiansu" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff">减速</text>
