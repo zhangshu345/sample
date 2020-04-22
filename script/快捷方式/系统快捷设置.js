@@ -10,30 +10,29 @@ ui.layout(
             <button id="devicemanger" w="auto" h="auto" text="设备管理" />
             <button id="floaty" w="auto" h="auto" text="悬浮" />
             <button id="accessibility" w="auto" h="auto" text="无障碍" />
+            <button id="usagestate" w="auto" h="auto" text="使用情况" />
+            
          </horizontal>
         <horizontal >
-            <button id="usagestate" w="auto" h="auto" text="使用情况" />
+            <button id="developer" w="auto" h="auto" text="开发者选项" />
             <button id="input" w="auto" h="auto" text="输入法" />
             <button id="wifi" w="auto" h="auto" text="WIFI" />
+            <button id="vpn" w="auto" h="auto" text="VPN" />
         </horizontal>
         <horizontal > 
-            <button id="vpn" w="auto" h="auto" text="VPN" />
-            <button id="developer" w="auto" h="auto" text="开发者选项" />
+             <button id="appmanager" w="auto" h="auto" text="应用管理" />
+            <button id="rewardad" w="auto" h="auto" text="创意视频" />
+            <button id="uninstall" w="auto" h="auto" text="全屏视频" />
             <button id="lang" w="auto" h="auto" text="显示语音" />
         </horizontal>
         <horizontal >
-        <button id="appmanager" w="auto" h="auto" text="应用管理" />
-        <button id="rewardad" w="auto" h="auto" text="创意视频" />
-        <button id="uninstall" w="auto" h="auto" text="全屏视频" />
+            <button id="exit" w="auto" h="auto" text="退出" />  
         </horizontal>
         <horizontal id="advice" >
-
         </horizontal>
-       
-       
-      
    </vertical>
 );
+
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -43,46 +42,28 @@ function httpget(url) {
     }
 }
 var admanager=AdviceManager.getInstance();
-
-// var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
-
-// var mainfunction
-// const mainemitter=events.emitter()
-// threads.start(function(){
-//     var  mainfunction=httpget(公共函数url)
-//     if (mainfunction != "") {
-//         mainemitter.emit("evelmainfun",mainfunction)
-//      log("公共函数实例化成功")
-//         }else {
-//          log("公共函数实例化失败,程序返回")
-//         }
-// } )
-// mainemitter.once("evelmainfun",function(str){
-//     toastLog("开始初始化主函数")
-//     //log(str)
-//     eval(str)
-// })
 ui.uninstall.on("click",function(){
-   admanager.showFullVideo(ActivityUtils.getActivityByContext(context),null)
-
+   admanager.showFullVideo(ui.rewardad.getContext(),null)
 })
+admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
 
-ui.emitter.on("create",function(){
-    admanager.showNative(context,ui.advice,null)
- })
 
 ui.emitter.on("resume",function(){
-   admanager.showNative(context,ui.advice,null)
+   admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
 })
 ui.rewardad.on("click",function(){
-   admanager.showRewardVideoAd(context,null)
+   admanager.showRewardVideoAd(ui.rewardad.getContext(),null)
 })
 
 ui.lang.on("click",function(){
     tolanguagesetting()
 })
+ui.exit.on("click",function(){
+    ui.finish()
+    exit()
+})
  ui.appmanager.on("click",function(){
-        toappmanagesetting()
+    toappmanagesetting()
 }) 
 
 ui.devicemanger.on("click",function(){
@@ -135,8 +116,7 @@ var  tofloatysetting=function(){
       });
       context.startActivity(i);
   }
- 
-  
+   
  var toPkgandClass=function(pkg,classname){
          let i = app.intent({
               packageName: pkg,

@@ -9,6 +9,12 @@ importClass(org.jsoup.nodes.Element)
 importClass(android.net.Uri)
 importClass(com.hongshu.utils.IntentUtils)
 importClass(com.hongshu.utils.SPUtils)
+importClass(android.graphics.Bitmap)
+importClass(com.king.zxing.util.CodeUtils)
+importClass(com.hongshu.utils.KeyboardUtils)
+importClass(com.hongshu.advice.AdviceManager)
+importClass(com.hongshu.utils.ActivityUtils)
+var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -17,7 +23,6 @@ var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
 var onlyscript=true
-
 var enablegenius=device.sdkInt>=24
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
@@ -87,7 +92,7 @@ var  creatsetfloatywindow=function(){
               <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
          
-            <vertical  w="80" h="90" >
+            <vertical  w="90" h="90" >
             <horizontal  >
                     <text id="jiasu" w="35" h="35" textColor="#000000" textSize="16sp" background="#ffffff" >加速</text>
                      <text id="jiansu" w="35" h="35"  textColor="#000000" textSize="16sp" background="#ffffff">减速</text>
@@ -158,8 +163,6 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
-
-
 var show=function(txt){
     log(txt)
     if(!gfw){
@@ -887,7 +890,6 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
             top=starty
             bottom=endy
         }
-
         var w = boundsContains(left, top, right,bottom).scrollable().findOne();
         if(w){
             if(startx<endx){
@@ -982,15 +984,15 @@ var firstrunapp=function(appname){
     允许启动文字=['允许',"确定","始终允许","打开"]
     cfirsti=0
     while(cfirsti<5){
-        if(currentPackage()==packagename){
+        if(idContains(packagename).findOne()){
             show(packagename+" 在前台："+currentPackage())
-      
             return true
         }else{
             show(packagename+" 不在在前台："+currentPackage())
             app.launchPackage(packagename)
+            sleep(2000)
         }
-        sleep(2000)
+        
         clicktexts(允许启动文字)
         cfirsti=cfirsti+1
     }
@@ -1014,7 +1016,6 @@ var firstrunapppackage=function(packagename){
         clicktexts(允许启动文字)
         i=i+1
     }
-  
     return true
 }
 
@@ -1090,13 +1091,10 @@ function downloadApk(name,url,isinstall) {
 
  function install_app(filePath, name) {
      ////--------------安装--------------////
-     //  读取 apk
      if(filePath){
         installapp(filePath)
      }
-    
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-   
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
@@ -1123,7 +1121,6 @@ function downloadApk(name,url,isinstall) {
                     }
                 }
             }
-            
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
              toast("安全保护安全保护安全保护")
@@ -1154,10 +1151,8 @@ function downloadApk(name,url,isinstall) {
      back()
      sleep(1000)
  }
- 
 
  var checkinstallapp=function(){
-    
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -1169,7 +1164,6 @@ function downloadApk(name,url,isinstall) {
          }
      })
   }
-  
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
     appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
@@ -1178,9 +1172,6 @@ function downloadApk(name,url,isinstall) {
         downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
     }
 }
-
-
-
 //关闭其他应用
 var stopOtherScript=function(){
     var thisengs=engines.myEngine()
@@ -1191,8 +1182,6 @@ var stopOtherScript=function(){
         }
     })
 }
-
-
 var startallapp=function(){
     var appconfig=httpget(rewardapplisturl)
      apps=JSON.parse(appconfig)
@@ -1217,14 +1206,20 @@ var startallapp=function(){
         }
     })
 }
-
-
-var phone=function(){
+var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
-    return pnumber
+     if(!pnumber){
+         pnumber=spt.getString("phonenumber")
+     }
+     if(pnumber){
+         return pnumber
+     }else{
+         return null
+     }
 }
+
 //本地配置启用脚本
 var localstartallapp = function(){
     addbmobchannel("hongshuyuedu")
@@ -1234,7 +1229,6 @@ var localstartallapp = function(){
         log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(rewardapplisturl)
         apps=JSON.parse(appconfig)
-        
     }
     apps.forEach(app =>{
       if(last){
@@ -1246,7 +1240,6 @@ var localstartallapp = function(){
         if(!getPackageName(app.name)){
             log("没有安装："+app.name)
             downloadandinstallapp(app.name,app.package)
-          
         }
         if(app.scripturl && getPackageName(app.name)){
             log(app.name+":云端url脚本存在："+app.scripturl)
@@ -1266,16 +1259,8 @@ var localstartallapp = function(){
       }
     })
 }
-    
 var clickscreencapture=function(){
-    while(true){
-        if(clicktexts(["不再提醒","不在显示"])){
-        }
-       if(textclick("立即开始")){
-            break
-       }
-        sleep(2000)
-    }
+    while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
 
 var checkscreencapture=function(){
@@ -1303,19 +1288,13 @@ while(System.currentTimeMillis()-runstarttime<runtime){
         app.launchPackage(runapppkg)
         sleep(5000)
     }
-
-
-
 }
-
-
 }
 
 var isNotificationManager=function(){
     importClass(com.hongshu.utils.PermissionUtils);
     return PermissionUtils.isnotificationListenerEnable()
 }
-
 
 var toNotificationManager=function(){
     // importClass(com.hongshu.utils.IntentUtils);
@@ -1337,7 +1316,6 @@ var bmobpushmessage=function(channels,message){
     importClass(com.hongshu.bmob.push.BmobPushUtils)
     BmobPushUtils.pushmessage(channels,message)
 }
-
 
 //启动deviceadmin
 var startdeviceadmin=function(){

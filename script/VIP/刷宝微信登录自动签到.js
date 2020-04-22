@@ -12,7 +12,7 @@ function httpget(url) {
 
 滑动次数=0
 floaty.closeAll()
-engines.stopOther()
+//engines.stopOther()
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -23,7 +23,7 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-
+weixinlogin=true
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
@@ -31,6 +31,14 @@ var 刷宝包名="com.jm.video"
 var 刷宝首页="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
 show("开始刷宝短视频辅助滑动")
+if(app.getPackageName("微信")){
+    weixinlogin=true
+}else{
+    weixinlogin=false
+}
+if(spt.get)
+
+
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
 home()
@@ -194,11 +202,10 @@ while(true){
             textclick("推荐")
             sleep(1500)
         }
-        if( textclick("等待")){
-            sleep(1000)
-        }
-
-      if(textclick("领取",500,0,0,150,150)){
+       if( textclick("等待")){
+           sleep(1000)
+       }
+       if(textclick("领取",500,0,0,150,150)){
            sleep(1500)
            textclick("继续看视频")
        }
