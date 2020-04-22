@@ -31,11 +31,8 @@ log("公共函数实例化失败,程序返回")
 }
 
 toastLog("开始自动安装应用")
-const installfiles=[""
-,"","","",""
-,"","",,""
-,"","",""
-,"","","",""]
+device.wakeUpIfNeeded()
+const installfiles=[]
 installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHealth"})
 installfiles.push({    "filename":"MD编辑器_1.1.0.apk",    "appname":"MD编辑器"})
 installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHealth"})
@@ -63,7 +60,6 @@ installfiles.forEach(f=>{
         if(!app.getPackageName(f.appname)){
             install_app(filePath)
         }
-        
     }else{
         toastLog("本地没有找到从网络端下载")
     }
