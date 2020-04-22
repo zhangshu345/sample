@@ -23,7 +23,7 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-
+gfw.setPosition(0,180)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
@@ -37,7 +37,6 @@ home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,刷宝包名)
-   
 }
 刷宝邀请()
 toastLog("刷宝邀请完成")
@@ -198,9 +197,11 @@ while(true){
             sleep(1000)
         }
 
-      if(textclick("领取",500,0,0,150,150)){
+      if(textclick("点击领取",500,0,0,200,180)){
            sleep(1500)
            textclick("继续看视频")
+       }else{
+           log("")
        }
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){

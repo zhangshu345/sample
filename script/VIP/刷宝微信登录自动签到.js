@@ -36,7 +36,7 @@ if(app.getPackageName("微信")){
 }else{
     weixinlogin=false
 }
-if(spt.get)
+
 
 
 creatsetfloatywindow()  //创建设置悬浮窗
