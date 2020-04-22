@@ -1270,7 +1270,7 @@ var checkscreencapture=function(){
        log("等待截屏")
    }
 }
-
+//运行广告app
 var runad=function(appname){
     if(!getPackageName(appname)){
         return false 
@@ -1549,11 +1549,11 @@ var getAppdownloadurlbyInfopage=function(infourl){
     }
 }
 
-// downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
-//clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
-// log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
+
+ //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 // alltest()
 // device.setMusicVolume(0)
 // maytextclick("查看领取")
 
+// log("手机号："+phonenumber())

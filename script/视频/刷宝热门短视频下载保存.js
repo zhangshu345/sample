@@ -12,7 +12,7 @@ function httpget(url) {
 
 滑动次数=0
 floaty.closeAll()
-//engines.stopOther()
+engines.stopOther()
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -25,8 +25,11 @@ log("公共函数实例化失败,程序返回")
 }
 show("开始刷宝短视频辅助滑动")
 gfw.setPosition(0,220)
-device.setMusicVolume(0)
 device.wakeUpIfNeeded()
+var videofilename=dialogs.input("下载热门短视频 设置 统计文本保存文件名 比如 刷宝热门短视频.txt  该文本将会保存在存储根目录下 ","刷宝热门短视频.txt");
+
+
+
 toastLog("自动设置音量为0")
 var 刷宝包名="com.jm.video"
 var 刷宝首页="com.jm.video.ui.main.MainActivity"
@@ -200,9 +203,7 @@ while(true){
         if( textclick("等待")){
             sleep(1000)
         }
-        if(idclick("com.jm.video:id/tt_top_skip")){
-            log("穿山甲广告页面")
-        }
+    
     
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
@@ -231,7 +232,15 @@ while(true){
                               if(comment.text().includes("万")||parseInt(comment.text())>1000){
                                   log('评论过千了')
                                 id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));if(target){clicknode(target);}});
-                              }
+                                sleep(1000)
+
+                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("share")); if(target){clicknode(target);} });
+                                id("share_dialog_text").waitFor()
+                                if(textclick("保存到相册")){
+
+                                }
+                            
+                            }
                           }else{
                               log("没有人评论")
                           }

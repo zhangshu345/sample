@@ -12,7 +12,7 @@ function httpget(url) {
 
 滑动次数=0
 floaty.closeAll()
-//engines.stopOther()
+engines.stopOther()
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -162,7 +162,15 @@ var 刷宝登录=function(){
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意","同意并继续"],500,1500)
+        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+       if(id("login_tip").exists()){
+         loginet=  id("com.jmvideo:id/login_edit").findOne(500)
+         if(loginet.setText(phonenumber())){
+            id("com.jm.video:id/btn_login").waitFor()
+            //id("com.jm.video:id/btn_login").findOne().click()
+            toastLog("最后一步了")
+         }
+       }
         // 
         i=i+1
     }
@@ -181,7 +189,7 @@ while(true){
             app.launch(apppkg)
             sleep(3000)
             i=0
-            clickonetexts(["首页","推荐","等待"],1500,1500)
+            clickonetexts(["首页","推荐","等待"],500,1500)
             
         }else{
             回到刷宝视频页()
@@ -203,7 +211,15 @@ while(true){
         if(idclick("com.jm.video:id/tt_top_skip")){
             log("穿山甲广告页面")
         }
-    
+        if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
+            toastLog("穿山甲广告页面")
+        }
+      if(textclick("点击领取",500,0,0,200,180)){
+           sleep(1500)
+           textclick("继续看视频")
+       }else{
+           log("")
+       }
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             lastdesc=desc.text()
@@ -252,15 +268,6 @@ while(true){
     //        min= seekbar.getMin()
     //        toastLog("progress:"+progress+"\n min:"+min+"\nmax:"+max)
     //    }
-        if(滑动次数%20==1){
-            if(idclick("home_page_time_reward_circleView")){
-                sleepr(1500)
-                textclick("继续看视频领取")
-                sleepr(1000)
-            }
-           
-           
-        }
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){

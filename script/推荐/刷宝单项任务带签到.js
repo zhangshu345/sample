@@ -24,6 +24,7 @@ log("公共函数实例化成功")
 log("公共函数实例化失败,程序返回")
 }
 show("开始刷宝短视频辅助滑动")
+
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
@@ -200,13 +201,8 @@ while(true){
         if( textclick("等待")){
             sleep(1000)
         }
-
-      if(textclick("点击领取",500,0,0,200,180)){
-           sleep(1500)
-           textclick("继续看视频")
-       }else{
-           log("")
-       }
+    
+    
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             lastdesc=desc.text()
@@ -255,6 +251,15 @@ while(true){
     //        min= seekbar.getMin()
     //        toastLog("progress:"+progress+"\n min:"+min+"\nmax:"+max)
     //    }
+        if(滑动次数%20==1){
+            if(idclick("home_page_time_reward_circleView")){
+                sleepr(1500)
+                textclick("继续看视频领取")
+                sleepr(1000)
+            }
+           
+           
+        }
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){
@@ -271,8 +276,7 @@ while(true){
         }
 
     }
-   
-  
+
 }
 
 
