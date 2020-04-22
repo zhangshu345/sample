@@ -1286,6 +1286,30 @@ var checkscreencapture=function(){
    }
 }
 
+var runad=function(appname){
+    if(!getPackageName(appname)){
+        return false 
+    }
+
+app.launchApp(appname)
+runapppkg=app.getPackageName(appname)
+runappisfirst=getbooleanvalue(appname+"_firstrun")
+sleep(2000)
+runtime=random(5,10)*60*1000
+runstarttime=System.currentTimeMillis()
+toastLog("当前运行app："+appname+"--包名:"+runapppkg+"\n当前时间："+runstarttime+"--计划运行时间:"+runtime)
+while(System.currentTimeMillis()-runstarttime<runtime){
+    if(!idContains(runapppkg).findOne(1000)){
+        app.launchPackage(runapppkg)
+        sleep(5000)
+    }
+
+
+
+}
+
+
+}
 
 var isNotificationManager=function(){
     importClass(com.hongshu.utils.PermissionUtils);
