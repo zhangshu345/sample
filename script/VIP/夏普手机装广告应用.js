@@ -31,20 +31,42 @@ log("公共函数实例化失败,程序返回")
 }
 
 toastLog("开始自动安装应用")
-const installfiles=["KeepHealth_1.3.1.apk"
-,"MD编辑器_1.1.0.apk","宝宝常识_2.1.4.apk","东东随便_1.3.1.apk","东览_1.1.0.apk"
-,"动物的叫声_1.6.0.apk","儿童绘画板_1.3.0.apk","减压声音_1.3.1.apk","冥想音乐_1.1.0.apk"
-,"随便粘_1.3.1.apk","唐诗精选_1.2.1.apk","唐诗宋词集合_1.1.1.apk","小白闹钟天气_1.1.0.apk"
-,"小白日历_1.1.0.apk","小强助理_1.2.0.apk","休息声音_5.8.8.apk","一个就够_1.1.0.apk","英语四级单词汇_1.1.0.apk"]
+const installfiles=[""
+,"","","",""
+,"","",,""
+,"","",""
+,"","","",""]
+installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHealth"})
+installfiles.push({    "filename":"MD编辑器_1.1.0.apk",    "appname":"MD编辑器"})
+installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHealth"})
+installfiles.push({    "filename":"宝宝常识_2.1.4.apk",    "appname":"宝宝常识"})
+installfiles.push({    "filename":"东东随便_1.3.1.apk",    "appname":"东东随便"})
+installfiles.push({    "filename":"东览_1.1.0.apk",    "appname":"东览"})
+installfiles.push({    "filename":"动物的叫声_1.6.0.apk",    "appname":"动物的叫声"})
+installfiles.push({    "filename":"儿童绘画板_1.3.0.apk",    "appname":"儿童绘画板"})
+installfiles.push({    "filename":"减压声音_1.3.1.apk",    "appname":"减压声音"})
+installfiles.push({    "filename":"冥想音乐_1.1.0.apk",    "appname":"冥想音乐"})
+installfiles.push({    "filename":"唐诗精选_1.2.1.apk",    "appname":"唐诗精选"})
+installfiles.push({    "filename":"唐诗宋词集合_1.1.1.apk",    "appname":"唐诗宋词集合_1.1.1.apk"})
+installfiles.push({    "filename":"小白闹钟天气_1.1.0.apk",    "appname":"小白闹钟天气"})
+installfiles.push({    "filename":"小白日历_1.1.0.apk",    "appname":"小白日历"})
+installfiles.push({    "filename":"小强助理_1.2.0.apk",    "appname":"小强助理"})
+installfiles.push({    "filename":"休息声音_5.8.8.apk",    "appname":"休息声音"})
+installfiles.push({    "filename":"英语四级单词汇_1.1.0.apk",    "appname":"英语四级单词汇"})
+installfiles.push({    "filename":"一个就够_1.1.0.apk",    "appname":"一个就够"})
+
 file_path_root = files.getSdcardPath()
 installfiles.forEach(f=>{
-       
-    filePath = file_path_root + "/" + f
+    filePath = file_path_root + "/" + f.filename
     if(files.exists(filePath)){
         toastLog("开始安装应用"+f)
-        install_app(filePath)
+        if(!app.getPackageName(f.appname)){
+            install_app(filePath)
+        }
+        
     }else{
         toastLog("本地没有找到从网络端下载")
     }
 })
+
 
