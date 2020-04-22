@@ -84,7 +84,7 @@ var  creatsetfloatywindow=function(){
         <horizontal clickable="false" >
               <vertical  w="90" h="90" >
               <text id="stop" w="auto" h="45" gravity="center" textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
-              <text id="coll" w="auto" h="a45" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
+              <text id="coll" w="auto" h="45" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
          
             <vertical  w="80" h="90" >
