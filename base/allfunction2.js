@@ -1111,6 +1111,19 @@ function downloadApk(name,url,isinstall) {
                   control_click(3,"向上导航")
               }
             }
+            //夏普手机的禁止安装
+            if(device.brand=="DOCOMO"){
+                if(text("出于安全考虑，已禁止您的手机安装来自此来源的未知应用").exists()){
+                    if(textclick("设置")){
+                        sleep(2000)
+                        if(textclick("允许来自此来源的应用")){
+                            sleep(500)
+                            back()
+                        }
+                    }
+                }
+            }
+            
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
              toast("安全保护安全保护安全保护")
