@@ -83,8 +83,8 @@ var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
               <vertical  w="90" h="90" margin="5dp">
-              <text id="stop" w="45" h="48" gravity="center" textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
-              <text id="coll" w="48" h="48" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
+              <text id="stop" w="45" h="45" gravity="center" textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
+              <text id="coll" w="48" h="45" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
          
             <vertical  w="70" h="90" >
