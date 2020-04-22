@@ -1172,28 +1172,14 @@ function downloadApk(name,url,isinstall) {
   
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
-
     appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){
         log("应用详情：获取成功")
         downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
     }
-
-    // var appconfiglist=httpget(rewardapplisturl)
-    // var apps=JSON.parse(appconfiglist)
-    // var isok=false
-    //    apps.forEach(app => {
-    //       show("name:"+app.name+"package:"+app.package)
-    //          if(app.name==name){
-    //             isok=true
-    //               if(!getPackageName(app.name)){
-    //                 downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
-    //              }
-    //          }
-    //     }
- 
-    // )
 }
+
+
 
 //关闭其他应用
 var stopOtherScript=function(){

@@ -62,6 +62,7 @@ installfiles.forEach(f=>{
         }
     }else{
         toastLog("本地没有找到从网络端下载")
+        downloadApk(f.appname,"http://zhangshuhong888.iask.in:8989/"+f.filename,true)
     }
 })
 
