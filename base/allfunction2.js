@@ -82,19 +82,19 @@ var  creatgfloatywindow=function(){
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-              <vertical  w="80" h="80" >
-              <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#99ff0000" margin="5">设置</text>
-              <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#99ff0000" margin="5" >收缩</text>
+              <vertical  w="90" h="90" margin="5dp">
+              <text id="stop" w="45" h="48" gravity="center" textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
+              <text id="coll" w="48" h="48" gravity="center" textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
          
-            <vertical  w="60" h="60" >
-            <horizontal >
-                    <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#99000000" >加速</text>
-                     <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#99000000">减速</text>
+            <vertical  w="70" h="90" >
+            <horizontal  >
+                    <text id="jiasu" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff" >加速</text>
+                     <text id="jiansu" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff">减速</text>
             </horizontal>
             <horizontal >
-                    <text id="jl" w="30" h="30" gravity="center" textSize="14sp" background="#99000000" >节流+</text>
-                     <text id="nojl" w="30" h="30" gravity="center" textSize="14sp" background="#99000000">正常</text>
+                    <text id="jl" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff" >节流+</text>
+                     <text id="nojl" w="35" h="35" gravity="center" textColor="#000000" textSize="16sp" background="#ffffff">正常</text>
             </horizontal>
             </vertical>
            

@@ -99,11 +99,11 @@
         "native":"",
         "rewardvideo":""
     }
- 
 }
 ,
 "tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/限免.json","img":""},
     {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},
+    {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/快捷方式.json"},
     {"name":"热门","level":0,"desc":"热门使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/热门.json"},
     {"name":"应用","level":0,"desc":"本机App操作集合:卸载,安装，备份，查看信息，分享，禁止安装，图标提取，意图过滤，定时启动，定时关闭，冻结，解冻","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/应用.json"},
     {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/工具.json"},
@@ -113,7 +113,7 @@
     {"name":"系统","level":0,"desc":"系统快捷设置","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/系统.json"},
     {"name":"悬浮窗","level":0,"desc":"悬浮快捷方式，提醒，护眼模式，悬浮小工具，悬浮app","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/悬浮窗.json"},
     {"name":"网络","level":0,"desc":"省流量，加速，应用联网管理","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/网络.json"},
-    {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/快捷方式.json"},
+  
     {"name":"资讯","level":0,"desc":"搜索全网新闻，资讯订阅，资讯备份，资讯笔记，资讯大数据分析","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/资讯.json"},
     {"name":"游戏","level":0,"desc":"休闲小游戏","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/游戏.json"},
     {"name":"娱乐","level":0,"desc":"搞笑，开心娱乐相关的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/娱乐.json"},

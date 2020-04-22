@@ -159,7 +159,7 @@ var 刷宝登录=function(){
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1000)
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1500)
         // 
         i=i+1
     }
@@ -168,6 +168,8 @@ var 刷宝登录=function(){
 if(!getbooleanvalue("shuabaologin")){
     show("刷宝没有登录过")
     刷宝登录()
+}else{
+    show("刷宝之前登陆过")
 }
 刷宝签到()
 while(true){
@@ -176,73 +178,43 @@ while(true){
             app.launch(apppkg)
             sleep(3000)
             i=0
-            while(i<10){
-                i=i+1
-                if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-                    if(!idContains(apppkg).findOne(1000)){
-                        log("找到存在包名id控件")
-                        app.launch(apppkg)
-                        sleep(3000)
-                    }else{
-                        back()
-                        sleep(2000)
-                    }
-                  
+            clickonetexts(["首页","推荐","等待"],1500,1500)
+            
+        }else{
+            back()
+            sleep(1500)
+        }
+    
+        
+    }else{
+        if(id(刷宝视频恭喜获取关闭按钮id).exists()){
+            back()
+            sleep(1500)
+            textclick("首页")
+            sleep(1500)
+            textclick("推荐")
+            sleep(1500)
+        }
+        textclick("等待")
+        滑动(20,13,17,10,4,500,500)
+        滑动次数=滑动次数+1
+        sleepr(6000*ratio,10000*ratio)
+        if(滑动次数%10==1){
+            if(device.getBattery()<15){
+                toastLog("电量低")
+                if(device.isCharging()){
+                 device.setMusicVolume(0)
+                 device.setBrightnessMode(0)
+                 device.setBrightness(0)
                 }else{
-                    break
-                }
-                if(text("首页").exists()){
-                    textclick("首页")
-                    textclick("推荐")
+                    sleep(1800000)
                 }
             }
         }
-        back()
-        sleep(1500)
-        clickonetexts(["首页","推荐","等待"])
+
     }
-    if(id(刷宝视频恭喜获取关闭按钮id).exists()){
-        back()
-        sleep(1000)
-        textclick("首页")
-        sleep(1000)
-        textclick("推荐")
-        sleep(2000)
-    }
-    c=1
-    if(!idContains(apppkg).findOne(1000)){
-        app.launch(apppkg)
-        sleep(3000)
-        i=0
-    }
-    while(c<视频重复次数){
-        textclick("等待")
-        滑动(20,13,16,10,4,500,500)
-        回到刷宝视频页()
-        滑动次数=滑动次数+1
-        sleepr(5000*ratio,10000*ratio)
-        下滑()
-        sleepr(5000*ratio,10000*ratio)
-        滑动次数=滑动次数+1
-        c=c+1
-    }
-    textclick("等待")
-    视频次数=视频次数+1
-    滑动(20,13,17,10,4,500,500)
-    滑动次数=滑动次数+1
-    视频次数=视频次数+1
-    sleepr(6000*ratio,1000*ratio)
-   if(device.getBattery()<15){
-       toastLog("电量低")
-       if(device.isCharging()){
-        device.setMusicVolume(0)
-        device.setBrightnessMode(0)
-        device.setBrightness(0)
-       }else{
-           sleep(1800000)
-       }
-       
-   }
+   
+  
 }
 
 
