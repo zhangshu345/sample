@@ -184,8 +184,7 @@ while(true){
             back()
             sleep(1500)
         }
-    
-        
+            
     }else{
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
             back()
