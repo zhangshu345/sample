@@ -23,14 +23,15 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-gfw.setPosition(0,180)
+show("开始刷宝短视频辅助滑动")
+gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 var 刷宝包名="com.jm.video"
 var 刷宝首页="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
-show("开始刷宝短视频辅助滑动")
+
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
 home()
@@ -69,6 +70,9 @@ var 回到刷宝视频页=function(){
             textclick("首页")
             sleep(1000)
             textclick("推荐")
+        }
+        if(textclick("同意并继续")){
+
         }
     }else{
         return true
@@ -158,7 +162,7 @@ var 刷宝登录=function(){
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意"],1000,1500)
+        clicktexts(["去授权","允许","允许","允许","我","微信账号登录","同意","同意并继续"],500,1500)
         // 
         i=i+1
     }
@@ -208,9 +212,8 @@ while(true){
             lastdesc=desc.text()
             log("当前："+lastdesc)
         }
-        滑动(20,13,16,10,4,500,700)
-        sleep(2000)
-        
+            滑动(20,13,16,10,4,500,700)
+            sleep(2000)
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             currentdesc=desc.text()
@@ -253,7 +256,7 @@ while(true){
     //        toastLog("progress:"+progress+"\n min:"+min+"\nmax:"+max)
     //    }
         滑动次数=滑动次数+1
-        sleepr(4000*ratio,8000*ratio)
+        sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<15){
                 toastLog("电量低")
