@@ -195,9 +195,57 @@ while(true){
             sleep(1500)
         }
         textclick("等待")
-        滑动(20,13,17,10,4,500,500)
+        desc=  id("com.jm.video:id/desc").findOne(1000)
+        if(desc){
+            lastdesc=desc.text()
+            log("当前："+lastdesc)
+        }
+        滑动(20,13,16,10,4,500,700)
+        sleep(2000)
+        
+        desc=  id("com.jm.video:id/desc").findOne(1000)
+        if(desc){
+            currentdesc=desc.text()
+            log("之前："+lastdesc+"--当前："+currentdesc)
+            if(currentdesc==lastdesc){
+                滑动(20,13,16,10,4,500,700)
+                sleep(1000)
+            }else{
+                like=id("com.jm.video:id/text_view").findOne(500)
+                if(like){
+                    tlike=like.text()
+                    if(tlike){
+                       if (tlike.includes("万")){
+                           log("喜欢过万")
+                        comment= id("com.jm.video:id/comment").findOne()
+                        if(comment){
+                          if(comment.text()!="评论"){
+                              if(comment.text().includes("万")||parseInt(comment.text())>1000){
+                                  log('评论过千了')
+                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));if(target){clicknode(target);}});
+                              }
+                          }else{
+                              log("没有人评论")
+                          }
+                        }
+                       }
+                    }
+                }
+            }
+        }else{
+            滑动(20,13,16,10,4,500,700)
+            sleep(1000)
+        }
+     
+    //    seekbar=id("com.jm.video:id/seek_bar").findOne(1000)
+    //    if(seekbar){
+    //        progress=seekbar.getProgress()
+    //         max= seekbar.getMax()
+    //        min= seekbar.getMin()
+    //        toastLog("progress:"+progress+"\n min:"+min+"\nmax:"+max)
+    //    }
         滑动次数=滑动次数+1
-        sleepr(6000*ratio,10000*ratio)
+        sleepr(4000*ratio,8000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<15){
                 toastLog("电量低")
