@@ -37,7 +37,7 @@ installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHeal
 installfiles.push({    "filename":"MD编辑器_1.1.0.apk",    "appname":"MD编辑器"})
 installfiles.push({    "filename":"KeepHealth_1.3.1.apk",    "appname":"KeepHealth"})
 installfiles.push({    "filename":"宝宝常识_2.1.4.apk",    "appname":"宝宝常识"})
-installfiles.push({    "filename":"东东随便_1.3.1.apk",    "appname":"东东随便"})
+installfiles.push({    "filename":"东东随便_1.3.2.apk",    "appname":"东东随便"})
 installfiles.push({    "filename":"东览_1.1.0.apk",    "appname":"东览"})
 installfiles.push({    "filename":"动物的叫声_1.6.0.apk",    "appname":"动物的叫声"})
 installfiles.push({    "filename":"儿童绘画板_1.3.0.apk",    "appname":"儿童绘画板"})
