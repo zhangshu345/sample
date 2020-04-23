@@ -25,11 +25,14 @@ var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
 var 趣多多邀请码=["89797906"]
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
+var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/mm.txt"
+var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/1081.txt"
+var hong2shuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/3841.txt"
 var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
 var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
 var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
 var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
-var 刷宝邀请链接=[bbshuabao]
+var 刷宝邀请链接=[bbshuabao,mamashuabao,yangshuabao,hongshuabao,hong2shuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
