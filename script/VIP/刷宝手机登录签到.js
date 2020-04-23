@@ -173,7 +173,7 @@ var 刷宝登录=function(){
             id("com.jm.video:id/btn_login").waitFor()
             if(idclick("com.jm.video:id/btn_login")){
                 reg = /\d{4}/ig
-                code= get_phone_code("刷宝登录验证码",reg)
+                code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
                  toastLog("最后一步了验证码："+code )       
                  loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
                 
