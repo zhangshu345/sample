@@ -1046,9 +1046,6 @@ while(System.currentTimeMillis()-runstarttime<runtime){
         app.launchPackage(runapppkg)
         sleep(5000)
     }
-
-
-
 }
 forcestop(appname)
 }

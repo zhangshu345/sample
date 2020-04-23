@@ -25,6 +25,15 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/东览/allconfig.json"
 },
+{"name":"快刷",
+    "pkg":"com.dongdong.fileManage",
+    "channel":"kuaishua",
+    "versioni":3,
+    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+    "version":"1.0.3",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/allconfig.json"
+},
 {"name":"动物的叫声",
     "pkg":"com.pengyu.animalsoundsandphotos",
     "channel":"androidjs",
