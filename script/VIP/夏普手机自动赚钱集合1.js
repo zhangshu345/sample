@@ -65,7 +65,6 @@ installfiles.forEach(f=>{
     }
 })
 
-
 while(true){
     r=random(0,installfiles.size() )
     toastLog("随机数"+r)

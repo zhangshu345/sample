@@ -1,5 +1,3 @@
-
-
 var clicktexts=function(texts,t,st){
     alter("开始点击文本集合控件:"+texts)
     st=st || 500
@@ -10,7 +8,6 @@ var clicktexts=function(texts,t,st){
             sleep(st)
         }
     }
-
 }
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
@@ -70,8 +67,6 @@ function textclick(i,t,left,top,right,bottom){
 }
 
 
-
-
 //在图片消失之后点击图标位置
 function afterpicturedismissclick(img){
 threads.start(function(){
@@ -87,7 +82,6 @@ if(!requestScreenCapture()){
     exit();
 }  
 while(true){
-    
     var p=images.findImage(captureScreen(),img)
     if(p){
         log("x:"+p.x+","+p.y)
@@ -102,14 +96,12 @@ while(true){
                 log("还在"+np.x+":"+np.y)
             }
     }
-
     }else{
         log("一开始就没找到")
     return false 
     }
     sleep(3000)
 }
-
 }
 
 afterpicturedismissclick(images.read("/sdcard/红包.jpg"))

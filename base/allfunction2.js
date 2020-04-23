@@ -1036,7 +1036,11 @@ while(System.currentTimeMillis()-runstarttime<runtime){
         app.launchPackage(runapppkg)
         sleep(5000)
     }
+
+
+
 }
+forcestop(appname)
 }
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}

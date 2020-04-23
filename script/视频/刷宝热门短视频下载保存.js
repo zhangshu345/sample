@@ -28,8 +28,6 @@ gfw.setPosition(0,220)
 device.wakeUpIfNeeded()
 var videofilename=dialogs.input("下载热门短视频 设置 统计文本保存文件名 比如 刷宝热门短视频.txt  该文本将会保存在存储根目录下 ","刷宝热门短视频.txt");
 
-
-
 toastLog("自动设置音量为0")
 var 刷宝包名="com.jm.video"
 var 刷宝首页="com.jm.video.ui.main.MainActivity"
