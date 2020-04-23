@@ -7,6 +7,7 @@ importClass(android.graphics.Bitmap)
 importClass(com.hongshu.utils.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
+importClass(android.provider.Settings);  
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
@@ -351,10 +352,10 @@ var toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAG
 var toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
 var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
 var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
-var isfloaty=function(){    importClass(android.provider.Settings);    return Settings.canDrawOverlays(context)}
+var isfloaty=function(){  return Settings.canDrawOverlays(context)}
 var checkfloaty=function(appname){
      appname=appname||app.getAppName(context.getPackageName())
-     log("appname:"+appname)
+     log("当前应用名:"+appname)
    if(!isfloaty){
        tofloatysetting()
        sleep(2000)
@@ -868,6 +869,10 @@ function downloadApk(name,url,isinstall) {
                   control_click(3,"向上导航")
               }
             }
+            if(textclick("允许来自此来源的应用")){
+               back()
+               sleepr(1200)
+            }
             //夏普手机的禁止安装
             if(device.brand=="DOCOMO"){
                 if(text("出于安全考虑，已禁止您的手机安装来自此来源的未知应用").exists()){
@@ -1156,7 +1161,7 @@ var checksystemsettings=function(){
         while(true){
           滑动(20,10,17,10,3,500,500)
           sleep(1000)
-          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置"])){
+          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
                 sleep(1000)
                 if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                     return 
@@ -1233,7 +1238,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     return null
 }
 
-function get_phone_code(app_name,reg){
+function get_phone_code(app_name,reg,startwords,endwords){
     contet = ""
     packname = ""
     code = ""
@@ -1274,8 +1279,19 @@ function get_phone_code(app_name,reg){
         if(!contet){
             continue
         }
-        if(contet.search(app_name)!=-1){
-        // if(contet.search(app_name)!=-1 && packname == "com.cps.android.mms"){
+        if(contet.includes(appname)){
+            if(startwords){
+                startindex=contet.indexOf(startwords)+startwords.length
+                if(startindex>-1){
+                    contet=contet.substr(startindex)
+                }
+            }
+            if(endwords){
+                endindex=contet.indexOf(endwords)
+                if(endindex>-1){
+                    contet=contet.substr(0,endindex)
+                }
+            }
             toastLog("找到对应的短信");
             code =contet.match(reg)[0]
             toastLog("停止监听")

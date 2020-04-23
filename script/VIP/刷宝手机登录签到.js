@@ -174,19 +174,20 @@ var 刷宝登录=function(){
             if(idclick("com.jm.video:id/btn_login")){
                 reg = /\d{4}/ig
                 code= get_phone_code("刷宝登录验证码",reg)
-                 toastLog("最后一步了验证码："+code )        
+                 toastLog("最后一步了验证码："+code )       
+                 loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
+                
+                id( "btn_login").waitFor()
+                id("btn_login").findOne(500).click()
+               sleepr(6000)
             }
-          
-          
          }
-         
-      
-       
        }
         // 
         i=i+1
     }
 }
+
 if(!getbooleanvalue("shuabaologin")){
     show("刷宝没有登录过")
     刷宝登录()
