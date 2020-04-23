@@ -214,12 +214,12 @@ while(true){
         if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
             toastLog("穿山甲广告页面")
         }
-      if(textclick("点击领取",500,0,0,200,180)){
-           sleep(1500)
-           textclick("继续看视频")
-       }else{
-           log("")
-       }
+    //   if(textclick("点击领取",500,0,0,200,180)){
+    //        sleep(1500)
+    //        textclick("继续看视频")
+    //    }else{
+    //        log("")
+    //    }
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             lastdesc=desc.text()
