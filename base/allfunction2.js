@@ -32,7 +32,7 @@ var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请
 var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
 var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
 var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
-var 刷宝邀请链接=[bbshuabao,mamashuabao,yangshuabao,hongshuabao,hong2shuabao]
+var 刷宝邀请链接=[bbshuabao,mmshuabao,yangshuabao,hongshuabao,hong2shuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
