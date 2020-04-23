@@ -11,18 +11,20 @@ function httpget(url) {
 }
 
 滑动次数=0
-floaty.closeAll()
+
 engines.stopOther()
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-log("公共函数实例化成功")
-
+toastLog("公共函数实例化成功")
 }else {
-log("公共函数实例化失败,程序返回")
+toastLog("公共函数实例化失败,程序返回")
 }
+alltest()
+floaty.closeAll()
+creatgfloatywindow()
 show("开始刷宝短视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
@@ -137,7 +139,6 @@ var 刷宝签到=function(){
             }
         }
         }
-   
     }
 }
 var 刷宝登录=function(){
@@ -163,15 +164,24 @@ var 刷宝登录=function(){
             sleep(1000)
         }
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
-       if(id("login_tip").exists()){
-         loginet=  id("com.jmvideo:id/login_edit").findOne(500)
-         et=id("login_edit").findOne()
-         loginet.setText(phonenumber())
-         id("com.jm.video:id/btn_login").waitFor()
-         id("com.jm.video:id/btn_login").findOne().click()
-         reg = /\d{4}/ig
-         code= get_phone_code("刷宝",reg)
-          toastLog("最后一步了验证码："+code )        
+       if(id("login_tip").exists()||text("微信账号登录")){
+           toastLog("登录页面")
+         loginet= id("com.jm.video:id/login_edit").findOne(500)
+      
+         if(loginet){
+            loginet.setText(phonenumber())
+            id("com.jm.video:id/btn_login").waitFor()
+            if(idclick("com.jm.video:id/btn_login")){
+                reg = /\d{4}/ig
+                code= get_phone_code("刷宝登录验证码",reg)
+                 toastLog("最后一步了验证码："+code )        
+            }
+          
+          
+         }
+         
+      
+       
        }
         // 
         i=i+1

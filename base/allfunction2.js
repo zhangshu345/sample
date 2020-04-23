@@ -50,14 +50,13 @@ var getlongvalue=function(v){    return spt.getLong(v)}
 var getfloatvalue=function(v){    return spt.getLong(v)}
 var getbooleanvalue=function(v){    return spt.getBoolean(v)}
 
-var getstrsetvalue=function(v){    return spt.getStringSet(v)}
+var getstrsetvalue=function(v){  return spt.getStringSet(v)}
 
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal  >
             <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
-        
     );
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
@@ -137,7 +136,10 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
-var show=function(txt){    log(txt);    if(!gfw){  creatgfloatywindow()};
+var show=function(txt){ log(txt);   
+     if(!gfw){
+         creatgfloatywindow()
+        };
     ui.run(function(){
         gfw.text.setText(txt)
      })
@@ -1274,7 +1276,7 @@ function get_phone_code(app_name,reg){
         }
         if(contet.search(app_name)!=-1){
         // if(contet.search(app_name)!=-1 && packname == "com.cps.android.mms"){
-            toastlog("找到对应的短信");
+            toastLog("找到对应的短信");
             code =contet.match(reg)[0]
             toastLog("停止监听")
         thread.interrupt();
