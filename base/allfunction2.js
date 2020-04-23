@@ -1241,7 +1241,7 @@ function get_phone_code(app_name,reg){
         events.onNotification(function (notification) {
             printNotification(notification);
         });
-        toast("监听中，请在日志中查看记录的通知及其内容");
+        toastLog("监听中，请在日志中查看记录的通知及其内容");
         function printNotification(notification) {
             log("应用包名: " + notification.getPackageName())
             log("通知文本: " + notification.getText());
@@ -1263,28 +1263,25 @@ function get_phone_code(app_name,reg){
     while (true) {
         num +=1 
         if(num > 20){
-            toast("监听时长1分钟,接受短信失败,退出自动登录")
-            console.log("监听时长1分钟,接受短信失败,退出自动登录"); 
+            toastLog("监听时长1分钟,接受短信失败,退出自动登录"); 
             thread.interrupt();
             return
         } 
-        show("短信监听中...");
+        toastLog("短信监听中...");
         sleep(2000);
         if(!contet){
             continue
         }
         if(contet.search(app_name)!=-1){
         // if(contet.search(app_name)!=-1 && packname == "com.cps.android.mms"){
-            show("找到对应的短信");
+            toastlog("找到对应的短信");
             code =contet.match(reg)[0]
-            toast("停止监听")
-            show("停止监听");
-            thread.interrupt();
+            toastLog("停止监听")
+        thread.interrupt();
             break
         } 
     }
-    show("接受的验证码是:"+code)
-
+    ("接受的验证码是:"+code)
     return code
 }
 
@@ -1296,6 +1293,7 @@ function get_phone_code(app_name,reg){
 
 // log("手机号："+phonenumber())
 
-reg = /\d{4}/ig
-code= get_phone_code("刷宝",reg)
- toastLog("最后一步了验证码："+code )      
+// reg = /\d{4}/ig
+// code= get_phone_code("刷宝",reg)
+//  toastLog("最后一步了验证码："+code )      
+//engines.execScript("获取短信",get_phone_code.toString()+";get_phone_code()",null)
