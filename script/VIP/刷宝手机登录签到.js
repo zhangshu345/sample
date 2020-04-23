@@ -165,11 +165,11 @@ var 刷宝登录=function(){
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()){
          loginet=  id("com.jmvideo:id/login_edit").findOne(500)
-         if(loginet.setText(phonenumber())){
-            id("com.jm.video:id/btn_login").waitFor()
+         et=id("login_edit").findOne()
+         loginet.setText(phonenumber())
+         id("com.jm.video:id/btn_login").waitFor()
             //id("com.jm.video:id/btn_login").findOne().click()
-            toastLog("最后一步了")
-         }
+         toastLog("最后一步了")        
        }
         // 
         i=i+1
@@ -214,12 +214,7 @@ while(true){
         if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
             toastLog("穿山甲广告页面")
         }
-    //   if(textclick("点击领取",500,0,0,200,180)){
-    //        sleep(1500)
-    //        textclick("继续看视频")
-    //    }else{
-    //        log("")
-    //    }
+
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             lastdesc=desc.text()
