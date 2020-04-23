@@ -1231,6 +1231,63 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     return null
 }
 
+function get_phone_code(app_name,reg){
+    contet = ""
+    packname = ""
+    code = ""
+    //--------------------------*******************--------------------------//
+    var thread = threads.start(function (app_name) {
+        events.observeNotification();
+        events.onNotification(function (notification) {
+            printNotification(notification);
+        });
+        toast("监听中，请在日志中查看记录的通知及其内容");
+        function printNotification(notification) {
+            log("应用包名: " + notification.getPackageName())
+            log("通知文本: " + notification.getText());
+            log("通知优先级: " + notification.priority);
+            log("通知目录: " + notification.category);
+            log("通知时间: " + new Date(notification.when));
+            log("通知数: " + notification.number);
+            log("通知摘要: " + notification.tickerText);
+            if(notification.getText()){
+                contet = notification.getText()
+            } 
+            if (notification.tickerText){
+                contet = notification.tickerText
+            }
+            packname = notification.getPackageName()
+        }
+    });
+    num = 0
+    while (true) {
+        num +=1 
+        if(num > 20){
+            toast("监听时长1分钟,接受短信失败,退出自动登录")
+            console.log("监听时长1分钟,接受短信失败,退出自动登录"); 
+            thread.interrupt();
+            return
+        } 
+        show("短信监听中...");
+        sleep(2000);
+        if(!contet){
+            continue
+        }
+        if(contet.search(app_name)!=-1){
+        // if(contet.search(app_name)!=-1 && packname == "com.cps.android.mms"){
+            show("找到对应的短信");
+            code =contet.match(reg)[0]
+            toast("停止监听")
+            show("停止监听");
+            thread.interrupt();
+            break
+        } 
+    }
+    show("接受的验证码是:"+code)
+
+    return code
+}
+
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 // alltest()
@@ -1238,3 +1295,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
 // maytextclick("查看领取")
 
 // log("手机号："+phonenumber())
+
+reg = /\d{4}/ig
+code= get_phone_code("刷宝",reg)
+ toastLog("最后一步了验证码："+code )      

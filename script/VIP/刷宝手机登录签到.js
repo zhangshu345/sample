@@ -168,14 +168,15 @@ var 刷宝登录=function(){
          et=id("login_edit").findOne()
          loginet.setText(phonenumber())
          id("com.jm.video:id/btn_login").waitFor()
-            //id("com.jm.video:id/btn_login").findOne().click()
-         toastLog("最后一步了")        
+         id("com.jm.video:id/btn_login").findOne().click()
+         reg = /\d{4}/ig
+         code= get_phone_code("刷宝",reg)
+          toastLog("最后一步了验证码："+code )        
        }
         // 
         i=i+1
     }
 }
-
 if(!getbooleanvalue("shuabaologin")){
     show("刷宝没有登录过")
     刷宝登录()
@@ -255,14 +256,6 @@ while(true){
             滑动(20,13,16,10,4,500,700)
             sleep(1000)
         }
-     
-    //    seekbar=id("com.jm.video:id/seek_bar").findOne(1000)
-    //    if(seekbar){
-    //        progress=seekbar.getProgress()
-    //         max= seekbar.getMax()
-    //        min= seekbar.getMin()
-    //        toastLog("progress:"+progress+"\n min:"+min+"\nmax:"+max)
-    //    }
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){

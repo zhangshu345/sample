@@ -21,12 +21,14 @@ ui.layout(
         </horizontal>
         <horizontal > 
              <button id="appmanager" w="auto" h="auto" text="应用管理" />
-            <button id="rewardad" w="auto" h="auto" text="创意视频" />
-            <button id="uninstall" w="auto" h="auto" text="全屏视频" />
+             <button id="systemsetting" w="auto" h="auto" text="写系统配置" />
+             <button id="screen" w="auto" h="auto" text="显示" />
             <button id="lang" w="auto" h="auto" text="显示语音" />
         </horizontal>
         <horizontal >
             <button id="exit" w="auto" h="auto" text="退出" />  
+            <button id="rewardad" w="auto" h="auto" text="创意视频" />
+            <button id="uninstall" w="auto" h="auto" text="全屏视频" />
         </horizontal>
         <horizontal id="advice" >
         </horizontal>
@@ -46,8 +48,13 @@ ui.uninstall.on("click",function(){
    admanager.showFullVideo(ui.rewardad.getContext(),null)
 })
 admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
+ui.systemsetting.on("click",function(){
+    tomangerwritesetting
+})
 
-
+ui.screen.on("click",function(){
+    todisplaysetting()
+})
 ui.emitter.on("resume",function(){
    admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
 })
