@@ -4,7 +4,7 @@
     "versioni":3,
     "channel":"kuaishua",
     "baseurl":"http://yuedu.xiequbo.cn/run.js",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/rewardapplist.js",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/rewardapplist2.js",
     "runurl":"http://yuedu.xiequbo.cn/run2.js",
     "mtaappkey":"AUF8TZYU632I",
     "bmobappid":"0ce8730c754ddcf21ea8f4f67b5f216a",
