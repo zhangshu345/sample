@@ -3,7 +3,9 @@
     "version":"1.0.3",
     "versioni":3,
     "channel":"kuaishua",
-    "baseurl":"http://www.imengququ.com/api/androidjs/",
+    "baseurl":"http://yuedu.xiequbo.cn/run.js",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/rewardapplist.js",
+    "runurl":"http://yuedu.xiequbo.cn/run.js",
     "mtaappkey":"AUF8TZYU632I",
     "bmobappid":"0ce8730c754ddcf21ea8f4f67b5f216a",
     "jpushkey":"c10025b65136d5a402b128ae",
@@ -101,7 +103,6 @@
             "native":"",
             "rewardvideo":""
         }
-     
     }
     ,
     "tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/限免.json","img":""},
@@ -167,7 +168,7 @@
         {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":100000000,"money":50000,"experience":100000,"son1":2000,"son2":35000,"son3":100000},
         {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":100000000,"money":100000,"experience":100000,"son1":5000,"son2":500000,"son3":500000}
     ],
-        "uiconfig":{"spalsh":{"logo":"","img":"","desc":"","versioninfo":"","waittime":2000,"nextactivitypath":"/dongdongsuibian/main"},
+    "uiconfig":{"spalsh":{"logo":"","img":"","desc":"","versioninfo":"","waittime":2000,"nextactivitypath":"/dongdongsuibian/main"},
                         "usermain":{"tintcolor":"#ffff0000",
                                     "menus":[{"icon":"","title":"首页","fragment":"toolbox"},
                                                 {"icon":"","title":"发现","fragment":"scriptmarket"},
