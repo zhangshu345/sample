@@ -1,12 +1,14 @@
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
-importClass(com.hongshu.utils.FileUtils)
-importClass(org.jsoup.Jsoup)
-importClass(org.jsoup.nodes.Document)
-importClass(org.jsoup.select.Elements)
-importClass(org.jsoup.nodes.Element)
 importClass(android.net.Uri)
+importClass(com.hongshu.utils.SPUtils)
+importClass(android.graphics.Bitmap)
+importClass(com.hongshu.utils.KeyboardUtils)
+importClass(com.hongshu.advice.AdviceManager)
+importClass(com.hongshu.bmob.push.BmobPushUtils)
+importClass(android.provider.Settings);  
+var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
 var starttime=date.getTime()
@@ -14,18 +16,23 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
-
+var onlyscript=true
+var enablegenius=device.sdkInt>=24
+log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
 var 趣多多邀请码=["89797906"]
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
+var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/mm.txt"
+var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/1081.txt"
+var hong2shuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/3841.txt"
 var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
 var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
 var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
 var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
-var 刷宝邀请链接=[bbshuabao]
+var 刷宝邀请链接=[bbshuabao,mmshuabao,yangshuabao,hongshuabao,hong2shuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
@@ -36,53 +43,52 @@ var isdeviceadmin=function(){
     return dpm.isAdminActive( deviceadmincomponent)
 }
 var 视频重复次数=2
-
 var ratio=1
-var gfw
+var gfw,gsfw
+var spt=SPUtils.getInstance()
 
+var getstrvalue=function(v){    return spt.getString(v)}
 
+var getintvalue=function(v){    return spt.getInt(v)}
+var getlongvalue=function(v){    return spt.getLong(v)}
+var getfloatvalue=function(v){    return spt.getLong(v)}
+var getbooleanvalue=function(v){    return spt.getBoolean(v)}
 
+var getstrsetvalue=function(v){  return spt.getStringSet(v)}
 
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal  >
             <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
-        
     );
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
- 
-}
+ }
 
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-              <vertical  w="60" h="60" >
-              <text id="stop" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >设置</text>
-              <text id="coll" w="30" h="30" gravity="center" textSize="14sp" background="#55ff0000" >收缩</text>
-
+              <vertical  w="90" h="90" >
+              <text id="stop" w="auto" h="45"  textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
+              <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
               </vertical>
-         
-            <vertical  w="60" h="60" >
-            <horizontal >
-                    <text id="jiasu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >加速</text>
-                     <text id="jiansu" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">减速</text>
+            <vertical  w="90" h="90" >
+            <horizontal  >
+                    <text id="jiasu" w="35" h="35" textColor="#000000" textSize="16sp" background="#ffffff" >加速</text>
+                     <text id="jiansu" w="35" h="35"  textColor="#000000" textSize="16sp" background="#ffffff">减速</text>
             </horizontal>
             <horizontal >
-                    <text id="jl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000" >节流+</text>
-                     <text id="nojl" w="30" h="30" gravity="center" textSize="14sp" background="#55000000">正常</text>
+                    <text id="jl" w="35" h="35" textColor="#000000" textSize="16sp" background="#ffffff" >节流+</text>
+                     <text id="nojl" w="35" h="35"  textColor="#000000" textSize="16sp" background="#ffffff">正常</text>
             </horizontal>
             </vertical>
-           
         </horizontal>
-        
     );
     coll=true
     stoptime=0
     gsfw.setSize(90,90)
-
     gsfw.setPosition(0,device.height/2)
     gsfw.stop.on("click",function(){
         stoptime=stoptime+1
@@ -98,12 +104,10 @@ var  creatsetfloatywindow=function(){
                     stoptime=0
                 }, 10000);
              })
-            
         }else{
             stoptime=0
             engines.stopAllAndToast()
         }
-        
     })
     gsfw.coll.on("click",function(){
         stoptime=0
@@ -132,27 +136,21 @@ var  creatsetfloatywindow=function(){
         }
     })
     gsfw.nojl.on("click",function(){
-        
         视频重复次数=1
         toastLog("恢复正常 视频播放 持续上滑")
-    
     })
 }
-
-
-var show=function(txt){
-    if(!gfw){
-      creatgfloatywindow()
-    }
+var show=function(txt){ log(txt);   
+     if(!gfw){
+         creatgfloatywindow()
+        };
     ui.run(function(){
         gfw.text.setText(txt)
      })
 }
-
 var 上滑=function(){
     滑动(20,13,17,10,4,500,500)
 }
-
 var 下滑=function(){
     滑动(20,10,3,13,17,500,500)
 }
@@ -197,7 +195,7 @@ var alter=sync(function(txt,t,left,top,width,height){
 
 var 今日签到=function(name){
     cs=数据库.get(name+"_sign_"+today(), false)
-    alter(name+"今日签到:"+cs)
+    show(name+"今日签到:"+cs)
     return cs
 }
 
@@ -207,21 +205,21 @@ var 今日已签到=function(name){
 
 var 今日时长=function(name){
    s=数据库.get(name+"_time_"+today(), 0)
-   alter(name+"今日时长:"+s)
+   show(name+"今日时长:"+s)
    return s
 }
 
 var 今日滑动次数=function(name){
     name= name||"glode"
     cs=数据库.get(name+"_"+today()+"_move", 0)
-    alter("今日签到:"+cs)
+    show("今日签到:"+cs)
     return cs
 }
 var 设置今日滑动次数=function(name,i){
     name=name||"glode"
     i=i||0
     cs=数据库.put(name+"_"+today()+"_move", i)
-    alter("今日签到:"+cs)
+    show("今日签到:"+cs)
     return cs
 }
 
@@ -237,14 +235,14 @@ var 今日提现=function(name){
 
 var 今日已提现=function(name){
     数据库.put(name+"_cashout_"+today(),true)
-    alter(name+"今日已提现")
+    show(name+"今日已提现")
 }
 var 记录现在金币=function(name,i){
     数据库.put(name+"_lastcoin_"+today(),i)
 }
 var 上次金币=function(name){ 
        s= 数据库.get(name+"_lastcoin_"+today(), 0)
-       alter(name+"上次金币："+s)
+       show(name+"上次金币："+s)
        return s
  } 
  //可以通过上次的金币来判断是否 还可以获取金币
@@ -254,7 +252,7 @@ var 上次金币=function(name){
 
  var 上次余额=function(name){ 
     s=   数据库.get(name+"_lastmoney_"+today(), 0.0)
-    alter(name+"上次余额"+s)
+    show(name+"上次余额"+s)
     return s
  } //可以通过上次的金币来判断是否 还可以获取金币
 
@@ -264,122 +262,48 @@ var 上次金币=function(name){
  
 var 上次滑动次数=function(name){ 
      s=   数据库.get(name+"_lastswipetime_"+today(), 0)
-     alter(name+"上次滑动次数"+s)
+     show(name+"上次滑动次数"+s)
      return s
 } 
-
-var getrandforstrs=function(strs){
-    if(strs==null||strs.length==0){
-        return ""
-    }
-    let r=Math.floor(random()*strs.length)
-    return strs[r]
-}
-
-var 记录现在观看视频数=function(name,f){ 
-    数据库.put(name+"_lastvideonumber_"+today(),f)
-} //可以通过上次的金币来判断是否 还可以获取金币
- 
-
-var 上次观看视频数=function(name){ 
-     s=   数据库.get(name+"_lastvideonumber_"+today(), 0)
-     alter(name+"上次观看视频个数"+s)
-     return s
-} 
-
-var 记录现在观看文章数=function(name,f){ 
-    数据库.put(name+"_lastwenzhangnumber_"+today(),f)
-} //可以通过上次的金币来判断是否 还可以获取金币
- 
-var 上次观看文章数=function(name){ 
-     s=   数据库.get(name+"_lastwenzhangnumber_"+today(), 0)
-     alter(name+"上次观看视频个数"+s)
-     return s
-} 
- 
-var 记录=function(name,key,n){
-      数据库.put(name+"_"+key,n)
-}
-
- var 获取记录=function(name,key){
-    数据库.get(name+"_"+key,0)
-}
-
-var 今日记录=function(name,key,n){
-    数据库.put(name+"_"+key+"_"+today(),n)
-}
-
-var 获取今日记录=function(name,key){
-  数据库.get(name+"_"+key+"_"+today(),0)
-}
-
-
+var lastscriptapp=spt.getString("lastscriptapp")
+var closelastscriptapp=function(){ forcestop(lastscriptapp())}
+var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
+var 记录现在观看视频数=function(name,f){     数据库.put(name+"_lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
+var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    show(name+"上次观看视频个数"+s);     return s;} 
+var 记录现在观看文章数=function(name,f){     数据库.put(name+"_lastwenzhangnumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
+var 上次观看文章数=function(name){ s= 数据库.get(name+"_lastwenzhangnumber_"+today(), 0); show(name+"上次观看视频个数"+s);     return s;} 
+var 记录=function(name,key,n){      数据库.put(name+"_"+key,n)}
+var 获取记录=function(name,key){    数据库.get(name+"_"+key,0)}
+var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today(),n)}
+var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
 //
-function httpget(url) {
-        var r = http.get(url);
-        // log("code = " + r.statusCode);
-        if (r.statusCode == 200) {
-            return r.body.string()
-        } else {
-            return ""
-        }
-  }
-
-  
+function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
+ 
 var forcestop=function(appname,st){
-    if(!getPackageName(appname)){
-        show(appname+"：没有安装")
-        return 
-    }
-    show("强制关闭应用:"+appname)
-  st=st||10000
-   packagename=app.getPackageName(appname)
-  app.openAppSetting(packagename)
-  closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
-  i=0
-  while(i<2){
-    closetexts.forEach(t=>{
-        if(textclick(t)){
-            i=i+1
-          sleep(2000)
-        }
-    })
-  }
-}
-
+    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };    show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);
+  closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
+  i=0;  while(i<3){ clicktexts(closetexts,500,1500);    i=i+1;  }}
 
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
         flags:["activity_new_task"]
-        // data: "file:///sdcard/1.png"
     });
     context.startActivity(i);
 }
-
 var  todevelopersetting=function(){
-    let i = app.intent({
-         action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS",
-         flags:["activity_new_task"]
-         // data: "file:///sdcard/1.png"
-     });
+    let i = app.intent({ action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS", flags:["activity_new_task"] // data: "file:///sdcard/1.png"  
+});
      context.startActivity(i);
  }
-
  
 var toPkgandClass=function(pkg,classname){
-        let i = app.intent({
-             packageName: pkg,
-             className:classname
-             // data: "file:///sdcard/1.png"
-         });
+        let i = app.intent({  packageName: pkg, className:classname });
          context.startActivity(i);
 }
-
 var todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
-
 var toinputsettings=function(){
     let i = app.intent({
         action: "android.settings.INPUT_METHOD_SETTINGS",
@@ -388,13 +312,9 @@ var toinputsettings=function(){
     });
     context.startActivity(i);
 }
-
-
 var toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
-
-
 var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
@@ -403,8 +323,6 @@ var tolanguagesetting=function(){
     });
     context.startActivity(i);
 }
-
-
 var tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
@@ -413,89 +331,34 @@ var tosettingsbyaction=function(actionname){
     });
     context.startActivity(i);
 }
-
-
 var toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
-
 var tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
-
  //到android设置页面
- var  toandroidsetting=function(classname){
-     toPkgandClass("com.android.settings",classname)
- }
-
-
+ var  toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
-var tousagestate=function(){
-    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")
-}
-
-var toaccessibilitysetting=function(){
-    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")
-}
-
-var tosystemsetting=function(){
-    tosettingsbyaction("android.settings.SETTINGS")
-}
-var towifisetting=function(){
-    tosettingsbyaction("android.settings.WIFI_SETTINGS")
-}
-
-var toapnsetting=function(){
-    tosettingsbyaction("android.settings.APN_SETTINGS")
-}
-var todatesetting=function(){
-    tosettingsbyaction("android.settings.DATE_SETTINGS")
-}
-
-var towifiipsetting=function(){
-    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")
-}
-
-var tovpnsetting=function(){
-    tosettingsbyaction("android.settings.VPN_SETTINGS")
-}
-
-var tophonenetsetting=function(){
-    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")
-}
-
-var tosecuritysetting=function(){
-    tosettingsbyaction("android.settings.SECURITY_SETTINGS")
-}
-
-var todisplaysetting=function(){
-    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")
-}
-var toappmanagesetting=function(){
-    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")
-}
-var toallappmanagesetting=function(){
-    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")
-}
-
-
-var tomangerwritesetting=function(){
-    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")
-}
-
-
-var toignorebatteryoptintizationsetting=function(){
-   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")
-}
-
-var isfloaty=function(){
-    importClass(android.provider.Settings);
-    return Settings.canDrawOverlays(context)
-}
-
+var tousagestate=function(){    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")}
+var toaccessibilitysetting=function(){    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")}
+var tosystemsetting=function(){    tosettingsbyaction("android.settings.SETTINGS")}
+var towifisetting=function(){    tosettingsbyaction("android.settings.WIFI_SETTINGS")}
+var toapnsetting=function(){    tosettingsbyaction("android.settings.APN_SETTINGS")}
+var todatesetting=function(){    tosettingsbyaction("android.settings.DATE_SETTINGS")}
+var towifiipsetting=function(){    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")}
+var tovpnsetting=function(){    tosettingsbyaction("android.settings.VPN_SETTINGS")}
+var tophonenetsetting=function(){    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")}
+var tosecuritysetting=function(){    tosettingsbyaction("android.settings.SECURITY_SETTINGS")}
+var todisplaysetting=function(){    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")}
+var toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")}
+var toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
+var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
+var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
+var isfloaty=function(){  return Settings.canDrawOverlays(context)}
 var checkfloaty=function(appname){
      appname=appname||app.getAppName(context.getPackageName())
-     log("appname:"+appname)
+     log("当前应用名:"+appname)
    if(!isfloaty){
        tofloatysetting()
        sleep(2000)
@@ -508,37 +371,46 @@ var checkfloaty=function(appname){
        }
    }
 }
-
 var sleepr=function(short,long){
     rt=random(short,long)
     show("等待:"+rt +" 毫秒")
     sleep(rt)
 }
-
-
 function idclick(idstr,t,left,top,right,bottom){
-    t= t|| 500
+    t= t|| 500;
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
-        if(!f.click()){
-            b=f.bounds()
-            bc=click(b.centerX(),b.centerY())
-            if(bc){
-                alter("id："+idstr+"----点位成功点击")
-                return true
+            if(!f.click()){
+                if(enablegenius){
+                    b=f.bounds()
+                    bc=click(b.centerX(),b.centerY())
+                    if(bc){
+                        show("id："+idstr+"----点位成功点击")
+                        return true
+                    }else{
+                        var w = boundsContains(b.left, b.top, b.right, b.bottom).clickable().findOne()
+                        if(w){
+                            return w.click()
+                        }
+                    }
+                } else{
+                    if(clicknode(f)){
+                        return true
+                    }
+                    r=f.bounds()
+                    var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                    if(w){
+                        return w.click()
+                    }
+                }            
             }else{
-                alter("id："+idstr+"----点位失败点击")
-                return false
+                show("id："+idstr+"----控件点击成功")
+                return true
             }
-           
-        }else{
-            alter("id："+idstr+"----控件点击成功")
-            return true
-        }
     }
     return false
 }
@@ -550,21 +422,139 @@ function textclick(i,t,left,top,right,bottom){
     right = bottom || device.width;
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
-    if(f){
-         if(!f.click()){
-             show("text："+i+":点位开始成功")
-             b=f.bounds()
-             if(b.centerX()>0&&b.centerY()>0){
-                r=click(b.centerX(),b.centerY())
-             }
-             
-           return r
+    if(!f){
+             return false
+    }
+     show("text："+i+":控件找到了")
+        if(f.clickable()){
+            show("text："+i+":控件可点击")
+          return  f.click()
         }else{
-            show("text:"+i+"----控件点击成功")
-            return true
+            show("text："+i+":控件不可点击")
+            if(enablegenius){
+                show("text "+i+"可手势 范围可点击" )
+                b=f.bounds()
+                if(b.centerX()>0&&b.centerY()>0){
+                    show("text："+i+"在屏幕上")
+                  if(click(b.centerX(),b.centerY()))
+                  {
+                      return true
+                  }else{
+                    return   clicknode(f)
+                  }
+                  
+                }else{
+                    show("text："+i+"不在屏幕上")
+                    return false
+                }
+             }else{
+                show("text "+i+"不可手势 范围可点击" )
+               if (clicknode(f)){
+                   return true
+               }
+                r=f.bounds()
+                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                if(w){
+                    show("text "+i+"找到所在区域可点击控件"+w.toString())
+                    return w.click()
+                }
+            }
+        }     
+    return false
+}
+
+function maytextclick(i,t,left,top,right,bottom){
+    t=t || 500
+    left = left || 0;
+    top = top || 0;
+    right = bottom || device.width;
+    bottom = bottom || device.height;
+    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    if(!f){
+         f=textContains(i).boundsInside(left, top, right, bottom).findOne(t)
+         if(!f){
+             return false
+         }
+    }
+          show("text："+i+":控件找到了")
+        if(f.clickable()){
+            show("text："+i+":控件可点击")
+          return  f.click()
+        }else{
+            show("text："+i+":控件不可点击")
+            if(enablegenius){
+                show("text "+i+"可手势 范围可点击" )
+                b=f.bounds()
+                if(b.centerX()>0&&b.centerY()>0){
+                    show("控件在屏幕上")
+                   if(click(b.centerX(),b.centerY())){
+                       return true
+                   }else{
+                       return clicknode(f)
+                   }
+                  
+                }else{
+                    show("控件不在屏幕上")
+                    return false
+                }
+             }else{
+                show("text "+i+"不可手势 范围可点击" )
+               if (clicknode(f)){
+                   return true
+               }
+                r=f.bounds()
+                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+                if(w){
+                    show("text "+i+"找到所在区域可点击控件"+w.toString())
+                    return w.click()
+                }
+            }
+        }     
+    return false
+}
+
+var clicknode=function(v){
+    if(!clickparents(v)){
+        return  clickchilds(v)
+    }else{
+        return true
+    }
+}
+
+//一直找到可以点击控件向上查找
+var clickparents=function(v,n){
+    i=0
+    n=n||10
+    while(i<n){
+        p=v.parent()
+        if(p&&p.clickable()){
+            show("找到可点击控件"+toString(p))
+            return p.click()
+        }else{
+            i=i+1
+            show("向上查找层数："+i)
+            v=p
         }
     }
     return false
+}
+//找到子类 点击下去
+var clickchilds=function(v){
+   if(v.childCount()>0){
+       for(i=0;i<v.childCount();i++){
+           c=i.child(i)
+           if(c.clickable()){
+               return c.click()
+           }else{
+             if(clickchilds(v.child(i))){
+                return true
+             }
+           }
+       }
+   }else{
+       return false
+   }
+   return false 
 }
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
@@ -601,7 +591,6 @@ var clickonetexts=function(texts,t,st){
     }
     return false
 }
-
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
@@ -646,7 +635,6 @@ function control_click(button, vlause, left, top, right, bottom) {
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-
     sleep(200)
     if (button == 1) {
         button_info = id(vlause).boundsInside(left, top, right, bottom).findOne(3000);
@@ -679,16 +667,52 @@ function control_click(button, vlause, left, top, right, bottom) {
         return false
     }
 }
-
-
-
+//  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
 function 滑动(z,x1,y1,x2,y2,t,r) {
-    var w = device.width/z;
-    var h = device.height/z;
-    r=r||1000
-   // show("滑动"+x1+","+y1+"->"+x2+","+y2)
-    swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
+    if(z>0){
+        var w = device.width/z;
+        var h = device.height/z;
+        startx=w * x1
+        endx=w*x2
+        starty=h*y1
+        endy=h*y2
+    }else{
+        startx=x1
+        endx=x2
+        starty=y1
+        endy=y2
+    }
+     if(enablegenius){
+        r=r||1000
+       // show("滑动"+x1+","+y1+"->"+x2+","+y2)
+        swipe(startx, starty , endx , endy, t+random(0, r))
+    }else{
+        if(startx>=endx){
+            left=endx
+            right=startx
+        }else{
+            left=startx
+            right=endx
+        }
+        if(starty>endy){
+            top=endy
+            bottom=starty
+        }else{
+            top=starty
+            bottom=endy
+        }
+        var w = boundsContains(left, top, right,bottom).scrollable().findOne();
+        if(w){
+            if(startx<endx){
+                w.scrollBackward()
+            }else{
+                w.scrollForward()
+            }
+        }
+    }
 }
+
+
 
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
@@ -729,40 +753,17 @@ var idallexist=function(ids){
 /*文本只要存在一个就返回真 */
 var textoneexist=function(texts){
      if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(text(texts[i]).exists()){
-               return true
-            }
-        }
+        for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){  return true }  }
     }
     return false
 }
-
 /**只要存在一个id就返回真 */
 var idoneexist=function(ids){
      if(ids.length>0){
-        for(i=0;i<ids.length;i++){
-            if(id(ids[i]).exists()){
-               return true
-            }
-        }
+        for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;   }  }
     }
     return false
 }
-//只能判断自身app
-var isAppForground=function(){
-    importClass(com.hongshu.utils.AppUtils);
-    a =AppUtils.isAppForeground()
-    if(a){
-        show("apputils 判断正确")
-        return true
-    }else{
-        show("apputils 判断错误")
-        return false 
-        
-    }
-}
-
 var firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
@@ -770,39 +771,17 @@ var firstrunapp=function(appname){
     允许启动文字=['允许',"确定","始终允许","打开"]
     cfirsti=0
     while(cfirsti<5){
-        if(currentPackage()==packagename){
+        if(idContains(packagename).findOne()){
             show(packagename+" 在前台："+currentPackage())
-      
             return true
         }else{
             show(packagename+" 不在在前台："+currentPackage())
             app.launchPackage(packagename)
+            sleep(2000)
         }
-        sleep(2000)
         clicktexts(允许启动文字)
         cfirsti=cfirsti+1
     }
-  
-    return true
-}
-
-var firstrunapppackage=function(packagename){
-    importClass(com.hongshu.utils.AppUtils);
-    允许启动文字=['允许',"始终允许","打开","确定"]
-    i=0
-    while(i<3){
-        if(currentPackage()==packagename){
-            alter(packagename+" 在前台：")
-            return true
-        }else{
-            alter(packagename+" 不在在前台：")
-            app.launchPackage(packagename)
-        }
-        sleep(2000)
-        clicktexts(允许启动文字)
-        i=i+1
-    }
-  
     return true
 }
 
@@ -817,7 +796,6 @@ function downloadApk(name,url,isinstall) {
      // 设置APP的路径
      file_path_root = files.getSdcardPath()
      filePath = file_path_root + "/" + file_name
-   
      importClass('java.io.FileOutputStream');
      importClass('java.io.IOException');
      importClass('java.io.InputStream');
@@ -872,23 +850,18 @@ function downloadApk(name,url,isinstall) {
      toastLog(name+'下载完成');
      if(isinstall){
         install_app(filePath,name)
-     }
-     
-     
+     }    
  }
  function install_app(filePath, name) {
      ////--------------安装--------------////
-     //  读取 apk
      if(filePath){
-        app.viewFile(filePath)
+        installapp(filePath)
      }
-    
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-   
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
-            toast("检测中....")
+            toastLog("检测中....")
             if(textclick("允许此来源")){
                 back()
                 sleep(1000)
@@ -899,6 +872,18 @@ function downloadApk(name,url,isinstall) {
                   control_click(3,"向上导航")
               }
             }
+            if(textclick("允许来自此来源的应用")){
+               back()
+               sleepr(1200)
+            }
+            //夏普手机的禁止安装
+            if(device.brand=="DOCOMO"){
+                if(text("出于安全考虑，已禁止您的手机安装来自此来源的未知应用").exists()){
+                    if(textclick("设置")){
+                        sleep(2000)
+                        if(textclick("允许来自此来源的应用")){
+                            sleep(500)
+                            back()   } }  } }
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
              toast("安全保护安全保护安全保护")
@@ -910,14 +895,12 @@ function downloadApk(name,url,isinstall) {
                  sleep(500)
                  is_first = id("security_install_protection_switch").findOne(500)
                  if (!is_first.checked()) {
-                     console.log("已取消保护");
-                     toast("已取消保护")
+                     show("已取消保护")
                      sleep(1000)
                      break;
                  }
              }
              back()
-            
          }
          if (textclick("完成")){
              return
@@ -929,10 +912,7 @@ function downloadApk(name,url,isinstall) {
      back()
      sleep(1000)
  }
- 
-
  var checkinstallapp=function(){
-    
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -945,32 +925,14 @@ function downloadApk(name,url,isinstall) {
      })
   }
 
-  
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
-
     appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){
-        log("应用详情："+appinfo)
+        log("应用详情：获取成功")
         downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
     }
-
-    // var appconfiglist=httpget(rewardapplisturl)
-    // var apps=JSON.parse(appconfiglist)
-    // var isok=false
-    //    apps.forEach(app => {
-    //       show("name:"+app.name+"package:"+app.package)
-    //          if(app.name==name){
-    //             isok=true
-    //               if(!getPackageName(app.name)){
-    //                 downloadApk(app.name+"_"+app.appversion,app.downloadurl,true)
-    //              }
-    //          }
-    //     }
- 
-    // )
 }
-
 //关闭其他应用
 var stopOtherScript=function(){
     var thisengs=engines.myEngine()
@@ -981,8 +943,6 @@ var stopOtherScript=function(){
         }
     })
 }
-
-
 var startallapp=function(){
     var appconfig=httpget(rewardapplisturl)
      apps=JSON.parse(appconfig)
@@ -1007,13 +967,18 @@ var startallapp=function(){
         }
     })
 }
-
-
-var phone=function(){
+var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
-    return pnumber
+     if(!pnumber){
+         pnumber=spt.getString("phonenumber")
+     }
+     if(pnumber){
+         return pnumber
+     }else{
+         return null
+     }
 }
 //本地配置启用脚本
 var localstartallapp = function(){
@@ -1024,7 +989,6 @@ var localstartallapp = function(){
         log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(rewardapplisturl)
         apps=JSON.parse(appconfig)
-        
     }
     apps.forEach(app =>{
       if(last){
@@ -1036,7 +1000,6 @@ var localstartallapp = function(){
         if(!getPackageName(app.name)){
             log("没有安装："+app.name)
             downloadandinstallapp(app.name,app.package)
-          
         }
         if(app.scripturl && getPackageName(app.name)){
             log(app.name+":云端url脚本存在："+app.scripturl)
@@ -1056,18 +1019,9 @@ var localstartallapp = function(){
       }
     })
 }
-    
 var clickscreencapture=function(){
-    while(true){
-        if(clicktexts(["不再提醒","不在显示"])){
-        }
-       if(textclick("立即开始")){
-            break
-       }
-        sleep(2000)
-    }
+    while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
-
 var checkscreencapture=function(){
     engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
    while(! requestScreenCapture()){
@@ -1075,39 +1029,38 @@ var checkscreencapture=function(){
        log("等待截屏")
    }
 }
-
-var isNotificationManager=function(){
-    importClass(com.hongshu.utils.PermissionUtils);
-    return PermissionUtils.isnotificationListenerEnable()
+//运行广告app
+var runad=function(appname){
+    if(!getPackageName(appname)){
+        return false 
+    }
+app.launchApp(appname)
+runapppkg=app.getPackageName(appname)
+runappisfirst=getbooleanvalue(appname+"_firstrun")
+sleep(2000)
+runtime=random(5,10)*60*1000
+runstarttime=System.currentTimeMillis()
+toastLog("当前运行app："+appname+"--包名:"+runapppkg+"\n当前时间："+runstarttime+"--计划运行时间:"+runtime)
+while(System.currentTimeMillis()-runstarttime<runtime){
+    if(!idContains(runapppkg).findOne(1000)){
+        app.launchPackage(runapppkg)
+        sleep(5000)
+    }
 }
-
-
-var toNotificationManager=function(){
-    // importClass(com.hongshu.utils.IntentUtils);
-    // IntentUtils.toNotificationAccessSetting()
-    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+forcestop(appname)
 }
+var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
+var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
+var addbmobchannel=function(channels){ BmobPushUtils.addchannel(channels)}
 
-var addbmobchannel=function(channels){
-    importClass(com.hongshu.bmob.push.BmobPushUtils)
-    BmobPushUtils.addchannel(channels)
-}
+var removebmobchannel=function(channels){    BmobPushUtils.removechannel(channels)}
 
-var removebmobchannel=function(channels){
-    importClass(com.hongshu.bmob.push.BmobPushUtils)
-    BmobPushUtils.removechannel(channels)
-}
-
-var bmobpushmessage=function(channels,message){
-    importClass(com.hongshu.bmob.push.BmobPushUtils)
-    BmobPushUtils.pushmessage(channels,message)
-}
-
+var bmobpushmessage=function(channels,message){BmobPushUtils.pushmessage(channels,message)}
 
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
-        log("设备管理器激活了")
+        show("设备管理器激活了")
         return
     }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/uideviceadmin.js");
@@ -1119,23 +1072,21 @@ var startdeviceadmin=function(){
     while(ss)
     {
         if(isdeviceadmin()){
-            log("设备管理 ok")
+            show("设备管理 ok")
             if(eeee.getId()){
-                log("getid："+eeee.getId())
+                show("getid："+eeee.getId())
                 engines.stop(eeee.getId())
             }
             ss=false
             return true
         }else{
-            log("设备管理 no")
+            show("设备管理 no")
         }
-        
-        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,3000)
+        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
         滑动(20,10,17,10,5,500,300)
         sleepr(500,1000)
     }
 }
-
 
 //检测权限
 var checkpermission=function(permissions){
@@ -1182,13 +1133,13 @@ var uninstallappbyname=function(appname){
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
+
 var checksystemsettings=function(){
     if(issystemsettings()){
         log("有系统设置权限")
         return true
     }else{
         log("没有系统设置权限")
-
         PermissionUtils.requestWriteSettings(null)
         while(true){
             sleep(1000)
@@ -1210,18 +1161,16 @@ var checksystemsettings=function(){
         while(true){
           滑动(20,10,17,10,3,500,500)
           sleep(1000)
-          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置"])){
+          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
                 sleep(1000)
                 if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                     return 
                 }
           }
-          
         }
     }
 }
 // 
-
 var alltest=function(){
     log("全部测试")
     // localstartallapp()
@@ -1230,8 +1179,6 @@ var alltest=function(){
     checksystemsettings()
     startdeviceadmin()
 }
-
-
 var 刷宝邀请=function(){
     var h=httpget(getrandforstrs(刷宝邀请链接))
     toastLog(h)
@@ -1254,8 +1201,9 @@ var 火山极速版邀请=function(){
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     log("查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
+    log("查找app之后:"+appname+"--"+apppkg)
     if(appinfos){
-        log(appinfos)
+        log("获取成功")
         data=JSON.parse(appinfos)
         let obj=data.obj
   
@@ -1265,22 +1213,21 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
                 i=0
                 while(i<items.length){
                     let e=items[i]
-                    if(e.pkgName==apppkg){
-                        log(e.pkgName+"=="+apppkg)
-                        return e
+                    if(apppkg){
+                        if(e.pkgName==apppkg){
+                            log(e.pkgName+"=="+apppkg)
+                            return e
+                        }else{
+                            log(e.pkgName+"<>"+apppkg)
+                        }
                     }else{
-                        log(e.pkgName+"<>"+apppkg)
+                        appDetail=e.appDetail
+                        if(appDetail.appName==appname){
+                            return e
+                        }
                     }
                     i=i+1
                 }
-                // items.forEach(e =>{
-                //     if(e.pkgName==apppkg){
-                //         log(e.pkgName+"=="+apppkg)
-                //         return e
-                //     }else{
-                //         log(e.pkgName+"<>"+apppkg)
-                //     }
-                // })
             }else{
                 log("items为空")
             }
@@ -1290,50 +1237,83 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     }
     return null
 }
-var getAppdownloadurlByAppName=function(appname){
-    let searchurl="https://sj.qq.com/myapp/search.htm?kw="+appname
-        log("搜索：应用"+appname+"--"+searchurl)
-        try {
-            let doc=  Jsoup.connect(searchurl).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400")
-            .timeout(3000)
-            .get();
-            log(doc)
-            let elements=doc.select("#J_SearchDefaultListBox > li:nth-child(1) > div.search-boutique-data > div.data-box > div.name-line > div.name>a.appName")
-             elements.forEach(e => {
-              if(e.text()==appname){
-                  let infourl=e.absUrl("href");
-                  if(infourl){
-                    log(appname+"详情页："+infourl)
-                    return getAppdownloadurlbyInfopage(infourl)
-                  }
-                
-              }
-             });
-        } catch (error) {
-            
+
+function get_phone_code(app_name,reg,startwords,endwords){
+    contet = ""
+    packname = ""
+    code = ""
+    //--------------------------*******************--------------------------//
+    var thread = threads.start(function (app_name) {
+        events.observeNotification();
+        events.onNotification(function (notification) {
+            printNotification(notification);
+        });
+        toastLog("监听中，请在日志中查看记录的通知及其内容");
+        function printNotification(notification) {
+            log("应用包名: " + notification.getPackageName())
+            log("通知文本: " + notification.getText());
+            log("通知优先级: " + notification.priority);
+            log("通知目录: " + notification.category);
+            log("通知时间: " + new Date(notification.when));
+            log("通知数: " + notification.number);
+            log("通知摘要: " + notification.tickerText);
+            if(notification.getText()){
+                contet = notification.getText()
+            } 
+            if (notification.tickerText){
+                contet = notification.tickerText
+            }
+            packname = notification.getPackageName()
         }
-
-}
-
-var getAppdownloadurlByPackage=function(apppkg){
-    return getAppdownloadurlbyInfopage("https://sj.qq.com/myapp/detail.htm?apkName="+apppkg)
-}
-
-var getAppdownloadurlbyInfopage=function(infourl){
-    try {
-        let doc=  Jsoup.connect(infourl).userAgent("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.25 Safari/537.36 Core/1.70.3741.400 QQBrowser/10.5.3863.400")
-        .timeout(3000)
-        .get();
-        log(doc)
-        let element=doc.selectFirst("#J_DetDataContainer > div > div.det-ins-container.J_Mod > div.det-ins-btn-box > a.det-down-btn");
-        if(element!=null){
-            return element.absUrl("data-apkurl");
+    });
+    num = 0
+    while (true) {
+        num +=1 
+        if(num > 20){
+            toastLog("监听时长1分钟,接受短信失败,退出自动登录"); 
+            thread.interrupt();
+            return
+        } 
+        toastLog("短信监听中...");
+        sleep(2000);
+        if(!contet){
+            continue
         }
-    
-    } catch (error) {
-        log("抓取出错"+error)
+        if(contet.includes(appname)){
+            if(startwords){
+                startindex=contet.indexOf(startwords)+startwords.length
+                if(startindex>-1){
+                    contet=contet.substr(startindex)
+                }
+            }
+            if(endwords){
+                endindex=contet.indexOf(endwords)
+                if(endindex>-1){
+                    contet=contet.substr(0,endindex)
+                }
+            }
+            toastLog("找到对应的短信");
+            code =contet.match(reg)[0]
+            toastLog("停止监听")
+        thread.interrupt();
+            break
+        } 
     }
-
+   show("接受的验证码是:"+code)
+   setClip(code)
+    return code
 }
 
-// downloadandinstallapp("抖音","com.ss.android.ugc.aweme")
+ //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
+// log()
+// alltest()
+// device.setMusicVolume(0)
+// maytextclick("查看领取")
+
+// log("手机号："+phonenumber())
+
+// reg = /\d{4}/ig
+// code= get_phone_code("刷宝",reg)
+//  toastLog("最后一步了验证码："+code )      
+//engines.execScript("获取短信",get_phone_code.toString()+";get_phone_code()",null)
+// log(userinfo())
