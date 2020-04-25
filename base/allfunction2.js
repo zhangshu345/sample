@@ -1316,4 +1316,4 @@ function get_phone_code(app_name,reg,startwords,endwords){
 // code= get_phone_code("刷宝",reg)
 //  toastLog("最后一步了验证码："+code )      
 //engines.execScript("获取短信",get_phone_code.toString()+";get_phone_code()",null)
-log(userinfo())
+// log(userinfo())
