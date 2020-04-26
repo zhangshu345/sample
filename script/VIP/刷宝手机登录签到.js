@@ -293,7 +293,7 @@ while(true){
         sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){
 
-            if(device.getBattery()<lastcharge){
+            if(device.getBattery()<20){
                 toastLog("电量低")
                 if(device.isCharging()){
                  device.setMusicVolume(0)
@@ -301,7 +301,7 @@ while(true){
                  device.setBrightness(0)
                 }else{
                     //休眠三十分钟
-                    if()
+                    device.lockScreen()
                     sleep(1800000)
                 }
             }
