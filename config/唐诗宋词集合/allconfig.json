@@ -11,7 +11,7 @@
     "jpushkey":"a3b9ad4f5cce1008d54fef0c",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "isbmobpush":false,
-    "showad":false,
+    "showad":true,
     "isjpush":false,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/唐诗宋词集合_1.1.2.apk",
     "privacy":"",

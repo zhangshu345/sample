@@ -12,7 +12,7 @@
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "isbmobpush":false,
     "isjpush":false,
-    "showad":false,
+    "showad":true,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/快刷_1.0.3.apk",
     "privacy":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/privacy.md",
     "announce":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/announcement.md",
