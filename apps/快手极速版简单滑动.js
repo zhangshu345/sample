@@ -63,9 +63,7 @@ function 初始化() {
         }else{
             alter("未找到首页标识,返回");
             back()
-
         }
-
     }
 }
 

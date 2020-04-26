@@ -2,7 +2,6 @@
 auto.waitFor()
 auto.setMode("normal")
 
-
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {

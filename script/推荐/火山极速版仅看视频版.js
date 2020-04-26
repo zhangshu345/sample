@@ -111,12 +111,10 @@ var onlyseevideo=function(){
             
         }
         
- 
             back()
             sleep(1200)
-           textclick("视频")
-                sleep(1000)
-           
+            textclick("视频")
+            sleep(1000)
             textclick("首页")
             click(100,400)
             sleep(1000)

@@ -438,7 +438,7 @@ function 回到刷宝首页(){
 function 刷宝获取金币数(){
     alter("刷宝获取金币数")
     if (回到刷宝首页()){
-    while(true){
+    while(i<20){
     textclick("我")
     sleep(1000)
       coin=id(刷宝金币id).findOne(1000)
@@ -566,10 +566,8 @@ function 弹窗() {
     alter("弹窗开始")
     sleep(50)
     clicktexts(["立即领取","点击领取","继续看视频领取","去授权"])
-  
     idclick(刷宝视频恭喜获取关闭按钮id)
-  
-    // 
+      // 
     if (id("cancel").exists()) {
         //id("commit").findOne(1000).click()
         back()

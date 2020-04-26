@@ -11,7 +11,7 @@ importClass(android.provider.Settings);
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var date=new Date();
-var starttime=date.getTime()
+var scriptstarttime=date.getTime()
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
@@ -1057,6 +1057,7 @@ var removebmobchannel=function(channels){    BmobPushUtils.removechannel(channel
 
 var bmobpushmessage=function(channels,message){BmobPushUtils.pushmessage(channels,message)}
 
+
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
@@ -1110,25 +1111,76 @@ var checkpermission=function(permissions){
         }
     })
 }
+
+//执行函数 在一定时间内 最小10秒
+var doactionmaxtime=function(action,maxtime){
+    if(!action){
+        return
+    }
+    maxtime=maxtime||10000
+    stime=date.getTime()
+    while(date.getTime()-stime<maxtime){
+        action()
+    }
+}
+//执行函数 几次  
+var doactionmaxnumber=function(action,maxnumber){
+    if(!action){
+        return
+    }
+    maxnumber=maxnumber||1
+    i=0
+    while(i<maxnumber){
+        action()
+        i=i+1
+    }
+}
    
-var uninstallappbyname=function(appname){
+var uninstallapp=function(appname){
+  pkg=getPackageName(appname)
+  if(!pkg){
+      return false
+  }
   if(appname){
     let i = app.intent({
         action: "android.intent.action.DELETE",
         flags:["activity_new_task"],
-        data: "package:" + getPackageName(appname) //Uri.parse("package:" + getPackageName(appname))
+        data: "package:" +pkg  //Uri.parse("package:" + getPackageName(appname))
     });
     context.startActivity(i);
     while(true){
         if(textclick("确定")){
-            return
+            return true
         }
         if(textclick("卸载")){
-            return
+            return true
         }
     }
   }
 }
+var uninstallpackage=function(packageName){
+    name=app.getAppName(packageName)
+    if(!name){
+        return false
+    }
+    let i = app.intent({
+          action: "android.intent.action.DELETE",
+          flags:["activity_new_task"],
+          data: "package:" + packageName //Uri.parse("package:" + getPackageName(appname))
+      });
+      context.startActivity(i);
+      while(true){
+          if(textclick("确定")){
+              return
+          }
+          if(textclick("卸载")){
+              return
+          }
+      }
+   
+  }
+  
+
 
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
@@ -1306,7 +1358,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
-// alltest()
+
 // device.setMusicVolume(0)
 // maytextclick("查看领取")
 
@@ -1317,3 +1369,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 //  toastLog("最后一步了验证码："+code )      
 //engines.execScript("获取短信",get_phone_code.toString()+";get_phone_code()",null)
 // log(userinfo())
+// device.wakeUpIfNeeded()
+// sleep(2000)
+
+// device.lockScreen()

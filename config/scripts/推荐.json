@@ -98,7 +98,7 @@
     "app":{"name":"刷宝视频","pkg":"com.jm.video","icon":"https://pp.myapp.com/ma_icon/0/icon_52764540_1584105418/96",
         "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
         "version":""}
-},{"name":"刷宝短视频手机号登录签到刷视频",
+},{"name":"刷宝短视频手机登录签到刷视频",
     "desc":{"summary":"刷宝短视频使用手机号自动登录 ,签到 刷视频","html":""},
     "tags":["刷宝","短视频","赚钱","手机号"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},

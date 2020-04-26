@@ -46,7 +46,7 @@ toastLog("刷宝邀请完成")
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
-
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 
 var 视频次数=0
 
@@ -84,14 +84,14 @@ var 回到刷宝视频页=function(){
 
 var 刷宝签到=function(){
     i=0
-    while(i<6){
+    while(i<10){
         i=i+1
       //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){
             n=0
             while(n<15){
                 n=n+1
-                sleep(2000)
+
             if(textclick("立即签到")){
                 sleep(2000)
                 if(text("继续赚元宝").exists()){
@@ -166,27 +166,50 @@ var 刷宝登录=function(){
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
-         loginet= id("com.jm.video:id/login_edit").findOne(500)
-      
-         if(loginet){
-            loginet.setText(phonenumber())
-            id("com.jm.video:id/btn_login").waitFor()
-            if(idclick("com.jm.video:id/btn_login")){
-                reg = /\d{4}/ig
-                code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
-                 toastLog("最后一步了验证码："+code )       
-                 loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
-                
-                id( "btn_login").waitFor()
-                id("btn_login").findOne(500).click()
-               sleepr(6000)
-            }
-         }
+           if(logintype=="weixin"){
+            刷宝微信登录()
+           }else{
+            刷宝手机登录()
+           }
+         
        }
         // 
         i=i+1
     }
 }
+
+var 刷宝手机登录=function(){
+    loginet= id("com.jm.video:id/login_edit").findOne(500)
+    if(loginet){
+       loginet.setText(phonenumber())
+       id("com.jm.video:id/btn_login").waitFor()
+       if(idclick("com.jm.video:id/btn_login")){
+           reg = /\d{4}/ig
+           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
+            toastLog("最后一步了验证码："+code )       
+            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
+           
+           id( "btn_login").waitFor()
+           id("btn_login").findOne(500).click()
+          sleepr(6000)
+       }
+    }
+}
+
+var 刷宝微信登录=function(){
+    while (i<10){
+        textclick("微信账号登录")
+        sleepr(2000)
+        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+            return true
+        }
+    }
+
+}
+
 
 if(!getbooleanvalue("shuabaologin")){
     show("刷宝没有登录过")
@@ -207,7 +230,6 @@ while(true){
             回到刷宝视频页()
             sleep(1500)
         }
-            
     }else{
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
             back()
@@ -270,20 +292,27 @@ while(true){
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(滑动次数%10==1){
-            if(device.getBattery()<15){
+
+            if(device.getBattery()<lastcharge){
                 toastLog("电量低")
                 if(device.isCharging()){
                  device.setMusicVolume(0)
                  device.setBrightnessMode(0)
                  device.setBrightness(0)
                 }else{
+                    //休眠三十分钟
+                    if()
                     sleep(1800000)
                 }
             }
         }
+        if(滑动次数%100==1){
+            if(!今日已签到("shuabao")){
+                刷宝签到()
+            }
+        }
 
     }
-
 }
 
 
