@@ -21,36 +21,38 @@ toastLog("公共函数实例化失败,程序返回")
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
-show("开始刷宝短视频辅助滑动")
+creatsetfloatywindow()  //创建设置悬浮窗
+show("开始彩蛋视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-var 刷宝包名="com.jm.video"
-var 刷宝首页="com.jm.video.ui.main.MainActivity"
-var appname="刷宝短视频"
-
-creatsetfloatywindow()  //创建设置悬浮窗
+var apppkg="com.jifen.dandan"
+var apphomeactivity=""
+var appname="彩蛋视频"
 toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,刷宝包名)
+    downloadandinstallapp(appname,apppkg)
 }
-刷宝邀请()
-toastLog("刷宝邀请完成")
-var apppkg= "com.jm.video"  //app.getPackageName(appname)
-app.launchApp(appname)
-var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
-var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 
+彩蛋邀请()
+toastLog("彩蛋邀请完成")
+app.launchApp(appname)
+const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
+const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
+const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
+const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
+const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
+const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
+"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
+var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id]
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
 
-var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
-var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
-var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
-
-var 回到刷宝视频页=function(){
+var 回到彩蛋视频页=function(){
     i=0
     while (i<10){
         i=i+1
@@ -167,7 +169,6 @@ var 刷宝登录=function(){
            }else{
             刷宝手机登录()
            }
-         
        }
         // 
         i=i+1
