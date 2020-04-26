@@ -287,6 +287,9 @@ while(true){
         }
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
+        if(text("空空如也").exists()){
+            // 
+        }
         if(滑动次数%10==1){
 
             if(device.getBattery()<20){

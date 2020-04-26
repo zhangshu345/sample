@@ -12,11 +12,12 @@
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "isbmobpush":true,
     "isjpush":false,
+    "showad":true,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_1.3.3.apk",
     "privacy":"",
     "announce":"",
     "userguide":"",
-    "showad":true,
+  
     "settingdescription":"",
     "notificationsurl":"",
     "lineme":"",

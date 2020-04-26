@@ -11,7 +11,7 @@
     "jpushkey":"9b7dd86178325ea00e502c61",
     "isbmobpush":false,
     "isjpush":false,
-    "showad":false,
+    "showad":true,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/KeepHealth_1.3.1.apk",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "privacy":"",
