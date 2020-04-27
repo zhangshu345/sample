@@ -14,16 +14,19 @@ var 视频次数=0
  var seevideofinish=false  //看海量视频 任务完成 
 滑动次数=0
 
-
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-log("公共函数实例化成功")
+
+show("公共函数实例化成功")
 }else {
-log("公共函数实例化失败,程序返回")
+show("公共函数实例化失败,程序返回")
 
 }
+
+onlyscript=true
+
 if(onlyscript){
     floaty.closeAll()
     engines.stopOther()
@@ -32,20 +35,19 @@ if(onlyscript){
 
 var appname="快手极速版"
 var apppkg="com.kuaishou.nebula"
-show("开始快手极速版辅助滑动")
+show("检测快手极速版是否安装安装")
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
-home()
+
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
+home()
 
 toastLog("开始快手极速版")
-
 app.launchApp(appname)
 快手极速版邀请()
-
 while(true){
          if(!idContains(apppkg).findOne()){
                     app.launch(apppkg)
@@ -54,7 +56,6 @@ while(true){
                     back()
                     sleep(2000)
                 }
-            
                 if(textclick("注册/登录")){
                     text("微信登录").waitFor()
                     textclick("微信登录")

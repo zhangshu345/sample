@@ -1,7 +1,5 @@
-//快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
 auto.waitFor()
 auto.setMode("normal")
-
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -10,20 +8,21 @@ function httpget(url) {
         return ""
     }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction.js"
+//快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-log("公共函数实例化成功")
+show("公共函数实例化成功")
 }
 else {
-log("公共函数实例化失败,程序返回")
+show("公共函数实例化失败,程序返回")
 }
 
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
-var 快手极速版包名="com.kuaishou.nebula"
-var 快手极速版="快手极速版"
+var apppkg="com.kuaishou.nebula"
+var appname="快手极速版"
 var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
 /** 
  * 识别滑块位置
@@ -249,10 +248,7 @@ function randomSwipe(sx,sy,ex,ey){
     var time=[0,random(timeMin,timeMax)]
     var track=bezierCreate(sx,sy,x2,y2,x3,y3,ex,ey)
     
-    log("随机控制点A坐标："+x2+","+y2)
-    log("随机控制点B坐标："+x3+","+y3)
-    log("随机滑动时长："+time[1])
-    
+    log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1])
     //滑动
     gestures(time.concat(track))
     
@@ -271,7 +267,7 @@ function 滑块验证尝试(){
             var c=0
             while(text("拖动滑块").exists()){
               clicktexts(["允许","确定"])
-              log("快手滑块验证")
+              show("快手滑块验证")
               c=c+1
               if(device.width<=720){
                   swipe(720, 645, w * 0.63, 650, random(1220, 1505)) 
@@ -284,14 +280,14 @@ function 滑块验证尝试(){
               sleep(1000)
               if(idoneexist[快手极速首页奖励悬浮,快手极速摄像头图标id]){
                   hkc=hkc+1
-                  log("滑块验证成功:"+hk+":"+hkc)
+                  show("滑块验证成功:"+hk+":"+hkc)
                   return
               }
             }
 }
 
 function 滑块验证精确() {
-    log("当前宽 ："+device.width+":"+device.height)
+   show("当前宽 ："+device.width+":"+device.height)
       var y = 650
     while (true) {
         img = images.captureScreen();
@@ -311,7 +307,7 @@ function 滑块验证精确() {
     }else if(device.width>1080){
         x = discernSlidingblock(imgBy1080,1080)
     }
-     log("识别结果滑块X坐标：" + x);
+    show("识别结果滑块X坐标：" + x);
     if (x > -1) {
         if(device.width<=720){
             randomSwipe(80, 650, x-10, 650)
@@ -329,7 +325,6 @@ function 滑块验证精确() {
 
 var 滑块验证=function(){
     while(text("拖动滑块").exists()){
-        
        checkscreencapture()
          i=0
          sleep(1000)
@@ -471,8 +466,7 @@ var 快手极速签到=function(){
             快手极速弹窗()
             滑块验证()
         }
- 
-}
+ }
 
 var 快手极速填写邀请码=function(){
     i=0
@@ -584,15 +578,15 @@ function firstlogin(){
 //第一次登陆验证是否登录 和登录操作 和绑定邀请
 function firststartapp(){
     log("第一次登录快手极速版 进行登录操作")
-    app.launch(快手极速版包名)
+    app.launch(apppkg)
     while(true){
         log("第一次开始")
-        if(currentPackage()!=快手极速版包名){
-            if(!getPackageName(快手极速版)){
-                downloadandinstallapp(快手极速版)
+        if(currentPackage()!=apppkg){
+            if(!getPackageName(appname)){
+                downloadandinstallapp(appname)
                 islogin=false
             }
-            app.launch(快手极速版包名)
+            app.launch(apppkg)
             sleepr(1000,2500)
         }else{
             if(textclick("同意并继续")){
@@ -652,11 +646,11 @@ function firststartapp(){
 
 var 启动=function(){
     device.wakeUpIfNeeded()
-    if(!getPackageName(快手极速版)){
-        downloadandinstallapp(快手极速版)
+    if(!getPackageName(appname)){
+        downloadandinstallapp(appname)
         islogin=false
     }
-    firststartapp(快手极速版)
+    firststartapp(appname)
     // if(!今日签到("kuaishoujisu")){
     //     log("快手极速版今日未签到")
     //     快手极速签到()

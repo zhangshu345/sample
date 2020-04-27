@@ -16,7 +16,7 @@ var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewa
 var today=function(){
     return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
 }
-var onlyscript=true
+var onlyscript=false
 var enablegenius=device.sdkInt>=24
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
@@ -45,10 +45,10 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
+var gfwhave=false
 var spt=SPUtils.getInstance()
 
 var getstrvalue=function(v){    return spt.getString(v)}
-
 var getintvalue=function(v){    return spt.getInt(v)}
 var getlongvalue=function(v){    return spt.getLong(v)}
 var getfloatvalue=function(v){    return spt.getLong(v)}
@@ -65,6 +65,7 @@ var  creatgfloatywindow=function(){
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
+    gfwhave=true
  }
 
 var  creatsetfloatywindow=function(){
@@ -141,7 +142,7 @@ var  creatsetfloatywindow=function(){
     })
 }
 var show=function(txt){ log(txt);   
-     if(!gfw){
+     if(!gfwhave){
          creatgfloatywindow()
         };
     ui.run(function(){
