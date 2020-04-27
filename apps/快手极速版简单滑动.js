@@ -145,8 +145,6 @@ function 快手签到() {
         return
     }
     sleep(200)
-
-    //点击 去签到 
     num = 1
     while (true) {
         console.log("循环检测去签到按钮");
@@ -225,7 +223,7 @@ else {
 */
 
 app.launch("com.kuaishou.nebula")
-alter("开始")
+
     初始化()
     var i=0
     var hk=0

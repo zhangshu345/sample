@@ -25,24 +25,23 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-var 刷宝包名="com.jm.video"
-var 刷宝首页="com.jm.video.ui.main.MainActivity"
+var apppkg="com.jm.video"
+var apphomeactivity="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
-home()
+toastLog("指定："+appname+"辅助开启")
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,刷宝包名)
+    downloadandinstallapp(appname,apppkg)
 }
+home()
+
 刷宝邀请()
-
-var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
+
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
-
 var 视频次数=0
-
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
@@ -75,7 +74,7 @@ var 回到刷宝视频页=function(){
 }
 }
 
-var 刷宝签到=function(){
+var appsign=function(){
     i=0
     while(i<6){
         i=i+1
@@ -135,7 +134,7 @@ var 刷宝签到=function(){
     }
 }
 
-var 刷宝登录=function(){
+var applogin=function(){
     i=0
     while(i<10){
         log("刷宝登录")
@@ -162,13 +161,14 @@ var 刷宝登录=function(){
     }
 }
 
-if(!getbooleanvalue("shuabaologin")){
-    show("刷宝没有登录过")
-    刷宝登录()
+if(!getbooleanvalue(appname+"_islogin")){
+    show(appname+"没有登录过")
+    applogin()
 }else{
     show("刷宝之前登陆过")
 }
-刷宝签到()
+
+appsign()
 while(true){
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
         if(!idContains(apppkg).findOne(1000)){

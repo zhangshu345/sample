@@ -1,6 +1,5 @@
 function instantiation() {
-  
-    yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
+      yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
     var r = http.get(yunurl);
     if (r.statusCode == 200) {
             return r.body.string()
@@ -182,9 +181,6 @@ function get_money(){
         }
     }
     log(8888)
-
-
-
     find_num = 0 
     while(true){
         log("find_num",find_num)
@@ -223,9 +219,6 @@ function get_money(){
 
         
     }
-
-
-
     
 }
 
@@ -669,5 +662,5 @@ function login(){
 
 }
 // invite()
-// 启动线程(2, 1)
+启动线程(2, 1)
 // login()

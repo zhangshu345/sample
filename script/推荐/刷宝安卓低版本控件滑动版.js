@@ -4,8 +4,6 @@ engines.stopOther()
 i=0
 var enablegenius=device.sdkInt>=24
 
-
-
 //node 执行点击 
 var clicknode=function(v){
     if(v.clickable()){
@@ -86,7 +84,7 @@ var clickchilds=function(v){
 
 
 while(true){
-    sleep(6000)
+    sleep(8000)
   //  id("af").findOne().scrollBackward()
 
  vp=  id("com.jm.video:id/list").findOne()   //刷宝是播放控件的播放开始计算
@@ -96,13 +94,13 @@ while(true){
       toastLog("找到刷宝滑动vp")
       //vp.scrollBackward()
       vp.scrollForward()
-      sleep(5000)
+      sleep(200)
        player= id("com.jm.video:id/mask_layer").findOne()
        if(player){
            clicknode(player)
        }
-        
+       i=i+1
+       toastLog("第"+i+"次上滑")
   }
-    i=i+1
-    toastLog("第"+i+"次上滑")
+  
 }

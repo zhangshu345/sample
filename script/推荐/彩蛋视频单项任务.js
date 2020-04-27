@@ -37,9 +37,7 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-彩蛋邀请()
-toastLog("彩蛋邀请完成")
-app.launchApp(appname)
+
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
 const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
 const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
@@ -52,169 +50,15 @@ var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论�
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
 
-var 回到彩蛋视频页=function(){
-    i=0
-    while (i<10){
-        i=i+1
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-        if(!idContains(apppkg).findOne(1000)){
-            show("没有找到存在包名id控件")
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-            show("找到存在包名id控件")
-            back()
-            sleep(1500)
-        }
-        if(text("首页").exists()){
-            textclick("首页")
-            sleep(1000)
-            textclick("推荐")
-        }
-        if(textclick("同意并继续")){
 
-        }
-    }else{
-        return true
-    }
-}
-}
+app.launchApp(appname)
+// if(!getbooleanvalue("彩蛋登录")){
+//     show("彩蛋没有登录过")
+//     彩蛋登录()
+// }else{
+//     show("彩蛋之前登陆过")
+// }
 
-var 刷宝签到=function(){
-    i=0
-    while(i<10){
-        i=i+1
-      //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
-        if(textclick("任务")){
-            n=0
-            while(n<15){
-                n=n+1
-
-            if(textclick("立即签到")){
-                sleep(2000)
-                if(text("继续赚元宝").exists()){
-                    back()
-                    sleep(2000)
-                    if( textclick("首页")){
-                        return true
-                    }
-                    return false
-                }
-                sleep(000)
-                if(textclick("看视频签到")){
-                    i=0
-                    while(i<20){
-                        show("等待视频广告3秒")
-                        sleep(3000)
-                        t= idclick(刷宝视频广告关闭按钮1id)
-                        show("点击关闭按钮")
-                       if(t ) {
-                        show("成功点击关闭按钮")
-                         今日已签到("shuabao")
-                         return true
-                        }
-                        t= idclick(刷宝视频广告关闭按钮2id)
-                        show("点击关闭按钮")
-                       if(t ) {
-                         show("成功点击关闭按钮")
-                         今日已签到("shuabao")
-                         return true
-                        }
-                        i=i+1
-                    }
-                }else{
-                    下滑()
-                    back()
-                    return false
-                }
-            }
-            if(id("com.jm.video:id/imgClose").exists()){
-                back()
-            }
-            if(text("继续赚元宝").exists()){
-                textclick("首页")
-                return false
-            }
-        }
-        }
-    }
-}
-var 刷宝登录=function(){
-    i=0
-    while(i<10){
-        log("刷宝登录")
-           if(!idContains("com.jm.video").findOne(1000)){
-                show("找到存在包名id控件")
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
-                back()
-                sleep(1200)
-            }
-
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
-               return true
-        }else{
-            show("没有找到昵称和设置")
-            back()
-            sleep(1000)
-        }
-        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
-       if(id("login_tip").exists()||text("微信账号登录")){
-           toastLog("登录页面")
-           if(logintype=="weixin"){
-            刷宝微信登录()
-           }else{
-            刷宝手机登录()
-           }
-       }
-        // 
-        i=i+1
-    }
-}
-
-var 刷宝手机登录=function(){
-    loginet= id("com.jm.video:id/login_edit").findOne(500)
-    if(loginet){
-       loginet.setText(phonenumber())
-       id("com.jm.video:id/btn_login").waitFor()
-       if(idclick("com.jm.video:id/btn_login")){
-           reg = /\d{4}/ig
-           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
-            toastLog("最后一步了验证码："+code )       
-            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
-           
-           id( "btn_login").waitFor()
-           id("btn_login").findOne(500).click()
-          sleepr(6000)
-       }
-    }
-}
-
-var 刷宝微信登录=function(){
-    while (i<10){
-        textclick("微信账号登录")
-        sleepr(2000)
-        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
-            return true
-        }
-    }
-
-}
-
-
-if(!getbooleanvalue("shuabaologin")){
-    show("刷宝没有登录过")
-    刷宝登录()
-}else{
-    show("刷宝之前登陆过")
-}
-刷宝签到()
 while(true){
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
         if(!idContains(apppkg).findOne(1000)){
@@ -305,11 +149,167 @@ while(true){
         }
         if(滑动次数%100==1){
             if(!今日已签到("shuabao")){
-                刷宝签到()
+                appsign()
             }
         }
 
     }
+}
+
+
+var 回到彩蛋视频页=function(){
+    i=0
+    while (i<10){
+        i=i+1
+    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+        if(!idContains(apppkg).findOne(1000)){
+            show("没有找到存在包名id控件")
+            app.launch(apppkg)
+            sleep(3000)
+        }else{
+            show("找到存在包名id控件")
+            back()
+            sleep(1500)
+        }
+        if(text("首页").exists()){
+            textclick("首页")
+            sleep(1000)
+            textclick("推荐")
+        }
+        if(textclick("同意并继续")){
+
+        }
+    }else{
+        return true
+    }
+}
+}
+
+var 彩蛋签到=function(){
+    i=0
+    while(i<10){
+        i=i+1
+      //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
+        if(textclick("任务")){
+            n=0
+            while(n<15){
+                n=n+1
+
+            if(textclick("立即签到")){
+                sleep(2000)
+                if(text("继续赚元宝").exists()){
+                    back()
+                    sleep(2000)
+                    if( textclick("首页")){
+                        return true
+                    }
+                    return false
+                }
+                sleep(000)
+                if(textclick("看视频签到")){
+                    i=0
+                    while(i<20){
+                        show("等待视频广告3秒")
+                        sleep(3000)
+                        t= idclick(刷宝视频广告关闭按钮1id)
+                        show("点击关闭按钮")
+                       if(t ) {
+                        show("成功点击关闭按钮")
+                         今日已签到("shuabao")
+                         return true
+                        }
+                        t= idclick(刷宝视频广告关闭按钮2id)
+                        show("点击关闭按钮")
+                       if(t ) {
+                         show("成功点击关闭按钮")
+                         今日已签到("shuabao")
+                         return true
+                        }
+                        i=i+1
+                    }
+                }else{
+                    下滑()
+                    back()
+                    return false
+                }
+            }
+            if(id("com.jm.video:id/imgClose").exists()){
+                back()
+            }
+            if(text("继续赚元宝").exists()){
+                textclick("首页")
+                return false
+            }
+        }
+        }
+    }
+}
+var 彩蛋登录=function(){
+    i=0
+    while(i<10){
+        log("彩蛋登录")
+           if(!idContains("com.jm.video").findOne(1000)){
+                show("找到存在包名id控件")
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(1200)
+            }
+
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+               return true
+        }else{
+            show("没有找到昵称和设置")
+            back()
+            sleep(1000)
+        }
+        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+       if(id("login_tip").exists()||text("微信账号登录")){
+           toastLog("登录页面")
+           if(logintype=="weixin"){
+            刷宝微信登录()
+           }else{
+            刷宝手机登录()
+           }
+       }
+        // 
+        i=i+1
+    }
+}
+
+var 彩蛋手机登录=function(){
+    loginet= id("com.jm.video:id/login_edit").findOne(500)
+    if(loginet){
+       loginet.setText(phonenumber())
+       id("com.jm.video:id/btn_login").waitFor()
+       if(idclick("com.jm.video:id/btn_login")){
+           reg = /\d{4}/ig
+           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
+            toastLog("最后一步了验证码："+code )       
+            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
+           
+           id( "btn_login").waitFor()
+           id("btn_login").findOne(500).click()
+          sleepr(6000)
+       }
+    }
+}
+
+var 彩蛋微信登录=function(){
+    while (i<10){
+        textclick("微信账号登录")
+        sleepr(2000)
+        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+            return true
+        }
+    }
+
 }
 
 

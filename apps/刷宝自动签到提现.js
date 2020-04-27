@@ -386,7 +386,7 @@ function 刷宝上滑() {
     滑动次数=滑动次数+1
     alter("第 "+滑动次数+" 次上滑")
      if(!id(刷宝视频页搜索按钮id).exists()){
-       回到刷宝视频页()
+       gotoappvideo()
     }
     滑动(20,12,16,9,3,500,200)
     sleepr(6*1000,13*1000)
@@ -395,74 +395,63 @@ var 刷宝搜索用户=function(author){
     app.launch("刷宝短视频") 
 }
 
-function 回到刷宝首页(){
-    alter("回到刷宝首页")
+
+
+function appgetcoinnumber(){
+    show("刷宝获取金币数")
     i=0
-    while(i<20){
-        cp=currentPackage()
-        if(cp!=刷宝包名){
-            alter("刷宝:检测当前包名："+cp)
-           app.launchPackage(刷宝包名)
-            sleep(1000)
-         }
-         if(textclick("首页")){
-            return true
+    while(i<10){
+    if (textclick("我")){
+        sleep(2000)
+        n=0
+        while(n<10){
+            coin=id(刷宝金币id).findOne(1000)
+            if(coin){
+                n=parseInt(coin.text())
+                今日记录(appname,"coin",n)
+              show("当前金币数:"+n)
+               return n
+             }else{
+                滑动(20,10,4,11,17,500,300)
+                sleep(3000)
+             }
+             n=n+1
         }
-        if(text("我的钱包").exists()){
-            back()
-        }
-         if(id(刷宝视频页搜索按钮id).exists){
-              textclick("推荐",0,0,device.width,300)
-             return true
-        }else{
-            back()
-        }
-        弹窗()
-        sleep(1000)
-        i=i+1
-      }
-      if(i==20){
-          强制关闭("刷宝短视频")
-          return 回到刷宝首页()
-      }
-      return true
-}
-function 刷宝获取金币数(){
-    alter("刷宝获取金币数")
-    if (回到刷宝首页()){
-    while(true){
-    textclick("我")
-    sleep(1000)
-      coin=id(刷宝金币id).findOne(1000)
-    if(coin){
-        n=parseInt(coin.text())
-        数据库.put(today+"_lastcoin",n)
-        alter("当前金币数:"+n)
-       return n
-     }
-    }
     }else{
-        强制关闭("刷宝短视频")
-        return 刷宝获取金币数()
+        back()
+        sleep(1500)
     }
-}
-var 刷宝获取当前余额=function(){
- if(回到刷宝首页()){
-   while(true){
-    textclick("我")
-    sleep(300)
-    money=id(刷宝余额id).findOne(1000)
-    if(money){
-        f=parseFloat(money.text())
-        数据库.put("lastmoney",f)
-        return f
+     i=i+1
     }
-   }}else{
-       强制关闭("刷宝短视频")
-       return 刷宝获取当前余额()
-   }
+
+ }
+var appgetmoneyinfo=function(){
+    i=i+1
+   while(i<10){
+       if( textclick("我")){
+        sleep(3000)
+        n=0
+        while(n<10){
+            money=id(刷宝余额id).findOne(500)
+            if(money){
+                f=parseFloat(money.text())
+                今日记录(appname,"money",f)
+                return f
+            }else{
+                滑动(20,10,4,11,17,500,300)
+                sleep(3000)
+            }
+        }
+       }else{
+           back()
+           sleep(1500)
+       }
+
+       i=i+1
 }
-var 可以提现=function(){
+  
+}
+var cantomoney=function(){
     t= textContains("今日已解锁").findOne()
     if(t){
         return true
@@ -485,13 +474,13 @@ var 可以提现=function(){
       }
   }
 }
-var 刷宝提现=function(){
-    alter("刷宝提现")
-     f=刷宝获取金币数()
+var apptomoney=function(){
+    show("刷宝提现")
+     f=appgetcoinnumber()
      if(f>6800){
-        while(true){
+        while(i<10){
            if(idclick(刷宝余额id)){
-             alter("点击刷宝余额成功")
+            show("点击刷宝余额成功")
                 sleep(1000)
             }
             if(textclick("立即提现")){
@@ -509,9 +498,10 @@ var 刷宝提现=function(){
                     alter("点击每日")
                   break
               }
+           i=i+1
            
         }
-        if(可以提现()){
+        if(cantomoney()){
             i=0
              while(i<10){
                  sleep(1000)
@@ -524,14 +514,14 @@ var 刷宝提现=function(){
                       今日已提现()
                      back()
                      back()
-                     回到刷宝视频页()
+                     gotoappvideo()
                      return true
                  }
                  if(text("去邀请好友").exists()){
                      back()
                      back()
                      今日已提现()
-                     回到刷宝视频页()
+                     gotoappvideo()
                      return true
                  }
                  i=i+1
@@ -539,17 +529,17 @@ var 刷宝提现=function(){
              back()
              sleep(1000)
              back()
-             回到刷宝视频页()
+             gotoappvideo()
              return false
         }else{
             back()
             sleep(1000)
             back()
-         回到刷宝视频页()
+         gotoappvideo()
          return false
         }
      }else{
-         回到刷宝视频页()
+         gotoappvideo()
          return false
      }
   }
@@ -619,7 +609,7 @@ var 刷宝签到=function(){
         clicktexts(["任务",'立即签到',"看视频签到"],1000,2000)
     }
 }
-var 回到刷宝视频页=function(){
+var gotoappvideo=function(){
     alter("刷宝回到刷视频页")
    if(回到刷宝首页()){
     i=0
@@ -630,16 +620,16 @@ var 回到刷宝视频页=function(){
     }
     else{
         强制关闭("刷宝短视频")
-        return  回到刷宝视频页()
+        return  gotoappvideo()
     }
 }
 function 刷宝视频操作(){
-    回到刷宝视频页()
+    gotoappvideo()
     while(滑动次数<1000){
         刷宝上滑()
         if(滑动次数%100==0){
            if(!今日提现())(
-            刷宝提现()
+            apptomoney()
            ) 
         }
      }
@@ -703,14 +693,6 @@ if(!getPackageName("快手极速版")){
     islogin=false
 }
 
-// 启动线程()
-
-// 刷宝上滑()
-// 刷宝上滑()
-// 刷宝上滑()
-// 刷宝上滑()
-// 刷宝上滑()
-// 刷宝上滑()
 
 
 app.launchApp("看点快报")

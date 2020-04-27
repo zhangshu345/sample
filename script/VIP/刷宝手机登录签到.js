@@ -26,8 +26,8 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-var 刷宝包名="com.jm.video"
-var 刷宝首页="com.jm.video.ui.main.MainActivity"
+var apppkg="com.jm.video"
+var apphomeactivity="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
 
 creatsetfloatywindow()  //创建设置悬浮窗
@@ -35,7 +35,7 @@ toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,刷宝包名)
+    downloadandinstallapp(appname,apppkg)
 }
 刷宝邀请()
 toastLog("刷宝邀请完成")
@@ -49,8 +49,9 @@ var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
-
-var 回到刷宝视频页=function(){
+var 刷宝余额id="com.jm.video:id/tv_mine_money"
+var 刷宝金币id="com.jm.video:id/tv_gold_num"
+var gotoappvideo=function(){
     i=0
     while (i<10){
         i=i+1
@@ -78,7 +79,7 @@ var 回到刷宝视频页=function(){
 }
 }
 
-var 刷宝签到=function(){
+var appsign=function(){
     i=0
     while(i<10){
         i=i+1
@@ -87,7 +88,9 @@ var 刷宝签到=function(){
             n=0
             while(n<15){
                 n=n+1
-
+                if(textContains("恭喜您获得").findOne(200)){
+                    back()
+                }
             if(textclick("立即签到")){
                 sleep(2000)
                 if(text("继续赚元宝").exists()){
@@ -105,17 +108,17 @@ var 刷宝签到=function(){
                         show("等待视频广告3秒")
                         sleep(3000)
                         t= idclick(刷宝视频广告关闭按钮1id)
-                        show("点击关闭按钮")
+                    
                        if(t ) {
                         show("成功点击关闭按钮")
-                         今日已签到("shuabao")
+                         今日已签到(appname)
                          return true
                         }
                         t= idclick(刷宝视频广告关闭按钮2id)
                         show("点击关闭按钮")
                        if(t ) {
                          show("成功点击关闭按钮")
-                         今日已签到("shuabao")
+                         今日已签到(appname)
                          return true
                         }
                         i=i+1
@@ -137,10 +140,10 @@ var 刷宝签到=function(){
         }
     }
 }
-var 刷宝登录=function(){
+var applogin=function(){
     i=0
     while(i<10){
-        log("刷宝登录")
+        show(appname+"登录")
            if(!idContains("com.jm.video").findOne(1000)){
                 show("找到存在包名id控件")
                 app.launch(apppkg)
@@ -161,20 +164,19 @@ var 刷宝登录=function(){
         }
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
-           toastLog("登录页面")
+           show("登录页面")
            if(logintype=="weixin"){
-            刷宝微信登录()
+            login_weixin()
            }else{
-            刷宝手机登录()
+            login_phone()
            }
-         
        }
         // 
         i=i+1
     }
 }
 
-var 刷宝手机登录=function(){
+var login_phone=function(){
     loginet= id("com.jm.video:id/login_edit").findOne(500)
     if(loginet){
        loginet.setText(phonenumber())
@@ -192,7 +194,7 @@ var 刷宝手机登录=function(){
     }
 }
 
-var 刷宝微信登录=function(){
+var login_weixin=function(){
     while (i<10){
         textclick("微信账号登录")
         sleepr(2000)
@@ -202,31 +204,152 @@ var 刷宝微信登录=function(){
             spt.put("shuabaologin",true)
             return true
         }
+        i=i+1
     }
 
 }
 
 
-if(!getbooleanvalue("shuabaologin")){
-    show("刷宝没有登录过")
-    刷宝登录()
-}else{
-    show("刷宝之前登陆过")
+function appgetcoinnumber(){
+     show(appname+"获取金币数")
+     gotoappvideo()
+    i=0
+    while(i<10){
+    textclick("我")
+    sleep(2000)
+    coin=id(刷宝金币id).findOne(1000)
+    if(coin){
+        n=parseInt(coin.text())
+        今日记录(appname,"coin",n)
+       show("当前金币数:"+n)
+       return n
+     }
+     i=i+1
+    }
+   
+ }
+       
+        
+
+var appgetmoneyinfo=function(){
+    i=0
+    gotoappvideo()
+   while(i<10){
+       if(textclick("我")){
+        sleep(3000)
+        money=id(刷宝余额id).findOne(1000)
+        if(money){
+            f=parseFloat(money.text())
+            数据库.put("lastmoney",f)
+            return f
+        }
+       }
+
+       i=i+1
+   }
+
 }
-刷宝签到()
+
+//直接界面获取元素判断
+var cantomoney=function(){
+    t= textContains("今日已解锁").findOne()
+    if(t){
+        return true
+    }
+    t= textContains("今日已使用").findOne()
+    if(t){
+        return false
+    }
+  t=  textContains("已得").findOne()
+  if(t){
+      ss=t.text().split("已得")[1]
+      log("已得："+ss)
+      cc= parseInt(ss.substr(0,4))
+      ms=t.text().substr(t.text().length-7,4)
+      log("ms:"+ms)
+      if(cc>parseInt(ms)){
+          return true
+      }else{
+          return false
+      }
+  }
+}
+
+var apptomoney=function(){
+    show(appname+"提现")
+       f=appgetcoinnumber()
+     if(f>6800){
+         i=0
+        while(i<10){
+           if(idclick(刷宝余额id)){
+             show("点击刷宝余额成功")
+                sleep(1000)
+            }
+            if(textclick("立即提现")){
+
+             }
+             if(textclick("每日可提")){
+                    show("点击每日")
+                    return false
+              }
+             if(textclick("仅当日有效")){
+                    show("仅当日有效")
+                    break
+              }
+              if(textclick("已解锁")){
+                    show("点击每日")
+                    break
+              }
+           i=i+1
+        }
+        if(cantomoney()){
+            i=0
+             while(i<10){
+                 sleep(1000)
+                 textclick("立即提现")
+                             
+                 if(textclick("同意")){
+                     show("微信同意")
+                 }
+                 if(text("提现详情").exists()){
+                      今日已提现(appname)
+                     return true
+                 }
+                 if(text("去邀请好友").exists()){
+                     back()
+                     今日已提现(appname)
+                               return true
+                 }
+                 i=i+1
+             }
+            return false
+        }else{
+         return false
+        }
+     }else{
+         return false
+     }
+  }
+
+
+
+
+applogin()
+appsign()
 while(true){
+  
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
         if(!idContains(apppkg).findOne(1000)){
             app.launch(apppkg)
             sleep(3000)
             i=0
             clickonetexts(["首页","推荐","等待"],500,1500)
-            
         }else{
-            回到刷宝视频页()
+            gotoappvideo()
             sleep(1500)
         }
-    }else{
+        }else{
+        idclick(刷宝视频广告关闭按钮1id)
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
             back()
             sleep(1500)
@@ -285,29 +408,47 @@ while(true){
             滑动(20,13,16,10,4,500,700)
             sleep(1000)
         }
+
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(text("空空如也").exists()){
             // 
         }
         if(滑动次数%10==1){
-
-            if(device.getBattery()<20){
+            battery=device.getBattery()
+            if(battery<20){
+               
                 toastLog("电量低")
                 if(device.isCharging()){
-                 device.setMusicVolume(0)
-                 device.setBrightnessMode(0)
-                 device.setBrightness(0)
+                    device.setMusicVolume(0)
+                    device.setBrightnessMode(0)
+                    device.setBrightness(0)
+                    if(lastbattery){
+                        if(battery<lastbattery){
+                            show("电量低:"+battery+"-休眠30分钟")
+                            device.lockScreen()
+                            sleep(1800000)
+                        }
+                    }
+               
+                 lastbattery=battery
                 }else{
                     //休眠三十分钟
+                    show("电量低:"+battery+"-休眠30分钟")
                     device.lockScreen()
                     sleep(1800000)
+                    device.wakeUpIfNeeded()
                 }
             }
         }
         if(滑动次数%100==1){
-            if(!今日已签到("shuabao")){
-                刷宝签到()
+            if(!今日已签到(appname)){
+                appsign()
+            }
+        }
+        if(滑动次数%200==1){
+            if(!今日提现(appname)){
+                apptomoney()
             }
         }
 
