@@ -46,7 +46,7 @@ var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var gfwhave=false
-var spt=SPUtils.getInstance()
+var spt=SPUtils.getInstance("hongshureader")
 
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -142,9 +142,9 @@ var  creatsetfloatywindow=function(){
     })
 }
 var show=function(txt){ log(txt);   
-     if(!gfwhave){
-         creatgfloatywindow()
-        };
+    if(!gfwhave){
+        creatgfloatywindow()
+    }
     ui.run(function(){
         gfw.text.setText(txt)
      })
@@ -192,7 +192,6 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
-
 
 var 今日签到=function(name){
     cs=数据库.get(name+"_sign_"+today(), false)
@@ -249,7 +248,7 @@ var 上次金币=function(name){
  //可以通过上次的金币来判断是否 还可以获取金币
  var 记录现在余额=function(name,f){ 
    数据库.put(name+"_lastmoney_"+today(),f)
- } //可以通过上次的金币来判断是否 还可以获取金币
+ } 
 
  var 上次余额=function(name){ 
     s=   数据库.get(name+"_lastmoney_"+today(), 0.0)
@@ -385,33 +384,9 @@ function idclick(idstr,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){
-            if(!f.click()){
-                if(enablegenius){
-                    b=f.bounds()
-                    bc=click(b.centerX(),b.centerY())
-                    if(bc){
-                        show("id："+idstr+"----点位成功点击")
-                        return true
-                    }else{
-                        var w = boundsContains(b.left, b.top, b.right, b.bottom).clickable().findOne()
-                        if(w){
-                            return w.click()
-                        }
-                    }
-                } else{
-                    if(clicknode(f)){
-                        return true
-                    }
-                    r=f.bounds()
-                    var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-                    if(w){
-                        return w.click()
-                    }
-                }            
-            }else{
-                show("id："+idstr+"----控件点击成功")
-                return true
-            }
+        if(clicknode(f)){
+            return true
+        }  
     }
     return false
 }
@@ -424,45 +399,15 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
-             return false
+        return false
     }
-     show("text："+i+":控件找到了")
-        if(f.clickable()){
-            show("text："+i+":控件可点击")
-          return  f.click()
-        }else{
-            show("text："+i+":控件不可点击")
-            if(enablegenius){
-                show("text "+i+"可手势 范围可点击" )
-                b=f.bounds()
-                if(b.centerX()>0&&b.centerY()>0){
-                    show("text："+i+"在屏幕上")
-                  if(click(b.centerX(),b.centerY()))
-                  {
-                      return true
-                  }else{
-                    return   clicknode(f)
-                  }
-                  
-                }else{
-                    show("text："+i+"不在屏幕上")
-                    return false
-                }
-             }else{
-                show("text "+i+"不可手势 范围可点击" )
-               if (clicknode(f)){
-                   return true
-               }
-                r=f.bounds()
-                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-                if(w){
-                    show("text "+i+"找到所在区域可点击控件"+w.toString())
-                    return w.click()
-                }
-            }
-        }     
+    show("text："+i+":控件找到了")
+    if(clicknode(f)){
+        return true
+    }  
     return false
 }
+
 
 function maytextclick(i,t,left,top,right,bottom){
     t=t || 500
@@ -477,55 +422,58 @@ function maytextclick(i,t,left,top,right,bottom){
              return false
          }
     }
-          show("text："+i+":控件找到了")
-        if(f.clickable()){
-            show("text："+i+":控件可点击")
-          return  f.click()
-        }else{
-            show("text："+i+":控件不可点击")
-            if(enablegenius){
-                show("text "+i+"可手势 范围可点击" )
-                b=f.bounds()
-                if(b.centerX()>0&&b.centerY()>0){
-                    show("控件在屏幕上")
-                   if(click(b.centerX(),b.centerY())){
-                       return true
-                   }else{
-                       return clicknode(f)
-                   }
-                  
-                }else{
-                    show("控件不在屏幕上")
-                    return false
-                }
-             }else{
-                show("text "+i+"不可手势 范围可点击" )
-               if (clicknode(f)){
-                   return true
-               }
-                r=f.bounds()
-                var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-                if(w){
-                    show("text "+i+"找到所在区域可点击控件"+w.toString())
-                    return w.click()
-                }
-            }
-        }     
+     show("text："+i+":控件找到了")
+      if(clicknode(f)){
+          return true
+      }  
     return false
 }
 
+//node 执行点击 
 var clicknode=function(v){
-    if(!clickparents(v)){
-        return  clickchilds(v)
-    }else{
-        return true
+    if(v.clickable()){
+      return  v.click()
     }
+    if(enablegenius){
+        show("text "+i+"可手势 范围可点击" )
+        b=f.bounds()
+        if(b.centerX()>0&&b.centerY()>0){
+            show("控件在屏幕上")
+           if(click(b.centerX(),b.centerY())){
+               return true
+           }else{
+               return clicknode(f)
+           }
+          
+        }else{
+            show("控件不在屏幕上")
+            return false
+        }
+     }else{
+        show("text "+i+"不可手势 范围可点击" )
+        if(clickparents(v)){
+            return true
+        }
+        if(clickchilds(v)){
+            return true
+        }
+        r=f.bounds()
+        var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+        if(w){
+            show("text "+i+"找到所在区域可点击控件"+w.toString())
+            return w.click()
+        }else{
+            return false
+        }
+    }
+
+  
 }
 
 //一直找到可以点击控件向上查找
 var clickparents=function(v,n){
     i=0
-    n=n||10
+    n=n||15
     while(i<n){
         p=v.parent()
         if(p&&p.clickable()){

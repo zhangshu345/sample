@@ -9,7 +9,7 @@ function httpget(url) {
         return ""
     }
 }
-
+floaty.closeAll()
 var 视频次数=0
  var seevideofinish=false  //看海量视频 任务完成 
 滑动次数=0
@@ -18,20 +18,31 @@ var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunc
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-
+creatgfloatywindow()
 show("公共函数实例化成功")
 }else {
 show("公共函数实例化失败,程序返回")
 
 }
 
+function 快手极速版登录(){
+    
+    clicktexts(["","登录"])
+    text("微信登录").waitFor()
+    textclick("微信登录")
+    sleep(2000)
+    text("登录").waitFor()
+    textclick("登录")
+    text("微信登录").waitFor()
+    textclick("微信登录")
+    sleep(1000)
+}
 onlyscript=true
 
 if(onlyscript){
-    floaty.closeAll()
+    
     engines.stopOther()
 }
-
 
 var appname="快手极速版"
 var apppkg="com.kuaishou.nebula"
@@ -51,25 +62,19 @@ app.launchApp(appname)
 while(true){
          if(!idContains(apppkg).findOne()){
                     app.launch(apppkg)
-                    sleep(2000)
+                    sleep(3000)
                 }else{
                     back()
                     sleep(2000)
                 }
-                if(textclick("注册/登录")){
-                    text("微信登录").waitFor()
-                    textclick("微信登录")
-                    sleep(1000)
-          }
+     if(textclick("注册/登录")){
+        快手极速版登录()
+      }
   
     if(text("登录立即可得8元").exists()){
         back()
         sleep(1000)
-        text("登录").waitFor()
-        textclick("登录")
-        text("微信登录").waitFor()
-        textclick("微信登录")
-        sleep(1000)
+        快手极速版登录()
     }
     if(textclick("点击激活")){
         text("去红包页面")
@@ -153,10 +158,8 @@ while(true){
             }
             c=1
             while(c<视频重复次数){
-         
                 if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
                     textclick("首页")
-
                 }
                 if(textclick("领取")){
 
