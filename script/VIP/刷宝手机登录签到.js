@@ -470,7 +470,6 @@ while(true){
                 apptomoney()
             }
         }
-
     }
     xhcs=xhcs+1
 }
