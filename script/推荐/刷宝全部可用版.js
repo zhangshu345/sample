@@ -19,7 +19,7 @@ var clicknode=function(v){
            if(click(b.centerX(),b.centerY())){
                return true
            }else{
-               return clicknode(f)
+               return clicknode(v)
            }
           
         }else{

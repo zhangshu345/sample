@@ -442,7 +442,7 @@ var clicknode=function(v){
            if(click(b.centerX(),b.centerY())){
                return true
            }else{
-               return clicknode(f)
+               return clicknode(v)
            }
           
         }else{
@@ -457,7 +457,7 @@ var clicknode=function(v){
         if(clickchilds(v)){
             return true
         }
-        r=f.bounds()
+        r=v.bounds()
         var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
         if(w){
             show("text "+i+"找到所在区域可点击控件"+w.toString())
