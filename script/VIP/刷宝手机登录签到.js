@@ -333,7 +333,7 @@ var apptomoney=function(){
 
 
 
-
+lastbattery=0
 applogin()
 appsign()
 while(true){
@@ -417,19 +417,18 @@ while(true){
         if(滑动次数%10==1){
             battery=device.getBattery()
             if(battery<20){
-               
-                toastLog("电量低")
+               toastLog("电量低")
                 if(device.isCharging()){
                     device.setMusicVolume(0)
                     device.setBrightnessMode(0)
                     device.setBrightness(0)
-                    if(lastbattery){
+                 
                         if(battery<lastbattery){
                             show("电量低:"+battery+"-休眠30分钟")
                             device.lockScreen()
                             sleep(1800000)
                         }
-                    }
+                   
                
                  lastbattery=battery
                 }else{
