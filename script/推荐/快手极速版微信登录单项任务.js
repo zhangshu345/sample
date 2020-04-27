@@ -40,7 +40,6 @@ function 快手极速版登录(){
 onlyscript=true
 
 if(onlyscript){
-    
     engines.stopOther()
 }
 
