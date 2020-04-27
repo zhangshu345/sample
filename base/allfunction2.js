@@ -436,7 +436,7 @@ var clicknode=function(v){
     }
     if(enablegenius){
         show("text "+i+"可手势 范围可点击" )
-        b=f.bounds()
+        b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             show("控件在屏幕上")
            if(click(b.centerX(),b.centerY())){
