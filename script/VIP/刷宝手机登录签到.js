@@ -51,12 +51,14 @@ var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
+//回到视频页
 var gotoappvideo=function(){
+    show("回到视频页")
     i=0
-    while (i<10){
-        i=i+1
+    while (i<5){
+       
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-        if(!idContains(apppkg).findOne(1000)){
+        if(!idContains(apppkg).findOne(500)){
             show("没有找到存在包名id控件")
             app.launch(apppkg)
             sleep(3000)
@@ -65,31 +67,36 @@ var gotoappvideo=function(){
             back()
             sleep(1500)
         }
+        if(textclick("同意并继续")){
+
+        }
         if(text("首页").exists()){
             textclick("首页")
             sleep(1000)
             textclick("推荐")
+            return true
         }
-        if(textclick("同意并继续")){
-
-        }
+       
     }else{
+        
         return true
     }
+    i=i+1
 }
 }
 
 var appsign=function(){
     i=0
-    while(i<10){
+    while(i<3){
         i=i+1
       //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){
             n=0
-            while(n<15){
+            while(n<3){
                 n=n+1
                 if(textContains("恭喜您获得").findOne(200)){
-                    back()
+                    back
+                    return true
                 }
             if(textclick("立即签到")){
                 sleep(2000)
@@ -136,7 +143,10 @@ var appsign=function(){
                 textclick("首页")
                 return false
             }
-        }
+
+            }
+        }else{
+
         }
     }
 }
@@ -252,9 +262,14 @@ var appgetmoneyinfo=function(){
 
 //直接界面获取元素判断
 var cantomoney=function(){
+    show("判断可提现")
     t= textContains("今日已解锁").findOne()
     if(t){
         return true
+    }
+    t= textContains("已解锁").findOne()
+    if(t){
+        return false
     }
     t= textContains("今日已使用").findOne()
     if(t){
@@ -305,6 +320,11 @@ var apptomoney=function(){
         if(cantomoney()){
             i=0
              while(i<10){
+                if(textclick("仅当日有效")){
+                    show("点击仅当日有效")
+                   
+                }
+
                  sleep(1000)
                  textclick("立即提现")
                              
@@ -336,28 +356,29 @@ var apptomoney=function(){
 lastbattery=0
 applogin()
 appsign()
+show("签到结束")
+xhcs=0
 while(true){
-  
+    show("循环次数:"+(xhcs+1))
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+          show("不是视频页")
         if(!idContains(apppkg).findOne(1000)){
             app.launch(apppkg)
             sleep(3000)
             i=0
-            clickonetexts(["首页","推荐","等待"],500,1500)
+            clickonetexts(["首页","推荐","等待"],300,1500)
         }else{
+            show("")
             gotoappvideo()
             sleep(1500)
         }
-        }else{
+   }else{
+        show("视频页关闭弹窗")
         idclick(刷宝视频广告关闭按钮1id)
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
             back()
             sleep(1500)
-            textclick("首页")
-            sleep(1500)
-            textclick("推荐")
-            sleep(1500)
-        }
+         }
         if( textclick("等待")){
             sleep(1000)
         }
@@ -373,8 +394,8 @@ while(true){
             lastdesc=desc.text()
             log("当前："+lastdesc)
         }
-            滑动(20,13,16,10,4,500,700)
-            sleep(2000)
+       滑动(20,13,16,10,4,500,700)
+         sleep(2000)
         desc=  id("com.jm.video:id/desc").findOne(1000)
         if(desc){
             currentdesc=desc.text()
@@ -412,7 +433,7 @@ while(true){
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(text("空空如也").exists()){
-            // 
+            // 脚本完成了
         }
         if(滑动次数%10==1){
             battery=device.getBattery()
@@ -422,7 +443,6 @@ while(true){
                     device.setMusicVolume(0)
                     device.setBrightnessMode(0)
                     device.setBrightness(0)
-                 
                         if(battery<lastbattery){
                             show("电量低:"+battery+"-休眠30分钟")
                             device.lockScreen()
@@ -452,6 +472,7 @@ while(true){
         }
 
     }
+    xhcs=xhcs+1
 }
 
 
