@@ -367,7 +367,6 @@ var 快手极速设置密码=function(){
         while(!idclick(快手极速左边设置按钮id)){}
         
     }
-
 }
 
 var  快手极速微信登录按钮id="com.kuaishou.nebula:id/wechat_login_view"

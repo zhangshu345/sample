@@ -45,7 +45,6 @@ var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 
 var 视频次数=0
-
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
