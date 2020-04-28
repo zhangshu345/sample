@@ -1327,3 +1327,4 @@ function get_phone_code(app_name,reg,startwords,endwords){
 // sleep(2000)
 
 // device.lockScreen()
+checkscreencapture()
