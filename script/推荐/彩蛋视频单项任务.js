@@ -70,29 +70,30 @@ function run(){
             clicktexts(["首页","推荐","等待"],500,1500)
            
         }else{
-
+            back()
+             滑动(20,13,16,10,4,500,700)
+            sleep(500)
             if(textclick("立即翻倍")){
                 seead()
              }
-             滑动(20,13,16,10,4,500,700)
-            back()
-            sleep(1500)
+             if(text("点击重播").exists()){
+                back()
+                sleep(2500)
+            }
 
         }
     }else{
-        if(textclick("立即翻倍")){
-            seead()
-         }
-           
-            sleep(2000)
-         
+              
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
         if(desc){
             currentdesc=desc.text()
             log("之前："+lastdesc+"--当前："+currentdesc)
             if(currentdesc==lastdesc){
                 滑动(20,13,16,10,4,500,700)
-                sleep(1000)
+                sleep(500)
+                if(textclick("立即翻倍")){
+                    seead()
+                 }
             }else{
                
                 lastdesc=currentdesc
@@ -100,9 +101,16 @@ function run(){
             }
         }else{
             滑动(20,13,16,10,4,500,700)
-            sleep(1000)
+            sleep(500)
+            if(textclick("立即翻倍")){
+                seead()
+             }
         }
-        
+        if(text("点击重播").exists()){
+            back()
+            sleep(2500)
+           
+        }
         sleepr(4000*ratio,6000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<20){
@@ -140,6 +148,13 @@ var seead=function(){
            return 
        }
         i=i+1
+        if(text("邀请好友").findOne(500)){
+            back()
+            return 
+        }
+        if(textclick("金币已到账")){
+            return
+        }
 
     }
 
@@ -173,29 +188,38 @@ var app_go_home=function(){
 }
 
 var app_sign=function(){
-    app_go_home()
+    if(idclick(彩蛋首页任务状态id)){
+        sleep(2000)
+    }
     i=0
     while(i<10){
-        sleep(2000)
+        
         i=i+1
-
-        if(idclick(彩蛋首页任务状态id)){
-
-        }
        if(textclick("看视频再送100金币")){
            seead()
            今日已签到(appname)
            return true
        }
-
        if(textclick("翻倍")){
            seead()
            今日已签到(appname)
            return true
        }
-    return 
-        
+       if(text("点击重播").exists()){
+        今日已签到(appname)
+        back()
+        sleep(2500)
+        back()
+        return  true
     }
+
+    if(text("邀请好友").findOne(500)){
+        back()
+        return 
+    }
+    }
+
+
 }
 var app_login=function(){
     i=0

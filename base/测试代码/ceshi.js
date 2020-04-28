@@ -6,35 +6,28 @@ threads.start(function(){
         sleep(1000)
        t= text("立即开始").findOne(500)
        if(t){
-        toastLog("点击截屏")
+         toastLog("点击截屏")
            t.click()
             captureScreen("/sdcard/screencapture" + i + ".png");
      
           break
        }
-       try {
-        if(requestScreenCapture(true)){
-            toastLog("线程请求截图成功");
-            captureScreen("/sdcard/screencapture" + i + ".png");
      
-            return
-        }
-     
-       } catch (error) {
-        toastLog("线程请求截图抛出异常" +error);
-       }
+    
      
        i=i+1
     }
 
-    captureScreen("/sdcard/screencapture" + i + ".png");
+ 
 })
-try {
+i=0
+
+
     if(!requestScreenCapture(true)){
         toastLog("请求截图失败");
         // exit();
     }else{
-        toastLog("请求截图成功");
+        toastLog("请求截图成功");5
     }
     //连续截图10张图片(间隔1秒)并保存到存储卡目录
     for(var i = 0; i < 10; i++){
@@ -42,8 +35,8 @@ try {
         sleep(1000);
     }
 
-} catch (error) {
-    log(error)
-}
+
 sleep(5000)
+     
+captureScreen("/sdcard/screencapture" + i + ".png");
 toastLog("5之后")
