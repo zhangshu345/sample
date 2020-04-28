@@ -109,13 +109,13 @@ ui.menu.on("item_click", item => {
 ui.applist.setDataSource(apps)
 
 ui.applist.on("item_click",function(item,pos){
-    toastLog("点击位置"+post)
+    toastLog("点击位置"+pos)
 })
 
 
 ui.applist.on("item_bind",function(itemView,itemHolder){
     itemView.check.on("check",function(checked){
-        a
+        toastLog("选中："+itemView.check.isChecked())
     })
 })
 
@@ -127,6 +127,7 @@ threads.start(function(){
         ui.applist.getAdapter().notifyDataSetChanged()
     });
 })
+
 
 function listapp(){
     var packageManager=context.getPackageManager()
@@ -157,6 +158,7 @@ function listapp(){
             packageName: packageInfo.packageName,
             firstInstall: "安装时间: " + dateFormat.format(appDate),
             isselect:false
+            
         });
     }
     toastLog("当前apps的数量:"+apps.size())

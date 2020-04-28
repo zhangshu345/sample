@@ -856,7 +856,12 @@ function downloadApk(name,url,isinstall) {
          }
          if (textclick("打开")){
              return
-         }
+        }   
+        //系统可以获取到app 的包名的时候就
+        if(app.getPackageName(name)){
+            sleep(1000)
+            return
+        }
      }
      back()
      sleep(1000)
@@ -935,7 +940,7 @@ var localstartallapp = function(){
     let apps=数据库.get("runlist","")
     var last
     if(!apps){
-        log("本地运行配置为空，从云端获取默认配置")
+        show("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(rewardapplisturl)
         apps=JSON.parse(appconfig)
     }
