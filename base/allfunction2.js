@@ -977,11 +977,22 @@ var clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
 var checkscreencapture=function(){
-    engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
-   while(! requestScreenCapture()){
-       sleep(1000)
-       log("等待截屏")
-   }
+
+  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
+  threads.start(function () {
+    star_ing = text("立即开始").findOne(2000)
+    if (star_ing) {
+        star_ing.click()
+        return
+    }
+})
+if (!requestScreenCapture()) {
+    show("请求截图权限失败！");
+}
+//   while(! requestScreenCapture()){
+//        sleep(1000)
+//        log("等待截屏")
+//    }
 }
 //运行广告app
 var runad=function(appname){
@@ -1327,4 +1338,11 @@ function get_phone_code(app_name,reg,startwords,endwords){
 // sleep(2000)
 
 // device.lockScreen()
-checkscreencapture()
+  
+// function cc(){
+//     i=0
+//     while(i<10){
+//         toastLog("次数："+i)
+//     }
+// }
+// threads.start(cc)
