@@ -1,7 +1,7 @@
 {"name":"MD编辑器",
     "pkg":"com.dongdong.markdowneditors",
-    "version":"1.1.0",
-    "versioni":10,
+    "version":"1.1.1",
+    "versioni":11,
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json",
@@ -13,7 +13,7 @@
     "isbmobpush":false,
     "isjpush":false,
     "showad":true,
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/MD编辑器_1.1.0.apk",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/MD编辑器_1.1.1.apk",
     "privacy":"",
     "announce":"",
     "userguide":"",
@@ -103,8 +103,7 @@
         "native":"",
         "rewardvideo":""
     }
- 
-}
+ }
 ,
 "tag":[{"name":"限免","level":0,"desc":"今日免费脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/限免.json","img":""},
     {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},

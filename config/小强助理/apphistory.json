@@ -1,10 +1,10 @@
 [{
     "name":"小强助理",
     "pkg":"com.xiaoqiang.weather",
-    "version":"1.2.0",
-    "versioni":20,
+    "version":"1.2.1",
+    "versioni":21,
     "channel":"androidjs",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/小强助理_1.2.0.apk",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/小强助理_1.2.1.apk",
     "updatedescription":"",
     "icon":"",
     "back":"",
