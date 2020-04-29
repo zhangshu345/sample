@@ -9,10 +9,9 @@ function httpget(url) {
     }
 }
 滑动次数=0
-每日提现=false
-var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
-
-//engines.stopOther()
+每日提现=true
+var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
+engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {

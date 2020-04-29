@@ -59,15 +59,15 @@
             "downloadurl":"https://95c955397282082ce6a6f5ea1f576c4b.dd.cdntips.com/imtt.dd.qq.com/16891/apk/4CE630CC2B9657E4523492FDDDA98C24.apk?mkey=5e43f056764dc5cf&f=0c59&fsname=com.kuaishou.nebula_2.0.3.177_177.apk&csr=1bbd&proto=https"
             ,"version":"177"}
         
-    },{"name":"刷宝短视频",
-        "desc":{"summary":"刷宝短视频自动刷视频 签到 提现","html":""},
+    },{"name":"刷宝短视频微信",
+        "desc":{"summary":"刷宝短视频 微信号 登录 自动刷视频 签到 提现","html":""},
         "tags":["刷宝短视频","短视频","赚钱"],
         "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
         "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
         "root":false,
         "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
         "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
-        "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/刷宝手机登录签到.js",
+        "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/刷宝微信登录签到提现.js",
         "source":2,
         "author":{"name":"作者","id":"","icon":""},
         "level":0,
@@ -79,7 +79,28 @@
             "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
             "version":""}
         
-    },{"name":"快逗短视频",
+    },{"name":"刷宝短视频手机",
+        "desc":{"summary":"刷宝短视频手机号 自动刷视频 签到 提现","html":""},
+        "tags":["刷宝短视频","短视频","赚钱"],
+        "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
+        "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
+        "root":false,
+        "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
+        "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
+        "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/刷宝手机登录签到提现.js",
+        "source":2,
+        "author":{"name":"作者","id":"","icon":""},
+        "level":0,
+        "version":0,
+        "appversioni":10,
+        "requestapi":10,
+        "icon":"",
+        "app":{"name":"刷宝视频","pkg":"com.jm.video","icon":"https://pp.myapp.com/ma_icon/0/icon_52764540_1584105418/96",
+            "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
+            "version":""}
+        
+    },
+    {"name":"快逗短视频",
         "desc":{"summary":"清除手机存储的空白文件夹","html":""},
         "tags":["快逗短视频","短视频","赚钱"],
         "pay":{"coin":0,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
