@@ -10,6 +10,7 @@ function httpget(url) {
         return httpget(url)
     }
 }
+engines.stopOther()
 //快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -19,9 +20,8 @@ show("公共函数实例化成功")
 }
 else {
 show("公共函数实例化失败,程序返回")
-
 }
-
+gfw.setPosition(0,device.height-250)
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppkg="com.kuaishou.nebula"
@@ -323,16 +323,17 @@ function 滑块验证精确() {
     } else {
        log("识别有误，请确认是否在滑块界面");
     }
-    
 }
 
 var 滑块验证=function(){
+    i=0
     while(text("拖动滑块").exists()){
        checkscreencapture()
-         i=0
+      
          sleep(1000)
         滑块验证精确()
-        if(i%3==0){
+        i=i+1
+        if(i>3){
             滑块验证尝试()
         }
     sleep(3000)
@@ -500,37 +501,6 @@ var 快手极速视频上滑=function(){
   }
 
   var 滑动次数=今日滑动次数()
-var 快手极速视频滑动操作=function(){
-   
-    while(滑动次数<1000){
-        if(i%500==0){
-            设置今日滑动次数(滑动次数)
-        }
-       滑块验证尝试()
-       if(!idoneexist([快手极速摄像头图标id,快手极速首页奖励悬浮])){
-            回到快手极速首页()
-        }
-        
-       
-        if(滑动次数%5==0){
-            快手极速视频上滑()
-        }else if(滑动次数%5==1){
-            快手极速视频上滑()
-        }else if(滑动次数%5==2){
-            快手极速视频下滑()
-        }else if(滑动次数%5==3){
-            快手极速视频下滑()
-        }else{
-            快手极速视频上滑() 
-        }
-        滑动次数=滑动次数+1
-        if(滑动次数%1000==0){
-           快手极速提现()
-        }
-
-        sleepr(6000,12000)
-    }
-}
 
 var islogin=false
 
@@ -550,8 +520,8 @@ function firstlogin(){
         if(text("绑定手机号").exists()){
            ph= text("请输入手机号").findOne()
            if(ph){
-               if(phone()){
-                ph.setText(phone())
+               if(phonenumber()){
+                ph.setText(phonenumber())
                }else{
                    textclick("跳过")
                }
@@ -570,88 +540,77 @@ function firstlogin(){
     }
 }
 
-//第一次登陆验证是否登录 和登录操作 和绑定邀请
-function firststartapp(){
-    log("第一次登录快手极速版 进行登录操作")
+lasttitle=""
+device.wakeUpIfNeeded()
+
+function run(){
+    show("快手极速版")
     app.launch(apppkg)
+    i=0
     while(true){
-        log("第一次开始")
-        if(currentPackage()!=apppkg){
-            if(!getPackageName(appname)){
-                downloadandinstallapp(appname)
-                islogin=false
+          if(idoneexist(快手极速版首页标志)){
+            log("找到快手首页悬浮标记")
+            //快手actionbar "com.kuaishou.nebula:id/action_bar"
+            if(id("com.kuaishou.nebula:id/tabs").exists()){
+              childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
+                childs.forEach(e => {
+                    log(e.className())
+                    if(e.className()=="android.widget.LinearLayout"){
+                        e.child(2).click()
+                    }
+                });
             }
-            app.launch(apppkg)
-            sleepr(1000,2500)
-        }else{
-            if(textclick("同意并继续")){
-                islogin=true
-                firstlogin()
+            if(idclick(快手极速首页奖励悬浮)){
+                sleep(1000)
+                    if ( 快手悬浮球之后页面操作()){
+                         return
+                    }
             }
-    
-            if(textclick("提取")){
+            if(i%500==0){
+                设置今日滑动次数(appname,滑动次数)
+            }
+           滑块验证尝试()
+           
+            if(random(0,20)<20-视频重复次数){
+                快手极速视频上滑()
+            }else{
+                快手极速视频下滑()
+            }
+            
+
+            滑动次数=滑动次数+1
+            if(滑动次数%1000==0){
+               快手极速提现()
+            }
+           sleepr(6000,8000)
+
+       }else{
+             if(idContains(apppkg).findOne(300)){
                 back()
                 sleep(1000)
-                back()
-            }
-    
-            if(idoneexist(快手极速版首页标志)){
-                log("找到快手首页悬浮标记")
-                //快手actionbar "com.kuaishou.nebula:id/action_bar"
-                if(id("com.kuaishou.nebula:id/tabs").exists()){
-                    
-                  childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
-                    childs.forEach(e => {
-                        log(e.className())
-                        if(e.className()=="android.widget.LinearLayout"){
-                            e.child(2).click()
-                        }
-                    });
-                }
-         
-                if(idclick(快手极速首页奖励悬浮)){
-                    sleep(1000)
-                  
-                        if ( 快手悬浮球之后页面操作()){
-                             return
-                        }
-                   
-                }
-             
-           }else{
-                log("没有找到快手首页悬浮标记")
-               back()
-               sleep(1000)
-            
-           }
-           clicktexts(["立即领取","立即提现","立即提现","登录领金币"],1500,5000)
-            
-           clickids(快手极速首次登录点击id集合,1500,10000)
-
-
-        }
-
-       
-        sleep(1000)
+                 if(textclick("同意并继续")){
+                      islogin=true
+                      firstlogin()
+                    }
+                    if(textclick("提取")){
+                        back()
+                       sleep(1000)
+                      back()
+                 }
+                clicktexts(["立即领取","立即提现","立即提现","登录领金币"],1500,5000)
+                clickids(快手极速首次登录点击id集合,1500,10000)
+             }else{
+                    if(!getPackageName(appname)){
+                        downloadandinstallapp(appname)
+                        islogin=false
+                    }
+                    app.launch(apppkg)
+                    sleepr(2000,2500)
+             }
+             }
+             sleep(1000)
     }
-  
- log("结束 firststartapp")
 }
 
 
-var 启动=function(){
-    device.wakeUpIfNeeded()
-    if(!getPackageName(appname)){
-        downloadandinstallapp(appname)
-        islogin=false
-    }
-    firststartapp(appname)
-    // if(!今日签到("kuaishoujisu")){
-    //     log("快手极速版今日未签到")
-    //     快手极速签到()
-    // }
-    快手极速视频滑动操作()
-}
-//启动()
-//  runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/%E5%BF%AB%E6%89%8B%E6%9E%81%E9%80%9F%E7%89%88%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E7%AD%BE%E5%88%B0%E6%8F%90%E7%8E%B0.js
-滑块验证()
+run()

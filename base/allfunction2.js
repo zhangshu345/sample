@@ -141,6 +141,8 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
+
+
 var show=function(txt){ log(txt);   
     if(!gfwhave){
         creatgfloatywindow()
@@ -1030,7 +1032,7 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/uideviceadmin.js");
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     app.launch(context.getPackageName())
     sleep(1000)
     var eeee= engines.execScript("uiname",ui函数,{})
@@ -1143,15 +1145,11 @@ var uninstallpackage=function(packageName){
               return
           }
       }
-   
   }
   
-
-
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
-
 var checksystemsettings=function(){
     if(issystemsettings()){
         log("有系统设置权限")
@@ -1347,3 +1345,5 @@ function get_phone_code(app_name,reg,startwords,endwords){
 //     }
 // }
 // threads.start(cc)
+
+// alltest()

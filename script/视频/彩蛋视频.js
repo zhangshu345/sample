@@ -73,6 +73,10 @@ function run(){
             sleep(3000)
             i=0
             clicktexts(["首页","推荐","等待"],500,1500)
+            if(textclick("我知道了")){
+                sleep(2000)
+                app_login()
+            }
            
         }else{
             log("彩蛋标识前台")
@@ -86,6 +90,7 @@ function run(){
                 back()
                 sleep(2500)
             }
+
 
         }
     }else{
@@ -229,27 +234,29 @@ var app_sign=function(){
 
 }
 var app_login=function(){
+    if(logintype=="phone"){
+        pn=phonenumber()
+        if(!pn){
+            show("没有获取到手机号请手动登录")
+        }
+    }
+
     i=0
     while(i<10){
-        log("彩蛋登录")
-           if(!idContains("com.jm.video").findOne(1000)){
-                show("找到存在包名id控件")
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
-                back()
-                sleep(1200)
-            }
+        show("彩蛋登录")
 
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
-               return true
+        clicktexts(["允许","允许","允许"],500,1500)
+       if( idclick("com.jifen.dandan:id/iv_open")){
+           sleep(1000)
+       }
+  
+        if(logintype=="phone"){
+            app_login_phone()
         }else{
-            show("没有找到昵称和设置")
-            back()
-            sleep(1000)
+            app_login_weixin()
         }
+    
+
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
@@ -265,21 +272,32 @@ var app_login=function(){
 }
 
 var app_login_phone=function(){
-    loginet= id("com.jm.video:id/login_edit").findOne(500)
-    if(loginet){
-       loginet.setText(phonenumber())
-       id("com.jm.video:id/btn_login").waitFor()
-       if(idclick("com.jm.video:id/btn_login")){
-           reg = /\d{4}/ig
-           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
-            toastLog("最后一步了验证码："+code )       
-            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
-           
-           id( "btn_login").waitFor()
-           id("btn_login").findOne(500).click()
-          sleepr(6000)
-       }
-    }
+    reg = /\d{4}/ig
+    ephone= id("com.jifen.dandan:id/edt_login_phone").findOne(1000)
+    
+        clicknode(ephone)
+          sleep(1000)
+          ephone.setText(phonenumber())
+          sleep(1000)
+        if  (idclick("com.jifen.dandan:id/tv_get_captcha")){
+            mcode=get_phone_code("",reg,"","")
+            if(mcode){
+                 id("edt_login_captcha").findOne(1000).setText(mcode)
+                 sleep(800)
+                 id("btn_confirm").findOne(500).click()
+                 sleep(1000)
+                 if(apptomoney){
+
+                 }else{
+                    back()
+                    sleep(1000)
+                    back()
+                    return true
+                 }
+            }else{
+                show("获取验证码超时")
+            }
+        }
 }
 
 var app_login_weixin=function(){
@@ -287,7 +305,7 @@ var app_login_weixin=function(){
         textclick("微信账号登录")
         sleepr(2000)
         clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+        if(idallexist(["com.jifen.video:id/tv_name","com.jm.video:id/iv_setting"])){
             show("我界面找到昵称和设置")
             spt.put("shuabaologin",true)
             return true

@@ -5,7 +5,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("请检测网络是否畅通,五秒后再次尝试")
+        sleep(5000)
+        return httpget(url)
     }
 }
 滑动次数=0
@@ -82,7 +84,8 @@ var gotoappvideo=function(){
             textclick("推荐")
             return true
         }
-       
+        idclick(刷宝视频广告关闭按钮2id)
+        idclick(刷宝视频广告关闭按钮1id)
     }else{
         
         return true

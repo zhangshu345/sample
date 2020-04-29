@@ -82,6 +82,8 @@ var gotoappvideo=function(){
             textclick("推荐")
             return true
         }
+        idclick(刷宝视频广告关闭按钮2id)
+        idclick(刷宝视频广告关闭按钮1id)
        
     }else{
         

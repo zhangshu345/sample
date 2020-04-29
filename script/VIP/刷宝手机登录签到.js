@@ -82,6 +82,8 @@ var gotoappvideo=function(){
             textclick("推荐")
             return true
         }
+        idclick(刷宝视频广告关闭按钮2id)
+        idclick(刷宝视频广告关闭按钮1id)
        
     }else{
         
@@ -376,7 +378,7 @@ while(true){
             i=0
             clickonetexts(["首页","推荐","等待"],300,1500)
         }else{
-            show("")
+            
             gotoappvideo()
             sleep(1500)
         }
@@ -391,10 +393,10 @@ while(true){
             sleep(1000)
         }
         if(idclick("com.jm.video:id/tt_top_skip")){
-            log("穿山甲广告页面")
+           
         }
         if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
-            toastLog("穿山甲广告页面")
+          
         }
 
         desc=  id("com.jm.video:id/desc").findOne(1000)
