@@ -5,13 +5,13 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        toastLog("5秒后重试")
-        sleep(5000)
-        return httpget(url)
+        return ""
     }
 }
 滑动次数=0
 每日提现=false
+var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
+
 engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -21,38 +21,42 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
+
+
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
+
 show("开始刷宝短视频辅助滑动")
+
+
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
-toastLog("自动设置音量为0")
 var apppkg="com.jm.video"
 var apphomeactivity="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
-
+var apppkg= "com.jm.video"  //app.getPackageName(appname)
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
+
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
+
 刷宝邀请()
-toastLog("刷宝邀请完成")
-var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
-var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
-
 var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
 var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
+
+
+
 //回到视频页
 var gotoappvideo=function(){
     show("回到视频页")
@@ -207,6 +211,7 @@ var login_phone=function(){
 }
 
 var login_weixin=function(){
+    i=0
     while (i<10){
         textclick("微信账号登录")
         sleepr(2000)
@@ -359,6 +364,8 @@ applogin()
 appsign()
 show("签到结束")
 xhcs=0
+
+function run(){
 while(true){
     show("循环次数:"+(xhcs+1))
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
@@ -486,5 +493,7 @@ while(true){
     }
     xhcs=xhcs+1
 }
+}
 
+run()
 
