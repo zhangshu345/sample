@@ -372,6 +372,7 @@ var checkfloaty=function(appname){
    }
 }
 var sleepr=function(short,long){
+    long=long||short+1000
     rt=random(short,long)
     show("等待:"+rt +" 毫秒")
     sleep(rt)
