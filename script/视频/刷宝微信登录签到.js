@@ -113,7 +113,7 @@ var appsign=function(){
                     }
                     return false
                 }
-                sleep(000)
+                sleep(1500)
                 if(textclick("看视频签到")){
                     i=0
                     while(i<20){

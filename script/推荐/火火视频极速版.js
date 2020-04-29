@@ -37,11 +37,11 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
-const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
-const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
-const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
-const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
+const 火火视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
+const 火火视频奖励计时布局id="com.jifen.dandan:id/view_default_timer"
+const 火火视频任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
+const 火火视频奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
+const 火火视频喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
 const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
 
