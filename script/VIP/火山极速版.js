@@ -186,10 +186,10 @@ function 火山看广告() {
  
 
         num2 += 1
-        console.log("看广告---异常检测次数" + num2);
+       log("看广告---异常检测次数" + num2);
 
         if (num2 > 10) {
-            console.log('看广告---循环检测失败');
+           log('看广告---循环检测失败');
             初始化()
             return
         }

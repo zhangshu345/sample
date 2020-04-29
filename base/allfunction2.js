@@ -709,7 +709,7 @@ var textoneexist=function(texts){
 /**只要存在一个id就返回真 */
 var idoneexist=function(ids){
      if(ids.length>0){
-        for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;   }  }
+        for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }
     }
     return false
 }

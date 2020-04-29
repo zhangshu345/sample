@@ -37,7 +37,7 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-
+const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
 const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
 const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
@@ -46,8 +46,11 @@ const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
 
 "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
+const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
-var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id]
+var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
+
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
 
@@ -62,14 +65,17 @@ app.launchApp(appname)
 var lastdesc=""
 function run(){
     while(true){
-    if(!idallexist(彩蛋视频首页标识id)){
+    if(!idoneexist(彩蛋视频首页标识id)){
+        log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){
+            log("彩蛋不在前台")
             app.launch(apppkg)
             sleep(3000)
             i=0
             clicktexts(["首页","推荐","等待"],500,1500)
            
         }else{
+            log("彩蛋标识前台")
             back()
              滑动(20,13,16,10,4,500,700)
             sleep(500)
@@ -95,7 +101,6 @@ function run(){
                     seead()
                  }
             }else{
-               
                 lastdesc=currentdesc
                 滑动次数=滑动次数+1
             }
@@ -206,6 +211,7 @@ var app_sign=function(){
            return true
        }
        if(text("点击重播").exists()){
+           show("点击重播")
         今日已签到(appname)
         back()
         sleep(2500)
@@ -217,6 +223,7 @@ var app_sign=function(){
         back()
         return 
     }
+
     }
 
 

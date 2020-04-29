@@ -37,16 +37,20 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-
+const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
 const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
 const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
 const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
 const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
+
 "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
+const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
-var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id]
+var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
+
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
 
@@ -58,82 +62,62 @@ app.launchApp(appname)
 // }else{
 //     show("彩蛋之前登陆过")
 // }
-
-while(true){
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+var lastdesc=""
+function run(){
+    while(true){
+    if(!idoneexist(彩蛋视频首页标识id)){
+        log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){
+            log("彩蛋不在前台")
             app.launch(apppkg)
             sleep(3000)
             i=0
-            clickonetexts(["首页","推荐","等待"],500,1500)
-            
+            clicktexts(["首页","推荐","等待"],500,1500)
+           
         }else{
-            回到刷宝视频页()
-            sleep(1500)
+            log("彩蛋标识前台")
+            back()
+             滑动(20,13,16,10,4,500,700)
+            sleep(500)
+            if(textclick("立即翻倍")){
+                seead()
+             }
+             if(text("点击重播").exists()){
+                back()
+                sleep(2500)
+            }
+
         }
     }else{
-        if(id(刷宝视频恭喜获取关闭按钮id).exists()){
-            back()
-            sleep(1500)
-            textclick("首页")
-            sleep(1500)
-            textclick("推荐")
-            sleep(1500)
-        }
-        if( textclick("等待")){
-            sleep(1000)
-        }
-        if(idclick("com.jm.video:id/tt_top_skip")){
-            log("穿山甲广告页面")
-        }
-        if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
-            toastLog("穿山甲广告页面")
-        }
-
-        desc=  id("com.jm.video:id/desc").findOne(1000)
-        if(desc){
-            lastdesc=desc.text()
-            log("当前："+lastdesc)
-        }
-            滑动(20,13,16,10,4,500,700)
-            sleep(2000)
-        desc=  id("com.jm.video:id/desc").findOne(1000)
+              
+        desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
         if(desc){
             currentdesc=desc.text()
             log("之前："+lastdesc+"--当前："+currentdesc)
             if(currentdesc==lastdesc){
                 滑动(20,13,16,10,4,500,700)
-                sleep(1000)
+                sleep(500)
+                if(textclick("立即翻倍")){
+                    seead()
+                 }
             }else{
-                like=id("com.jm.video:id/text_view").findOne(500)
-                if(like){
-                    tlike=like.text()
-                    if(tlike){
-                       if (tlike.includes("万")){
-                           log("喜欢过万")
-                        comment= id("com.jm.video:id/comment").findOne()
-                        if(comment){
-                          if(comment.text()!="评论"){
-                              if(comment.text().includes("万")||parseInt(comment.text())>1000){
-                                  log('评论过千了')
-                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));if(target){clicknode(target);}});
-                              }
-                          }else{
-                              log("没有人评论")
-                          }
-                        }
-                       }
-                    }
-                }
+                lastdesc=currentdesc
+                滑动次数=滑动次数+1
             }
         }else{
             滑动(20,13,16,10,4,500,700)
-            sleep(1000)
+            sleep(500)
+            if(textclick("立即翻倍")){
+                seead()
+             }
         }
-        滑动次数=滑动次数+1
-        sleepr(6000*ratio,10000*ratio)
+        if(text("点击重播").exists()){
+            back()
+            sleep(2500)
+           
+        }
+        sleepr(4000*ratio,6000*ratio)
         if(滑动次数%10==1){
-
             if(device.getBattery()<20){
                 toastLog("电量低")
                 if(device.isCharging()){
@@ -148,20 +132,43 @@ while(true){
             }
         }
         if(滑动次数%100==1){
-            if(!今日已签到("shuabao")){
-                appsign()
+            if(!今日签到(appname)){
+                app_sign()
             }
+        }
+      }
+    }
+}
+var seead=function(){
+    i=0
+    while(i<10){
+        sleep(4000)
+        if(text("点击重播").exists()){
+            back()
+            sleep(2500)
+            back()
+            return 
+        }
+       if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
+           return 
+       }
+        i=i+1
+        if(text("邀请好友").findOne(500)){
+            back()
+            return 
+        }
+        if(textclick("金币已到账")){
+            return
         }
 
     }
+
 }
-
-
-var 回到彩蛋视频页=function(){
+var app_go_home=function(){
     i=0
     while (i<10){
         i=i+1
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+    if(!idallexist(彩蛋视频首页标识id)){
         if(!idContains(apppkg).findOne(1000)){
             show("没有找到存在包名id控件")
             app.launch(apppkg)
@@ -185,66 +192,43 @@ var 回到彩蛋视频页=function(){
 }
 }
 
-var 彩蛋签到=function(){
+var app_sign=function(){
+    if(idclick(彩蛋首页任务状态id)){
+        sleep(2000)
+    }
     i=0
     while(i<10){
+        
         i=i+1
-      //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
-        if(textclick("任务")){
-            n=0
-            while(n<15){
-                n=n+1
-
-            if(textclick("立即签到")){
-                sleep(2000)
-                if(text("继续赚元宝").exists()){
-                    back()
-                    sleep(2000)
-                    if( textclick("首页")){
-                        return true
-                    }
-                    return false
-                }
-                sleep(000)
-                if(textclick("看视频签到")){
-                    i=0
-                    while(i<20){
-                        show("等待视频广告3秒")
-                        sleep(3000)
-                        t= idclick(刷宝视频广告关闭按钮1id)
-                        show("点击关闭按钮")
-                       if(t ) {
-                        show("成功点击关闭按钮")
-                         今日已签到("shuabao")
-                         return true
-                        }
-                        t= idclick(刷宝视频广告关闭按钮2id)
-                        show("点击关闭按钮")
-                       if(t ) {
-                         show("成功点击关闭按钮")
-                         今日已签到("shuabao")
-                         return true
-                        }
-                        i=i+1
-                    }
-                }else{
-                    下滑()
-                    back()
-                    return false
-                }
-            }
-            if(id("com.jm.video:id/imgClose").exists()){
-                back()
-            }
-            if(text("继续赚元宝").exists()){
-                textclick("首页")
-                return false
-            }
-        }
-        }
+       if(textclick("看视频再送100金币")){
+           seead()
+           今日已签到(appname)
+           return true
+       }
+       if(textclick("翻倍")){
+           seead()
+           今日已签到(appname)
+           return true
+       }
+       if(text("点击重播").exists()){
+           show("点击重播")
+        今日已签到(appname)
+        back()
+        sleep(2500)
+        back()
+        return  true
     }
+
+    if(text("邀请好友").findOne(500)){
+        back()
+        return 
+    }
+
+    }
+
+
 }
-var 彩蛋登录=function(){
+var app_login=function(){
     i=0
     while(i<10){
         log("彩蛋登录")
@@ -280,7 +264,7 @@ var 彩蛋登录=function(){
     }
 }
 
-var 彩蛋手机登录=function(){
+var app_login_phone=function(){
     loginet= id("com.jm.video:id/login_edit").findOne(500)
     if(loginet){
        loginet.setText(phonenumber())
@@ -298,7 +282,7 @@ var 彩蛋手机登录=function(){
     }
 }
 
-var 彩蛋微信登录=function(){
+var app_login_weixin=function(){
     while (i<10){
         textclick("微信账号登录")
         sleepr(2000)
@@ -313,3 +297,4 @@ var 彩蛋微信登录=function(){
 }
 
 
+run()

@@ -5,7 +5,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("请检测网络是否畅通,五秒后再次尝试")
+        sleep(5000)
+        return httpget(url)
     }
 }
 //快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
@@ -17,6 +19,7 @@ show("公共函数实例化成功")
 }
 else {
 show("公共函数实例化失败,程序返回")
+
 }
 
 /*---------------------------------lib-------------------------------*/
@@ -336,13 +339,6 @@ var 滑块验证=function(){
     i=i+1
     }
 }
- //显示控制台
-//  console.show()
-//  console.setPosition(100, 1200)
-  //请求权限
-
- //启动
-
 
 var 快手极速首次协议同意并继续id ="com.kuaishou.nebula:id/positive" //  text 同意并继续 点击 
 var 快手极速首次立即领取id="com.kuaishou.nebula:id/negative"   //text 立即领取  点击之后 选择登陆 选择 微信登录吧 
