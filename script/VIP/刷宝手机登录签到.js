@@ -9,6 +9,7 @@ function httpget(url) {
     }
 }
 滑动次数=0
+每日提现=false
 engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -253,7 +254,6 @@ var appgetmoneyinfo=function(){
             return f
         }
        }
-
        i=i+1
    }
 
@@ -433,30 +433,38 @@ while(true){
         sleepr(6000*ratio,10000*ratio)
         if(text("空空如也").exists()){
             // 脚本完成了
+            device.lockScreen()
+           
         }
         if(滑动次数%10==1){
             battery=device.getBattery()
             if(battery<20){
-               toastLog("电量低")
-                if(device.isCharging()){
-                    device.setMusicVolume(0)
-                    device.setBrightnessMode(0)
-                    device.setBrightness(0)
-                        if(battery<lastbattery){
-                            show("电量低:"+battery+"-休眠30分钟")
-                            device.lockScreen()
-                            sleep(1800000)
-                        }
+                device.lockScreen()
+                lastbattery=battery
+                show("电量低:"+battery+"-休眠30分钟")
+                device.lockScreen()
+                sleep(1800000)
+                  device.wakeUpIfNeeded()
+                // if(device.isCharging()){
+                //     device.setMusicVolume(0)
+                //     device.setBrightnessMode(0)
+                //     device.setBrightness(10)
+                //         if(battery<lastbattery){
+                //            
+                //             device.lockScreen()
+                //             sleep(1800000)
+                //             device.wakeUpIfNeeded()
+                //         }
                    
                
-                 lastbattery=battery
-                }else{
-                    //休眠三十分钟
-                    show("电量低:"+battery+"-休眠30分钟")
-                    device.lockScreen()
-                    sleep(1800000)
-                    device.wakeUpIfNeeded()
-                }
+                //  
+                // }else{
+                //     //休眠三十分钟
+                //     show("电量低:"+battery+"-休眠30分钟")
+                //     device.lockScreen()
+                //     sleep(1800000)
+                //     device.wakeUpIfNeeded()
+                // }
             }
         }
         if(滑动次数%100==1){
@@ -464,10 +472,14 @@ while(true){
                 appsign()
             }
         }
+        
         if(滑动次数%200==1){
-            if(!今日提现(appname)){
-                apptomoney()
+            if(每日提现){
+                if(!今日提现(appname)){
+                    apptomoney()
+                }
             }
+         
         }
     }
     xhcs=xhcs+1

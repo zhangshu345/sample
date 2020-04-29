@@ -9,7 +9,7 @@ function httpget(url) {
     }
 }
 滑动次数=0
-// engines.stopOther()
+engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
@@ -22,7 +22,7 @@ alltest()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-show("开始彩蛋视频辅助滑动")
+show("开始"+appname+"视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()

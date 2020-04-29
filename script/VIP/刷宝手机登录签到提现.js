@@ -5,13 +5,11 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        toastLog("5秒后重试")
-        sleep(5000)
-        return httpget(url)
+        return ""
     }
 }
 滑动次数=0
-每日提现=false
+每日提现=true
 engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -45,7 +43,7 @@ toastLog("刷宝邀请完成")
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
-var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 
 var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"

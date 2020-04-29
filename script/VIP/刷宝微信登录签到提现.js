@@ -5,13 +5,10 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        toastLog("5秒后重试")
-        sleep(5000)
-        return httpget(url)
+        return ""
     }
 }
 滑动次数=0
-每日提现=false
 engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -352,8 +349,6 @@ var apptomoney=function(){
      }
   }
 
-
-
 lastbattery=0
 applogin()
 appsign()
@@ -474,14 +469,10 @@ while(true){
                 appsign()
             }
         }
-        
         if(滑动次数%200==1){
-            if(每日提现){
-                if(!今日提现(appname)){
-                    apptomoney()
-                }
+            if(!今日提现(appname)){
+                apptomoney()
             }
-         
         }
     }
     xhcs=xhcs+1

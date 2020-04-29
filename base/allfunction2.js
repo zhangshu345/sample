@@ -1337,7 +1337,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 // device.wakeUpIfNeeded()
 // sleep(2000)
 
-// device.lockScreen()
+ //device.lockScreen()
   
 // function cc(){
 //     i=0
