@@ -9,14 +9,14 @@
         "money":{"perdaymoney":3.0,"permonthmoney":200,"peryearmoney":2400.0},
         "path":"",
         "source":2,
-        "author":{"name":"作者","id":"","icon":""},
+        "author":{"name":"","id":"","icon":""},
         "level":5,
         "version":1,
         "appversioni":10,
         "requestapi":10,
         "icon":"",
-        "app":{"name":"刷宝视频","pkg":"","icon":"https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-            "downloadurl":"https://dldir1.qq.com/weixin/android/weixin7010android1580.apk","version":"1580"}
+        "app":{"name":"","pkg":"","icon":"",
+            "downloadurl":"","version":""}
     },
     {"name":"彩蛋视频",
         "desc":{"summary":"彩蛋视频","html":""},
