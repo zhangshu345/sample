@@ -1330,7 +1330,7 @@ var close_ad_toutiao=function(apppkg){
 }
 
 var close_ad_qq=function(apppkg){
-    
+    className("android.widget.ImageView").findOne().click()
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()

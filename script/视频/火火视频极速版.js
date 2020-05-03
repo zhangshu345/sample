@@ -80,7 +80,7 @@ var lastdesc=""
 function run(){
     while(true){
     if(!idallexist(火火视频极速版小视频页标识id)){
-        log("没有找到一个"+appname+"标识")
+        log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launch(apppkg)
@@ -94,6 +94,7 @@ function run(){
             }
         }else{
             show(appname+"已经在前台")
+            clicktexts(进入小视频页面点击文本集合,300,1500)
             back()
             滑动(20,13,16,10,4,500,700)
             sleep(500)
@@ -135,7 +136,10 @@ function run(){
                 sleep(1500)
             }
         }
-
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+       
+        }
         if(textoneexist(广告展示页面可关闭文本集合)){
             back()
             sleep(2500)
@@ -150,8 +154,7 @@ function run(){
                
             }
         }
-        if(idclick())
-        sleepr(4000*ratio,6000*ratio)
+        sleepr(6000*ratio,8000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<20){
                 toastLog("电量低")
@@ -193,9 +196,15 @@ var seead=function(){
             return 
         }
         if(textclick("金币已到账")){
+            back()
             return
         }
         close_ad_toutiao(apppkg)
+        close_ad_qq(apppkg)
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+            return 
+        }
     }
 
 }
