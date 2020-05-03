@@ -434,6 +434,9 @@ function maytextclick(i,t,left,top,right,bottom){
 
 //node 执行点击 
 var clicknode=function(v){
+    if(!v){
+        return
+    }
     if(v.clickable()){
       return  v.click()
     }
@@ -530,6 +533,7 @@ var clicktexts=function(texts,t,st){
         }
     }
 }
+
 
 var clickonetexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)
