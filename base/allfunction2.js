@@ -1324,6 +1324,14 @@ function get_phone_code(app_name,reg,startwords,endwords){
     return code
 }
 
+//关闭穿山甲激励视频广告
+var close_ad_toutiao=function(apppkg){
+    idclick(apppkg+":id/tt_video_ad_close")
+}
+
+var close_ad_qq=function(apppkg){
+    
+}
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 
