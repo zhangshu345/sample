@@ -1315,8 +1315,8 @@ function get_phone_code(app_name,reg,startwords,endwords){
             break
         } 
     }
-   show("接受的验证码是:"+code)
-   setClip(code)
+    show("接受的验证码是:"+code)
+    setClip(code)
     return code
 }
 
