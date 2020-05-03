@@ -44,13 +44,12 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
-
+// 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
 
 // "金币翻倍" ,"com.jt.hanhan.video:id/jp"    // 关闭弹窗的关闭按钮 com.jt.hanhan.video:id/jw
 // "com.jt.hanhan.video:id/jr"
 
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
-
 
 const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
 const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
@@ -115,13 +114,16 @@ function run(){
             //小视频的操作
             desc=  id(小视频简介id).findOne(300)
             if(desc){
+                滑动(20,13,16,10,4,500,700)
+                sleep(1000)
                 currentdesc=desc.text()
                 log("之前："+lastdesc+"--当前："+currentdesc)
                 if(currentdesc==lastdesc){
                     if(textclick("立即翻倍")){
                         seead()
                      }
-                    滑动(20,13,16,10,4,500,700)
+                   
+                    textclick("刷新")
                     sleep(500)
                   
                 }else{
@@ -138,20 +140,21 @@ function run(){
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
-       
         }
         if(textoneexist(广告展示页面可关闭文本集合)){
             back()
             sleep(2500)
         }
         jddj=id(火火视频金蛋大奖id).findOne(500)
-        if(jddj.text()=="金蛋大奖"){
-            if( idclick(火火视频金蛋大奖id)){
-                sleep(1500)
-                if(maytextclick("看视频再送")){
-                    seead()
+        if(jddj){
+            if(jddj.text()=="金蛋大奖"){
+                if( idclick(火火视频金蛋大奖id)){
+                    sleep(1500)
+                    if(maytextclick("看视频再送")){
+                        seead()
+                    }
+                   
                 }
-               
             }
         }
         sleepr(6000*ratio,8000*ratio)
@@ -317,7 +320,7 @@ var app_login_weixin=function(){
         clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
         if(idallexist([登录成功后界面显示id集合])){
             show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
+            spt.put(apppkg+"login",true)
             return true
         }
     }

@@ -254,8 +254,9 @@ function randomSwipe(sx,sy,ex,ey){
     log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1])
     //滑动
     gestures(time.concat(track))
-    
+
 }
+
 /*将当前截屏重置尺寸为1080
 */ 
 function imgBy1080(){
