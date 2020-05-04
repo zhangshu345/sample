@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+importClass(com.hongshu.utils.AppUtils)
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -33,15 +34,26 @@ var run=function(){
     var appconfig=httpget(selfrewardlisturl)
      apps=JSON.parse(appconfig)
     var last
+   apps= shuffleArray(apps)
     apps.forEach(app => {
            if(last){
                记录今日时长(last.name,last.onetime)
                forcestop(last.name)
+               今日记录("lastapp",app)
+               if(app.name==last.name){
+                   show("和上一次操作APP相同 直接跳过，进行下一个")
+                   return 
+               }
            }
             stopOtherScript()
             if(app.open){
                 if(!getPackageName(app.name)){
                     downloadApk(app.name,app.downloadurl,true)
+                }else{
+                    if(AppUtils.getAppVersionCode(app.pkg)<app.version){
+                        uninstallapp(app.name)
+                        downloadApk(app.name,app.downloadurl,true)
+                    }
                 }
                 if(app.scripturl && getPackageName(app.name)){
                     log(app.name+":云端url脚本存在："+app.scripturl)
@@ -58,15 +70,21 @@ var run=function(){
      
     })
 }
-
+var  shuffleArray=function(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array
+}
 var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
-    runtime=showadtime||random(5,10)*60*1000
+    appruntime=showadtime||random(5,10)*60*1000
     runstarttime=nowdate().getTime()
  
-    while(nowdate().getTime()-runstarttime<runtime){
+    while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
-        show("时间差值："+cz+"当前:"+nowdate().getTime()+"start:"+runstarttime+"<"+runtime)
+      
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
@@ -93,9 +111,10 @@ var runrewardapp=function(appname,apppkg,showadtime){
             }else{
                
                 show("工具箱点击失败，回到首页")
-                back()
                 sleep(2000)
             }
+            maytextclick("跳过")
+            clicktexts(["同意并继续","开始授权","允许","允许","允许"],300,1500)
         }
   
 
