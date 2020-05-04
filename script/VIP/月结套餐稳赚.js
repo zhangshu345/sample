@@ -62,11 +62,11 @@ var run=function(){
 var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
     runtime=showadtime||random(5,10)*60*1000
-    runstarttime=date.getTime()
+    runstarttime=nowdate().getTime()
  
-    while(date.getTime()-runstarttime<runtime){
-        cz=date.getTime()-runstarttime
-        show("时间差值："+cz+"当前:"+date.getTime()+"start:"+runstarttime+"<"+runtime)
+    while(nowdate().getTime()-runstarttime<runtime){
+        cz=nowdate().getTime()-runstarttime
+        show("时间差值："+cz+"当前:"+nowdate().getTime()+"start:"+runstarttime+"<"+runtime)
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)

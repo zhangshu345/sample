@@ -10,11 +10,12 @@ importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
-var date=function(){return new Date()};
-var scriptstarttime=date.getTime()
+var nowdate=function(){return new Date()};
+var scriptstarttime=nowdate().getTime()
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
-    return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
+    today=nowdate()
+    return today.getFullYear()+"_"+today.getMonth()+"_"+today.getDate()
 }
 var onlyscript=false
 var enablegenius=device.sdkInt>=24
@@ -550,14 +551,14 @@ var clickonetexts=function(texts,t,st){
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
     t=t||10000   
-    date=new Date()
-    st=date.getTime()
+    
+    st=nowdate().getTime()
     while(true){
        clicktexts(clicktexts)
        if(textoneexist(stoptexts)){
            return true
        }
-       if(date.getTime()-st>t){
+       if(nowdate().getTime()-st>t){
            return false
        }
     }
@@ -566,14 +567,14 @@ var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
 //在文本标志出现之前一直点击id的 t 是最长等待时间
 var whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
-    date=new Date()
-    st=date.getTime()
+
+    st=nowdate().getTime()
     while(true){
        clickids(ids)
        if(idoneexist(stopids)){
            return true
        }
-       if(date.getTime()-st>t){
+       if(nowdate().getTime()-st>t){
            return false
        }
     }
@@ -995,9 +996,9 @@ runapppkg=app.getPackageName(appname)
 runappisfirst=getbooleanvalue(appname+"_firstrun")
 sleep(2000)
 runtime=showadtime||random(5,10)*60*1000
-runstarttime=date.getMilliseconds()
+runstarttime=nowdate().getMilliseconds()
 toastLog("当前运行app："+appname+"--包名:"+runapppkg+"\n当前时间："+runstarttime+"--计划运行时间:"+runtime)
-while(date.getMilliseconds()-runstarttime<runtime){
+while(nowdate().getMilliseconds()-runstarttime<runtime){
     if(!idContains(runapppkg).findOne(1000)){
         app.launchPackage(runapppkg)
         sleep(5000)
@@ -1077,8 +1078,8 @@ var doactionmaxtime=function(action,maxtime){
         return
     }
     maxtime=maxtime||10000
-    stime=date.getTime()
-    while(date.getTime()-stime<maxtime){
+    stime=nowdate().getTime()
+    while(nowdate().getTime()-stime<maxtime){
         action()
     }
 }
