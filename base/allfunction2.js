@@ -282,7 +282,8 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
  
 var forcestop=function(appname,st){
-    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };    show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);
+    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };   
+     show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);
   closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
   i=0;  while(i<3){ clicktexts(closetexts,500,1500);    i=i+1;  }}
 
@@ -983,10 +984,14 @@ if (!requestScreenCapture()) {
 //    }
 }
 //运行广告app
-var runad=function(appname){
+var runadapp=function(appname,apppkg,showadtime,isforcestop){
+    if(!appname&&!apppkg){
+        return false
+    }
     if(!getPackageName(appname)){
         return false 
     }
+  
 app.launchApp(appname)
 runapppkg=app.getPackageName(appname)
 runappisfirst=getbooleanvalue(appname+"_firstrun")
@@ -1000,7 +1005,10 @@ while(System.currentTimeMillis()-runstarttime<runtime){
         sleep(5000)
     }
 }
-forcestop(appname)
+if(isforcestop){
+    forcestop(appname)
+}
+
 }
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}

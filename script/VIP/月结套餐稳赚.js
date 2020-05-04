@@ -39,22 +39,27 @@ var run=function(){
                forcestop(last.name)
            }
             stopOtherScript()
-        if(!getPackageName(app.name)){
-            downloadApk(app.name,app.downloadurl,true)
-        }
-        if(app.scripturl && getPackageName(app.name)){
-            log(app.name+":云端url脚本存在："+app.scripturl)
-            content=httpget(app.scripturl)
-            if(content){
-               engines.execScript(app.name,content, {"useFeatures":["continuation"]})
-               last=app
-               sleep(app.onetime*1000)
+            if(app.open){
+                if(!getPackageName(app.name)){
+                    downloadApk(app.name,app.downloadurl,true)
+                }
+                if(app.scripturl && getPackageName(app.name)){
+                    log(app.name+":云端url脚本存在："+app.scripturl)
+                    content=httpget(app.scripturl)
+                    if(content){
+                       engines.execScript(app.name,content, {"useFeatures":["continuation"]})
+                       last=app
+                       sleep(app.onetime*60*1000)
+                    }
+               }else{
+                    runadapp(app.name,app.pkg,app.onetime*60*1000)
+               }
             }
-       }else{
-
-       }
+     
     })
 }
+
+
 addbmobchannel("hongshureward")
 while(true){
     sleep(5000)
