@@ -932,8 +932,12 @@ var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
+     
      if(!pnumber){
          pnumber=spt.getString("phonenumber")
+     }
+     if(pnumber.startsWith("+86")){
+         pnumber=pnumber.substr(3)
      }
      if(pnumber){
          return pnumber
