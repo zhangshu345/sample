@@ -10,7 +10,7 @@ importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
-var date=new Date();
+var date=function(){return new Date()};
 var scriptstarttime=date.getTime()
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){

@@ -62,8 +62,11 @@ var run=function(){
 var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
     runtime=showadtime||random(5,10)*60*1000
-    runstarttime=date.getMilliseconds()
-    while(date.getMilliseconds()-runstarttime<runtime){
+    runstarttime=date.getTime()
+ 
+    while(date.getTime()-runstarttime<runtime){
+        cz=date.getTime()-runstarttime
+        show("时间差值："+cz+"当前:"+date.getTime()+"start:"+runstarttime+"<"+runtime)
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
@@ -76,11 +79,16 @@ var runrewardapp=function(appname,apppkg,showadtime){
                 r=random(5,10)
                 while(i<r){
                  i=i+1
-                 scriptlist=desc("script_list").findOne(1000)
-                 if(scriptlist){
-                     scriptlist.scrollBackward()
-                     sleep(random(5,10)*1000)
-                 }
+                 滑动(20,10,17,11,3,500,1500)
+                 sleep(random(5,10)*1000)
+                //  scriptlist=id(apppkg+":id/recyclerView").findOne(1000)
+                //  if(scriptlist){
+                //     show("scriptlist 找到")
+                //      scriptlist.scrollForward()
+                //      sleep(random(5,10)*1000)
+                //  }else{
+                //      show("scriptlist 没有找到")
+                //  }
                 }
             }else{
                
