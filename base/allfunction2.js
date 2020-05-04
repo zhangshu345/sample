@@ -442,10 +442,9 @@ var clicknode=function(v){
       return  v.click()
     }
     if(enablegenius){
-        show("text "+i+"可手势 范围可点击" )
-        b=v.bounds()
+             b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            show("控件在屏幕上")
+         
            if(click(b.centerX(),b.centerY())){
                return true
            }else{
@@ -453,11 +452,10 @@ var clicknode=function(v){
            }
           
         }else{
-            show("控件不在屏幕上")
             return false
         }
      }else{
-        show("text "+i+"不可手势 范围可点击" )
+      
         if(clickparents(v)){
             return true
         }
@@ -467,7 +465,6 @@ var clicknode=function(v){
         r=v.bounds()
         var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
         if(w){
-            show("text "+i+"找到所在区域可点击控件"+w.toString())
             return w.click()
         }else{
             return false
