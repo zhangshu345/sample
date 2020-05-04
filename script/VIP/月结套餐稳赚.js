@@ -65,21 +65,31 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=date.getMilliseconds()
     while(date.getMilliseconds()-runstarttime<runtime){
         if(!idContains(apppkg).findOne(1000)){
+            show(appname+"不在前台")
             app.launchPackage(apppkg)
             sleep(5000)
-        }
-       if (textclick("工具箱")){
-           i=0
-           r=random(5,10)
-           while(i<r){
-            i=i+1
-            scriptlist=desc("script_list").findOne(1000)
-            if(scriptlist){
-                scriptlist.scrollBackward()
-                sleep(random(5,10)*1000)
+        }else{
+            if (textclick("工具箱")){
+                show("工具箱点击成功")
+                sleep(1500)
+                i=0
+                r=random(5,10)
+                while(i<r){
+                 i=i+1
+                 scriptlist=desc("script_list").findOne(1000)
+                 if(scriptlist){
+                     scriptlist.scrollBackward()
+                     sleep(random(5,10)*1000)
+                 }
+                }
+            }else{
+               
+                show("工具箱点击失败，回到首页")
+                back()
+                sleep(2000)
             }
-           }
-       }
+        }
+  
 
     }
 }

@@ -403,9 +403,10 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
+        show("text："+i+":没找到了")
         return false
     }
-    show("text："+i+":控件找到了")
+    show("text："+i+":找到了")
     if(clicknode(f)){
         return true
     }  
