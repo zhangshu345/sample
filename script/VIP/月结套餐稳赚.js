@@ -29,6 +29,7 @@ device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var run=function(){
+    
     var appconfig=httpget(selfrewardlisturl)
      apps=JSON.parse(appconfig)
     var last
@@ -39,16 +40,23 @@ var run=function(){
            }
             stopOtherScript()
         if(!getPackageName(app.name)){
-            downloadandinstallapp(app.name,app.package)
+            downloadApk(app.name,app.downloadurl,true)
+        }
+        if(app.scripturl && getPackageName(app.name)){
+            log(app.name+":云端url脚本存在："+app.scripturl)
+            content=httpget(app.scripturl)
+            if(content){
+               engines.execScript(app.name,content, {"useFeatures":["continuation"]})
+               last=app
+               sleep(app.onetime*1000)
+            }
+       }else{
 
-        }
-        if(app.bmobid && getPackageName(app.name)){
-            engines.execBmobScriptWithName(app.name,app.bmobid,{})
-            last=app
-            sleep(app.onetime*1000)
-            forcestop(last.name)
-        }else if(app.scripturl && getPackageName(app.name)){
-            engines.run
-        }
+       }
     })
+}
+addbmobchannel("hongshureward")
+while(true){
+    sleep(5000)
+    run()
 }

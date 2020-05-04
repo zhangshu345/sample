@@ -904,30 +904,7 @@ var stopOtherScript=function(){
         }
     })
 }
-var startallapp=function(){
-    var appconfig=httpget(rewardapplisturl)
-     apps=JSON.parse(appconfig)
-    var last
-    apps.forEach(app => {
-           if(last){
-                记录今日时长(last.name,last.onetime)
-               forcestop(last.name)
-           }
-            stopOtherScript()
-        if(!getPackageName(app.name)){
-            downloadandinstallapp(app.name,app.package)
 
-        }
-        if(app.bmobid && getPackageName(app.name)){
-            engines.execBmobScriptWithName(app.name,app.bmobid,{})
-            last=app
-            sleep(app.onetime*1000)
-            forcestop(last.name)
-        }else if(app.scripturl && getPackageName(app.name)){
-            engines.run
-        }
-    })
-}
 var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
@@ -946,7 +923,7 @@ var phonenumber=function(){
      }
 }
 //本地配置启用脚本
-var localstartallapp = function(){
+var startallapp = function(){
     addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
