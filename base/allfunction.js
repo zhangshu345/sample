@@ -10,11 +10,12 @@ importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
-var date=new Date();
-var scriptstarttime=date.getTime()
+var nowdate=function(){return new Date()};
+var scriptstarttime=nowdate().getTime()
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
-    return date.getFullYear()+"_"+date.getMonth()+"_"+date.getDate()
+    td=nowdate()
+    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate()
 }
 var onlyscript=false
 var enablegenius=device.sdkInt>=24
@@ -46,7 +47,7 @@ var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var gfwhave=false
-var spt=SPUtils.getInstance("hongshureader")
+var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -141,6 +142,23 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
+
+//指定app 运行脚本
+var runscriptIntent=function(apppkg,scriptsurl){
+    let i = app.intent({
+        packageName:apppkg,
+        className:"com.hongshu.androidjs.external.open.RunIntentActivity",
+           flags:["activity_new_task"],
+        // data: "file:///sdcard/1.png"
+        extras:{
+            "source":2,
+            "path":scriptsurl
+            }
+        }
+    );
+    context.startActivity(i);
+}
+
 var show=function(txt){ log(txt);   
     if(!gfwhave){
         creatgfloatywindow()
@@ -280,9 +298,11 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
  
 var forcestop=function(appname,st){
-    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };    show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);
+    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };   
+     show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);sleep(1500);
   closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
-  i=0;  while(i<3){ clicktexts(closetexts,500,1500);    i=i+1;  }}
+  sleep(2000)
+  i=0;  while(i<3){ clicktexts(closetexts,500,1500);    i=i+1; sleep(1500) }}
 
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -372,6 +392,7 @@ var checkfloaty=function(appname){
    }
 }
 var sleepr=function(short,long){
+    long=long||short+1000
     rt=random(short,long)
     show("等待:"+rt +" 毫秒")
     sleep(rt)
@@ -399,9 +420,10 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
+        show("text："+i+":没找到了")
         return false
     }
-    show("text："+i+":控件找到了")
+    show("text："+i+":找到了")
     if(clicknode(f)){
         return true
     }  
@@ -431,14 +453,16 @@ function maytextclick(i,t,left,top,right,bottom){
 
 //node 执行点击 
 var clicknode=function(v){
+    if(!v){
+        return
+    }
     if(v.clickable()){
       return  v.click()
     }
     if(enablegenius){
-        show("text "+i+"可手势 范围可点击" )
-        b=v.bounds()
+             b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            show("控件在屏幕上")
+         
            if(click(b.centerX(),b.centerY())){
                return true
            }else{
@@ -446,11 +470,10 @@ var clicknode=function(v){
            }
           
         }else{
-            show("控件不在屏幕上")
             return false
         }
      }else{
-        show("text "+i+"不可手势 范围可点击" )
+      
         if(clickparents(v)){
             return true
         }
@@ -460,7 +483,6 @@ var clicknode=function(v){
         r=v.bounds()
         var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
         if(w){
-            show("text "+i+"找到所在区域可点击控件"+w.toString())
             return w.click()
         }else{
             return false
@@ -528,6 +550,7 @@ var clicktexts=function(texts,t,st){
     }
 }
 
+
 var clickonetexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)
     st=st || 500
@@ -544,14 +567,14 @@ var clickonetexts=function(texts,t,st){
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
     t=t||10000   
-    date=new Date()
-    st=date.getTime()
+    
+    st=nowdate().getTime()
     while(true){
        clicktexts(clicktexts)
        if(textoneexist(stoptexts)){
            return true
        }
-       if(date.getTime()-st>t){
+       if(nowdate().getTime()-st>t){
            return false
        }
     }
@@ -560,14 +583,14 @@ var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
 //在文本标志出现之前一直点击id的 t 是最长等待时间
 var whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
-    date=new Date()
-    st=date.getTime()
+
+    st=nowdate().getTime()
     while(true){
        clickids(ids)
        if(idoneexist(stopids)){
            return true
        }
-       if(date.getTime()-st>t){
+       if(nowdate().getTime()-st>t){
            return false
        }
     }
@@ -778,8 +801,8 @@ function downloadApk(name,url,isinstall) {
              if (progress > 0.1) {
                  var progress = parseInt(progress).toString() + '%';
                  ui.run(function () {
-                     // console.log(name + "下载进度", progress);
-                     toast(name + "下载进度" + progress)
+                    log(name + "下载进度", progress);
+                    // toast(name + "下载进度" + progress)
                      // w.progressNum.setText(progress);
                  });
                  if (当前写入的文件大小 >= connLength) {
@@ -897,36 +920,17 @@ var stopOtherScript=function(){
         }
     })
 }
-var startallapp=function(){
-    var appconfig=httpget(rewardapplisturl)
-     apps=JSON.parse(appconfig)
-    var last
-    apps.forEach(app => {
-           if(last){
-                记录今日时长(last.name,last.onetime)
-               forcestop(last.name)
-           }
-            stopOtherScript()
-        if(!getPackageName(app.name)){
-            downloadandinstallapp(app.name,app.package)
 
-        }
-        if(app.bmobid && getPackageName(app.name)){
-            engines.execBmobScriptWithName(app.name,app.bmobid,{})
-            last=app
-            sleep(app.onetime*1000)
-            forcestop(last.name)
-        }else if(app.scripturl && getPackageName(app.name)){
-            engines.run
-        }
-    })
-}
 var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
+     
      if(!pnumber){
          pnumber=spt.getString("phonenumber")
+     }
+     if(pnumber.startsWith("+86")){
+         pnumber=pnumber.substr(3)
      }
      if(pnumber){
          return pnumber
@@ -935,7 +939,7 @@ var phonenumber=function(){
      }
 }
 //本地配置启用脚本
-var localstartallapp = function(){
+var startallapp = function(){
     addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
@@ -995,24 +999,31 @@ if (!requestScreenCapture()) {
 //    }
 }
 //运行广告app
-var runad=function(appname){
+var runadapp=function(appname,apppkg,showadtime,isforcestop){
+    if(!appname&&!apppkg){
+        return false
+    }
     if(!getPackageName(appname)){
         return false 
     }
+  
 app.launchApp(appname)
 runapppkg=app.getPackageName(appname)
 runappisfirst=getbooleanvalue(appname+"_firstrun")
 sleep(2000)
-runtime=random(5,10)*60*1000
-runstarttime=System.currentTimeMillis()
+runtime=showadtime||random(5,10)*60*1000
+runstarttime=nowdate().getMilliseconds()
 toastLog("当前运行app："+appname+"--包名:"+runapppkg+"\n当前时间："+runstarttime+"--计划运行时间:"+runtime)
-while(System.currentTimeMillis()-runstarttime<runtime){
+while(nowdate().getMilliseconds()-runstarttime<runtime){
     if(!idContains(runapppkg).findOne(1000)){
         app.launchPackage(runapppkg)
         sleep(5000)
     }
 }
-forcestop(appname)
+if(isforcestop){
+    forcestop(appname)
+}
+
 }
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
@@ -1029,7 +1040,7 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/uideviceadmin.js");
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     app.launch(context.getPackageName())
     sleep(1000)
     var eeee= engines.execScript("uiname",ui函数,{})
@@ -1083,8 +1094,8 @@ var doactionmaxtime=function(action,maxtime){
         return
     }
     maxtime=maxtime||10000
-    stime=date.getTime()
-    while(date.getTime()-stime<maxtime){
+    stime=nowdate().getTime()
+    while(nowdate().getTime()-stime<maxtime){
         action()
     }
 }
@@ -1142,15 +1153,11 @@ var uninstallpackage=function(packageName){
               return
           }
       }
-   
   }
   
-
-
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
-
 var checksystemsettings=function(){
     if(issystemsettings()){
         log("有系统设置权限")
@@ -1316,11 +1323,19 @@ function get_phone_code(app_name,reg,startwords,endwords){
             break
         } 
     }
-   show("接受的验证码是:"+code)
-   setClip(code)
+    show("接受的验证码是:"+code)
+    setClip(code)
     return code
 }
 
+//关闭穿山甲激励视频广告
+var close_ad_toutiao=function(apppkg){
+    idclick(apppkg+":id/tt_video_ad_close")
+}
+
+var close_ad_qq=function(apppkg){
+    className("android.widget.ImageView").findOne().click()
+}
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 
@@ -1337,7 +1352,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 // device.wakeUpIfNeeded()
 // sleep(2000)
 
-//
+ //device.lockScreen()
   
 // function cc(){
 //     i=0
@@ -1346,3 +1361,5 @@ function get_phone_code(app_name,reg,startwords,endwords){
 //     }
 // }
 // threads.start(cc)
+
+

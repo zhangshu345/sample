@@ -1,3 +1,5 @@
+import { text } from "body-parser";
+
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
@@ -37,6 +39,7 @@ var run=function(){
    apps= shuffleArray(apps)
 
     apps.forEach(app => {
+        device.wakeUpIfNeeded()
            if(last){
                记录今日时长(last.name,last.onetime)
                forcestop(last.name)
@@ -109,8 +112,10 @@ var runrewardapp=function(appname,apppkg,showadtime){
                  滑动(20,10,16,11,6,500,1500)
                  show("滑动次数："+i)
                  sleep(random(5,8)*1000)
-
                 }
+                runadui()
+                text("创意视频").waitFor()
+                
                 
 
             }else{
@@ -123,12 +128,16 @@ var runrewardapp=function(appname,apppkg,showadtime){
     }
 }
 
+
+
+
+
+
+
 addbmobchannel("hongshureward")
 while(true){
     sleep(5000)
     run()
 }
-//滑动(20,10,17,11,6,500,1500)
-// sleep(1000)
-//  滑动(20,10,16,11,6,500,1500)
-// sleep(1000)
+
+

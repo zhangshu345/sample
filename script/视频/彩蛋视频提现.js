@@ -63,8 +63,12 @@ app.launchApp(appname)
 //     show("彩蛋之前登陆过")
 // }
 var lastdesc=""
+var islogin=false
 function run(){
     while(true){
+        if(!islogin){
+            app_login()
+        }
     if(!idoneexist(彩蛋视频首页推荐标识id)){
         log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -77,9 +81,15 @@ function run(){
                 sleep(2000)
                 app_login()
             }
-           
         }else{
             log("彩蛋标识前台")
+            if(textclick("我知道了")){
+                sleep(2000)
+                app_login()
+            }
+            if( textclick("立即提现")){
+                app_login()
+                }
             back()
              滑动(20,13,16,10,4,500,700)
             sleep(500)
@@ -90,8 +100,6 @@ function run(){
                 back()
                 sleep(2500)
             }
-
-
         }
     }else{
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
@@ -257,12 +265,13 @@ var app_login=function(){
     i=0
     while(i<10){
         show("彩蛋登录")
-
         clicktexts(["允许","允许","允许"],500,1500)
        if( idclick("com.jifen.dandan:id/iv_open")){
            sleep(1000)
        }
-  
+       if( textclick("立即提现")){
+        sleep(1000)
+        }
         if(logintype=="phone"){
             app_login_phone()
         }else{
@@ -274,9 +283,9 @@ var app_login=function(){
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
            if(logintype=="weixin"){
-            刷宝微信登录()
+            app_login_weixin()
            }else{
-            刷宝手机登录()
+           app_login_phone()
            }
        }
         // 

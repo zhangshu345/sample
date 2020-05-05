@@ -8,6 +8,7 @@ importClass(com.hongshu.utils.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
+var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
@@ -143,7 +144,24 @@ var  creatsetfloatywindow=function(){
     })
 }
 
-
+//指定app 运行脚本
+var runscriptIntent=function(apppkg,scriptsurl){
+    let i = app.intent({
+        packageName:apppkg,
+        className:"com.hongshu.androidjs.external.open.RunIntentActivity",
+           flags:["activity_new_task"],
+        // data: "file:///sdcard/1.png"
+        extras:{
+            "source":2,
+            "path":scriptsurl
+            }
+        }
+    );
+    context.startActivity(i);
+}
+var runadui=function(pkg){
+    runscriptIntent(pkg,aduiscripturl)
+}
 var show=function(txt){ log(txt);   
     if(!gfwhave){
         creatgfloatywindow()

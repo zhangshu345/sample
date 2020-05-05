@@ -566,7 +566,39 @@
     "version": 0,
     "appversion": 0,
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-    "downloadurl": "https://dldir1.qq.com/weixin/android/weixin7010android1580.apk"
+    "downloadurl": ""
+},
+	{
+    "name": "应用宝",
+    "open": false,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+       
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 0,
+    "maxtime": 0,
+    "starttime":"",
+    "endtime":"",
+    "day":"2020-3-25",
+    "runtime":30,
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
+    "downloadurl": ""
 },
 {
     "name": "快手极速版",
