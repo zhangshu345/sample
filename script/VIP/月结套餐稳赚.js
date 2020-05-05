@@ -68,7 +68,7 @@ var run=function(){
                }else{
                    last=app
                    log("运行："+app.name)
-                  runrewardapp(app.name,app.pkg,25*1000)
+                  runrewardapp(app.name,app.pkg,app.onetime*60000)
                }
             }
     })
@@ -111,11 +111,15 @@ var runrewardapp=function(appname,apppkg,showadtime){
                  show("滑动次数："+i)
                  sleep(random(5,8)*1000)
                 }
-                runadui()
+                runadui(apppkg)
                 text("创意视频").waitFor()
-               if( textclick("创意视频")){
-                   sleep(3000)
-                   back()
+               if(textclick("创意视频")){
+                   close_ad_qq()
+                   sleep(2000)
+                   
+               }
+               if(textclick("全屏视频")){
+                   sleep(100000)
                }
 
 
