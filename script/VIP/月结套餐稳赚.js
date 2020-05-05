@@ -116,14 +116,10 @@ var runrewardapp=function(appname,apppkg,showadtime){
                if(textclick("创意视频")){
                    close_ad_qq()
                    sleep(2000)
-                   
-               }
+                   }
                if(textclick("全屏视频")){
                    sleep(100000)
                }
-
-
-                
 
             }else{
                 show("工具箱点击失败，回到首页")
