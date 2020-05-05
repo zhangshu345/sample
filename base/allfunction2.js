@@ -14,8 +14,8 @@ var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
-    today=nowdate()
-    return today.getFullYear()+"_"+today.getMonth()+"_"+today.getDate()
+    td=nowdate()
+    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate()
 }
 var onlyscript=false
 var enablegenius=device.sdkInt>=24

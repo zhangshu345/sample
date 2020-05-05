@@ -35,6 +35,7 @@ var run=function(){
      apps=JSON.parse(appconfig)
     var last
    apps= shuffleArray(apps)
+
     apps.forEach(app => {
            if(last){
                记录今日时长(last.name,last.onetime)
@@ -64,16 +65,20 @@ var run=function(){
                        sleep(app.onetime*60*1000)
                     }
                }else{
-                    runrewardapp(app.name,app.pkg,app.onetime*60*1000)
+                   last=app
+                   log("运行："+app.name)
+                   // runrewardapp(app.name,app.pkg,app.onetime*60*1000)
                }
             }
      
     })
 }
 var  shuffleArray=function(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+    n=array.length - 1
+    for (let i =0 ; i <n; i++) {
+         j = Math.floor(Math.random() * (n + 1));
         [array[i], array[j]] = [array[j], array[i]];
+        log("交换："+i+"--"+j)
     }
     return array
 }
