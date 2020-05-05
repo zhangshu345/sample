@@ -2,6 +2,8 @@ auto.waitFor()
 auto.setMode("normal")
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
+importClass(com.hongshu.utils.GsonUtils)
+importClass(com.hongshu.utils.AppUtils)
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -10,6 +12,9 @@ function httpget(url) {
         return ""
     }
 }
+
+
+
 滑动次数=0
 engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
@@ -27,6 +32,7 @@ show("开始刷宝短视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
+allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/allrewardapplist.json"
 var appconfig=httpget(rewardapplisturl)
 appnames=[]
 apps=JSON.parse(appconfig)
@@ -35,6 +41,7 @@ apps.forEach(app =>{
 })
 toastLog("白名单列表:"+appnames.length)
 var allapps=[]
+var appnames=[]
 function listapp(){
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -49,22 +56,37 @@ function listapp(){
         app_version= packageInfo.versionName,
         app_packageName= packageInfo.packageName,
         app_firstInstall=  dateFormat.format(appDate),
-        app_issystem= packageInfo.flags==0
+        app_issystem= (packageInfo.flags&1)!=0
         app_isselect=false
+        appnames.push(app_name)
         allapps.push({
             name: app_name,
             version: "版本号: " + app_version,
             packageName: app_packageName,
-            firstInstall: "安装时间: " + dateFormat.format(app_firstInstall),
+            firstInstall: "安装时间: " + app_firstInstall,
             isselect:app_isselect,
             issystem:app_issystem
         });
-    }
-    toastLog("当前apps的数量:"+allapps.length)
+    };
+//    var  allappsstr=GsonUtils.toJson(allapps);
+//     n=  allappsstr.length/300
+//     for(let i=0;i<n;i++){
+//         log(allappsstr.substring(i*300,i*300+300))
+//     }
+//     toastLog("当前apps的数量:"+allapps.length+"--"+GsonUtils.toJson(appnames))
+m=0
+allapps.forEach(app =>{
+      if(!AppUtils.isAppSystem(app.packageName)){
+          log("第三方应用"+GsonUtils.toJson(app))
+          m=m+1
+      }
+      
+  })
+  log("一共第三方应用："+m)
     return allapps
 }
 
-function issystem(){
-
-}
 listapp()
+// xiadelect.forEach(app=>{
+//     uninstallapp(app)
+// })
