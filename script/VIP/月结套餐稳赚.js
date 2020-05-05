@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
@@ -115,7 +113,12 @@ var runrewardapp=function(appname,apppkg,showadtime){
                 }
                 runadui()
                 text("创意视频").waitFor()
-                
+               if( textclick("创意视频")){
+                   sleep(3000)
+                   back()
+               }
+
+
                 
 
             }else{
