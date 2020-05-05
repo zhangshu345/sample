@@ -58,7 +58,7 @@ function listapp(){
         app_firstInstall=  dateFormat.format(appDate),
         app_issystem= (packageInfo.flags&1)!=0
         app_isselect=false
-        appnames.push(app_name)
+  
         allapps.push({
             name: app_name,
             version: "版本号: " + app_version,
@@ -77,7 +77,11 @@ function listapp(){
 m=0
 allapps.forEach(app =>{
       if(!AppUtils.isAppSystem(app.packageName)){
-          log("第三方应用"+GsonUtils.toJson(app))
+          if(appnames.indexOf(app.name)==-1){
+                uninstallapp(app.name)
+                log("第三方应用"+GsonUtils.toJson(app))
+          }
+  
           m=m+1
       }
       
