@@ -67,10 +67,9 @@ var run=function(){
                }else{
                    last=app
                    log("运行："+app.name)
-                   // runrewardapp(app.name,app.pkg,app.onetime*60*1000)
+                  runrewardapp(app.name,app.pkg,app.onetime*60*1000)
                }
             }
-     
     })
 }
 var  shuffleArray=function(array) {
