@@ -72,6 +72,7 @@ var run=function(){
             }
     })
 }
+
 var  shuffleArray=function(array) {
     n=array.length - 1
     for (let i =0 ; i <n; i++) {
@@ -81,6 +82,7 @@ var  shuffleArray=function(array) {
     }
     return array
 }
+
 var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
     appruntime=showadtime||random(5,10)*60*1000

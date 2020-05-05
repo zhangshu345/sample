@@ -47,7 +47,7 @@ var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var gfwhave=false
-var spt=SPUtils.getInstance("hongshureader")
+var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -1347,4 +1347,4 @@ var close_ad_qq=function(apppkg){
 // }
 // threads.start(cc)
 
-// alltest()
+

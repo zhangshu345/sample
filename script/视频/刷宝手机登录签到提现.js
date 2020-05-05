@@ -29,7 +29,6 @@ creatgfloatywindow()
 
 show("开始刷宝短视频辅助滑动")
 
-
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
@@ -196,7 +195,10 @@ var applogin=function(){
 var login_phone=function(){
     loginet= id("com.jm.video:id/login_edit").findOne(500)
     if(loginet){
-       loginet.setText(phonenumber())
+        pn=phonenumber()
+        show("手机号码:"+pn)
+        sleep(3000)
+       loginet.setText(pn)
        id("com.jm.video:id/btn_login").waitFor()
        if(idclick("com.jm.video:id/btn_login")){
            reg = /\d{4}/ig
