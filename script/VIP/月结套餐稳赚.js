@@ -40,7 +40,7 @@ var run=function(){
            if(last){
                记录今日时长(last.name,last.onetime)
                forcestop(last.name)
-               今日记录("lastapp",app)
+               今日记录("rewardadlastapp","lastapp",app.name)
                if(app.name==last.name){
                    show("和上一次操作APP相同 直接跳过，进行下一个")
                    return 
