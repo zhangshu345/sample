@@ -31,7 +31,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/东东随便_38.apk"
 },{
     "name": "KeepHealth",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -60,7 +60,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/KeepHealth_38.apk"
 },{
     "name": "随便粘",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
