@@ -89,7 +89,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_38.apk"
 },{
     "name": "唐诗宋词集合",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,

@@ -85,10 +85,13 @@ var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
     appruntime=showadtime||random(5,10)*60*1000
     runstarttime=nowdate().getTime()
- 
+    app.launchPackage(apppkg)
+    sleep(2000)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许"],300,1500)
+
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
-      
+    
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
@@ -113,11 +116,10 @@ var runrewardapp=function(appname,apppkg,showadtime){
                 //  }
                 }
             }else{
-               
                 show("工具箱点击失败，回到首页")
                 sleep(2000)
             }
-            maytextclick("跳过")
+           // maytextclick("跳过")
             clicktexts(["同意并继续","开始授权","允许","允许","允许"],300,1500)
         }
   
