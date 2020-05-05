@@ -25,12 +25,12 @@
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":5,
+    "jgnative":3,
     "name":"KeepHealth",
     "pkg":"com.dongdong.keephealth",
     "channel":"androidjs",
     "sign":"45:87:82:66:3A:DA:1F:71:CC:ED:E5:06:DF:90:1B:53:F8:01:5A:6A",
-    "versioni":31,
+    "versioni":38,
     "version":"1.3.8",
     "ratiosplash":"gdt-10",
     "ratiobanner":"gdt-10",
@@ -93,7 +93,6 @@
         "video":"",
         "hudong":"" 
     },
-
     "mintegral":{
         "open":true,
         "appid":"",

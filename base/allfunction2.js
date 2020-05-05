@@ -786,8 +786,8 @@ function downloadApk(name,url,isinstall) {
              if (progress > 0.1) {
                  var progress = parseInt(progress).toString() + '%';
                  ui.run(function () {
-                     // console.log(name + "下载进度", progress);
-                     toast(name + "下载进度" + progress)
+                    log(name + "下载进度", progress);
+                    // toast(name + "下载进度" + progress)
                      // w.progressNum.setText(progress);
                  });
                  if (当前写入的文件大小 >= connLength) {
