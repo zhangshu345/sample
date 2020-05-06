@@ -76,6 +76,7 @@ app.launch(apppkg)
 show(appname+"开始进入app操作")
 var action="小视频"
 var lastdesc=""
+var 小视频广告翻倍次数=0
 function run(){
     while(true){
     if(!idallexist(火火视频极速版小视频页标识id)){
@@ -99,6 +100,7 @@ function run(){
             sleep(500)
             if(clickonetexts(广告点击按钮文本集合,500,1500)){
                 seead()
+               
              }
              if(text("点击重播").exists()){
                 back()
@@ -133,6 +135,7 @@ function run(){
             }else{
                 if(clickonetexts(广告点击按钮文本集合,500,1500)){
                     seead()
+                    小视频广告翻倍次数=小视频广告翻倍次数+1
                  }
                 滑动(20,13,16,10,4,500,700)
                 sleep(1500)
@@ -182,25 +185,25 @@ function run(){
 }
 var seead=function(){
     i=0
-    while(i<10){
-        sleep(4000)
+    while(i<20){
+        sleep(2500)
         if(text("点击重播").exists()){
             back()
             sleep(2500)
             back()
-            return 
+            
         }
        if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
-           return 
+           
        }
         i=i+1
         if(text("邀请好友").findOne(500)){
             back()
-            return 
+            
         }
         if(textclick("金币已到账")){
             back()
-            return
+            sleep(1000)
         }
         close_ad_toutiao(apppkg)
         close_ad_qq(apppkg)
@@ -211,8 +214,6 @@ var seead=function(){
     }
 
 }
-
-
 
 
 var app_go_home=function(){

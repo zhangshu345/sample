@@ -1337,20 +1337,14 @@ var close_ad_toutiao=function(apppkg){
 }
 
 var close_ad_qq=function(apppkg){
-    sleep(15000)
-    i=0
-    isclose=false
-    while(i<10){
-        sleep(3000)
         ci=className("android.widget.ImageView").findOne(1000)
         if(clicknode(ci)){
             isclose=true
-            return
+            return true
+        }else{
+            return false
         }
-        i=i+1
-    }
-    back()
-    
+
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
