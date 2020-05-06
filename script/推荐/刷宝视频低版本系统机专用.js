@@ -107,8 +107,13 @@ var 刷宝签到=function(){
             while(n<15){
                 n=n+1
                 textclick("任务")
+                ds=desc("立即签到").findOne(300);
+                if(ds){
+                    clicknode(ds)
+                    sleep(2000)
+                }
             if(textclick("立即签到")){
-                sleep(1000)
+                sleep(1000)}
                 if(text("继续赚元宝").exists()){
                     textclick("首页")
                     return false
@@ -140,7 +145,7 @@ var 刷宝签到=function(){
                     back()
                     return false
                 }
-            }
+           
             if(id("com.jm.video:id/imgClose").exists()){
                 back()
             }

@@ -124,10 +124,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
 }
 
 addbmobchannel("hongshureward")
-while(true){
-    sleep(5000)
-    run()
-}
+run()
+
 //滑动(20,10,17,11,6,500,1500)
 // sleep(1000)
 //  滑动(20,10,16,11,6,500,1500)

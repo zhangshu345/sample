@@ -107,8 +107,14 @@ var appsign=function(){
                     back
                     return true
                 }
+                ds=desc("立即签到").findOne(300);
+                if(ds){
+                    show("desc:立即签到 找到")
+                    clicknode(ds)
+                    sleep(2000)
+                }
             if(textclick("立即签到")){
-                sleep(2000)
+                sleep(2000)}
                 if(text("继续赚元宝").exists()){
                     back()
                     sleep(2000)
@@ -144,7 +150,7 @@ var appsign=function(){
                     back()
                     return false
                 }
-            }
+           
             if(id("com.jm.video:id/imgClose").exists()){
                 back()
             }
@@ -400,16 +406,16 @@ while(true){
             toastLog("穿山甲广告页面")
         }
 
-        desc=  id("com.jm.video:id/desc").findOne(1000)
-        if(desc){
-            lastdesc=desc.text()
+        id_desc=  id("com.jm.video:id/desc").findOne(1000)
+        if(id_desc){
+            lastdesc=id_desc.text()
             log("当前："+lastdesc)
         }
        滑动(20,13,16,10,4,500,700)
          sleep(2000)
-        desc=  id("com.jm.video:id/desc").findOne(1000)
-        if(desc){
-            currentdesc=desc.text()
+         id_desc=  id("com.jm.video:id/desc").findOne(1000)
+        if(id_desc){
+            currentdesc=id_desc.text()
             log("之前："+lastdesc+"--当前："+currentdesc)
             if(currentdesc==lastdesc){
                 滑动(20,13,16,10,4,500,700)
