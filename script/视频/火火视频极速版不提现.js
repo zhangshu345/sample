@@ -77,7 +77,7 @@ show(appname+"开始进入app操作")
 var action="小视频"
 var lastdesc=""
 var 小视频广告翻倍次数=0
-var tomoney=true
+var tomoney=false
 function run(){
     while(true){
     if(!idallexist(火火视频极速版小视频页标识id)){
