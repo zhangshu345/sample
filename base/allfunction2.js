@@ -1341,7 +1341,7 @@ var close_ad_qq=function(apppkg){
     i=0
     isclose=false
     while(i<10){
-        sleep(4000)
+        sleep(3000)
         ci=className("android.widget.ImageView").findOne(1000)
         if(clicknode(ci)){
             isclose=true

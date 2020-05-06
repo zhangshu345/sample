@@ -106,8 +106,14 @@ var appsign=function(){
                     back
                     return true
                 }
+                ds=desc("立即签到").findOne(300);
+                if(ds){
+                    clicknode(ds)
+                    sleep(2000)
+                }
             if(textclick("立即签到")){
                 sleep(2000)
+            }
                 if(text("继续赚元宝").exists()){
                     back()
                     sleep(2000)
@@ -143,7 +149,7 @@ var appsign=function(){
                     back()
                     return false
                 }
-            }
+          
             if(id("com.jm.video:id/imgClose").exists()){
                 back()
             }
