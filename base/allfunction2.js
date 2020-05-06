@@ -1333,7 +1333,13 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
-    idclick(apppkg+":id/tt_video_ad_close")
+   if( idclick(apppkg+":id/tt_video_ad_close",300)){
+       return true
+   }
+   if(idclick(apppkg+":id/tt_video_ad_close_layout")){
+       return true
+   }
+   return false
 }
 
 var close_ad_qq=function(apppkg){

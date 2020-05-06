@@ -155,6 +155,7 @@ function run(){
                     sleep(1500)
                     if(maytextclick("看视频再送")){
                         seead()
+                        小视频广告翻倍次数=小视频广告翻倍次数+1
                     }
                    
                 }
@@ -205,11 +206,19 @@ var seead=function(){
             back()
             sleep(1000)
         }
-        close_ad_toutiao(apppkg)
+        if(close_ad_toutiao(apppkg)){
+            sleep(1000)
+            idclick("com.jt.hanhan.video:id/jw")
+            return
+        }
         close_ad_qq(apppkg)
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
             return 
+        }
+        jddj=id(火火视频金蛋大奖id).findOne(500)
+        if(jddj){
+            return
         }
     }
 
