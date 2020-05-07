@@ -32,9 +32,9 @@ selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewa
 var run=function(){
     
     var appconfig=httpget(selfrewardlisturl)
-     apps=JSON.parse(appconfig)
+    apps=JSON.parse(appconfig)
     var last
-   apps= shuffleArray(apps)
+    apps= shuffleArray(apps)
 
     apps.forEach(app => {
         device.wakeUpIfNeeded()
@@ -91,7 +91,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
     app.launchPackage(apppkg)
     sleep(2000)
     clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
-
+  
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
     
@@ -101,27 +101,36 @@ var runrewardapp=function(appname,apppkg,showadtime){
             sleep(5000)
         }else{
             clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
+            if(textoneexist(["点击下载"])){
+                back()
+            }
             if (textclick("工具箱")){
                 show("工具箱点击成功")
                 sleep(1500)
                 i=0
                 r=random(20,30)
                 while(i<r){
-                 i=i+1
+                    if(textoneexist(["点击下载"])){
+                        back()
+                    }
+                    textclick("退出")
+               
                  滑动(20,10,16,11,6,500,1500)
+                 i=i+1
                  show("滑动次数："+i)
                  sleep(random(5,8)*1000)
                 }
                 runadui(apppkg)
-                text("创意视频").waitFor()
+                sleep(5000)
                if(textclick("创意视频")){
-                   seerewardvideo()
+                   seerewardvideo(apppkg)
                    sleep(2000)
                    }
                if(textclick("全屏视频")){
-                   sleep(100000)
+                   sleep(10000)
+                   back()
                }
-
+               back()
             }else{
                 show("工具箱点击失败，回到首页")
                 sleep(2000)
@@ -134,10 +143,11 @@ var runrewardapp=function(appname,apppkg,showadtime){
 
 
 
-var seerewardvideo=function(){
+var seerewardvideo=function(apppkg){
     sleep(10000)
     i=0
     while(i<20){
+        show("关闭广告："+i)
         back()
       if(close_ad_qq(apppkg)){
           return
@@ -147,6 +157,9 @@ var seerewardvideo=function(){
        }
        if(text("创意视频").findOne(300)){
            return
+       }
+       if(textoneexist(["点击下载"])){
+           back()
        }
        sleep(2000)
         i=i+1
