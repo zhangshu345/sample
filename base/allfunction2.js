@@ -18,7 +18,6 @@ var today=function(){
     td=nowdate()
     return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate()
 }
-var onlyscript=false
 var enablegenius=device.sdkInt>=24
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
@@ -143,10 +142,7 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
-//关闭最近运行的app
-var closelastscriptpkg=function(){
 
-}
 //指定app 运行脚本
 var runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({

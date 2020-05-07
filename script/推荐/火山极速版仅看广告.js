@@ -60,9 +60,10 @@ var waitvideoad=function(){
 var installappanduninstallapp=function(temappname){
     install_app()
     if(temappname){
-        uninstallappbyname(temappname)
+        uninstallapp(temappname)
     }
 }
+
 
 var waitvideoadandinstall=function(){
     i=0
@@ -80,7 +81,7 @@ var waitvideoadandinstall=function(){
                temappname=tem.text()
            }
            textclick("安装再领300金币")
-           threads.start(installappanduninstallapp)
+           threads.start(installappanduninstallapp(temappname))
            return
        }
        if(textallexist(["红包","邀请好友"])){
@@ -94,7 +95,6 @@ var waitvideoadandinstall=function(){
 var onlyseevideo=function(){
     while(true){
         if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
-       
                 textclick("领取")
                 if(textContains("剩余").exists()){
                     textContains("剩余").findOne(500).click()

@@ -2,6 +2,14 @@ auto.waitFor()
 auto.setMode("normal")
 
 /** 这里应该是配置 */
+var tomongy=false  //提现
+var invite=false // 邀请
+var logintype="weixin"  //登录使用微信
+var onetime=30 // 一次的时间
+var maxtime=60 //一天最长时间  
+var minmoney=0.3 // 最小提现余额
+var mintodaycoin=3000  //最小今天的赚的金币
+var onlyscript=false  //仅允许当前一个脚本运行 
 /*---------------------------------lib-------------------------------*/
 function httpget(url) {
     var r = http.get(url);
@@ -13,9 +21,8 @@ function httpget(url) {
 }
 
 var 视频次数=0
- var seevideofinish=false  //看海量视频 任务完成 
+var seevideofinish=false  //看海量视频 广告任务 任务完成 标记
 滑动次数=0
-
 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
@@ -27,27 +34,31 @@ log("公共函数实例化失败,程序重启")
 //这里应该是重新启动脚本 todo
 }
 
-onlyscript=false
 
+//关闭其他脚本
 if(onlyscript){
     floaty.closeAll()
     engines.stopOther()
 }
-
+//关闭最新的app
+closelastscriptapp()
 var appname="火山极速版"
+var apppkg="com.ss.android.ugc.livelite"  
+
 show("开始火山极速版辅助滑动")
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
 home()
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
-closelastscriptpkg()
+
 var waitvideoad=function(){
-    i=0
-    while(i<6){
-        sleep(8000)
+    t_wvd=0
+    while(t_wvd<20){
+        sleep(3000)
       if(textclick("关闭广告")){
         sleep(1500)
           if(textclick("继续观看")){
@@ -56,17 +67,18 @@ var waitvideoad=function(){
               return
           }
       }
-      i=i+1
+      t_wvd=t_wvd+1
    
     }
 }
 var installappanduninstallapp=function(temappname){
     install_app()
     if(temappname){
-        uninstallappbyname(temappname)
+        uninstallapp(temappname)
     }
 }
 
+//等待视频 和安装应用 之后卸载
 var waitvideoadandinstall=function(){
     i=0
     while(i<10){
@@ -141,8 +153,7 @@ var onlyseevideo=function(){
 
     }
 }
-toastLog("开始火山极速版")
-var apppkg="com.ss.android.ugc.livelite"  //  app.getPackageName(appname)
+//  app.getPackageName(appname)
 app.launchApp(appname)
 视频重复次数=1
 while(true){
@@ -181,6 +192,10 @@ while(true){
             }
         }
     }
+    //邀请弹窗
+    if(idclick("com.ss.android.ugc.livelite:id/a5o")){
+
+    }
     if(text("开宝箱得金币").exists()){
        if( textclick("开宝箱得金币")){
             sleep(2000)
@@ -194,6 +209,8 @@ while(true){
                 }
             }
         }
+
+
     }
     //看海量视频任务
     if(!seevideofinish){
@@ -218,22 +235,32 @@ while(true){
         }
         v=text("看广告视频赚海量金币").findOne(500)
         if(v){
-              var hlsp=textContains("看广告得金币").findOne(500)
-             t=hlsp.text()
-             show("取出当前提醒："+t)
-             i=t.substring(t.indexOf("成")+1,t.indexOf("\/"))
-             show("取出当前次数："+i)
-             i=Number(i)
-             if(i<20){
-                if( clicknode(v)){
-                    //这个是安装赚金币 之后要卸载
-                    waitvideoadandinstall()
+              hlsp=textContains("看广告得金币").findOne(500)
+              if(hlsp){
+                t=hlsp.text()
+              }else{
+                hlsp=textContains("每次最高的").findOne(500) 
+                if(hlsp){
+                    t=hlsp.text()
+                  }
+              }
+              if(t){
+                show("取出当前提醒："+t)
+                i=t.substring(t.indexOf("成")+1,t.indexOf("\/"))
+                show("取出当前次数："+i)
+                i=Number(i)
+                if(i<20){
+                   if(clicknode(v)){
+                       //这个是安装赚金币 之后要卸载
+                       waitvideoadandinstall()
+                   }
+            
+                }else{
+                    seevideofinish=true
+                    onlyseevideo()
                 }
-         
-             }else{
-                 seevideofinish=true
-                 onlyseevideo()
-             }
+              }
+            
         }
     }
 }
