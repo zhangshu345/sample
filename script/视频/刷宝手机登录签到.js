@@ -181,13 +181,13 @@ var applogin=function(){
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
             show("我界面找到昵称和设置")
             spt.put("shuabaologin",true)
-               return true
+            return true
         }else{
             show("没有找到昵称和设置")
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],200,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            show("登录页面")
            if(logintype=="weixin"){
@@ -221,10 +221,10 @@ var login_phone=function(){
 
 var login_weixin=function(){
     i=0
-    while (i<10){
+    while (i<6){
         textclick("微信账号登录")
         sleepr(2000)
-        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+        clicktexts(["微信账号登录","同意","同意并继续"],200,2500)
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
             show("我界面找到昵称和设置")
             spt.put("shuabaologin",true)

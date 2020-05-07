@@ -90,7 +90,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
     sleep(2000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许"],300,1500)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
 
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
@@ -100,11 +100,12 @@ var runrewardapp=function(appname,apppkg,showadtime){
             app.launchPackage(apppkg)
             sleep(5000)
         }else{
+            clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
             if (textclick("工具箱")){
                 show("工具箱点击成功")
                 sleep(1500)
                 i=0
-                r=random(2,3)
+                r=random(20,30)
                 while(i<r){
                  i=i+1
                  滑动(20,10,16,11,6,500,1500)
@@ -114,7 +115,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
                 runadui(apppkg)
                 text("创意视频").waitFor()
                if(textclick("创意视频")){
-                   close_ad_qq()
+                   seerewardvideo()
                    sleep(2000)
                    }
                if(textclick("全屏视频")){
@@ -133,7 +134,24 @@ var runrewardapp=function(appname,apppkg,showadtime){
 
 
 
-
+var seerewardvideo=function(){
+    sleep(10000)
+    i=0
+    while(i<20){
+        back()
+      if(close_ad_qq(apppkg)){
+          return
+      }
+       if(close_ad_toutiao(apppkg)){
+           return 
+       }
+       if(text("创意视频").findOne(300)){
+           return
+       }
+       sleep(2000)
+        i=i+1
+    }
+}
 
 
 

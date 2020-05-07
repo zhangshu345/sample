@@ -25,7 +25,7 @@
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":5,
+    "jgnative":3,
     "name":"MD编辑器",
     "pkg":"com.dongdong.markdowneditors",
     "channel":"androidjs",

@@ -25,7 +25,7 @@
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":5,
+    "jgnative":3,
     "name":"随便粘",
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",

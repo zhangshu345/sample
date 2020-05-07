@@ -52,8 +52,7 @@ if(!app.getPackageName(appname)){
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 
 const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
-const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
-const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
+
 const 火火视频极速版导航按钮id="com.jt.hanhan.video:id/a9f"
 const 火火视频极速版奖励布局id="com.jt.hanhan.video:id/ii"
 const 火火视频极速版领取红包id="com.jt.hanhan.video:id/a9l"
