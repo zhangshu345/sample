@@ -15,7 +15,7 @@ var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunc
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-//toastLog("公共函数实例化成功")
+toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
@@ -28,7 +28,7 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/稳定赚钱套餐每日提现.json"
 var run=function(){
     
     var appconfig=httpget(selfrewardlisturl)
@@ -90,18 +90,16 @@ var runrewardapp=function(appname,apppkg,showadtime){
     app.launchPackage(apppkg)
     sleep(2000)
     clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
-    hdcs=0
+  
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
-       if(!idContains(apppkg).findOne(1000)){
+    
+        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
             sleep(5000)
         }else{
-            
-
-            if(hdcs<3){
-                clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
+            clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
             if(textclick("总是允许")){
                 sleep(1000)
                 textclick("总是允许")
@@ -110,50 +108,45 @@ var runrewardapp=function(appname,apppkg,showadtime){
                 sleep(1000)
                 textclick("总是允许")
             }
-           }
-            
             if(textoneexist(["点击下载"])){
                 back()
             }
             if (textclick("工具箱")){
                 show("工具箱点击成功")
                 sleep(1500)
-            }else{
-                back()
-            }
-          
-            if(textoneexist(["点击下载"])){
-                    back()
-             }
-             textclick("退出")
-             滑动(20,10,16,11,6,500,1500)
-             hdcs=hdcs+1
-             show("滑动次数："+hdcs)
-             sleep(random(5,8)*1000)
-
-             r=random(20,30)
-           if(hdcs>10 && hdcs%r==0){
-            runadui(apppkg)
-            sleep(5000)
-           if(textclick("创意视频")){
-               seerewardvideo(apppkg)
-               sleep(2000)
+                i=0
+                r=random(20,30)
+                while(i<r){
+                    if(textoneexist(["点击下载"])){
+                        back()
+                    }
+                    textclick("退出")
+               
+                 滑动(20,10,16,11,6,500,1500)
+                 i=i+1
+                 show("滑动次数："+i)
+                 sleep(random(5,8)*1000)
+                }
+                runadui(apppkg)
+                sleep(5000)
+               if(textclick("创意视频")){
+                   seerewardvideo(apppkg)
+                   sleep(2000)
+                   }
+               if(textclick("全屏视频")){
+                   sleep(10000)
+                   back()
                }
-           if(textclick("全屏视频")){
-               sleep(10000)
                back()
-           }
-           back()
-           }
-
+            }else{
+                show("工具箱点击失败，回到首页")
+                sleep(2000)
+            }
+           // maytextclick("跳过")
+            clicktexts(["同意并继续","开始授权","允许","允许","允许"],300,1500)
         }
-        if(textoneexist(["点击下载"])){
-            back()
-        }
-        textclick("退出")
     }
 }
-
 
 var seerewardvideo=function(apppkg){
     sleep(10000)
