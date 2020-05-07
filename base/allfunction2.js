@@ -286,7 +286,7 @@ var 上次滑动次数=function(name){
      return s
 } 
 var lastscriptapp=spt.getString("lastscriptapp")
-var closelastscriptapp=function(){ forcestop(lastscriptapp())}
+var closelastscriptapp=function(){ forcestop(lastscriptapp)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 var 记录现在观看视频数=function(name,f){     数据库.put(name+"_lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    show(name+"上次观看视频个数"+s);     return s;} 
