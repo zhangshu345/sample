@@ -143,7 +143,10 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
+//关闭最近运行的app
+var closelastscriptpkg=function(){
 
+}
 //指定app 运行脚本
 var runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
