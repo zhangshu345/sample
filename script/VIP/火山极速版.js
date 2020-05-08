@@ -9,7 +9,8 @@ var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
-var onlyscript=false  //仅允许当前一个脚本运行 
+var onlyscript=true  //仅允许当前一个脚本运行 
+var installappnames=[]
 /*---------------------------------lib-------------------------------*/
 function httpget(url) {
     var r = http.get(url);
@@ -71,10 +72,21 @@ var waitvideoad=function(){
    
     }
 }
-var installappanduninstallapp=function(temappname){
+var installappanduninstallapp=function(){
     install_app()
-    if(temappname){
-        uninstallapp(temappname)
+    sleep(5000)
+    if(installappnames.length>0){
+        installappnames.forEach(app=>{
+            if(getPackageName(app)){
+                if( uninstallapp(app)){
+                    installappnames.pop(app)
+                }
+            }else{
+                installappnames.pop(app)
+            }
+           
+        })
+       
     }
 }
 
@@ -93,23 +105,26 @@ var waitvideoadandinstall=function(){
            tem=id("com.ss.android.ugc.livelite:id/title").findOne(500)
            if(tem){
                temappname=tem.text()
+               installappnames.push(temappname)
+               show("安装的应用："+temappname)
            }
-           textclick("安装再领300金币")
-           threads.start(installappanduninstallapp)
-           return
        }
+     if(textclick("安装再领300金币")){
+        threads.start(installappanduninstallapp)
+        return
+     }
        if(textallexist(["红包","邀请好友"])){
            return
        }
        i=i+1
     }
 }
-
+var app_update=function(){
+    install_app(null,appname)
+}
 
 var onlyseevideo=function(){
-    while(true){
         if(id("com.ss.android.ugc.livelite:id/a2f").exists()||id("com.ss.android.ugc.livelite:id/rc")){
-       
                 textclick("领取")
                 if(textContains("剩余").exists()){
                     textContains("剩余").findOne(500).click()
@@ -151,39 +166,50 @@ var onlyseevideo=function(){
             click(100,400)
             sleep(1000)
 
-    }
 }
 //  app.getPackageName(appname)
+
+
+var app_login=function(){
+    t_login=0
+    while(t_login<10){
+        if(textclick("登录")){
+            sleep(2000)
+           }
+            
+           if( textclick("微信登录")){
+            sleep(2000)
+           }
+           t_login=t_login+1
+    }
+  
+        
+}
+var run=function(){
 app.launchApp(appname)
 视频重复次数=1
 while(true){
-      if(!idContains(apppkg).findOne()){
+   if(!idContains(apppkg).exists()){
+       show(appname+"不在前台")
                     app.launch(apppkg)
                     sleep(3000)
-         }else{
-                    back()
-                    sleep(2000)
-         }
-                if(textclick("注册/登录")){
-                    text("微信登录").waitFor()
-                    textclick("微信登录")
-                    sleep(1000)
-        }
+     }else{
+        show(appname+"在前台")
+     }
+    if(textclick("注册/登录")){
+            app_login()
+   }
   
     if(text("登录立即可得8元").exists()){
-        back()
-        sleep(1000)
-        text("登录").waitFor()
-        textclick("登录")
-        text("微信登录").waitFor()
-        textclick("微信登录")
-        sleep(1000)
+        app_login()
+  
     }
     if(textclick("点击激活")){
         text("去红包页面")
         if(textclick("去红包页面")){
-            text("金币").waitFor()
-            text("兑换").waitFor()
+            sleep(2000)
+            // text("金币").waitFor()
+            // text("兑换").waitFor()
             if(text("签到").exists()){
                 if (textclick("签到")){
                     sleep(1000)
@@ -192,8 +218,12 @@ while(true){
             }
         }
     }
+  
     //邀请弹窗
     if(idclick("com.ss.android.ugc.livelite:id/a5o")){
+
+    }
+    if(idclick("com.ss.android.ugc.livelite:id/a60")){
 
     }
     if(text("开宝箱得金币").exists()){
@@ -209,9 +239,19 @@ while(true){
                 }
             }
         }
-
-
     }
+    if(text("火山又更新啦").exists()){
+        l_p=text("火山又更新啦").findOne(300).parent()
+        if(l_p){
+            if(l_p.ChildCount()==4){
+                if(  clicknode(l_p.child(2))){
+                    app_update()
+                }
+            }
+        
+        }
+    }
+
     //看海量视频任务
     if(!seevideofinish){
         textclick("红包")
@@ -254,7 +294,6 @@ while(true){
                        //这个是安装赚金币 之后要卸载
                        waitvideoadandinstall()
                    }
-            
                 }else{
                     seevideofinish=true
                     onlyseevideo()
@@ -262,8 +301,11 @@ while(true){
               }
             
         }
+    }else{
+        onlyseevideo()
     }
 }
+}
 
-
+run()
 

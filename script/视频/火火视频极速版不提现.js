@@ -32,12 +32,11 @@ var apphomeactivity=""
 var appname="火火视频极速版"
 
 show("开始："+appname+"辅助滑动")
-home()
-sleep(1000)
-recents()
-sleep(2000)
-textclick("全部关闭")
-sleep(1000)
+log(device)
+closerecentapp()
+
+
+
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -52,8 +51,7 @@ if(!app.getPackageName(appname)){
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 
 const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
-const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
-const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
+
 const 火火视频极速版导航按钮id="com.jt.hanhan.video:id/a9f"
 const 火火视频极速版奖励布局id="com.jt.hanhan.video:id/ii"
 const 火火视频极速版领取红包id="com.jt.hanhan.video:id/a9l"
@@ -78,16 +76,14 @@ var action="小视频"
 var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=false
+
+
 function run(){
     while(true){
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
-           
-            back()
-            sleep(300)
-            home()
             app.launch(apppkg)
             sleep(3000)
             i=0
@@ -163,7 +159,6 @@ function run(){
             }else{
                 dz_n=parseInt(dzstr)
                 if(dz_n>5000){
-
                     clicknode(tv_dz)
                 }
             }
@@ -193,18 +188,22 @@ function run(){
         jddj=id(火火视频金蛋大奖id).findOne(500)
         if(jddj){
             if(jddj.text()=="金蛋大奖"){
-                sleep(7000)
+                sleep(7500)
                 if( idclick(火火视频金蛋大奖id)){
-                    sleep(1500)
-                    if(maytextclick("看视频再送")){
-                        seead()
-                        小视频广告翻倍次数=小视频广告翻倍次数+1
+                    sleep(2500)
+                    if(text("赚钱小技巧").exists()){
+                        back()
                     }
+                        if(maytextclick("看视频再送")){
+                            seead()
+                            小视频广告翻倍次数=小视频广告翻倍次数+1
+                        }
+                    
+                  
                    
                 }
             }
         }
-       
         sleepr(6000*ratio,8000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<20){
@@ -254,18 +253,27 @@ var seead=function(){
             idclick("com.jt.hanhan.video:id/jw")
             return
         }
-        close_ad_qq(apppkg)
+        if( close_ad_qq(apppkg)){
+
+        }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
             return 
         }
-        jddj=id(火火视频金蛋大奖id).findOne(500)
+        jddj=id(火火视频金蛋大奖id).findOne(300)
         if(jddj){
             return
         }
         if(text("点击下载").exists()){
             back()
             sleep(1000)
+            ci=className("android.widget.ImageView").clickable().findOne(300)
+            if(ci){
+                if(clicknode(ci)){
+         
+                }
+            }
+
             if(idclick("com.jt.hanhan.video:id/jw")){
                 sleep(1000)
                 return 
@@ -313,6 +321,7 @@ var app_go_home=function(){
 var app_sign=function(){
     i=0
     while(i<3){
+
         hi=id("com.jt.hanhan.video:id/hi").findOne(300)
         if(hi){
             if(clicknode(hi.child(2))){
@@ -428,7 +437,10 @@ var app_login_phone=function(){
 }
 
 var app_login_weixin=function(){
-    while (i<10){
+    t_login=0
+    while (t_login<10){
+     
+
         textclick("微信账号登录")
         sleepr(2000)
         clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
@@ -437,6 +449,7 @@ var app_login_weixin=function(){
             spt.put(apppkg+"login",true)
             return true
         }
+        t_login=t_login+1
     }
 }
 

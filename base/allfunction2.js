@@ -143,6 +143,19 @@ var  creatsetfloatywindow=function(){
     })
 }
 
+var closerecentapp=function(){
+    recents()
+    if(device.brand=="samsung"){
+                
+        sleep(2000)
+        textclick("全部关闭")
+        sleep(1000)
+    }else if(device.brand=="HONOR"){
+        sleep(2000)
+        id("clear_all_recents_image_button").findOne().click()
+    }
+    back()
+}
 //指定app 运行脚本
 var runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
@@ -1169,30 +1182,23 @@ var checksystemsettings=function(){
         PermissionUtils.requestWriteSettings(null)
         while(true){
             sleep(1000)
-            if(clickonetexts(["允许权限","允许许可","允许修改系统设置"])){
-               break
-            }
-        }
-        if(issystemsettings()){
-            log("有系统设置权限")
-            return true
-        }
-        back()
-        sleep(100)
-        back()
-        sleep(100)
-        home()
-        sleep(1000)
-        app.openAppSetting(context.getPackageName())
-        while(true){
-          滑动(20,10,17,10,3,500,500)
-          sleep(1000)
-          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
-                sleep(1000)
-                if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
-                    return 
+            if(issystemsettings()){
+                log("有系统设置权限")
+                return true
+            }else{
+                if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){
+                    sleep(1000)
+                }else{
+                    app.openAppSetting(context.getPackageName())
+                    滑动(20,10,17,10,3,500,500)
+                    if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
+                        sleep(1000)
+                        if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
+                            
+                        }
+                  }
                 }
-          }
+            }
         }
     }
 }
@@ -1342,13 +1348,29 @@ var close_ad_toutiao=function(apppkg){
 }
 
 var close_ad_qq=function(apppkg){
-        ci=className("android.widget.ImageView").findOne(1000)
-        if(clicknode(ci)){
-            isclose=true
-            return true
+        ci=className("android.widget.ImageView").clickable().findOne(300)
+        if(ci){
+            if(clicknode(ci)){
+                isclose=true
+                return true
+            }else{
+                return false
+            }
         }else{
-            return false
+            sleep(300)
+            if(text("点击下载").exists()){
+                ci=className("android.widget.ImageView").clickable().findOne(300)
+                if(ci){
+                    if(clicknode(ci)){
+                        isclose=true
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+            }
         }
+      
 
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
