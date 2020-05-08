@@ -32,12 +32,11 @@ var apphomeactivity=""
 var appname="火火视频极速版"
 
 show("开始："+appname+"辅助滑动")
-home()
-sleep(1000)
-recents()
-sleep(2000)
-textclick("全部关闭")
-sleep(1000)
+log(device)
+closerecentapp()
+
+
+
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -186,7 +185,7 @@ function run(){
             back()
             sleep(2500)
         }
-        jddj=id(火火视频金蛋大奖id).findOne(300)
+        jddj=id(火火视频金蛋大奖id).findOne(500)
         if(jddj){
             if(jddj.text()=="金蛋大奖"){
                 sleep(7500)
