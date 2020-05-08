@@ -72,7 +72,7 @@ while(true){
     
    }
 
-    sleep(6000)
+    sleep(8000)
   //  id("af").findOne().scrollBackward()
 
  vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
