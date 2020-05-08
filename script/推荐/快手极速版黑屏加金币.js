@@ -49,7 +49,7 @@ while(true){
         show(appname+"不在前台")
         app.launch(apppkg)
         sleep(3000)
-        i=0
+       
      }
     if(idoneexist(快手极速版首页标志)){
         log("找到快手首页悬浮标记")
