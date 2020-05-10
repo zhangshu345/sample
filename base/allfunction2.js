@@ -72,18 +72,18 @@ var  creatgfloatywindow=function(){
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
-              <vertical  w="90" h="90" >
-              <text id="stop" w="auto" h="45"  textSize="16sp" textColor="#000000"  background="#99ffffff" >设置</text>
-              <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#99ffffff"  >收缩</text>
+              <vertical  w="90" h="65" >
+              <text id="stop" w="auto" h="45"  textSize="16sp" textColor="#000000"  background="#1C86EE" >设置</text>
+              <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#1C86EE"  >收缩</text>
               </vertical>
             <vertical  w="90" h="90" >
             <horizontal  >
-                    <text id="jiasu" w="35" h="35" textColor="#000000" textSize="16sp" background="#ffffff" >加速</text>
-                     <text id="jiansu" w="35" h="35"  textColor="#000000" textSize="16sp" background="#ffffff">减速</text>
+                    <text id="jiasu" w="35" h="35" textColor="#000000" textSize="16sp" background="#1C86EE" >加速</text>
+                     <text id="jiansu" w="35" h="35"  textColor="#000000" textSize="16sp" background="#1C86EE">减速</text>
             </horizontal>
             <horizontal >
-                    <text id="jl" w="35" h="35" textColor="#000000" textSize="16sp" background="#ffffff" >节流+</text>
-                     <text id="nojl" w="35" h="35"  textColor="#000000" textSize="16sp" background="#ffffff">正常</text>
+                    <text id="jl" w="35" h="35" textColor="#000000" textSize="16sp" background="#1C86EE" >节流+</text>
+                     <text id="nojl" w="35" h="35"  textColor="#000000" textSize="16sp" background="#1C86EE">正常</text>
             </horizontal>
             </vertical>
         </horizontal>
