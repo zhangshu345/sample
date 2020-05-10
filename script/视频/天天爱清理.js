@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 auto.waitFor()
 auto.setMode("normal")
 //10000金币  三圈 点击  看视频  
@@ -47,8 +45,9 @@ var 天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
 alltest()
 checkfloaty()
 checksystemsettings()
-creatgfloatywindow()
 floaty.closeAll()
+creatgfloatywindow()
+
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
@@ -102,7 +101,7 @@ var run=function(){
                 滑动(20,10,17,5,500,500)
             }else{
                 lasttitle=nowtitle
-                sleep(6000)
+                sleep(6000*ratio)
             }
 
         }else{
@@ -204,7 +203,7 @@ var app_tomoney=function(){
 var seead=function(){
     n_see=0
     while(n_see<20){
-        if(text("点击重播").exist()){
+        if(text("点击重播").exists()){
             back()
         }
         n_see=n_see+1
