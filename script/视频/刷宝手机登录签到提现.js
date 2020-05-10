@@ -202,6 +202,23 @@ var applogin=function(){
         i=i+1
     }
 }
+var setidnodetext=function(idstr,txt){
+    node_t=id(idstr).findOne(300)
+    if(node_t){
+        node_t.setText(txt)
+        return true
+    }
+    return false
+}
+
+var settextnodetext=function(idstr,txt){
+    node_t=text(idstr).findOne(300)
+    if(node_t){
+        node_t.setText(txt)
+        return true
+    }
+    return false
+}
 
 var login_phone=function(){
     loginet= id("com.jm.video:id/login_edit").findOne(500)

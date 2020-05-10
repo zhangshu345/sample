@@ -1,3 +1,5 @@
+import { text } from "body-parser";
+
 auto.waitFor()
 auto.setMode("normal")
 //10000金币  三圈 点击  看视频  
@@ -34,7 +36,14 @@ var maxtime=60 //一天最长时间
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
-
+var 天天爱清理红包奖励id="com.xiaoqiao.qclean:id/image_red_bg_icon"
+var 天天爱清理红包奖励状态id="com.xiaoqiao.qclean:id/tv_task_status"
+var 天天爱清理视频页喜欢id="com.xiaoqiao.qclean:id/tv_like"
+var 天天爱清理视频页评论id="com.xiaoqiao.qclean:id/tv_comment"
+var 天天爱清理视频页内容摘要id="com.xiaoqiao.qclean:id/tv_munity_content"
+var 天天爱清理弹窗广告id="com.xiaoqiao.qclean:id/tv_ad_button"  //看视频再领88金币
+var 视频页标记id集合=[天天爱清理红包奖励id,天天爱清理视频页喜欢id,天天爱清理视频页评论id]
+var 天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
 alltest()
 checkfloaty()
 checksystemsettings()
@@ -71,11 +80,55 @@ if(!app.getPackageName(appname)){
     show(appname+"已经安装")
 }
 
+//首次进入  同意  我的  com.xiaoqiao.qclean:id/iv_open_btn 
 //app 运行
+// com.xiaoqiao.qclean:id/tv_bubble_1  清理界面悬浮的按个  
+var lasttitle=""
 var run=function(){
+    
     while(true){
+        if(!idContains(apppkg).findOne(1000)){
+            show(appname+"不在前台") 
+            app.launch(apppkg)
+            sleep(3000)
+     }else{
+         show(appname+"在前台") 
+         //回到视频页
+         
+     }
+        if(idallexist(视频页标记id集合)){
+            nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
+            if(nowtitle==lasttitle){
+                滑动(20,10,17,5,500,500)
+            }else{
+                lasttitle=nowtitle
+                sleep(6000)
+            }
 
+        }else{
+            //回到视频页的操作  var  天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
+            ll_bar=id(天天爱清理底部导航id).findOne(300)
+            if(ll_bar){
+                clicknode(ll_bar.child(1))
+            }else{
+                clicktexts("视频")
+            }
+            
+        }
 
+       
+        if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
+            seead()
+        }
+        if(idclick(天天爱清理弹窗广告id)){
+            seead()
+        }
+        if(textclick("看视频最高翻5倍")){
+            seead()
+        }
+        if(textclick("看视频最高翻5倍")){
+            seead()
+        }
 
     }
 
@@ -83,7 +136,37 @@ var run=function(){
 
 //app 登录
 var app_login=function(){
+    n_login=0
+    changetype=0
+    while(n_login<10){
+        n_login=n_login+1
 
+
+        if(logintype=="weixin"){
+            if(changetype>1){
+                show("请先手动登录账号")
+                return 
+            }
+            app_login_weixin()
+        }else{
+           pn=phonenumber()
+           if(pn){
+               if(changetype>1){
+                   show("请先手动登录账号")
+                   return 
+               }
+               app_login_phone()
+           }else{
+               changetype=changetype+1
+            
+               logintype="weixin"
+           }
+
+        }
+      
+       
+    }
+   
 }
 
 //app 微信登录
@@ -93,7 +176,21 @@ var app_login_weixin=function(){
 
 //app_手机号登录
 var app_login_phone=function(){
-
+    reg = /\d{4}/ig
+   //输入手机号
+        if(idclick("com.xiaoqiao.qclean:id/edt_login_phone")){
+            node_phone=id("com.xiaoqiao.qclean:id/edt_login_phone").findOne(300)
+            if(node_phone){
+                node_phone.setText(phonenumber())
+                sleep(500)
+                if(idclick("com.xiaoqiao.qclean:id/tv_get_captcha")){
+                  code=  get_phone_code("天天爱清理",reg,"验证码：",)
+                  if(code){
+                      setidnodetext("com.xiaoqiao.qclean:id/edt_login_captcha",code)
+                  }
+                }
+            }
+        }
 }
 //app 签到
 var app_sign=function(){
@@ -104,5 +201,13 @@ var app_sign=function(){
 var app_tomoney=function(){
 
 }
-
+var seead=function(){
+    n_see=0
+    while(n_see<20){
+        if(text("点击重播").exist()){
+            back()
+        }
+        n_see=n_see+1
+    }
+}
 run()

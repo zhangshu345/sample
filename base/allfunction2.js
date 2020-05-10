@@ -448,6 +448,19 @@ var sleepr=function(short,long){
     show("等待:"+rt +" 毫秒")
     sleep(rt)
 }
+
+var getTextfromid=function(idstr,defaulttext){
+    if(!idstr){
+        return ""
+    }
+    defaulttext=defaulttext||""
+    node_id=id(idstr).findOne(300)
+    if(node_id){
+        return node_id.text()
+    }else{
+        return ""
+    }
+}
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 500;
     left = left || 0;
@@ -1419,6 +1432,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
     setClip(code)
     return code
 }
+
 
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
