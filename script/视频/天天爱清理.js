@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+//10000金币  三圈 点击  看视频  
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -23,9 +24,9 @@ toastLog("公共函数实例化失败,程序返回")
 
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
-var apppkg="com.jt.hanhan.video"
+var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity=""
-var appname="火火视频极速版"
+var appname="天天爱清理"
 var tomoney=false  
 var invite=false // 邀请
 var logintype="weixin"  //登录使用微信
@@ -74,6 +75,7 @@ if(!app.getPackageName(appname)){
 
 //app 运行
 var run=function(){
+    if()
 
 }
 

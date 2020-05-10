@@ -219,7 +219,7 @@ function run(){
                 }
             }
         }
-      
+        
         if(滑动次数%50==1){
             if(!今日签到(appname)){
                 app_sign()

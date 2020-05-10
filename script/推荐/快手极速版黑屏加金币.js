@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -41,6 +42,12 @@ var 快手极速版首页标志=[快手极速首页奖励悬浮,快手极速摄�
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
 var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
+
+if(!app.getPackageName(appname)){
+    toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+    downloadandinstallapp(appname,apppkg)
+}
+
 app.launch(apppkg)
 
 i=0

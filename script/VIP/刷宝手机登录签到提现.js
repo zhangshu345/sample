@@ -95,6 +95,11 @@ var gotoappvideo=function(){
 var appsign=function(){
     i=0
     while(i<3){
+        if(!idContains(apppkg).findOne(500)){
+            show("没有找到存在包名id控件")
+            app.launch(apppkg)
+            sleep(3000)
+        }
         i=i+1
       //  "恭喜获取","去邀请","com.jm.video:id/imgClose"
         if(textclick("任务")){

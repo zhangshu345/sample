@@ -226,7 +226,7 @@ var app_sign=function(){
     i=0
     while(i<10){
         i=i+1
-       if(textclick("看视频再送100金币")){
+       if(maytextclick("看视频再送")){
            seead()
            今日已签到(appname)
            return true
@@ -278,7 +278,6 @@ var app_login=function(){
             app_login_weixin()
         }
     
-
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")

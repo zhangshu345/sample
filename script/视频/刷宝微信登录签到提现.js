@@ -100,6 +100,11 @@ var appsign=function(){
         if(textclick("任务")){
             n=0
             while(n<3){
+                if(!idContains(apppkg).findOne(500)){
+                    show("没有找到存在包名id控件")
+                    app.launch(apppkg)
+                    sleep(3000)
+                }
                 n=n+1
                 if(textContains("恭喜您获得").findOne(200)){
                     back

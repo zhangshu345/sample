@@ -439,7 +439,6 @@ var 快手悬浮球之后页面操作=function(){
                 return true
             }
         }
-        
        s=s+1
     }
 }

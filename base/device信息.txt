@@ -1,0 +1,25 @@
+三星s7 active 
+Device{width=1080, height=1920, buildId='R16NW', buildDisplay='R16NW.G891AUCS5CSB1', product='poseidonlteuc', board='msm8996', brand='samsung', device='poseidonlteatt', model='SAMSUNG-SM-G891A', bootloader='G891AUCS5CSB1', hardware='qcom', fingerprint='samsung/poseidonlteuc/poseidonlteatt:8.0.0/R16NW/G891AUCS5CSB1:user/release-keys', sdkInt=26, incremental='G891AUCS5CSB1', release='8.0.0', baseOS='samsung/poseidonlteuc/poseidonlteatt:8.0.0/R16NW/G891AUCU4CRH1:user/release-keys', securityPatch='2019-02-01', serial='ce11160bb1a4c20802'}
+
+
+
+荣耀 8a 
+ Device{width=720, height=1560, buildId='HONORJAT-AL00', buildDisplay='JAT-AL00 9.1.0.248(C00E106R2P2)', product='JAT-AL00', board='JAT-AL00', brand='HONOR', device='HWJAT-M', model='JAT-AL00', bootloader='unknown', hardware='mt6765', fingerprint='HONOR/JAT-AL00/HWJAT-M:9/HONORJAT-AL00/9.1.0.248C00:user/release-keys', sdkInt=28, incremental='9.1.0.248C00', release='9', baseOS='HONOR/JAT-AL00/HWJAT-M:9/HONORJAT-AL00/9.1.0.246C00:user/release-keys', securityPatch='2019-10-06', serial='unknown'}
+
+ 夏普 
+  brand='DOCOMO' 
+  device ='SH-01K'
+  model='SH-01K'
+
+
+  乐视1s 刷flyme
+  Device{width=1080, height=1920, buildId='NJH47F', buildDisplay='Flyme 6.8.3.29R beta', product='Le1s_CN', board='mt6795', brand='Letv', device='x3', model='Letv X500', bootloader='unknown', hardware='mt6795', fingerprint='Letv/Le1s_CN/x3:7.1.2/NJH47F/builder.20180329142511_R:userdebug/test-keys', sdkInt=25, incremental='builder.20180329142511_R', release='7.1.2', baseOS='', securityPatch='2017-12-05', serial='QGMBYTDYMRP7CEGY'}
+
+  魅族note5 
+  Device{width=1080, height=1920, buildId='NRD90M', buildDisplay='Flyme 8.0.0.0A', product='meizu_M5 Note', board='M5 Note', brand='Meizu', device='M5Note', model='M5 Note', bootloader='unknown', hardware='mt6755', fingerprint='Meizu/M1621/M1621:7.0/NRD90M/1575056980:user/release-keys', sdkInt=24, incremental='1575056980', release='7.0', baseOS='', securityPatch='2019-08-01', serial='621QECQ93UUND'}
+
+  oppo k1
+  Device{width=1080, height=2340, buildId='OPM1.171019.011', buildDisplay='PBCM30_11_A.22', product='PBCM30', board='sdm660', brand='OPPO', device='PBCM30', model='PBCM30', bootloader='unknown', hardware='qcom', fingerprint='OPPO/PBCM30/PBCM30:8.1.0/OPM1.171019.011/1584434156:user/release-keys', sdkInt=27, incremental='1586659684', release='8.1.0', baseOS='OPPO/PBCM30/PBCM30:8.1.0/OPM1.171019.011/1577687062:user/release-keys', securityPatch='2020-04-05', serial='e794cc5a'}
+
+  小米play 
+  Device{width=1080, height=2280, buildId='O11019', buildDisplay='ZAL1722-lotus-build-20191010003213', product='lotus', board='unknown', brand='xiaomi', device='lotus', model='MI PLAY', bootloader='unknown', hardware='mt6765', fingerprint='xiaomi/lotus/lotus:8.1.0/O11019/9.10.10:user/release-keys', sdkInt=27, incremental='9.10.10', release='8.1.0', baseOS='', securityPatch='2019-09-01', serial='48c242c90302'}

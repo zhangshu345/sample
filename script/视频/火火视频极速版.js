@@ -34,9 +34,6 @@ var appname="火火视频极速版"
 show("开始："+appname+"辅助滑动")
 log(device)
 closerecentapp()
-
-
-
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -174,10 +171,12 @@ function run(){
         if(tv_hb){
             show("领取红包id："+tv_hb.id())
             if (clicknode(tv_hb)){
-                sleep(1500)
-                if(idclick("com.jt.hanhan.video:id/m3")){
-                    seead()
-                }
+                sleep(2500)
+               if(clickoneids(["com.jt.hanhan.video:id/m3","com.jt.hanhan.video:id/m4"])){
+                seead()
+               }
+            
+               
             }
             
         }
@@ -185,11 +184,32 @@ function run(){
             back()
             sleep(2500)
         }
-        jddj=id(火火视频金蛋大奖id).findOne(500)
+        if(id("com.jt.hanhan.video:id/ga").findOne(300)){
+            toastLog("找到了")
+            sleep(7500)
+           if( idclick("com.jt.hanhan.video:id/ga")){
+                show("点击金蛋大奖成功")
+                sleep(2500)
+                if(text("赚钱小技巧").exists()){
+                    back()
+                }
+                    if(maytextclick("看视频再送")){
+                        seead()
+                        小视频广告翻倍次数=小视频广告翻倍次数+1
+                    }
+           }else{
+            show("点击金蛋大奖失败")
+           }
+        }else{sleep(1500)
+            show("没有找到金蛋大奖："+i)
+        }
+    
+        jddj=text("金蛋大奖").findOne(300)
         if(jddj){
-            if(jddj.text()=="金蛋大奖"){
+            show("找到金蛋大奖")
+            // if(jddj.text()=="金蛋大奖"){
                 sleep(7500)
-                if( idclick(火火视频金蛋大奖id)){
+                if(textclick("金蛋大奖")){
                     sleep(2500)
                     if(text("赚钱小技巧").exists()){
                         back()
@@ -198,12 +218,13 @@ function run(){
                             seead()
                             小视频广告翻倍次数=小视频广告翻倍次数+1
                         }
-                    
-                  
-                   
+
                 }
-            }
+            // }
+        }else{
+          show("没有找到金蛋大奖")  
         }
+
         sleepr(6000*ratio,8000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<20){
@@ -264,6 +285,7 @@ var seead=function(){
         if(jddj){
             return
         }
+       
         if(text("点击下载").exists()){
             back()
             sleep(1000)
@@ -321,7 +343,6 @@ var app_go_home=function(){
 var app_sign=function(){
     i=0
     while(i<3){
-
         hi=id("com.jt.hanhan.video:id/hi").findOne(300)
         if(hi){
             if(clicknode(hi.child(2))){
@@ -335,9 +356,9 @@ var app_sign=function(){
             if(n_coin>3000){
                 tv_money=id("com.jt.hanhan.video:id/a4f").findOne(3000)
                 if(tv_money){
-                    记录现在余额(appname,parseFloat(tv_money().text())/1000)
+                    记录现在余额(appname,parseFloat(tv_money.text())/1000)
                 }
-                if(tomoney){
+                if(tomoney&&今日提现(appname)){
                     textclick("立即提现")
                     text("立即提现").waitFor()
                     textclick("立即提现")

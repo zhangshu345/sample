@@ -313,11 +313,45 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
  
 var forcestop=function(appname,st){
-    if(!getPackageName(appname)){  show(appname+"：没有安装");  return  };   
-     show("强制关闭应用:"+appname);  st=st||10000;   packagename=app.getPackageName(appname);  app.openAppSetting(packagename);sleep(1500);
-  closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
+
+    if(!getPackageName(appname)){  
+        show(appname+"：没有安装");  
+        return  
+    };   
+     show("强制关闭应用:"+appname); 
+      st=st||10000;  
+       packagename=app.getPackageName(appname);  
+       app.openAppSetting(packagename);
+      if( device.brand=="samsung"){
+        closetexts= ["强制停止","强制停止"];
+
+       }else if(device.brand=="HONOR"){
+        closetexts= ["强行停止","强行停止"];
+       }
+       else if(device.brand=="DOCOMO"){
+        closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
+    }
+    else if(device.brand=="Meizu"){
+        closetexts= ["强行停止","确定"];
+    }
+    else if(device.brand=="xiaomi"){
+        closetexts= ["结束运行","确定"];
+    }
+    else if(device.brand=="OPPO"){
+        closetexts= ["强行停止","强行停止"];
+    }else{
+        closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
+    }
+ 
   sleep(2000)
-  i=0;  while(i<3){ clicktexts(closetexts,500,1500);    i=i+1; sleep(1500) }}
+  i=0;  while(i<3){
+     if (clickalltexts(closetexts,300,2000) ){
+          return true
+      }
+     i=i+1;
+    sleep(2000) 
+}
+}
 
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -565,6 +599,32 @@ var clicktexts=function(texts,t,st){
     }
 }
 
+var clickalltexts=function(texts,t,st){
+    show("开始点击文本集合:"+texts)
+    st=st || 500
+    t=t || 500
+    n=0
+    for(i=0;i<texts.length;i++){
+        if(textclick(texts[i],t)){
+            sleep(st)
+            n=n+1
+        }
+    }
+    return n==texts.length
+}
+//点击仁意一个id就是真真
+var clickoneids=function(ids,t,st){
+    show("开始点击id集合:"+ids)
+    st=st || 500
+    t=t || 500
+    for(i=0;i<id.length;i++){
+        if(idclick(ids[i],t)){
+            sleep(st)
+            return true
+        }
+    }
+    return false
+}
 
 var clickonetexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)
@@ -1400,3 +1460,5 @@ var close_ad_qq=function(apppkg){
 // threads.start(cc)
 
 
+//  log(device)
+//  forcestop("刷宝短视频")
