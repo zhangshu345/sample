@@ -907,6 +907,27 @@ function downloadApk(name,url,isinstall) {
         installapp(filePath)
      }
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+     if( device.brand=="samsung"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+
+       }else if(device.brand=="HONOR"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+       }
+       else if(device.brand=="DOCOMO"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+    }
+    else if(device.brand=="Meizu"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+    }
+    else if(device.brand=="xiaomi"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+    }
+    else if(device.brand=="OPPO"){
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+    }else{
+        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
+    }
+
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
@@ -1462,7 +1483,6 @@ var close_ad_qq=function(apppkg){
 // }
 // threads.start(cc)
 
- show("你好")
- sleep("15545")
+
 //  log(device)
 //  forcestop("刷宝短视频")
