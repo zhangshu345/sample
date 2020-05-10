@@ -878,7 +878,7 @@ function downloadApk(name,url,isinstall) {
              if (progress > 0.1) {
                  var progress = parseInt(progress).toString() + '%';
                  ui.run(function () {
-                    log(name + "下载进度", progress);
+                    show(name + "下载进度", progress);
                     // toast(name + "下载进度" + progress)
                      // w.progressNum.setText(progress);
                  });
@@ -896,7 +896,7 @@ function downloadApk(name,url,isinstall) {
          fs.write(buffer, 0, byteRead); //读取
      }
      threadId && threadId.isAlive() && threadId.interrupt();
-     toastLog(name+'下载完成');
+     show(name+'下载完成');
      if(isinstall){
         install_app(filePath,name)
      }    
@@ -932,7 +932,8 @@ function downloadApk(name,url,isinstall) {
                         sleep(2000)
                         if(textclick("允许来自此来源的应用")){
                             sleep(500)
-                            back()   } }  } }
+                            back()   } }  } 
+                        }
           //这里是佳佳的那个hd1的 特殊设置
          if (textclick("安全保护")) {
              toast("安全保护安全保护安全保护")
@@ -954,7 +955,7 @@ function downloadApk(name,url,isinstall) {
          if (textclick("完成")){
              return
          }
-         if (textclick("打开")){
+         if (text("打开").exists()){
              return
         }   
         //系统可以获取到app 的包名的时候就
@@ -1461,6 +1462,7 @@ var close_ad_qq=function(apppkg){
 // }
 // threads.start(cc)
 
-// show("你好")
+ show("你好")
+ sleep("15545")
 //  log(device)
 //  forcestop("刷宝短视频")

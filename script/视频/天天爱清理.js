@@ -39,6 +39,7 @@ alltest()
 checkfloaty()
 checksystemsettings()
 creatgfloatywindow()
+floaty.closeAll()
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
@@ -49,11 +50,11 @@ toastLog("自动设置音量为0")
 if(onlyscript){
     engines.stopOther()
 }
-floaty.closeAll()
+
 //关闭最新的app
 closelastscriptapp()
-creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
+
+show("指定："+appname+"即将启动")
 // home()
 // show("开始："+appname+"辅助滑动")
 // home()
