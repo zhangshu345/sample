@@ -200,13 +200,19 @@ var app_sign=function(){
 var app_tomoney=function(){
 
 }
-var seead=function(){
+var seead=function(timeout){
     n_see=0
+    starttime=nowdate().getTime()
     while(n_see<20){
         if(text("点击重播").exists()){
             back()
         }
+        close_ad_qq()
         n_see=n_see+1
+        if(nowdate().getTime()-starttime>timeout*1000){
+            back()
+            return
+        }
     }
 }
 run()
