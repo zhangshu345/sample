@@ -891,7 +891,7 @@ function downloadApk(name,url,isinstall) {
              if (progress > 0.1) {
                  var progress = parseInt(progress).toString() + '%';
                  ui.run(function () {
-                    show(name + "下载进度", progress);
+                    show(name.substr(0,6) + ":下载进度-", progress);
                     // toast(name + "下载进度" + progress)
                      // w.progressNum.setText(progress);
                  });
