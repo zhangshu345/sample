@@ -175,7 +175,7 @@ var runadui=function(pkg){
     runscriptIntent(pkg,aduiscripturl)
 }
 var show=function(txt){ log(txt);   
-    if(!gfwhave){
+    if(!gfw){
         creatgfloatywindow()
     }
     ui.run(function(){
@@ -313,7 +313,9 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
  
 var forcestop=function(appname,st){
-
+    if(!appname){
+        return
+    }
     if(!getPackageName(appname)){  
         show(appname+"：没有安装");  
         return  
@@ -1459,6 +1461,6 @@ var close_ad_qq=function(apppkg){
 // }
 // threads.start(cc)
 
-
+// show("你好")
 //  log(device)
 //  forcestop("刷宝短视频")

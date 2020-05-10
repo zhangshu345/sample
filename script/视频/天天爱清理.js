@@ -22,7 +22,6 @@ toastLog("公共函数实例化失败,程序返回")
 }
 
 
-
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity=""
@@ -35,8 +34,6 @@ var maxtime=60 //一天最长时间
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
-
-
 
 alltest()
 checkfloaty()
@@ -57,14 +54,14 @@ floaty.closeAll()
 closelastscriptapp()
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
-home()
-show("开始："+appname+"辅助滑动")
-home()
-sleep(1000)
-recents()
-sleep(2000)
-textclick("全部关闭")
-sleep(1000)
+// home()
+// show("开始："+appname+"辅助滑动")
+// home()
+// sleep(1000)
+// recents()
+// sleep(2000)
+// textclick("全部关闭")
+// sleep(1000)
 
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -75,7 +72,11 @@ if(!app.getPackageName(appname)){
 
 //app 运行
 var run=function(){
-    if()
+    while(true){
+
+
+
+    }
 
 }
 
