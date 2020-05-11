@@ -909,7 +909,7 @@ function downloadApk(name,url,isinstall) {
              if (progress > 0.1) {
                  var progress = parseInt(progress).toString() + '%';
                  ui.run(function () {
-                    show(name.substr(0,6) + ":下载进度-", progress);
+                    show(name.substr(0,6) + ":下载进度-"+progress);
                     // toast(name + "下载进度" + progress)
                      // w.progressNum.setText(progress);
                  });
@@ -1114,19 +1114,20 @@ var checkscreencapture=function(){
 
   // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
   threads.start(function () {
-    star_ing = text("立即开始").findOne(2000)
-    if (star_ing) {
-        star_ing.click()
-        return
-    }
+      while(n_t<5){
+          n_t=n_t+1
+        star_ing = text("立即开始").findOne(2000)
+        if (star_ing) {
+            star_ing.click()
+            return
+        }
+        sleep(1500)
+      }
+  
 })
 if (!requestScreenCapture()) {
     show("请求截图权限失败！");
 }
-//   while(! requestScreenCapture()){
-//        sleep(1000)
-//        log("等待截屏")
-//    }
 }
 //运行广告app
 var runadapp=function(appname,apppkg,showadtime,isforcestop){
@@ -1334,13 +1335,11 @@ var 刷宝邀请=function(){
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))
-    toastLog(h)
     setClip(h)
  }
 
  var 快手极速版邀请=function(){
     var h=httpget(getrandforstrs(快手极速版邀请链接))
-    toastLog(h)
     setClip(h)
  }
 
@@ -1389,6 +1388,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
     contet = ""
     packname = ""
     code = ""
+    reg=reg|| /\d{4}/ig
     //--------------------------*******************--------------------------//
     var thread = threads.start(function (app_name) {
         events.observeNotification();

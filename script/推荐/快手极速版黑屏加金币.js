@@ -41,7 +41,7 @@ var 快手极速版首页标志=[快手极速首页奖励悬浮,快手极速摄�
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
-var 强制关闭按钮文本集合=["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"]
+
 
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -56,40 +56,43 @@ while(true){
         show(appname+"不在前台")
         app.launch(apppkg)
         sleep(3000)
-       
      }
     if(idoneexist(快手极速版首页标志)){
         log("找到快手首页悬浮标记")
         //快手actionbar "com.kuaishou.nebula:id/action_bar"
-        if(id("com.kuaishou.nebula:id/tabs").exists()){
-            
-          childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
-            childs.forEach(e => {
-                log(e.className())
-                if(e.className()=="android.widget.LinearLayout"){
-                    e.child(2).click()
-                }
-            });
+        if(i%15==0){
+            if(id("com.kuaishou.nebula:id/tabs").exists()){
+                childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
+                  childs.forEach(e => {
+                      log(e.className())
+                      if(e.className()=="android.widget.LinearLayout"){
+                          e.child(2).click()
+                      }
+                  });
+              }
         }
 
    }else{
         log("没有找到快手首页悬浮标记")
        back()
        sleep(1000)
-    
    }
 
     sleep(8000)
   //  id("af").findOne().scrollBackward()
 
  vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
-// vp=id("com.kuaishou.nebula:id/view_pager").findOne()  //快手极速版  这个是那个
-//vp=classNameEndsWith("RecyclerView").scrollable().findOne()
+
   if(vp){
       log("找到快手滑动vp")
-      //vp.scrollBackward()
       vp.scrollForward()
   }
     i=i+1
     show("第"+i+"次上滑")
+
+
 }
+
+// vp=id("com.kuaishou.nebula:id/view_pager").findOne()  //快手极速版  这个是那个
+//vp=classNameEndsWith("RecyclerView").scrollable().findOne()
+      //vp.scrollBackward()

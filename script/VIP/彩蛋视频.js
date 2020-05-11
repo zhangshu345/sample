@@ -121,9 +121,12 @@ function run(){
             if(device.getBattery()<20){
                 toastLog("电量低")
                 if(device.isCharging()){
-                 device.setMusicVolume(0)
-                 device.setBrightnessMode(0)
-                 device.setBrightness(0)
+                    if(changesetting){
+                        device.setMusicVolume(0)
+                        device.setBrightnessMode(0)
+                        device.setBrightness(0)
+                    }
+                
                 }else{
                     //休眠三十分钟
                     device.lockScreen()
