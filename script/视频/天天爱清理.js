@@ -109,7 +109,7 @@ var run=function(){
             if(ll_bar){
                 clicknode(ll_bar.child(1))
             }else{
-                clicktexts("视频")
+                textclick("视频")
             }
             
         }
@@ -122,7 +122,7 @@ var run=function(){
             }
         }
        if(idclick("com.xiaoqiao.qclean:id/iv_end_close")){
-           
+
        }
         if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
             seead()
@@ -130,7 +130,7 @@ var run=function(){
         if(idclick(天天爱清理弹窗广告id)){
             seead()
         }
-        if(textclick("看视频最高翻5倍")){
+        if(maytextclick("看视频")){
             seead()
         }
         if(textclick("看视频最高翻5倍")){
