@@ -6,7 +6,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("5秒后继续")
+        sleep(5000)
+        return httpget(url)
     }
 }
 滑动次数=0
