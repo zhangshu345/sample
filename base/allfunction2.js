@@ -263,14 +263,14 @@ var 今日时长=function(name){
 var 今日滑动次数=function(name){
     name= name||"glode"
     cs=数据库.get(name+"_"+today()+"_move", 0)
-    show("今日签到:"+cs)
+    show(name+"今日滑动次数:"+cs)
     return cs
 }
 var 设置今日滑动次数=function(name,i){
     name=name||"glode"
     i=i||0
     cs=数据库.put(name+"_"+today()+"_move", i)
-    show("今日签到:"+cs)
+    show(name+"：今日滑动次数:"+cs)
     return cs
 }
 

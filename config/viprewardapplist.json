@@ -447,7 +447,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/小强助理_21.apk"
 },{
     "name": "儿童绘画板",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -507,7 +507,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/MD编辑器_11.apk"
 },{
     "name": "休息声音",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": false,
     "zfb": true,
@@ -649,7 +649,7 @@
     "endtime":"",
     "pkg": "com.jt.hanhan.video",
     "bmobid": "",
-    "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/刷宝手机登录签到.js",
+    "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/快手极速版.js",
     "money": 1.0,
     "onetime": 30,
     "maxtime": 90,
