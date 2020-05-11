@@ -22,8 +22,6 @@ else {
 show("公共函数实例化失败,程序返回")
 }
 
-
-
 gfw.setPosition(0,device.height-250)
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
@@ -502,8 +500,6 @@ var 快手极速视频上滑=function(){
                 vp.scrollForward()
             }
     }
-
-   
  }
 
  var 快手极速视频下滑=function(){
@@ -587,6 +583,9 @@ function run(){
     sleep(3000)
     i=0
     while(true){
+        if(idclick("com.kuaishou.nebula:id/close")){
+            sleep(1000)
+        }
           if(idoneexist(快手极速版首页标志)){
             log("找到快手首页悬浮标记")
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
@@ -600,8 +599,7 @@ function run(){
                       }
                   });
               }
-        }
-
+        }   
             if(i%500==0){
                 if(!todaysign){
                     if(idclick(快手极速首页奖励悬浮)){
