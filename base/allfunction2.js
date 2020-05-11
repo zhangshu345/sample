@@ -38,6 +38,7 @@ var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var  dpm
 var  deviceadmincomponent
+var changesetting=false //是否改变亮度和音量的标识
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
      dpm=context.getSystemService("device_policy")
@@ -164,6 +165,7 @@ var runscriptIntent=function(apppkg,scriptsurl){
            flags:["activity_new_task"],
         // data: "file:///sdcard/1.png"
         extras:{
+            "action":"runscript",
             "source":2,
             "path":scriptsurl
             }
@@ -171,6 +173,22 @@ var runscriptIntent=function(apppkg,scriptsurl){
     );
     context.startActivity(i);
 }
+var sendforcestopIntent=function(apppkg){
+    let i = app.intent({
+        packageName:apppkg,
+        className:"com.hongshu.androidjs.external.open.RunIntentActivity",
+           flags:["activity_new_task"],
+        // data: "file:///sdcard/1.png"
+        extras:{
+            "action":"forcestop",
+            "source":2,
+            "path":scriptsurl
+            }
+        }
+    );
+    context.startActivity(i);
+}
+
 var runadui=function(pkg){
     runscriptIntent(pkg,aduiscripturl)
 }

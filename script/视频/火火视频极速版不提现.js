@@ -30,7 +30,7 @@ toastLog("自动设置音量为0")
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity=""
 var appname="火火视频极速版"
-
+var changesetting=false
 show("开始："+appname+"辅助滑动")
 log(device)
 closerecentapp()
@@ -208,10 +208,14 @@ function run(){
         if(滑动次数%10==1){
             if(device.getBattery()<20){
                 toastLog("电量低")
+               
                 if(device.isCharging()){
-                 device.setMusicVolume(0)
-                 device.setBrightnessMode(0)
-                 device.setBrightness(0)
+                    if(changesetting){
+                        device.setMusicVolume(0)
+                        device.setBrightnessMode(0)
+                        device.setBrightness(10)
+                    }
+             
                 }else{
                     //休眠三十分钟
                     device.lockScreen()

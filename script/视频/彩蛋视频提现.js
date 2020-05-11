@@ -30,6 +30,7 @@ toastLog("自动设置音量为0")
 var apppkg="com.jifen.dandan"
 var apphomeactivity=""
 var appname="彩蛋视频"
+
 toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
@@ -134,11 +135,15 @@ function run(){
             if(device.getBattery()<20){
                 toastLog("电量低")
                 if(device.isCharging()){
-                 device.setMusicVolume(0)
-                 device.setBrightnessMode(0)
-                 device.setBrightness(0)
+                    if(changesetting){
+                        device.setMusicVolume(0)
+                        device.setBrightnessMode(0)
+                        device.setBrightness(10)
+                    }
+               
                 }else{
                     //休眠三十分钟
+                    show("电量低"+device.getBattery()+"  休眠半小时")
                     device.lockScreen()
                     sleep(1800000)
                 }
