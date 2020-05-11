@@ -33,7 +33,6 @@ toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/稳定赚钱套餐每日提现.json"
 
 var run=function(){
-    
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
     var last

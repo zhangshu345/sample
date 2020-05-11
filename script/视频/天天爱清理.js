@@ -84,7 +84,7 @@ if(!app.getPackageName(appname)){
 // com.xiaoqiao.qclean:id/tv_bubble_1  清理界面悬浮的按个  
 var lasttitle=""
 var run=function(){
-    
+    i=0
     while(true){
         if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台") 
@@ -93,7 +93,6 @@ var run=function(){
      }else{
          show(appname+"在前台") 
          //回到视频页
-         
      }
         if(idallexist(视频页标记id集合)){
             nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
@@ -114,8 +113,17 @@ var run=function(){
             }
             
         }
-
-       
+        if(i<10){
+            if(textclick("同意")){
+                app_login()
+            }
+            if(idclick("com.xiaoqiao.qclean:id/iv_open_btn")){
+                app_login()
+            }
+        }
+       if(idclick("com.xiaoqiao.qclean:id/iv_end_close")){
+           
+       }
         if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
             seead()
         }
@@ -128,7 +136,7 @@ var run=function(){
         if(textclick("看视频最高翻5倍")){
             seead()
         }
-
+        i=i+1
     }
 
 }
@@ -139,8 +147,6 @@ var app_login=function(){
     changetype=0
     while(n_login<10){
         n_login=n_login+1
-
-
         if(logintype=="weixin"){
             if(changetype>1){
                 show("请先手动登录账号")
@@ -151,7 +157,8 @@ var app_login=function(){
            pn=phonenumber()
            if(pn){
                if(changetype>1){
-                   show("请先手动登录账号")
+                   show("请先手动登录账号,暂停3分钟")
+                   sleep(180000)
                    return 
                }
                app_login_phone()
@@ -207,12 +214,18 @@ var seead=function(timeout){
         if(text("点击重播").exists()){
             back()
         }
-        close_ad_qq()
-        n_see=n_see+1
+       if( close_ad_qq(apppkg)){
+           return true
+       }
+       if(close_ad_toutiao(apppkg)){
+            return true
+       }
         if(nowdate().getTime()-starttime>timeout*1000){
             back()
+            forcestop(appname)
             return
         }
+        n_see=n_see+1
     }
 }
 run()

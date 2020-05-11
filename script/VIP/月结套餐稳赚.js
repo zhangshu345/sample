@@ -6,7 +6,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("5秒后继续")
+        sleep(5000)
+        return httpget(url)
     }
 }
 滑动次数=0
@@ -150,7 +152,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
            if(textclick("创意视频")){
                seerewardvideo(apppkg)
                sleep(2000)
-               }
+               
+            }
            if(textclick("全屏视频")){
                sleep(10000)
                back()

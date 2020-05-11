@@ -1472,22 +1472,18 @@ var close_ad_qq=function(apppkg){
             }else{
                 return false
             }
-        }else{
-            sleep(300)
-            if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable().findOne(300)
-                if(ci){
-                    if(clicknode(ci)){
-                        isclose=true
-                        return true
-                    }else{
-                        return false
-                    }
+        }
+        if(text("点击下载").exists()){
+            ci=className("android.widget.ImageView").clickable().findOne(300)
+            if(ci){
+                if(clicknode(ci)){
+                    isclose=true
+                    return true
+                }else{
+                    return false
                 }
             }
         }
-      
-
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()

@@ -363,11 +363,8 @@ function essay(need_num) {
         }
         swipe(w * 0.6 - random(10, 30), h * 0.6 + random(10, 20), w * 0.6 + random(50, 80), h * 0.2 + random(10, 30), random(220, 235))
         sleep(1000)
-
     }
 }
-
-
 
 
 
