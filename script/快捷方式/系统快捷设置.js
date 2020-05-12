@@ -49,7 +49,7 @@ ui.uninstall.on("click",function(){
 })
 admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
 ui.systemsetting.on("click",function(){
-    tomangerwritesetting
+    tomangerwritesetting()
 })
 
 ui.screen.on("click",function(){

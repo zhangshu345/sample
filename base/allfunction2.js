@@ -390,6 +390,7 @@ var toPkgandClass=function(pkg,classname){
         let i = app.intent({  packageName: pkg, className:classname });
          context.startActivity(i);
 }
+
 var todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
@@ -1198,8 +1199,9 @@ var startdeviceadmin=function(){
             show("设备管理 no")
         }
         clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
-        滑动(20,10,17,10,5,500,300)
+      
         sleepr(500,1000)
+        滑动(20,10,17,10,5,500,300)
     }
 }
 
@@ -1538,3 +1540,4 @@ var close_ad_qq=function(apppkg){
 
 //  log(device)
 //  forcestop("刷宝短视频")
+ toPkgandClass("com.android.settings","com.android.settings.SubSettings")

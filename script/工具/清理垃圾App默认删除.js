@@ -21,10 +21,9 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-alltest()
-floaty.closeAll()
+
+
 creatgfloatywindow()
-show("开始刷宝短视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
