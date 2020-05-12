@@ -690,7 +690,7 @@
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
-}
+},
 {
     "name": "步多多",
     "open": false,
@@ -722,5 +722,100 @@
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
 }
+,
+{
+    "name": "绿洲",
+    "open": false,
+    "install": true,
+    "wx": false,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.3,
+    "tag": [
+        "自用"
 
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "绿洲",
+    "starttime":"",
+    "endtime":"",
+    "pkg": "",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 30,
+    "maxtime": 90,
+    "day":"2020-5-7",
+    "runtime":0,
+    "version":1,
+    "appversion": "",
+    "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
+    "downloadurl": ""
+},
+{
+    "name": "音浪短视频",
+    "open": false,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+        "微信"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "com.video.yl",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 0,
+    "day":"2020-3-25",
+    "runtime":30,
+    "maxtime": 0,
+    "starttime":"",
+    "endtime":"",
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_53987164_1585298750/96",
+    "downloadurl": "https://af2019465238146133bdc5ffafe49557.dd.cdntips.com/imtt.dd.qq.com/16891/apk/AD89F3C01F5A875A6F9B6F46E9842964.apk"
+},
+{
+    "name": "高手短视频",
+    "open": false,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+        "微信"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "com.video.gs",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 0,
+    "day":"2020-3-25",
+    "runtime":30,
+    "maxtime": 0,
+    "starttime":"",
+    "endtime":"",
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_53986794_1585298753/96",
+    "downloadurl": "https://55256bdc70b395dc8946569cde29f50a.dd.cdntips.com/imtt.dd.qq.com/16891/apk/BFB75E9B2316D1F939E37D9FE1C06D63.apk"
+}
 ]
