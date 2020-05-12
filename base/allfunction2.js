@@ -1540,4 +1540,4 @@ var close_ad_qq=function(apppkg){
 
 //  log(device)
 //  forcestop("刷宝短视频")
- toPkgandClass("com.android.settings","com.android.settings.SubSettings")
+//  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
