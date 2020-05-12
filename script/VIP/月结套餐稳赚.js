@@ -96,6 +96,17 @@ var runrewardapp=function(appname,apppkg,showadtime){
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
+        if(currentActivity()!="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
+            back()
+            back()
+            forcestop(appname)
+        }
+        if(close_ad_qq(apppkg)){
+         
+        }
+         if(close_ad_toutiao(apppkg)){
+             
+         }
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
@@ -137,7 +148,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
                     back()
                 }        
             }
-
             if(textoneexist(["点击下载"])){
                     back()
              }
