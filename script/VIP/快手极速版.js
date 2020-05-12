@@ -26,11 +26,10 @@ gfw.setPosition(0,device.height-250)
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
+var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var invite=false
 var tomoney=false
 var  todaysign=今日签到(appname)
-
-
 
 if(invite){
     快手极速版邀请()
@@ -163,13 +162,11 @@ function checknumber() {
     randomSwipe(300,1400,dd.x+85,1400)
     var err=text("请控制拼图块对齐缺口").findOne(3000)
     if (err) {
-        
         var dd = idContains("reload").depth(24).findOne(1000)
         if (dd) {
             log("刷新滑块验证")
             dd.click()
             sleep(3000)
-            
         }
     }
     return 
@@ -582,8 +579,15 @@ function run(){
     show("快手极速版")
     app.launch(apppkg)
     sleep(3000)
-    i=0
+    n_i=0
     while(true){
+        log("循环："+n_i)
+        ca=currentActivity()
+        if(ca!=apphomeactivity){
+
+        }else{
+
+        }
           if(idoneexist(快手极速版首页标志)){
             log("找到快手首页悬浮标记")
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
@@ -597,9 +601,9 @@ function run(){
                       }
                   });
               }
-        }
+            }
 
-            if(i%500==0){
+            if(n_i%500==0){
                 if(!todaysign){
                     if(idclick(快手极速首页奖励悬浮)){
                         sleep(1500)
@@ -626,7 +630,7 @@ function run(){
             滑动次数=滑动次数+1
         
            sleepr(6000*ratio,8000*ratio)
-           i=i+1
+           n_i=n_i+1
 
        }else{
             if(!getPackageName(appname)){
@@ -643,6 +647,4 @@ function run(){
              sleep(1000)
     }
 }
-
-
 run()

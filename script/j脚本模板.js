@@ -45,23 +45,16 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 
-//关闭其他脚本
-if(onlyscript){
-    engines.stopOther()
-}
+
 floaty.closeAll()
 //关闭最新的app
 closelastscriptapp()
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
-home()
 show("开始："+appname+"辅助滑动")
 home()
-sleep(1000)
-recents()
-sleep(2000)
-textclick("全部关闭")
-sleep(1000)
+
+
+
 
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -69,9 +62,29 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
+//关闭其他脚本
+if(onlyscript){
+    engines.stopOther()
+}
+
 
 //app 运行
 var run=function(){
+    app.launch(apppkg)
+    sleep(3000)
+    n_i=0
+    while(true){
+        log("循环次数："+n_i)
+        ca=currentActivity()
+        if(ca!=apphomeactivity){
+            app_home_video()
+        }else{
+            //这里是视频上滑操作
+        }
+
+
+        n_i=n_i+1
+    }
 
 }
 
