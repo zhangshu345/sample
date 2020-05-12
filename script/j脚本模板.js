@@ -19,7 +19,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-
+//微信链接邀请绑定 之后登陆
 
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
@@ -28,14 +28,12 @@ var apphomeactivity=""
 var appname="火火视频极速版"
 var tomoney=false  
 var invite=false // 邀请
-var logintype="weixin"  //登录使用微信
+var logintype="weixin"  //登录使用微信  
 var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
-
-
 
 alltest()
 checkfloaty()

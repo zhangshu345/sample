@@ -1480,26 +1480,31 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
-   if( idclick(apppkg+":id/tt_video_ad_close",300)){
-       return true
-   }
-   if(idclick(apppkg+":id/tt_video_ad_close_layout")){
-       return true
-   }
+    if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+        while(true){
+            if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
+                return true
+            }
+            if( idclick(apppkg+":id/tt_video_ad_close",100)){
+                return true
+            }
+           
+            sleep(1000)
+            if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+                
+                return true
+            }
+        }
+      
+    }
+
    return false
 }
 
 var close_ad_qq=function(apppkg){
-        ci=className("android.widget.ImageView").clickable().findOne(300)
-        if(ci){
-            if(clicknode(ci)){
-                isclose=true
-                return true
-            }else{
-                return false
-            }
-        }
-        if(text("点击下载").exists()){
+    // ccj_file_paths 
+    if(currentActivity()=="com.qq.e.ads.PortraitADActivity"){
+        while(true){
             ci=className("android.widget.ImageView").clickable().findOne(300)
             if(ci){
                 if(clicknode(ci)){
@@ -1509,7 +1514,25 @@ var close_ad_qq=function(apppkg){
                     return false
                 }
             }
+            if(text("点击下载").exists()){
+                ci=className("android.widget.ImageView").clickable().findOne(300)
+                if(ci){
+                    if(clicknode(ci)){
+                        isclose=true
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+            }
+            sleep(1000)
+            if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
+               
+                return true
+            }
         }
+    }
+       
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()

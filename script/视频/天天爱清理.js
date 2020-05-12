@@ -1,6 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
-//10000金币  三圈 点击  看视频  
+//10000金币  三圈 点击  看视频   前三天清理垃圾 
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -42,7 +42,10 @@ var 天天爱清理视频页内容摘要id="com.xiaoqiao.qclean:id/tv_munity_con
 var 天天爱清理弹窗广告id="com.xiaoqiao.qclean:id/tv_ad_button"  //看视频再领88金币
 var 视频页标记id集合=[天天爱清理红包奖励id,天天爱清理视频页喜欢id,天天爱清理视频页评论id]
 var 天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
-var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭"]
+var 天天爱清理底部导航视频id="com.xiaoqiao.qclean:id/ll_video"
+var 天天爱清理底部导航任务id="com.xiaoqiao.qclean:id/ll_task"
+var 天天爱清理底部导航我id="com.xiaoqiao.qclean:id/ll_mine"
+var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载"]
 alltest()
 checkfloaty()
 checksystemsettings()
@@ -55,10 +58,6 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 
-//关闭其他脚本
-if(onlyscript){
-    engines.stopOther()
-}
 
 //关闭最新的app
 closelastscriptapp()
@@ -79,12 +78,19 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
+//关闭其他脚本
+if(onlyscript){
+    engines.stopOther()
+}
+
 
 //首次进入  同意  我的  com.xiaoqiao.qclean:id/iv_open_btn 
 //app 运行
 // com.xiaoqiao.qclean:id/tv_bubble_1  清理界面悬浮的按个  
 var lasttitle=""
 var run=function(){
+    app.launch(apppkg)
+    sleep(3000)
     i=0
     while(true){
         if(!idContains(apppkg).findOne(1000)){
@@ -100,6 +106,7 @@ var run=function(){
             if(nowtitle==lasttitle){
                 滑动(20,10,17,5,500,500)
             }else{
+                
                 lasttitle=nowtitle
                 sleep(6000*ratio)
             }
@@ -113,6 +120,7 @@ var run=function(){
                 back()
                 
             }
+            if(idclick(""))
            sleep(1000)
             
         }
@@ -207,6 +215,8 @@ var app_login_phone=function(){
 //app 签到
 var app_sign=function(){
 
+    
+
 }
 
 //app提现
@@ -236,6 +246,7 @@ var seead=function(timeout){
             back()
             sleep(1000)
         }
+        sleep(2000)
         n_see=n_see+1
     }
 }
