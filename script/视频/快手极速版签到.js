@@ -571,7 +571,7 @@ function run(){
     show("快手极速版")
     app.launch(apppkg)
     sleep(3000)
-    i=0
+    滑动次数=0
     while(true){
         if(idclick("com.kuaishou.nebula:id/close")){
             sleep(1000)
@@ -591,12 +591,12 @@ function run(){
                 //   });
               }
         }   
-            if(i%500==0){
+            if( 滑动次数%500==0){
                 if(!todaysign){
                     if(idclick(快手极速首页奖励悬浮)){
                         sleep(1500)
                             if (app_sign()){
-                                todaysign=true
+                                
                                 今日已签到(appname)
                             }
                           
@@ -616,10 +616,13 @@ function run(){
                 快手极速视频下滑()
             }
             滑动次数=滑动次数+1
+            if(enablegenius){
+                sleepr(6000*ratio,10000*ratio)
+            }else{
+                sleepr(5000*ratio,6000*ratio)
+            }
+          
         
-           sleepr(6000*ratio,8000*ratio)
-           i=i+1
-
        }else{
            show(appname+"不在首页")
             if(!getPackageName(appname)){

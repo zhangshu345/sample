@@ -1262,13 +1262,16 @@ var uninstallapp=function(appname){
         data: "package:" +pkg  //Uri.parse("package:" + getPackageName(appname))
     });
     context.startActivity(i);
-    while(true){
+    n_uninstall=0
+    while(n_uninstall<4){
         if(textclick("确定")){
             return true
         }
         if(textclick("卸载")){
             return true
         }
+        sleep(1000)
+        n_uninstall=n_uninstall+1
     }
   }
 }

@@ -13,10 +13,6 @@ function httpget(url) {
     }
 }
 
-
-
-滑动次数=0
-engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
@@ -32,7 +28,7 @@ show("开始刷宝短视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
-allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/allrewardapplist.json"
+allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var appconfig=httpget(rewardapplisturl)
 appnames=[]
 apps=JSON.parse(appconfig)
@@ -41,7 +37,7 @@ apps.forEach(app =>{
 })
 toastLog("白名单列表:"+appnames.length)
 var allapps=[]
-var appnames=[]
+var appnames=["微信","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
 function listapp(){
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -78,8 +74,12 @@ m=0
 allapps.forEach(app =>{
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
+                toastLog(app.name+"不是白名单app")
+
                 uninstallapp(app.name)
                 log("第三方应用"+GsonUtils.toJson(app))
+          }else{
+            toastLog(app.name+"是白名单app")
           }
   
           m=m+1
