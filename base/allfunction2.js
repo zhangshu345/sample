@@ -328,7 +328,7 @@ var 获取记录=function(name,key){    数据库.get(name+"_"+key,0)}
 var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today(),n)}
 var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
 //
-function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else {   return "";}  }
+function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
  
 var forcestop=function(appname,st){
     if(!appname){
@@ -1048,6 +1048,14 @@ var stopOtherScript=function(){
             engines.stop(e.getId())
         }
     })
+}
+var runurlscript=function(name,url){
+    content=httpget(url)
+    if(content){
+       engines.execScript(name,content, {"useFeatures":["continuation"]})
+       last=app
+       sleep(app.onetime*1000)
+    }
 }
 
 var phonenumber=function(){

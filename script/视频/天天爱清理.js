@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 auto.waitFor()
 auto.setMode("normal")
 //10000金币  三圈 点击  看视频  
