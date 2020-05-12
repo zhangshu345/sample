@@ -473,7 +473,7 @@ var getTextfromid=function(idstr,defaulttext){
         return ""
     }
     defaulttext=defaulttext||""
-    node_id=id(idstr).findOne(300)
+    node_id=id(idstr).findOne(100)
     if(node_id){
         return node_id.text()
     }else{

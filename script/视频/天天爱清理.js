@@ -33,6 +33,7 @@ var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
+var islogin=false
 var onlyscript=true  //仅允许当前一个脚本运行 
 var 天天爱清理红包奖励id="com.xiaoqiao.qclean:id/image_red_bg_icon"
 var 天天爱清理红包奖励状态id="com.xiaoqiao.qclean:id/tv_task_status"
@@ -51,26 +52,14 @@ checkfloaty()
 checksystemsettings()
 floaty.closeAll()
 creatgfloatywindow()
-
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-
-
 //关闭最新的app
 closelastscriptapp()
-
 show("指定："+appname+"即将启动")
-// home()
-// show("开始："+appname+"辅助滑动")
-// home()
-// sleep(1000)
-// recents()
-// sleep(2000)
-// textclick("全部关闭")
-// sleep(1000)
 
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -82,7 +71,16 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
-
+var ss=function(){
+    if(!islogin){
+        if(textclick("同意",100)){
+            app_login()
+        }
+        if(idclick("com.xiaoqiao.qclean:id/iv_open_btn",100)){
+            app_login()
+        }
+    }
+}
 
 //首次进入  同意  我的  com.xiaoqiao.qclean:id/iv_open_btn 
 //app 运行
@@ -91,81 +89,77 @@ var lasttitle=""
 var run=function(){
     app.launch(apppkg)
     sleep(3000)
-    i=0
+    滑动次数=0
+    ii=0
     while(true){
-        if(!idContains(apppkg).findOne(1000)){
-            show(appname+"不在前台") 
-            app.launch(apppkg)
-            sleep(3000)
-     }else{
-         show(appname+"在前台") 
-         //回到视频页
-     }  
-     
-       if(currentActivity()!=apphomeactivity){
-        show(appname+"不在首页") 
+        ii=ii+1
+        log("ii:"+ii)
+        ca=currentActivity()
+     if(ca!=apphomeactivity){
+             show(appname+"不在主页面:"+ca) 
+
+             if(!idContains(apppkg).findOne(1000)){
+                show(appname+"不在前台") 
+                app.launch(apppkg)
+                sleep(3000)
+         }else{
+             show(appname+"在前台") 
+             //回到视频页
+             back()
+         } 
            //应该做可以回到首页的操作
-       if( close_ad_qq()){
-           
-       }
-       if( close_ad_toutiao()){
-
-       }
-       back()
-
+          if(close_ad_qq()){
+             }
+             if( close_ad_toutiao()){
+             }
+            
        }else{
-        
-        if(idallexist(视频页标记id集合)){
-            nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
-            if(nowtitle==lasttitle){
-                滑动(20,10,17,5,500,500)
-            }else{
+        show(appname+"在首页") 
+        if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
 
-                lasttitle=nowtitle
-                sleep(6000*ratio)
-            }
+        }
+        if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",50)){
+         seead()
+          }
+     if(textoneexist(广告标志集合)){
+         show("找到广告标识")
+         seead()
+     }
+     if(idclick(天天爱清理弹窗广告id,100)){
+         show("点击广告id")
+         seead()
+     }
+     if(maytextclick("看视频",100)){
+         seead()
+     }
+     if(textclick("看视频最高翻5倍",100)){
+         seead()
+     }
+        if(idoneexist(视频页标记id集合)){
+            show("在视频页")
+         
 
         }else{
+            show("不在视频页,执行回到视频页操作")
             //回到视频页的操作  var  天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
-            ll_bar=id(天天爱清理底部导航id).findOne(300)
-            if(ll_bar){
-                clicknode(ll_bar.child(1))
+            if(idclick(天天爱清理底部导航视频id)){
             }else{
                 back()
-                
             }
-            if(idclick(""))
            sleep(1000)
-            
         }
-        if(i<10){
-            if(textclick("同意",100)){
-                app_login()
-            }
-            if(idclick("com.xiaoqiao.qclean:id/iv_open_btn",100)){
-                app_login()
-            }
+        天天爱清理视频上滑()
+        sleep(1000)
+        nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
+        if(nowtitle==lasttitle){
+            天天爱清理视频上滑()
+        }else{
+            lasttitle=nowtitle
+            sleep(6000*ratio)
+            滑动次数= 滑动次数+1
         }
-       if(idclick("com.xiaoqiao.qclean:id/iv_end_close")){
-
-       }
-       if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
-        seead()
-     }
-    if(textoneexist(广告标志集合)){
-        seead()
-    }
-    if(idclick(天天爱清理弹窗广告id,100)){
-        seead()
-    }
-    if(maytextclick("看视频",100)){
-        seead()
-    }
-    if(textclick("看视频最高翻5倍",100)){
-        seead()
-    }
-    i=i+1
-
+     
+     
        }
       
     
@@ -236,6 +230,37 @@ var app_sign=function(){
     
 
 }
+var  天天爱清理视频上滑=function(){
+    if(enablegenius){
+        滑动(20,10,17,10,5,500,500)
+    }else{
+        天天爱清理下滑()
+    }
+    
+}
+
+var 天天爱清理下滑=function(){
+    node_rv=id("com.xiaoqiao.qclean:id/community_recycler_view").findOne(300)
+    if(node_rv){
+        node_rv.scrollForward()
+        sleep(100)
+       
+        id("com.xiaoqiao.qclean:id/ll_task").findOne(100).click()
+        sleep(200)
+        id("com.xiaoqiao.qclean:id/ll_video").findOne(100).click()
+        sleep(500)
+        if(text("查看详情").exists()){
+           back()
+           back()
+           sleep(1000)
+           app.launchApp("天天爱清理")
+           sleep(1000)
+        }
+        return true
+    }
+    return false 
+}
+
 
 //app提现
 var app_tomoney=function(){
@@ -245,6 +270,8 @@ var seead=function(timeout){
     n_see=0
     starttime=nowdate().getTime()
     while(n_see<20){
+        show("监听广告中："+n_see)
+       
         if(text("点击重播").exists()){
             back()
             sleep(1000)
@@ -265,6 +292,9 @@ var seead=function(timeout){
             sleep(1000)
         }
         sleep(2000)
+        if(currentActivity()==apphomeactivity){
+            return
+        }
         n_see=n_see+1
     }
 }

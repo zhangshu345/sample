@@ -59,6 +59,8 @@ var run=function(){
                 }
                 if(app.scripturl && getPackageName(app.name)){
                     log(app.name+":云端url脚本存在："+app.scripturl)
+                    floaty.closeAll()
+                    gfw=null
                     content=httpget(app.scripturl)
                     if(content){
                        engines.execScript(app.name,content, {"useFeatures":["continuation"]})
@@ -98,7 +100,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
             sleep(1000)
-            clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,1500)
+            clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
                 sleep(1000)
                 textclick("总是允许")
@@ -110,7 +112,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
             sleep(3000)
         }else{
            if(hdcs<10){
-                clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,1500)
+                clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
                 sleep(1000)
                 textclick("总是允许")
