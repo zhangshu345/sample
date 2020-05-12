@@ -263,14 +263,14 @@ var 今日时长=function(name){
 var 今日滑动次数=function(name){
     name= name||"glode"
     cs=数据库.get(name+"_"+today()+"_move", 0)
-    show(name+"今日滑动次数:"+cs)
+    show(name+"：今日滑动次数:"+cs)
     return cs
 }
 var 设置今日滑动次数=function(name,i){
     name=name||"glode"
     i=i||0
-    cs=数据库.put(name+"_"+today()+"_move", i)
-    show(name+"：今日滑动次数:"+cs)
+    数据库.put(name+"_"+today()+"_move", i)
+    show(name+"：记录今日滑动次数:"+i)
     return cs
 }
 
@@ -1339,6 +1339,20 @@ var 刷宝邀请=function(){
     toastLog(h)
     setClip(h) 
 }
+var 邀请链接=function(url){
+    let content=httpget(url)
+    let invitecodes=content.split("--------")  //8ge
+    str=""
+    if(invitecodes){
+        if(invitecodes.length>1){
+           str= invitecodes[random(0,invitecodes.length)]
+        }else{
+            str=content
+        }
+        setClip(str)
+    }
+}
+
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))

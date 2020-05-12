@@ -42,6 +42,7 @@ var 天天爱清理视频页内容摘要id="com.xiaoqiao.qclean:id/tv_munity_con
 var 天天爱清理弹窗广告id="com.xiaoqiao.qclean:id/tv_ad_button"  //看视频再领88金币
 var 视频页标记id集合=[天天爱清理红包奖励id,天天爱清理视频页喜欢id,天天爱清理视频页评论id]
 var 天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
+var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭"]
 alltest()
 checkfloaty()
 checksystemsettings()
@@ -109,8 +110,10 @@ var run=function(){
             if(ll_bar){
                 clicknode(ll_bar.child(1))
             }else{
-                textclick("视频")
+                back()
+                
             }
+           sleep(1000)
             
         }
         if(i<10){
@@ -125,6 +128,9 @@ var run=function(){
 
        }
         if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
+            seead()
+        }
+        if(textoneexist(广告标志集合)){
             seead()
         }
         if(idclick(天天爱清理弹窗广告id)){
