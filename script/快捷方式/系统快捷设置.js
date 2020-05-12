@@ -1,6 +1,7 @@
 "ui";
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.utils.ActivityUtils)
+importClass(android.content.ComponentName)
 ui.layout(
     <vertical>
         <appbar>
@@ -43,6 +44,15 @@ function httpget(url) {
         return ""
     }
 }
+var toComponentpage=function(pkg,className){
+    var  cm = new ComponentName("com.android.settings",
+    "com.android.settings.RadioInfo");
+    intent.setComponent(cm);
+    intent.setAction("android.intent.action.VIEW");
+    startActivity(intent);
+}
+
+
 var admanager=AdviceManager.getInstance();
 ui.uninstall.on("click",function(){
    admanager.showFullVideo(ui.rewardad.getContext(),null)
