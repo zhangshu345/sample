@@ -691,6 +691,36 @@
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
 }
+{
+    "name": "步多多",
+    "open": false,
+    "install": true,
+    "wx": false,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.3,
+    "tag": [
+        "自用"
 
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "步多多",
+    "starttime":"",
+    "endtime":"",
+    "pkg": "",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 30,
+    "maxtime": 90,
+    "day":"2020-5-7",
+    "runtime":0,
+    "version":1,
+    "appversion": "",
+    "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
+    "downloadurl": ""
+}
 
 ]
