@@ -24,7 +24,7 @@ toastLog("公共函数实例化失败,程序返回")
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
-var apphomeactivity=""
+var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
 var appname="天天爱清理"
 var tomoney=false  
 var invite=false // 邀请
@@ -100,13 +100,27 @@ var run=function(){
      }else{
          show(appname+"在前台") 
          //回到视频页
-     }
+     }  
+     
+       if(currentActivity()!=apphomeactivity){
+        show(appname+"不在首页") 
+           //应该做可以回到首页的操作
+       if( close_ad_qq()){
+           
+       }
+       if( close_ad_toutiao()){
+
+       }
+       back()
+
+       }else{
+        
         if(idallexist(视频页标记id集合)){
             nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
             if(nowtitle==lasttitle){
                 滑动(20,10,17,5,500,500)
             }else{
-                
+
                 lasttitle=nowtitle
                 sleep(6000*ratio)
             }
@@ -125,32 +139,36 @@ var run=function(){
             
         }
         if(i<10){
-            if(textclick("同意")){
+            if(textclick("同意",100)){
                 app_login()
             }
-            if(idclick("com.xiaoqiao.qclean:id/iv_open_btn")){
+            if(idclick("com.xiaoqiao.qclean:id/iv_open_btn",100)){
                 app_login()
             }
         }
        if(idclick("com.xiaoqiao.qclean:id/iv_end_close")){
 
        }
-        if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
-            seead()
-        }
-        if(textoneexist(广告标志集合)){
-            seead()
-        }
-        if(idclick(天天爱清理弹窗广告id)){
-            seead()
-        }
-        if(maytextclick("看视频")){
-            seead()
-        }
-        if(textclick("看视频最高翻5倍")){
-            seead()
-        }
-        i=i+1
+       if(idclick("com.xiaoqiao.qclean:id/tv_gold_double")){
+        seead()
+     }
+    if(textoneexist(广告标志集合)){
+        seead()
+    }
+    if(idclick(天天爱清理弹窗广告id,100)){
+        seead()
+    }
+    if(maytextclick("看视频",100)){
+        seead()
+    }
+    if(textclick("看视频最高翻5倍",100)){
+        seead()
+    }
+    i=i+1
+
+       }
+      
+    
     }
 
 }

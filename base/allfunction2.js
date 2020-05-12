@@ -481,7 +481,7 @@ var getTextfromid=function(idstr,defaulttext){
     }
 }
 function idclick(idstr,t,left,top,right,bottom){
-    t= t|| 500;
+    t= t|| 100;
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
@@ -496,7 +496,7 @@ function idclick(idstr,t,left,top,right,bottom){
 }
 //文本点击
 function textclick(i,t,left,top,right,bottom){
-    t=t || 500
+    t=t || 100
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
@@ -515,7 +515,7 @@ function textclick(i,t,left,top,right,bottom){
 
 
 function maytextclick(i,t,left,top,right,bottom){
-    t=t || 500
+    t=t || 100
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
