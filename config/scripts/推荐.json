@@ -58,6 +58,26 @@
         "downloadurl":"https://213d4f42b3957cb9ebeb02ad91be865d.dd.cdntips.com/imtt.dd.qq.com/16891/apk/73BDFF685D5E50F887C4972A73D6AD74.apk?mkey=5e43f1d1764dc5cf&f=24c5&fsname=com.jm.video_1.950_1950.apk&csr=1bbd&proto=https",
         "version":""}
     
+},{"name":"快手极速版辅助滑动",
+    "desc":{"summary":"夏普手机自动安装赚钱应用集合1","html":""},
+    "tags":["夏普","自动","安装"],
+    "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
+    "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
+    "root":false,
+    "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
+    "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
+    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/视频/快手极速版签到.js",
+    "source":2,
+    "author":{"name":"","id":"","icon":""},
+    "level":0,
+    "version":0,
+    "appversioni":10,
+    "requestapi":10,
+    "icon":"",
+    "app":{"name":"","pkg":"","icon":"",
+        "downloadurl":"",
+        "version":""}
+    
 },
 {"name":"快手极速黑屏加金币",
     "desc":{"summary":"使用后手动 打开快手极速版视频页 手动滑动视频加金币图标可以转圈之后便可","html":""},
@@ -300,7 +320,8 @@
         "downloadurl":"",
         "version":""}
     
-},{"name":"夏普手机自动安装赚钱应用集合",
+},
+{"name":"夏普手机自动安装赚钱应用集合",
     "desc":{"summary":"夏普手机自动安装赚钱应用集合1","html":""},
     "tags":["夏普","自动","安装"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},

@@ -60,7 +60,7 @@ while(true){
     if(idoneexist(快手极速版首页标志)){
         log("找到快手首页悬浮标记")
         //快手actionbar "com.kuaishou.nebula:id/action_bar"
-        if(i%15==0){
+        if(i%3==0){
             if(id("com.kuaishou.nebula:id/tabs").exists()){
                 childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
                   childs.forEach(e => {

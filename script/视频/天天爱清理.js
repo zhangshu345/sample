@@ -1,3 +1,5 @@
+import { text } from "body-parser";
+
 auto.waitFor()
 auto.setMode("normal")
 //10000金币  三圈 点击  看视频  
@@ -213,6 +215,7 @@ var seead=function(timeout){
     while(n_see<20){
         if(text("点击重播").exists()){
             back()
+            sleep(1000)
         }
        if( close_ad_qq(apppkg)){
            return true
@@ -224,6 +227,10 @@ var seead=function(timeout){
             back()
             forcestop(appname)
             return
+        }
+        if(text("奖励已到账").exists()){
+            back()
+            sleep(1000)
         }
         n_see=n_see+1
     }

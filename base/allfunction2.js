@@ -691,7 +691,6 @@ var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
 //在文本标志出现之前一直点击id的 t 是最长等待时间
 var whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
-
     st=nowdate().getTime()
     while(true){
        clickids(ids)
