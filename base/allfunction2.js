@@ -334,6 +334,7 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
  
 var forcestop=function(appname,st){
+    show("强制关闭应用:"+appname); 
     if(!appname){
         return
     }
@@ -341,7 +342,6 @@ var forcestop=function(appname,st){
         show(appname+"：没有安装");  
         return  
     };   
-     show("强制关闭应用:"+appname); 
       st=st||10000;  
        packagename=app.getPackageName(appname);  
        app.openAppSetting(packagename);

@@ -37,6 +37,11 @@ var run=function(){
     var last
     apps= shuffleArray(apps)
     apps.forEach(app => {
+        
+        forcestop(last.name)
+        sleep(1000)
+    })
+    apps.forEach(app => {
         device.wakeUpIfNeeded()
            if(last){
                记录今日时长(last.name,last.onetime)
@@ -102,6 +107,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
             back()
             back()
             forcestop(appname)
+        }else{
+
         }
         if(close_ad_qq(apppkg)){
          
