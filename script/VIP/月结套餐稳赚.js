@@ -37,9 +37,11 @@ var run=function(){
     var last
     apps= shuffleArray(apps)
     apps.forEach(app => {
-        
-        forcestop(last.name)
-        sleep(1000)
+        if(app.open){
+            forcestop(app.name)
+            sleep(1000)
+        }
+       
     })
     apps.forEach(app => {
         device.wakeUpIfNeeded()

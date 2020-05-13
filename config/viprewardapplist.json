@@ -608,7 +608,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -756,6 +755,38 @@
 },
 {
     "name": "音浪短视频",
+    "open": false,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+        "微信"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "com.video.yl",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 0,
+    "day":"2020-3-25",
+    "runtime":15,
+    "maxtime": 90,
+    "starttime":"",
+    "endtime":"",
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_53987164_1585298750/96",
+    "downloadurl": "https://af2019465238146133bdc5ffafe49557.dd.cdntips.com/imtt.dd.qq.com/16891/apk/AD89F3C01F5A875A6F9B6F46E9842964.apk"
+},
+{
+    "name": "趣多多",
     "open": false,
     "install": true,
     "wx": true,
