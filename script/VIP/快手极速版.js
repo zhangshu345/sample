@@ -722,6 +722,6 @@ function run(){
              sleep(1000)
     }
 }
-// run()
+ run()
 // app_get_coin_money()
-滑块验证()
+// 滑块验证()
