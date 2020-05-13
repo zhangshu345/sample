@@ -291,24 +291,34 @@ var 今日已提现=function(name){
     数据库.put(name+"_cashout_"+today(),true)
     show(name+"今日已提现")
 }
-var 记录现在金币=function(name,i){
+var 记录今日金币=function(name,i){
     数据库.put(name+"_lastcoin_"+today(),i)
 }
-var 上次金币=function(name){ 
+var 上次今日金币=function(name){ 
        s= 数据库.get(name+"_lastcoin_"+today(), 0)
+       show(name+"上次今日金币："+s)
+       return s
+ } 
+var 记录现在金币=function(name,i){
+    log(name+":现在金币："+i)
+    数据库.put(name+"_lastcoin",i)
+}
+var 上次金币=function(name){ 
+       s= 数据库.get(name+"_lastcoin", 0)
        show(name+"上次金币："+s)
        return s
  } 
  //可以通过上次的金币来判断是否 还可以获取金币
  var 记录现在余额=function(name,f){ 
-   数据库.put(name+"_lastmoney_"+today(),f)
+    log(name+":现在余额："+i)
+   数据库.put(name+"_lastmoney",f)
  } 
 
  var 上次余额=function(name){ 
-    s=   数据库.get(name+"_lastmoney_"+today(), 0.0)
+    s=   数据库.get(name+"_lastmoney", 0.0)
     show(name+"上次余额"+s)
     return s
- } //可以通过上次的金币来判断是否 还可以获取金币
+ } 
 
  var 记录现在滑动次数=function(name,f){ 
     数据库.put(name+"_lastswipetime_"+today(),f)

@@ -33,7 +33,7 @@ var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
 show("开始："+appname+"辅助滑动")
-log(device)
+
 closerecentapp()
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -493,4 +493,3 @@ var app_login_weixin=function(){
 }
 
  run()
-app_get_reward()

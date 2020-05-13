@@ -1,0 +1,3 @@
+var openurlbyweixin=function(url){
+
+}

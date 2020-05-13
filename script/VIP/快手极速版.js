@@ -27,13 +27,36 @@ gfw.setPosition(0,device.height-250)
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
 var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
+var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
 var invite=false
 var tomoney=false
-var  todaysign=今日签到(appname)
+var onlyscript=false
+var todaysign=今日签到(appname)
+var coin=上次金币(appname)
+var money=上次余额(appname)
+
 
 if(invite){
     快手极速版邀请()
 }
+toastLog("指定："+appname+"即将启动")
+home()
+alltest()
+floaty.closeAll()
+creatgfloatywindow()
+creatsetfloatywindow()  //创建设置悬浮窗
+
+gfw.setPosition(0,220)
+device.wakeUpIfNeeded()
+if(!app.getPackageName(appname)){
+    toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+    downloadandinstallapp(appname,apppkg)
+}
+if(onlyscript){
+    engines.stopOther()
+}
+
+
 /** 
  * 识别滑块位置
  * 
@@ -421,6 +444,7 @@ var app_sign=function(){
     while(s<5){
         app_close_alter()
         滑块验证()
+        app_get_coin_money()
         if(invite){
             if(text("填写邀请码").exists()){
                 log("找到填写邀请码，是新用户")
@@ -514,8 +538,6 @@ var 快手极速视频上滑=function(){
 var 滑动次数=今日滑动次数(appname)
 var islogin=false
 
-
-
 var app_login=function(){
     n_first=0
     while(n_first<10){
@@ -571,8 +593,48 @@ var app_tomoney=function(){
 
     }
 }
+var 快手极速版视频滑动=function(){
+    if(random(0,20)<20-视频重复次数){
+        快手极速视频上滑()
+    }else{
+        快手极速视频下滑()
+    }
+}
 
-lasttitle=""
+var app_get_coin_money=function(){
+    n_agcm=0
+    while(n_agcm<5){
+       node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
+       if(node_webkit&&node_webkit.childCount()>3){
+           
+           node_coin_money_layout=node_webkit.child(2)
+           if(node_coin_money_layout){
+               if(node_coin_money_layout.className=="android.widget.ListView"){
+                log("列表 sss"+node_coin_money_layout.className)
+               }else{
+                   log("列表"+node_coin_money_layout.className)
+               }
+               log(node_coin_money_layout)
+               node_coin=node_coin_money_layout.child(0).child(0)
+               if(node_coin){
+                   log("金币："+node_coin)
+                   coin=parseInt(node_coin.contentDescription)
+                   log("金币数："+coin)
+                   记录现在金币(appname,coin)
+               }
+               node_money=node_coin_money_layout.child(1).child(0)
+               if(node_money){
+                   log("yue："+node_money)
+                   money=parseFloat(node_money.contentDescription)
+                   log("余额数："+money)
+                   记录现在余额(appname,money)
+               }
+            return
+           }
+       }
+    }
+}
+lastdesc=""
 device.wakeUpIfNeeded()
 
 function run(){
@@ -622,11 +684,23 @@ function run(){
                 }
             }
             滑块验证()
-            if(random(0,20)<20-视频重复次数){
-                快手极速视频上滑()
-            }else{
-                快手极速视频下滑()
+            快手极速版视频滑动()
+            sleep(1000)
+            if(textoneexist(["点击打开长图","点击打开图集"],200)){
+               快手极速版视频滑动()
             }
+            nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
+            if(nowdesc){
+                if(nowdesc!=lastdesc){
+
+                }else{
+
+                }
+            }else{
+                快手极速版视频滑动()
+            }
+            
+
             滑动次数=滑动次数+1
         
            sleepr(6000*ratio,8000*ratio)
@@ -648,3 +722,4 @@ function run(){
     }
 }
 run()
+// app_get_coin_money()

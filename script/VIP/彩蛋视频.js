@@ -5,7 +5,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("五秒后重试")
+        sleep(5000)
+        return httpget(url)
     }
 }
 滑动次数=0
@@ -18,6 +20,23 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
+
+// 彩蛋邀请 通过 微信链接绑定上级用户
+
+var apppkg="com.jifen.dandan"
+var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
+var appname="彩蛋视频"
+var tomoney=false  
+var invite=false // 邀请
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
+var onetime=30 // 一次的时间
+var maxtime=60 //一天最长时间  
+var minmoney=0.3 // 最小提现余额
+var mintodaycoin=3000  //最小今天的赚的金币
+var onlyscript=true  //仅允许当前一个脚本运行 
+
+toastLog("指定："+appname+"即将启动")
+home()
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
@@ -27,11 +46,7 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-var apppkg="com.jifen.dandan"
-var apphomeactivity=""
-var appname="彩蛋视频"
-toastLog("指定："+appname+"即将启动")
-home()
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -45,17 +60,13 @@ const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
 const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
 
-"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+//"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
 const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
 var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
 
-var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
-
-
-app.launchApp(appname)
 // if(!getbooleanvalue("彩蛋登录")){
 //     show("彩蛋没有登录过")
 //     彩蛋登录()
@@ -63,8 +74,21 @@ app.launchApp(appname)
 //     show("彩蛋之前登陆过")
 // }
 var lastdesc=""
+
 function run(){
+    app.launchApp(appname)
+    sleep(3000)
     while(true){
+        ca=currentActivity()
+        if(ca!=apphomeactivity){
+           
+        }else{
+            //这里是视频上滑操作
+        }
+        if(idclick("com.jifen.dandan:id/iv_close")){
+
+        }
+
     if(!idoneexist(彩蛋视频首页标识id)){
         log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -134,7 +158,7 @@ function run(){
                 }
             }
         }
-        if(滑动次数%100==1){
+        if(滑动次数%300==1){
             if(!今日签到(appname)){
                 app_sign()
             }
@@ -146,6 +170,13 @@ var seead=function(){
     i=0
     while(i<10){
         sleep(4000)
+        close_ad_iclicash()
+        close_ad_toutiao()
+        close_ad_qq()
+        if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)){
+            back()
+            return
+        }
         if(text("点击重播").exists()){
             back()
             sleep(2500)
@@ -199,10 +230,16 @@ var app_sign=function(){
     if(idclick(彩蛋首页任务状态id)){
         sleep(2000)
     }
-    i=0
-    while(i<10){
-        
-        i=i+1
+    n_sign=0
+    while(n_sign<3){
+
+        if(idContains("coins-number").findOne(100)){
+            txt_coin=idContains("coins-number").findOne(100).text()
+            if(txt_coin){
+                记录现在金币(appname,parseInt(txt_coin))
+            }
+        }
+        n_sign=n_sign+1
        if(textclick("看视频再送100金币")){
            seead()
            今日已签到(appname)
@@ -221,15 +258,13 @@ var app_sign=function(){
         back()
         return  true
     }
-
     if(text("邀请好友").findOne(500)){
         back()
         return 
     }
+    sleep(2000)
 
     }
-
-
 }
 var app_login=function(){
     i=0

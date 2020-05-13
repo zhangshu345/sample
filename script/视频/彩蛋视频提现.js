@@ -5,7 +5,9 @@ function httpget(url) {
        if (r.statusCode == 200) {
         return r.body.string()
     } else {
-        return ""
+        toastLog("五秒后重试")
+        sleep(5000)
+        return httpget(url)
     }
 }
 滑动次数=0
@@ -28,16 +30,15 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 var apppkg="com.jifen.dandan"
-var apphomeactivity=""
+var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
 var appname="彩蛋视频"
-
 toastLog("指定："+appname+"即将启动")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
-// 大于 2000金币就可以提现 
+
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
 const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
@@ -46,17 +47,14 @@ const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
 const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
 
-"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+//"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
 const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
-var 彩蛋视频首页推荐标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
+var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
 
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
-
-
-app.launchApp(appname)
 // if(!getbooleanvalue("彩蛋登录")){
 //     show("彩蛋没有登录过")
 //     彩蛋登录()
@@ -64,13 +62,11 @@ app.launchApp(appname)
 //     show("彩蛋之前登陆过")
 // }
 var lastdesc=""
-var islogin=false
 function run(){
+    app.launchApp(appname)
+    sleep(3000)
     while(true){
-        if(!islogin){
-            app_login()
-        }
-    if(!idoneexist(彩蛋视频首页推荐标识id)){
+    if(!idoneexist(彩蛋视频首页标识id)){
         log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){
             log("彩蛋不在前台")
@@ -78,19 +74,9 @@ function run(){
             sleep(3000)
             i=0
             clicktexts(["首页","推荐","等待"],500,1500)
-            if(textclick("我知道了")){
-                sleep(2000)
-                app_login()
-            }
+           
         }else{
             log("彩蛋标识前台")
-            if(textclick("我知道了")){
-                sleep(2000)
-                app_login()
-            }
-            if( textclick("立即提现")){
-                app_login()
-                }
             back()
              滑动(20,13,16,10,4,500,700)
             sleep(500)
@@ -101,6 +87,7 @@ function run(){
                 back()
                 sleep(2500)
             }
+
         }
     }else{
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
@@ -138,35 +125,24 @@ function run(){
                     if(changesetting){
                         device.setMusicVolume(0)
                         device.setBrightnessMode(0)
-                        device.setBrightness(10)
+                        device.setBrightness(0)
                     }
-               
+                
                 }else{
                     //休眠三十分钟
-                    show("电量低"+device.getBattery()+"  休眠半小时")
                     device.lockScreen()
                     sleep(1800000)
                 }
             }
         }
-        if(滑动次数%100==1){
+        if(滑动次数%300==1){
             if(!今日签到(appname)){
                 app_sign()
-            }
-        }
-        if(滑动次数%1000==1){
-            if(!今日提现(appname)){
-                app_tomoney()
             }
         }
       }
     }
 }
-
-var app_tomoney=function(){
-
-}
-
 var seead=function(){
     i=0
     while(i<10){
@@ -186,10 +162,6 @@ var seead=function(){
             return 
         }
         if(textclick("金币已到账")){
-            return
-        }
-        if(textclick("奖励已到账")){
-            back()
             return
         }
 
@@ -228,10 +200,11 @@ var app_sign=function(){
     if(idclick(彩蛋首页任务状态id)){
         sleep(2000)
     }
-    i=0
-    while(i<10){
-        i=i+1
-       if(maytextclick("看视频再送")){
+    n_sign=0
+    while(n_sign<3){
+        
+        n_sign=n_sign+1
+       if(textclick("看视频再送100金币")){
            seead()
            今日已签到(appname)
            return true
@@ -249,47 +222,43 @@ var app_sign=function(){
         back()
         return  true
     }
-
     if(text("邀请好友").findOne(500)){
         back()
         return 
     }
+    sleep(2000)
 
     }
-
-
 }
 var app_login=function(){
-    if(logintype=="phone"){
-        pn=phonenumber()
-        if(!pn){
-            show("没有获取到手机号请手动登录")
-        }
-    }
-
     i=0
     while(i<10){
-        show("彩蛋登录")
-        clicktexts(["允许","允许","允许"],500,1500)
-       if( idclick("com.jifen.dandan:id/iv_open")){
-           sleep(1000)
-       }
-       if( textclick("立即提现")){
-        sleep(1000)
-        }
-        if(logintype=="phone"){
-            app_login_phone()
+        log("彩蛋登录")
+           if(!idContains("com.jm.video").findOne(1000)){
+                show("找到存在包名id控件")
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(1200)
+            }
+
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+            show("我界面找到昵称和设置")
+            spt.put("shuabaologin",true)
+               return true
         }else{
-            app_login_weixin()
+            show("没有找到昵称和设置")
+            back()
+            sleep(1000)
         }
-    
         clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
            if(logintype=="weixin"){
-            app_login_weixin()
+            刷宝微信登录()
            }else{
-           app_login_phone()
+            刷宝手机登录()
            }
        }
         // 
@@ -298,32 +267,21 @@ var app_login=function(){
 }
 
 var app_login_phone=function(){
-    reg = /\d{4}/ig
-    ephone= id("com.jifen.dandan:id/edt_login_phone").findOne(1000)
-    
-        clicknode(ephone)
-          sleep(1000)
-          ephone.setText(phonenumber())
-          sleep(1000)
-        if  (idclick("com.jifen.dandan:id/tv_get_captcha")){
-            mcode=get_phone_code("",reg,"","")
-            if(mcode){
-                 id("edt_login_captcha").findOne(1000).setText(mcode)
-                 sleep(800)
-                 id("btn_confirm").findOne(500).click()
-                 sleep(1000)
-                 if(apptomoney){
-
-                 }else{
-                    back()
-                    sleep(1000)
-                    back()
-                    return true
-                 }
-            }else{
-                show("获取验证码超时")
-            }
-        }
+    loginet= id("com.jm.video:id/login_edit").findOne(500)
+    if(loginet){
+       loginet.setText(phonenumber())
+       id("com.jm.video:id/btn_login").waitFor()
+       if(idclick("com.jm.video:id/btn_login")){
+           reg = /\d{4}/ig
+           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
+            toastLog("最后一步了验证码："+code )       
+            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
+           
+           id( "btn_login").waitFor()
+           id("btn_login").findOne(500).click()
+          sleepr(6000)
+       }
+    }
 }
 
 var app_login_weixin=function(){
@@ -331,7 +289,7 @@ var app_login_weixin=function(){
         textclick("微信账号登录")
         sleepr(2000)
         clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
-        if(idallexist(["com.jifen.video:id/tv_name","com.jm.video:id/iv_setting"])){
+        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
             show("我界面找到昵称和设置")
             spt.put("shuabaologin",true)
             return true
