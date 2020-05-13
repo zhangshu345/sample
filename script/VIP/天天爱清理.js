@@ -135,7 +135,7 @@ var run=function(){
             if(textclick("看视频最高翻5倍",100)){
                  seead()
             }
-            if()
+         
             if(idoneexist(视频页标记id集合)){
                 show("在视频页")
              }else{

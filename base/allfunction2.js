@@ -1605,7 +1605,6 @@ var close_ad_iclicash=function(apppkg){
                     back()
                         isclose=true
                         return true
-               
             }
             sleep(1000)
             if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
