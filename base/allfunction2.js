@@ -1541,6 +1541,32 @@ var close_ad_qq=function(apppkg){
         }
     }
 }
+//未知广告商
+var close_ad_iclicash=function(apppkg){
+    if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
+        while(true){
+            ci=className("android.widget.ImageView").clickable().findOne(300)
+            if(ci){
+                if(clicknode(ci)){
+                    isclose=true
+                    return true
+                }else{
+                    return false
+                }
+            }
+            if(text("点击重播").exists()){
+                    back()
+                        isclose=true
+                        return true
+               
+            }
+            sleep(1000)
+            if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
+                return true
+            }
+        }
+    }
+}
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 

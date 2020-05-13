@@ -1,888 +1,496 @@
-/*---------------------------------lib-------------------------------*/
-left = 0;
-top = 0;
-right = device.width;
-buttom = device.height;
-w = device.width;
-h = device.height;
-function instantiation() {
-  
-    yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
-    var r = http.get(yunurl);
-    if (r.statusCode == 200) {
-            return r.body.string()
-
+auto.waitFor()
+auto.setMode("normal")
+function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
     } else {
-            return ""
+        return ""
     }
 }
-
-subapp = instantiation()
-if (subapp != "") {
-    eval(subapp)
-    log("公共函数实例化成功")
+滑动次数=0
+engines.stopOther()
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var  公共函数文本=httpget(公共函数url)
+if (公共函数文本 != "") {
+eval(公共函数文本)
+toastLog("公共函数实例化成功")
+}else {
+toastLog("公共函数实例化失败,程序返回")
 }
-else {
-    log("公共函数实例化失败,程序返回")
+alltest()
+floaty.closeAll()
+creatgfloatywindow()
+creatsetfloatywindow()  //创建设置悬浮窗
+
+gfw.setPosition(0,220)
+device.setMusicVolume(0)
+device.wakeUpIfNeeded()
+toastLog("自动设置音量为0")
+var apppkg="com.jt.hanhan.video"
+var apphomeactivity=""
+var appname="火火视频极速版"
+var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
+var changesetting=false
+show("开始："+appname+"辅助滑动")
+log(device)
+closerecentapp()
+if(!app.getPackageName(appname)){
+    show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+    downloadandinstallapp(appname,apppkg)
+}else{
+    show(appname+"已经安装")
 }
-var  button_arr = [
-    ['id','jp',1],//  签到关闭2
-    ['id','jh',1],//  签到关闭
-    ['id','lq',1],//  看视频红包
-    // ["text",'始终允许',1],
-    ['text','先去逛逛',1],
-    ['text','我知道了',1],
-    ['text','我再想想',1],
-    ['text','不再提醒',1],
-    // ['text','关闭广告',1],
-    // ['text','取消',1],
+// 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
+
+// "金币翻倍" ,"com.jt.hanhan.video:id/jp"    // 关闭弹窗的关闭按钮 com.jt.hanhan.video:id/jw
+// "com.jt.hanhan.video:id/jr"
+
+// "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
+
+const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
+
+const 火火视频极速版导航按钮id="com.jt.hanhan.video:id/a9f"
+const 火火视频极速版奖励布局id="com.jt.hanhan.video:id/ii"
+const 火火视频极速版领取红包id="com.jt.hanhan.video:id/a9l"
+const 火火视频金蛋大奖id="com.jt.hanhan.video:id/ga"
+var 火火视频极速版首页标识id =[火火视频极速版导航按钮id,火火视频极速版奖励布局id,火火视频极速版领取红包id]
+const 火火视频小视频喜欢id="com.jt.hanhan.video:id/s6"
+const 火火视频小视频点赞id="com.jt.hanhan.video:id/s7"
+const 火火视频小视频评论id="com.jt.hanhan.video:id/s8"
+var 火火视频极速版小视频页标识id =[火火视频小视频喜欢id,火火视频小视频点赞id,火火视频小视频评论id]
+var 进入小视频页面点击文本集合=["小视频"]
+var 广告点击按钮文本集合=["金币翻倍"]
+
+var 未登录点击显示文本集合=[]
+var 登录成功后界面显示id集合=[]
+var 广告展示页面可关闭文本集合=["金币已到账","点击重播"]
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
+var 视频次数=0
+var 小视频简介id="com.jt.hanhan.video:id/sk"
+app.launch(apppkg)
+show(appname+"开始进入app操作")
+var action="小视频"
+var lastdesc=""
+var 小视频广告翻倍次数=0
+var tomoney=true
 
 
-]
-app_name = "火火视频极速版"
-
-
-
-
-
-
-
-// 初始化()
-function 初始化(){
-    while (true) {
-        is_first1 = id("a4t").findOne(1000)
-        if (is_first1) {
-            button = "id"
-            vlause = "a4t"
-            result = control_click(button, vlause)
-        } 
-        is_first2 = id("a62").findOne(1000)
-        if (is_first2) {
-            button = "id"
-            vlause = "a62"
-            result = control_click(button, vlause)
-        } 
-        is_first3 = id("sb").findOne(1000)
-        if (is_first3) {
-            button = "id"
-            vlause = "sb"
-            result = control_click(button, vlause)
-        } 
-
-        if(!is_first1 && !is_first2 && !is_first3){
-            break
-        }
-    }
-    close_windows(button_arr)
-    button = "text"
-    vlause = "首页"
-    result = control_click(button, vlause)
-
-}
-
-
-
-
-
-function get_money(){
-    sign_reullt = read_cfg_j(app_name, "have_money")
-    if (sign_reullt == "yes") {
-        toast("读取--已领取，跳过")
-        log("读取--已领取，跳过")
-        return true
-    }
-
-    初始化()
-    find_num = 0 
+function run(){
     while(true){
-        find_num +=1 
-        if(find_num>5){
-            log("失败1")
-            toast("失败1")
-            初始化()
-            goto_smell_video()
-            return
-        }
-        close_windows(button_arr)
-        aa = text("任务").findOne(500)
-        if(aa){
-            button = "text"
-            vlause = "任务"
-            result = control_click(button, vlause)  
-        }
-        bb = textContains("看视频").findOne(500)
-        if(bb){
-            button = "textContains"
-            vlause = "看视频"
-            result = control_click(button, vlause)  
-        } 
-        cc = textContains("领取红包").findOne(500)
-        if(cc){
-            button = "textContains"
-            vlause = "领取红包"
-            result = control_click(button, vlause)  
-        } 
-        close_windows(button_arr)
-        result = text("立即提现").findOne(2000)
-        if(result){
-            break
-        } 
-    }
-        
-    money_button = textContains("今日金币").findOne(500)
-    have_money = money_button.text()
-    have_money = have_money.replace("今日金币：","")
-    log(have_money)
-
-    money_button = id("pc").findOne(500)
-    if(money_button){
-        have_gold = money_button.text()
-    } 
-    money_button2 = id("a2q").findOne(500)
-    if(money_button2){
-        have_gold = money_button2.text()
-    } 
-    if(!have_gold){
-        log("检测总钱数失败")
-        toast("检测总钱数失败")
-        初始化()
-        goto_smell_video()
-    }
-    log(have_gold)
-    if(have_money < 1000 || have_gold <3000){
-        log("金币不够")
-        toast("金币不够")
-        goto_smell_video()
-        return
-    }
-
-    button = "text"
-    vlause = "立即提现"
-    result = control_click(button, vlause)  
-    find_num = 0 
-    while(true){
-        find_num +=1 
-        if(find_num>5){
-            log("失败2")
-            toast("失败2")
-            初始化()
-            goto_smell_video()
-            return
-
-        }
-        button = "textContains"
-        vlause = "今日金币"
-        result = control_click(button, vlause)  
-        find_result = text("提现记录 >").findOne(2000)
-        if(find_result){
-            break
-        }
-    }
-
-    find_num = 0 
-    while(true){
-        find_num +=1 
-        if(find_num>5){
-            log("失败2")
-            toast("失败2")
-            初始化()
-            goto_smell_video()
-            break
-        }
-        button = "text"
-        vlause = "0.3"
-        result = control_click(button, vlause)  
-        button = "text"
-        vlause = "立即提现"
-        result = control_click(button, vlause)  
-        find_result = textContains("明天再试").findOne(2000)
-        if(find_result){
-            log("提现成功")
-            toast("提现成功")
-            write_cfg_j(app_name, "have_money", "yes")
-            初始化()
-            goto_smell_video()
-            return
-        }
-        
-
-        find_result = text("去绑定").findOne(2000)
-        if(find_result){
-            log("需要绑定手机")
-            toast("需要绑定手机")
-            write_cfg_j(app_name, "have_money", "yes")
-            初始化()
-            goto_smell_video()
-            return
-        }
-        log("异常退出")
-        toast("异常退出")
-        write_cfg_j(app_name, "have_money", "yes")
-        初始化()
-        goto_smell_video()
-        return
-    }
-
-
-}
-function goto_smell_video(){
-    find_num = 0 
-    while(true){
-        find_num +=1 
-        if(find_num>5){
-            log("返回小视频失败1")
-            toast("返回小视频失败1")
-            初始化()
-        }
-        button = "text"
-        vlause = "小视频"
-        result = control_click(button, vlause)  
-        find_result = text("刷新").findOne(2000)
-        if(find_result){
-            break
-        }
-    }
-    while (true) {
-        aa = id("ye").findOne(500)
-        if(aa){
-            button = "id"
-            vlause = "ye"
-            result = control_click(button, vlause)
-        }
-        bb = id("za").findOne(500)
-        if(bb){
-            button = "id"
-            vlause = "za"
-            result = control_click(button, vlause)
-        }
-
-        sleep(1000)
-        var current_Activity = currentActivity()
-        if(current_Activity != "com.qukandian.video.qkdbase.activity.MainActivity"){
-            break
-        }
-    }
-}
-
-
-/*---------------------------------login-------------------------------*/
-// login()
-function login(){
-
-
-    // 首页登录界面
-    button = "text"
-    vlause = "任务"
-    result = control_click(button, vlause)  
-
-    close_windows(button_arr)
-    button = "textContains"
-    vlause = "登录领取"
-    result = control_click(button, vlause)  
-
-    button = "text"
-    vlause = "微信一键登录"
-    result = control_click(button, vlause)  
-    wechat_agree()
-
-    初始化()
-    // close_windows(button_arr)
-
-
-}
-
-/*---------------------------------login-------------------------------*/
-/*--------------------------------sign------------------------------*/
-
-
-/*--------------------------------sign------------------------------*/
-
-/*--------------------------------invite------------------------------*/
-function invite(user_id){
-    user_id = user_id || "13209130271";
-	button = "text"
-	vlause = "同意并继续"
-	app_name = "有颜短视频"
-    index_page = "com.liquid.box.home.HomeActivity"
-    inspect_app(app_name,index_page,button,vlause)
-        // 任务中心  
-        button = "id"
-        vlause = "tab_image"
-        result = control_click(button, vlause)  
-        var w = device.width;
-    var h = device.height;
-    swipe(w * 0.6 - random(10, 30), h * 0.5 + random(10, 20), w * 0.6 + random(50, 80), h * 0.2 + random(10, 30), random(220, 235))
-    sleep(1000)
-        // 去填写按钮
-        button = "text"
-        vlause = "去填写"
-        result = control_click(button, vlause)  
-        if(!result){
-            log("邀请失败1")
-            toast("邀请失败1")
-        }
-        sleep(5000)
-        result = className("android.widget.EditText").findOne(500)
-        if(result){
-            button = 'className'
-            vlause = 'android.widget.EditText'
-            control_input(button, vlause,user_id)
-        } 
-
-
-        sleep(1000)
-        button = "text"
-        vlause = "立即领取"
-        result = control_click(button, vlause)  
-}
-
-
-
-/*--------------------------------invite------------------------------*/
-/*--------------------------------video------------------------------*/
-
-/*--------------------------------video------------------------------*/
-/*---------------------------------star-------------------------------*/
-/*---------------------------------sign_work-------------------------------*/
-
-
-// sign_work(app_name)
-function sign_work() {
-    sign_reullt = read_cfg_j(app_name, "have_sign")
-    if (sign_reullt == "yes") {
-        toast("读取--已签到，跳过")
-        log("读取--已签到，跳过")
-        return true
-    }
-
-
-    button = "text"
-    vlause = "任务"
-    result = control_click(button, vlause)
-    if(!result){
-        toast(app_name,"签到失败!!!!")
-        log(app_name,"签到失败!!!!")
-        return true
-    }else{
-        write_cfg_j(app_name, "have_sign", "yes")
-    }
-
-
-
-
-
-
-}
-/*---------------------------------sign_work-------------------------------*/
-
-
-
-function redpackage_work(app_name) {
-    sign_reullt = read_cfg_j(app_name, "have_redpackage")
-    if (sign_reullt == "yes") {
-        toast("读取--红包已拆，跳过")
-        log("读取--红包已拆，跳过")
-        return true
-    }
-
-// close_windows(button_arr)
-    button = "id"
-    vlause = "tab_image"
-    result = control_click(button, vlause)
-    if(!result){
-        toast(app_name,"拆红包失败1")
-        log(app_name,"拆红包失败1")
-        return true
-    }
-    // 点击拆分红按钮
-    num = 0
-    while(true){
-        num += 1
-        if(num>5){
-            toast(app_name,"拆红包失败2")
-            log(app_name,"拆红包失败2")
-            return
-        }
-        button = "id"
-        vlause = "red_view"
-        result = control_click(button, vlause)
-        result = id("tiny_red_pack_item").findOne(2000)
-        if(result){
-            break
-        }
-    }
-    //已确认出现红包
-
-
-
-
-
-
-    all_redpackage_list = id("tiny_red_pack_item").find()
-    for (j = 0; j < all_redpackage_list.length-1; j++) {
-    
-        xy_info = all_redpackage_list[j].bounds()
-        sleep(500)
-        r = xy_info
-        if (id("need_time").boundsInside(r.left, r.top, r.right, r.bottom).exists() ) {
-            console.log("红包技能冷却中,切换...");
-            toast("红包技能冷却中,切换...")
-            continue
-        }
-    
-        x_info = xy_info.centerX()
-        y_info = xy_info.centerY()
-        log(x_info,",",y_info)
-        find_num = 0
-        while(true){
-            find_num += 1
-            if(find_num > 20){
-                toast(app_name,"拆红包失败4")
-                log(app_name,"拆红包失败4")
-                close_windows(button_arr)
-                初始化()
-                return
-            }
-            sleep(2000)
-            var current_Activity = currentActivity()
-            if(current_Activity == "com.liquid.box.home.HomeActivity"){
-                click(x_info,y_info)
-            }else{
+    if(!idallexist(火火视频极速版小视频页标识id)){
+        log("没有找到一个"+appname+"小视频标识")
+        if(!idContains(apppkg).findOne(1000)){
+            show(appname+"不在前台")
+            app.launch(apppkg)
+            sleep(3000)
+            i=0
+            clicktexts(进入小视频页面点击文本集合,300,1500)
+            if(clickonetexts(未登录点击显示文本集合),200,1500){
                 sleep(2000)
-                break
+                show(appname+"未登录点击显示文本集合")
+              //  app_login()
             }
-
-            button = "id"
-            vlause = "tv_rewardButton"
-            result = control_click(button, vlause)
-            if(result){
-                break
+            if(idclick("com.jt.hanhan.video:id/jw")){
+                sleep(1000)
+               
             }
-    
-        } 
-    
-    
-        watch_num = 0
-        while(true){
-
-            watch_num +=1
-            if(watch_num>10){
-                toast(app_name,"拆红包失败3")
-                log(app_name,"拆红包失败3")
-                close_windows(button_arr)
-                初始化()
-                return
+        }else{
+            show(appname+"已经在前台")
+            clicktexts(进入小视频页面点击文本集合,300,1500)
+            if(idclick("com.jt.hanhan.video:id/jw")){
+                sleep(1000)
             }
-            toast("拆红包,视频观看中...")
-            log("拆红包,视频观看中...")
-            sleep(2000)
-            result1 = id("tt_video_ad_close").findOne(1000)
-            result2 = text("关闭广告").findOne(1000)
-            if(result1){
-                while(true){
-                    button = "id"
-                    vlause = "tt_video_ad_close"
-                    result1 = control_click(button, vlause) 
-                    result11 = id("tt_video_ad_close").findOne(1000)
-                    if(!result11){
-                        break
-                    }
-                }
-                break
-    
+            back()
+            滑动(20,13,16,10,4,500,700)
+            sleep(500)
+        
+            if(clickonetexts(广告点击按钮文本集合,500,1500)){
+                seead()
+               
+             }
+             if(text("点击重播").exists()){
+                back()
+                sleep(2500)
             }
-            if(result2){
-                button = "text"
-                vlause = "关闭广告"
-                result2 = control_click(button, vlause) 
-                result11 = text("关闭广告").findOne(1000)
-                if(!result11){
-                    break
-                }
-                break
-            }
-            have_end_button = id("tiny_red_pack_item").findOne(1000)
-            if(have_end_button){
-                log("异常退出")
-                toast("异常退出")
-                break
-            }
-            var current_Activity = currentActivity()
-            if(current_Activity == "com.liquid.box.home.HomeActivity"){
-                break
-            }
-
         }
-        log("拆分红完成一次")
-        toast("拆分红完成一次")
+    }else{
+        if(action=="短视频"){
+                //短视频的操作
+
+
+        }else{
+            //小视频的操作
+            desc=  id(小视频简介id).findOne(300)
+            if(desc){
+                滑动(20,13,16,10,4,500,700)
+                sleep(1000)
+                currentdesc=desc.text()
+                log("之前："+lastdesc+"--当前："+currentdesc)
+                if(currentdesc==lastdesc){
+                    if(textclick("立即翻倍")){
+                        seead()
+                     }
+                   
+                    textclick("刷新")
+                    sleep(500)
+                  
+                }else{
+                    lastdesc=currentdesc
+                    滑动次数=滑动次数+1
+                }
+            }else{
+                if(clickonetexts(广告点击按钮文本集合,500,1500)){
+                    seead()
+                    小视频广告翻倍次数=小视频广告翻倍次数+1
+                 }
+                滑动(20,13,16,10,4,500,700)
+                sleep(1500)
+            }
+        }
+        tv_dz=id(火火视频小视频点赞id).findOne(300)
+        //点赞多的视频
+        if(tv_dz){
+            dzstr=tv_dz.text()
+            if(dzstr.search("万") != -1){
+                clicknode(tv_dz)
+            }else{
+                dz_n=parseInt(dzstr)
+                if(dz_n>5000){
+                    clicknode(tv_dz)
+                }
+            }
+        }
+        if(close_ad_toutiao(apppkg)){
+            sleep(1000)
+         
+        }
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+        }
+        tv_hb=text("领取红包").findOne(300)
+        if(tv_hb){
+            show("领取红包id："+tv_hb.id())
+            if (clicknode(tv_hb)){
+                sleep(2500)
+               if(clickoneids(["com.jt.hanhan.video:id/m3","com.jt.hanhan.video:id/m4"])){
+                seead()
+               }
+            }
+        }
+        if(textoneexist(广告展示页面可关闭文本集合)){
+            back()
+            sleep(2500)
+        }
+        if(id("com.jt.hanhan.video:id/ga").findOne(300)){
+            toastLog("找到了")
+            sleep(7500)
+           if( idclick("com.jt.hanhan.video:id/ga")){
+                show("点击金蛋大奖成功")
+                sleep(2500)
+                if(text("赚钱小技巧").exists()){
+                    back()
+                }
+                    if(maytextclick("看视频再送")){
+                        seead()
+                        小视频广告翻倍次数=小视频广告翻倍次数+1
+                    }
+           }else{
+            show("点击金蛋大奖失败")
+           }
+        }else{sleep(1500)
+            show("没有找到金蛋大奖："+i)
+        }
+    
+        jddj=text("金蛋大奖").findOne(300)
+        if(jddj){
+            show("找到金蛋大奖")
+            // if(jddj.text()=="金蛋大奖"){
+                sleep(7500)
+                if(textclick("金蛋大奖")){
+                    sleep(2500)
+                    if(text("赚钱小技巧").exists()){
+                        back()
+                    }
+                        if(maytextclick("看视频再送")){
+                            seead()
+                            小视频广告翻倍次数=小视频广告翻倍次数+1
+                        }
+
+                }
+            // }
+        }else{
+          show("没有找到金蛋大奖")  
+        }
+
+        sleepr(6000*ratio,8000*ratio)
+        if(滑动次数%10==1){
+            if(device.getBattery()<20){
+                toastLog("电量低")
+                if(device.isCharging()){
+                    if(changesetting){
+                        device.setMusicVolume(0)
+                        device.setBrightnessMode(0)
+                        device.setBrightness(10)
+                    }
+              
+                }else{
+                    //休眠三十分钟
+                    show("电量低"+device.getBattery()+"休眠半小时")
+                    device.lockScreen()
+                    sleep(1800000)
+                }
+            }
+        }
+      
+        if(滑动次数%50==1){
+            if(!今日签到(appname)){
+                app_sign()
+            }
+        }
+      }
+    }
+}
+var seead=function(){
+    i=0
+    sleep(10000)
+    while(i<20){
         sleep(2500)
-    }
-    
-    write_cfg_j(app_name, "have_redpackage", "yes")
-    // sleep(1000)
-    // 初始化()
-
-
-}
-
-function is_login(){
-    login_result = read_cfg_j(app_name,"have_login")
-    if(login_result=="yes"){
-    	toast("读取--已登录")
-        log("读取--已登录")
-        return true
-    }
-    close_windows(button_arr)
-    aa = text("任务").findOne(500)
-    if(aa){
-        button = "text"
-        vlause = "任务"
-        result = control_click(button, vlause)  
-    }
-    bb = textContains("看视频").findOne(500)
-    if(bb){
-        button = "textContains"
-        vlause = "看视频"
-        result = control_click(button, vlause)  
-    } 
-    cc = textContains("领取红包").findOne(500)
-    if(cc){
-        button = "textContains"
-        vlause = "领取红包"
-        result = control_click(button, vlause)  
-    } 
-
-    close_windows(button_arr)
-
-    dd = id("lw").findOne(500)
-    if(dd){
-        button = "id"
-        vlause = "lw"
-        result = control_click(button, vlause) 
-        if  (result){
-            while(true){
-                sleep(5000)
-                result1 = text("点击重播").findOne(500)
-                if(result1){
-                    while(true){
-                        back()
-                        sleep(1000)
-                        button = "id"
-                        vlause = "jh"
-                        result = control_click(button, vlause)
-                        
-                        var current_Activity = currentActivity()
-                        console.log("当前活动页--->>"+current_Activity);
-                        if(current_Activity == "com.qukandian.video.qkdcontent.view.activity.SmallVideoDetailActivity"){
-                            break
-                        }
-                    }
-                    break
-                }
-                result2 = text("点击下载").findOne(500)
-                if(result2){
-                    while(true){
-                        back()
-                        sleep(1000)
-                        button = "id"
-                        vlause = "jh"
-                        result = control_click(button, vlause)
-                        
-                        var current_Activity = currentActivity()
-                        console.log("当前活动页--->>"+current_Activity);
-                        if(current_Activity == "com.qukandian.video.qkdcontent.view.activity.SmallVideoDetailActivity"){
-                            break
-                        }
-                    }
-                    break
-                }
-                result3 = id("tt_video_ad_close").findOne(500)
-                if(result3){
-                    while(true){
-                        button = "id"
-                        vlause = "tt_video_ad_close"
-                        result = control_click(button, vlause)
-                        var current_Activity = currentActivity()
-                        console.log("当前活动页--->>"+current_Activity);
-                        if(current_Activity == "com.jifen.qkbase.main.MainActivity"){
-                            break
-                        }
-            
-                    }
-            
-                    break
-                }
-                
-                log("广告观看中")
-                toast("广告观看中")
-            }
-    
+        i=i+1
+        if(text("邀请好友").findOne(500)){
+            back()
+            sleep(1000)
         }
-
-
-
-    } 
-
-    button_info = textContains("登录领取").findOne(1000);
-    if (button_info){
-        return false
-    }
-
-    result = id("p_").findOne(1000)
-    if(result){
-        log("已登录")
-        toast("已登录")
-        write_cfg_j(app_name,"have_login","yes")
-        return true
-    } 
-    result = text("立即提现").findOne(1000)
-    if(result){
-        log("已登录")
-        toast("已登录")
-        write_cfg_j(app_name,"have_login","yes")
-        return true
-    } 
-
-}
-
-
-// 启动线程(2,1)
-function 启动线程(type, sign) {
-    var istype = type || 2;
-    var issign = sign || 0;
-
-	button = "text"
-	vlause = "同意"
-    index_page = "com.qukandian.video.qkdbase.activity.MainActivity"
-    inspect_app(app_name, index_page, button, vlause)
-    close_windows(button_arr)
-
-    result = is_login()
-    if(!result){
-        log("检测",app_name,"进行登录操作")
-        toast("检测",app_name,"进行登录操作")
-        login()
-        初始化()
-    }
-    sign_work()
-
-    // sign_work(app_name)
-    // if (issign == 1) {
-    //     //sign_work(app_name)
-    //     log("22222")
-
-    // }
-    // // 文章
-    // if (istype == 1) {
-    //     console.log("不支持文章操作");
-    //     return
-    // }
-    if (istype == 2) {
-
-        // while (true) {
-        //     is_first = text("小视频").findOne(1000)
-        //     if (is_first) {
-        //         button = "text"
-        //         vlause = "小视频"
-        //         result = control_click(button, vlause)
-        //     } else {
-        //         break
-        //     }
-        // }
-        // while (true) {
-        //     aa = id("ye").findOne(500)
-        //     if(aa){
-        //         button = "id"
-        //         vlause = "ye"
-        //         result = control_click(button, vlause)
-        //     }
-        //     bb = id("za").findOne(500)
-        //     if(bb){
-        //         button = "id"
-        //         vlause = "za"
-        //         result = control_click(button, vlause)
-        //     }
-
-        //     sleep(1000)
-        //     var current_Activity = currentActivity()
-        //     if(current_Activity != "com.qukandian.video.qkdbase.activity.MainActivity"){
-        //         break
-        //     }
-        // }
-        goto_smell_video()
-
-        see_num = 0
-        while(true){
-            see_num += 1
-            if(see_num >40){
-                log("开始尝试体现")
-                toast("开始尝试体现")
-                see_num = 0
-                get_money()
-            }     
-            var c = random(8000, 13000)
-            // var c = random(5000, 8000)
-            sleep(c)
-            close_windows(button_arr)
-            var current_Activity = currentActivity()
-            if(current_Activity == "com.android.packageinstaller.PackageInstallerActivity"){
-                back()
-            }
-            reward_button = text("金蛋大奖").findOne(500)
-            if(reward_button){
-                // 确认打开
-                nn = 0
-                while(true){
-                    nn += 1
-                    if(nn>5){
-                        break
-                    } 
-                    log("开始砸金蛋")
-                    toast("开始砸金蛋")
-                    button = "text"
-                    vlause = "金蛋大奖"
-                    result = control_click(button, vlause)
-                    aa = textContains("看视频再").findOne(2000)
-                    if(aa){
-                        log("到点击")
-                        break
-                    }
-                    bb = id("jh").findOne(500)
-                    if(bb){
-                        log("我知道了")
-                        break
-                    }
-                    cc = text("赚钱小技巧").findOne(500)
-                    if(cc){
-                        log("我知道了")
-                        back()
-                        break
-                    }
-        
-            
-                }
-                //开始看广告   
-                if(aa){
-                    while(true){
-                        button = "textContains"
-                        vlause = "看视频再"
-                        result = control_click(button, vlause)
-                        log("点击看视频")
-                        var current_Activity = currentActivity()
-                        console.log("当前活动页--->>"+current_Activity);
-                        if(current_Activity != "com.qukandian.video.qkdcontent.view.activity.SmallVideoDetailActivity"){
-                            break
-                        }
-                    }
-                    while(true){
-                        sleep(5000)
-                        result1 = text("点击重播").findOne(500)
-                        if(result1){
-                            while(true){
-                                back()
-                                button = "id"
-                                vlause = "jh"
-                                result = control_click(button, vlause)
-                                
-                                var current_Activity = currentActivity()
-                                console.log("当前活动页--->>"+current_Activity);
-                                if(current_Activity == "com.qukandian.video.qkdcontent.view.activity.SmallVideoDetailActivity"){
-                                    break
-                                }
-                            }
-                            break
-                        }
-                        result2 = text("点击下载").findOne(500)
-                        if(result2){
-                            while(true){
-                                back()
-                                button = "id"
-                                vlause = "jh"
-                                result = control_click(button, vlause)
-                                
-                                var current_Activity = currentActivity()
-                                console.log("当前活动页--->>"+current_Activity);
-                                if(current_Activity == "com.qukandian.video.qkdcontent.view.activity.SmallVideoDetailActivity"){
-                                    break
-                                }
-                            }
-                            break
-                        }
-                        result3 = id("tt_video_ad_close").findOne(500)
-                        if(result3){
-                            while(true){
-                                button = "id"
-                                vlause = "tt_video_ad_close"
-                                result = control_click(button, vlause)
-                                var current_Activity = currentActivity()
-                                console.log("当前活动页--->>"+current_Activity);
-                                if(current_Activity == "com.jifen.qkbase.main.MainActivity"){
-                                    break
-                                }
-                    
-                            }
-                    
-                            break
-                        }
-                        
-                        log("广告观看中")
-                        toast("广告观看中")
-                    }
-                    
-            
-            
-                    log(888)
-                }
-                if(bb){
-                    button = "id"
-                    vlause = "jh"
-                    result = control_click(button, vlause)
-                }
-            
-            }
-            close_windows(button_arr)
-            var current_Activity = currentActivity()
-            if(current_Activity == "com.android.packageinstaller.PackageInstallerActivity"){
-                back()
-            }
-        
-        
-            log(app_name+"上滑")
-            toast(app_name+"上滑")
-        
-            swipe(w * 0.6 - random(10, 30), h * 0.3 + random(10, 20), w * 0.6 + random(50, 80), h * 0.1 + random(10, 30), random(220, 235))
+        if(textclick("金币已到账")){
+            back()
+            sleep(1000)
         }
+        if(close_ad_toutiao(apppkg)){
+            sleep(1000)
+            idclick("com.jt.hanhan.video:id/jw")
+            return
+        }
+        if( close_ad_qq(apppkg)){
+
+            
+        }
+        if(close_ad_iclicash(apppkg)){
+           
+        }
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+            return 
+        }
+        jddj=id(火火视频金蛋大奖id).findOne(300)
+        if(jddj){
+            return
+        }
+        if(textclick("确定")){
+
+        }
+     
         
-
-
-
-
-
-
+        
+     
+    }
+    back()
+    if(idclick("com.jt.hanhan.video:id/jw")){
+        sleep(1000)
+        return 
     }
 }
-// 随机滑动
-// sml_move(w * 0.6- random(10, 30), h * 0.6 + random(10, 20),w * 0.6+ random(50, 80), h * 0.2+ random(10, 30), random(220, 235))
-
-// button = "text"
-// vlause = "金蛋大奖"
-// result = control_click(button, vlause)
 
 
+var app_go_home=function(){
+    i=0
+    while (i<10){
+        i=i+1
+    if(!idallexist(火火视频极速版首页标识id)){
+        if(!idContains(apppkg).findOne(1000)){
+            show("没有找到存在包名id控件")
+            app.launch(apppkg)
+            sleep(3000)
+        }else{
+            show("找到存在包名id控件")
+            back()
+            sleep(1500)
+        }
+        if(text("首页").exists()){
+            textclick("首页")
+            sleep(1000)
+            textclick("推荐")
+        }
+        if(textclick("同意并继续")){
+
+        }
+    }else{
+        return true
+    }
+}
+}
+
+var app_sign=function(){
+    n_sign=0
+    while(n_sign<3){
+        hi=id("com.jt.hanhan.video:id/hi").findOne(300)
+        if(hi){
+            if(clicknode(hi.child(2))){
+                    sleep(1000)
+
+           }
+        }
+        tv_coin=id("com.jt.hanhan.video:id/a4i").findOne(300)
+        if(tv_coin){
+            n_coin=parseInt(tv_coin.text().replace("今日金币：",""))
+            if(n_coin>3000){
+                tv_money=id("com.jt.hanhan.video:id/a4f").findOne(3000)
+                if(tv_money){
+                    记录现在余额(appname,parseFloat(tv_money.text())/1000)
+                }
+                if(tomoney&&今日提现(appname)){
+                    textclick("立即提现")
+                    text("立即提现").waitFor()
+                    textclick("立即提现")
+                    sleep(1000)
+                    今日已提现(appname)
+                    back()
+                }
+            }
+            记录现在金币(appname,n_coin)
+            show("当前金币数:"+n_coin)
+        }
+     
+      if(textclick("金币翻倍")){
+          seead()
+      }
+      b_sign=id("com.jt.hanhan.video:id/u8").findOne(200)
+      if(b_sign){
+          if(b_sign.text().search(":")!=-1){
+              if(clicknode(b_sign)){
+                  seead()
+              }
+          }
+      }
+      n_sign=n_sign+1
+    }
+}
+
+var app_get_reward=function(){
+    n_r_h=0
+    while(true){
+        if(currentActivity()==apphomeactivity){
+            id("a9j").findOne().parent().parent().click()
+        }
+        if(currentActivity()==apprewardactivity){
+            if(textclick("可领取")){
+                seead()
+            }else{
+                n_r_h=n_r_h+1
+            }
+            if(text("新手解锁").exists()){
+                n_r_h=5
+            }
+        }else{
+            if(text("日常任务").exists()){
+                滑动(20,10,17,11,5,500,500)
+            }else{
+                if(textclick("领取奖励")){
+    
+                }
+            }
+        }
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+            return 
+        }
+        if(n_r_h>6){
+            return
+        }
+       sleep(1000)
+    }
+}
+
+var app_login=function(){
+    show(appname+"进行app登录操作")
+    if(logintype=="phone"){
+        pn=phonenumber()
+        if(!pn){
+            show("没有获取到手机号请手动登录")
+        }
+    }
+
+    i=0
+    while(i<10){
+        show(appname+"登录")
+        clicktexts(["允许","允许","允许"],500,1500)
+       if( idclick("com.jifen.dandan:id/iv_open")){
+           sleep(1000)
+       }
+  
+        if(logintype=="phone"){
+            app_login_phone()
+        }else{
+            app_login_weixin()
+        }
+    
+
+        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+       if(id("login_tip").exists()||text("微信账号登录")){
+           toastLog("登录页面")
+           if(logintype=="weixin"){
+           app_login_weixin()
+           }else{
+            app_login_phone()
+           }
+       }
+        // 
+        i=i+1
+    }
+}
 
 
+var app_login_phone=function(){
+    reg = /\d{4}/ig
+    ephone= id("com.jifen.dandan:id/edt_login_phone").findOne(1000)
+            clicknode(ephone)
+          sleep(1000)
+          ephone.setText(phonenumber())
+          sleep(1000)
+        if  (idclick("com.jifen.dandan:id/tv_get_captcha")){
+            mcode=get_phone_code("",reg,"","")
+            if(mcode){
+                 id("edt_login_captcha").findOne(1000).setText(mcode)
+                 sleep(800)
+                 id("btn_confirm").findOne(500).click()
+                 sleep(1000)
+                 if(apptomoney){
 
+                 }else{
+                    back()
+                    sleep(1000)
+                    back()
+                    return true
+                 }
+            }else{
+                show("获取验证码超时")
+            }
+        }
+}
 
+var app_login_weixin=function(){
+    t_login=0
+    while (t_login<10){
+        textclick("微信账号登录")
+        sleepr(2000)
+        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+        if(idallexist([登录成功后界面显示id集合])){
+            show("我界面找到昵称和设置")
+            spt.put(apppkg+"login",true)
+            return true
+        }
+        t_login=t_login+1
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+ run()
+app_get_reward()
