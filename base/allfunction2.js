@@ -1329,22 +1329,27 @@ var 随机邀请文本=function(url){
     if(invitecodes){
         log("数量i："+invitecodes.length)
         for(i=0;i<invitecodes.length;i++){
-            log("1"+invitecodes[i]+"2")
+           // log("1"+invitecodes[i]+"2")
             if(invitecodes[i]){
                 strs.push(invitecodes[i])
             }
         }
         log("数量："+strs.length)
-        if(strs.length>1){
-           str= strs[random(0,strs.length)]
+        if(strs.length>0){
+           str= strs[randomint(0,strs.length)]
         }else{
             str=content
         }
-        log("复制文本："+str)
+        // log("复制文本："+str)
         setClip(str)
     }else{
         setClip(content)
     }
+}
+
+var randomint=function(min,max){
+    let num = Math.floor(Math.random()*(max - min) + min);
+    return num
 }
 var 刷宝邀请=function(){
     随机邀请文本(刷宝短视频邀请集合)
@@ -1565,5 +1570,3 @@ var close_ad_qq=function(apppkg){
 //  log(device)
 //  forcestop("刷宝短视频")
 //  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
-火山极速版邀请()
-toastLog("剪贴板："+getClip())
