@@ -1135,6 +1135,7 @@ var checkscreencapture=function(){
 
   // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
   threads.start(function () {
+    n_t=0
       while(n_t<5){
           n_t=n_t+1
         star_ing = text("立即开始").findOne(2000)

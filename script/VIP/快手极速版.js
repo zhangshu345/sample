@@ -40,7 +40,7 @@ if(invite){
     快手极速版邀请()
 }
 toastLog("指定："+appname+"即将启动")
-home()
+//home()
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
@@ -354,17 +354,18 @@ function 滑块验证精确() {
 }
 
 var 滑块验证=function(){
-    i=0
-    while(text("拖动滑块").exists()){
+    n_hkyz=0
+    while(text("拖动滑块").findOne(300)){
+        log("滑块验证")
        checkscreencapture()
          sleep(1000)
         滑块验证精确()
-        i=i+1
-        if(i>3){
+        n_hkyz= n_hkyz+1
+        if( n_hkyz>3){
             滑块验证尝试()
         }
-    sleep(3000)
-    i=i+1
+         sleep(3000)
+  
     }
 }
 
@@ -376,7 +377,7 @@ var 快手极速协议勾选框id="com.kuaishou.nebula:id/cb_verify_service_line
 var 快手极速微信登录显示标题id="com.kuaishou.nebula:id/qm"   //显示登录app 的名称 这里是快手极速版   当前活动 com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI
 var 快手极速微信确认登录按钮id="com.tencent.mm:id/d17"  //确认登录  包名是com.tencent.mm  "com.kuaishou.nebula:id/wechat_login_view"
 var 快手极速微信关闭按钮id="android:id/text1"  //关闭 
-var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了","点击重播"]
+var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了"] //,"点击重播"
 var 快手极速弹窗id集合=["btn_privacy_action","close"]
 var 快手极速首次登录点击id集合=[快手极速首次立即领取id,快手极速登录微信登录按钮id,快手极速微信确认登录按钮id]
 var 快手极速摄像头图标id="com.kuaishou.nebula:id/home_shot_view"
@@ -433,9 +434,10 @@ var app_close_alter=function(){
         back()
         sleep(1000)
     }
-    if (textclick("立即重播")){
+    if (textclick("立即重播",100)){
             快手极速视频上滑()
     }
+    log("关闭弹窗完毕")
     
 }
 var app_sign=function(){
@@ -464,7 +466,6 @@ var app_sign=function(){
        if(textclick("立即签到")){
            sleep(1000)
            back()
-           
            return true
        }
         sleep(1000)
@@ -721,5 +722,6 @@ function run(){
              sleep(1000)
     }
 }
-run()
+// run()
 // app_get_coin_money()
+滑块验证()

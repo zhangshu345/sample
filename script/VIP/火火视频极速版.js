@@ -28,7 +28,7 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 var apppkg="com.jt.hanhan.video"
-var apphomeactivity=""
+var apphomeactivity="com.qukandian.video.qkdbase.activity.MainActivity"
 var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
@@ -41,11 +41,12 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
+//邀请 
 // 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
 
 // "金币翻倍" ,"com.jt.hanhan.video:id/jp"    // 关闭弹窗的关闭按钮 com.jt.hanhan.video:id/jw
 // "com.jt.hanhan.video:id/jr"
-
+// 第一次进入  我知道了 声明与政策
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 
 const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
@@ -68,16 +69,92 @@ var 广告展示页面可关闭文本集合=["金币已到账","点击重播"]
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
 var 小视频简介id="com.jt.hanhan.video:id/sk"
-app.launch(apppkg)
+
 show(appname+"开始进入app操作")
 var action="小视频"
 var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=true
+var app_islogin=function(){
+    n_islogin=0
+    while(n_islogin<10){
+        n_islogin=n_islogin+1
+        ca=currentActivity()
+        if(ca==apphomeactivity){
 
+            if(textoneexist(["声明与政策","開"])){
+                clicktexts(["我知道了","允许","始终允许","開"],100)
+            }
+        }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
+                textclick("取消")
+        }
+       
+    }
+}
+var 火火关闭锁屏功能=function(){
+    火火选中底部导航(2)
+}
+var 火火选中底部导航=function(indexofbottom){
+    node_me=className("android.widget.RelativeLayout").clickable(true).depth(7).indexInParent(indexofbottom).findOne(100)
+    if(node_me){
+        if(clicknode(node_me)){
+            
+            return true
+        }
+    }
+    return false
+}
+var 点击金蛋=function(){
+    if(id("com.jt.hanhan.video:id/ga").findOne(300)){
+        toastLog("找到了")
+        sleep(7500)
+       if( idclick("com.jt.hanhan.video:id/ga")){
+            show("点击金蛋大奖成功")
+            sleep(2500)
+            if(text("赚钱小技巧").exists()){
+                back()
+            }
+                if(maytextclick("看视频再送")){
+                    seead()
+                    小视频广告翻倍次数=小视频广告翻倍次数+1
+                }
+       }else{
+        show("点击金蛋大奖失败")
+       }
+    }else{sleep(1500)
+        show("没有找到金蛋大奖："+i)
+    }
 
+    jddj=text("金蛋大奖").findOne(300)
+    if(jddj){
+        show("找到金蛋大奖")
+        // if(jddj.text()=="金蛋大奖"){
+            sleep(7500)
+            if(textclick("金蛋大奖")){
+                sleep(1500)
+                if(text("赚钱小技巧").exists()){
+                    back()
+                }
+                if(maytextclick("看视频再送")){
+                        seead()
+                        小视频广告翻倍次数=小视频广告翻倍次数+1
+                 }
+
+            }else{
+                log("金蛋大奖点击失败")
+            }
+        // }
+    }else{
+      show("没有找到金蛋大奖")  
+    }
+    
+}
 function run(){
+    app.launch(apppkg)
+    sleep(3000)
+    app_islogin()
     while(true){
+     
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -182,46 +259,7 @@ function run(){
             back()
             sleep(2500)
         }
-        if(id("com.jt.hanhan.video:id/ga").findOne(300)){
-            toastLog("找到了")
-            sleep(7500)
-           if( idclick("com.jt.hanhan.video:id/ga")){
-                show("点击金蛋大奖成功")
-                sleep(2500)
-                if(text("赚钱小技巧").exists()){
-                    back()
-                }
-                    if(maytextclick("看视频再送")){
-                        seead()
-                        小视频广告翻倍次数=小视频广告翻倍次数+1
-                    }
-           }else{
-            show("点击金蛋大奖失败")
-           }
-        }else{sleep(1500)
-            show("没有找到金蛋大奖："+i)
-        }
-    
-        jddj=text("金蛋大奖").findOne(300)
-        if(jddj){
-            show("找到金蛋大奖")
-            // if(jddj.text()=="金蛋大奖"){
-                sleep(7500)
-                if(textclick("金蛋大奖")){
-                    sleep(2500)
-                    if(text("赚钱小技巧").exists()){
-                        back()
-                    }
-                        if(maytextclick("看视频再送")){
-                            seead()
-                            小视频广告翻倍次数=小视频广告翻倍次数+1
-                        }
-
-                }
-            // }
-        }else{
-          show("没有找到金蛋大奖")  
-        }
+        点击金蛋()
 
         sleepr(6000*ratio,8000*ratio)
         if(滑动次数%10==1){
@@ -281,6 +319,12 @@ var seead=function(){
             sleep(1000)
             return 
         }
+        node_close=className("android.widget.FrameLayout").clickable(true).depth(5).drawingOrder(2).findOne(100)
+        if(node_close){
+            if(clicknode(node_close)){
+                return
+            }
+        }
         jddj=id(火火视频金蛋大奖id).findOne(300)
         if(jddj){
             return
@@ -288,9 +332,6 @@ var seead=function(){
         if(textclick("确定")){
 
         }
-     
-        
-        
      
     }
     back()
@@ -492,4 +533,5 @@ var app_login_weixin=function(){
     }
 }
 
- run()
+run()
+//火火关闭锁屏功能()
