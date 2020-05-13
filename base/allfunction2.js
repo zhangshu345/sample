@@ -558,8 +558,7 @@ var clicknode=function(v){
     if(enablegenius){
              b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-         
-           if(click(b.centerX(),b.centerY())){
+            if(click(b.centerX(),b.centerY())){
                return true
            }else{
                return clicknode(v)
@@ -569,7 +568,6 @@ var clicknode=function(v){
             return false
         }
      }else{
-      
         if(clickparents(v)){
             return true
         }
@@ -1607,10 +1605,16 @@ var close_ad_iclicash=function(apppkg){
                         return true
             }
             sleep(1000)
+            if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
+                back()
+            }
             if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
                 return true
             }
         }
+    }
+    if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
+
     }
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
