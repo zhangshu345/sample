@@ -1319,16 +1319,31 @@ var alltest=function(){
 }
 
 var 随机邀请文本=function(url){
-    let content=httpget(url)
+    let content=httpget(url);
+    log("返回随机邀请文本："+content)
+    if(content.indexOf("------")==-1){
+        setClip(content)
+        return}
     let invitecodes=content.split("------")  //8ge
-    str=""
+    strs=[]
     if(invitecodes){
-        if(invitecodes.length>1){
-           str= invitecodes[random(0,invitecodes.length)]
+        log("数量i："+invitecodes.length)
+        for(i=0;i<invitecodes.length;i++){
+            log("1"+invitecodes[i]+"2")
+            if(invitecodes[i]){
+                strs.push(invitecodes[i])
+            }
+        }
+        log("数量："+strs.length)
+        if(strs.length>1){
+           str= strs[random(0,strs.length)]
         }else{
             str=content
         }
+        log("复制文本："+str)
         setClip(str)
+    }else{
+        setClip(content)
     }
 }
 var 刷宝邀请=function(){
@@ -1336,8 +1351,9 @@ var 刷宝邀请=function(){
 }
 
 var 火山极速版邀请=function(){
-    var h=httpget(getrandforstrs(火山极速版邀请链接))
-    setClip(h)
+    随机邀请文本(火山极速版邀请集合)
+    // var h=httpget(getrandforstrs(火山极速版邀请链接))
+    // setClip(h)
 }
 
 var 快手极速版邀请=function(){
@@ -1549,3 +1565,5 @@ var close_ad_qq=function(apppkg){
 //  log(device)
 //  forcestop("刷宝短视频")
 //  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
+火山极速版邀请()
+toastLog("剪贴板："+getClip())
