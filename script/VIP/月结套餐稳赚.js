@@ -100,7 +100,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
     appruntime=showadtime||random(5,10)*60*1000
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
-    sleep(2000)
+    sleep(5000)
     clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2500)
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
@@ -109,8 +109,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
             back()
             back()
             forcestop(appname)
-        }else{
-
         }
         if(close_ad_qq(apppkg)){
          
@@ -121,7 +119,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
-            sleep(1000)
+            sleep(4000)
             clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
                 sleep(1000)
@@ -174,7 +172,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
            if(textclick("创意视频")){
                seerewardvideo(apppkg)
                sleep(2000)
-               
             }
            if(textclick("全屏视频")){
                sleep(10000)
@@ -186,6 +183,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
         if(textoneexist(["点击下载"])){
             back()
         }
+        sleep(3000)
     }
 }
 
@@ -216,15 +214,13 @@ addbmobchannel("hongshureward")
 var thread = threads.start(function(){
     while(true){
         sleep(60000)
-
+        checkbattery(30)
     }
 });
 //停止线程执行
-
-
-while(true){
-    sleep(5000)
+    sleep(2000)
     run()
-}
+    runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")
+
 
 

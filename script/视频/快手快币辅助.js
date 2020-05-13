@@ -35,8 +35,7 @@ var 获取倒计时=function(){
         }else if(txt_count.indexOf("秒后开抢")!=-1){
             n_count=parseInt(txt_count.replace("秒后开抢",""))
         }
-        while(true){
-            
-        }
+       log(n_count)
     }
 }
+获取倒计时()

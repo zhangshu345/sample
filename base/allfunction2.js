@@ -169,7 +169,7 @@ var runscriptIntent=function(apppkg,scriptsurl){
         // data: "file:///sdcard/1.png"
         extras:{
             "action":"runscript",
-            "source":2,
+            "task_source":2,
             "path":scriptsurl
             }
         }
