@@ -52,9 +52,11 @@ var run=function(){
                 if(!getPackageName(app.name)){
                     downloadApk(app.name,app.downloadurl,true)
                 }else{
-                    if(AppUtils.getAppVersionCode(app.pkg)<app.version){
-                        uninstallapp(app.name)
-                        downloadApk(app.name,app.downloadurl,true)
+                    if(app.version>1&&app.downloadurl){
+                        if(AppUtils.getAppVersionCode(app.pkg)<app.version){
+                            uninstallapp(app.name)
+                            downloadApk(app.name,app.downloadurl,true)
+                        }
                     }
                 }
                 if(app.scripturl && getPackageName(app.name)){
@@ -205,7 +207,7 @@ addbmobchannel("hongshureward")
 var thread = threads.start(function(){
     while(true){
         sleep(60000)
-        
+
     }
 });
 //停止线程执行

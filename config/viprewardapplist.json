@@ -562,7 +562,7 @@
     "maxtime": 60,
     "day":"2020-5-7",
     "runtime":0,
-    "version":1,
+    "version":0,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
@@ -593,7 +593,7 @@
     "maxtime": 90,
     "day":"2020-5-7",
     "runtime":0,
-    "version":1,
+    "version":0,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
