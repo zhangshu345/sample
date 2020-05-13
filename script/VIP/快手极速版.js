@@ -30,7 +30,7 @@ var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
 var invite=false
 var tomoney=false
-var onlyscript=false
+var onlyscript=true
 var todaysign=今日签到(appname)
 var coin=上次金币(appname)
 var money=上次余额(appname)
@@ -355,7 +355,7 @@ function 滑块验证精确() {
 
 var 滑块验证=function(){
     n_hkyz=0
-    while(text("拖动滑块").findOne(300)){
+    while(text("拖动滑块").findOne(100)){
         log("滑块验证")
        checkscreencapture()
          sleep(1000)
@@ -364,8 +364,7 @@ var 滑块验证=function(){
         if( n_hkyz>3){
             滑块验证尝试()
         }
-         sleep(3000)
-  
+         sleep(1500)
     }
 }
 
@@ -390,7 +389,6 @@ var 快手极速版首页标志=[快手极速首页奖励悬浮,快手极速摄�
 var 快手极速设置密码=function(){
     if(打开快手极速左边框()){
         while(!idclick(快手极速左边设置按钮id)){}
-        
     }
 }
 
@@ -438,7 +436,6 @@ var app_close_alter=function(){
             快手极速视频上滑()
     }
     log("关闭弹窗完毕")
-    
 }
 var app_sign=function(){
     log("快手签到")
@@ -515,11 +512,11 @@ var 快手极速视频上滑=function(){
     if(enablegenius){
         滑动(20,13,16,10,3,400,400)
     }else{
-            vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
-            if(vp){
+         vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
+         if(vp){
                 log("找到快手滑动vp")
                 vp.scrollForward()
-            }
+         }
     }
 
    
@@ -540,14 +537,14 @@ var 滑动次数=今日滑动次数(appname)
 var islogin=false
 
 var app_login=function(){
+    show(appname+"登录")
     n_first=0
     while(n_first<10){
-        if(idContains(apppkg).findOne(300)){
+        if(!idContains(apppkg).findOne(300)){
             app.launch(apppkg)
             sleep(3000)
         }
-
-        clicktexts(["查看协议","同意并继续","允许","立即领取","立即提现","立即提现","提取","登录领金币"],300,1500)
+        clicktexts(["查看协议","同意并继续","允许","立即领取","立即提现","立即提现","提取","登录领金币"],100,1500)
         if(idclick("com.kuaishou.nebula:id/protocol_checkbox")){
            if( textclick("手机号登录")){
              text("请输入手机号").waitFor()
@@ -570,8 +567,7 @@ var app_login=function(){
             back()
             sleep(1000)
         }
-     
-        if(idoneexist(快手极速版首页标志)){
+         if(idoneexist(快手极速版首页标志)){
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
             if(id("com.kuaishou.nebula:id/tabs").exists()){
                log("点击首页的发现")
@@ -637,24 +633,23 @@ var app_get_coin_money=function(){
 }
 lastdesc=""
 device.wakeUpIfNeeded()
-
 function run(){
-    show("快手极速版")
+    show("快手极速版开始")
     app.launch(apppkg)
     sleep(3000)
-    n_i=0
+    滑动次数=0
     while(true){
-        log("循环："+n_i)
+        log("循环："+滑动次数)
         ca=currentActivity()
         if(ca!=apphomeactivity){
-
+            log("快手不在主页：")
         }else{
-
+            log("快手在主页：")
         }
           if(idoneexist(快手极速版首页标志)){
             log("找到快手首页悬浮标记")
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
-             if(i%15==0){
+             if(滑动次数%15==0){
             if(id("com.kuaishou.nebula:id/tabs").exists()){
                 childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
                   childs.forEach(e => {
@@ -666,7 +661,7 @@ function run(){
               }
             }
 
-            if(n_i%500==0){
+            if(滑动次数%500==0){
                 if(!todaysign){
                     if(idclick(快手极速首页奖励悬浮)){
                         sleep(1500)
@@ -692,22 +687,19 @@ function run(){
             }
             nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
             if(nowdesc){
-                if(nowdesc!=lastdesc){
-
-                }else{
-
+                if(nowdesc==lastdesc){
+                    快手极速版视频滑动()
                 }
             }else{
                 快手极速版视频滑动()
             }
-            
-
             滑动次数=滑动次数+1
         
            sleepr(6000*ratio,8000*ratio)
-           n_i=n_i+1
+     
 
        }else{
+           show("不在视频页")
             if(!getPackageName(appname)){
                 downloadandinstallapp(appname)
                 islogin=false
@@ -715,9 +707,9 @@ function run(){
            if(idContains(apppkg).findOne(300)){
                  app_login()
              }else{
-                    app.launch(apppkg)
-                    sleepr(2000,2500)
-             }
+                  app.launch(apppkg)
+                  sleepr(2000,2500)
+           }
         }
              sleep(1000)
     }

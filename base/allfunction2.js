@@ -627,8 +627,8 @@ var clickchilds=function(v){
 var clickids=function(ids,t,st){
     t=t||500
     st=st||500
-    ids.forEach(i => {
-       if (idclick(i,t)){
+    ids.forEach(idstr => {
+       if (idclick(idstr,t)){
             sleep(st)
        }
     });
