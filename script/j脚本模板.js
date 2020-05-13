@@ -21,7 +21,6 @@ toastLog("公共函数实例化失败,程序返回")
 }
 //微信链接邀请绑定 之后登陆
 
-
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity=""
@@ -52,8 +51,6 @@ closelastscriptapp()
 creatsetfloatywindow()  //创建设置悬浮窗
 show("开始："+appname+"辅助滑动")
 home()
-
-
 
 
 if(!app.getPackageName(appname)){
