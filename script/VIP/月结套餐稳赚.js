@@ -92,7 +92,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
     sleep(2000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许"],100,2500)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2500)
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
@@ -202,6 +202,15 @@ var seerewardvideo=function(apppkg){
 }
 
 addbmobchannel("hongshureward")
+var thread = threads.start(function(){
+    while(true){
+        sleep(60000)
+        
+    }
+});
+//停止线程执行
+
+
 while(true){
     sleep(5000)
     run()

@@ -25,6 +25,9 @@ log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz"]
 var 趣多多邀请码=["89797906"]
+var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/invitecode.txt"
+var 刷宝短视频邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/invitecode.txt"
+var 火山极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/invitecode.txt"
 var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
 var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/mm.txt"
 var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/1081.txt"
@@ -1241,22 +1244,14 @@ var doactionmaxtime=function(action,maxtime){
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
-    if(!action){
-        return
-    }
-    maxnumber=maxnumber||1
-    i=0
-    while(i<maxnumber){
-        action()
-        i=i+1
-    }
+    if(!action){return}
+    maxnumber=maxnumber||1; n_doaction=0;
+    while(n_doaction<maxnumber){ action(); n_doaction=n_doaction+1;}
 }
-   
+//卸载应用
 var uninstallapp=function(appname){
   pkg=getPackageName(appname)
-  if(!pkg){
-      return false
-  }
+  if(!pkg){ return false }
   if(appname){
     let i = app.intent({
         action: "android.intent.action.DELETE",
@@ -1279,52 +1274,35 @@ var uninstallapp=function(appname){
 }
 var uninstallpackage=function(packageName){
     name=app.getAppName(packageName)
-    if(!name){
-        return false
-    }
+    if(!name){return false }
     let i = app.intent({
           action: "android.intent.action.DELETE",
           flags:["activity_new_task"],
           data: "package:" + packageName //Uri.parse("package:" + getPackageName(appname))
       });
       context.startActivity(i);
-      while(true){
-          if(textclick("确定")){
-              return
-          }
-          if(textclick("卸载")){
-              return
-          }
+      while(true){if(textclick("确定")){  return }
+          if(textclick("卸载")){  return  }
       }
-  }
+}
   
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
 var checksystemsettings=function(){
-    if(issystemsettings()){
-        log("有系统设置权限")
-        return true
-    }else{
-        log("没有系统设置权限")
-        PermissionUtils.requestWriteSettings(null)
-        while(true){
-            sleep(1000)
-            if(issystemsettings()){
-                log("有系统设置权限")
-                return true
-            }else{
-                if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){
-                    sleep(1000)
-                }else{
-                    app.openAppSetting(context.getPackageName())
-                    滑动(20,10,17,10,3,500,500)
-                    if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
-                        sleep(1000)
-                        if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
+    if(issystemsettings()){ log("有系统设置权限"); return true    }
+    else{ log("没有系统设置权限");
+        PermissionUtils.requestWriteSettings(null);
+        while(true){ sleep(1000);
+            if(issystemsettings()){ log("有系统设置权限"); return true; }
+            else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }
+                    else{ app.openAppSetting(context.getPackageName()); 滑动(20,10,17,10,3,500,500);
+                         if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
+                           sleep(1000)
+                          if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                             
-                        }
-                  }
+                         }
+                    }
                 }
             }
         }
@@ -1339,14 +1317,10 @@ var alltest=function(){
     checksystemsettings()
     startdeviceadmin()
 }
-var 刷宝邀请=function(){
-    var h=httpget(getrandforstrs(刷宝邀请链接))
-    toastLog(h)
-    setClip(h) 
-}
-var 邀请链接=function(url){
+
+var 随机邀请文本=function(url){
     let content=httpget(url)
-    let invitecodes=content.split("--------")  //8ge
+    let invitecodes=content.split("------")  //8ge
     str=""
     if(invitecodes){
         if(invitecodes.length>1){
@@ -1357,29 +1331,28 @@ var 邀请链接=function(url){
         setClip(str)
     }
 }
-
+var 刷宝邀请=function(){
+    随机邀请文本(刷宝短视频邀请集合)
+}
 
 var 火山极速版邀请=function(){
     var h=httpget(getrandforstrs(火山极速版邀请链接))
     setClip(h)
- }
+}
 
- var 快手极速版邀请=function(){
-    var h=httpget(getrandforstrs(快手极速版邀请链接))
-    setClip(h)
- }
+var 快手极速版邀请=function(){
+    随机邀请文本(快手极速版邀请集合)
+}
 
 //直接从应用宝获取应用信息
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
-    log("查找app:"+appname+"--"+apppkg)
+    log("应用宝查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
-    log("查找app之后:"+appname+"--"+apppkg)
     if(appinfos){
         log("获取成功")
         data=JSON.parse(appinfos)
         let obj=data.obj
-  
-        if(obj){
+          if(obj){
             let items=obj.items
             if(items){
                 i=0
@@ -1409,7 +1382,32 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     }
     return null
 }
-
+//检测电量低停止脚本
+var checkbattery=function(btyn){
+    btn=btyn||30
+    batteryn=device.getBattery()
+    if(batteryn<btyn){
+        //这里应该发送一个电量低信号到服务器
+        toastLog("电量低")
+        if(device.isCharging()){
+            if(changesetting){
+                device.setMusicVolume(0)
+                device.setBrightnessMode(0)
+                device.setBrightness(30)
+            }
+        }else{
+            //休眠三十分钟
+            engines.stopOtherScript()
+            device.lockScreen()
+            sleep(1800000)
+        }
+    }else if(batteryn<btyn*2/3){
+        engines.stopOtherScript()
+        device.lockScreen()
+        sleep(1800000)
+    }
+}
+//通过通知获取验证码有缺点  后期改为java代码原生获取
 function get_phone_code(app_name,reg,startwords,endwords){
     contet = ""
     packname = ""
@@ -1423,13 +1421,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
         });
         toastLog("监听中，请在日志中查看记录的通知及其内容");
         function printNotification(notification) {
-            log("应用包名: " + notification.getPackageName())
-            log("通知文本: " + notification.getText());
-            log("通知优先级: " + notification.priority);
-            log("通知目录: " + notification.category);
-            log("通知时间: " + new Date(notification.when));
-            log("通知数: " + notification.number);
-            log("通知摘要: " + notification.tickerText);
+            log("应用包名: " + notification.getPackageName()+"/n通知文本: " + notification.getText()+"/n通知优先级: " + notification.priority+"/n通知目录: " + notification.category+ "/n通知时间: " + new Date(notification.when)+"/n通知数: " + notification.number+ "/n通知摘要: " + notification.tickerText);
             if(notification.getText()){
                 contet = notification.getText()
             } 
@@ -1442,8 +1434,8 @@ function get_phone_code(app_name,reg,startwords,endwords){
     num = 0
     while (true) {
         num +=1 
-        if(num > 20){
-            toastLog("监听时长1分钟,接受短信失败,退出自动登录"); 
+        if(num > 30){
+            toastLog("监听时长1.5分钟,接受短信失败,退出自动登录"); 
             thread.interrupt();
             return
         } 
@@ -1488,16 +1480,12 @@ var close_ad_toutiao=function(apppkg){
             if( idclick(apppkg+":id/tt_video_ad_close",100)){
                 return true
             }
-           
             sleep(1000)
             if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
-                
                 return true
             }
         }
-      
     }
-
    return false
 }
 
@@ -1527,12 +1515,10 @@ var close_ad_qq=function(apppkg){
             }
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
-               
                 return true
             }
         }
     }
-       
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
@@ -1559,7 +1545,6 @@ var close_ad_qq=function(apppkg){
 //     }
 // }
 // threads.start(cc)
-
 
 //  log(device)
 //  forcestop("刷宝短视频")
