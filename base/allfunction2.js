@@ -1132,25 +1132,61 @@ var clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
 var checkscreencapture=function(){
-
   // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
-  threads.start(function () {
+  threads.start(function() {
     n_t=0
       while(n_t<5){
           n_t=n_t+1
-        star_ing = text("立即开始").findOne(2000)
-        if (star_ing) {
-            star_ing.click()
+        if(clickonetexts(["立即开始","允许","始终允许"],100,100)){
             return
         }
         sleep(1500)
       }
-  
 })
 if (!requestScreenCapture()) {
     show("请求截图权限失败！");
+}else{
+    show("请求截图权限成功！");
+    captureScreen("/sdcard/ce.png");
 }
 }
+function checkscreencapture2(){
+    threads.start(function(){
+        i=0
+        while(true){
+            toastLog("截屏"+i)
+            sleep(1000)
+           t= text("立即开始").findOne(100)
+           if(!t){
+            t= text("允许").findOne(100)
+           }
+           if(t){
+             toastLog("点击截屏")
+               t.click()
+               sleep(1000)
+                captureScreen("/sdcard/screencapture" + i + ".png");
+              return
+           }
+           i=i+1
+        }
+    })
+    i=0
+        if(!requestScreenCapture(true)){
+            toastLog("请求截图失败");
+            // exit();
+        }else{
+            toastLog("请求截图成功");5
+        }
+        //连续截图10张图片(间隔1秒)并保存到存储卡目录
+        for(var i = 0; i < 1; i++){
+            captureScreen("/sdcard/screencapture" + i + ".png");
+            sleep(1000);
+        }
+    captureScreen("/sdcard/screencapture" + i + ".png");
+    toastLog("5之后")
+}
+
+
 //运行广告app
 var runadapp=function(appname,apppkg,showadtime,isforcestop){
     if(!appname&&!apppkg){
