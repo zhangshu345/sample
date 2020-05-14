@@ -41,7 +41,6 @@ var run=function(){
             forcestop(app.name)
             sleep(1000)
         }
-       
     })
     apps.forEach(app => {
         device.wakeUpIfNeeded()

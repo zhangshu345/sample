@@ -1119,8 +1119,6 @@ function checkscreencapture2(){
     toastLog("5之后")
 }
 
-
-
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
 var addbmobchannel=function(channels){ BmobPushUtils.addchannel(channels)}
@@ -1372,12 +1370,12 @@ var checkbattery=function(btyn){
             }
         }else{
             //休眠三十分钟
-            engines.stopOtherScript()
+            engines.stopOther()
             device.lockScreen()
             sleep(1800000)
         }
     }else if(batteryn<btyn*2/3){
-        engines.stopOtherScript()
+        engines.stopOther()
         device.lockScreen()
         sleep(1800000)
     }
