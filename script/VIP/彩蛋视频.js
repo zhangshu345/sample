@@ -182,6 +182,7 @@ function run(){
       }
     }
 }
+
 var seead=function(){
     i=0
     while(i<10){
@@ -210,9 +211,7 @@ var seead=function(){
         if(textclick("金币已到账")){
             return
         }
-
     }
-
 }
 var app_go_home=function(){
     i=0

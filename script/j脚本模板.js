@@ -37,6 +37,11 @@ if(onlyscript){
     engines.stopOther()
 }
 
+if(changesetting){
+    device.setMusicVolume(0)
+    toastLog("自动设置音量为0")
+}
+   
 
 
 
@@ -47,8 +52,8 @@ var appname="火火视频极速版"
 
 
 alltest()
-checkfloaty()
-checksystemsettings()
+// checkfloaty()
+// checksystemsettings()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)

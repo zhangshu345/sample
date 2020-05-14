@@ -1,41 +1,124 @@
-//----------------------------------都呱呱极速版子程序--------------------------------------------//
+auto.waitFor()
+auto.setMode("normal")
+function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
+    } else {
+        toastLog("网络有问题五秒后重试")
+        sleep(5000)
+        return httpget(url)
+    }
+}
 
-function 抖呱呱极速版上滑() {
-    var w = device.width;
-    var h = device.height;
-    swipe(w * 0.6 - random(10, 30), h * 0.8 + random(10, 20), w * 0.6 + random(50, 80), h * 0.3 + random(10, 30), random(220, 235))
-    // swipe(w/2,h/3*1,w/2,h/3*2,random(220, 235));
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var  公共函数文本=httpget(公共函数url)
+if (公共函数文本 != "") {
+eval(公共函数文本)
+toastLog("公共函数实例化成功")
+}else {
+toastLog("公共函数实例化失败,程序返回")
+}
+//微信链接邀请绑定 之后登陆
+
+/*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
+
+var tomoney=false  
+var invite=false // 邀请
+var logintype="weixin"  //登录使用微信  
+var onetime=30 // 一次的时间
+var maxtime=60 //一天最长时间  
+var minmoney=0.3 // 最小提现余额
+var mintodaycoin=3000  //最小今天的赚的金币
+var onlyscript=true  //仅允许当前一个脚本运行 
+var changesetting=false
+
+if(onlyscript){
+    engines.stopOther()
 }
 
 
 
-// exports.启动线程 = function () {
-function 启动线程(type,sign) {
-    log("进入抖呱呱子函数")
-    // launchApp("抖呱呱极速版");
-    // sleep(5000);
-    while (true) {
 
-        var c = random(8000, 12000)
-        sleep(c)
-        sleep(100)
-        var 抖呱呱协议我知道了 = id("positive").exists();
-        if (抖呱呱协议我知道了) {
-            var 坐标 = id("positive").findOne();
-            log(坐标.bounds())
-            var 坐标 = 坐标.bounds()
-            click(坐标.left + 5, 坐标.bottom - 2)
-        }
-        sleep(100)
-        var 抖呱呱首页红包界面 = id("tv_submit").exists();
-        if (抖呱呱首页红包界面) {
-            back();
-        }
-        log("都呱呱开始上滑------------")
-        抖呱呱极速版上滑();
 
+var apppkg="com.jt.hanhan.video"
+var apphomeactivity=""
+var appname="火火视频极速版"
+
+
+alltest()
+checkfloaty()
+checksystemsettings()
+creatgfloatywindow()
+creatsetfloatywindow()  //创建设置悬浮窗
+gfw.setPosition(0,220)
+device.setMusicVolume(0)
+device.wakeUpIfNeeded()
+toastLog("自动设置音量为0")
+
+
+floaty.closeAll()
+//关闭最新的app
+closelastscriptapp()
+creatsetfloatywindow()  //创建设置悬浮窗
+show("开始："+appname+"辅助滑动")
+home()
+
+
+if(!app.getPackageName(appname)){
+    show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+    downloadandinstallapp(appname,apppkg)
+}else{
+    show(appname+"已经安装")
+}
+//关闭其他脚本
+if(onlyscript){
+    engines.stopOther()
+}
+
+
+//app 运行
+var run=function(){
+    app.launch(apppkg)
+    sleep(3000)
+    n_i=0
+    while(true){
+        log("循环次数："+n_i)
+        ca=currentActivity()
+        if(ca!=apphomeactivity){
+            app_home_video()
+        }else{
+            //这里是视频上滑操作
+        }
+
+
+        n_i=n_i+1
     }
 
 }
 
-//----------------------------------都呱呱极速版子程序--------------------------------------------//
+//app 登录
+var app_login=function(){
+
+}
+
+//app 微信登录
+var app_login_weixin=function(){
+
+}
+
+//app_手机号登录
+var app_login_phone=function(){
+
+}
+//app 签到
+var app_sign=function(){
+
+}
+
+//app提现
+var app_tomoney=function(){
+
+}
+
+run()

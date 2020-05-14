@@ -13,6 +13,7 @@ var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
+var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){
     td=nowdate()
@@ -39,8 +40,8 @@ var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀�
 var 刷宝邀请链接=[bbshuabao,mmshuabao,yangshuabao,hongshuabao,hong2shuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
-var  dpm
-var  deviceadmincomponent
+var dpm
+var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
@@ -50,7 +51,7 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var gfwhave=false
+var isshowfloaty=true  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 
 var getstrvalue=function(v){    return spt.getString(v)}
@@ -62,6 +63,9 @@ var getbooleanvalue=function(v){    return spt.getBoolean(v)}
 var getstrsetvalue=function(v){  return spt.getStringSet(v)}
 
 var  creatgfloatywindow=function(){
+    if(!isshowfloaty){
+        return
+    }
     gfw=floaty.rawWindow(
         <horizontal  >
             <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
@@ -70,7 +74,6 @@ var  creatgfloatywindow=function(){
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
-    gfwhave=true
  }
 
 var  creatsetfloatywindow=function(){
@@ -184,23 +187,20 @@ var sendforcestopIntent=function(apppkg){
         // data: "file:///sdcard/1.png"
         extras:{
             "action":"forcestop",
-            "source":2,
+            "tast_source":2,
             "path":scriptsurl
             }
         }
     );
     context.startActivity(i);
 }
-
-var runadui=function(pkg){
-    runscriptIntent(pkg,aduiscripturl)
-}
-var show=function(txt){ log(txt);   
+var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
+var show=function(txt){ log(txt);      if(!isshowfloaty){ return  };
     if(!gfw){
         creatgfloatywindow()
     }
     ui.run(function(){
-        gfw.text.setText(txt)
+        gfw.text.setText("运行:"+scriptruntime()+"秒："+txt)
      })
 }
 var 上滑=function(){
@@ -233,9 +233,7 @@ var alter=sync(function(txt,t,left,top,width,height){
     fw.stop.click(function(){
         exit()
     })
-   
     fw.setTouchable(false)
-   
     fw.setPosition(0,85)
       ui.run(function(){
          console.log(txt)
@@ -247,22 +245,14 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
+
 var 今日签到=function(name){
     cs=数据库.get(name+"_sign_"+today(), false)
     show(name+"今日签到:"+cs)
     return cs
 }
-
-var 今日已签到=function(name){
-     数据库.put(name+"_sign_"+today(), true)
-}
-
-var 今日时长=function(name){
-   s=数据库.get(name+"_time_"+today(), 0)
-   show(name+"今日时长:"+s)
-   return s
-}
-
+var 今日已签到=function(name){ 数据库.put(name+"_sign_"+today(), true)}
+var 今日时长=function(name){   s=数据库.get(name+"_time_"+today(), 0);   show(name+"今日时长:"+s);   return s;}
 var 今日滑动次数=function(name){
     name= name||"glode"
     cs=数据库.get(name+"_"+today()+"_move", 0)
@@ -277,58 +267,21 @@ var 设置今日滑动次数=function(name,i){
     return cs
 }
 
-var 记录今日时长=function(name,t){
-    t=t||0
-    数据库.put(name+"_time_"+today(),今日时长()+t)
-}
+var 记录今日时长=function(name,t){    t=t || 0; 数据库.put(name+"_time_"+today(),今日时长()+t);}
+var 今日提现=function(name){    name=name || "";    return 数据库.get(name+"_cashout_"+today(),false);}
 
-var 今日提现=function(name){
-    name=name || ""
-    return 数据库.get(name+"_cashout_"+today(),false)
-}
-
-var 今日已提现=function(name){
-    数据库.put(name+"_cashout_"+today(),true)
-    show(name+"今日已提现")
-}
-var 记录今日金币=function(name,i){
-    数据库.put(name+"_lastcoin_"+today(),i)
-}
-var 上次今日金币=function(name){ 
-       s= 数据库.get(name+"_lastcoin_"+today(), 0)
-       show(name+"上次今日金币："+s)
-       return s
- } 
-var 记录现在金币=function(name,i){
-    log(name+":现在金币："+i)
-    数据库.put(name+"_lastcoin",i)
-}
-var 上次金币=function(name){ 
-       s= 数据库.get(name+"_lastcoin", 0)
-       show(name+"上次金币："+s)
-       return s
- } 
+var 今日已提现=function(name){    数据库.put(name+"_cashout_"+today(),true);    show(name+"今日已提现");}
+var 记录今日金币=function(name,i){    数据库.put(name+"_lastcoin_"+today(),i);}
+var 上次今日金币=function(name){  s= 数据库.get(name+"_lastcoin_"+today(), 0); show(name+"上次今日金币："+s);return s; } 
+var 记录现在金币=function(name,i){    log(name+":现在金币："+i);    数据库.put(name+"_lastcoin",i);}
+var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  show(name+"上次金币："+s);  return s; } 
  //可以通过上次的金币来判断是否 还可以获取金币
- var 记录现在余额=function(name,f){ 
-    log(name+":现在余额："+i)
-   数据库.put(name+"_lastmoney",f)
- } 
-
- var 上次余额=function(name){ 
-    s=   数据库.get(name+"_lastmoney", 0.0)
-    show(name+"上次余额"+s)
-    return s
- } 
-
- var 记录现在滑动次数=function(name,f){ 
-    数据库.put(name+"_lastswipetime_"+today(),f)
-} //可以通过上次的金币来判断是否 还可以获取金币
+ var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
+ var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);show(name+"上次余额："+s);    return s; } 
+ var 记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
  
-var 上次滑动次数=function(name){ 
-     s=   数据库.get(name+"_lastswipetime_"+today(), 0)
-     show(name+"上次滑动次数"+s)
-     return s
-} 
+var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);show(name+"上次滑动次数"+s);  return s;} 
+
 var lastscriptapp=spt.getString("lastscriptapp")
 var closelastscriptapp=function(){ forcestop(lastscriptapp)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
@@ -345,9 +298,7 @@ function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   re
  
 var forcestop=function(appname,st){
     show("强制关闭应用:"+appname); 
-    if(!appname){
-        return
-    }
+    if(!appname){ return }
     if(!getPackageName(appname)){  
         show(appname+"：没有安装");  
         return  
@@ -385,7 +336,6 @@ var forcestop=function(appname,st){
     sleep(2000) 
 }
 }
-
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
@@ -465,8 +415,8 @@ var checkfloaty=function(appname){
    if(!isfloaty){
        tofloatysetting()
        sleep(2000)
-       while(true){
-            if (textclick(appname)){
+       while(true){ 
+           if (textclick(appname)){ 
                 break
             }
            滑动(20,10,15,10,5,500,300)
@@ -482,16 +432,10 @@ var sleepr=function(short,long){
 }
 
 var getTextfromid=function(idstr,defaulttext){
-    if(!idstr){
-        return ""
-    }
+    if(!idstr){ return ""}
     defaulttext=defaulttext||""
     node_id=id(idstr).findOne(100)
-    if(node_id){
-        return node_id.text()
-    }else{
-        return ""
-    }
+    if(node_id){ return node_id.text(); }else{ return "";}
 }
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 100;
@@ -500,10 +444,7 @@ function idclick(idstr,t,left,top,right,bottom){
     right = bottom || device.width;
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
-    if(f){
-        if(clicknode(f)){
-            return true
-        }  
+    if(f){ if(clicknode(f)){ return true}  
     }
     return false
 }
@@ -527,43 +468,37 @@ function textclick(i,t,left,top,right,bottom){
 }
 
 
-function maytextclick(i,t,left,top,right,bottom){
+function maytextclick(maytext,t,left,top,right,bottom){
+    if(!maytext){  return  false;    }
     t=t || 100
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(maytext).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
-         f=textContains(i).boundsInside(left, top, right, bottom).findOne(t)
+         f=textContains(maytext).boundsInside(left, top, right, bottom).findOne(t)
          if(!f){
              return false
          }
     }
-     show("text："+i+":控件找到了")
-      if(clicknode(f)){
-          return true
-      }  
+    show("text："+i+":控件找到了")
+    if(clicknode(f)){  return true;  }  
     return false
 }
 
 //node 执行点击 
 var clicknode=function(v){
-    if(!v){
-        return
-    }
-    if(v.clickable()){
-      return  v.click()
-    }
+    if(!v){return false; }
+    if(v.clickable()){ return  v.click();    }
     if(enablegenius){
-             b=v.bounds()
+        b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             if(click(b.centerX(),b.centerY())){
                return true
            }else{
                return clicknode(v)
            }
-          
         }else{
             return false
         }
@@ -582,8 +517,6 @@ var clicknode=function(v){
             return false
         }
     }
-
-  
 }
 
 //一直找到可以点击控件向上查找
@@ -1646,3 +1579,5 @@ var close_ad_iclicash=function(apppkg){
 //  log(device)
 //  forcestop("刷宝短视频")
 //  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
+// sleep(5000)
+// log("运行时间:"+scriptruntime()+"-秒")
