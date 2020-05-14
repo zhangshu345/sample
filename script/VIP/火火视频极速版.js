@@ -32,6 +32,7 @@ var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
 var onlyscript=false
+
 if(changesetting){
  device.setMusicVolume(0)
  toastLog("自动设置音量为0")

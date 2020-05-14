@@ -10,8 +10,7 @@ function httpget(url) {
         return httpget(url)
     }
 }
-滑动次数=0
-// engines.stopOther()
+
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
@@ -21,11 +20,7 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
-// 彩蛋邀请 通过 微信链接绑定上级用户
 
-var apppkg="com.jifen.dandan"
-var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
-var appname="彩蛋视频"
 var tomoney=false  
 var invite=false // 邀请
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
@@ -33,10 +28,26 @@ var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
-var onlyscript=true  //仅允许当前一个脚本运行 
+var onlyscript=false  //仅允许当前一个脚本运行 
+var changesetting=true
+
+if(onlyscript){
+    engines.stopOther()
+}
+if(changesetting){
+    device.setMusicVolume(0)
+    toastLog("自动设置音量为0")
+}
+
+// 彩蛋邀请 通过 微信链接绑定上级用户 
+
+
+var apppkg="com.jifen.dandan"
+var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
+var appname="彩蛋视频"
+
 
 toastLog("指定："+appname+"即将启动")
-home()
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
@@ -47,10 +58,13 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 
+
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
+
 
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
@@ -74,6 +88,8 @@ var 视频次数=0
 //     show("彩蛋之前登陆过")
 // }
 var lastdesc=""
+var 滑动次数=0
+
 
 function run(){
     app.launchApp(appname)
