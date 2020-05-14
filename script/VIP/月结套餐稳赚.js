@@ -129,6 +129,3 @@ var thread = threads.start(function(){
     sleep(2000)
     run()
     runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")
-
-
-

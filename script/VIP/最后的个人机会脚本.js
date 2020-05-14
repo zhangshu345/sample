@@ -30,6 +30,7 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
+
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
 var run=function(){
     var appconfig=httpget(selfrewardlisturl)
