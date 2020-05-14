@@ -30,8 +30,7 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
-isdebug=false
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
 var run=function(){
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
@@ -74,12 +73,7 @@ var run=function(){
                     if(content){
                        engines.execScript(app.name,content, {"useFeatures":["continuation"]})
                        last=app
-                       if(isdebug){
-                        sleep(10*1000)
-                       }else{
-                        sleep(app.onetime*60*1000)
-                       }
-                       
+                       sleep(app.onetime*60*1000)
                     }
                }else{
                    last=app
@@ -99,8 +93,6 @@ var  shuffleArray=function(array) {
     }
     return array
 }
-
-
 
 var seerewardvideo=function(apppkg){
     sleep(10000)
@@ -133,9 +125,9 @@ var thread = threads.start(function(){
     }
 });
 //停止线程执行
-    sleep(2000)
-    run()
-    runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")
+sleep(2000)
+run()
+runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")
 
 
 

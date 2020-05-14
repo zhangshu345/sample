@@ -95,7 +95,6 @@ var  shuffleArray=function(array) {
 }
 
 
-
 var seerewardvideo=function(apppkg){
     sleep(10000)
     gbgg=0

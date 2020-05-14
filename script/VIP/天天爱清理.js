@@ -119,13 +119,12 @@ var run=function(){
        }else{
             show(appname+"在首页") 
             if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
-
              }
             if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",50)){
                 seead()
             }
             if(textoneexist(广告标志集合)){
-                  show("找到广告标识")
+                show("找到广告标识")
                 seead()
             }
             if(idclick(天天爱清理弹窗广告id,100)){
@@ -161,13 +160,8 @@ var run=function(){
             sleep(6000*ratio)
             滑动次数= 滑动次数+1
         }
-     
-     
        }
-      
-    
     }
-
 }
 
 //app 登录
