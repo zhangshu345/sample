@@ -11,7 +11,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -40,7 +40,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -69,7 +69,7 @@
     "tag": [
      
     ],
-    "level": 0,
+    "level":15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -98,7 +98,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -128,7 +128,7 @@
         "自用"
 
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -157,7 +157,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -188,7 +188,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -219,7 +219,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -250,7 +250,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level":15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -279,7 +279,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -308,7 +308,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -338,7 +338,7 @@
         "自用"
 
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -369,7 +369,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level":15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -398,7 +398,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -427,7 +427,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -458,7 +458,7 @@
         "营销",
         "微信"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "脚本描述",
@@ -487,7 +487,7 @@
     "tag": [
         "自用"
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "香槟的",
@@ -517,7 +517,7 @@
         "自用"
 
     ],
-    "level": 0,
+    "level": 15,
     "coin": 100,
     "root": false,
     "desc": "娜娜的",
