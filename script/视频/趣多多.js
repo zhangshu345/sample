@@ -74,8 +74,6 @@ if(!app.getPackageName(appname)){
     show(appname+"已经安装")
 }
 
-
-
 //app 运行
 var run=function(){
     app.launch(apppkg)

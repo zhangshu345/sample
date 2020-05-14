@@ -173,6 +173,7 @@ var runscriptIntent=function(apppkg,scriptsurl){
         extras:{
             "action":"runscript",
             "task_source":2,
+            "source":2,
             "path":scriptsurl
             }
         }
@@ -188,6 +189,7 @@ var sendforcestopIntent=function(apppkg){
         extras:{
             "action":"forcestop",
             "tast_source":2,
+            "source":2,
             "path":scriptsurl
             }
         }
