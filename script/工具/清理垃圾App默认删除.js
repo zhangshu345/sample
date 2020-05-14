@@ -32,9 +32,9 @@ var appconfig=httpget(rewardapplisturl)
 var appnames=["微信","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
 apps=JSON.parse(appconfig)
 apps.forEach(app =>{
-    if(app.install){
+    // if(app.install){
         appnames.push(app.name)
-    }
+    // }
    
 })
 toastLog("白名单列表:"+appnames.length)
