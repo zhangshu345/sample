@@ -1120,33 +1120,7 @@ function checkscreencapture2(){
 }
 
 
-//运行广告app
-var runadapp=function(appname,apppkg,showadtime,isforcestop){
-    if(!appname&&!apppkg){
-        return false
-    }
-    if(!getPackageName(appname)){
-        return false 
-    }
-  
-app.launchApp(appname)
-runapppkg=app.getPackageName(appname)
-runappisfirst=getbooleanvalue(appname+"_firstrun")
-sleep(2000)
-runtime=showadtime||random(5,10)*60*1000
-runstarttime=nowdate().getMilliseconds()
-toastLog("当前运行app："+appname+"--包名:"+runapppkg+"\n当前时间："+runstarttime+"--计划运行时间:"+runtime)
-while(nowdate().getMilliseconds()-runstarttime<runtime){
-    if(!idContains(runapppkg).findOne(1000)){
-        app.launchPackage(runapppkg)
-        sleep(5000)
-    }
-}
-if(isforcestop){
-    forcestop(appname)
-}
 
-}
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
 var addbmobchannel=function(channels){ BmobPushUtils.addchannel(channels)}
@@ -1550,6 +1524,94 @@ var close_ad_iclicash=function(apppkg){
     }
     if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
 
+    }
+}
+//运行特殊app
+var runrewardapp=function(appname,apppkg,showadtime){
+    app.launchApp(appname)
+    appruntime=showadtime||random(5,10)*60*1000
+    runstarttime=nowdate().getTime()
+    app.launchPackage(apppkg)
+    sleep(5000)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2500)
+    hdcs=0
+    while(nowdate().getTime()-runstarttime<appruntime){
+        cz=nowdate().getTime()-runstarttime
+        if(currentActivity()!="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
+            back()
+            back()
+            forcestop(appname)
+        }
+        if(close_ad_qq(apppkg)){    }
+         if(close_ad_toutiao(apppkg)){             }
+       if(!idContains(apppkg).findOne(1000)){
+            show(appname+"不在前台")
+            app.launchPackage(apppkg)
+            sleep(4000)
+            clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
+            if(textclick("总是允许")){
+                sleep(1000)
+                textclick("总是允许")
+                sleep(1000)
+                textclick("总是允许")
+                sleep(1000)
+                textclick("总是允许")
+            }
+            sleep(3000)
+        }else{
+           if(hdcs<10){
+                clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
+            if(textclick("总是允许")){
+                sleep(1000)
+                textclick("总是允许")
+                sleep(1000)
+                textclick("总是允许")
+                sleep(1000)
+                textclick("总是允许")
+            }
+           }
+            if(textoneexist(["点击下载"])){
+                back()
+            }
+            if (textclick("工具箱")){
+                show("工具箱点击成功")
+                sleep(1500)
+            }else{
+                if(!idContains(apppkg).findOne(1000)){
+                    show(appname+"不在前台")
+                    app.launchPackage(apppkg)
+                    sleep(3000)
+                }else{
+                    back()
+                }        
+            }
+            if(textoneexist(["点击下载"])){
+                    back()
+             }
+             滑动(20,10,16,11,6,500,1500)
+             hdcs=hdcs+1
+             show("滑动次数："+hdcs)
+             sleep(random(4,6)*1000)
+
+             r=random(5,10)
+           if(hdcs>10 && hdcs%r==0){
+            runadui(apppkg)
+            sleep(3000)
+           if(textclick("创意视频")){
+               seerewardvideo(apppkg)
+               sleep(2000)
+            }
+           if(textclick("全屏视频")){
+               sleep(10000)
+               back()
+           }
+           back()
+           }
+        }
+        if(textoneexist(["点击下载"])){
+            back()
+        }
+        sleep(3000)
     }
 }
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
