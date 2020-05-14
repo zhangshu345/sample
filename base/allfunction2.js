@@ -1586,6 +1586,19 @@ var runrewardapp=function(appname,apppkg,showadtime){
             if(textoneexist(["点击下载"])){
                     back()
              }
+             if(randomint(0,10)==5){
+                 ll_advice=id(apppkg+":id/ll_advice").findOne(100)
+
+                 if(ll_advice){
+                     ll_advice_bound=ll_advice.bounds()
+                     if(enablegenius){
+                         click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
+                         if(randomint(0,3)==1){
+                             threads.start(install_app())
+                         }
+                     }
+                 }
+             }
              滑动(20,10,16,11,6,500,1500)
              hdcs=hdcs+1
              show("滑动次数："+hdcs)

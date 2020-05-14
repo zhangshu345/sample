@@ -98,10 +98,10 @@ var run=function(){
     while(true){
         ii=ii+1
         log("ii:"+ii)
-        ca=currentActivity()
-     if(ca!=apphomeactivity){
-             show(appname+"不在主页面:"+ca) 
-             if(!idContains(apppkg).findOne(1000)){
+        // ca=currentActivity()
+    //  if(ca!=apphomeactivity){
+            //  show(appname+"不在主页面:"+ca) 
+             if(!idContains(apppkg).findOne(100)){
                 show(appname+"不在前台") 
                 app.launch(apppkg)
                 sleep(3000)
@@ -116,7 +116,7 @@ var run=function(){
              if( close_ad_toutiao()){
              }
             
-       }else{
+    
             show(appname+"在首页") 
             if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
              }
@@ -161,7 +161,7 @@ var run=function(){
             滑动次数= 滑动次数+1
         }
        }
-    }
+    // }
 }
 
 //app 登录
