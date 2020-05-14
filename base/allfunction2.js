@@ -1590,9 +1590,18 @@ var runrewardapp=function(appname,apppkg,showadtime){
              hdcs=hdcs+1
              show("滑动次数："+hdcs)
              sleep(random(4,6)*1000)
-
-             r=random(5,10)
+             r=random(3,7)
            if(hdcs>10 && hdcs%r==0){
+               if(textclick("任务")){
+                   sleep(1000)
+                   if(textclick("看激励视频")){
+                       seerewardvideo()
+                   }
+                   if(textclick("看视频")){
+                    seerewardvideo()
+                    }
+               }
+               
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){

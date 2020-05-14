@@ -87,8 +87,6 @@ var run=function(){
         }else{
             //这里是视频上滑操作
         }
-
-
         n_i=n_i+1
     }
 

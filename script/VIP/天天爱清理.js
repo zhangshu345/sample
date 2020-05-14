@@ -35,6 +35,8 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var islogin=false
 var onlyscript=false  //仅允许当前一个脚本运行 
+
+var 天天爱清理清理数据完成页面="com.xiaoqiao.qclean.base.view.guide.GuidePageViewActivity"
 var 天天爱清理红包奖励id="com.xiaoqiao.qclean:id/image_red_bg_icon"
 var 天天爱清理红包奖励状态id="com.xiaoqiao.qclean:id/tv_task_status"
 var 天天爱清理视频页喜欢id="com.xiaoqiao.qclean:id/tv_like"
@@ -81,7 +83,9 @@ var ss=function(){
         }
     }
 }
-
+var app_reward_clear=function(){
+    
+}
 //首次进入  同意  我的  com.xiaoqiao.qclean:id/iv_open_btn 
 //app 运行
 // com.xiaoqiao.qclean:id/tv_bubble_1  清理界面悬浮的按个  
@@ -97,7 +101,6 @@ var run=function(){
         ca=currentActivity()
      if(ca!=apphomeactivity){
              show(appname+"不在主页面:"+ca) 
-
              if(!idContains(apppkg).findOne(1000)){
                 show(appname+"不在前台") 
                 app.launch(apppkg)

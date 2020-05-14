@@ -43,9 +43,6 @@ if(changesetting){
 }
    
 
-
-
-
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity=""
 var appname="火火视频极速版"
