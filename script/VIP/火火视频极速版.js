@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -9,7 +10,6 @@ function httpget(url) {
     }
 }
 滑动次数=0
-engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
@@ -24,23 +24,33 @@ creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 
 gfw.setPosition(0,220)
-device.setMusicVolume(0)
-device.wakeUpIfNeeded()
-toastLog("自动设置音量为0")
+
+
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity="com.qukandian.video.qkdbase.activity.MainActivity"
 var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
-show("开始："+appname+"辅助滑动")
+var onlyscript=false
+if(changesetting){
+ device.setMusicVolume(0)
+ toastLog("自动设置音量为0")
+}
 
-closerecentapp()
+if(onlyscript){
+    engines.stopOther()
+}
+
+show("开始："+appname+"辅助滑动")
+// closerecentapp()
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }else{
     show(appname+"已经安装")
 }
+
+
 //邀请 
 // 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
 
@@ -75,6 +85,8 @@ var action="小视频"
 var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=true
+
+
 var app_islogin=function(){
     n_islogin=0
     while(n_islogin<10){
@@ -93,6 +105,7 @@ var app_islogin=function(){
 }
 var 火火关闭锁屏功能=function(){
     火火选中底部导航(2)
+
 }
 var 火火选中底部导航=function(indexofbottom){
     node_me=className("android.widget.RelativeLayout").clickable(true).depth(7).indexInParent(indexofbottom).findOne(100)
@@ -124,7 +137,6 @@ var 点击金蛋=function(){
     }else{sleep(1500)
         show("没有找到金蛋大奖："+i)
     }
-
     jddj=text("金蛋大奖").findOne(300)
     if(jddj){
         show("找到金蛋大奖")
