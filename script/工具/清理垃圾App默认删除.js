@@ -94,6 +94,3 @@ allapps.forEach(app =>{
 }
 
 listapp()
-// xiadelect.forEach(app=>{
-//     uninstallapp(app)
-// })

@@ -1000,8 +1000,7 @@ var runurlscript=function(name,url){
     content=httpget(url)
     if(content){
        engines.execScript(name,content, {"useFeatures":["continuation"]})
-       last=app
-       sleep(app.onetime*1000)
+    
     }
 }
 
