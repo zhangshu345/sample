@@ -1591,20 +1591,23 @@ var runrewardapp=function(appname,apppkg,showadtime){
 
                  if(ll_advice){
                      ll_advice_bound=ll_advice.bounds()
-                     if(enablegenius){
-                         click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
-                         if(randomint(0,3)==1){
-                             threads.start(install_app())
-                         }
+                     if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
+                        if(enablegenius){
+                            click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
+                            if(randomint(0,3)==1){
+                                threads.start(install_app())
+                            }
+                        }
                      }
+                   
                  }
              }
              滑动(20,10,16,11,6,500,1500)
              hdcs=hdcs+1
              show("滑动次数："+hdcs)
-             sleep(random(4,6)*1000)
-             r=random(3,7)
-           if(hdcs>10 && hdcs%r==0){
+             sleep(random(3,4)*1000)
+             r=random(2,5)
+           if(hdcs>2 && hdcs%r==0){
                if(textclick("任务")){
                    sleep(1000)
                    if(textclick("看激励视频")){
