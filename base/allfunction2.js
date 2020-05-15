@@ -1476,9 +1476,9 @@ var runrewardapp=function(appname,apppkg,showadtime){
             if(textoneexist(["点击下载"])){
                 back()
             }
-            if (textclick("工具箱")){
+            if (clickonetexts(["工具箱","市场"],100,1500)){
                 show("工具箱点击成功")
-                sleep(1500)
+               
             }else{
                 if(!idContains(apppkg).findOne(1000)){
                     show(appname+"不在前台")
