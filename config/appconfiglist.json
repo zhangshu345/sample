@@ -7,7 +7,6 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/宝宝常识/allconfig.json"
 },
-
 {"name":"东东随便",
     "pkg":"com.dongdong.suibian",
     "channel":"androidjs",
@@ -115,9 +114,7 @@
     "version":"1.2.8",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/冥想音乐/allconfig.json"
-}
-,
-
+},
 {"name":"唐诗精选",
     "pkg":"com.zpy.poem.ts300",
     "channel":"androidjs",
@@ -153,8 +150,7 @@
     "version":"1.1.8",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小白日历/allconfig.json"
-}
-,
+},
 {"name":"小强助理",
     "pkg":"com.xiaoqiang.weather",
     "channel":"androidjs",
@@ -163,8 +159,7 @@
     "version":"1.2.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小强助理/allconfig.json"
-}
-,
+},
 {"name":"休息声音",
     "pkg":"net.yuyu.sleepsounds",
     "channel":"androidjs",
@@ -173,8 +168,7 @@
     "version":"5.8.8",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/休息声音/allconfig.json"
-}
-,
+},
 {"name":"一个就够",
     "pkg":"com.hongshu.onemore",
     "channel":"androidjs",
