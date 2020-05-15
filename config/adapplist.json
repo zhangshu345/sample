@@ -1,4 +1,33 @@
 [	{
+    "name": "唐诗宋词集合",
+    "open": false,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "自用"
+    ],
+    "level": 15,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "starttime":"",
+    "endtime":"",
+    "pkg": "com.yuyu.tangsong",
+    "bmobid": "",
+    "scripturl": "",
+    "money": 1.0,
+    "onetime": 5,
+    "maxtime": 0,
+    "day":"2020-3-25",
+    "runtime":30,
+    "version": 118,
+    "appversion": "",
+    "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/唐诗宋词集合_118.apk"
+},{
     "name": "东东随便",
     "open": true,
     "install": true,
