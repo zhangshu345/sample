@@ -8,9 +8,7 @@ function httpget(url) {
         return ""
     }
 }
-滑动次数=0
-每日提现=false
-var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
+
 
 //engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
@@ -23,13 +21,11 @@ toastLog("公共函数实例化失败,程序返回")
 }
 
 
-alltest()
-floaty.closeAll()
-creatgfloatywindow()
 
+滑动次数=0
+每日提现=false
+var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 show("开始刷宝短视频辅助滑动")
-
-
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
@@ -37,16 +33,19 @@ var apppkg="com.jm.video"
 var apphomeactivity="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
+
+alltest()
+floaty.closeAll()
+creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 
-home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
 
 刷宝邀请()
-app.launchApp(appname)
+
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
@@ -54,7 +53,7 @@ var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
-
+app.launchApp(appname)
 
 
 //回到视频页
@@ -171,7 +170,7 @@ var appsign=function(){
 }
 var applogin=function(){
     i=0
-    while(i<10){
+    while(i<3){
         show(appname+"登录")
            if(!idContains("com.jm.video").findOne(1000)){
                 show("找到存在包名id控件")
@@ -181,17 +180,16 @@ var applogin=function(){
                 back()
                 sleep(1200)
             }
-
         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
             show("我界面找到昵称和设置")
             spt.put("shuabaologin",true)
-               return true
+            return true
         }else{
             show("没有找到昵称和设置")
             back()
             sleep(1000)
         }
-        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],100,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            show("登录页面")
            if(logintype=="weixin"){

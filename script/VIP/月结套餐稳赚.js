@@ -1,6 +1,7 @@
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
+device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -17,10 +18,12 @@ var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunc
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-//toastLog("公共函数实例化成功")
+engines.stopOther()
+
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
+
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
@@ -28,7 +31,6 @@ creatsetfloatywindow()  //创建设置悬浮窗
 show("开始月结套餐稳赚")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
-device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var run=function(){
@@ -94,7 +96,6 @@ var  shuffleArray=function(array) {
     }
     return array
 }
-
 
 var seerewardvideo=function(apppkg){
     sleep(10000)

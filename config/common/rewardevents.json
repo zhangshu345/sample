@@ -1,0 +1,7 @@
+[{"name":"横幅展示","eventid":13,"coin":10,"money":0,"extra":"","requestcoin":1000},{"name":"横幅点击","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000}
+    ,{"name":"开屏展示","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000},{"name":"开屏点击","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000}
+    ,{"name":"插屏展示","eventid":14,"coin":10,"money":0,"extra":""},{"name":"插屏点击","eventid":14,"coin":10,"money":0,"extra":""}
+    ,{"name":"原生展示","eventid":14,"coin":10,"money":0,"extra":""},{"name":"原生点击","eventid":14,"coin":10,"money":0,"extra":""}
+    ,{"name":"激励展示","eventid":14,"coin":10,"money":0,"extra":""},{"name":"激励点击","eventid":14,"coin":10,"money":0,"extra":""}
+    ,{"name":"视频展示","eventid":14,"coin":10,"money":0,"extra":""},{"name":"视频点击","eventid":14,"coin":10,"money":0,"extra":""}
+]
