@@ -1426,9 +1426,9 @@ var close_ad_iclicash=function(apppkg){
         }
     }
     if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
-
     }
 }
+
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
     app.launchApp(appname)
