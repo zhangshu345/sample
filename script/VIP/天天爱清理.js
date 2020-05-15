@@ -292,6 +292,9 @@ var seead=function(timeout){
         if(currentActivity()==apphomeactivity){
             return
         }
+        if(idoneexist(视频页标记id集合)){
+            return
+        }
         n_see=n_see+1
     }
 }
