@@ -8,6 +8,11 @@ importClass(com.hongshu.utils.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
+importClass(android.icu.text.SimpleDateFormat);
+importClass(java.util.HashSet);
+importClass(com.hongshu.utils.GsonUtils)
+importClass(com.hongshu.utils.AppUtils)
+var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
@@ -150,10 +155,61 @@ var  creatsetfloatywindow=function(){
     })
 }
 
+//列出app
+function listapp(){
+    var appconfig=httpget(allrewardappurl)
+    var allapps=[]
+    appnames=["微信","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    apps=JSON.parse(appconfig)
+    apps.forEach(app =>{
+     if(app.install){
+        appnames.push(app.name)
+     }
+})
+log("白名单："+appnames.length+"+++"+appnames)
+    var packageManager=context.getPackageManager()
+    var packageInfos = packageManager.getInstalledPackages(0);
+    for(var i = 0; i < packageInfos.size(); i++) {
+        var packageInfo = packageInfos.get(i);
+            //todo 压缩只对保存有效果bitmap还是原来的大小
+        //第一次安装时间
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        appDate = packageInfo.firstInstallTime;
+        app_name=packageInfo.applicationInfo.loadLabel(packageManager),
+        app_version= packageInfo.versionName,
+        app_packageName= packageInfo.packageName,
+        app_firstInstall=  dateFormat.format(appDate),
+        app_issystem= (packageInfo.flags&1)!=0
+        app_isselect=false
+        allapps.push({
+            name: app_name,
+            version: "版本号: " + app_version,
+            packageName: app_packageName,
+            firstInstall: "安装时间: " + app_firstInstall,
+            isselect:app_isselect,
+            issystem:app_issystem
+        });
+    };
+    m=0
+    log("白名单："+appnames)
+    allapps.forEach(app =>{
+      if(!AppUtils.isAppSystem(app.packageName)){
+          if(appnames.indexOf(app.name)==-1){
+                toastLog(app.name+"不是白名单app")
+                uninstallapp(app.name)
+                log("第三方应用"+GsonUtils.toJson(app))
+          }else{
+            toastLog(app.name+"是白名单app")
+          }
+            m=m+1
+      }
+  })
+  log("一共第三方应用："+m)
+    return allapps
+}
 var closerecentapp=function(){
     recents()
     if(device.brand=="samsung"){
-                
         sleep(2000)
         textclick("全部关闭")
         sleep(1000)
@@ -197,20 +253,12 @@ var sendforcestopIntent=function(apppkg){
     context.startActivity(i);
 }
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
-var show=function(txt){ log(txt);      if(!isshowfloaty){ return  };
-    if(!gfw){
-        creatgfloatywindow()
-    }
-    ui.run(function(){
-        gfw.text.setText("运行:"+scriptruntime()+"秒："+txt)
-     })
+var show=function(txt){ log(txt); if(!isshowfloaty){ return  };
+    if(!gfw){ creatgfloatywindow();  };
+    ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
 }
-var 上滑=function(){
-    滑动(20,13,17,10,4,500,500)
-}
-var 下滑=function(){
-    滑动(20,10,3,13,17,500,500)
-}
+var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
+var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
 
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
@@ -247,43 +295,23 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
-
-var 今日签到=function(name){
-    cs=数据库.get(name+"_sign_"+today(), false)
-    show(name+"今日签到:"+cs)
-    return cs
-}
-var 今日已签到=function(name){ 数据库.put(name+"_sign_"+today(), true)}
-var 今日时长=function(name){   s=数据库.get(name+"_time_"+today(), 0);   show(name+"今日时长:"+s);   return s;}
-var 今日滑动次数=function(name){
-    name= name||"glode"
-    cs=数据库.get(name+"_"+today()+"_move", 0)
-    show(name+"：今日滑动次数:"+cs)
-    return cs
-}
-var 设置今日滑动次数=function(name,i){
-    name=name||"glode"
-    i=i||0
-    数据库.put(name+"_"+today()+"_move", i)
-    show(name+"：记录今日滑动次数:"+i)
-    return cs
-}
-
+var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);show(name+"今日签到:"+cs);  return cs;}
+var 今日已签到=function(name){数据库.put(name+"_sign_"+today(), true)}
+var 今日时长=function(name){s=数据库.get(name+"_time_"+today(), 0);show(name+"今日时长:"+s);return s;}
+var 今日滑动次数=function(name){name= name||"glode";cs=数据库.get(name+"_"+today()+"_move", 0);show(name+"：今日滑动次数:"+cs);return cs;}
+var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;数据库.put(name+"_"+today()+"_move", i);show(name+"：记录今日滑动次数:"+i); return cs;}
 var 记录今日时长=function(name,t){    t=t || 0; 数据库.put(name+"_time_"+today(),今日时长()+t);}
 var 今日提现=function(name){    name=name || "";    return 数据库.get(name+"_cashout_"+today(),false);}
-
 var 今日已提现=function(name){    数据库.put(name+"_cashout_"+today(),true);    show(name+"今日已提现");}
 var 记录今日金币=function(name,i){    数据库.put(name+"_lastcoin_"+today(),i);}
 var 上次今日金币=function(name){  s= 数据库.get(name+"_lastcoin_"+today(), 0); show(name+"上次今日金币："+s);return s; } 
 var 记录现在金币=function(name,i){    log(name+":现在金币："+i);    数据库.put(name+"_lastcoin",i);}
 var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  show(name+"上次金币："+s);  return s; } 
  //可以通过上次的金币来判断是否 还可以获取金币
- var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
- var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);show(name+"上次余额："+s);    return s; } 
- var 记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
- 
+var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
+var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);show(name+"上次余额："+s);    return s; } 
+var 记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);show(name+"上次滑动次数"+s);  return s;} 
-
 var lastscriptapp=spt.getString("lastscriptapp")
 var closelastscriptapp=function(){ forcestop(lastscriptapp)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
@@ -301,42 +329,19 @@ function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   re
 var forcestop=function(appname,st){
     show("强制关闭应用:"+appname); 
     if(!appname){ return }
-    if(!getPackageName(appname)){  
-        show(appname+"：没有安装");  
-        return  
-    };   
+    if(!getPackageName(appname)){ show(appname+"：没有安装");return };   
       st=st||10000;  
        packagename=app.getPackageName(appname);  
        app.openAppSetting(packagename);
-      if( device.brand=="samsung"){
-        closetexts= ["强制停止","强制停止"];
-
-       }else if(device.brand=="HONOR"){
-        closetexts= ["强行停止","强行停止"];
-       }
-       else if(device.brand=="DOCOMO"){
-        closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
-    }
-    else if(device.brand=="Meizu"){
-        closetexts= ["强行停止","确定"];
-    }
-    else if(device.brand=="xiaomi"){
-        closetexts= ["结束运行","确定"];
-    }
-    else if(device.brand=="OPPO"){
-        closetexts= ["强行停止","强行停止"];
-    }else{
-        closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];
-    }
- 
-  sleep(2000)
-  i=0;  while(i<3){
-     if (clickalltexts(closetexts,300,2000) ){
-          return true
-      }
-     i=i+1;
-    sleep(2000) 
-}
+      if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
+    else if(device.brand=="HONOR"){closetexts= ["强行停止","强行停止"]; }
+    else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
+    else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
+    else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
+    else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
+    else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
+   sleep(2000)
+  i=0;  while(i<3){     if (clickalltexts(closetexts,300,2000) ){return true;}i=i+1; sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -418,9 +423,7 @@ var checkfloaty=function(appname){
        tofloatysetting()
        sleep(2000)
        while(true){ 
-           if (textclick(appname)){ 
-                break
-            }
+           if (textclick(appname)){  break };
            滑动(20,10,15,10,5,500,300)
            sleep(2000)
        }
@@ -496,28 +499,15 @@ var clicknode=function(v){
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            if(click(b.centerX(),b.centerY())){
-               return true
-           }else{
-               return clicknode(v)
-           }
-        }else{
-            return false
-        }
-     }else{
-        if(clickparents(v)){
-            return true
-        }
-        if(clickchilds(v)){
-            return true
-        }
+            if(click(b.centerX(),b.centerY())){return true           }
+            else{ return clicknode(v) }
+        }else{  return false }
+     }else{ if(clickparents(v)){ return true  }
+        if(clickchilds(v)){  return true}
         r=v.bounds()
         var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-        if(w){
-            return w.click()
-        }else{
-            return false
-        }
+        if(w){ return w.click() ;}
+        else{ return false;  }
     }
 }
 
@@ -525,17 +515,9 @@ var clicknode=function(v){
 var clickparents=function(v,n){
     i=0
     n=n||15
-    while(i<n){
-        p=v.parent()
-        if(p&&p.clickable()){
-            show("找到可点击控件"+toString(p))
-            return p.click()
-        }else{
-            i=i+1
-            show("向上查找层数："+i)
-            v=p
-        }
-    }
+    while(i<n){  p=v.parent();
+        if(p&&p.clickable()){show("找到可点击控件"+toString(p));  return p.click(); }
+        else{ i=i+1; show("向上查找层数："+i); v=p }    }
     return false
 }
 //找到子类 点击下去
@@ -737,23 +719,12 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         }
     }
 }
-
-
-
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
     s=0
     if(texts.length>0){
-        for(i=0;i<texts.length;i++){
-            if(text(texts[i]).exists()){
-                s=s+1
-            }else{
-                return false
-            }
-        }
-        if(s==texts.length){
-            return true
-        }
+        for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){s=s+1; }  else{ return false; } }
+        if(s==texts.length){return true; }
     }
     return false
 }
@@ -762,32 +733,21 @@ var textallexist=function(texts){
 var idallexist=function(ids){
     s=0
     if(ids.length>0){
-        for(i=0;i<ids.length;i++){
-            if(id(ids[i]).exists()){
-                s=s+1
-            }else{
-                return false
-            }
+        for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){  s=s+1; }else{  return false; }
         }
-        if(s==ids.length){
-            return true
-        }
+        if(s==ids.length){ return true;        }
     }
     return false
 }
 
 /*文本只要存在一个就返回真 */
 var textoneexist=function(texts){
-     if(texts.length>0){
-        for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){  return true }  }
-    }
+     if(texts.length>0){for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){  return true }  }    }
     return false
 }
 /**只要存在一个id就返回真 */
 var idoneexist=function(ids){
-     if(ids.length>0){
-        for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }
-    }
+     if(ids.length>0){for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }    }
     return false
 }
 var firstrunapp=function(appname){
@@ -884,50 +844,25 @@ function downloadApk(name,url,isinstall) {
         installapp(filePath)
      }
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-     if( device.brand=="samsung"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-
-       }else if(device.brand=="HONOR"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-       }
-       else if(device.brand=="DOCOMO"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-    }
-    else if(device.brand=="Meizu"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-    }
-    else if(device.brand=="xiaomi"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-    }
-    else if(device.brand=="OPPO"){
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-    }else{
-        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
-    }
-
+     if( device.brand=="samsung"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
+     else if(device.brand=="HONOR"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
+       else if(device.brand=="DOCOMO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else if(device.brand=="Meizu"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else{        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
-            if(textclick("允许此来源")){
-                back()
-                sleep(1000)
-            }
+            if(textclick("允许此来源")){ back(); sleep(1000) ; }
            clicktexts(clickarray)
-           if(text("允许此来源").exists()){
-              if(idclick("android:id/switch_widget")){
-                  control_click(3,"向上导航")
-              }
+           if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){control_click(3,"向上导航"); }
             }
-            if(textclick("允许来自此来源的应用")){
-               back()
-               sleepr(1200)
-            }
+            if(textclick("允许来自此来源的应用")){ back();sleepr(1200);  }
             //夏普手机的禁止安装
-            if(device.brand=="DOCOMO"){
-                if(text("出于安全考虑，已禁止您的手机安装来自此来源的未知应用").exists()){
-                    if(textclick("设置")){
-                        sleep(2000)
+            if(device.brand=="DOCOMO"){ if(text("出于安全考虑，已禁止您的手机安装来自此来源的未知应用").exists()){
+                    if(textclick("设置")){ sleep(2000);
                         if(textclick("允许来自此来源的应用")){
                             sleep(500)
                             back()   } }  } 
@@ -950,17 +885,10 @@ function downloadApk(name,url,isinstall) {
              }
              back()
          }
-         if (textclick("完成")){
-             return
-         }
-         if (text("打开").exists()){
-             return
-        }   
+         if (textclick("完成")){ return         }
+         if (text("打开").exists()){ return   }   
         //系统可以获取到app 的包名的时候就
-        if(app.getPackageName(name)){
-            sleep(1000)
-            return
-        }
+        if(app.getPackageName(name)){  sleep(1000);  return }
      }
      back()
      sleep(1000)
@@ -981,26 +909,18 @@ function downloadApk(name,url,isinstall) {
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
     appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
-    if(appinfo){
-        log("应用详情：获取成功")
-        downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true)
-    }
+    if(appinfo){log("应用详情：获取成功");downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true);    }
 }
 //关闭其他应用
 var stopOtherScript=function(){
     var thisengs=engines.myEngine()
     var allengs=engines.all()
-    allengs.forEach(e =>{
-        if(e.getId()!=thisengs.getId()){
-            engines.stop(e.getId())
-        }
+    allengs.forEach(e =>{        if(e.getId()!=thisengs.getId()){engines.stop(e.getId());  }
     })
 }
 var runurlscript=function(name,url){
     content=httpget(url)
-    if(content){
-       engines.execScript(name,content, {"useFeatures":["continuation"]})
-    
+    if(content){engines.execScript(name,content, {"useFeatures":["continuation"]});    
     }
 }
 
@@ -1009,17 +929,9 @@ var phonenumber=function(){
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
      
-     if(!pnumber){
-         pnumber=spt.getString("phonenumber")
-     }
-     if(pnumber.startsWith("+86")){
-         pnumber=pnumber.substr(3)
-     }
-     if(pnumber){
-         return pnumber
-     }else{
-         return null
-     }
+     if(!pnumber){pnumber=spt.getString("phonenumber");     }
+     if(pnumber.startsWith("+86")){pnumber=pnumber.substr(3);     }
+     if(pnumber){ return pnumber;     }else{return null;     }
 }
 //本地配置启用脚本
 var startallapp = function(){
@@ -1121,12 +1033,8 @@ function checkscreencapture2(){
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
 var addbmobchannel=function(channels){ BmobPushUtils.addchannel(channels)}
-
 var removebmobchannel=function(channels){    BmobPushUtils.removechannel(channels)}
-
 var bmobpushmessage=function(channels,message){BmobPushUtils.pushmessage(channels,message)}
-
-
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
@@ -1139,8 +1047,7 @@ var startdeviceadmin=function(){
     var eeee= engines.execScript("uiname",ui函数,{})
     sleep(1000)
     let ss=true
-    while(ss)
-    {
+    while(ss){
         if(isdeviceadmin()){
             show("设备管理 ok")
             if(eeee.getId()){
@@ -1153,7 +1060,6 @@ var startdeviceadmin=function(){
             show("设备管理 no")
         }
         clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
-      
         sleepr(500,1000)
         滑动(20,10,17,10,5,500,300)
     }
