@@ -159,7 +159,7 @@ var  creatsetfloatywindow=function(){
 function listapp(){
     var appconfig=httpget(allrewardappurl)
     var allapps=[]
-    appnames=["微信","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
     apps=JSON.parse(appconfig)
     apps.forEach(app =>{
      if(app.install){
@@ -1449,7 +1449,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
-            sleep(4000)
+            sleep(5000)
             clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
                 sleep(1000)
@@ -1541,6 +1541,29 @@ var runrewardapp=function(appname,apppkg,showadtime){
         sleep(3000)
     }
 }
+var seerewardvideo=function(apppkg){
+    sleep(10000)
+    gbgg=0
+    while(gbgg<20){
+        show("关闭广告："+gbgg)
+        back()
+      if(close_ad_qq(apppkg)){
+          return
+      }
+       if(close_ad_toutiao(apppkg)){
+           return 
+       }
+       if(text("创意视频").findOne(300)){
+           return
+       }
+       if(textoneexist(["点击下载"])){
+           back()
+       }
+       sleep(2000)
+       gbgg=gbgg+1
+    }
+}
+
  //log(device.device + device.isCharging() +device.getBattery()+device.getTotalMem()+"--"+device.getAvailMem())
 // log()
 
