@@ -517,7 +517,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -548,7 +547,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -609,7 +607,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -640,7 +637,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -671,7 +667,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
@@ -691,8 +686,7 @@
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
     "downloadurl": ""
-}
-,
+},
 {
     "name": "绿洲",
     "open": false,
@@ -703,7 +697,6 @@
     "permoney": 0.3,
     "tag": [
         "自用"
-
     ],
     "level": 0,
     "coin": 100,
