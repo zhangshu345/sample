@@ -1347,7 +1347,6 @@ function get_phone_code(app_name,reg,startwords,endwords){
     return code
 }
 
-
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
     if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
