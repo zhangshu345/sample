@@ -65,7 +65,6 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
 const 彩蛋首页任务状态id="com.jifen.dandan:id/tv_task_status" // text 3/5
