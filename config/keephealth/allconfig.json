@@ -21,7 +21,7 @@
     "notificationsurl":"",
     "lineme":"",
     "messagesurl":"",
-    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/KeepHealth/apphistory.json",
+    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/keephealth/apphistory.json",
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
