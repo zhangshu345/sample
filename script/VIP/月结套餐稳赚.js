@@ -40,12 +40,19 @@ var run=function(){
     var last
     apps= shuffleArray(apps)
     apps.forEach(app => {
+        if(scriptappname==app.name){
+            return
+        }
         if(app.open){
+            
             forcestop(app.name)
             sleep(1000)
         }
     })
     apps.forEach(app => {
+        if(scriptappname==app.name){
+            return
+        }
         device.wakeUpIfNeeded()
            if(last){
                记录今日时长(last.name,last.onetime)
