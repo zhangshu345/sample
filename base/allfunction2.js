@@ -1341,7 +1341,7 @@ var close_ad_qq=function(apppkg){
     // ccj_file_paths 
     if(currentActivity()=="com.qq.e.ads.PortraitADActivity"){
         while(true){
-            ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
+            ci=className("android.widget.ImageView").clickable().depth(5)..findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1351,7 +1351,7 @@ var close_ad_qq=function(apppkg){
                 }
             }
             if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
+                ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
@@ -1367,7 +1367,7 @@ var close_ad_qq=function(apppkg){
             }
         }
     }
-    ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
+    ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1377,7 +1377,7 @@ var close_ad_qq=function(apppkg){
                 }
             }
             if(text("点击下载").exists()){
-              ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
+              ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
