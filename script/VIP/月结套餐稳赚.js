@@ -44,7 +44,6 @@ var run=function(){
             return
         }
         if(app.open){
-            
             forcestop(app.name)
             sleep(1000)
         }
@@ -113,6 +112,6 @@ var thread = threads.start(function(){
     }
 });
 //停止线程执行
-    sleep(2000)
-    run()
-    runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")
+sleep(2000)
+run()
+runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js")

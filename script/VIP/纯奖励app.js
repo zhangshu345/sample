@@ -19,7 +19,6 @@ var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
 engines.stopOther()
-
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
@@ -104,30 +103,7 @@ var  shuffleArray=function(array) {
     return array
 }
 
-var seerewardvideo=function(apppkg){
-    sleep(10000)
-    gbgg=0
-    while(gbgg<20){
-        show("关闭广告："+gbgg)
-        back()
-      if(close_ad_qq(apppkg)){
-          return
-      }
-       if(close_ad_toutiao(apppkg)){
-           return 
-       }
-       if(text("创意视频").findOne(300)){
-           return
-       }
-       if(textoneexist(["点击下载"])){
-           back()
-       }
-       sleep(2000)
-       gbgg=gbgg+1
-    }
-}
-
-addbmobchannel("hongshureward")
+addbmobchannel("rewardad")
 var thread = threads.start(function(){
     while(true){
         sleep(60000)
@@ -135,6 +111,6 @@ var thread = threads.start(function(){
     }
 });
 //停止线程执行
-    sleep(2000)
-    run()
-    runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app.js")
+sleep(2000)
+run()
+runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app.js")

@@ -340,8 +340,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-   sleep(2000)
-  i=0;  while(i<3){     if (clickalltexts(closetexts,300,2000) ){return true;}i=i+1; sleep(2000) ;}
+  i=0;  while(i<4){     if (clickalltexts(closetexts,100,2000) ){return true;}i=i+1; sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -1477,7 +1476,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
             }
             if (clickonetexts(["工具箱","市场"],100,1500)){
                 show("工具箱点击成功")
-               
             }else{
                 if(!idContains(apppkg).findOne(1000)){
                     show(appname+"不在前台")
@@ -1492,7 +1490,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
              }
              if(randomint(0,10)==5){
                  ll_advice=id(apppkg+":id/ll_advice").findOne(100)
-
                  if(ll_advice){
                      ll_advice_bound=ll_advice.bounds()
                      if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
@@ -1503,7 +1500,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
                             }
                         }
                      }
-                   
                  }
              }
              滑动(20,10,16,11,6,500,1500)
@@ -1532,7 +1528,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
                sleep(10000)
                back()
            }
-           back()
+                back()
            }
         }
         if(textoneexist(["点击下载"])){

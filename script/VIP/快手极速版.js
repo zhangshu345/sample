@@ -35,7 +35,6 @@ var todaysign=今日签到(appname)
 var coin=上次金币(appname)
 var money=上次余额(appname)
 
-
 if(invite){
     快手极速版邀请()
 }
@@ -55,7 +54,8 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
-
+closelastscriptapp()
+spt.put("lastscriptapp",appname)
 
 /** 
  * 识别滑块位置
@@ -443,7 +443,7 @@ var app_close_alter=function(){
 var app_sign=function(){
     log("快手签到")
     s=0
-    while(s<5){
+    while(s<10){
         app_close_alter()
         滑块验证()
         app_get_coin_money()
