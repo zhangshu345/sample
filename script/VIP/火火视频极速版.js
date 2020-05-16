@@ -22,9 +22,7 @@ alltest()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-
 gfw.setPosition(0,220)
-
 
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity="com.qukandian.video.qkdbase.activity.MainActivity"
@@ -32,16 +30,6 @@ var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
 var onlyscript=false
-
-if(changesetting){
- device.setMusicVolume(0)
- toastLog("自动设置音量为0")
-}
-
-if(onlyscript){
-    engines.stopOther()
-}
-
 show("开始："+appname+"辅助滑动")
 // closerecentapp()
 if(!app.getPackageName(appname)){
@@ -50,7 +38,19 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
+if(changesetting){
+    device.setMusicVolume(0)
+    toastLog("自动设置音量为0")
+}
 
+
+if(onlyscript){
+    engines.stopOther()
+}
+
+//关闭最新的app
+closelastscriptapp()
+spt.put("lastscriptapp",appname)
 
 //邀请 
 // 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
@@ -61,12 +61,11 @@ if(!app.getPackageName(appname)){
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 
 const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
-
 const 火火视频极速版导航按钮id="com.jt.hanhan.video:id/a9f"
 const 火火视频极速版奖励布局id="com.jt.hanhan.video:id/ii"
 const 火火视频极速版领取红包id="com.jt.hanhan.video:id/a9l"
 const 火火视频金蛋大奖id="com.jt.hanhan.video:id/ga"
-var 火火视频极速版首页标识id =[火火视频极速版导航按钮id,火火视频极速版奖励布局id,火火视频极速版领取红包id]
+var   火火视频极速版首页标识id =[火火视频极速版导航按钮id,火火视频极速版奖励布局id,火火视频极速版领取红包id]
 const 火火视频小视频喜欢id="com.jt.hanhan.video:id/s6"
 const 火火视频小视频点赞id="com.jt.hanhan.video:id/s7"
 const 火火视频小视频评论id="com.jt.hanhan.video:id/s8"
@@ -87,7 +86,6 @@ var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=true
 
-
 var app_islogin=function(){
     n_islogin=0
     while(n_islogin<10){
@@ -101,13 +99,13 @@ var app_islogin=function(){
         }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
                 textclick("取消")
         }
-       
     }
 }
+
 var 火火关闭锁屏功能=function(){
     火火选中底部导航(2)
-
 }
+
 var 火火选中底部导航=function(indexofbottom){
     node_me=className("android.widget.RelativeLayout").clickable(true).depth(7).indexInParent(indexofbottom).findOne(100)
     if(node_me){
@@ -118,6 +116,7 @@ var 火火选中底部导航=function(indexofbottom){
     }
     return false
 }
+
 var 点击金蛋=function(){
     if(id("com.jt.hanhan.video:id/ga").findOne(300)){
         toastLog("找到了")

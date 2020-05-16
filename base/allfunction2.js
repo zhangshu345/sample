@@ -340,7 +340,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  i=0;  while(i<4){     if (clickalltexts(closetexts,100,2000) ){return true;}i=i+1; sleep(2000) ;}
+  i=0;  while(i<4){if (clickalltexts(closetexts,100,2000) ){return true;};i=i+1; sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({

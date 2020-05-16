@@ -30,11 +30,10 @@ var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
 var invite=false
 var tomoney=false
-var onlyscript=false
+var onlyscript=true
 var todaysign=今日签到(appname)
 var coin=上次金币(appname)
 var money=上次余额(appname)
-
 if(invite){
     快手极速版邀请()
 }

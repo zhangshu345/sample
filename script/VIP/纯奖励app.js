@@ -43,7 +43,6 @@ var run=function(){
             return
         }
         if(app.open){
-            
             forcestop(app.name)
             sleep(1000)
         }
