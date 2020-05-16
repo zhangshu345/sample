@@ -62,7 +62,7 @@ var run=function(){
                    return 
                }
            }
-            stopOtherScript()
+            engines.stopOther()
             if(app.open){
                 if(!getPackageName(app.name)){
                     downloadApk(app.name,app.downloadurl,true)
@@ -102,7 +102,6 @@ var  shuffleArray=function(array) {
     }
     return array
 }
-
 
 addbmobchannel("hongshureward")
 var thread = threads.start(function(){

@@ -119,10 +119,10 @@ var 火火选中底部导航=function(indexofbottom){
 
 var 点击金蛋=function(){
     if(id("com.jt.hanhan.video:id/ga").findOne(300)){
-        toastLog("找到了")
+        toastLog("找到了ga")
         sleep(7500)
-       if( idclick("com.jt.hanhan.video:id/ga")){
-            show("点击金蛋大奖成功")
+       if(idclick("com.jt.hanhan.video:id/ga")){
+            show("点击金蛋大奖成功ga")
             sleep(2500)
             if(text("赚钱小技巧").exists()){
                 back()
@@ -166,7 +166,8 @@ function run(){
     sleep(3000)
     app_islogin()
     while(true){
-     
+
+
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -206,8 +207,6 @@ function run(){
     }else{
         if(action=="短视频"){
                 //短视频的操作
-
-
         }else{
             //小视频的操作
             desc=  id(小视频简介id).findOne(300)
@@ -220,10 +219,8 @@ function run(){
                     if(textclick("立即翻倍")){
                         seead()
                      }
-                   
                     textclick("刷新")
                     sleep(500)
-                  
                 }else{
                     lastdesc=currentdesc
                     滑动次数=滑动次数+1
@@ -250,29 +247,6 @@ function run(){
                 }
             }
         }
-        if(close_ad_toutiao(apppkg)){
-            sleep(1000)
-         
-        }
-        if(idclick("com.jt.hanhan.video:id/jw")){
-            sleep(1000)
-        }
-        tv_hb=text("领取红包").findOne(300)
-        if(tv_hb){
-            show("领取红包id："+tv_hb.id())
-            if (clicknode(tv_hb)){
-                sleep(2500)
-               if(clickoneids(["com.jt.hanhan.video:id/m3","com.jt.hanhan.video:id/m4"])){
-                seead()
-               }
-            }
-        }
-        if(textoneexist(广告展示页面可关闭文本集合)){
-            back()
-            sleep(2500)
-        }
-        点击金蛋()
-
         sleepr(6000*ratio,8000*ratio)
         if(滑动次数%10==1){
             if(device.getBattery()<20){
@@ -299,8 +273,33 @@ function run(){
             }
         }
       }
+        点击金蛋()
+        if(close_ad_toutiao(apppkg)){
+            sleep(1000)
+        }
+        if(idclick("com.jt.hanhan.video:id/jw")){
+            sleep(1000)
+        }
+        if(idclick("com.jt.hanhan.video:id/gi")){
+            sleep(1000)
+        }
+        tv_hb=text("领取红包").findOne(300)
+        if(tv_hb){
+            show("领取红包id："+tv_hb.id())
+            if (clicknode(tv_hb)){
+                sleep(2500)
+               if(clickoneids(["com.jt.hanhan.video:id/m3","com.jt.hanhan.video:id/m4"])){
+                seead()
+               }
+            }
+        }
+        if(textoneexist(广告展示页面可关闭文本集合)){
+            back()
+            sleep(2500)
+        }
     }
 }
+
 var seead=function(){
     i=0
     sleep(10000)
@@ -545,5 +544,10 @@ var app_login_weixin=function(){
     }
 }
 
-run()
+ run()
 //火火关闭锁屏功能()
+// while(true){
+//     点击金蛋()
+//     sleep(1000)
+// }
+

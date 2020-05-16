@@ -1435,8 +1435,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
             back()
             forcestop(appname)
         }
-        if(close_ad_qq(apppkg)){    }
-         if(close_ad_toutiao(apppkg)){             }
+        if(close_ad_qq(apppkg)){}
+         if(close_ad_toutiao(apppkg)){}
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
