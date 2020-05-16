@@ -12,6 +12,7 @@ importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
+importClass(com.hongshu.androidjs.core.script.Scripts)
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var admanager=AdviceManager.getInstance();
@@ -340,7 +341,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){return true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
