@@ -30,29 +30,42 @@ var 快手直播退出标志="com.smile.gifmaker:id/live_close_place_holder"
 var 快手直播关闭按钮="com.smile.gifmaker:id/close_icon_view"
 var 快手直播页红包背景="com.smile.gifmaker:id/background_view_normal"
 var 快手直播页主播姓名="com.smile.gifmaker:id/live_name_text"
-
-var 快手直播页红包集合=[快手直播页红包标志,快手直播页红包背景]
+var 快手直播红包金额数="com.smile.gifmaker:id/live_red_packet_coin_num_view"
+var 快手直播页红包集合=[快手直播页红包标志,快手直播页红包背景,]
 var 快手直播退出标志集合=[快手直播退出标志,快手直播关闭按钮]
-var 快手直播间标志集合=[快手直播页主播姓名,快手直播关闭按钮]
+var 快手直播间标志集合=[快手直播页主播姓名,快手直播退出标志]
+
 var 获取倒计时=function(){
+    show("开始获取倒计时")
+    node_coin=id(快手直播红包金额数).findOne(100)
+    if(node_coin){
+        n_coin=parseInt(node_coin.text())
+        show("金币数:"+n_coin)
+    }
+
     node_count=id(快手弹窗倒计时id).findOne(100)
     if(node_count){
         txt_count=node_count.text()
         show("文本："+txt_count)
-       n_count=2
+        n_count=2
          if(txt_count.indexOf("分钟后")!=-1){
             n_count=parseInt(txt_count.replace("分钟后开抢",""))*60
         }else if(txt_count.indexOf("秒后")!=-1){
             n_count=parseInt(txt_count.replace("秒后开抢",""))
         }
         show("时间:"+n_count)
-       sleep(n_count*1000-5000)
-       show("开始点击")
-       for(var i = 0; i < 7000; i++){
-        //点击位置(500, 1000), 每次用时1毫秒
-        press(500, 1376, 1);
+        if(n_count<10){
+            sleep(n_count*1000-2000)
+            show("开始点击")
+            for(var i = 0; i < 1000; i++){
+             //点击位置(500, 1000), 每次用时1毫秒
+             press(500, 1376, 2);
+             }
+             show("结束点击")
+        }else{
+            show("时间过长")
         }
-        show("结束点击")
+    
       
     }
 }
@@ -61,39 +74,51 @@ var 获取倒计时=function(){
 //466,1339,613,1396
 //循环100次
 // 获取倒计时()
-
+engines.stopOther()
+creatsetfloatywindow()
 进直播间次数=0
 show("快手抢快币")
 gfw.setPosition(0,device.height*6/7)
-滑动(20,10,16,10,8,500,500)
 while(true){
- 
-  
-   
-    sleep(3000)
-    if(idallexist(快手直播间标志集合)){
-        if(clickoneids(快手直播页红包集合,100,500)){
-            获取倒计时()
-            press(500, 1376, 1);
-        }else{
-            show("退出直播间")
-           if(clickoneids(快手直播退出标志集合,100,2000)) {
-               textclick("退出",1500)
-               sleep(1500)
-           }
-        }
-        进直播间次数=进直播间次数+1
-        show("进直播间次数:"+进直播间次数)
-    }else{
-        if(进直播间次数/2==0){
-            show("开始滑动："+进直播间次数/2)
-            滑动(20,10,16,10,8,500,500)
-            sleep(1000)
-            click(device.width*1/4,device.height/4)
-        }else{
-            click(device.width*3/4,device.height/4)
-        }
-       
-    }
-   
+    
+    获取倒计时()
+    sleep(4000)
 }
+
+
+// while(true){
+//     滑动(20,5,13,7,3,500,500)
+//     sleep(3000)
+//     if(idoneexist(快手直播间标志集合)){
+//         show("在直播间")
+//         sleep(3000)
+//         if(clickoneids(快手直播页红包集合,300,500)){
+//             获取倒计时()
+//             press(500, 1376, 1);
+//         }else{
+//             show("退出直播间")
+//            if(clickoneids(快手直播退出标志集合,100,2000)) {
+              
+//             textclick("退出",1500)
+//            }else{
+//                back()
+//             sleep(1500)
+//            }
+           
+//         }
+//         进直播间次数=进直播间次数+1
+//         show("进直播间次数:"+进直播间次数)
+//     }else{
+//         show("不在直播间")
+//         if(进直播间次数/2==0){
+//             show("开始滑动："+进直播间次数/2)
+//             滑动(20,5,10,7,3,500,500)
+//             sleep(1000)
+//             click(device.width*1/4,device.height/4)
+//         }else{
+//             click(device.width*3/4,device.height/4)
+//         }
+       
+//     }
+   
+// }
