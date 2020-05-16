@@ -928,7 +928,6 @@ var phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
-     
      if(!pnumber){pnumber=spt.getString("phonenumber");     }
      if(pnumber.startsWith("+86")){pnumber=pnumber.substr(3);     }
      if(pnumber){ return pnumber;     }else{return null;     }
@@ -976,6 +975,7 @@ var clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
 var checkscreencapture=function(){
+    //    captureScreen("/sdcard/screencapture" + i + ".png");
   // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
   threads.start(function() {
     n_t=0
@@ -993,41 +993,6 @@ if (!requestScreenCapture()) {
     show("请求截图权限成功！");
     captureScreen("/sdcard/ce.png");
 }
-}
-function checkscreencapture2(){
-    threads.start(function(){
-        i=0
-        while(true){
-            toastLog("截屏"+i)
-            sleep(1000)
-           t= text("立即开始").findOne(100)
-           if(!t){
-            t= text("允许").findOne(100)
-           }
-           if(t){
-             toastLog("点击截屏")
-               t.click()
-               sleep(1000)
-                captureScreen("/sdcard/screencapture" + i + ".png");
-              return
-           }
-           i=i+1
-        }
-    })
-    i=0
-        if(!requestScreenCapture(true)){
-            toastLog("请求截图失败");
-            // exit();
-        }else{
-            toastLog("请求截图成功");5
-        }
-        //连续截图10张图片(间隔1秒)并保存到存储卡目录
-        for(var i = 0; i < 1; i++){
-            captureScreen("/sdcard/screencapture" + i + ".png");
-            sleep(1000);
-        }
-    captureScreen("/sdcard/screencapture" + i + ".png");
-    toastLog("5之后")
 }
 
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
@@ -1363,6 +1328,12 @@ var close_ad_toutiao=function(apppkg){
             }
         }
     }
+    if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
+        return true
+    }
+    if( idclick(apppkg+":id/tt_video_ad_close",100)){
+        return true
+    }
    return false
 }
 
@@ -1396,6 +1367,26 @@ var close_ad_qq=function(apppkg){
             }
         }
     }
+    ci=className("android.widget.ImageView").clickable().findOne(300)
+            if(ci){
+                if(clicknode(ci)){
+                    isclose=true
+                    return true
+                }else{
+                    return false
+                }
+            }
+            if(text("点击下载").exists()){
+                ci=className("android.widget.ImageView").clickable().findOne(300)
+                if(ci){
+                    if(clicknode(ci)){
+                        isclose=true
+                        return true
+                    }else{
+                        return false
+                    }
+                }
+            }
 }
 //未知广告商
 var close_ad_iclicash=function(apppkg){

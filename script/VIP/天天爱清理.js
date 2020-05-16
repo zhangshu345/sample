@@ -62,7 +62,6 @@ toastLog("自动设置音量为0")
 //关闭最新的app
 closelastscriptapp()
 show("指定："+appname+"即将启动")
-
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
