@@ -1526,7 +1526,7 @@ var seerewardvideo=function(apppkg){
     gbgg=0
     while(gbgg<20){
         show("关闭广告："+gbgg)
-        back()
+        
       if(close_ad_qq(apppkg)){
           return
       }
@@ -1540,6 +1540,9 @@ var seerewardvideo=function(apppkg){
            back()
        }
        sleep(2000)
+       if(!idContains(apppkg).exists()){
+        app.launch(apppkg)
+       }
        gbgg=gbgg+1
     }
 }
