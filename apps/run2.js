@@ -12,7 +12,6 @@
 var storage = storages.create("applist@20200212");
 var arr = storage.get("runlist")
 
-
 var yun = 1
 var loopnum = 0
 
@@ -38,9 +37,7 @@ function run() {
     log("总运行时间为：" + alltimes + "分钟")
 
     // storage.put("items", arr);
-
     log("开始执行")
-
     // win.close()
     startnow()
 

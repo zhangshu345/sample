@@ -1341,7 +1341,7 @@ var close_ad_qq=function(apppkg){
     // ccj_file_paths 
     if(currentActivity()=="com.qq.e.ads.PortraitADActivity"){
         while(true){
-            ci=className("android.widget.ImageView").clickable().findOne(300)
+            ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1351,7 +1351,7 @@ var close_ad_qq=function(apppkg){
                 }
             }
             if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable().findOne(300)
+                ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
@@ -1367,7 +1367,7 @@ var close_ad_qq=function(apppkg){
             }
         }
     }
-    ci=className("android.widget.ImageView").clickable().findOne(300)
+    ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1377,7 +1377,7 @@ var close_ad_qq=function(apppkg){
                 }
             }
             if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable().findOne(300)
+              ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).indexInParent(1).findOne(100)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
@@ -1468,19 +1468,11 @@ var runrewardapp=function(appname,apppkg,showadtime){
             }
             if (clickonetexts(["工具箱","市场"],100,1500)){
                 show("工具箱点击成功")
-            }else{
-                if(!idContains(apppkg).findOne(1000)){
-                    show(appname+"不在前台")
-                    app.launchPackage(apppkg)
-                    sleep(3000)
-                }else{
-                    back()
-                }        
             }
             if(textoneexist(["点击下载"])){
                     back()
              }
-             if(randomint(0,10)==5){
+             if(randomint(0,6)==5){
                  ll_advice=id(apppkg+":id/ll_advice").findOne(100)
                  if(ll_advice){
                      ll_advice_bound=ll_advice.bounds()

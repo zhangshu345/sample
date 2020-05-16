@@ -1,3 +1,5 @@
+import { text } from "body-parser";
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -118,56 +120,41 @@ var 火火选中底部导航=function(indexofbottom){
 }
 
 var 点击金蛋=function(){
-    if(id("com.jt.hanhan.video:id/ga").findOne(300)){
-        toastLog("找到了ga")
-        sleep(7500)
+    node_gold=id("com.jt.hanhan.video:id/ga").findOne(100)
+    if(node_gold){
+        toastLog("找到了金蛋大奖ga")
+        if(node_gold.text()=="金蛋大奖"){
+            sleep(7500)
+        }
        if(idclick("com.jt.hanhan.video:id/ga")){
             show("点击金蛋大奖成功ga")
             sleep(2500)
             if(text("赚钱小技巧").exists()){
                 back()
             }
-                if(maytextclick("看视频再送")){
+            if(maytextclick("看视频再送")){
                     seead()
                     小视频广告翻倍次数=小视频广告翻倍次数+1
-                }
+            }
        }else{
         show("点击金蛋大奖失败")
        }
-    }else{sleep(1500)
+    }else{
         show("没有找到金蛋大奖："+i)
     }
-    jddj=text("金蛋大奖").findOne(300)
-    if(jddj){
-        show("找到金蛋大奖")
-        // if(jddj.text()=="金蛋大奖"){
-            sleep(7500)
-            if(textclick("金蛋大奖")){
-                sleep(1500)
-                if(text("赚钱小技巧").exists()){
-                    back()
-                }
-                if(maytextclick("看视频再送")){
-                        seead()
-                        小视频广告翻倍次数=小视频广告翻倍次数+1
-                 }
-
-            }else{
-                log("金蛋大奖点击失败")
-            }
-        // }
-    }else{
-      show("没有找到金蛋大奖")  
-    }
+   
     
+}
+
+
+var 火火小视频滑动=function(){
+    滑动(20,13,16,10,4,500,700)
 }
 function run(){
     app.launch(apppkg)
     sleep(3000)
     app_islogin()
     while(true){
-
-
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -211,7 +198,7 @@ function run(){
             //小视频的操作
             desc=  id(小视频简介id).findOne(300)
             if(desc){
-                滑动(20,13,16,10,4,500,700)
+                火火小视频滑动()
                 sleep(1000)
                 currentdesc=desc.text()
                 log("之前："+lastdesc+"--当前："+currentdesc)
@@ -225,12 +212,13 @@ function run(){
                     lastdesc=currentdesc
                     滑动次数=滑动次数+1
                 }
+
             }else{
                 if(clickonetexts(广告点击按钮文本集合,500,1500)){
                     seead()
                     小视频广告翻倍次数=小视频广告翻倍次数+1
                  }
-                滑动(20,13,16,10,4,500,700)
+               火火小视频滑动()
                 sleep(1500)
             }
         }
@@ -273,7 +261,18 @@ function run(){
             }
         }
       }
+      if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).exists()){
+       node_kai= text("看视频即可打开").className("android.widget.TextView").indexInParent(4).findOne(100).parent().child(3)
+       if(node_kai){
+         if(clicknode(node_kai)){
+                seead()
+         }
+       }
+      }
         点击金蛋()
+        if(text("点击重播").findOne(100)){
+            
+        }
         if(close_ad_toutiao(apppkg)){
             sleep(1000)
         }
@@ -288,9 +287,17 @@ function run(){
             show("领取红包id："+tv_hb.id())
             if (clicknode(tv_hb)){
                 sleep(2500)
+                node_lhb=text("领红包").className("android.widget.TextView").depth(15).findOne(100)
+                if(node_lhb){
+                    if(clicknode(node_lhb)){
+                        sleep(1500)
+                        
+                    }
+                }
                if(clickoneids(["com.jt.hanhan.video:id/m3","com.jt.hanhan.video:id/m4"])){
                 seead()
                }
+             
             }
         }
         if(textoneexist(广告展示页面可关闭文本集合)){
@@ -301,11 +308,12 @@ function run(){
 }
 
 var seead=function(){
-    i=0
+    n_seead=0
     sleep(10000)
-    while(i<20){
+    while(n_seead<20){
+        show("广告循环:"+n_seead)
         sleep(2500)
-        i=i+1
+        n_seead=n_seead+1
         if(text("邀请好友").findOne(500)){
             back()
             sleep(1000)
@@ -320,11 +328,10 @@ var seead=function(){
             return
         }
         if( close_ad_qq(apppkg)){
-
-            
+            return
         }
         if(close_ad_iclicash(apppkg)){
-           
+           return
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
@@ -343,7 +350,6 @@ var seead=function(){
         if(textclick("确定")){
 
         }
-     
     }
     back()
     if(idclick("com.jt.hanhan.video:id/jw")){
