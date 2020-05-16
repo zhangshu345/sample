@@ -1526,7 +1526,6 @@ var seerewardvideo=function(apppkg){
     gbgg=0
     while(gbgg<20){
         show("关闭广告："+gbgg)
-        
       if(close_ad_qq(apppkg)){
           return
       }
