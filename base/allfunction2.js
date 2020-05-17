@@ -1581,5 +1581,5 @@ var seerewardvideo=function(apppkg){
 //  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
 // sleep(5000)
 // log("运行时间:"+scriptruntime()+"-秒")
-close_ad_qq("com.dongdong.jiantie")
-close_ad_toutiao("com.dongdong.jiantie")
+// close_ad_qq("com.dongdong.jiantie")
+// close_ad_toutiao("com.dongdong.jiantie")
