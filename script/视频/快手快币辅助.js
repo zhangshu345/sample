@@ -34,7 +34,11 @@ var 快手直播红包金额数="com.smile.gifmaker:id/live_red_packet_coin_num_
 var 快手直播页红包集合=[快手直播页红包标志,快手直播页红包背景,]
 var 快手直播退出标志集合=[快手直播退出标志,快手直播关闭按钮]
 var 快手直播间标志集合=[快手直播页主播姓名,快手直播退出标志]
-
+var x=500
+var y=1376
+var 按压时间=1
+var 提前时间=2000
+var 循环次数=1000
 var 获取倒计时=function(){
     show("开始获取倒计时")
     node_coin=id(快手直播红包金额数).findOne(100)
@@ -45,6 +49,8 @@ var 获取倒计时=function(){
 
     node_count=id(快手弹窗倒计时id).findOne(100)
     if(node_count){
+        x=node_count.bounds().centerX()
+        y=node_count.bounds().centerY()
         txt_count=node_count.text()
         show("文本："+txt_count)
         n_count=2
@@ -55,18 +61,18 @@ var 获取倒计时=function(){
         }
         show("时间:"+n_count)
         if(n_count<10){
-            sleep(n_count*1000-2000)
+            sleep(n_count*1000-提前时间)
             show("开始点击")
-            for(var i = 0; i < 1000; i++){
+            循环次数=提前时间/按压时间
+            for(var i = 0; i < 循环次数; i++){
              //点击位置(500, 1000), 每次用时1毫秒
-             press(500, 1376, 2);
+             press(x, y, 按压时间);
              }
              show("结束点击")
         }else{
             show("时间过长")
         }
-    
-      
+
     }
 }
 
