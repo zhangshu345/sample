@@ -1314,7 +1314,9 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
-    if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+    let ca=currentActivity()
+    show("当前activity:"+ca)
+    if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
         while(true){
             if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
                 return true
@@ -1339,9 +1341,11 @@ var close_ad_toutiao=function(apppkg){
 
 var close_ad_qq=function(apppkg){
     // ccj_file_paths 
-    if(currentActivity()=="com.qq.e.ads.PortraitADActivity"){
+  let  ca=currentActivity()
+  show("当前activity:"+ca)
+    if(ca=="com.qq.e.ads.PortraitADActivity"){
         while(true){
-            ci=className("android.widget.ImageView").clickable().depth(5)..findOne(100)
+            ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1577,3 +1581,5 @@ var seerewardvideo=function(apppkg){
 //  toPkgandClass("com.android.settings","com.android.settings.SubSettings")
 // sleep(5000)
 // log("运行时间:"+scriptruntime()+"-秒")
+close_ad_qq("com.dongdong.jiantie")
+close_ad_toutiao("com.dongdong.jiantie")
