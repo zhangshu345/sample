@@ -137,7 +137,8 @@ var  tofloatysetting=function(){
  var toPkgandClass=function(pkg,classname){
          let i = app.intent({
               packageName: pkg,
-              className:classname
+              className:classname,
+              flags:["activity_new_task"]
               // data: "file:///sdcard/1.png"
           });
           context.startActivity(i);
@@ -191,9 +192,9 @@ var  tofloatysetting=function(){
  }
  
   //到android设置页面
-  var  toandroidsetting=function(classname){
+var  toandroidsetting=function(classname){
       toPkgandClass("com.android.settings",classname)
-  }
+}
  
  
   //到用户使用情况页面

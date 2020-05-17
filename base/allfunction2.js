@@ -357,7 +357,7 @@ var  todevelopersetting=function(){
  }
  
 var toPkgandClass=function(pkg,classname){
-        let i = app.intent({  packageName: pkg, className:classname });
+        let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"]});
          context.startActivity(i);
 }
 
