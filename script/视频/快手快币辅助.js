@@ -46,7 +46,6 @@ var 获取倒计时=function(){
         n_coin=parseInt(node_coin.text())
         show("金币数:"+n_coin)
     }
-
     node_count=id(快手弹窗倒计时id).findOne(100)
     if(node_count){
         x=node_count.bounds().centerX()
