@@ -1,6 +1,6 @@
 {"spalsh":{"logo":"","img":"","desc":"","versioninfo":"","waittime":2000,"nextactivitypath":"/dongdongsuibian/main"},
 "usermain":{"tintcolor":"#ffff0000","menus":[{"icon":"","title":"首页","fragment":"toolbox"},     
-{"icon":"","title":"发现","fragment":"scriptmarket"},                                       {"icon":"","title":"希望","fragment":"scripttask"},
+{"icon":"","title":"发现","fragment":"scriptmarket"}, {"icon":"","title":"希望","fragment":"scripttask"},
 {"icon":"","title":"我的","frgment":"scriptme"} ]
 }
  
