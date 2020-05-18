@@ -1341,7 +1341,7 @@ var close_ad_toutiao=function(apppkg){
 var close_ad_liquid=function(apppkg){
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
            while(true){
-             if(  clickonetexts(["关闭"],500,1500)){
+             if(  clickonetexts(["关闭","关闭广告"],500,1500)){
                  return true
              }
              sleep(2000)
