@@ -1338,6 +1338,17 @@ var close_ad_toutiao=function(apppkg){
     }
    return false
 }
+var close_ad_liquid=function(apppkg){
+    if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+           while(true){
+             if(  clickonetexts(["关闭"],500,1500)){
+                 return true
+             }
+             sleep(2000)
+           }
+    }
+
+}
 
 var close_ad_qq=function(apppkg){
     // ccj_file_paths 
@@ -1542,6 +1553,7 @@ var seerewardvideo=function(apppkg){
        if(textoneexist(["点击下载"])){
            back()
        }
+       close_ad_liquid(apppkg)
        sleep(2000)
        if(!idContains(apppkg).exists()){
         app.launch(apppkg)
