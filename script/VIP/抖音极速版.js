@@ -174,12 +174,7 @@ function 签到() {
 
 function invite(user_id){
     user_id = user_id || "83929461";
-
-  
-
     close_windows(button_arr)
-
-
     // 邀请检测
     result = text('即可立得最高2元现金').findOne(3000)
     if(result){
@@ -188,7 +183,6 @@ function invite(user_id){
             result = control_click(button, vlause) 
             return
     }else{
-
                 // j进入任务栏
                 button = "id"
                 vlause = "ke" 
@@ -229,11 +223,6 @@ function invite(user_id){
     back()
     sleep(2000)
     back()
-    
-
-
-    
-
 }
 /*---------------------------------login-------------------------------*/
 // login()

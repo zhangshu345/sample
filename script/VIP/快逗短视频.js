@@ -102,7 +102,9 @@ var  app_home_video=function(){
         if(ca==apphomeactivity){
             return true
         }
-        
+        if(maytextclick("看视频奖励最高")){
+            seerewardvideo(apppkg)
+        }
         n_home_video=n_home_video+1
         sleep(1000)
     }

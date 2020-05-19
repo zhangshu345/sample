@@ -92,17 +92,18 @@ var run=function(){
         close_ad_iclicash(apppkg)
         n_i=n_i+1
     }
-
 }
 var  app_home_video=function(){
     n_home_video=0
     while(n_home_video<20){
-        clicktexts(["同意并继续","允许","首页","推荐"])
+        clicktexts(["同意并继续","允许","允许","允许","首页","推荐"])
         ca=currentActivity()
         if(ca==apphomeactivity){
             return true
         }
-        
+        if(maytextclick("看视频奖励最高")){
+            seerewardvideo(apppkg)
+        }
         n_home_video=n_home_video+1
         sleep(1000)
     }
