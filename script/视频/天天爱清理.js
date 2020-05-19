@@ -115,9 +115,7 @@ var run=function(){
             
        }else{
             show(appname+"在首页") 
-            if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
-
-             }
+           
             if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",50)){
                 seead()
             }
@@ -125,17 +123,20 @@ var run=function(){
                   show("找到广告标识")
                 seead()
             }
-            if(idclick(天天爱清理弹窗广告id,100)){
-                 show("点击广告id")
-                 seead()
-            }
+           
             if(maytextclick("看视频",100)){
                  seead()
             }
             if(textclick("看视频最高翻5倍",100)){
                  seead()
             }
-            if()
+            if(idclick(天天爱清理弹窗广告id,100)){
+                show("点击广告id")
+                seead()
+           }
+           if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
+
+            }
             if(idoneexist(视频页标记id集合)){
                 show("在视频页")
              }else{
