@@ -4,7 +4,7 @@
     "versioni":40,
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/月结套餐稳赚.js",
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"7dc19a2b830fdd4e0bf23fd81db1b8fd",

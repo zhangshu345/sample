@@ -76,14 +76,16 @@ var run=function(){
         if(ca!=apphomeactivity){
             app_home_video()
         }else{
+
+            if(maytextclick("看视频奖励最高")){
+                seerewardvideo(apppkg)
+            }
             //这里是视频上滑操作
             滑动(20,10,17,11,5,500,500)
             sleep(8000)
 
         }
-        if(maytextclick("看视频奖励最高")){
-            seerewardvideo(apppkg)
-        }
+       
         if(!todaysign){
             app_sign()
         }
