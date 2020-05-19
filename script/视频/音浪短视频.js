@@ -33,9 +33,9 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=false  //仅允许当前一个脚本运行 
 var changesetting=false
-var apppkg="com.video.xch"
+var apppkg="com.video.yl"
 var apphomeactivity="com.liquid.box.home.HomeActivity"
-var appname="小吃货短视频"
+var appname="音浪短视频"
 var todaysign=今日签到(appname)
 alltest()
 // checkfloaty()

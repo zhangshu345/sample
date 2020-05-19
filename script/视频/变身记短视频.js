@@ -33,9 +33,9 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=false  //仅允许当前一个脚本运行 
 var changesetting=false
-var apppkg="com.video.xch"
+var apppkg="com.video.bsj"
 var apphomeactivity="com.liquid.box.home.HomeActivity"
-var appname="小吃货短视频"
+var appname="变身记短视频"
 var todaysign=今日签到(appname)
 alltest()
 // checkfloaty()
@@ -65,6 +65,7 @@ closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
 //app 运行
+
 //app 运行
 var run=function(){
     app.launch(apppkg)
@@ -93,7 +94,6 @@ var run=function(){
         close_ad_iclicash(apppkg)
         n_i=n_i+1
     }
-
 }
 
 var actionother=function(){
@@ -157,7 +157,6 @@ var app_sign=function(){
        }
 
     }
-
 }
 
 //app提现
