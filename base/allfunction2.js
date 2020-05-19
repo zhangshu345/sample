@@ -160,6 +160,17 @@ function listapp(){
         appnames.push(app.name)
      }
 })
+//列出app
+function keepappclear(url){
+    var appconfig=httpget(url)
+    var allapps=[]
+    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
+    apps=JSON.parse(appconfig)
+    apps.forEach(app =>{
+     if(app.install){
+        appnames.push(app.name)
+     }
+})
 
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
