@@ -102,7 +102,6 @@ var actionother=function(){
     if(textclick("重试")){
         sleep(2000)
     }
-    
 }
 var  app_home_video=function(){
     n_home_video=0

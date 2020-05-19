@@ -65,6 +65,7 @@ closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
 //app 运行
+//app 运行
 var run=function(){
     app.launch(apppkg)
     sleep(3000)
@@ -76,16 +77,14 @@ var run=function(){
         if(ca!=apphomeactivity){
             app_home_video()
         }else{
-
-            if(maytextclick("看视频奖励最高")){
-                seerewardvideo(apppkg)
-            }
             //这里是视频上滑操作
-            滑动(20,10,17,11,5,500,500)
-            sleep(8000)
+            滑动(20,10,16,11,4,500,500)
+            doactionmaxtime(actionother,10000,2000)
 
         }
-       
+        if(maytextclick("看视频奖励最高")){
+            seerewardvideo(apppkg)
+        }
         if(!todaysign){
             app_sign()
         }
@@ -93,6 +92,16 @@ var run=function(){
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         n_i=n_i+1
+    }
+
+}
+
+var actionother=function(){
+    if(maytextclick("看视频奖励最高")){
+        seerewardvideo(apppkg)
+    }
+    if(textclick("重试")){
+        sleep(2000)
     }
 }
 var  app_home_video=function(){
