@@ -21,10 +21,7 @@ var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
-var today=function(){
-    td=nowdate()
-    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate()
-}
+var today=function(){    td=nowdate();    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
@@ -50,24 +47,20 @@ var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
 var isdeviceadmin=function(){
-    deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver")
-     dpm=context.getSystemService("device_policy")
-    return dpm.isAdminActive( deviceadmincomponent)
+    deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
+    dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);
 }
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var isshowfloaty=true  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
-
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
 var getlongvalue=function(v){    return spt.getLong(v)}
 var getfloatvalue=function(v){    return spt.getLong(v)}
 var getbooleanvalue=function(v){    return spt.getBoolean(v)}
-
 var getstrsetvalue=function(v){  return spt.getStringSet(v)}
-
 var  creatgfloatywindow=function(){
     if(!isshowfloaty){
         return
@@ -167,6 +160,7 @@ function listapp(){
         appnames.push(app.name)
      }
 })
+
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -1054,14 +1048,16 @@ var checkpermission=function(permissions){
 }
 
 //执行函数 在一定时间内 最小10秒
-var doactionmaxtime=function(action,maxtime){
+var doactionmaxtime=function(action,maxtime,intertime){
     if(!action){
         return
     }
     maxtime=maxtime||10000
+    intertime=intertime||1000
     stime=nowdate().getTime()
     while(nowdate().getTime()-stime<maxtime){
         action()
+        sleep(intertime)
     }
 }
 //执行函数 几次  
