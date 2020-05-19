@@ -161,17 +161,6 @@ function listapp(){
      }
 })
 //列出app
-function keepappclear(url){
-    var appconfig=httpget(url)
-    var allapps=[]
-    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
-    apps=JSON.parse(appconfig)
-    apps.forEach(app =>{
-     if(app.install){
-        appnames.push(app.name)
-     }
-})
-
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -213,6 +202,61 @@ log("白名单："+appnames.length+"+++"+appnames)
   log("一共第三方应用："+m)
     return allapps
 }
+
+function keepappclear(url){
+    var appconfig=httpget(url)
+    var allapps=[]
+    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    apps=JSON.parse(appconfig)
+    apps.forEach(app =>{
+     if(app.install){
+        appnames.push(app.name)
+     }
+})
+//列出app
+log("白名单："+appnames.length+"+++"+appnames)
+    var packageManager=context.getPackageManager()
+    var packageInfos = packageManager.getInstalledPackages(0);
+    for(var i = 0; i < packageInfos.size(); i++) {
+        var packageInfo = packageInfos.get(i);
+            //todo 压缩只对保存有效果bitmap还是原来的大小
+        //第一次安装时间
+        dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        appDate = packageInfo.firstInstallTime;
+        app_name=packageInfo.applicationInfo.loadLabel(packageManager),
+        app_version= packageInfo.versionName,
+        app_packageName= packageInfo.packageName,
+        app_firstInstall=  dateFormat.format(appDate),
+        app_issystem= (packageInfo.flags&1)!=0
+        app_isselect=false
+        allapps.push({
+            name: app_name,
+            version: "版本号: " + app_version,
+            packageName: app_packageName,
+            firstInstall: "安装时间: " + app_firstInstall,
+            isselect:app_isselect,
+            issystem:app_issystem
+        });
+    };
+    m=0
+    log("白名单："+appnames)
+    allapps.forEach(app =>{
+      if(!AppUtils.isAppSystem(app.packageName)){
+          if(appnames.indexOf(app.name)==-1){
+                toastLog(app.name+"不是白名单app")
+                uninstallapp(app.name)
+                log("第三方应用"+GsonUtils.toJson(app))
+          }else{
+            toastLog(app.name+"是白名单app")
+          }
+            m=m+1
+      }
+  })
+  log("一共第三方应用："+m)
+    return allapps
+}
+
+
 var closerecentapp=function(){
     recents()
     if(device.brand=="samsung"){
