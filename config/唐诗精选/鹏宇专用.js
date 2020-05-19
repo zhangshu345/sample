@@ -33,7 +33,7 @@ device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/唐诗精选/pengyu.json"
 var run=function(){
-    listapp()
+    keepappclear(selfrewardlisturl)
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
     var last
