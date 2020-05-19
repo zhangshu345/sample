@@ -27,7 +27,7 @@ alltest()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-show("开始月结套餐稳赚")
+show("开始鹏宇专用")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
