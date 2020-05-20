@@ -1,6 +1,6 @@
 [	{
     "name": "东东随便",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -31,7 +31,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/东东随便_38.apk"
 },{
     "name": "KeepHealth",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -60,7 +60,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/KeepHealth_38.apk"
 },{
     "name": "随便粘",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -89,7 +89,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_39.apk"
 },{
     "name": "动物的叫声",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -119,7 +119,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/动物的叫声_128.apk"
 },{
     "name": "东览",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -148,7 +148,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/东览_118.apk"
 },{
     "name": "小白闹钟天气",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -179,7 +179,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/小白闹钟天气_18.apk"
 },{
     "name": "小白日历",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -210,7 +210,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/小白日历_18.apk"
 },{
     "name": "一个就够",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -241,7 +241,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/一个就够_18.apk"
 },{
     "name": "减压声音",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -270,7 +270,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/减压声音_138.apk"
 },{
     "name": "英语四级单词汇",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -299,7 +299,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/英语四级单词汇_118.apk"
 },{
     "name": "冥想音乐",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -329,7 +329,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/冥想音乐_128.apk"
 },{
     "name": "唐诗精选",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -360,7 +360,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/唐诗精选_128.apk"
 },{
     "name": "宝宝常识",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -389,7 +389,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/宝宝常识_218.apk"
 },{
     "name": "小强助理",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -418,7 +418,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/小强助理_21.apk"
 },{
     "name": "儿童绘画板",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -449,7 +449,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/儿童绘画板_31.apk"
 },{
     "name": "MD编辑器",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -478,7 +478,7 @@
     "downloadurl": "http://zhangshuhong888.iask.in:8989/MD编辑器_11.apk"
 },{
     "name": "休息声音",
-    "open": true,
+    "open": false,
     "install": true,
     "wx": false,
     "zfb": true,
@@ -937,7 +937,7 @@
     "downloadurl": "https://2853e34a7341cd7ec88336bb65fe0bf9.dd.cdntips.com/imtt.dd.qq.com/16891/apk/12683736A23F1FC7D9D94AF48CFD587D.apk"
 },{
     "name": "有颜短视频",
-    "open": false,
+    "open": true,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -968,7 +968,7 @@
     "downloadurl": ""
 },{
     "name": "快逗短视频",
-    "open": false,
+    "open": true,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -999,7 +999,7 @@
     "downloadurl": ""
 },{
     "name": "小吃货短视频",
-    "open": false,
+    "open":true,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -1030,7 +1030,7 @@
     "downloadurl": ""
 },{
     "name": "变身记短视频",
-    "open": false,
+    "open": true,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -1048,6 +1048,68 @@
     "pkg": "com.video.bsj",
     "bmobid": "",
     "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/变身记短视频.js",
+    "money": 1.0,
+    "onetime": 0,
+    "day":"2020-3-25",
+    "runtime":30,
+    "maxtime": 0,
+    "starttime":"",
+    "endtime":"",
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_53987156_1589773488/96",
+    "downloadurl": ""
+},{
+    "name": "高手短视频",
+    "open": true,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+        "微信"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "com.video.gs",
+    "bmobid": "",
+    "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/高手短视频.js",
+    "money": 1.0,
+    "onetime": 0,
+    "day":"2020-3-25",
+    "runtime":30,
+    "maxtime": 0,
+    "starttime":"",
+    "endtime":"",
+    "version": 0,
+    "appversion": 0,
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_53987156_1589773488/96",
+    "downloadurl": ""
+},{
+    "name": "音浪短视频",
+    "open": true,
+    "install": true,
+    "wx": true,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.7,
+    "tag": [
+        "养号",
+        "营销",
+        "微信"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "脚本描述",
+    "pkg": "com.video.yl",
+    "bmobid": "",
+    "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/音浪短视频.js",
     "money": 1.0,
     "onetime": 0,
     "day":"2020-3-25",

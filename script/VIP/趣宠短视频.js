@@ -93,7 +93,6 @@ var run=function(){
         close_ad_iclicash(apppkg)
         n_i=n_i+1
     }
-
 }
 
 var actionother=function(){

@@ -459,8 +459,6 @@ var app_sign=function(){
         }
         if(clickids([快手极速首页奖励悬浮])){
             sleep(1500)
-           
-          
         }
        if(textclick("立即签到")){
            sleep(1000)
@@ -476,6 +474,9 @@ var app_sign=function(){
                 log("去查看 ")
                 return true
             }
+        }
+        if(idoneexist(快手极速版首页标志)){
+            return false
         }
        s=s+1
     }
