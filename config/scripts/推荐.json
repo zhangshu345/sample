@@ -59,8 +59,8 @@
         "version":""}
     
 },{"name":"快手极速版辅助滑动",
-    "desc":{"summary":"夏普手机自动安装赚钱应用集合1","html":""},
-    "tags":["夏普","自动","安装"],
+    "desc":{"summary":"快手极速版辅助滑动","html":""},
+    "tags":["快手极速版","自动","安装"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
     "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
     "root":false,
