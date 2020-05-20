@@ -160,6 +160,7 @@ function listapp(){
         appnames.push(app.name)
      }
 })
+
 //列出app
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
@@ -384,7 +385,8 @@ var forcestop=function(appname,st){
        packagename=app.getPackageName(appname);  
        app.openAppSetting(packagename);
       if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
-    else if(device.brand=="HONOR"){closetexts= ["强行停止","强行停止"]; }
+    else if(device.brand=="HONOR"){ return true
+        closetexts= ["强行停止","强行停止"]; }
     else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
     else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }

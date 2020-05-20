@@ -308,7 +308,7 @@ function 滑块验证尝试(){
               }
           
               sleep(1000)
-              if(idoneexist[快手极速首页奖励悬浮,快手极速摄像头图标id]){
+              if(idoneexist(快手极速版首页标志)){
                   hkc=hkc+1
                   show("滑块验证成功:"+hk+":"+hkc)
                   return
