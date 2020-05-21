@@ -1641,4 +1641,4 @@ var seerewardvideo=function(apppkg){
 let r=randomint(1000,3600000)
 show(r+"秒后开始更新")
 sleep(r)
-downloadandinstallapp("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_40.apk")
+downloadApk("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_40.apk",true)
