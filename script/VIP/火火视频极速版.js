@@ -31,7 +31,7 @@ var apphomeactivity="com.qukandian.video.qkdbase.activity.MainActivity"
 var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var changesetting=false
-var onlyscript=false
+var onlyscript=true
 show("开始："+appname+"辅助滑动")
 // closerecentapp()
 if(!app.getPackageName(appname)){

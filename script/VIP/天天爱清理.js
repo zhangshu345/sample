@@ -34,7 +34,7 @@ var maxtime=60 //一天最长时间
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var islogin=false
-var onlyscript=false  //仅允许当前一个脚本运行 
+var onlyscript=true  //仅允许当前一个脚本运行 
 
 var 天天爱清理清理数据完成页面="com.xiaoqiao.qclean.base.view.guide.GuidePageViewActivity"
 var 天天爱清理红包奖励id="com.xiaoqiao.qclean:id/image_red_bg_icon"

@@ -28,7 +28,7 @@ var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
-var onlyscript=false  //仅允许当前一个脚本运行 
+var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=true
 
 if(onlyscript){
