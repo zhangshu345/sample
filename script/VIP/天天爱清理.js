@@ -193,12 +193,8 @@ var app_login=function(){
             
                logintype="weixin"
            }
-
         }
-      
-       
     }
-   
 }
 
 //app 微信登录
@@ -228,15 +224,15 @@ var app_login_phone=function(){
 var app_sign=function(){
 
     
-
 }
+
+
 var  天天爱清理视频上滑=function(){
     if(enablegenius){
         滑动(20,10,17,10,5,500,500)
     }else{
         天天爱清理下滑()
     }
-    
 }
 
 var 天天爱清理下滑=function(){
@@ -261,17 +257,16 @@ var 天天爱清理下滑=function(){
     return false 
 }
 
-
 //app提现
 var app_tomoney=function(){
 
 }
+
 var seead=function(timeout){
     n_see=0
     starttime=nowdate().getTime()
     while(n_see<20){
         show("监听广告中："+n_see)
-       
         if(text("点击重播").exists()){
             back()
             sleep(1000)
@@ -291,6 +286,7 @@ var seead=function(timeout){
             back()
             sleep(1000)
         }
+
         sleep(2000)
         if(currentActivity()==apphomeactivity){
             return
@@ -298,7 +294,11 @@ var seead=function(timeout){
         if(idoneexist(视频页标记id集合)){
             return
         }
+        if(!idContains(apppkg).exists()){
+            return
+        }
         n_see=n_see+1
     }
 }
+
 run()
