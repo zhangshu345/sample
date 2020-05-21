@@ -115,6 +115,10 @@ var  app_home_video=function(){
         if(maytextclick("看视频奖励最高")){
             seerewardvideo(apppkg)
         }
+        if(!idContains(apppkg).findOne(100)){
+            app.launch(apppkg)
+            sleep(3800)
+          }
         n_home_video=n_home_video+1
         sleep(1000)
     }

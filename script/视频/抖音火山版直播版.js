@@ -61,14 +61,15 @@ var 提前开始点击时间=1500
 var 点击持续时间=4000
 var 点击间断时间=5
 var 循环次数=1000
-var 最长等红包时间=60
+var 最长等红包时间=180
+var x=500,y=1000
  alltest()
 // checkfloaty()
 // checksystemsettings()
 floaty.closeAll()
 creatgfloatywindow()
 
-gfw.setPosition(0,340)
+gfw.setPosition(0,388)
 
 
 if(changesetting){
@@ -94,19 +95,21 @@ var run=function(){
     sleep(3000)
     n_i=0
     while(true){
-        sleep(500)
+     
         log("循环次数："+n_i)
+        if(循环次数/50==0){
+            textclick("直播")
+        }
         ca=currentActivity()
+        
         if(ca!=apphomeactivity){
+            show("No 当前activity:"+ca)
             app_home_video()
+            sleep(1000)
+            滑动(20,10,18,10,7,500,500)
         }else{
-            if(!idoneexist(直播列表页标识集合id)){
-               if( textclick("直播")){
-                   sleep(2000)
-               }
-            }
+            show("Yes 当前activity:"+ca)
             //这里是视频上滑操作
-           
                 //应该做个筛选 就是人数稍的 或者 是人数在一定范围的
                 if(idclick(直播列表页红包标志id,1000)){
                     while(!idoneexist(直播页标识集合id)){
@@ -115,16 +118,19 @@ var run=function(){
                         if(currentActivity()!=appliveactivity){
                             break
                         }
-                    }
+                    } 
+                    sleep(1000);
                     node_djs=id(直播页福袋倒计时id).findOne(1000)
                     if(node_djs){
                         t_djs=node_djs.text()
                         tt=t_djs.split(":")
                         time_djs=parseInt(tt[0])*60+parseInt(tt[1])
+                        show("福袋倒计时:"+time_djs+"秒")
                         if(time_djs<最长等红包时间){
-                            if(clicknode(node_djs)){
-                                waiterhongbao()
-                            }
+                            // if(clicknode(node_djs)){
+                            //     waiterhongbao()
+                            // }
+                            waiterhongbao()
                         }
                     } 
                     node_djs=id(直播页红包倒计时id).findOne(1000)
@@ -132,15 +138,30 @@ var run=function(){
                         t_djs=node_djs.text()
                         tt=t_djs.split(":")
                         time_djs=parseInt(tt[0])*60+parseInt(tt[1])
+                        show("红包倒计时:"+time_djs+"秒")
                         if(time_djs<最长等红包时间){
-                            if(clicknode(node_djs)){
-                                waiterhongbao()
-                            }
+                            waiterhongbao()
+                           
                         }
                     }
+                }else{
+                    滑动(20,10,18,10,7,500,500)
                 }
+                if(idoneexist(直播列表页标识集合id)){
+                    滑动(20,10,18,10,7,500,500)
+                }else{
+                    if( textclick("直播")){
+                        sleep(2000)
+                    }
+                }
+
         }
-        滑动(20,10,18,11,7,500,500)
+        if(textallexist(["关闭应用","等待"])){
+           if( textclick("关闭应用")){
+            app.launch(apppkg)
+            sleep(3000)   
+            }
+        }
         n_i=n_i+1
     }
 }
@@ -150,10 +171,12 @@ var waiterhongbao=function(){
         node_hbtc=id(直播页红包弹窗id).findOne(1000)
         node_hhhdj=id(直播页红包倒计时id).depth(5).findOne(300)
         if(node_hhhdj){
+            show("找到红包倒计时")
             if(node_hhhdj.text().search("分")>-1){
                 show("等待10秒")
              sleep(10000)
             }else{
+                show("时间小于一分钟")
                 time_djs=parseInt(node_hhhdj.text())
                 if(time_djs<提前开始点击时间){
                     循环次数=点击持续时间/点击间断时间
@@ -164,21 +187,20 @@ var waiterhongbao=function(){
                     return true
                 }
             }
-        }else{
-            if(clickoneids(直播红包倒计时集合id)){
-                show("点击红包倒计时")
-            }else{
-                return false
-            }
         }
+        if(clickoneids(直播红包倒计时集合id)){
+                show("点击红包倒计时")
+        }
+        
         sleep(1000)
     }
 }
 
 var app_home_video=function(){
-    if(idContains(apppkg).findOne()){
+    if(idContains(apppkg).findOne(100)){
         back()
         sleep(1000)
+        textclick("退出")
        
     }else{
        app.launch(apppkg)
