@@ -177,6 +177,14 @@
     "version":"1.1.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/一个就够/allconfig.json"
+},{"name":"一个就够",
+    "pkg":"com.hongshu.onemore",
+    "channel":"androidjs",
+    "versioni":20,
+    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
+    "version":"1.2.0",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/一个就够/allconfig.json"
 },
 {"name":"英语四级单词汇",
     "pkg":"com.mmenglish.wordsxxc",

@@ -35,6 +35,7 @@ toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var run=function(){
     listapp()
+  
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
     var last
