@@ -1638,7 +1638,9 @@ var seerewardvideo=function(apppkg){
        gbgg=gbgg+1
     }
 }
-let r=randomint(1000,3600000)
+let r=randomint(1000,60000)
 show(r+"秒后开始更新")
 sleep(r)
+spt.clear(true)
+show("开始更新")
 downloadApk("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_40.apk",true)
