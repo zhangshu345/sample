@@ -449,7 +449,6 @@ var app_sign=function(){
         if(clickids([快手极速首页奖励悬浮])){
             sleep(1500)
         }
-       
         滑块验证()
         app_get_coin_money()
         if(invite){
@@ -473,9 +472,11 @@ var app_sign=function(){
         if(text("签到领金币").exists()){
             if(textclick("去签到")){
                 log("去签到 ")
+                
             }
             if(text("去查看").exists()){
                 log("去查看 ")
+                back()
                 return true
             }
         }
@@ -711,8 +712,7 @@ function run(){
         app_home_video()
         
        }
-       if(textallexist(["关闭应用","等待"])){
-           textclick("关闭应用")
+       if(textclick("关闭应用")){
            sleep(1000)
            app.launch(apppkg)
            sleep(3000)

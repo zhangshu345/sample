@@ -45,6 +45,7 @@ creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)
 
+
 if(changesetting){
     device.setMusicVolume(0)
     toastLog("自动设置音量为0")

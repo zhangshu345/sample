@@ -58,8 +58,6 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 
-
-
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -88,7 +86,8 @@ var 视频次数=0
 // }
 var lastdesc=""
 var 滑动次数=0
-
+closelastscriptapp()
+spt.put("lastscriptapp",appname)
 
 function run(){
     app.launchApp(appname)
