@@ -1071,9 +1071,9 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     app.launch(context.getPackageName())
-    sleep(1000)
+    sleep(2000)
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     var eeee= engines.execScript("uiname",ui函数,{})
     sleep(1000)
     let ss=true
@@ -1210,9 +1210,9 @@ var checksystemsettings=function(){
 // 
 var alltest=function(){
     log("全部测试")
-
     device.wakeUpIfNeeded()
     checkfloaty()
+
     checksystemsettings()
     startdeviceadmin()
 }

@@ -107,7 +107,7 @@ var actionother=function(){
 var  app_home_video=function(){
     n_home_video=0
     while(n_home_video<20){
-        clicktexts(["同意并继续","允许","允许","允许","首页","推荐"])
+        clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
         ca=currentActivity()
         if(ca==apphomeactivity){
             return true

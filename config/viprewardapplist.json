@@ -628,6 +628,36 @@
     "downloadurl": ""
 },
 {
+    "name": "抖音火山版",
+    "open": false,
+    "install": true,
+    "wx": false,
+    "zfb": true,
+    "phone": false,
+    "permoney": 0.3,
+    "tag": [
+        "自用"
+    ],
+    "level": 0,
+    "coin": 100,
+    "root": false,
+    "desc": "抖音火山版",
+    "starttime":"",
+    "endtime":"",
+    "pkg": "com.ss.android.ugc.live",
+    "bmobid": "",
+    "scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/抖音火山版.js",
+    "money": 1.0,
+    "onetime": 30,
+    "maxtime": 90,
+    "day":"2020-5-7",
+    "runtime":0,
+    "version":1,
+    "appversion": "",
+    "icon": "https://pp.myapp.com/ma_icon/0/icon_42256978_1589965036/96",
+    "downloadurl": ""
+},
+{
     "name": "天天爱清理",
     "open": true,
     "install": true,
