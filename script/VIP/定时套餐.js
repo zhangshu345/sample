@@ -79,6 +79,9 @@ var run=function(){
             forcestop(app.name)
         }
     })
+    let app=apps[0]
+
+    runurlscript(app.name,app.path)
  
 }
 
@@ -102,4 +105,3 @@ var thread = threads.start(function(){
 //停止线程执行
 sleep(2000)
 run()
-runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")

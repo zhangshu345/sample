@@ -107,7 +107,6 @@ while(true){
 //                back()
 //             sleep(1500)
 //            }
-           
 //         }
 //         进直播间次数=进直播间次数+1
 //         show("进直播间次数:"+进直播间次数)
@@ -121,7 +120,6 @@ while(true){
 //         }else{
 //             click(device.width*3/4,device.height/4)
 //         }
-       
 //     }
    
 // }
