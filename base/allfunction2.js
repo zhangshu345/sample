@@ -1190,6 +1190,7 @@ var checksystemsettings=function(){
     else if(device.brand=="OPPO"){systemtexts= ["强行停止","强行停止"];    }
     else{systemtexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
         PermissionUtils.requestWriteSettings(null);
+        n_csst=0
         while(n_csst<10){ sleep(1000);
             if(issystemsettings()){ log("有系统设置权限"); return true; }
             else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }

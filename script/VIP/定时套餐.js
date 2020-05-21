@@ -31,23 +31,44 @@ show("开始月结套餐稳赚")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js"
 var run=function(){
     listapp()
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    sleep(1000)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,0,0)
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
-    var last
     apps= shuffleArray(apps)
+    let xiaoshi=0
+    let fen=1
+    apps.forEach(app => {
+        if(scriptappname==app.name){
+            return
+        }
+        if(app.open){
+            let runconfig=app.runconfig
+            if(runconfig&&runconfig.path){
+                fen=fen+runconfig.onetime/60
+                if(fen>=60){
+                    xiaoshi=xiaoshi+1
+                    fen=fen-60
+                }
+                if(xiaoshi<=23){
+                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("测试定时",run,runconfig.path,xiaoshi,fen)
+                }
+            }
+        }
+
+    })
     apps.forEach(app => {
         if(scriptappname==app.name){
             return
         }
         if(app.open){
             forcestop(app.name)
-            sleep(1000)
         }
-
     })
  
 }
