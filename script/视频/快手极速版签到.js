@@ -28,9 +28,9 @@ var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
 var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
-var invite=false
+var invite=true
 var tomoney=false
-var onlyscript=true
+var onlyscript=false
 var todaysign=今日签到(appname)
 var coin=上次金币(appname)
 var money=上次余额(appname)
@@ -308,7 +308,7 @@ function 滑块验证尝试(){
               }
           
               sleep(1000)
-              if(idoneexist[快手极速首页奖励悬浮,快手极速摄像头图标id]){
+              if(idoneexist(快手极速版首页标志)){
                   hkc=hkc+1
                   show("滑块验证成功:"+hk+":"+hkc)
                   return
@@ -406,10 +406,11 @@ var 打开快手极速左边框=function(){
     }
     return false
 }
+
 var app_home_video=function(){
     show("回到快手极速首页")
     n_home=0
-    while(n_home<10){
+    while(n_home<3){
          if(idoneexist(快手极速版首页标志)){
             return true
         }else{
@@ -417,7 +418,7 @@ var app_home_video=function(){
                 back()
             }else{
                app.launch(apppkg)
-               sleep(3000)
+               sleep(5000)
             }
             
         }
@@ -429,7 +430,6 @@ var app_home_video=function(){
     forcestop(appname)
 }
 
-
 var app_close_alter=function(){
     clickids(快手极速弹窗id集合)
     clicktexts(快手极速弹窗文本集合)
@@ -440,13 +440,16 @@ var app_close_alter=function(){
     if (textclick("立即重播",100)){
             快手极速视频上滑()
     }
-    log("关闭弹窗完毕")
+    show("关闭弹窗完毕")
 }
 var app_sign=function(){
-    log("快手签到")
-    s=0
-    while(s<10){
-        app_close_alter()
+    show("快手签到")
+   let s=0
+    while(s<3){
+        if(clickids([快手极速首页奖励悬浮])){
+            sleep(1500)
+        }
+       
         滑块验证()
         app_get_coin_money()
         if(invite){
@@ -460,9 +463,7 @@ var app_sign=function(){
                 }
             }
         }
-        if(clickids([快手极速首页奖励悬浮])){
-            sleep(1500)
-        }
+      
        if(textclick("立即签到")){
            sleep(1000)
            back()
@@ -481,6 +482,7 @@ var app_sign=function(){
         if(idoneexist(快手极速版首页标志)){
             return false
         }
+        app_close_alter()
        s=s+1
     }
 }
@@ -523,7 +525,6 @@ var 快手极速视频上滑=function(){
          }
     }
 
-   
  }
 
  var 快手极速视频下滑=function(){
@@ -635,6 +636,7 @@ var app_get_coin_money=function(){
        if(currentActivity()!=appsignactivity){
            return
        }
+       sleep(2000)
        n_agcm=n_agcm+1
     }
 }
@@ -706,11 +708,18 @@ function run(){
     
        }else{
         show("快手极速版首页标志没有找到了")
+        app_home_video()
+        
+       }
+       if(textallexist(["关闭应用","等待"])){
+           textclick("关闭应用")
+           sleep(1000)
+           app.launch(apppkg)
+           sleep(3000)
        }
       sleep(1000)
     }
 }
  run()
-// app_get_coin_money()
-//  滑块验证()
+
 

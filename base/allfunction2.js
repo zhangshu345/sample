@@ -385,8 +385,7 @@ var forcestop=function(appname,st){
        packagename=app.getPackageName(appname);  
        app.openAppSetting(packagename);
       if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
-    else if(device.brand=="HONOR"){ return true
-        closetexts= ["强行停止","强行停止"]; }
+    else if(device.brand=="HONOR"){ closetexts= ["强行停止","强行停止"]; }
     else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
     else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
@@ -415,6 +414,7 @@ var toPkgandClass=function(pkg,classname){
 var todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
+
 var toinputsettings=function(){
     let i = app.intent({
         action: "android.settings.INPUT_METHOD_SETTINGS",
@@ -423,9 +423,12 @@ var toinputsettings=function(){
     });
     context.startActivity(i);
 }
+
+
 var toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
+
 var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
@@ -434,6 +437,7 @@ var tolanguagesetting=function(){
     });
     context.startActivity(i);
 }
+
 var tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
@@ -442,12 +446,18 @@ var tosettingsbyaction=function(actionname){
     });
     context.startActivity(i);
 }
+
+
 var toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
+
+
 var tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
+
+
  //到android设置页面
  var  toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
@@ -480,6 +490,7 @@ var checkfloaty=function(appname){
        }
    }
 }
+
 var sleepr=function(short,long){
     long=long||short+1000
     rt=random(short,long)
@@ -493,6 +504,7 @@ var getTextfromid=function(idstr,defaulttext){
     node_id=id(idstr).findOne(100)
     if(node_id){ return node_id.text(); }else{ return "";}
 }
+
 function idclick(idstr,t,left,top,right,bottom){
     t= t|| 100;
     left = left || 0;
@@ -504,6 +516,7 @@ function idclick(idstr,t,left,top,right,bottom){
     }
     return false
 }
+
 //文本点击
 function textclick(i,t,left,top,right,bottom){
     t=t || 100
@@ -522,7 +535,6 @@ function textclick(i,t,left,top,right,bottom){
     }  
     return false
 }
-
 
 function maytextclick(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false;    }
@@ -571,6 +583,7 @@ var clickparents=function(v,n){
         else{ i=i+1; show("向上查找层数："+i); v=p }    }
     return false
 }
+
 //找到子类 点击下去
 var clickchilds=function(v){
    if(v.childCount()>0){
@@ -589,6 +602,7 @@ var clickchilds=function(v){
    }
    return false 
 }
+
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
     t=t||500
@@ -655,7 +669,6 @@ var clickonetexts=function(texts,t,st){
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
     t=t||10000   
-    
     st=nowdate().getTime()
     while(true){
        clicktexts(clicktexts)
@@ -801,6 +814,7 @@ var idoneexist=function(ids){
      if(ids.length>0){for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }    }
     return false
 }
+
 var firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
@@ -1167,8 +1181,16 @@ var issystemsettings=function(){
 var checksystemsettings=function(){
     if(issystemsettings()){ log("有系统设置权限"); return true    }
     else{ log("没有系统设置权限");
+    systemtexts=[]
+    if( device.brand=="samsung"){ systemtexts= ["强制停止","强制停止"];}
+    else if(device.brand=="HONOR"){systemtexts= ["允许修改系统设置","强行停止"]; }
+    else if(device.brand=="DOCOMO"){systemtexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
+    else if(device.brand=="Meizu"){systemtexts= ["强行停止","确定"];    }
+    else if(device.brand=="xiaomi"){systemtexts= ["结束运行","确定"];    }
+    else if(device.brand=="OPPO"){systemtexts= ["强行停止","强行停止"];    }
+    else{systemtexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
         PermissionUtils.requestWriteSettings(null);
-        while(true){ sleep(1000);
+        while(n_csst<10){ sleep(1000);
             if(issystemsettings()){ log("有系统设置权限"); return true; }
             else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }
                     else{ app.openAppSetting(context.getPackageName()); 滑动(20,10,17,10,3,500,500);
@@ -1180,6 +1202,7 @@ var checksystemsettings=function(){
                     }
                 }
             }
+            n_csst=n_csst+1
         }
     }
 }
@@ -1648,3 +1671,5 @@ var seerewardvideo=function(apppkg){
 // log("运行时间:"+scriptruntime()+"-秒")
 // close_ad_qq("com.dongdong.jiantie")
 // close_ad_toutiao("com.dongdong.jiantie")
+
+快手极速版邀请()

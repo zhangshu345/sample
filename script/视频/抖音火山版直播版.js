@@ -33,9 +33,9 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apppkg="com.jt.hanhan.video"
+var apppkg="com.ss.android.ugc.live"
 var apphomeactivity=""
-var appname="火火视频极速版"
+var appname="抖音火山版"
 
 alltest()
 // checkfloaty()
@@ -100,7 +100,6 @@ var app_login_weixin=function(){
 var app_login_phone=function(){
 
 }
-
 //app 签到
 var app_sign=function(){
 
@@ -108,10 +107,6 @@ var app_sign=function(){
 
 //app提现
 var app_tomoney=function(){
-
-}
-
-var app_home_video=function(){
 
 }
 
