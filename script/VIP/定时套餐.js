@@ -96,12 +96,12 @@ var  shuffleArray=function(array) {
 }
 
 addbmobchannel("hongshureward")
-var thread = threads.start(function(){
-    while(true){
-        sleep(60000)
-        checkbattery(30)
-    }
-});
+// var thread = threads.start(function(){
+//     while(true){
+//         sleep(60000)
+//         checkbattery(30)
+//     }
+// });
 //停止线程执行
-sleep(2000)
+
 run()
