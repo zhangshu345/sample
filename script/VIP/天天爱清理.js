@@ -226,7 +226,6 @@ var app_sign=function(){
     
 }
 
-
 var  天天爱清理视频上滑=function(){
     if(enablegenius){
         滑动(20,10,17,10,5,500,500)
