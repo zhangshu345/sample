@@ -43,14 +43,12 @@ var run=function(){
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,0,0)
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
-    
     let  appruntime={}
-
     let xiaoshi=0
     let fen=2
     let n_xhcs=0
     while (xiaoshi<24&&n_xhcs<10){
-        n_xhcs=nxhcs+1
+        n_xhcs=n_xhcs+1
         apps= shuffleArray(apps)
         apps.forEach(app => {
             show("开始设置："+app.name)
@@ -80,24 +78,22 @@ var run=function(){
                         
                     }else{
                         nowruntime=runconfig.maxtime-appruntime[app.name]
-                        if(nowruntime>3600){
-                            nowruntime=3600
+                        if(nowruntime>100){
+                            show("本次时间:"+nowruntime+"少于一次："+runconfig.onetime)
+                            fen=fen+nowruntime/60
+                            if(fen>=60){
+                               xiaoshi=xiaoshi+1
+                               fen=fen-60
+                            }
+                            if(xiaoshi<=23){
+                                com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
+                                show("设置"+app.name+"运行"+runconfig.onetime+"秒")
+                                appruntime[app.name]=runconfig.maxtime
+                            }
                         }
-                        fen=fen+nowruntime/60
-                        if(fen>=60){
-                           xiaoshi=xiaoshi+1
-                           fen=fen-60
-                        }
-                        if(xiaoshi<=23){
-                            com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
-                            show("设置"+app.name+"运行"+runconfig.onetime+"秒")
-                            appruntime[app.name]=appruntime[app.name]+nowruntime
-                        }
-
                     }
                 }
             }
-    
         })
     }
     sleep(2000)
@@ -112,7 +108,6 @@ var run=function(){
     })
     let app=apps[0]
     runurlscript(app.name,app.path)
- 
 }
 
 var  shuffleArray=function(array) {
@@ -120,7 +115,7 @@ var  shuffleArray=function(array) {
     for (let i =0 ; i <n; i++) {
          j = Math.floor(Math.random() * (n + 1));
         [array[i], array[j]] = [array[j], array[i]];
-        log("交换："+i+"--"+j)
+      //  log("交换："+i+"--"+j)
     }
     return array
 }

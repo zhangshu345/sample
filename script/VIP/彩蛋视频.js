@@ -124,7 +124,6 @@ function run(){
                 back()
                 sleep(2500)
             }
-
         }
     }else{
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
@@ -137,7 +136,6 @@ function run(){
                  }
                 滑动(20,13,16,10,4,500,700)
                 sleep(500)
-              
             }else{
                 lastdesc=currentdesc
                 滑动次数=滑动次数+1
@@ -148,7 +146,6 @@ function run(){
              }
             滑动(20,13,16,10,4,500,700)
             sleep(500)
-          
         }
         if(text("点击重播").exists()){
             back()
@@ -164,7 +161,6 @@ function run(){
                         device.setBrightnessMode(0)
                         device.setBrightness(0)
                     }
-                
                 }else{
                     //休眠三十分钟
                     device.lockScreen()
@@ -245,7 +241,6 @@ var app_sign=function(){
     }
     n_sign=0
     while(n_sign<3){
-
         if(idContains("coins-number").findOne(100)){
             txt_coin=idContains("coins-number").findOne(100).text()
             if(txt_coin){
@@ -276,9 +271,9 @@ var app_sign=function(){
         return 
     }
     sleep(2000)
-
     }
 }
+
 var app_login=function(){
     i=0
     while(i<10){
