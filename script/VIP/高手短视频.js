@@ -23,7 +23,6 @@ toastLog("公共函数实例化失败,程序返回")
 //微信链接邀请绑定 之后登陆
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
-
 var tomoney=false   //填现
 var invite=false // 邀请
 var logintype="weixin"  //登录使用微信  
@@ -44,12 +43,10 @@ floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 gfw.setPosition(0,220)
-
 if(changesetting){
     device.setMusicVolume(0)
     toastLog("自动设置音量为0")
 }
-
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -59,10 +56,7 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
-
 //关闭最新的app
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
-
-
 run(apppkg)
