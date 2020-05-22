@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -40,12 +41,11 @@ if(invite){
 toastLog("指定："+appname+"即将启动")
 //home()
 alltest()
-floaty.closeAll()
+
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 
-gfw.setPosition(0,220)
-device.wakeUpIfNeeded()
+
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)

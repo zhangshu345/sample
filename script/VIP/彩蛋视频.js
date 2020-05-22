@@ -49,7 +49,6 @@ var appname="彩蛋视频"
 
 toastLog("指定："+appname+"即将启动")
 alltest()
-floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
 show("开始彩蛋视频辅助滑动")
