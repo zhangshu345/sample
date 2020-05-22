@@ -1148,15 +1148,17 @@ var doactionmaxtime=function(action,maxtime,intertime){
     intertime=intertime||1000
     stime=nowdate().getTime()
     while(nowdate().getTime()-stime<maxtime){
-        action()
+        if (action()){
+            return true;
+        }
         sleep(intertime)
     }
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
-    if(!action){return}
+    if(!action){return true}
     maxnumber=maxnumber||1; n_doaction=0;
-    while(n_doaction<maxnumber){ action(); n_doaction=n_doaction+1;}
+    while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
 }
 //卸载应用
 var uninstallapp=function(appname){

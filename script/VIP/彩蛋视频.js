@@ -178,12 +178,11 @@ function run(){
 }
 
 var seead=function(){
-    i=0
-    while(i<10){
-        sleep(4000)
-        close_ad_iclicash()
-        close_ad_toutiao()
-        close_ad_qq()
+let  n_seead=0
+    while(n_seead<20){
+        if(maytextclick("看视频再送")){
+
+        }
         if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)){
             back()
             return
@@ -197,7 +196,7 @@ var seead=function(){
        if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
            return 
        }
-        i=i+1
+       
         if(text("邀请好友").findOne(500)){
             back()
             return 
@@ -205,6 +204,11 @@ var seead=function(){
         if(textclick("金币已到账")){
             return
         }
+        close_ad_iclicash()
+        close_ad_toutiao()
+        close_ad_qq()
+        sleep(2000)
+        n_seead=n_seead+1
     }
 }
 var app_go_home=function(){
