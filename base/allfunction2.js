@@ -159,8 +159,7 @@ function listapp(){
      if(app.install){
         appnames.push(app.name)
      }
-})
-
+    })
 //列出app
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
@@ -213,9 +212,9 @@ function keepappclear(url){
      if(app.install){
         appnames.push(app.name)
      }
-})
+    })
 //列出app
-log("白名单："+appnames.length+"+++"+appnames)
+    log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for(var i = 0; i < packageInfos.size(); i++) {
@@ -256,7 +255,15 @@ log("白名单："+appnames.length+"+++"+appnames)
   log("一共第三方应用："+m)
     return allapps
 }
-
+var appstophander=function(){
+    if( device.brand=="samsung"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
+    else if(device.brand=="HONOR"){ if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
+    else if(device.brand=="DOCOMO"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")}}
+    else if(device.brand=="Meizu"){if(textallexist(["确定","等待"])){textclick("确定")}  }
+    else if(device.brand=="xiaomi"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
+    else if(device.brand=="OPPO"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
+    else{if(textoneexist(["关闭应用","等待"])){clickonetexts(["确定","关闭应用","关闭应用程序"])}}
+}
 
 var closerecentapp=function(){
     recents()
