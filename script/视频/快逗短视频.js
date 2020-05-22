@@ -12,7 +12,7 @@ function httpget(url) {
     }
 }
 
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction3.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -65,13 +65,5 @@ if(onlyscript){
 //关闭最新的app
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
-var 导体流体公用函数="https://gitee.com/zhangshu345012/sample/raw/v1/script/视频/导体流体app公用.js"
-var  导体流体公用函数=httpget(公共函数url)
-if (导体流体公用函数 != "") {
-eval(导体流体公用函数)
-toastLog("导体流体公用实例化成功")
-}else {
-toastLog("导体流体公用实例化失败,程序返回")
-}
 
 run(apppkg)
