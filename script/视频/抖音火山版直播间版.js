@@ -95,7 +95,6 @@ var run=function(){
     sleep(3000)
     n_i=0
     while(true){
-     
         log("循环次数："+n_i)
         if(循环次数/50==0){
             textclick("直播")
@@ -141,7 +140,6 @@ var run=function(){
                         show("红包倒计时:"+time_djs+"秒")
                         if(time_djs<最长等红包时间){
                             waiterhongbao()
-                           
                         }
                     }
                 }else{

@@ -54,7 +54,7 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var isshowfloaty=true  //是否显示提醒
+var isshowfloaty=false  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -492,17 +492,28 @@ var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.act
 var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
 var isfloaty=function(){  return Settings.canDrawOverlays(context)}
 var checkfloaty=function(appname){
+    toastLog("悬浮查找开始")
      appname=appname||app.getAppName(context.getPackageName())
      log("当前应用名:"+appname)
-   if(!isfloaty){
+   if(!isfloaty()){
        tofloatysetting()
-       sleep(2000)
+       toastLog("悬浮查找点击之前")
+       sleep(1000)
        while(true){ 
-           if (textclick(appname)){  break };
+        toastLog("悬浮查找点击")
+        if(isfloaty()){
+            return
+        }
+            if(clickonetexts(["允许许可"])){
+                break
+            }
+            if (textclick(appname)){  toastLog("悬浮查找点击应用名"); };
            滑动(20,10,15,10,5,500,300)
-           sleep(2000)
+           sleep(1000)
+         
        }
    }
+   toastLog("悬浮查找结束")
 }
 
 var sleepr=function(short,long){
@@ -540,6 +551,7 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
+        
         show("text："+i+":没找到了")
         return false
     }
@@ -1086,7 +1098,7 @@ var startdeviceadmin=function(){
         return
     }
     app.launch(context.getPackageName())
-    sleep(2000)
+    sleep(5000)
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     var eeee= engines.execScript("uiname",ui函数,{})
     sleep(1000)
@@ -1209,12 +1221,14 @@ var checksystemsettings=function(){
             if(issystemsettings()){ log("有系统设置权限"); return true; }
             else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }
                     else{ app.openAppSetting(context.getPackageName()); 滑动(20,10,17,10,3,500,500);
+
                          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
                            sleep(1000)
+                           滑动(20,10,17,10,3,500,500);
                           if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                             
-                         }
-                    }
+                             }
+                        }
                 }
             }
             n_csst=n_csst+1
@@ -1226,7 +1240,6 @@ var alltest=function(){
     log("全部测试")
     device.wakeUpIfNeeded()
     checkfloaty()
-
     checksystemsettings()
     startdeviceadmin()
 }
