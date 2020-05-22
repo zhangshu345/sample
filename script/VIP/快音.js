@@ -126,7 +126,7 @@ var app_tomoney=function(){
         if(textclick("去提现")){
             doactionmaxtime(function(){
                 textclick("去提现")
-                if(text())
+                if(text()){}
             },10000)
         }
     }
