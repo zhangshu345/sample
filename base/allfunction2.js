@@ -15,6 +15,7 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
+var whiteapps=["微信","京东","淘宝","冰箱","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
@@ -27,7 +28,7 @@ log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
-var 快手极速版邀请码=["xps8bz"]
+var 快手极速版邀请码=["xps8bz","8ca66w","2gz5jwv","2bu24wu","26b2w7z","2bn23jb","26bmyff"]
 var 趣多多邀请码=["89797906"]
 var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/invitecode.txt"
 var 刷宝短视频邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/invitecode.txt"
@@ -153,7 +154,7 @@ var  creatsetfloatywindow=function(){
 function listapp(){
     var appconfig=httpget(allrewardappurl)
     var allapps=[]
-    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    appnames=whiteapps
     apps=JSON.parse(appconfig)
     apps.forEach(app =>{
      if(app.install){
@@ -206,7 +207,7 @@ log("白名单："+appnames.length+"+++"+appnames)
 function keepappclear(url){
     var appconfig=httpget(url)
     var allapps=[]
-    appnames=["微信","京东","淘宝","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    appnames=whiteapps
     apps=JSON.parse(appconfig)
     apps.forEach(app =>{
      if(app.install){
