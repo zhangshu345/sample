@@ -114,5 +114,8 @@ var app_tomoney=function(){
 var app_home_video=function(){
 
 }
+var app_invite=function(){
+    
+}
 
 run()

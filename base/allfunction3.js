@@ -1682,7 +1682,7 @@ function run(apppkg){
         滑动(20,10,16,11,4,500,500)
         doactionmaxtime(actionother,10000,2000)
         if(n_i<100&&n_i%30==0){
-            if(!todaysign()){
+            if(!todaysign){
                 app_sign()
             }
         }
