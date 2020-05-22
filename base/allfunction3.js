@@ -15,7 +15,7 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
-var whiteapps=["微信","京东","淘宝","冰箱","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
@@ -1681,12 +1681,11 @@ function run(apppkg){
       
         滑动(20,10,16,11,4,500,500)
         doactionmaxtime(actionother,10000,2000)
-        if(maytextclick("看视频奖励最高")){
-            seerewardvideo(apppkg)
-        }
+      
         if(!todaysign){
             app_sign()
         }
+        idclick(apppkg+":id/close")
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
@@ -1700,6 +1699,13 @@ var actionother=function(){
     }
     if(textclick("重试")){
         sleep(2000)
+    }
+    if(textclick('微信登录并领取',100)){
+        sleep(2000)
+        if(textclick("同意")){
+            sleep(2000)
+            idclick(apppkg+":id/close")
+        }
     }
 }
 var  app_home_video=function(){
