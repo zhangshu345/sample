@@ -54,7 +54,7 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var isshowfloaty=false  //是否显示提醒
+var isshowfloaty=true  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -1669,3 +1669,4 @@ var seerewardvideo=function(apppkg){
     }
     forcestoppkg(apppkg)
 }
+
