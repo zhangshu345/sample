@@ -103,4 +103,4 @@ var app_tomoney=function(){
 
 }
 
-
+run()
