@@ -1,7 +1,6 @@
 [{
     "name":"帮助","level":0,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/帮助.json","img":""},
     {"name":"抖音火山版","level":0,"desc":"今日免费脚本","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/抖音火山版.json","img":""},
-    {"name":"VIP","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/会员.json"},
     {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},
     {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/快捷方式.json"}
 ]
