@@ -1663,5 +1663,3 @@ var seerewardvideo=function(apppkg){
     }
     forcestoppkg(apppkg)
 }
-
-
