@@ -74,4 +74,4 @@ toastLog("导体流体公用实例化成功")
 toastLog("导体流体公用实例化失败,程序返回")
 }
 
-run()
+run(apppkg)

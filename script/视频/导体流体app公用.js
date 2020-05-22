@@ -1,7 +1,4 @@
-//app 运行
-
-//app 运行
-function run(){
+function run(apppkg){
     app.launch(apppkg)
     sleep(3000)
     n_i=0
