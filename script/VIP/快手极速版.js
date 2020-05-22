@@ -306,7 +306,6 @@ function 滑块验证尝试(){
               }else{
                   swipe(135, 980, w * 0.63, 980, random(1220, 1505))
               }
-          
               sleep(1000)
               if(idoneexist(快手极速版首页标志)){
                   hkc=hkc+1
@@ -419,7 +418,6 @@ var app_home_video=function(){
                app.launch(apppkg)
                sleep(5000)
             }
-            
         }
         app_close_alter()
         滑块验证()
@@ -706,12 +704,11 @@ function run(){
             }
             滑动次数=滑动次数+1
            sleepr(6000*ratio,8000*ratio)
-    
        }else{
         show("快手极速版首页标志没有找到了")
         app_home_video()
-        
        }
+
        if(textclick("关闭应用")){
            sleep(1000)
            app.launch(apppkg)

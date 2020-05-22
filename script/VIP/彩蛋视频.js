@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
+device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -46,7 +47,6 @@ var apppkg="com.jifen.dandan"
 var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
 var appname="彩蛋视频"
 
-
 toastLog("指定："+appname+"即将启动")
 alltest()
 floaty.closeAll()
@@ -55,7 +55,7 @@ creatsetfloatywindow()  //创建设置悬浮窗
 show("开始彩蛋视频辅助滑动")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
-device.wakeUpIfNeeded()
+
 toastLog("自动设置音量为0")
 
 if(!app.getPackageName(appname)){

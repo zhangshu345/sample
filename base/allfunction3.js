@@ -1670,15 +1670,15 @@ function run(apppkg){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            app_home_video()
-        }else{
-            //这里是视频上滑操作
-            滑动(20,10,16,11,4,500,500)
-            doactionmaxtime(actionother,10000,2000)
-
+        if(n_i/20==0){
+            ca=currentActivity()
+            if(ca!=apphomeactivity){
+                app_home_video()
+            }
         }
+      
+        滑动(20,10,16,11,4,500,500)
+        doactionmaxtime(actionother,10000,2000)
         if(maytextclick("看视频奖励最高")){
             seerewardvideo(apppkg)
         }
@@ -1702,7 +1702,7 @@ var actionother=function(){
 }
 var  app_home_video=function(){
     n_home_video=0
-    while(n_home_video<20){
+    while(n_home_video<3){
         clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
         ca=currentActivity()
         if(ca==apphomeactivity){
