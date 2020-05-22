@@ -1,3 +1,5 @@
+import { text } from "express";
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -34,9 +36,11 @@ var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
 var apppkg="com.kuaiyin.player"
+var apploginactivity="com.kuaiyin.player.v2.ui.login.LoginSupportActivity"
 var apphomeactivity=""
 var appname="快音"
-
+var 首次进入点击文本集合=["我知道了","允许","允许","始终允许","始终允许"]
+var 首次进入弹窗红包点击id="com.kuaiyin.player:id/redPackage"  //  text
 alltest()
 // checkfloaty()
 // checksystemsettings()
@@ -93,7 +97,15 @@ var app_login=function(){
 
 //app 微信登录
 var app_login_weixin=function(){
-
+    if(currentActivity()==apploginactivity){
+        textclick("微信登录")
+        doactionmaxtime(function(){
+            textclick("同意")
+            textclick("立即提现")
+            sleep(1000)
+        },10000)
+        
+    }
 }
 
 //app_手机号登录
@@ -108,11 +120,30 @@ var app_sign=function(){
 
 //app提现
 var app_tomoney=function(){
+    if(currentActivity()==apphomeactivity){
+        textclick("福利")
+        sleep(1000)
+        if(textclick("去提现")){
+            doactionmaxtime(function(){
+                textclick("去提现")
+                if(text())
+            },10000)
+        }
+    }
+    
 
 }
 
 var app_home_video=function(){
+    if(currentActivity()==apphomeactivity){
+       return true
+    }
+  return  doactionmaxtime(function(){
+        if(currentActivity()==apphomeactivity){
+            return true
+        }
 
+    },10000)
 }
 
 run()
