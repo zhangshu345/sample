@@ -400,6 +400,19 @@ var forcestop=function(appname,st){
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
   n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
+var forcestoppkg=function(apppkg,st){
+    show("强制关闭应用:"+apppkg); 
+       packagename=apppkg 
+       app.openAppSetting(packagename);
+      if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
+    else if(device.brand=="HONOR"){ closetexts= ["强行停止","强行停止"]; }
+    else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
+    else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
+    else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
+    else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
+    else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+}
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
@@ -1431,7 +1444,6 @@ var close_ad_liquid=function(apppkg){
              sleep(2000)
            }
     }
-
 }
 
 var close_ad_qq=function(apppkg){
@@ -1600,7 +1612,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
                     seerewardvideo()
                     }
                }
-               
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
@@ -1626,24 +1637,30 @@ var seerewardvideo=function(apppkg){
     while(gbgg<20){
         show("关闭广告："+gbgg)
       if(close_ad_qq(apppkg)){
-          return
+        return  true
       }
        if(close_ad_toutiao(apppkg)){
-           return 
+           return  true
        }
        if(text("创意视频").findOne(300)){
-           return
+        return  true
        }
        if(textoneexist(["点击下载"])){
            back()
        }
-       close_ad_liquid(apppkg)
+      if(close_ad_liquid(apppkg)){
+        return  true
+      }
        sleep(2000)
        if(!idContains(apppkg).exists()){
+        forcestoppkg(apppkg)
         app.launch(apppkg)
+        sleep(3000)
+        return false
        }
        gbgg=gbgg+1
     }
+    forcestoppkg(apppkg)
 }
 
 
