@@ -384,7 +384,6 @@ var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today()
 var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
 //
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
- 
 var forcestop=function(appname,st){
     show("强制关闭应用:"+appname); 
     if(!appname){ return }
@@ -445,11 +444,9 @@ var toinputsettings=function(){
     context.startActivity(i);
 }
 
-
 var toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
-
 var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
@@ -468,17 +465,13 @@ var tosettingsbyaction=function(actionname){
     context.startActivity(i);
 }
 
-
 var toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
 
-
 var tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
-
-
  //到android设置页面
  var  toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
