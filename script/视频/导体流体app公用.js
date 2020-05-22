@@ -1,7 +1,7 @@
 //app 运行
 
 //app 运行
-var run=function(){
+function run(){
     app.launch(apppkg)
     sleep(3000)
     n_i=0
@@ -103,4 +103,3 @@ var app_tomoney=function(){
 
 }
 
-run()
