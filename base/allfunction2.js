@@ -1147,7 +1147,7 @@ var checkpermission=function(permissions){
 //执行函数 在一定时间内 最小10秒
 var doactionmaxtime=function(action,maxtime,intertime){
     if(!action){
-        return
+        return false
     }
     maxtime=maxtime||10000
     intertime=intertime||1000

@@ -1142,7 +1142,7 @@ var checkpermission=function(permissions){
 //执行函数 在一定时间内 最小10秒
 var doactionmaxtime=function(action,maxtime,intertime){
     if(!action){
-        return
+        return false
     }
     maxtime=maxtime||10000
     intertime=intertime||1000
@@ -1156,7 +1156,7 @@ var doactionmaxtime=function(action,maxtime,intertime){
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
-    if(!action){return true}
+    if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
     while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
 }
@@ -1681,9 +1681,10 @@ function run(apppkg){
       
         滑动(20,10,16,11,4,500,500)
         doactionmaxtime(actionother,10000,2000)
-      
-        if(!todaysign){
-            app_sign()
+        if(n_i<100&&n_i%30==0){
+            if(!todaysign()){
+                app_sign()
+            }
         }
         idclick(apppkg+":id/close")
         close_ad_qq(apppkg)
@@ -1717,6 +1718,8 @@ var  app_home_video=function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
+         }else{
+
          }
 
         if(maytextclick("看视频奖励最高")){
@@ -1763,9 +1766,18 @@ var app_login_phone=function(){
 //app 签到
 var app_sign=function(){
     if(currentActivity()==apphomeactivity){
-       if( textclick("我的")){
+        if(clickonetexts(["任务"])){
+            sleep(2000)
+            if(text("填写邀请码").exists()){
+                if (textclick("去填写")){
+                    
+                }
+            }
+        }
+      clicktexts(["任务","签到"],100,2000)
 
-       }
+
+      
 
     }
 }

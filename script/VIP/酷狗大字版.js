@@ -33,9 +33,11 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apppkg="com.jt.hanhan.video"
-var apphomeactivity=""
-var appname="火火视频极速版"
+var apppkg="com.kugou.android.elder"
+var apphomeactivity="com.kugou.android.app.MediaActivity"
+var apploginactivity="com.kugou.common.useraccount.app.KgUserLoginAndRegActivity"  // 登录页面
+var appname="酷狗大字版"
+var 首次点击文本集合=["同意","确定","允许","允许","始终允许","始终允许","我知道了","赚钱","立即登录"]
 
 alltest()
 // checkfloaty()
@@ -49,15 +51,15 @@ if(changesetting){
     device.setMusicVolume(0)
     toastLog("自动设置音量为0")
 }
+if(onlyscript){
+    engines.stopOther()
+}
 
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }else{
     show(appname+"已经安装")
-}
-if(onlyscript){
-    engines.stopOther()
 }
 
 //关闭最新的app
@@ -93,7 +95,11 @@ var app_login=function(){
 
 //app 微信登录
 var app_login_weixin=function(){
-
+    if(currentActivity()==apploginactivity){
+        doactionmaxtime(function(){
+            
+        },100000)
+    }
 }
 
 //app_手机号登录
