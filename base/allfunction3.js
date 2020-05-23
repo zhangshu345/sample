@@ -13,7 +13,7 @@ importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
-var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
 var admanager=AdviceManager.getInstance();

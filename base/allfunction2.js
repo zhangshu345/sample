@@ -15,9 +15,13 @@ importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
-var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
-var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器",
+"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
+"小白闹钟天气","小白日历","唐诗精选","一个就够","MD编辑器","减压音乐","小强助理","冥想音乐","东览","宝宝常识","东东随便"
+,"英语四级单词汇","KeepHealth","动物的叫声","儿童绘画板","休息声音","随便粘","东东随便",
+]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
@@ -195,7 +199,7 @@ log("白名单："+appnames.length+"+++"+appnames)
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
                 uninstallapp(app.name)
-                log("第三方应用"+GsonUtils.toJson(app))
+                // log("第三方应用"+GsonUtils.toJson(app))
           }else{
             toastLog(app.name+"是白名单app")
           }
