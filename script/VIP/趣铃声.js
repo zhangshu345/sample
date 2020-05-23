@@ -78,14 +78,15 @@ var run=function(){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
+        if(!idContains(apppkg).exists()){
+            app.launch(apppkg)
+            sleep(3000)
+        }
         ca=currentActivity()
         if(ca!=apphomeactivity){
             
         }else{
-            if(!idContains(apppkg).exists()){
-                app.launch(apppkg)
-                sleep(3000)
-            }
+           
             //这里是视频上滑操作
             if(textclick("看视频，金币再翻1倍！")){
                 if (app_seevideoad()){
@@ -170,6 +171,7 @@ var run=function(){
 //app 登录  
 var app_login=function(){
      clicktexts(首次点击文本集合)
+     app_login_weixin()
 }
 
 //app 微信登录
@@ -177,8 +179,7 @@ var app_login_weixin=function(){
     if(currentActivity()==apploginactivity){
         clicktexts(["微信","同意"],100,2000)
         //之后进入提现页 com.jifen.qu.open.QX5WebViewActivity
-
-        
+       
         while(true){
             node_title=id("com.zheyun.bumblebee:id/tv_title").findOne(100)
             if(node_title){

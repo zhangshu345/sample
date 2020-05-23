@@ -5,7 +5,7 @@
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
     "version":"2.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/宝宝常识/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/宝宝常识/allconfig.json"
 },
 {"name":"东东随便",
     "pkg":"com.dongdong.suibian",
@@ -14,17 +14,9 @@
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
     "version":"1.3.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/dongdongsuibian/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/dongdongsuibian/allconfig.json"
 },
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":40,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"1.4.0",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/随便粘/allconfig40.json"
-},
+
 {"name":"随便粘",
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",
@@ -32,17 +24,9 @@
     "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
     "version":"1.4.1",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/随便粘/allconfig41.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/随便粘/allconfig41.json"
 },
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":39,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"1.3.9",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/随便粘/allconfig39.json"
-},
+
 {"name":"东览",
     "pkg":"com.dongdong.fileManage",
     "channel":"androidjs",
@@ -50,7 +34,7 @@
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/东览/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/东览/allconfig.json"
 },
 {"name":"东览",
     "pkg":"com.dongdong.fileManage",
@@ -59,26 +43,9 @@
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
     "version":"1.1.0",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/东览/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/东览/allconfig.json"
 },
-{"name":"快刷",
-    "pkg":"com.dongdong.fileManage",
-    "channel":"kuaishua",
-    "versioni":3,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.0.3",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/快刷/allconfig.json"
-},
-{"name":"动物的叫声",
-    "pkg":"com.pengyu.animalsoundsandphotos",
-    "channel":"androidjs",
-    "versioni":120,
-    "icon":"http://img5.anzhi.com/data4/icon/201810/22/com.pengyu.animalsoundsandphotos_32436500_72.png",
-    "version":"1.2.0",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/动物的叫声/allconfig120.json"
-},
+
 {"name":"动物的叫声",
     "pkg":"com.pengyu.animalsoundsandphotos",
     "channel":"androidjs",
@@ -86,7 +53,7 @@
     "icon":"http://img5.anzhi.com/data4/icon/201810/22/com.pengyu.animalsoundsandphotos_32436500_72.png",
     "version":"1.2.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/动物的叫声/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/动物的叫声/allconfig.json"
 },
 {"name":"儿童绘画板",
     "pkg":"com.damsa.yishumofazi",
@@ -95,7 +62,7 @@
     "icon":"http://img5.anzhi.com/data4/icon/201807/13/com.yuyu.tangsong_04151700_72.png",
     "version":"1.3.1",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/儿童绘画板/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/儿童绘画板/allconfig.json"
 },
 {"name":"减压声音",
     "pkg":"net.pengyu.sleepo",
@@ -104,7 +71,7 @@
     "icon":"http://img5.anzhi.com/data1/icon/201804/02/com.dongdong.jiantie_33522300_72.png",
     "version":"1.3.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/减压声音/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/减压声音/allconfig.json"
 },
 {"name":"冥想音乐",
     "pkg":"net.chaochao.meditationsounds",
@@ -113,7 +80,7 @@
     "icon":"http://img5.anzhi.com/data4/icon/201807/13/com.yuyu.tangsong_04151700_72.png",
     "version":"1.2.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/冥想音乐/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/冥想音乐/allconfig.json"
 },
 {"name":"唐诗精选",
     "pkg":"com.zpy.poem.ts300",
@@ -122,7 +89,7 @@
     "icon":"http://img3.anzhi.com/data1/icon/201804/09/com.dongdong.keephealth_76754000_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/唐诗精选/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/唐诗精选/allconfig.json"
 },
 {"name":"唐诗宋词集合",
     "pkg":"com.yuyu.tangsong",
@@ -131,7 +98,7 @@
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/唐诗宋词集合/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/唐诗宋词集合/allconfig.json"
 },
 {"name":"小白闹钟天气",
     "pkg":"com.xiaobai.shizhong",
@@ -140,7 +107,7 @@
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小白闹钟天气/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/小白闹钟天气/allconfig.json"
 },
 {"name":"小白日历",
     "pkg":"com.xiaobai.bqcalendar",
@@ -149,7 +116,7 @@
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小白日历/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/小白日历/allconfig.json"
 },
 {"name":"小强助理",
     "pkg":"com.xiaoqiang.weather",
@@ -158,7 +125,7 @@
     "icon":"http://img5.anzhi.com/data1/icon/201804/02/com.dongdong.jiantie_33522300_72.png",
     "version":"1.2.0",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/小强助理/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/小强助理/allconfig.json"
 },
 {"name":"休息声音",
     "pkg":"net.yuyu.sleepsounds",
@@ -167,24 +134,16 @@
     "icon":"http://img5.anzhi.com/data4/icon/201810/22/com.pengyu.animalsoundsandphotos_32436500_72.png",
     "version":"5.8.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/休息声音/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/休息声音/allconfig.json"
 },
 {"name":"一个就够",
-    "pkg":"com.hongshu.onemore",
-    "channel":"androidjs",
-    "versioni":10,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"1.1.0",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/一个就够/allconfig.json"
-},{"name":"一个就够",
     "pkg":"com.hongshu.onemore",
     "channel":"androidjs",
     "versioni":20,
     "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
     "version":"1.2.0",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/一个就够/allconfig20.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/一个就够/allconfig20.json"
 },
 {"name":"英语四级单词汇",
     "pkg":"com.mmenglish.wordsxxc",
@@ -193,7 +152,7 @@
     "icon":"http://img3.anzhi.com/data1/icon/201804/09/com.dongdong.keephealth_76754000_72.png",
     "version":"1.1.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/英语四级单词汇/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/英语四级单词汇/allconfig.json"
 },
 {"name":"KeepHealth",
     "pkg":"com.dongdong.keephealth",
@@ -202,7 +161,7 @@
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
     "version":"1.3.8",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/keephealth/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/keephealth/allconfig.json"
 },
 {"name":"MD编辑器",
     "pkg":"com.dongdong.markdowneditors",
@@ -211,7 +170,7 @@
     "icon":"http://img1.anzhi.com/data1/icon/201805/31/com.xiaobai.shizhong_29857200_72.png",
     "version":"1.1.1",
     "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/MD编辑器/allconfig.json"
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/MD编辑器/allconfig.json"
 }
 
 ]
