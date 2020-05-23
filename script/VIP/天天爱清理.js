@@ -21,7 +21,6 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
-
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
@@ -162,7 +161,14 @@ var run=function(){
                  }
                  sleep(1000)
             }
-            
+            if(ii>200){
+                if(ii%50==0){
+                    if(app_tomoney()){
+                        app_clean()
+                        exit()
+                    }
+                }
+            }
         天天爱清理视频上滑()
         sleep(1000)
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
