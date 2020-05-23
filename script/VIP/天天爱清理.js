@@ -206,7 +206,6 @@ var app_clean=function(){
             return true
         }
         if(text("一键扫描").exists()){
-            
             return true
         }
       
