@@ -48,7 +48,9 @@ var 天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
 var 天天爱清理底部导航视频id="com.xiaoqiao.qclean:id/ll_video"
 var 天天爱清理底部导航任务id="com.xiaoqiao.qclean:id/ll_task"
 var 天天爱清理底部导航我id="com.xiaoqiao.qclean:id/ll_mine"
-var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载"]
+var 天天爱清理看视频翻倍id="com.xiaoqiao.qclean:id/tv_gold_double"
+
+var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载","优化完成"]
 alltest()
 checkfloaty()
 checksystemsettings()
@@ -109,18 +111,19 @@ var run=function(){
                 app.launch(apppkg)
                 sleep(3000)
              }else{
-                    show(appname+"在前台") 
+                 show(appname+"在前台") 
                      //回到视频页
-                     back()
              } 
            //应该做可以回到首页的操作
             if(close_ad_qq()){
              }
              if( close_ad_toutiao()){
              }
-            
-    
-            show(appname+"在首页") 
+            if(ii==1){
+                if(app_clean()){
+                    textclick("视频")
+                }
+            }
             if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
              }
             if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",50)){
@@ -153,6 +156,7 @@ var run=function(){
                  }
                  sleep(1000)
             }
+            
         天天爱清理视频上滑()
         sleep(1000)
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
@@ -164,6 +168,37 @@ var run=function(){
             滑动次数= 滑动次数+1
         }
        }
+}
+
+
+var app_clean=function(){
+    doactionmaxtime(function(){
+        clicktexts(["首页","暂不领取","暂不领取"])
+        if(maytextclick("一键清理")){
+
+        }
+        if(textclick("一键清理")){
+            sleep(2000)
+        }
+        text_clean_result=getTextfromid("com.xiaoqiao.qclean:id/tv_finish")
+        if(text_clean_result){
+            if(text_clean_result.search("成功清理")>-1){
+                if(textclick("优化完成")){
+                    return true
+                }
+            }
+        }
+        if(idclick(天天爱清理看视频翻倍id)){
+            seead()
+            back()
+            return true
+        }
+        if(text("一键扫描").exists()){
+            
+            return true
+        }
+      
+    },10000)
 }
 
 //app 登录
