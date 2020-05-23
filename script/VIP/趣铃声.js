@@ -39,7 +39,7 @@ var appname="趣铃声"
 var apploginactivity="com.jifen.open.biz.login.ui.activity.JFLoginActivity"
 
 var 首次开图片id="com.zheyun.bumblebee:id/iv_open_red_packet"
-var 首次点击文本集合=["允许","允许","始终允许","始终允许","立即提现"]
+var 首次点击文本集合=["允许","允许","始终允许","始终允许","立即提现","点这里设置铃声","立即登录"]
 var 设置第一个来电铃声赚钱的关闭id="com.zheyun.bumblebee:id/base_card_dialog_close"  //设置第一个来电铃声   赚
 var 设置第一个来电铃声赚钱的立即设置按钮id="com.zheyun.bumblebee:id/tv_confirm"  // 立即设置    之后弹出暂不领取
 var 视频广告结束弹窗关闭id="com.zheyun.bumblebee:id/iv_close"
@@ -82,6 +82,10 @@ var run=function(){
         if(ca!=apphomeactivity){
             
         }else{
+            if(!idContains(apppkg).exists()){
+                app.launch(apppkg)
+                sleep(3000)
+            }
             //这里是视频上滑操作
             if(textclick("看视频，金币再翻1倍！")){
                 if (app_seevideoad()){
@@ -90,7 +94,13 @@ var run=function(){
                 }
             }
         }
+        if(textclick("允许")){
+            app_login()
+        }
+
+
         if(n_i<100){
+            textclick("音乐")
             if(n_i%20==0){
                 textclick("音乐")
                 sleep(1000)
@@ -159,7 +169,7 @@ var run=function(){
 
 //app 登录  
 var app_login=function(){
-
+     clicktexts(首次点击文本集合)
 }
 
 //app 微信登录
