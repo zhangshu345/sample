@@ -1711,6 +1711,7 @@ var actionother=function(){
     if(!idoneexist([apppkg+":id/tv_go_withdraw",apppkg+":id/layout_like"])){
        app_home_video()
     }
+    clicktexts(["关闭应用","关闭应用程序"])
 }
 var  app_home_video=function(){
     n_home_video=0
