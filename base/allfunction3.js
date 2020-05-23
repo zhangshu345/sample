@@ -1721,6 +1721,7 @@ var  app_home_video=function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
+            click(50,device.height-90)
          }
 
         if(maytextclick("看视频奖励最高")){
@@ -1787,4 +1788,3 @@ var app_sign=function(){
 var app_tomoney=function(){
 
 }
-
