@@ -9,7 +9,7 @@ function httpget(url) {
     }
 }
 滑动次数=0
-每日提现=true
+
 var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
 
 //engines.stopOther()
@@ -22,17 +22,14 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
-
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
-
 show("开始刷宝短视频辅助滑动")
-
-
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
+var tomoney=true
 var apppkg="com.jm.video"
 var apphomeactivity="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
@@ -401,12 +398,8 @@ while(true){
         if( textclick("等待")){
             sleep(1000)
         }
-        if(idclick("com.jm.video:id/tt_top_skip")){
-            log("穿山甲广告页面")
-        }
-        if(idclick("com.jm.video:id/tt_video_ad_close_layout")){
-            toastLog("穿山甲广告页面")
-        }
+        close_ad_toutiao(apppkg)
+        close_ad_qq(apppkg)
 
         id_desc=  id("com.jm.video:id/desc").findOne(1000)
         if(id_desc){
@@ -454,7 +447,6 @@ while(true){
         if(text("空空如也").exists()){
             // 脚本完成了
             device.lockScreen()
-           
         }
         if(滑动次数%10==1){
             battery=device.getBattery()
@@ -465,26 +457,7 @@ while(true){
                 device.lockScreen()
                 sleep(1800000)
                   device.wakeUpIfNeeded()
-                // if(device.isCharging()){
-                //     device.setMusicVolume(0)
-                //     device.setBrightnessMode(0)
-                //     device.setBrightness(10)
-                //         if(battery<lastbattery){
-                //            
-                //             device.lockScreen()
-                //             sleep(1800000)
-                //             device.wakeUpIfNeeded()
-                //         }
-                   
-               
-                //  
-                // }else{
-                //     //休眠三十分钟
-                //     show("电量低:"+battery+"-休眠30分钟")
-                //     device.lockScreen()
-                //     sleep(1800000)
-                //     device.wakeUpIfNeeded()
-                // }
+
             }
         }
         if(滑动次数%100==1){
@@ -494,7 +467,7 @@ while(true){
         }
         
         if(滑动次数%200==1){
-            if(每日提现){
+            if(tomoney){
                 if(!今日提现(appname)){
                     apptomoney()
                 }

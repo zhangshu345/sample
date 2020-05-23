@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -43,8 +41,8 @@ var appname="酷狗音乐大字版"
 var 首次点击文本集合=["同意","确定","允许","允许","始终允许","始终允许","我知道了","赚钱","立即登录"]
 var 微信登录文本集合=["微信登录","同意"]
 var 微信登录成功文本标志=["获得新人金币","签到成功"]
-
-var 音乐分享按钮id=
+var islogin=获取
+var 音乐分享按钮id=""
 alltest()
 // checkfloaty()
 // checksystemsettings()
@@ -78,7 +76,6 @@ var run=function(){
     sleep(3000)
     n_i=0
     while(true){
-        sleep(2000)
         log("循环次数："+n_i)
         ca=currentActivity()
         if(ca!=apphomeactivity){
@@ -95,13 +92,14 @@ var run=function(){
             if(textclick("去分享")){
                 clickoneids([音乐分享按钮id])
             }
-            
-
         }
+        
+        
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         n_i=n_i+1
+        sleep(2000)
     }
 
 }
@@ -147,7 +145,7 @@ var app_home_video=function(){
         return true
     }
     if(!idContains(apppkg).findOne(1000)){
-        log("彩蛋不在前台")
+        log("酷狗不在前台")
         app.launch(apppkg)
         sleep(3000)
     }else{

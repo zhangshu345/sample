@@ -384,6 +384,7 @@ var 记录=function(name,key,n){      数据库.put(name+"_"+key,n)}
 var 获取记录=function(name,key){    数据库.get(name+"_"+key,0)}
 var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today(),n)}
 var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
+
 //
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 var forcestop=function(appname,st){

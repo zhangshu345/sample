@@ -1,5 +1,3 @@
-import { text } from "express";
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -41,6 +39,9 @@ var apphomeactivity=""
 var appname="快音"
 var 首次进入点击文本集合=["我知道了","允许","允许","始终允许","始终允许"]
 var 首次进入弹窗红包点击id="com.kuaiyin.player:id/redPackage"  //  text
+
+
+var invitecodes=[]
 alltest()
 // checkfloaty()
 // checksystemsettings()

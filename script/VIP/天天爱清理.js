@@ -20,6 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
+//7天5块 10天10块
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
@@ -192,6 +193,21 @@ var app_clean=function(){
         if(text_clean_result){
             if(text_clean_result.search("成功清理")>-1){
                 if(textclick("优化完成")){
+                   
+                    var node_coins=idContains("com.xiaoqiao.qclean:id/tv_bubble_").filter(function(w){
+                        return w.text()!=""
+                    }).untilFind()
+                    if(node_coins){
+                        node_coins.forEach(n_c => {
+                            if(clicknode(n_c)){
+                                sleep(1000)
+                                if(textclick("看视频兑换")){
+                                    seead()
+                                }
+                                
+                            }
+                        });
+                    }
                     return true
                 }
             }
