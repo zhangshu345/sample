@@ -1,5 +1,3 @@
-import { text } from "body-parser"
-
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)

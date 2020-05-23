@@ -1,6 +1,5 @@
 auto.waitFor()
 auto.setMode("normal")
-
 engines.stopOther()
 device.wakeUpIfNeeded()
 function httpget(url) {
