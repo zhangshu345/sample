@@ -86,19 +86,18 @@ var run=function(){
         if(ca!=apphomeactivity){
             
         }else{
-           
-            //这里是视频上滑操作
-            if(textclick("看视频，金币再翻1倍！")){
-                if (app_seevideoad()){
-                    sleep(1500)
-                    idclick(视频广告结束弹窗关闭id)
-                }
+
+        }
+           //这里是视频上滑操作
+           if(textclick("看视频，金币再翻1倍！")){
+            if (app_seevideoad()){
+                sleep(1500)
+                idclick(视频广告结束弹窗关闭id)
             }
         }
         if(textclick("允许")){
             app_login()
         }
-
 
         if(n_i<100){
             textclick("音乐")
@@ -140,10 +139,11 @@ var run=function(){
             if(text_like){
                 if(text_like.search("w")){
                     idclick("com.zheyun.bumblebee:id/tv_like")
-                   
                 }else{
                     
                 }
+            }else{
+                textclick("小视频")
             }
         }
 
@@ -165,7 +165,6 @@ var run=function(){
       
         n_i=n_i+1
     }
-
 }
 
 //app 登录  
@@ -207,8 +206,6 @@ var app_login_weixin=function(){
             }
   
         }
-        
-
     }
 }
 
@@ -219,7 +216,6 @@ var app_login_phone=function(){
         
 
     }
-
 }
 
 //app 签到
