@@ -25,6 +25,7 @@ toastLog("公共函数实例化失败,程序返回")
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
+var appcleanactivity="com.xiaoqiao.qclean.base.view.guide.GuidePageViewActivity"
 var appname="天天爱清理"
 var tomoney=false  
 var invite=false // 邀请
@@ -62,7 +63,7 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 //关闭最新的app
-closelastscriptapp()
+
 show("指定："+appname+"即将启动")
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -74,6 +75,7 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
+
 
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
@@ -103,9 +105,13 @@ var run=function(){
     while(true){
         ii=ii+1
         log("ii:"+ii)
-        // ca=currentActivity()
-    //  if(ca!=apphomeactivity){
+        ca=currentActivity()
+     if(ca==appcleanactivity){
+        back()
+        sleep(500)
+     }
             //  show(appname+"不在主页面:"+ca) 
+           
              if(!idContains(apppkg).findOne(100)){
                 show(appname+"不在前台") 
                 app.launch(apppkg)
@@ -292,7 +298,63 @@ var 天天爱清理下滑=function(){
 
 //app提现
 var app_tomoney=function(){
+    show("开始提现")
+    doactionmaxtime(function(){
+        nca=currentActivity()
+        show("当前activity:"+nca)
+        if(nca==apphomeactivity){
+           
+        }else if(nca=="com.jifen.qu.open.QX5WebViewActivity"){
+            clicktexts(["去提现","每天可提现","立即提现"],300,2000)
+           idclick("com.xiaoqiao.qclean:id/btn_back")
+        }else{
+            if(!idContains(apppkg).exists()){
+                app.launch(apppkg)
+                sleep(4000)
+            }else{
+                back()
+            }
+        }
+        if (textclick("我的")){
+            滑动(20,10,4,10,10,300,100)
+            text("去提现").waitFor()
+            sleep(2000)
+            node_ktomoney=text("可提现(元)").findOne(300)
+            if(node_ktomoney){
+                node_parent=node_ktomoney.parent()
+                if(node_parent){
+                    node_yue=node_parent.child(0)
+                    if(node_yue&&node_yue.text()){
+                        show("余额:"+node_yue.text())
+                        f_yue=parseFloat(node_yue.text())
+                        if(f_yue>=minmoney){
+                            if(textclick("去提现")){
+                                text("立即提现").waitFor()
+                                clicktexts(["每天可提","立即提现"],300,2000)
+                            }
+                           
+                        }else{
+                            textclick("视频")
+                             return true
+                        }
+                    }else{
+                        show("余额控件没找到")
+                    }
+                }else{
+                    show("余额上级控件没找到")
+                }
+            }else{
+                show("没找到可提现")
+            }
 
+        }else{
+            show("点击我的 失败了")
+        }
+        if(textContains("提现申请提交成功").exists()){
+            今日已提现(appname)
+            return true
+        }
+    },20000)
 }
 
 var seead=function(timeout){
@@ -333,5 +395,5 @@ var seead=function(timeout){
         n_see=n_see+1
     }
 }
-
+app_tomoney()
 run()
