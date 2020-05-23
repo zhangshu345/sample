@@ -1672,13 +1672,7 @@ function run(apppkg){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-        if(n_i/20==0){
-            ca=currentActivity()
-            if(!idoneexist([apppkg+":id/tv_go_withdraw",apppkg+":id/layout_like"])){
-               app_home_video()
-            }
-        }
-      
+           
         滑动(20,10,16,11,4,500,500)
         doactionmaxtime(actionother,10000,2000)
         if(n_i<100&&n_i%30==0){
@@ -1708,6 +1702,15 @@ var actionother=function(){
             idclick(apppkg+":id/close")
         }
     }
+    if(!idContains(apppkg).findOne(300)){
+        app.launch(apppkg)
+        sleep(3800)
+        textclick("首页")
+    }
+    ca=currentActivity()
+    if(!idoneexist([apppkg+":id/tv_go_withdraw",apppkg+":id/layout_like"])){
+       app_home_video()
+    }
 }
 var  app_home_video=function(){
     n_home_video=0
@@ -1718,17 +1721,15 @@ var  app_home_video=function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
-         }else{
-
          }
 
         if(maytextclick("看视频奖励最高")){
             seerewardvideo(apppkg)
         }
-        if(!idContains(apppkg).findOne(100)){
+        if(!idContains(apppkg).findOne(300)){
             app.launch(apppkg)
             sleep(3800)
-          }
+        }
         n_home_video=n_home_video+1
         sleep(1000)
     }
