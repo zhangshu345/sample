@@ -28,7 +28,7 @@ var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
 var minmoney=0.3 // 最小提现余额
-var mintodaycoin=3000  //最小今天的赚的金币
+var mintodaycoin=3500  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=true
 
@@ -343,6 +343,38 @@ var app_login_weixin=function(){
             return true
         }
     }
+}
+var app_tomoney=function(){
+    doactionmaxtime(function(){
+        nca=currentActivity()
+        if(nca==apphomeactivity){
+
+        }else if(nca==""){
+
+        }else{
+
+        }
+        if(textclick("我的")){
+            textContains("今日金币").waitFor()
+            text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
+            if(text_coin){
+               n_coin=parseInt(text_coin.replace("我的金币","").trim())
+               if(n_coin){
+                记录现在金币(appname,n_coin)
+               }
+            }
+            
+            text_todaycoin=getTextfromid("com.jifen.dandan:id/tv_person_today_gold_title");
+            n_todaycoin=parseInt(text_todaycoin.replace("今日金币","").trim())
+            if(n_todaycoin>=mintodaycoin){
+                if(idclick("com.jifen.dandan:id/tv_person_total_gold_title")){
+                    
+                }
+            }else{
+                show("今日金币数:"+n_todaycoin)
+            }
+        }
+    },20000)
 }
 
 run()

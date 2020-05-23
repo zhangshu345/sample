@@ -1546,7 +1546,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
     sleep(5000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2500)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2000)
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
@@ -1560,15 +1560,18 @@ var runrewardapp=function(appname,apppkg,showadtime){
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
-            sleep(5000)
+            sleep(4000)
             clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
+            }
+            if (clickonetexts(["工具箱","市场"],100,1500)){
+                show("工具箱点击成功")
             }
             sleep(3000)
         }else{
@@ -1610,13 +1613,14 @@ var runrewardapp=function(appname,apppkg,showadtime){
              hdcs=hdcs+1
              show("滑动次数："+hdcs)
              sleep(random(3,4)*1000)
-             r=random(2,5)
+             r=random(3,5)
            if(hdcs>2 && hdcs%r==0){
                if(textclick("任务")){
                    sleep(1000)
                    if(textclick("看激励视频")){
                        seerewardvideo()
                    }
+                   sleep(1000)
                    if(textclick("看视频")){
                     seerewardvideo()
                     }
@@ -1627,23 +1631,22 @@ var runrewardapp=function(appname,apppkg,showadtime){
                seerewardvideo(apppkg)
                sleep(2000)
             }
-           if(textclick("全屏视频")){
-               sleep(10000)
-               back()
-           }
                 back()
            }
         }
         if(textoneexist(["点击下载"])){
             back()
         }
-        sleep(3000)
+        sleep(2000)
     }
 }
 var seerewardvideo=function(apppkg){
     sleep(10000)
     gbgg=0
     while(gbgg<20){
+        if(randomint(0,10)==5){
+            click(500,700)
+        }
         show("关闭广告："+gbgg)
       if(close_ad_qq(apppkg)){
         return  true
