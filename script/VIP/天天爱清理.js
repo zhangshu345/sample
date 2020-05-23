@@ -74,8 +74,6 @@ if(!app.getPackageName(appname)){
 if(onlyscript){
     engines.stopOther()
 }
-
-
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
@@ -110,7 +108,6 @@ var run=function(){
         sleep(500)
      }
             //  show(appname+"不在主页面:"+ca) 
-           
              if(!idContains(apppkg).findOne(100)){
                 show(appname+"不在前台") 
                 app.launch(apppkg)
@@ -161,14 +158,13 @@ var run=function(){
                  }
                  sleep(1000)
             }
-            if(ii>200){
+            
                 if(ii%50==0){
                     if(app_tomoney()){
                         app_clean()
                         exit()
                     }
                 }
-            }
         天天爱清理视频上滑()
         sleep(1000)
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)

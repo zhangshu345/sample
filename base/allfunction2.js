@@ -1,3 +1,5 @@
+import { text } from "body-parser"
+
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -1646,6 +1648,10 @@ var seerewardvideo=function(apppkg){
     while(gbgg<20){
         if(randomint(0,10)==5){
             click(500,700)
+           if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
+               show("点击了立即安装")
+               return true
+           }
         }
         show("关闭广告："+gbgg)
       if(close_ad_qq(apppkg)){
