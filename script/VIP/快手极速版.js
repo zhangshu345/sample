@@ -548,8 +548,7 @@ var app_login=function(){
             app.launch(apppkg)
             sleep(3000)
         }
-       (clicktexts(["查看协议","同意并继续","允许","立即领取","立即提现","立即提现","提取","登录领金币"],100,1500))
-    
+      clicktexts(["查看协议","同意并继续","允许","立即领取","立即提现","立即提现","提取","登录领金币"],100,1500)
         if(idclick("com.kuaishou.nebula:id/protocol_checkbox")){
            if( textclick("手机号登录")){
              text("请输入手机号").waitFor()

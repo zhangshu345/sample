@@ -78,7 +78,7 @@
         "systemsetting":true,"notificationmanager":true,
         "floatyposition":"0,120,0,220","showfloaty":true,
         "checkbattery":30,"onlyscript":true,
-        "onetime":1800,"maxtime":3600,
+        "onetime":3600,"maxtime":10800,
         "logintype":"phone","tomoney":"weixin",
         "tomoneyaccount":"zfb|姓名|提现账号","daycashcondition":0.3,
         "daycoincondition":2000,"bigmoneyinterval":7,
@@ -146,7 +146,7 @@
         "systemsetting":true,"notificationmanager":true,
         "floatyposition":"0,120,0,220","showfloaty":true,
         "checkbattery":30,"onlyscript":true,
-        "onetime":1800,"maxtime":3600,
+        "onetime":3600,"maxtime":3600,
         "logintype":"phone","tomoney":"weixin",
         "tomoneyaccount":"zfb|姓名|提现账号","daycashcondition":0.3,
         "daycoincondition":2000,"bigmoneyinterval":7,
@@ -609,40 +609,6 @@
         "downloadurl":"",
         "version":""}
     
-},{  "name":"米读极速版",
-    "desc":{"summary":"米读极速版 一开始就送100 不过看到不是真的 很坑  快速看开头 一天3毛 ","script":"","html":""},
-    "tags":["小说","赚钱"],
-    "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
-    "open":false,
-    "install":true,
-    "pay":{"coin":-1000,"daycoin":-10000,"monthcoin":-200000,"yearcoin":-1000000,"money":0.001,"daymoney":0.0001,"monthmoney":0.001,"yearmoney":0.0001},
-    "runconfig":{"accepttime":0,"starttime":"0:0","runtime":0,"seenews":0,"seevideo":0,"seeshortvideo":0,"sign":true,
-        "endtime":"0:0","time":3600,
-        "devicemanager":true,"accessibility":true,
-        "systemsetting":true,"notificationmanager":true,
-        "floatyposition":"0,120,0,220","showfloaty":true,
-        "checkbattery":30,"onlyscript":true,
-        "onetime":1800,"maxtime":3600,
-        "logintype":"phone","tomoney":"weixin",
-        "tomoneyaccount":"zfb|姓名|提现账号","daycashcondition":0.3,
-        "daycoincondition":2000,"bigmoneyinterval":7,
-        "bigmoney":5.1},
-    "reward":{"coin":0,"money":0.001,"experience":10,"achievement":"成就"},
-    "money":{"perdaymoney":1.65,"perhourmoney":0.35,"daytomoney":0.3},
-    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/米读极速版.js",
-    "source":2,
-    "author":{"name":"","id":"","icon":""},
-    "root":false,
-    "accessibility":true,
-    "level":0,
-    "scriptversion":0,
-    "android":24,
-    "appversioni":10,
-    "androidjs":10,
-    "app":{"name":"米读极速版","pkg":"com.lechuan.mdwz","icon":"https://pp.myapp.com/ma_icon/0/icon_53595073_1590116456/96",
-        "downloadurl":"",
-        "version":""}
-    
 },{  "name":"红包盒子",
     "desc":{"summary":"红包盒子 ","script":"","html":""},
     "tags":["小说","赚钱"],
@@ -744,6 +710,6 @@
     "app":{"name":"趣铃声","pkg":"com.zheyun.bumblebee","icon":"https://pp.myapp.com/ma_icon/0/icon_53960034_1589533350/96",
         "downloadurl":"",
         "version":""}
-    
+
 }
 ]
