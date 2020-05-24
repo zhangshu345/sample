@@ -59,7 +59,7 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var isshowfloaty=true  //是否显示提醒
+var isshowfloaty=true&&Settings.canDrawOverlays(context)  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -503,17 +503,15 @@ var checkfloaty=function(appname){
      log("当前应用名:"+appname)
    if(!isfloaty()){
        tofloatysetting()
-       toastLog("悬浮查找点击之前")
+     
        sleep(1000)
        while(true){ 
         toastLog("悬浮查找点击")
         if(isfloaty()){
             return
         }
-       if(clickonetexts(["允许许可"])){
-                break
-       }
-       if (textclick(appname)){  toastLog("悬浮查找点击应用名"); };
+       if(clickonetexts(["允许许可"])){ break }
+       if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
         滑动(20,10,15,10,5,500,300)
          sleep(1000)
          
@@ -525,7 +523,7 @@ var checkfloaty=function(appname){
 var sleepr=function(short,long){
     long=long||short+1000
     rt=random(short,long)
-    show("等待:"+rt +" 毫秒")
+    log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
@@ -558,14 +556,11 @@ function textclick(i,t,left,top,right,bottom){
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
         
-        show("text："+i+":没找到了")
+        log("text："+i+":没找到了")
         return false
     }
-    show("text："+i+":找到了")
-    if(clicknode(f)){
-        return true
-    }  
-    return false
+    log("text："+i+":找到了")
+    return clicknode(f)
 }
 
 function maytextclick(maytext,t,left,top,right,bottom){
@@ -582,9 +577,8 @@ function maytextclick(maytext,t,left,top,right,bottom){
              return false
          }
     }
-    show("text："+i+":控件找到了")
-    if(clicknode(f)){  return true;  }  
-    return false
+    log("text："+i+":控件找到了")
+    return clicknode(f)
 }
 
 //node 执行点击 
@@ -788,7 +782,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     }
      if(enablegenius){
         r=r||1000
-       // show("滑动"+x1+","+y1+"->"+x2+","+y2)
+     show("滑动"+x1+","+y1+"->"+x2+","+y2)
         swipe(startx, starty , endx , endy, t+random(0, r))
     }else{
         if(startx>=endx){
@@ -1135,13 +1129,13 @@ var checkpermission=function(permissions){
                 checkfloaty()
                 break;
 
-            case "悬浮":
+            case "设备管理":
                 
                  break;
-            case "悬浮":
+            case "通知管理":
                 
                   break;
-             case "悬浮":
+             case "应用使用情况":
                 
                    break;
             default:
@@ -1678,3 +1672,4 @@ var seerewardvideo=function(apppkg){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
+
