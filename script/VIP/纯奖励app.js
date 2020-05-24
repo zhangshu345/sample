@@ -1,6 +1,7 @@
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/config/script/VIP/纯奖励app.js"
 device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
@@ -109,6 +110,11 @@ var thread = threads.start(function(){
     }
 });
 //停止线程执行
+
+com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+sleep(1000)
+for(i_t=0;i_t<24;i_t++){
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("激励套餐",selfscriptpath,2,i_t,randomint(0,10))
+}
 sleep(2000)
 run()
-runurlscript("月结套餐稳赚","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app.js")
