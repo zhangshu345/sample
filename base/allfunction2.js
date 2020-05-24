@@ -1672,4 +1672,3 @@ var seerewardvideo=function(apppkg){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
-
