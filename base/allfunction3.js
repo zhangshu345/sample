@@ -28,6 +28,7 @@ var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){    td=nowdate();    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
+var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
@@ -58,7 +59,7 @@ var isdeviceadmin=function(){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var isshowfloaty=true  //是否显示提醒
+var isshowfloaty=true&&Settings.canDrawOverlays(context)  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(v){    return spt.getString(v)}
 var getintvalue=function(v){    return spt.getInt(v)}
@@ -165,8 +166,8 @@ function listapp(){
         appnames.push(app.name)
      }
     })
-//列出app
-log("白名单："+appnames.length+"+++"+appnames)
+    //列出app
+    log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for(var i = 0; i < packageInfos.size(); i++) {
@@ -197,7 +198,7 @@ log("白名单："+appnames.length+"+++"+appnames)
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
                 uninstallapp(app.name)
-                log("第三方应用"+GsonUtils.toJson(app))
+                // log("第三方应用"+GsonUtils.toJson(app))
           }else{
             toastLog(app.name+"是白名单app")
           }
@@ -386,9 +387,9 @@ var 记录=function(name,key,n){      数据库.put(name+"_"+key,n)}
 var 获取记录=function(name,key){    数据库.get(name+"_"+key,0)}
 var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today(),n)}
 var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
+
 //
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
- 
 var forcestop=function(appname,st){
     show("强制关闭应用:"+appname); 
     if(!appname){ return }
@@ -403,7 +404,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var forcestoppkg=function(apppkg,st){
     show("强制关闭应用:"+apppkg); 
@@ -416,7 +417,7 @@ var forcestoppkg=function(apppkg,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -449,11 +450,9 @@ var toinputsettings=function(){
     context.startActivity(i);
 }
 
-
 var toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
-
 var tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
@@ -472,17 +471,13 @@ var tosettingsbyaction=function(actionname){
     context.startActivity(i);
 }
 
-
 var toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
 
-
 var tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
-
-
  //到android设置页面
  var  toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
@@ -503,23 +498,32 @@ var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.act
 var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
 var isfloaty=function(){  return Settings.canDrawOverlays(context)}
 var checkfloaty=function(appname){
+    toastLog("悬浮查找开始")
      appname=appname||app.getAppName(context.getPackageName())
      log("当前应用名:"+appname)
-   if(!isfloaty){
+   if(!isfloaty()){
        tofloatysetting()
-       sleep(2000)
+     
+       sleep(1000)
        while(true){ 
-           if (textclick(appname)){  break };
-           滑动(20,10,15,10,5,500,300)
-           sleep(2000)
+        toastLog("悬浮查找点击")
+        if(isfloaty()){
+            return
+        }
+       if(clickonetexts(["允许许可"])){ break }
+       if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
+        滑动(20,10,15,10,5,500,300)
+         sleep(1000)
+         
        }
    }
+   toastLog("悬浮查找结束")
 }
 
 var sleepr=function(short,long){
     long=long||short+1000
     rt=random(short,long)
-    show("等待:"+rt +" 毫秒")
+    log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
@@ -551,14 +555,12 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
-        show("text："+i+":没找到了")
+        
+        log("text："+i+":没找到了")
         return false
     }
-    show("text："+i+":找到了")
-    if(clicknode(f)){
-        return true
-    }  
-    return false
+    log("text："+i+":找到了")
+    return clicknode(f)
 }
 
 function maytextclick(maytext,t,left,top,right,bottom){
@@ -575,9 +577,8 @@ function maytextclick(maytext,t,left,top,right,bottom){
              return false
          }
     }
-    show("text："+i+":控件找到了")
-    if(clicknode(f)){  return true;  }  
-    return false
+    log("text："+i+":控件找到了")
+    return clicknode(f)
 }
 
 //node 执行点击 
@@ -679,7 +680,7 @@ var clickoneids=function(ids,t,st){
 }
 
 var clickonetexts=function(texts,t,st){
-    show("开始点击文本集合:"+texts)
+  log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
     for(i=0;i<texts.length;i++){
@@ -781,7 +782,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     }
      if(enablegenius){
         r=r||1000
-       // show("滑动"+x1+","+y1+"->"+x2+","+y2)
+     show("滑动"+x1+","+y1+"->"+x2+","+y2)
         swipe(startx, starty , endx , endy, t+random(0, r))
     }else{
         if(startx>=endx){
@@ -1097,7 +1098,7 @@ var startdeviceadmin=function(){
         return
     }
     app.launch(context.getPackageName())
-    sleep(2000)
+    sleep(5000)
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     var eeee= engines.execScript("uiname",ui函数,{})
     sleep(1000)
@@ -1128,13 +1129,13 @@ var checkpermission=function(permissions){
                 checkfloaty()
                 break;
 
-            case "悬浮":
+            case "设备管理":
                 
                  break;
-            case "悬浮":
+            case "通知管理":
                 
                   break;
-             case "悬浮":
+             case "应用使用情况":
                 
                    break;
             default:
@@ -1160,7 +1161,7 @@ var doactionmaxtime=function(action,maxtime,intertime){
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
-    if(!action){return false}
+    if(!action){return true}
     maxnumber=maxnumber||1; n_doaction=0;
     while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
 }
@@ -1222,12 +1223,14 @@ var checksystemsettings=function(){
             if(issystemsettings()){ log("有系统设置权限"); return true; }
             else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }
                     else{ app.openAppSetting(context.getPackageName()); 滑动(20,10,17,10,3,500,500);
+
                          if(clickonetexts(["更改系统设置","可更改系统设置的应用程序","允许修改系统设置","允许编写系统设置"])){
                            sleep(1000)
+                           滑动(20,10,17,10,3,500,500);
                           if(clickonetexts(["允许","允许许可","允许权限","允许修改系统设置"])){
                             
-                         }
-                    }
+                             }
+                        }
                 }
             }
             n_csst=n_csst+1
@@ -1239,7 +1242,6 @@ var alltest=function(){
     log("全部测试")
     device.wakeUpIfNeeded()
     checkfloaty()
-
     checksystemsettings()
     startdeviceadmin()
 }
@@ -1458,7 +1460,7 @@ var close_ad_qq=function(apppkg){
   let  ca=currentActivity()
   show("当前activity:"+ca)
     if(ca=="com.qq.e.ads.PortraitADActivity"){
-        while(true){
+      if(  doactionmaxtime( function(){
             ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
             if(ci){
                 if(clicknode(ci)){
@@ -1474,37 +1476,29 @@ var close_ad_qq=function(apppkg){
                     if(clicknode(ci)){
                         isclose=true
                         return true
-                    }else{
-                        return false
                     }
+                }
+            }
+            ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
+            if(ci){
+                if(clicknode(ci)){
+                    isclose=true
+                    return true
                 }
             }
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return true
             }
+
+        },60000)){
+            return true
+        }else{
+            forcestoppkg(apppkg)
         }
     }
-    ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
-            if(ci){
-                if(clicknode(ci)){
-                    isclose=true
-                    return true
-                }else{
-                    return false
-                }
-            }
-            if(text("点击下载").exists()){
-              ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
-                if(ci){
-                    if(clicknode(ci)){
-                        isclose=true
-                        return true
-                    }else{
-                        return false
-                    }
-                }
-            }
+
+           
 }
 //未知广告商
 var close_ad_iclicash=function(apppkg){
@@ -1544,29 +1538,31 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
     sleep(5000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2500)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2000)
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
+   
         if(currentActivity()!="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
             back()
-            back()
-            forcestop(appname)
         }
         if(close_ad_qq(apppkg)){}
          if(close_ad_toutiao(apppkg)){}
        if(!idContains(apppkg).findOne(1000)){
             show(appname+"不在前台")
             app.launchPackage(apppkg)
-            sleep(5000)
+            sleep(4000)
             clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
             if(textclick("总是允许")){
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
-                sleep(1000)
+                sleep(600)
                 textclick("总是允许")
+            }
+            if (clickonetexts(["工具箱","市场"],100,1500)){
+                show("工具箱点击成功")
             }
             sleep(3000)
         }else{
@@ -1608,13 +1604,14 @@ var runrewardapp=function(appname,apppkg,showadtime){
              hdcs=hdcs+1
              show("滑动次数："+hdcs)
              sleep(random(3,4)*1000)
-             r=random(2,5)
+             r=random(3,5)
            if(hdcs>2 && hdcs%r==0){
                if(textclick("任务")){
                    sleep(1000)
                    if(textclick("看激励视频")){
                        seerewardvideo()
                    }
+                   sleep(1000)
                    if(textclick("看视频")){
                     seerewardvideo()
                     }
@@ -1625,23 +1622,26 @@ var runrewardapp=function(appname,apppkg,showadtime){
                seerewardvideo(apppkg)
                sleep(2000)
             }
-           if(textclick("全屏视频")){
-               sleep(10000)
-               back()
-           }
                 back()
            }
         }
         if(textoneexist(["点击下载"])){
             back()
         }
-        sleep(3000)
+        sleep(2000)
     }
 }
 var seerewardvideo=function(apppkg){
     sleep(10000)
     gbgg=0
-    while(gbgg<20){
+    while(gbgg<30){
+        if(randomint(0,10)==5){
+            click(500,700)
+           if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
+               show("点击了立即安装")
+               return true
+           }
+        }
         show("关闭广告："+gbgg)
       if(close_ad_qq(apppkg)){
         return  true
@@ -1669,7 +1669,6 @@ var seerewardvideo=function(apppkg){
     }
     forcestoppkg(apppkg)
 }
-
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
