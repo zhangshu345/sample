@@ -28,6 +28,7 @@ var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){    td=nowdate();    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
+var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 var scriptappname=app.getAppName(context.getPackageName())
 log("脚本app名："+scriptappname)
@@ -165,8 +166,8 @@ function listapp(){
         appnames.push(app.name)
      }
     })
-//列出app
-log("白名单："+appnames.length+"+++"+appnames)
+    //列出app
+    log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for(var i = 0; i < packageInfos.size(); i++) {
@@ -509,12 +510,12 @@ var checkfloaty=function(appname){
         if(isfloaty()){
             return
         }
-            if(clickonetexts(["允许许可"])){
+       if(clickonetexts(["允许许可"])){
                 break
-            }
-            if (textclick(appname)){  toastLog("悬浮查找点击应用名"); };
-           滑动(20,10,15,10,5,500,300)
-           sleep(1000)
+       }
+       if (textclick(appname)){  toastLog("悬浮查找点击应用名"); };
+        滑动(20,10,15,10,5,500,300)
+         sleep(1000)
          
        }
    }
@@ -685,7 +686,7 @@ var clickoneids=function(ids,t,st){
 }
 
 var clickonetexts=function(texts,t,st){
-    show("开始点击文本集合:"+texts)
+  log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
     for(i=0;i<texts.length;i++){

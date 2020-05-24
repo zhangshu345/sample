@@ -26,6 +26,7 @@ toastLog("公共函数实例化失败,程序返回")
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
 var appname="天天爱清理"
+var apploginactivity="com.jifen.open.biz.login.ui.activity.JFLoginActivity"
 var tomoney=false  
 var invite=false // 邀请
 var logintype="weixin"  //登录使用微信
@@ -60,7 +61,7 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 toastLog("自动设置音量为0")
 //关闭最新的app
-closelastscriptapp()
+
 show("指定："+appname+"即将启动")
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
@@ -101,6 +102,11 @@ var run=function(){
     while(true){
         ii=ii+1
         log("ii:"+ii)
+        if(ii<10){
+            if(text("用户协议及隐私条款").exists()){
+                app_login()
+            }
+        }
         // ca=currentActivity()
     //  if(ca!=apphomeactivity){
             //  show(appname+"不在主页面:"+ca) 
@@ -198,6 +204,22 @@ var app_login=function(){
 
 //app 微信登录
 var app_login_weixin=function(){
+    doactionmaxtime(function(){
+        if(textclick("同意",100)){
+            sleep(1000)
+        }
+      
+       idclick("com.xiaoqiao.qclean:id/iv_open_btn")
+       ca=currentActivity();
+       if(ca==apphomeactivity){
+        clicktexts(["允许","允许","我的","立即登录"],100,1500)
+       }else if(ca==apploginactivity){
+        textclick("微信")
+       }else if(ca==weixinloginactivity){
+           clicktexts(["同意"])
+       }
+
+    },10000)
 
 }
 
