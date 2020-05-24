@@ -63,4 +63,4 @@ if(onlyscript){
 //关闭最新的app
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
-run(apppkg)
+runliuti(apppkg)

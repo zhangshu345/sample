@@ -66,4 +66,4 @@ closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
 
-run(apppkg)
+runliuti(apppkg)
