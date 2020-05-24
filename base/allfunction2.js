@@ -403,7 +403,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var forcestoppkg=function(apppkg,st){
     show("强制关闭应用:"+apppkg); 
@@ -416,7 +416,7 @@ var forcestoppkg=function(apppkg,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(100);back(); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -1465,7 +1465,7 @@ var close_ad_qq=function(apppkg){
   let  ca=currentActivity()
   show("当前activity:"+ca)
     if(ca=="com.qq.e.ads.PortraitADActivity"){
-        while(true){
+      if(  doactionmaxtime( function(){
             ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
             if(ci){
                 if(clicknode(ci)){
@@ -1481,37 +1481,29 @@ var close_ad_qq=function(apppkg){
                     if(clicknode(ci)){
                         isclose=true
                         return true
-                    }else{
-                        return false
                     }
+                }
+            }
+            ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
+            if(ci){
+                if(clicknode(ci)){
+                    isclose=true
+                    return true
                 }
             }
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return true
             }
+
+        },60000)){
+            return true
+        }else{
+            forcestoppkg(apppkg)
         }
     }
-    ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
-            if(ci){
-                if(clicknode(ci)){
-                    isclose=true
-                    return true
-                }else{
-                    return false
-                }
-            }
-            if(text("点击下载").exists()){
-              ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
-                if(ci){
-                    if(clicknode(ci)){
-                        isclose=true
-                        return true
-                    }else{
-                        return false
-                    }
-                }
-            }
+
+           
 }
 //未知广告商
 var close_ad_iclicash=function(apppkg){
@@ -1555,10 +1547,9 @@ var runrewardapp=function(appname,apppkg,showadtime){
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
+   
         if(currentActivity()!="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
             back()
-            back()
-            forcestop(appname)
         }
         if(close_ad_qq(apppkg)){}
          if(close_ad_toutiao(apppkg)){}
@@ -1648,7 +1639,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
 var seerewardvideo=function(apppkg){
     sleep(10000)
     gbgg=0
-    while(gbgg<20){
+    while(gbgg<30){
         if(randomint(0,10)==5){
             click(500,700)
            if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
