@@ -404,7 +404,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var forcestoppkg=function(apppkg,st){
     show("强制关闭应用:"+apppkg); 
@@ -417,7 +417,7 @@ var forcestoppkg=function(apppkg,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({

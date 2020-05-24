@@ -404,7 +404,7 @@ var forcestop=function(appname,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var forcestoppkg=function(apppkg,st){
     show("强制关闭应用:"+apppkg); 
@@ -417,7 +417,7 @@ var forcestoppkg=function(apppkg,st){
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<4){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
 }
 var  tofloatysetting=function(){
    let i = app.intent({
@@ -1672,7 +1672,7 @@ var seerewardvideo=function(apppkg){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
-function run(apppkg){
+function runliuti(apppkg){
     app.launch(apppkg)
     sleep(3000)
     n_i=0
@@ -1716,11 +1716,11 @@ var actionother=function(){
     }
     ca=currentActivity()
     if(!idoneexist([apppkg+":id/tv_go_withdraw",apppkg+":id/layout_like"])){
-       app_home_video()
+       liutiapp_home_video()
     }
     clicktexts(["关闭应用","关闭应用程序"])
 }
-var  app_home_video=function(){
+var  liutiapp_home_video=function(){
     n_home_video=0
     while(n_home_video<3){
         if(idoneexist([apppkg+":id/tv_go_withdraw",apppkg+":id/layout_like"])){
@@ -1744,17 +1744,19 @@ var  app_home_video=function(){
     }
 }
 //app 登录
-var app_login=function(){
+var liutiapp_login=function(){
 
 }
 
 //app 微信登录
-var app_login_weixin=function(){
-
+var liutiapp_login_weixin=function(){
+    doactionmaxtime(function(){
+        clicktexts(["微信"])
+    },10000)
 }
 
 //app_手机号登录
-var app_login_phone=function(){
+var liutiapp_login_phone=function(){
     pn=phonenumber();
     if(!pn){
         toastLog("暂停300秒用于手动登录")
@@ -1774,7 +1776,7 @@ var app_login_phone=function(){
     }
 }
 //app 签到
-var app_sign=function(){
+var liutiapp_sign=function(){
     if(currentActivity()==apphomeactivity){
         if(clickonetexts(["任务"])){
             sleep(2000)
@@ -1786,13 +1788,10 @@ var app_sign=function(){
         }
       clicktexts(["任务","签到"],100,2000)
 
-
-      
-
     }
 }
 
 //app提现
-var app_tomoney=function(){
+var liutiapp_tomoney=function(){
 
 }
