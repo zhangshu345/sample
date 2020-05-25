@@ -1679,7 +1679,11 @@ function runliuti(apppkg){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-           
+           if(n_i<10){
+               if(textclick("同意并继续")){
+                   liutiapp_login_weixin()
+               }
+           }
         滑动(20,10,16,11,4,500,500)
         doactionmaxtime(actionother,10000,2000)
         if(n_i<100&&n_i%30==0){
@@ -1687,6 +1691,7 @@ function runliuti(apppkg){
                 liutiapp_sign()
             }
         }
+        
         idclick(apppkg+":id/close")
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
@@ -1751,7 +1756,9 @@ var liutiapp_login=function(){
 //app 微信登录
 var liutiapp_login_weixin=function(){
     doactionmaxtime(function(){
-        clicktexts(["微信"])
+        clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐","可拆开"],100,1500)
+
+        clicktexts(["微信登录并领取","微信","同意"])
     },10000)
 }
 
