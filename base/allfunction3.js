@@ -1684,7 +1684,7 @@ function runliuti(apppkg){
         doactionmaxtime(actionother,10000,2000)
         if(n_i<100&&n_i%30==0){
             if(!todaysign){
-                app_sign()
+                liutiapp_sign()
             }
         }
         idclick(apppkg+":id/close")
