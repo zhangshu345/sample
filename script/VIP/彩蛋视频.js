@@ -76,14 +76,8 @@ const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
 const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
 var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
-
 var 视频次数=0
-// if(!getbooleanvalue("彩蛋登录")){
-//     show("彩蛋没有登录过")
-//     彩蛋登录()
-// }else{
-//     show("彩蛋之前登陆过")
-// }
+
 var lastdesc=""
 var 滑动次数=0
 closelastscriptapp()

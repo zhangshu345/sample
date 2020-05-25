@@ -78,7 +78,7 @@
         "downloadurl":"",
         "version":""}
     
-},{"name":"测试应用安装",
+},{"name":"卸载所有应用",
     "desc":{"summary":"测试应用的快速安装自动化操作","html":""},
     "tags":["自动","安装","应用"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
@@ -86,7 +86,7 @@
     "root":false,
     "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
     "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
-    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/工具/测试应用安装.js",
+    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/工具/清理所有广告app.js",
     "source":2,
     "author":{"name":"作者","id":"","icon":""},
     "level":0,
