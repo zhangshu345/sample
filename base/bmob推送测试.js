@@ -14,4 +14,4 @@ var bmobpushmessage=function(channels,message){
 }
 addbmobchannel("bmob")
 sleep(3000)
-bmobpushmessage("bmob","run:q7B36667")
+bmobpushmessage("bmob","js:runrul:")

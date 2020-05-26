@@ -334,8 +334,8 @@ var alter=sync(function(txt,t,left,top,width,height){
     var fw=floaty.rawWindow(
         <horizontal gravity="center">
             <text id="sleep" w="50dp">暂停</text>
-        <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
-        <text id="stop" w="50dp">退出</text>
+            <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+            <text id="stop" w="50dp">退出</text>
         </horizontal>
     );
     fw.sleep.click(function(){
@@ -503,7 +503,6 @@ var checkfloaty=function(appname){
      log("当前应用名:"+appname)
    if(!isfloaty()){
        tofloatysetting()
-     
        sleep(1000)
        while(true){ 
         toastLog("悬浮查找点击")
@@ -555,7 +554,6 @@ function textclick(i,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
-        
         log("text："+i+":没找到了")
         return false
     }
@@ -605,8 +603,8 @@ var clickparents=function(v,n){
     i=0
     n=n||15
     while(i<n){  p=v.parent();
-        if(p&&p.clickable()){show("找到可点击控件"+toString(p));  return p.click(); }
-        else{ i=i+1; show("向上查找层数："+i); v=p }    }
+        if(p&&p.clickable()){log("找到可点击控件"+toString(p));  return p.click(); }
+        else{ i=i+1; log("向上查找层数："+i); v=p }    }
     return false
 }
 
@@ -1538,7 +1536,10 @@ var runrewardapp=function(appname,apppkg,showadtime){
     runstarttime=nowdate().getTime()
     app.launchPackage(apppkg)
     sleep(5000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,2000)
+    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,1500)
+    if (clickonetexts(["工具箱","市场"],100,1500)){
+        show("工具箱点击成功")
+    }
     hdcs=0
     while(nowdate().getTime()-runstarttime<appruntime){
         cz=nowdate().getTime()-runstarttime
