@@ -2,7 +2,7 @@ auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
 device.wakeUpIfNeeded()
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/config/script/VIP/纯奖励app2.js"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app2.js"
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -28,7 +28,7 @@ checksystemsettings()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-show("开始月结套餐稳赚")
+show("开始纯激励APP 2")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")

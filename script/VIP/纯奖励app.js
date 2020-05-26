@@ -1,7 +1,7 @@
 auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/config/script/VIP/纯奖励app.js"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app.js"
 device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
