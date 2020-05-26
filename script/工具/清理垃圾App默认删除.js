@@ -29,18 +29,16 @@ device.setMusicVolume(0)
 device.wakeUpIfNeeded()
 allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
 
-
-
 function listapp(){
     var appconfig=httpget(allrewardappurl)
    
     var allapps=[]
-    appnames=["微信","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","东东随便","抖音短视频"]
+    appnames=["微信","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘","支付宝",,"快手极速版","刷宝短视频","火火极速版","天天爱清理","彩蛋视频","趣多多","火山极速版","抖音短视频"]
     apps=JSON.parse(appconfig)
     apps.forEach(app =>{
-    // if(app.install){
+     if(app.install){
         appnames.push(app.name)
-    // }
+    }
 })
 log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
