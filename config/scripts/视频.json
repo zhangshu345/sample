@@ -247,6 +247,27 @@
         "version":""}
     
 }
+,{"name":"天天爱清理",
+    "desc":{"summary":"清理垃圾 微信登录  签到  5天5块 7天  只签到  邀请秒到1元  ","html":""},
+    "tags":["清理","短视频","赚钱"],
+    "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
+    "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
+    "root":false,
+    "reward":{"coin":0,"money":0,"experience":10,"achievement":"成就"},
+    "money":{"perdaymoney":0.38,"permonthmoney":60.1,"peryearmoney":360.0},
+    "path":"https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/天天爱清理.js",
+    "source":2,
+    "author":{"name":"作者","id":"","icon":""},
+    "level":0,
+    "version":0,
+    "appversioni":10,
+    "requestapi":10,
+    "icon":"",
+    "app":{"name":"天天爱清理","pkg":"","icon":"",
+        "downloadurl":"",
+        "version":""}
+    
+}
 ,{"name":"有颜短视频",
     "desc":{"summary":"有颜短视频 自动刷视频 签到  ","html":""},
     "tags":["有颜短视频","短视频","赚钱"],

@@ -32,7 +32,7 @@ var invite=false // 邀请
 var logintype="weixin"  //登录使用微信
 var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
-var minmoney=0.3 // 最小提现余额
+var minmoney=10 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var islogin=false
 var onlyscript=true  //仅允许当前一个脚本运行 
@@ -160,10 +160,10 @@ var run=function(){
                  sleep(1000)
             }
             
-                if(ii%50==0){
+                if(ii%200==0){
                     if(app_tomoney()){
                         app_clean()
-                        exit()
+                       
                     }
                 }
         天天爱清理视频上滑()
@@ -178,8 +178,13 @@ var run=function(){
         }
        }
 }
+var app_get_reward=function(){
 
+}
 
+var app_read_novel=function(){
+
+}
 var app_clean=function(){
     doactionmaxtime(function(){
         clicktexts(["首页","暂不领取","暂不领取"])
@@ -193,7 +198,6 @@ var app_clean=function(){
         if(text_clean_result){
             if(text_clean_result.search("成功清理")>-1){
                 if(textclick("优化完成")){
-                   
                     var node_coins=idContains("com.xiaoqiao.qclean:id/tv_bubble_").filter(function(w){
                         return w.text()!=""
                     }).untilFind()
@@ -204,7 +208,6 @@ var app_clean=function(){
                                 if(textclick("看视频兑换")){
                                     seead()
                                 }
-                                
                             }
                         });
                     }
@@ -220,7 +223,6 @@ var app_clean=function(){
         if(text("一键扫描").exists()){
             return true
         }
-      
     },10000)
 }
 
@@ -282,7 +284,6 @@ var app_sign=function(){
 
     
 }
-
 var  天天爱清理视频上滑=function(){
     if(enablegenius){
         滑动(20,10,17,10,5,500,500)
@@ -290,13 +291,11 @@ var  天天爱清理视频上滑=function(){
         天天爱清理下滑()
     }
 }
-
 var 天天爱清理下滑=function(){
     node_rv=id("com.xiaoqiao.qclean:id/community_recycler_view").findOne(300)
     if(node_rv){
         node_rv.scrollForward()
         sleep(100)
-       
         id("com.xiaoqiao.qclean:id/ll_task").findOne(100).click()
         sleep(200)
         id("com.xiaoqiao.qclean:id/ll_video").findOne(100).click()
@@ -315,6 +314,7 @@ var 天天爱清理下滑=function(){
 
 //app提现
 var app_tomoney=function(){
+    return false
     show("开始提现")
     doactionmaxtime(function(){
         nca=currentActivity()
