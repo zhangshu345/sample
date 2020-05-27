@@ -801,7 +801,7 @@
 	},
 	{
 		"name": "红包盒子",
-		"open": true,
+		"open": false,
 		"install": true,
 		"wx": true,
 		"zfb": true,
@@ -866,7 +866,7 @@
 	
 	{
 		"name": "追看视频",
-		"open": true,
+		"open": false,
 		"install": true,
 		"wx": true,
 		"zfb": true,
@@ -898,7 +898,7 @@
 	},
 	{
 		"name": "聚看点",
-		"open": true,
+		"open": false,
 		"install": true,
 		"wx": true,
 		"zfb": true,

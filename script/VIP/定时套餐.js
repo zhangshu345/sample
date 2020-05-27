@@ -46,7 +46,7 @@ var run=function(){
     let xiaoshi=0
     let fen=2
     let n_xhcs=0
-    while (xiaoshi<24&&n_xhcs<10){
+    while (xiaoshi<24&&n_xhcs<2){
         n_xhcs=n_xhcs+1
         apps= shuffleArray(apps)
         apps.forEach(app => {
@@ -58,7 +58,6 @@ var run=function(){
                 show(app.name+"启动")
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
-                    
                     if(!appruntime[app.name]){
                         appruntime[app.name]=0
                     }
