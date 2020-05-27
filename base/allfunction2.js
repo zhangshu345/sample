@@ -20,6 +20,10 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 "唐诗精选","一个就够","MD编辑器","减压声音","唐诗宋词集合","东览","宝宝常识","英语四级单词汇","小白闹钟天气","小白日历","冥想音乐",
 "KeepHealth","动物的叫声","休息声音","随便粘","东东随便","小强助理","儿童绘画板"
 ]
+const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
+"AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
+"Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
+]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
@@ -155,17 +159,20 @@ var  creatsetfloatywindow=function(){
     })
 }
 
-//列出app
-function listapp(){
-    var appconfig=httpget(allrewardappurl)
-    var allapps=[]
-    appnames=whiteapps
-    apps=JSON.parse(appconfig)
-    apps.forEach(app =>{
-     if(app.install){
-        appnames.push(app.name)
-     }
-    })
+//列出所有应用 delectapp  删除非应用
+function listapp(delectapp){
+    let allapps=[]
+    let  appnames=whiteapps
+    delectapp=delectapp||true
+    if(delectapp){
+        var appconfig=httpget(allrewardappurl)
+        apps=JSON.parse(appconfig)
+        apps.forEach(app =>{
+         if(app.install){
+            appnames.push(app.name)
+         }
+        })
+    }
     //列出app
     log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
@@ -192,19 +199,22 @@ function listapp(){
         });
     };
     m=0
-    log("白名单："+appnames)
     allapps.forEach(app =>{
+        log(app.name+":"+app.packageName)
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
-                uninstallapp(app.name)
+                if(delectapp){
+                    uninstallapp(app.name)
+                }
                 // log("第三方应用"+GsonUtils.toJson(app))
           }else{
-            toastLog(app.name+"是白名单app")
+                toastLog(app.name+"是白名单app")
           }
             m=m+1
       }
   })
+
   log("一共第三方应用："+m)
     return allapps
 }
@@ -839,6 +849,31 @@ var idoneexist=function(ids){
     return false
 }
 
+var forbidapps=function(){
+    forbidapps.forEach(appname=>{
+        let apppkg=getPackageName(appname)
+        if(apppkg){
+            forbidapp(appname,apppkg)
+        }
+    })
+}
+
+var forbidapp=function(appname,apppkg){
+    apppkg=apppkg||getPackageName(appname)
+    if(apppkg){
+        app.openAppSetting(apppkg);
+        sleep(1500)
+      return  doactionmaxtime(function(){
+            if(clickonetexts(["停用","禁用","解除"],100,1500)){
+                    if(clickonetexts(["禁用","确定"],300,300)){
+                        return true
+                    }
+            }
+        },5000)
+    }
+}
+
+
 var firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
@@ -927,6 +962,7 @@ function downloadApk(name,url,isinstall) {
         install_app(filePath,name)
      }    
  }
+ 
  function install_app(filePath, name) {
      ////--------------安装--------------////
      if(filePath){
@@ -1495,8 +1531,6 @@ var close_ad_qq=function(apppkg){
             forcestoppkg(apppkg)
         }
     }
-
-           
 }
 //未知广告商
 var close_ad_iclicash=function(apppkg){
@@ -1673,3 +1707,4 @@ var seerewardvideo=function(apppkg){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
+forbidapp("Facebook")
