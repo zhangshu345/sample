@@ -95,10 +95,7 @@ var run=function(){
                 idclick(视频广告结束弹窗关闭id)
             }
         }
-        if(textclick("允许")){
-            app_login()
-        }
-
+  
         if(n_i<100){
             textclick("音乐")
             if(n_i%20==0){
@@ -178,7 +175,6 @@ var app_login_weixin=function(){
     if(currentActivity()==apploginactivity){
         clicktexts(["微信","同意"],100,2000)
         //之后进入提现页 com.jifen.qu.open.QX5WebViewActivity
-       
         while(true){
             node_title=id("com.zheyun.bumblebee:id/tv_title").findOne(100)
             if(node_title){
@@ -197,7 +193,6 @@ var app_login_weixin=function(){
                         clicktexts(["暂不领取","暂不领取","暂不领取"],100,1500)
                         sleep(1000)
                         // if(textclick("完成首次提现任务再拿500金币！")){
-
                         // }
                     }
                     //这里设置APP已经登录过的标记

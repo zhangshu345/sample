@@ -73,7 +73,6 @@ var run=function(){
                              show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                              appruntime[app.name]=appruntime[app.name]+runconfig.onetime
                          }
-                        
                     }else{
                         nowruntime=runconfig.maxtime-appruntime[app.name]
                         if(nowruntime>100){
