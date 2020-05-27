@@ -78,9 +78,9 @@ var run=function(){
                         if(nowruntime>100){
                             show("本次时间:"+nowruntime+"少于一次："+runconfig.onetime)
                             fen=fen+nowruntime/60
-                            if(fen>=60){
-                               xiaoshi=xiaoshi+1
-                               fen=fen-60
+                            while(fen>=60){
+                                    xiaoshi=xiaoshi+1
+                                    fen=fen-60
                             }
                             if(xiaoshi<=23){
                                 com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
