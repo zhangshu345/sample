@@ -46,6 +46,8 @@ var run=function(){
     let xiaoshi=0
     let fen=2
     let n_xhcs=0
+    let sumeruntime=0
+    let runtime=0
     while (xiaoshi<24&&n_xhcs<2){
         n_xhcs=n_xhcs+1
         apps= shuffleArray(apps)
@@ -54,7 +56,8 @@ var run=function(){
             if(scriptappname==app.name){
                 return
             }
-            if(app.open){
+       
+            if(sumeruntime<=86400&&app.open){
                 show(app.name+"启动")
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
@@ -62,17 +65,21 @@ var run=function(){
                         appruntime[app.name]=0
                     }
                     show("运行时间:"+app.name+":"+appruntime[app.name])
-                    if(appruntime[app.name]+runconfig.onetime<runconfig.maxtime){
-                         fen=fen+runconfig.onetime/60
-                         if(fen>=60){
+                    if(appruntime[app.name]+runconfig.onetime<=runconfig.maxtime){
+                        
+                         fen=fen+runtime/60
+                         while(fen>=60){
                             xiaoshi=xiaoshi+1
                             fen=fen-60
-                         }
+                            }
                          if(xiaoshi<=23){
                              com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
                              show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                              appruntime[app.name]=appruntime[app.name]+runconfig.onetime
+                             sumeruntime=sumeruntime+runconfig.onetime
+                             runtime=runconfig.onetime
                          }
+                         
                     }else{
                         nowruntime=runconfig.maxtime-appruntime[app.name]
                         if(nowruntime>100){
@@ -86,11 +93,14 @@ var run=function(){
                                 com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
                                 show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                                 appruntime[app.name]=runconfig.maxtime
+                                sumeruntime=sumeruntime+nowruntime
+                                runtime=nowruntime
                             }
                         }
                     }
                 }
             }
+            
         })
     }
     sleep(2000)
