@@ -1723,7 +1723,7 @@ var seerewardvideo=function(apppkg,isclickad){
            back()
            return true
        }
-
+      return true
     },60000)
 
 }
