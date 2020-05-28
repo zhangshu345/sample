@@ -112,10 +112,10 @@
     "maxtime": 60,
     "day":"2020-3-25",
     "runtime":30,
-    "version":38,
+    "version":41,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-    "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_39.apk"
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_41.apk"
 },{
     "name": "动物的叫声",
     "open": true,
@@ -260,14 +260,14 @@
     "bmobid": "",
     "scripturl": "",
     "money": 1.0,
-    "onetime": 6,
+    "onetime": 10,
     "maxtime": 60,
     "day":"2020-3-25",
     "runtime":30,
-    "version": 18,
+    "version": 20,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-    "downloadurl": "http://zhangshuhong888.iask.in:8989/一个就够_18.apk"
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/一个就够_20.apk"
 },{
     "name": "减压声音",
     "open": true,
