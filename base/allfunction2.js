@@ -412,6 +412,7 @@ var forcestop=function(appname,st,isclearcache){
       }
 }
 var forcestoppkg=function(apppkg,st,isclearcache){
+    log("强制停止："+apppkg)
     app.openAppSetting(apppkg);
     confirmtexts=["强制停止","确定"]
     st=st||1800
@@ -1602,7 +1603,8 @@ var close_ad_iclicash=function(apppkg){
 
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
-    appruntime=showadtime||random(5,10)*60*1000
+    log("运行："+appname+"--"+apppkg+"--"+showadtime)
+    appruntime=showadtime||random(5,10)*60000
     doactionmaxtime(function(){
         onerewardapp(appname,apppkg)
     },appruntime)
