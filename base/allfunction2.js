@@ -272,13 +272,13 @@ function keepappclear(url){
     return allapps
 }
 var appstophander=function(){
-    if( device.brand=="samsung"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
-    else if(device.brand=="HONOR"){ if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
-    else if(device.brand=="DOCOMO"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")}}
-    else if(device.brand=="Meizu"){if(textallexist(["确定","等待"])){textclick("确定")}  }
-    else if(device.brand=="xiaomi"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
-    else if(device.brand=="OPPO"){if(textallexist(["关闭应用","等待"])){textclick("关闭应用")} }
-    else{if(textoneexist(["关闭应用","等待"])){clickonetexts(["确定","关闭应用","关闭应用程序"])}}
+    if( device.brand=="samsung"){clicktexts(["关闭应用","关闭应用程序"]) }
+    else if(device.brand=="HONOR"){ clicktexts(["关闭应用","关闭应用程序"])}
+    else if(device.brand=="DOCOMO"){clicktexts(["关闭应用","关闭应用程序"])}
+    else if(device.brand=="Meizu"){clicktexts(["关闭应用","关闭应用程序"])}
+    else if(device.brand=="xiaomi"){clicktexts(["关闭应用","关闭应用程序"])}
+    else if(device.brand=="OPPO"){clicktexts(["关闭应用","关闭应用程序"])}
+    else{if(textoneexist(["关闭应用","关闭应用程序"])){clickonetexts(["确定","关闭应用","关闭应用程序"])}}
 }
 
 var closerecentapp=function(){
@@ -952,26 +952,16 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URL');
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
-     log("开始下载之前："+name)
-     var url = new URL(url);
-     var conn = url.openConnection(); //URLConnection
-     var inStream = conn.getInputStream(); //InputStream
-     var fs = new FileOutputStream(filePath); //FileOutputStream
-     var connLength = conn.getContentLength(); //int
-     var buffer = util.java.array('byte', 1024); //byte[]
-     var byteSum = 0; //总共读取的文件大小
-     var byteRead; //每次读取的byte数
-     // log('要下载的文件大小=');
-    //   log('要下载的文件大小='+connLength);
-    //  if(files.exists(filePath)&&FileUtils.getContentLength(files)==connLength){
-    //     log("本地文件是源文件")
-    //     if(isinstall){
-    //         install_app(filePath,name)
-    //         return
-    //      }
-    //   }
-    log("开始下载："+name)
-     var threadId = threads.start(function () {
+     let url = new URL(url);
+     let  conn = url.openConnection(); //URLConnection
+     let  inStream = conn.getInputStream(); //InputStream
+     let  fs = new FileOutputStream(filePath); //FileOutputStream
+     let  connLength = conn.getContentLength(); //int
+     let  buffer = util.java.array('byte', 1024); //byte[]
+     let  byteSum = 0; //总共读取的文件大小
+     let byteRead; //每次读取的byte数
+   
+    let  threadId = threads.start(function () {
          while (1) {
              var 当前写入的文件大小 = byteSum;
              var progress = (当前写入的文件大小 / connLength) * 100;
@@ -1015,7 +1005,6 @@ function downloadApk(name,url,isinstall) {
     else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else{        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
-    // installappwithfilepath(filePath)
      for (let i = 0; i < 100; i++) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
@@ -1624,14 +1613,6 @@ var closeappundostate=function(){
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
 var onerewardapp=function(appname,apppkg){
-    if(closeappundostate()){
-        forcestop(appname,1500,true)
-        sleep(1000)
-        app.launch(apppkg)
-        sleep(3000)
-    }
-    if(close_ad_qq(apppkg)){}
-    if(close_ad_toutiao(apppkg)){}
    if(!idContains(apppkg).findOne(1000)){
         show(appname+"不在前台")
         app.launchPackage(apppkg)
@@ -1646,8 +1627,26 @@ var onerewardapp=function(appname,apppkg){
             textclick("总是允许")
         }
         sleep(3000)
-    }else{
-        if(textoneexist(["点击下载"])){
+    }
+    ca=currentActivity()
+    if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
+        if(randomint(0,6)==2){
+            ll_advice=id(apppkg+":id/ll_advice").findOne(100)
+            if(ll_advice){
+                ll_advice_bound=ll_advice.bounds()
+                if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
+                   if(enablegenius){
+                       click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
+                       if(randomint(0,3)==1){
+                           threads.start(install_app())
+                       }
+                   }
+                }
+            }
+           }
+       }
+    }
+         if(textoneexist(["点击下载"])){
             back()
         }
         if (clickonetexts(["工具箱","市场"],100,1500)){
@@ -1655,20 +1654,15 @@ var onerewardapp=function(appname,apppkg){
             滑动(20,10,16,11,6,500,1500)
             sleep(random(3,4)*1000)
         }
-         if(randomint(0,6)==2){
-             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
-             if(ll_advice){
-                 ll_advice_bound=ll_advice.bounds()
-                 if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
-                    if(enablegenius){
-                        click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
-                        if(randomint(0,3)==1){
-                            threads.start(install_app())
-                        }
-                    }
-                 }
-             }
-         }
+         
+         if(closeappundostate()){
+            forcestop(appname,1500,true)
+            sleep(1000)
+            app.launch(apppkg)
+            sleep(3000)
+        }
+        if(close_ad_qq(apppkg)){}
+        if(close_ad_toutiao(apppkg)){}
         
        if(randomint(0,3)==2){
            if(textclick("任务")){
@@ -1691,12 +1685,10 @@ var onerewardapp=function(appname,apppkg){
             textclick("退出")
             back()
          }
-      
-       }
-    }
     if(textoneexist(["点击下载"])){
         back()
     }
+
 
 }
 
