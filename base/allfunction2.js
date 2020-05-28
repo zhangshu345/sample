@@ -1560,7 +1560,11 @@ var close_ad_qq=function(apppkg){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-
+           
+            if(randomint(0,6)==1){
+                click(500,700)
+                threads.start(install_app())
+            }
         },60000)){
             return true
         }else{
@@ -1630,7 +1634,7 @@ var onerewardapp=function(appname,apppkg){
     }
     ca=currentActivity()
     if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-        if(randomint(0,6)==2){
+        if(randomint(0,3)==2){
             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
             if(ll_advice){
                 ll_advice_bound=ll_advice.bounds()
@@ -1722,6 +1726,11 @@ var seerewardvideo=function(apppkg,isclickad){
        }
        if(!idContains(apppkg).exists()){
         forcestoppkg(apppkg)
+        sleep(100)
+        back()
+        sleep(300)
+        back()
+        app.launch(apppkg)
         return false
        }
     },60000)
