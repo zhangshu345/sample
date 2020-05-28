@@ -423,8 +423,10 @@ var forcestoppkg=function(apppkg,st,isclearcache){
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
     doactionmaxtime(function(){
         if (clickonetexts(closetexts,100,2000)){ 
-            if(clickonetexts(confirmtexts,100,0)){
+            if(clickonetexts(confirmtexts,100,st)){
+                
                 if(isclearcache){
+                    sleep(1500)
                     clearappcache(null,apppkg)
                 }
                 back();
@@ -1724,5 +1726,3 @@ var seerewardvideo=function(apppkg,isclickad){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
-
-clearappcache("火山极速版")
