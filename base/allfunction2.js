@@ -404,7 +404,7 @@ var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
     if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
-     let st=st||1500;  
+     let st=st||1800;  
       let isclearcache=isclearcache||false
       let apppkg=app.getPackageName(appname);  
       if(apppkg){
@@ -414,6 +414,7 @@ var forcestop=function(appname,st,isclearcache){
 var forcestoppkg=function(apppkg,st,isclearcache){
     app.openAppSetting(apppkg);
     confirmtexts=["强制停止","确定"]
+    st=st||1800
     if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
     else if(device.brand=="HONOR"){ closetexts= ["强行停止","强行停止"]; }
     else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
@@ -422,9 +423,8 @@ var forcestoppkg=function(apppkg,st,isclearcache){
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
     doactionmaxtime(function(){
-        if (clickonetexts(closetexts,100,2000)){ 
+        if (clickonetexts(closetexts,100,st)){ 
             if(clickonetexts(confirmtexts,100,st)){
-                
                 if(isclearcache){
                     sleep(1500)
                     clearappcache(null,apppkg)
@@ -1492,9 +1492,9 @@ function get_phone_code(app_name,reg,startwords,endwords){
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg){
     let ca=currentActivity()
-    show("当前activity:"+ca)
+    show("关闭穿山甲:activity:"+ca)
     if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
-        while(true){
+        doactionmaxtime(function(){
             if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
                 return true
             }
@@ -1505,7 +1505,7 @@ var close_ad_toutiao=function(apppkg){
             if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
                 return true
             }
-        }
+        },60000)
     }
     if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
         return true
@@ -1529,9 +1529,9 @@ var close_ad_liquid=function(apppkg){
 var close_ad_qq=function(apppkg){
     // ccj_file_paths 
   let  ca=currentActivity()
-  show("当前activity:"+ca)
+  show("关闭qqad activity:"+ca)
     if(ca=="com.qq.e.ads.PortraitADActivity"){
-      if(  doactionmaxtime( function(){
+      if(doactionmaxtime( function(){
             ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
             if(ci){
                 if(clicknode(ci)){
