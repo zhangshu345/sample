@@ -1650,7 +1650,6 @@ var onerewardapp=function(appname,apppkg){
             }
            }
        }
-    }
          if(textoneexist(["点击下载"])){
             back()
         }
@@ -1693,8 +1692,7 @@ var onerewardapp=function(appname,apppkg){
     if(textoneexist(["点击下载"])){
         back()
     }
-
-
+}
 }
 
 var seerewardvideo=function(apppkg,isclickad){
