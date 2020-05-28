@@ -1617,6 +1617,7 @@ var closeappundostate=function(){
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
 var onerewardapp=function(appname,apppkg){
+    apppkg=apppkg||getPackageName(appname)
    if(!idContains(apppkg).findOne(1000)){
         show(appname+"不在前台")
         app.launchPackage(apppkg)
