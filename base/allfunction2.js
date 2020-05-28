@@ -1723,15 +1723,7 @@ var seerewardvideo=function(apppkg,isclickad){
            back()
            return true
        }
-       if(!idContains(apppkg).exists()){
-        forcestoppkg(apppkg)
-        sleep(100)
-        back()
-        sleep(300)
-        back()
-        app.launch(apppkg)
-        return false
-       }
+
     },60000)
 
 }
