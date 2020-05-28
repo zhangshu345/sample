@@ -43,7 +43,7 @@ if(!app.getPackageName(appname)){
 }
 
 刷宝邀请()
-app.launchApp(appname)
+
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
@@ -374,6 +374,8 @@ show("签到结束")
 xhcs=0
 
 function run(){
+    app.launchApp(appname)
+    sleep(3000)
 while(true){
     show("循环次数:"+(xhcs+1))
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
@@ -441,7 +443,7 @@ while(true){
             滑动(20,13,16,10,4,500,700)
             sleep(1000)
         }
-
+        clicktexts(["继续看视频领取"],100,1500)
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
         if(text("空空如也").exists()){
@@ -449,6 +451,7 @@ while(true){
             device.lockScreen()
         }
         if(滑动次数%10==1){
+            checkbattery(30)
             battery=device.getBattery()
             if(battery<20){
                 device.lockScreen()

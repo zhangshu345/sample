@@ -1369,35 +1369,34 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
 var checkbattery=function(btyn){
     btn=btyn||30
     batteryn=device.getBattery()
-    if(batteryn<btyn){
+    if(batteryn<btyn*2/3){
+        
+        device.lockScreen()
+        sleep(1800000)
+    }else if(batteryn<btyn){
         //这里应该发送一个电量低信号到服务器
         toastLog("电量低")
         if(device.isCharging()){
             if(changesetting){
                 device.setMusicVolume(0)
                 device.setBrightnessMode(0)
-                device.setBrightness(30)
+                device.setBrightness(20)
             }
         }else{
-            //休眠三十分钟
-            engines.stopOther()
+            //休眠十分钟
             device.lockScreen()
-            sleep(1800000)
+            sleep(600000)
         }
-    }else if(batteryn<btyn*2/3){
-        engines.stopOther()
-        device.lockScreen()
-        sleep(1800000)
     }
 }
 //通过通知获取验证码有缺点  后期改为java代码原生获取
 function get_phone_code(app_name,reg,startwords,endwords){
-    contet = ""
-    packname = ""
-    code = ""
-    reg=reg|| /\d{4}/ig
+  let  contet = ""
+  let  packname = ""
+   let code = ""
+   let reg=reg|| /\d{4}/ig
     //--------------------------*******************--------------------------//
-    var thread = threads.start(function (app_name) {
+   let thread = threads.start(function (app_name) {
         events.observeNotification();
         events.onNotification(function (notification) {
             printNotification(notification);

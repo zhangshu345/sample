@@ -35,7 +35,7 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var changesetting=false
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity=""
-var appname="火火视频极速版"
+var appname="追看视频"
 
 alltest()
 // checkfloaty()
