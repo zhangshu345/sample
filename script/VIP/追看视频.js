@@ -33,8 +33,14 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apppkg="com.jt.hanhan.video"
-var apphomeactivity=""
+var apppkg="com.yy.yylite"
+var apphomeactivity="com.yy.yylite.MainActivity"
+
+var 奖励标识中心="com.yy.lite.plugin.liveextension:id/mIvRedBag"
+var 奖励进度id="com.yy.lite.plugin.liveextension:id/mCircleProgressBar" 
+var 奖励进度背景="com.yy.lite.plugin.liveextension:id/mRlRedBag"  //看直播随机30次金币 基本就是25 
+ ["视频","直播","任务","我"] // 直播上滑之后变成刷新  
+ 
 var appname="追看视频"
 
 alltest()
@@ -112,7 +118,15 @@ var app_tomoney=function(){
 }
 
 var app_home_video=function(){
+    ca=currentActivity()
+    if(ca!=currentActivity()){
+        doactionmaxtime(function(){
+            if(!idContains(apppkg).findOne(100)){
+                app.launch(apppkg)
+            }
 
+        },10000)
+    }
 }
 
 run()

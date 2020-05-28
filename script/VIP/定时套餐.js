@@ -56,7 +56,6 @@ var run=function(){
             if(scriptappname==app.name){
                 return
             }
-       
             if(sumeruntime<=86400&&app.open){
                 show(app.name+"启动")
                 let runconfig=app.runconfig
@@ -66,7 +65,6 @@ var run=function(){
                     }
                     show("运行时间:"+app.name+":"+appruntime[app.name])
                     if(appruntime[app.name]+runconfig.onetime<=runconfig.maxtime){
-                        
                          fen=fen+runtime/60
                          while(fen>=60){
                             xiaoshi=xiaoshi+1
@@ -79,7 +77,6 @@ var run=function(){
                              sumeruntime=sumeruntime+runconfig.onetime
                              runtime=runconfig.onetime
                          }
-                         
                     }else{
                         nowruntime=runconfig.maxtime-appruntime[app.name]
                         if(nowruntime>100){
@@ -135,5 +132,4 @@ addbmobchannel("hongshureward")
 //     }
 // });
 //停止线程执行
-
 run()

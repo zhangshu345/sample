@@ -400,35 +400,70 @@ var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today
 
 //
 function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
-var forcestop=function(appname,st){
+var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
-    if(!appname){ return }
-    if(!getPackageName(appname)){ show(appname+"：没有安装");return };   
-      st=st||10000;  
-       packagename=app.getPackageName(appname);  
-       app.openAppSetting(packagename);
-      if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
+    if(!appname){ return false}
+    if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
+     let st=st||1500;  
+      let isclearcache=isclearcache||false
+      let apppkg=app.getPackageName(appname);  
+      if(apppkg){
+        forcestoppkg(apppkg,st,isclearcache)
+      }
+}
+var forcestoppkg=function(apppkg,st,isclearcache){
+    app.openAppSetting(apppkg);
+    confirmtexts=["强制停止","确定"]
+    if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
     else if(device.brand=="HONOR"){ closetexts= ["强行停止","强行停止"]; }
     else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
     else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
     else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
     else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
     else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back(); sleep(1000);return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+    doactionmaxtime(function(){
+        if (clickonetexts(closetexts,100,2000)){ 
+            if(clickonetexts(confirmtexts,100,0)){
+                if(isclearcache){
+                    clearappcache(null,apppkg)
+                }
+                back();
+                sleep(300); 
+                back()
+              return true
+            }
+        };
+    },5000)
 }
-var forcestoppkg=function(apppkg,st){
-    show("强制关闭应用:"+apppkg); 
-       packagename=apppkg 
-       app.openAppSetting(packagename);
-      if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
-    else if(device.brand=="HONOR"){ closetexts= ["强行停止","强行停止"]; }
-    else if(device.brand=="DOCOMO"){closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-    else if(device.brand=="Meizu"){closetexts= ["强行停止","确定"];    }
-    else if(device.brand=="xiaomi"){closetexts= ["结束运行","确定"];    }
-    else if(device.brand=="OPPO"){closetexts= ["强行停止","强行停止"];    }
-    else{closetexts= ["强制停止","停止运行","强制关闭","强行停止","结束运行","确定"];}
-  n_fsi=0;  while(n_fsi<2){if (clickalltexts(closetexts,100,2000) ){ back;sleep(300);back();sleep(1000); return  true;};n_fsi=n_fsi+1;toastLog("循环:"+n_fsi); sleep(2000) ;}
+var  clearappcache=function(appname,apppkg){
+    if(!apppkg){
+        apppkg=getPackageName(appname)
+    }
+    if(!apppkg){
+        return false
+    }
+    if( device.brand=="samsung"){closetexts= ["存储","清除缓存"];}
+    else if(device.brand=="HONOR"){ closetexts= ["存储","清除缓存"]; }
+    else if(device.brand=="DOCOMO"){closetexts= ["存储","清除缓存"];}
+    else if(device.brand=="Meizu"){closetexts= ["存储和备份","清除缓存"];    }
+    else if(device.brand=="xiaomi"){closetexts= ["存储","清除缓存"];    }
+    else if(device.brand=="OPPO"){closetexts= ["存储","清除缓存"];    }
+    else{closetexts= ["存储","清除缓存"];}
+    app.openAppSetting(apppkg);
+    sleep(2000)
+   if( doactionmaxtime(function(){
+        if(clickalltexts(closetexts,100,1500)){
+            back()
+            sleep(500)
+            back()
+            return true
+        }
+    },5000)){
+        return true
+    }
+    clicktexts(["存储","清除缓存"])
 }
+
 var  tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
@@ -439,7 +474,7 @@ var  tofloatysetting=function(){
 var  todevelopersetting=function(){
     let i = app.intent({ action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS", flags:["activity_new_task"] // data: "file:///sdcard/1.png"  
 });
-     context.startActivity(i);
+  context.startActivity(i);
  }
  
 var toPkgandClass=function(pkg,classname){
@@ -849,8 +884,9 @@ var idoneexist=function(ids){
     return false
 }
 
-var forbidapps=function(){
-    forbidapps.forEach(appname=>{
+var forbidapps=function(apps){
+   let apps=apps||disableapps
+    apps.forEach(appname=>{
         let apppkg=getPackageName(appname)
         if(apppkg){
             forbidapp(appname,apppkg)
@@ -971,7 +1007,7 @@ function downloadApk(name,url,isinstall) {
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
      if( device.brand=="samsung"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
      else if(device.brand=="HONOR"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
-       else if(device.brand=="DOCOMO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else if(device.brand=="DOCOMO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="Meizu"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
@@ -1564,146 +1600,129 @@ var close_ad_iclicash=function(apppkg){
 
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
-    app.launchApp(appname)
     appruntime=showadtime||random(5,10)*60*1000
-    runstarttime=nowdate().getTime()
-    app.launchPackage(apppkg)
-    sleep(5000)
-    clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","始终允许"],100,1500)
-    if (clickonetexts(["工具箱","市场"],100,1500)){
-        show("工具箱点击成功")
+    doactionmaxtime(function(){
+        onerewardapp(appname,apppkg)
+    },appruntime)
+ 
+}
+var closeappundostate=function(){
+   return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
+}
+var onerewardapp=function(appname,apppkg){
+    if(closeappundostate()){
+        forcestop(appname,1500,true)
+        sleep(1000)
+        app.launch(apppkg)
+        sleep(3000)
     }
-    hdcs=0
-    while(nowdate().getTime()-runstarttime<appruntime){
-        cz=nowdate().getTime()-runstarttime
-   
-        if(currentActivity()!="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-            back()
+    if(close_ad_qq(apppkg)){}
+    if(close_ad_toutiao(apppkg)){}
+   if(!idContains(apppkg).findOne(1000)){
+        show(appname+"不在前台")
+        app.launchPackage(apppkg)
+        sleep(4000)
+        clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
+        if(textclick("总是允许")){
+            sleep(600)
+            textclick("总是允许")
+            sleep(600)
+            textclick("总是允许")
+            sleep(600)
+            textclick("总是允许")
         }
-        if(close_ad_qq(apppkg)){}
-         if(close_ad_toutiao(apppkg)){}
-       if(!idContains(apppkg).findOne(1000)){
-            show(appname+"不在前台")
-            app.launchPackage(apppkg)
-            sleep(4000)
-            clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
-            if(textclick("总是允许")){
-                sleep(600)
-                textclick("总是允许")
-                sleep(600)
-                textclick("总是允许")
-                sleep(600)
-                textclick("总是允许")
-            }
-            if (clickonetexts(["工具箱","市场"],100,1500)){
-                show("工具箱点击成功")
-            }
-            sleep(3000)
-        }else{
-           if(hdcs<10){
-                clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
-            if(textclick("总是允许")){
-                sleep(1000)
-                textclick("总是允许")
-                sleep(1000)
-                textclick("总是允许")
-                sleep(1000)
-                textclick("总是允许")
-            }
-           }
-            if(textoneexist(["点击下载"])){
-                back()
-            }
-            if (clickonetexts(["工具箱","市场"],100,1500)){
-                show("工具箱点击成功")
-            }
-            if(textoneexist(["点击下载"])){
-                    back()
-             }
-             if(randomint(0,6)==5){
-                 ll_advice=id(apppkg+":id/ll_advice").findOne(100)
-                 if(ll_advice){
-                     ll_advice_bound=ll_advice.bounds()
-                     if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
-                        if(enablegenius){
-                            click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
-                            if(randomint(0,3)==1){
-                                threads.start(install_app())
-                            }
-                        }
-                     }
-                 }
-             }
-             滑动(20,10,16,11,6,500,1500)
-             hdcs=hdcs+1
-             show("滑动次数："+hdcs)
-             sleep(random(3,4)*1000)
-             r=random(3,5)
-           if(hdcs>2 && hdcs%r==0){
-               if(textclick("任务")){
-                   sleep(1000)
-                   if(textclick("看激励视频")){
-                       seerewardvideo()
-                   }
-                   sleep(1000)
-                   if(textclick("看视频")){
-                    seerewardvideo()
-                    }
-               }
-            runadui(apppkg)
-            sleep(3000)
-           if(textclick("创意视频")){
-               seerewardvideo(apppkg)
-               sleep(2000)
-            }
-                back()
-           }
-        }
+        sleep(3000)
+    }else{
         if(textoneexist(["点击下载"])){
             back()
         }
-        sleep(2000)
-    }
-}
-var seerewardvideo=function(apppkg){
-    sleep(10000)
-    gbgg=0
-    while(gbgg<30){
-        if(randomint(0,10)==5){
-            click(500,700)
-           if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
-               show("点击了立即安装")
-               return true
-           }
+        if (clickonetexts(["工具箱","市场"],100,1500)){
+            show("工具箱点击成功")
+            滑动(20,10,16,11,6,500,1500)
+            sleep(random(3,4)*1000)
         }
-        show("关闭广告："+gbgg)
+         if(randomint(0,6)==2){
+             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
+             if(ll_advice){
+                 ll_advice_bound=ll_advice.bounds()
+                 if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
+                    if(enablegenius){
+                        click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
+                        if(randomint(0,3)==1){
+                            threads.start(install_app())
+                        }
+                    }
+                 }
+             }
+         }
+        
+       if(randomint(0,3)==2){
+           if(textclick("任务")){
+               sleep(2000)
+               if(textclick("看激励视频")){
+                seerewardvideo(appname,apppkg)
+               }
+            
+               if(textclick("看视频")){
+                seerewardvideo(appname,apppkg)
+               }
+        }
+        if(randomint(0,3)==2){
+            runadui(apppkg)
+            sleep(3000)
+           if(textclick("创意视频")){
+               seerewardvideo(appname,apppkg)
+            
+            }
+            textclick("退出")
+            back()
+         }
+      
+       }
+    }
+    if(textoneexist(["点击下载"])){
+        back()
+    }
+
+}
+
+var seerewardvideo=function(apppkg,isclickad){
+    let isclickad=isclickad||false
+     doactionmaxtime(function(){
+       if(isclickad){
+            if(randomint(0,10)==5){
+                click(500,700)
+               if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
+                   show("点击了立即安装")
+                   return true
+               }
+            }
+        }
       if(close_ad_qq(apppkg)){
         return  true
       }
        if(close_ad_toutiao(apppkg)){
            return  true
        }
-       if(text("创意视频").findOne(300)){
+       if(text("创意视频").findOne(100)){
         return  true
        }
-       if(textoneexist(["点击下载"])){
-           back()
-       }
-      if(close_ad_liquid(apppkg)){
+       if(close_ad_liquid(apppkg)){
         return  true
       }
-       sleep(2000)
+       if(textoneexist(["点击下载"])){
+           back()
+           return true
+       }
        if(!idContains(apppkg).exists()){
         forcestoppkg(apppkg)
-        app.launch(apppkg)
-        sleep(3000)
         return false
        }
-       gbgg=gbgg+1
-    }
-    forcestoppkg(apppkg)
+    },60000)
+
 }
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
-forbidapp("Facebook")
+
+clearappcache("火山极速版")

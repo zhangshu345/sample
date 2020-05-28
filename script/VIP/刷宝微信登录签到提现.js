@@ -336,12 +336,9 @@ var apptomoney=function(){
              while(i<10){
                 if(textclick("仅当日有效")){
                     show("点击仅当日有效")
-                   
                 }
-
                  sleep(1000)
                  textclick("立即提现")
-                             
                  if(textclick("同意")){
                      show("微信同意")
                  }
@@ -363,9 +360,7 @@ var apptomoney=function(){
      }else{
          return false
      }
-  }
-
-
+}
 
 lastbattery=0
 applogin()
@@ -402,7 +397,6 @@ while(true){
         }
         close_ad_toutiao(apppkg)
         close_ad_qq(apppkg)
-
         id_desc=  id("com.jm.video:id/desc").findOne(1000)
         if(id_desc){
             lastdesc=desc.text()
@@ -460,7 +454,6 @@ while(true){
                 device.lockScreen()
                 sleep(1800000)
                   device.wakeUpIfNeeded()
-
             }
         }
         if(滑动次数%100==1){
@@ -468,14 +461,12 @@ while(true){
                 appsign()
             }
         }
-        
         if(滑动次数%200==1){
             if(tomoney){
                 if(!今日提现(appname)){
                     apptomoney()
                 }
             }
-         
         }
     }
     xhcs=xhcs+1
