@@ -1503,8 +1503,13 @@ var close_ad_toutiao=function(apppkg){
                 return true
             }
             sleep(1000)
+            if(!idContains(apppkg).findOne(100)){
+                return false
+            }
             if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
                 return true
+            }else{
+                return false
             }
         },60000)
     }
@@ -1514,7 +1519,8 @@ var close_ad_toutiao=function(apppkg){
     if( idclick(apppkg+":id/tt_video_ad_close",100)){
         return true
     }
-   return false
+    return false
+  
 }
 var close_ad_liquid=function(apppkg){
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
@@ -1560,13 +1566,17 @@ var close_ad_qq=function(apppkg){
             }
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
-                return true
+                return false
+            }
+            if(!idContains(apppkg).findOne(100)){
+                return false
             }
 
         },60000)){
             return true
         }else{
             forcestoppkg(apppkg)
+            return false
         }
     }
 }
