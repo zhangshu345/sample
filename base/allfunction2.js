@@ -1672,19 +1672,18 @@ var onerewardapp=function(appname,apppkg){
            if(textclick("任务")){
                sleep(2000)
                if(textclick("看激励视频")){
-                seerewardvideo(appname,apppkg)
+                seerewardvideo(apppkg,true)
                }
             
                if(textclick("看视频")){
-                seerewardvideo(appname,apppkg)
+                seerewardvideo(apppkg,true)
                }
         }
         if(randomint(0,3)==2){
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
-               seerewardvideo(appname,apppkg)
-            
+                seerewardvideo(apppkg,true)
             }
             textclick("退出")
             back()
@@ -1699,10 +1698,12 @@ var seerewardvideo=function(apppkg,isclickad){
     let isclickad=isclickad||false
      doactionmaxtime(function(){
        if(isclickad){
-            if(randomint(0,10)==5){
-                click(500,700)
-               if( clickonetexts(["点击下载","查看详情","下载","立即安装"])){
+            if(randomint(0,3)==2){
+               if(clickonetexts(["点击下载","查看详情","下载","立即安装"])){
                    show("点击了立即安装")
+                   if(randomint(0,3)==1){
+                    threads.start(install_app())
+                    }
                    return true
                }
             }
