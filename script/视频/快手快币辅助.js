@@ -87,39 +87,3 @@ while(true){
     获取倒计时()
     sleep(4000)
 }
-
-
-// while(true){
-//     滑动(20,5,13,7,3,500,500)
-//     sleep(3000)
-//     if(idoneexist(快手直播间标志集合)){
-//         show("在直播间")
-//         sleep(3000)
-//         if(clickoneids(快手直播页红包集合,300,500)){
-//             获取倒计时()
-//             press(500, 1376, 1);
-//         }else{
-//             show("退出直播间")
-//            if(clickoneids(快手直播退出标志集合,100,2000)) {
-              
-//             textclick("退出",1500)
-//            }else{
-//                back()
-//             sleep(1500)
-//            }
-//         }
-//         进直播间次数=进直播间次数+1
-//         show("进直播间次数:"+进直播间次数)
-//     }else{
-//         show("不在直播间")
-//         if(进直播间次数/2==0){
-//             show("开始滑动："+进直播间次数/2)
-//             滑动(20,5,10,7,3,500,500)
-//             sleep(1000)
-//             click(device.width*1/4,device.height/4)
-//         }else{
-//             click(device.width*3/4,device.height/4)
-//         }
-//     }
-   
-// }

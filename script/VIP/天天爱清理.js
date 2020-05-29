@@ -250,7 +250,6 @@ var app_login=function(){
                app_login_phone()
            }else{
                changetype=changetype+1
-            
                logintype="weixin"
            }
         }
@@ -413,5 +412,6 @@ var seead=function(timeout){
         n_see=n_see+1
     }
 }
+
 app_tomoney()
 run()
