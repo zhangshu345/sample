@@ -77,6 +77,7 @@ var run=function(){
     n_i=0
     while(true){
         sleep(2000)
+        closeappundostate()
         log("循环次数："+n_i)
         if(!idContains(apppkg).exists()){
             app.launch(apppkg)

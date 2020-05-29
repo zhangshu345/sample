@@ -45,11 +45,9 @@ if(changesetting){
     toastLog("自动设置音量为0")
 }
 
-
 if(onlyscript){
     engines.stopOther()
 }
-
 //关闭最新的app
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
@@ -140,10 +138,9 @@ var 点击金蛋=function(){
         show("点击金蛋大奖失败")
        }
     }else{
-        show("没有找到金蛋大奖："+i)
+        show("没有找到金蛋大奖：")
     }
-   
-    
+
 }
 
 
@@ -155,6 +152,7 @@ function run(){
     sleep(3000)
     app_islogin()
     while(true){
+        closeappundostate()
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
         if(!idContains(apppkg).findOne(1000)){
@@ -254,7 +252,6 @@ function run(){
                 }
             }
         }
-      
         if(滑动次数%50==1){
             if(!今日签到(appname)){
                 app_sign()

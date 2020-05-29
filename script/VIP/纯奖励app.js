@@ -43,7 +43,7 @@ var run=function(){
             return
         }
         if(app.open){
-            forcestop(app.name)
+            forcestop(app.name,1500,true)
             sleep(1000)
         }
     })

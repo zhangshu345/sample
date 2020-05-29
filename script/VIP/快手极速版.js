@@ -644,6 +644,7 @@ function run(){
     sleep(3000)
     滑动次数=0
     while(true){
+        closeappundostate()
         log("循环："+滑动次数)
         ca=currentActivity()
         if(ca!=apphomeactivity){
@@ -714,6 +715,7 @@ function run(){
       sleep(1000)
     }
 }
- run()
+
+run()
 
 

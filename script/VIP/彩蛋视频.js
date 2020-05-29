@@ -94,9 +94,8 @@ function run(){
             //这里是视频上滑操作
         }
         if(idclick("com.jifen.dandan:id/iv_close")){
-
         }
-
+        closeappundostate()
     if(!idoneexist(彩蛋视频首页标识id)){
         log("没有找到一个彩蛋标识")
         if(!idContains(apppkg).findOne(1000)){

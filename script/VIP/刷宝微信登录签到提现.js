@@ -251,7 +251,6 @@ function appgetcoinnumber(){
      }
      i=i+1
     }
-   
  }
        
         
@@ -315,7 +314,6 @@ var apptomoney=function(){
                 sleep(1000)
             }
             if(textclick("立即提现")){
-
              }
              if(textclick("每日可提")){
                     show("点击每日")
@@ -349,7 +347,7 @@ var apptomoney=function(){
                  if(text("去邀请好友").exists()){
                      back()
                      今日已提现(appname)
-                               return true
+                     return true
                  }
                  i=i+1
              }
@@ -373,6 +371,7 @@ function run(){
     sleep(3000)
 while(true){
     show("循环次数:"+(xhcs+1))
+    closeappundostate()
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
           show("不是视频页")
         if(!idContains(apppkg).findOne(1000)){

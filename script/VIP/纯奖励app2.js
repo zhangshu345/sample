@@ -41,15 +41,15 @@ var run=function(){
     apps=JSON.parse(appconfig)
     var last
     apps= shuffleArray(apps)
-    // apps.forEach(app => {
-    //     if(scriptappname==app.name){
-    //         return
-    //     }
-    //     if(app.open){
-    //         forcestop(app.name,1500,true)
-    //         sleep(1000)
-    //     }
-    // })
+    apps.forEach(app => {
+        if(scriptappname==app.name){
+            return
+        }
+        if(app.open){
+            forcestop(app.name,1500,true)
+            sleep(1000)
+        }
+    })
     apps.forEach(app => {
         if(scriptappname==app.name){
             return

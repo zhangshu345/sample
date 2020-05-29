@@ -76,7 +76,7 @@ var 微信浏览=function(url){
     context.startActivity(intent);
 }
 
-var 
+
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
@@ -422,7 +422,7 @@ var forcestop=function(appname,st,isclearcache){
     if(!appname){ return false}
     if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
      let st=st||1800;  
-      let isclearcache=isclearcache||false
+      let isclearcache=isclearcache||true
       let apppkg=app.getPackageName(appname);  
       if(apppkg){
         forcestoppkg(apppkg,st,isclearcache)
@@ -443,17 +443,17 @@ var forcestoppkg=function(apppkg,st,isclearcache){
     doactionmaxtime(function(){
         if (clickonetexts(closetexts,100,st)){ 
             if(clickonetexts(confirmtexts,100,st)){
-                if(isclearcache){
-                    sleep(1500)
-                    clearappcache(null,apppkg)
-                }
                 back();
                 sleep(300); 
                 back()
-              return true
+                return true
             }
         };
     },5000)
+    if(isclearcache){
+        sleep(1500)
+        clearappcache(null,apppkg)
+    }
 }
 var  clearappcache=function(appname,apppkg){
     if(!apppkg){
@@ -467,18 +467,14 @@ var  clearappcache=function(appname,apppkg){
     else if(device.brand=="DOCOMO"){closetexts= ["存储","清除缓存"];}
     else if(device.brand=="Meizu"){closetexts= ["存储和备份","清除缓存"];    }
     else if(device.brand=="xiaomi"){closetexts= ["存储","清除缓存"];    }
-    else if(device.brand=="OPPO"){closetexts= ["存储","清除缓存"];    }
+    else if(device.brand=="OPPO"){closetexts= ["存储占用","清除缓存"];    }
     else{closetexts= ["存储","清除缓存"];}
     app.openAppSetting(apppkg);
     sleep(2000)
-   if( doactionmaxtime(function(){
-        if(clickalltexts(closetexts,100,1500)){
-            back()
-            sleep(500)
-            back()
-            return true
-        }
-    },5000)){
+   if(doactionmaxtime(function(){
+       clicktexts(closetexts,100,1500)
+     
+    },3000,1000)){
         return true
     }
     clicktexts(["存储","清除缓存"])
@@ -717,8 +713,8 @@ var clicktexts=function(texts,t,st){
 
 var clickalltexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)
-    st=st || 500
-    t=t || 500
+    st=st || 1500
+    t=t || 100
     n=0
     for(i=0;i<texts.length;i++){
         if(textclick(texts[i],t)){
@@ -1747,5 +1743,4 @@ var seerewardvideo=function(apppkg,isclickad){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
-
-微信浏览("https://w.url.cn/s/AZDNNnN")
+clearappcache("视频")

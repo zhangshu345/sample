@@ -102,12 +102,13 @@ var run=function(){
     ii=0
     while(true){
         ii=ii+1
-        log("ii:"+ii)
+        log("循环次数:"+ii)
+        closeappundostate()
         ca=currentActivity()
-     if(ca==appcleanactivity){
-        back()
-        sleep(500)
-     }
+            if(ca==appcleanactivity){
+               back()
+                 sleep(500)
+             }
             //  show(appname+"不在主页面:"+ca) 
              if(!idContains(apppkg).findOne(100)){
                 show(appname+"不在前台") 
@@ -171,11 +172,11 @@ var run=function(){
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
         if(nowtitle==lasttitle){
             天天爱清理视频上滑()
-        }else{
+             }else{
             lasttitle=nowtitle
             sleep(6000*ratio)
             滑动次数= 滑动次数+1
-        }
+            }
        }
 }
 var app_get_reward=function(){

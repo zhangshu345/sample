@@ -75,7 +75,8 @@ var run=function(){
     sleep(3000)
     n_i=0
     while(true){
-        sleep(2000)
+        closeappundostate()
+        
         log("循环次数："+n_i)
         ca=currentActivity()
         if(ca!=apphomeactivity){
@@ -87,6 +88,7 @@ var run=function(){
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         n_i=n_i+1
+        sleep(2000)
     }
 
 }
