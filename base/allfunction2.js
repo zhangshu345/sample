@@ -1,6 +1,7 @@
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
+importClass(com.hongshu.utils.IntentUtils)
 importClass(android.net.Uri)
 importClass(com.hongshu.utils.SPUtils)
 importClass(android.graphics.Bitmap)
@@ -60,6 +61,22 @@ var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
     dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);
 }
+var 微信扫一扫=function(){
+    var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.ui.LauncherUI",true)
+    intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+    intent.setFlags(335544320);
+    intent.setAction("android.intent.action.VIEW");
+    context.startActivity(intent);
+}
+var 微信浏览=function(url){
+    var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
+     intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
+    // intent.setFlags(335544320);
+    // intent.setAction("android.intent.action.VIEW");
+    context.startActivity(intent);
+}
+
+var 
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
@@ -1730,3 +1747,5 @@ var seerewardvideo=function(apppkg,isclickad){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
+
+微信浏览("https://w.url.cn/s/AZDNNnN")

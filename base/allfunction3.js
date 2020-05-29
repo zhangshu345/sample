@@ -1733,7 +1733,6 @@ var  liutiapp_home_video=function(){
         }
         ca=currentActivity()
         if(ca==apphomeactivity){
-            clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐"])
             click(50,device.height-90)
          }
 
@@ -1757,8 +1756,7 @@ var liutiapp_login=function(){
 var liutiapp_login_weixin=function(){
     doactionmaxtime(function(){
         clicktexts(["同意并继续","允许","允许","允许","始终允许","始终允许","始终允许","首页","推荐","可拆开"],100,1500)
-
-        clicktexts(["微信登录并领取","微信","同意"])
+       clicktexts(["微信登录并领取","微信","同意"])
     },10000)
 }
 
