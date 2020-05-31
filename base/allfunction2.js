@@ -31,7 +31,7 @@ var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
-var today=function(){    td=nowdate();    return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
+var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
 var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
@@ -236,6 +236,7 @@ function listapp(delectapp){
     return allapps
 }
 
+
 function keepappclear(url){
     var appconfig=httpget(url)
     var allapps=[]
@@ -310,6 +311,7 @@ var closerecentapp=function(){
     }
     back()
 }
+
 //指定app 运行脚本
 var runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
@@ -606,6 +608,18 @@ function idclick(idstr,t,left,top,right,bottom){
     return false
 }
 
+function descclick(desctext,t,left,top,right,bottom){
+    t= t|| 100;
+    left = left || 0;
+    top = top || 0;
+    right = bottom || device.width;
+    bottom = bottom || device.height;
+    var f=desc(desctext).boundsInside(left, top, right, bottom).findOne(t);
+    if(f){ if(clicknode(f)){ return true}  
+    }
+    return false
+}
+
 //文本点击
 function textclick(i,t,left,top,right,bottom){
     t=t || 100
@@ -643,12 +657,12 @@ function maytextclick(maytext,t,left,top,right,bottom){
 //node 执行点击 
 var clicknode=function(v){
     if(!v){return false; }
-    if(v.clickable()){ return  v.click();    }
+    if(v.clickable()){ return  v.click();}
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            if(click(b.centerX(),b.centerY())){return true           }
-            else{ return clicknode(v) }
+            if(click(b.centerX(),b.centerY())){return true;}
+            else{ return clicknode(v)}
         }else{  return false }
      }else{ if(clickparents(v)){ return true  }
         if(clickchilds(v)){  return true}
@@ -661,7 +675,7 @@ var clicknode=function(v){
 
 //一直找到可以点击控件向上查找
 var clickparents=function(v,n){
-    i=0
+    let i=0
     n=n||15
     while(i<n){  p=v.parent();
         if(p&&p.clickable()){log("找到可点击控件"+toString(p));  return p.click(); }
@@ -698,7 +712,17 @@ var clickids=function(ids,t,st){
        }
     });
 }
-
+var clickalls=function(allids,alltexts,alldescs){
+    if(allids&&allids.length>0){
+        clickids(allids)
+    }
+    if(alltexts&&alltexts.length>0){
+        clicktexts(alltexts)
+    }
+    if(alldescs&&alldescs.length>0){
+        clickdescs(alldescs)
+    }
+}
 //点击文本集合
 var clicktexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)
@@ -710,6 +734,17 @@ var clicktexts=function(texts,t,st){
         }
     }
 }
+var clickdescs=function(descs,t,st){
+    show("开始点击desc集合:"+texts)
+    st=st || 500
+    t= t||500
+    for(i=0;i<descs.length;i++){
+        if(descclick(descs[i],t)){
+            sleep(st)
+        }
+    }
+}
+
 
 var clickalltexts=function(texts,t,st){
     show("开始点击文本集合:"+texts)

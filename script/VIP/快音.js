@@ -32,14 +32,16 @@ var maxtime=60 //一天最长时间
 var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
-var changesetting=false
+var changesetting=false   //更改配置
 var apppkg="com.kuaiyin.player"
 var apploginactivity="com.kuaiyin.player.v2.ui.login.LoginSupportActivity"
 var apphomeactivity=""
 var appname="快音"
-var 首次进入点击文本集合=["我知道了","允许","允许","始终允许","始终允许"]
+var 首次进入点击text集合=["我知道了","允许","允许","始终允许","始终允许","立即提现到微信"]
+var 首次进入点击id集合=["com.kuaiyin.player:id/redPackage"]
+var 首次进入点击desc集合=[]
+var 首次进入点击集合={"id":[],"text":首次进入点击文本集合,"desc":[]}
 var 首次进入弹窗红包点击id="com.kuaiyin.player:id/redPackage"  //  text
-
 
 var invitecodes=[]
 alltest()
@@ -74,9 +76,11 @@ var run=function(){
     app.launch(apppkg)
     sleep(3000)
     n_i=0
+    if(应用登录(appname)>0){
+        app_login()
+    }
     while(true){
         closeappundostate()
-        
         log("循环次数："+n_i)
         ca=currentActivity()
         if(ca!=apphomeactivity){
@@ -95,6 +99,16 @@ var run=function(){
 
 //app 登录
 var app_login=function(){
+    doactionmaxtime(function(){
+        closeappundostate()
+        clicktexts(首次进入点击文本集合,100,1500)
+
+         if(logintype=="weixin"){
+            app_login_weixin()
+         }else{
+            app_login_phone()
+         }
+},120000)
 
 }
 
