@@ -2351,7 +2351,6 @@ function 小吃货短视频(appName, executeCount, execTimes, timesInterval, IsA
     }
 }
 function 有颜短视频(appName, executeCount, execTimes, timesInterval, IsAutoSign, IsAutoComment, IsClearCache, IsCashOut, probability,execAutoBrushDate) {
-  
     for (var i = 1; i < executeCount; i++) {
         try {
             if (checkTimesIsZeroTime(execAutoBrushDate)) {

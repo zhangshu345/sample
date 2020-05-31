@@ -40,7 +40,7 @@ var appname="快音"
 var 首次进入点击text集合=["我知道了","允许","允许","始终允许","始终允许","立即提现到微信"]
 var 首次进入点击id集合=["com.kuaiyin.player:id/redPackage"]
 var 首次进入点击desc集合=[]
-var 首次进入点击集合={"id":[],"text":首次进入点击文本集合,"desc":[]}
+var 首次进入点击集合={"id":首次进入点击id集合,"text":首次进入点击文本集合,"desc":首次进入点击desc集合}
 var 首次进入弹窗红包点击id="com.kuaiyin.player:id/redPackage"  //  text
 
 var invitecodes=[]
@@ -102,7 +102,7 @@ var app_login=function(){
     doactionmaxtime(function(){
         closeappundostate()
         clicktexts(首次进入点击文本集合,100,1500)
-
+        clickids(首次进入点击id集合,100,1500)
          if(logintype=="weixin"){
             app_login_weixin()
          }else{
