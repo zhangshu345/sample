@@ -23,7 +23,8 @@ var appliveactivity="com.kuaishou.live.core.basic.activity.LivePlayActivity"
 var 快手极速版弹窗主播名称id="com.kuaishou.nebula:id/live_red_packet_name_view"  // text 主播名称 
 var 快手极速版弹窗状态=""
 var 快手极速版弹窗快币抢到后数量id=""
-var 快手极速版直播页红包标志="com.kuaishou.nebula:id/background_view_normal"
+var 快手极速版直播页红包标志="com.kuaishou.nebula:id/background_view_normal"  // 可以点击
+var 快手极速版直播页红包标志2="com.kuaishou.nebula:id/live_arrow_red_packet_float_view" // 有倒计时的悬浮红包
 var 快手极速版直播页红包倒计时="com.kuaishou.nebula:id/live_arrow_red_packet_pendant_state_text_view"  
 var 快手极速版直播页弹窗红包倒计时="com.kuaishou.nebula:id/count_down_view"  // 5秒后 4分钟后 android.widget.TextView  "depth","7" "columnSpan","-1" "packageName","com.kuaishou.nebula" "indexInParent","0"
 var 快手极速版直播退出标志=""
@@ -37,9 +38,11 @@ var 快手极速版直播退出标志集合=[快手极速版直播退出标志,�
 var 快手极速版直播间标志集合=[快手极速版弹窗主播名称id,快手极速版直播退出标志]
 var x=500
 var y=1376
-var 按压时间=3
-var 提前时间=2000
+var 按压时间=10
+var 提前时间=1000
 var 循环次数=1000
+var 抢红包等待时间=10  // 
+var 直播间人数=0
 var 获取倒计时=function(){
     show("开始获取倒计时")
     node_coin=id(快手极速版直播红包金额数).findOne(100)
@@ -53,30 +56,39 @@ var 获取倒计时=function(){
         y=node_count.bounds().centerY()
         txt_count=node_count.text()
         show("文本："+txt_count)
-        n_count=2
+        n_count=0
          if(txt_count.indexOf("分钟后")!=-1){
             n_count=parseInt(txt_count.replace("分钟后开抢",""))*60
         }else if(txt_count.indexOf("秒后")!=-1){
             n_count=parseInt(txt_count.replace("秒后开抢",""))
         }
         show("时间:"+n_count)
-        if(n_count<10){
+        if(n_count<抢红包等待时间){
             sleep(n_count*1000-提前时间)
-            show("开始点击")
-            循环次数=提前时间/(按压时间*2)
+            
+            循环次数=提前时间/(按压时间)
             djcs=0
+            // doactionmaxtime(function(){
+            //     press(x, y, 按压时间);
+            //     djcs=djcs+1
+            // },提前时间+2000)
             for(var i = 0; i < 循环次数; i++){
              //点击位置(500, 1000), 每次用时1毫秒
              press(x, y, 按压时间);
              djcs=djcs+1
              }
              show("结束点击:"+djcs)
+             return -1
         }else{
             show("时间过长")
+            return n_count
         }
     }
 }
 
+function 获取直播间人数(){
+
+}
 //记录 那个地区的主播 和在线人数多少和 查看
 //466,1339,613,1396
 //循环100次
@@ -86,7 +98,16 @@ creatsetfloatywindow()
 进直播间次数=0
 show("快手极速版抢快币")
 gfw.setPosition(0,device.height*6/7)
-while(true){
-    获取倒计时()
-    sleep(4000)
+// while(true){
+//     直播间人数=获取直播间人数()
+//   //  if(clickoneids(快手极速版直播页红包标志集合,1000)){
+//         获取倒计时()
+//   //  }
+//  //   滑动(20,10,13,10,5,300,300)
+//     sleep(4000)
+// }
+for(var i = 0; i < 100; i++){
+    //点击位置(500, 1000), 每次用时1毫秒
+    press(x, y, 按压时间);
+   sleep(50)
 }

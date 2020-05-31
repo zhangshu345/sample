@@ -1526,12 +1526,12 @@ var close_ad_toutiao=function(apppkg){
 }
 var close_ad_liquid=function(apppkg){
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
-           while(true){
+         return  doactionmaxtime(function(){
              if(  clickonetexts(["关闭","关闭广告"],500,1500)){
                  return true
              }
              sleep(2000)
-           }
+           },60000)
     }
 }
 
@@ -1589,11 +1589,12 @@ var close_ad_qq=function(apppkg){
 //未知广告商
 var close_ad_iclicash=function(apppkg){
     if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
-        while(true){
-            ci=className("android.widget.ImageView").clickable().findOne(300)
+      return  doactionmaxtime(function()
+        {
+            ci=className("android.widget.ImageView").clickable().findOne(100)
             if(ci){
                 if(clicknode(ci)){
-                    isclose=true
+                
                     return true
                 }else{
                     return false
@@ -1601,7 +1602,7 @@ var close_ad_iclicash=function(apppkg){
             }
             if(text("点击重播").exists()){
                     back()
-                        isclose=true
+                     
                         return true
             }
             sleep(1000)
@@ -1611,12 +1612,11 @@ var close_ad_iclicash=function(apppkg){
             if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
                 return true
             }
-        }
+        },60000)
     }
-    if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
-    }
+    return false 
+   
 }
-
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
     log("运行："+appname+"--"+apppkg+"--"+showadtime)
@@ -1624,8 +1624,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
     doactionmaxtime(function(){
         onerewardapp(appname,apppkg)
     },appruntime)
- 
 }
+
 var closeappundostate=function(){
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
@@ -1679,7 +1679,9 @@ var onerewardapp=function(appname,apppkg){
             sleep(3000)
         }
         if(close_ad_qq(apppkg)){}
-        if(close_ad_toutiao(apppkg)){}
+        if(close_ad_toutiao(apppkg)){
+            
+        }
         
        if(randomint(0,3)==2){
            if(textclick("任务")){
