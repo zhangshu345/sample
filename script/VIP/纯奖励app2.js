@@ -121,6 +121,11 @@ for(i_t=0;i_t<5;i_t++){
 }
 sleep(2000)
 while(true){
-    run()
+    try {
+        run()
+    } catch (error) {
+        toastLog(error)
+    }
+    
 }
 
