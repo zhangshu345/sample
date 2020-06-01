@@ -1,7 +1,5 @@
 auto.waitFor()
 auto.setMode("normal")
-engines.stopOther()
-device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -12,16 +10,15 @@ function httpget(url) {
         return httpget(url)
     }
 }
-
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
 
+engines.stopOther()
 alltest()
 floaty.closeAll()
 creatgfloatywindow()

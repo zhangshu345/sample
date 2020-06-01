@@ -153,7 +153,6 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
-
 //列出app
 function listapp(){
     var appconfig=httpget(allrewardappurl)
@@ -217,7 +216,7 @@ function keepappclear(url){
      if(app.install){
         appnames.push(app.name)
      }
-    })
+})
 //列出app
     log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
@@ -1676,6 +1675,7 @@ function runliuti(apppkg){
     sleep(3000)
     n_i=0
     while(true){
+        device.wakeUpIfNeeded()
         sleep(2000)
         log("循环次数："+n_i)
            if(n_i<10){

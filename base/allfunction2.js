@@ -14,6 +14,7 @@ importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
+device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝",
@@ -74,7 +75,6 @@ var 微信浏览=function(url){
     // intent.setAction("android.intent.action.VIEW");
     context.startActivity(intent);
 }
-
 
 var 视频重复次数=2
 var ratio=1
@@ -230,7 +230,6 @@ function listapp(delectapp){
             m=m+1
       }
   })
-
   log("一共第三方应用："+m)
     return allapps
 }
@@ -344,6 +343,7 @@ var sendforcestopIntent=function(apppkg){
     );
     context.startActivity(i);
 }
+
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 var show=function(txt){ log(txt); if(!isshowfloaty){ return  };
     if(!gfw){ creatgfloatywindow();  };
@@ -351,7 +351,6 @@ var show=function(txt){ log(txt); if(!isshowfloaty){ return  };
 }
 var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
 var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
-
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -444,24 +443,26 @@ var forcestoppkg=function(apppkg,st,isclearcache){
     doactionmaxtime(function(){
         if (clickonetexts(closetexts,100,st)){ 
             if(clickonetexts(confirmtexts,100,st)){
-                back();
-                sleep(300); 
-                back()
+               
                 return true
             }
         };
     },5000)
     if(isclearcache){
-        sleep(1500)
         clearappcache(null,apppkg)
+    }else{
+        back();
+        sleep(300); 
+        back()
     }
+ 
 }
-var  clearappcache=function(appname,apppkg){
+var  clearappcache=function(appname,apppkg,fromforcestop){
+    if(!apppkg&&!appname){
+        return false
+    }
     if(!apppkg){
         apppkg=getPackageName(appname)
-    }
-    if(!apppkg){
-        return false
     }
     if( device.brand=="samsung"){closetexts= ["存储","清除缓存"];}
     else if(device.brand=="HONOR"){ closetexts= ["存储","清除缓存"]; }
@@ -470,15 +471,22 @@ var  clearappcache=function(appname,apppkg){
     else if(device.brand=="xiaomi"){closetexts= ["存储","清除缓存"];    }
     else if(device.brand=="OPPO"){closetexts= ["存储占用","清除缓存"];    }
     else{closetexts= ["存储","清除缓存"];}
-    app.openAppSetting(apppkg);
-    sleep(2000)
-   if(doactionmaxtime(function(){
-       clicktexts(closetexts,100,1500)
-     
-    },3000,1000)){
-        return true
+    fromforcestop=fromforcestop||false
+    if(!fromforcestop){
+        app.openAppSetting(apppkg);
+        sleep(1500)
     }
-    clicktexts(["存储","清除缓存"])
+   doactionmaxtime(function(){
+       clicktexts(closetexts,100,1500)
+    },3000,500);
+    back();
+    sleep(300); 
+    back()
+    sleep(300);
+    back();
+    sleep(300); 
+    back()
+ 
 }
 
 var  tofloatysetting=function(){
@@ -1779,3 +1787,4 @@ var seerewardvideo=function(apppkg,isclickad){
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
+forcestop("刷宝短视频",1500,true)

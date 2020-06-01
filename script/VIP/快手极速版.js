@@ -644,6 +644,7 @@ function run(){
     sleep(3000)
     滑动次数=0
     while(true){
+        device.wakeUpIfNeeded()
         closeappundostate()
         log("循环："+滑动次数)
         ca=currentActivity()

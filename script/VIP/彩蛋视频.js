@@ -87,6 +87,7 @@ function run(){
     app.launchApp(appname)
     sleep(3000)
     while(true){
+        device.wakeUpIfNeeded()
         ca=currentActivity()
         if(ca!=apphomeactivity){
            
@@ -158,6 +159,7 @@ function run(){
                     //休眠三十分钟
                     device.lockScreen()
                     sleep(1800000)
+                  
                 }
             }
         }

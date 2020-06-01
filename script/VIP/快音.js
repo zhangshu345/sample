@@ -80,6 +80,7 @@ var run=function(){
         app_login()
     }
     while(true){
+        device.wakeUpIfNeeded()
         closeappundostate()
         log("循环次数："+n_i)
         ca=currentActivity()

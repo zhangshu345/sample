@@ -152,6 +152,7 @@ function run(){
     sleep(3000)
     app_islogin()
     while(true){
+        device.wakeUpIfNeeded()
         closeappundostate()
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")

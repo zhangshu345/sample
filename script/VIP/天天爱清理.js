@@ -101,6 +101,7 @@ var run=function(){
     滑动次数=0
     ii=0
     while(true){
+        device.wakeUpIfNeeded()
         ii=ii+1
         log("循环次数:"+ii)
         closeappundostate()
