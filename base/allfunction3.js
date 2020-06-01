@@ -16,8 +16,9 @@ importClass(com.hongshu.androidjs.core.script.Scripts)
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝",
-"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够",
-"随便粘","东东随便"
+"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
+"唐诗精选","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气",
+"小白日历","一个就够","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");

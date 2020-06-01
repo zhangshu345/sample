@@ -116,8 +116,11 @@ var thread = threads.start(function(){
 
 com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
 sleep(1000)
-for(i_t=0;i_t<24;i_t++){
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("激励套餐",selfscriptpath,2,i_t,randomint(0,10))
+for(i_t=0;i_t<5;i_t++){
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("激励套餐",selfscriptpath,2,i_t*4,randomint(0,10))
 }
 sleep(2000)
-run()
+while(true){
+    run()
+}
+
