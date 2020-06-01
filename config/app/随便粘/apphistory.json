@@ -9,50 +9,5 @@
     "icon":"",
     "back":"",
     "isforce":false
-},{
-    "name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"1.3.9",
-    "versioni":39,
-    "channel":"androidjs",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_39.apk",
-    "updatedescription":"",
-    "icon":"",
-    "back":"",
-    "isforce":false
-},{
-    "name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"1.3.8",
-    "versioni":38,
-    "channel":"androidjs",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_38.apk",
-    "updatedescription":"",
-    "icon":"",
-    "back":"",
-    "isforce":false
-},{
-    "name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"1.3.3",
-    "versioni":33,
-    "channel":"androidjs",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_1.3.3.apk",
-    "updatedescription":"",
-    "icon":"",
-    "back":"",
-    "isforce":false
-},
-{
-    "name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"1.3.2",
-    "versioni":32,
-    "channel":"androidjs",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_1.3.2.apk",
-    "updatedescription":"",
-    "icon":"",
-    "back":"",
-    "isforce":false
 }
 ]
