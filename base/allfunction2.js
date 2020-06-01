@@ -82,12 +82,12 @@ var ratio=1
 var gfw,gsfw
 var isshowfloaty=true  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
-var getstrvalue=function(v){    return spt.getString(v)}
-var getintvalue=function(v){    return spt.getInt(v)}
-var getlongvalue=function(v){    return spt.getLong(v)}
-var getfloatvalue=function(v){    return spt.getLong(v)}
-var getbooleanvalue=function(v){    return spt.getBoolean(v)}
-var getstrsetvalue=function(v){  return spt.getStringSet(v)}
+var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(v,defaultvalue)}
+var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(v,defaultvalue)}
+var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(v,defaultvalue)}
+var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(v,defaultvalue)}
+var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(v,defaultvalue)}
+var getstrsetvalue=function(key){   return spt.getStringSet(v)}
 var  creatgfloatywindow=function(){
     if(!isshowfloaty){
         return
@@ -732,12 +732,16 @@ var clickalls=function(allids,alltexts,alldescs){
     }
 }
 //点击文本集合
-var clicktexts=function(texts,t,st){
+var clicktexts=function(texts,t,st,left,top,right,bottom){
     show("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
+    left = left || 0;
+    top = top || 0;
+    right = bottom || device.width;
+    bottom = bottom || device.height;
     for(i=0;i<texts.length;i++){
-        if(textclick(texts[i],t)){
+        if(textclick(texts[i],t,left,top,right,bottom)){
             sleep(st)
         }
     }
@@ -1048,24 +1052,26 @@ function downloadApk(name,url,isinstall) {
      }    
  }
  
- function install_app(filePath, name) {
+ function install_app(filePath, name,maxtime,isopen) {
+     maxtime=maxtime||180000
+     isopen=isopen||false
      ////--------------安装--------------////
      if(filePath){
         installapp(filePath)
      }
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
      if( device.brand=="samsung"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
-     else if(device.brand=="HONOR"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
+    else if(device.brand=="HONOR"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
     else if(device.brand=="DOCOMO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="Meizu"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else{        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
-     for (let i = 0; i < 100; i++) {
+    doactionmaxtime(function(){
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
             if(textclick("允许此来源")){ back(); sleep(1000) ; }
-           clicktexts(clickarray)
+           clicktexts(clickarray,100,1200,0,device.height*2/3)
            if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){control_click(3,"向上导航"); }
             }
             if(textclick("允许来自此来源的应用")){ back();sleepr(1200);  }
@@ -1094,13 +1100,25 @@ function downloadApk(name,url,isinstall) {
              }
              back()
          }
-         if (textclick("完成")){ return         }
+
+         if (textoneexist(["完成","打开"])){  
+             if(isopen){
+                textclick("打开")
+                sleep(5000)
+                true
+             }else{
+                return true  
+            }  }
          if (text("打开").exists()){ return   }   
         //系统可以获取到app 的包名的时候就
-        if(app.getPackageName(name)){  sleep(1000);  return }
-     }
+        if(name){
+            if(app.getPackageName(name)){  sleep(1000);  return true}
+        }
+       
+     },maxtime)
      back()
-     sleep(1000)
+     sleep(300)
+     back()
  }
  var checkinstallapp=function(){
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
@@ -1552,7 +1570,7 @@ var close_ad_toutiao=function(apppkg){
                 return false
             }
             if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
-                return true
+                
             }else{
                 return false
             }
@@ -1691,7 +1709,7 @@ var onerewardapp=function(appname,apppkg){
     }
     ca=currentActivity()
     if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-        if(randomint(0,3)==2){
+        if(randomint(0,5)==2){
             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
             if(ll_advice){
                 ll_advice_bound=ll_advice.bounds()
@@ -1756,7 +1774,7 @@ var seerewardvideo=function(apppkg,isclickad){
     let isclickad=isclickad||false
      doactionmaxtime(function(){
        if(isclickad){
-            if(randomint(0,3)==2){
+            if(randomint(0,5)==2){
                if(clickonetexts(["点击下载","查看详情","下载","立即安装"])){
                    show("点击了立即安装")
                    if(randomint(0,3)==1){
