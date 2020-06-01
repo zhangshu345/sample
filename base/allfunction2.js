@@ -18,8 +18,7 @@ var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newre
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
-"唐诗精选","一个就够","MD编辑器","减压声音","唐诗宋词集合","东览","宝宝常识","英语四级单词汇","小白闹钟天气","小白日历","冥想音乐",
-"KeepHealth","动物的叫声","休息声音","随便粘","东东随便","小强助理","儿童绘画板"
+"唐诗精选","一个就够","随便粘","东东随便"
 ]
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
