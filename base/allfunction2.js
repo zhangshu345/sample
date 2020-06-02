@@ -191,7 +191,6 @@ function listapp(delectapp){
         })
     }
     //列出app
-    log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for(var i = 0; i < packageInfos.size(); i++) {
@@ -216,6 +215,7 @@ function listapp(delectapp){
         });
     };
     m=0
+    log("白名单："+appnames.length+"+++"+appnames)
     allapps.forEach(app =>{
         log(app.name+":"+app.packageName)
       if(!AppUtils.isAppSystem(app.packageName)){
@@ -231,10 +231,8 @@ function listapp(delectapp){
             m=m+1
       }
   })
-  log("一共第三方应用："+m)
     return allapps
 }
-
 
 function keepappclear(url){
     var appconfig=httpget(url)
@@ -245,9 +243,7 @@ function keepappclear(url){
      if(app.install){
         appnames.push(app.name)
      }
-    })
-//列出app
-    log("白名单："+appnames.length+"+++"+appnames)
+    }) 
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for(var i = 0; i < packageInfos.size(); i++) {
@@ -272,7 +268,7 @@ function keepappclear(url){
         });
     };
     m=0
-    log("白名单："+appnames)
+     log("白名单："+appnames)
     allapps.forEach(app =>{
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
@@ -285,7 +281,7 @@ function keepappclear(url){
             m=m+1
       }
   })
-  log("一共第三方应用："+m)
+    log("一共第三方应用："+m)
     return allapps
 }
 var appstophander=function(){
@@ -444,7 +440,6 @@ var forcestoppkg=function(apppkg,st,isclearcache){
     doactionmaxtime(function(){
         if (clickonetexts(closetexts,100,st)){ 
             if(clickonetexts(confirmtexts,100,st)){
-               
                 return true
             }
         };
@@ -669,15 +664,15 @@ var clicknode=function(v){
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            if(click(b.centerX(),b.centerY())){return true;}
-            else{ return clicknode(v)}
+            return click(b.centerX(),b.centerY())
         }else{  return false }
-     }else{ if(clickparents(v)){ return true  }
-        if(clickchilds(v)){  return true}
-        r=v.bounds()
-        var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
-        if(w){ return w.click() ;}
-        else{ return false;  }
+     }else{ 
+         if(clickparents(v)){ return true  }
+         if(clickchilds(v)){  return true}
+         r=v.bounds()
+          var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+          if(w){ return w.click() ;}
+         else{ return false;  }
     }
 }
 
@@ -720,6 +715,7 @@ var clickids=function(ids,t,st){
        }
     });
 }
+
 var clickalls=function(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
         clickids(allids)
@@ -731,9 +727,10 @@ var clickalls=function(allids,alltexts,alldescs){
         clickdescs(alldescs)
     }
 }
+
 //点击文本集合
 var clicktexts=function(texts,t,st,left,top,right,bottom){
-    show("开始点击文本集合:"+texts)
+    log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
     left = left || 0;
@@ -746,8 +743,9 @@ var clicktexts=function(texts,t,st,left,top,right,bottom){
         }
     }
 }
+
 var clickdescs=function(descs,t,st){
-    show("开始点击desc集合:"+texts)
+   log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
     for(i=0;i<descs.length;i++){
@@ -757,9 +755,8 @@ var clickdescs=function(descs,t,st){
     }
 }
 
-
 var clickalltexts=function(texts,t,st){
-    show("开始点击文本集合:"+texts)
+    log("开始点击文本集合:"+texts)
     st=st || 1500
     t=t || 100
     n=0
@@ -773,7 +770,7 @@ var clickalltexts=function(texts,t,st){
 }
 //点击仁意一个id就是真真
 var clickoneids=function(ids,t,st){
-    show("开始点击id集合:"+ids)
+    log("开始点击id集合:"+ids)
     st=st || 500
     t=t || 500
     for(i=0;i<id.length;i++){
@@ -798,19 +795,19 @@ var clickonetexts=function(texts,t,st){
     return false
 }
 
-//在文本标志出现之前一直点击文本的 t 是最长等待时间 默认十秒无点击效果就退出 发现stop 文本出现就退出
-var whileclicktextsbeforetexts=function(clicktexts,stoptexts,t){
-    t=t||10000   
-    st=nowdate().getTime()
-    while(true){
-       clicktexts(clicktexts)
-       if(textoneexist(stoptexts)){
-           return true
-       }
-       if(nowdate().getTime()-st>t){
-           return false
-       }
+//在文本标志出现之前一直点击文本的 t 是最长等待时间 默认一分钟无点击效果就退出 发现stop 文本出现就退出
+var whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
+    maxtime=maxtime||60000  
+    isclickshowtext=isclickshowtext||false
+   doactionmaxtime(function(){
+    clicktexts(clicktexts)
+    if(textoneexist(stoptexts)){
+        if(isclickshowtext){
+            clickonetexts(stoptexts)
+        }
+        return true
     }
+   },maxtime)
  }
 
 //在文本标志出现之前一直点击id的 t 是最长等待时间
@@ -905,7 +902,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
             top=starty
             bottom=endy
         }
-        var w = boundsContains(left, top, right,bottom).scrollable().findOne();
+        var w = boundsContains(left, top, right,bottom).scrollable().findOne(100);
         if(w){
             if(startx<endx){
                 w.scrollBackward()
