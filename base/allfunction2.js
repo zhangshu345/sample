@@ -82,12 +82,12 @@ var ratio=1
 var gfw,gsfw
 var isshowfloaty=true  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
-var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(v,defaultvalue)}
-var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(v,defaultvalue)}
-var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(v,defaultvalue)}
-var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(v,defaultvalue)}
-var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(v,defaultvalue)}
-var getstrsetvalue=function(key){   return spt.getStringSet(v)}
+var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
+var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
+var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
+var getstrsetvalue=function(key){   return spt.getStringSet(key)}
 var  creatgfloatywindow=function(){
     if(!isshowfloaty){
         return
