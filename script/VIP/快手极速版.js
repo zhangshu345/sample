@@ -730,6 +730,7 @@ function run(){
                 }else{
                     n_like=快手极速版获取视频点赞数()
                     if(n_like >minlike){
+                        idclick(快手极速版喜欢按钮id)
                         sleep(10000)
                     }else if(n_like>100){
                        sleep(5000)
