@@ -57,7 +57,7 @@ if(keepappnewer){
         let appversioncode=AppUtils.getAppVersionCode(apppkg)
         if(appversioncode!=-1){
             if(appversioncode<appinfo.appDetail.versionCode){
-                downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true);  
+                downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
             }
         }
     }

@@ -1133,7 +1133,7 @@ function downloadApk(name,url,isinstall) {
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
    let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
-    if(appinfo){log("应用详情：获取成功");downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true);    }
+    if(appinfo){log("应用详情：获取成功");downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);    }
 }
 //关闭其他应用
 var stopOtherScript=function(){
