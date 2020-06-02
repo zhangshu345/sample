@@ -574,12 +574,12 @@ var checkfloaty=function(appname){
         toastLog("悬浮查找点击")
         if(isfloaty()){
             return
+        }else{
+            if(clickonetexts(["允许许可"])){ break }
+            if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
+              滑动(20,10,15,10,5,500,300)
+              sleep(1000)
         }
-       if(clickonetexts(["允许许可"])){ break }
-       if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
-        滑动(20,10,15,10,5,500,300)
-         sleep(1000)
-         
        }
    }
    toastLog("悬浮查找结束")
@@ -587,7 +587,7 @@ var checkfloaty=function(appname){
 
 var sleepr=function(short,long){
     long=long||short+1000
-    rt=random(short,long)
+  let  rt=random(short,long)
     log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
