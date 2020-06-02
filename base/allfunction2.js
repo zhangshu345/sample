@@ -1071,6 +1071,7 @@ function downloadApk(name,url,isinstall) {
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
             if(textclick("允许此来源")){ back(); sleep(1000) ; }
+            clicktexts(["设置","允许"],100,1500)
            clicktexts(clickarray,100,1200,0,device.height*2/3)
            if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){control_click(3,"向上导航"); }
             }
@@ -1805,6 +1806,12 @@ var seerewardvideo=function(apppkg,isclickad){
 }
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
+}
+var checkstoragestate=function(){
+    ava
+    if(device.getAvailMem()<device.getTotalMem()/10){
+
+    }
 }
 
 
