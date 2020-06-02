@@ -17,7 +17,7 @@ importClass(com.hongshu.androidjs.core.script.Scripts)
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
-var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝",
+var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
 "唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气",
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
@@ -382,7 +382,7 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
-var 应用登录=function(name){return getbooleanvalue()}
+var 应用登录=function(name){return getbooleanvalue(name,false)}
 var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);show(name+"今日签到:"+cs);  return cs;}
 var 今日已签到=function(name){数据库.put(name+"_sign_"+today(), true)}
 var 今日时长=function(name){s=数据库.get(name+"_time_"+today(), 0);show(name+"今日时长:"+s);return s;}
@@ -413,7 +413,7 @@ var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today()
 var 获取今日记录=function(name,key){  数据库.get(name+"_"+key+"_"+today(),0)}
 
 //
-function httpget(url) {var r = http.get(url);    if (r.statusCode == 200) {   return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
+function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
@@ -451,7 +451,6 @@ var forcestoppkg=function(apppkg,st,isclearcache){
         sleep(300); 
         back()
     }
- 
 }
 var  clearappcache=function(appname,apppkg,fromforcestop){
     if(!apppkg&&!appname){
@@ -1133,7 +1132,7 @@ function downloadApk(name,url,isinstall) {
 
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
-    appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
+   let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){log("应用详情：获取成功");downloadApk(appname+"-"+appinfo.appDetail.apkMd5,appinfo.appDetail.apkUrl,true);    }
 }
 //关闭其他应用
@@ -1292,12 +1291,14 @@ var doactionmaxtime=function(action,maxtime,intertime){
         }
         sleep(intertime)
     }
+    return false
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
     if(!action){return true}
     maxnumber=maxnumber||1; n_doaction=0;
     while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
+    return false
 }
 //卸载应用
 var uninstallapp=function(appname){
@@ -1770,7 +1771,7 @@ var onerewardapp=function(appname,apppkg){
 
 var seerewardvideo=function(apppkg,isclickad){
     let isclickad=isclickad||false
-     doactionmaxtime(function(){
+   return  doactionmaxtime(function(){
        if(isclickad){
             if(randomint(0,5)==2){
                if(clickonetexts(["点击下载","查看详情","下载","立即安装"])){

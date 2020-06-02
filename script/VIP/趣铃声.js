@@ -75,6 +75,9 @@ var run=function(){
     app.launch(apppkg)
     sleep(3000)
     n_i=0
+    if(!今日签到(appname)){
+        app_sign()
+    }
     while(true){
         sleep(2000)
         closeappundostate()
@@ -216,6 +219,14 @@ var app_login_phone=function(){
 
 //app 签到
 var app_sign=function(){
+    doactionmaxtime(function(){
+        clicktexts(["任务"])
+        if(textclick("看视频，签到奖励翻倍！")){
+            seerewardvideo(apppkg,false)
+            今日已签到(appname)
+            return true
+        }
+    },120000)
 
 }
 
@@ -246,19 +257,11 @@ var app_home_video=function(){
 }
 
 var app_seevideoad=function(){
-    let n_seead=0
-    while(n_seead<30){
-       if(close_ad_qq(apppkg)){
-           return true
-       }
-       if(close_ad_toutiao(apppkg)){
-           return true
-       }
-        
-        sleep(1000)
-        n_seead=n_seead+1
+    if(seerewardvideo(apppkg,false)){
+        return  true
+    }else{
+        return false
     }
-    forcestop(appname)
 }
 
 run()
