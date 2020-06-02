@@ -541,10 +541,11 @@ var 快手极速视频上滑=function(){
  }
 
  var 快手极速版获取视频点赞数=function(){
+    
      text_n=getTextfromid(快手极速版喜欢数量id)
      if(text_n){
          if(text_n.search("w")){
-             n_f=parseFloat(text_n.substr(0,text_n.length-1))
+            let n_f=parseFloat(text_n.substr(0,text_n.length-1))
              log("喜欢人数："+n_f+"万")
              return n_f*10000
          }else{
