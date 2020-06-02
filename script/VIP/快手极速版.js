@@ -63,10 +63,10 @@ if(keepappnewer){
     }
 }
 
-
 if(onlyscript){
     engines.stopOther()
 }
+
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
@@ -548,6 +548,7 @@ var 快手极速视频上滑=function(){
              log("喜欢人数："+n_f+"万")
              return n_f*10000
          }else{
+            log("喜欢人数："+text_n)
            return  parseInt(text_n)
          }
      }else{
