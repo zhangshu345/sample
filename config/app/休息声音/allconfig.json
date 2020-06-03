@@ -94,7 +94,6 @@
         "video":"",
         "hudong":"" 
     },
-
     "mintegral":{
         "open":false,
         "appid":"",
@@ -104,8 +103,7 @@
         "native":"",
         "rewardvideo":""
     }
- 
-}
+ }
 ,
 "tag":[ {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},
     {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/工具.json"},
