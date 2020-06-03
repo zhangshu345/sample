@@ -232,7 +232,6 @@ var login_weixin=function(){
 
 }
 
-
 function appgetcoinnumber(){
      show(appname+"获取金币数")
      gotoappvideo()
@@ -251,7 +250,6 @@ function appgetcoinnumber(){
     }
  }
        
-        
 
 var appgetmoneyinfo=function(){
     i=0
