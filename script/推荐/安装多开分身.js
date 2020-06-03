@@ -999,7 +999,7 @@ function downloadApk(name,url,isinstall) {
      file_name_url = url
      file_name = name+".apk"
      console.log('要下载的APP的：' + file_name);
-     // 设置APP的路径
+
      file_path_root = files.getSdcardPath()
      filePath = file_path_root + "/" + file_name
      importClass('java.io.FileOutputStream');
@@ -1009,49 +1009,43 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URL');
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
-     try {
-        let url = new URL(url);
-        let  conn = url.openConnection(); //URLConnection
-        let  inStream = conn.getInputStream(); //InputStream
-        let  fs = new FileOutputStream(filePath); //FileOutputStream
-        let  connLength = conn.getContentLength(); //int
-        let  buffer = util.java.array('byte', 1024); //byte[]
-        let  byteSum = 0; //总共读取的文件大小
-        let byteRead; //每次读取的byte数
-      
-       let  threadId = threads.start(function () {
-            while (1) {
-                var 当前写入的文件大小 = byteSum;
-                var progress = (当前写入的文件大小 / connLength) * 100;
-                if (progress > 0.1) {
-                    var progress = parseInt(progress).toString() + '%';
-                    ui.run(function () {
-                       show(name.substr(0,6) + ":下载进度-"+progress);
-                       // toast(name + "下载进度" + progress)
-                        // w.progressNum.setText(progress);
-                    });
-                    if (当前写入的文件大小 >= connLength) {
-                        break;
-                    }
-                }
-                sleep(1000);
-            }
-        });
-        while ((byteRead = inStream.read(buffer)) != -1) {
-            byteSum += byteRead;
-            //当前时间
-            currentTime = java.lang.System.currentTimeMillis();
-            fs.write(buffer, 0, byteRead); //读取
-        }
-        threadId && threadId.isAlive() && threadId.interrupt();
-        show(name+'下载完成');
-        if(isinstall){
-           install_app(filePath,name)
-        }    
-     } catch (error) {
-         log("下载失败:"+error)
+     let url = new URL(url);
+     let  conn = url.openConnection(); //URLConnection
+     let  inStream = conn.getInputStream(); //InputStream
+     let  fs = new FileOutputStream(filePath); //FileOutputStream
+     let  connLength = conn.getContentLength(); //int
+     let  buffer = util.java.array('byte', 1024); //byte[]
+     let  byteSum = 0; //总共读取的文件大小
+     let byteRead; //每次读取的byte数
+    let  threadId = threads.start(function () {
+         while (1) {
+             var 当前写入的文件大小 = byteSum;
+             var progress = (当前写入的文件大小 / connLength) * 100;
+             if (progress > 0.1) {
+                 var progress = parseInt(progress).toString() + '%';
+                 ui.run(function () {
+                    show(name.substr(0,6) + ":下载进度-"+progress);
+                    // toast(name + "下载进度" + progress)
+                     // w.progressNum.setText(progress);
+                 });
+                 if (当前写入的文件大小 >= connLength) {
+                     break;
+                 }
+             }
+             sleep(1000);
+         }
+     });
+     while ((byteRead = inStream.read(buffer)) != -1) {
+         byteSum += byteRead;
+         //当前时间
+         currentTime = java.lang.System.currentTimeMillis();
+         fs.write(buffer, 0, byteRead); //读取
      }
-    
+     threadId && threadId.isAlive() && threadId.interrupt();
+     show(name+'下载完成');
+     if(isinstall){
+        install_app(filePath,name)
+     }    
  }
  
  function install_app(filePath, name,maxtime,isopen) {
@@ -1437,7 +1431,8 @@ var 快手极速版邀请=function(){
 //直接从应用宝获取应用信息
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     log("应用宝查找app:"+appname+"--"+apppkg)
-    let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
+    searchword=apppkg||appname
+    let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+searchword)
     if(appinfos){
         log("获取成功")
         data=JSON.parse(appinfos)
@@ -1745,7 +1740,7 @@ var onerewardapp=function(appname,apppkg){
        if(randomint(0,3)==2){
            if(textclick("任务")){
                sleep(2000)
-               if(textclick("看激励视频")){
+               if(textclick("看激�����视频")){
                 seerewardvideo(apppkg,true)
                }
                if(textclick("看视频")){
@@ -1825,3 +1820,8 @@ function deleteAllEmptyDirs(dir){
         }
     }
 }
+appname="多开分身"
+apppkg="com.bly.dkplat"
+downloadApk("多开分身","com.bly.dkplat")
+app.launchApp(appname)
+sleep(10000)
