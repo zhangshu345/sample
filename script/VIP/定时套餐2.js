@@ -39,14 +39,14 @@ var run=function(){
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,nowtime,xiaoshi)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,xiaoshi,fen)
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
     let  appruntime={}
     let n_xhcs=0
     let sumeruntime=0
     let runtime=0
-    while (xiaoshi<24&&n_xhcs<2){
+    while (sumeruntime<=86400){
         n_xhcs=n_xhcs+1
         apps= shuffleArray(apps)
         apps.forEach(app => {
