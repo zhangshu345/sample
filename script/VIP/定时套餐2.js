@@ -45,8 +45,8 @@ var run=function(){
     let  appruntime={}
     let n_xhcs=0
     let sumeruntime=0
-    let runtime=0
-    while (sumeruntime<=86400){
+    let runtime=120
+    while (sumeruntime<=86400&&n_xhcs<2){
         n_xhcs=n_xhcs+1
         apps= shuffleArray(apps)
         apps.forEach(app => {
@@ -76,7 +76,6 @@ var run=function(){
                              appruntime[app.name]=appruntime[app.name]+runconfig.onetime
                              sumeruntime=sumeruntime+runconfig.onetime
                              runtime=runconfig.onetime
-                         
                     }else{
                         nowruntime=runconfig.maxtime-appruntime[app.name]
                         if(nowruntime>100){
@@ -88,18 +87,16 @@ var run=function(){
                                     if(xiaoshi==24){
                                         xiaoshi=0
                                     }
-                            }
+                                }
                                 com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
                                 show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                                 appruntime[app.name]=runconfig.maxtime
                                 sumeruntime=sumeruntime+nowruntime
                                 runtime=nowruntime
-                         
                         }
                     }
                 }
             }
-            
         })
     }
     sleep(2000)
