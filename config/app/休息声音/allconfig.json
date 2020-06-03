@@ -32,12 +32,12 @@
     "sign":"",
     "versioni":588,
     "version":"5.8.8",
-    "ratiosplash":"gdt-10|tt-3",
-    "ratiobanner":"gdt-10|tt-3",
-    "ratiochaping":"gdt-10|tt-3",
-    "rationative":"gdt-10|tt-3",
-    "ratiorewardvideo":"gdt-10|tt-3",
-    "ratiofullvideo":"gdt-10|tt-3",
+    "ratiosplash":"gdt-10",
+    "ratiobanner":"gdt-10",
+    "ratiochaping":"gdt-10",
+    "rationative":"gdt-10",
+    "ratiorewardvideo":"gdt-10",
+    "ratiofullvideo":"gdt-10",
     "gdt":{
     "open":true,
     "appid":"1107846641",
@@ -61,7 +61,7 @@
     },
 
     "toutiao":{
-    "open":true,
+    "open":false,
     "appid":"5060946",
     "nativeid":"945138686",
     "banner600300":"945138687",

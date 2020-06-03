@@ -61,7 +61,7 @@
     },
 
     "toutiao":{
-    "open":true,
+    "open":false,
     "appid":"5058937",
     "nativeid":"945140607",
     "banner600300":"945140613",

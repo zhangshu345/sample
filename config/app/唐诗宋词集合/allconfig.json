@@ -30,14 +30,14 @@
     "pkg":"com.yuyu.tangsong",
     "channel":"androidjs",
     "sign":"A9:D1:89:89:1B:46:46:6F:4B:9E:4F:5C:1D:64:88:E0:2C:99:D8:AF",
-    "versioni":111,
-    "version":"1.1.1",
-    "ratiosplash":"gdt-10|tt-2",
-    "ratiobanner":"gdt-10|tt-2",
-    "ratiochaping":"gdt-10|tt-2",
-    "rationative":"gdt-10|tt-2",
-    "ratiorewardvideo":"gdt-10|tt-2",
-    "ratiofullvideo":"gdt-10|tt-2",
+    "versioni":118,
+    "version":"1.1.8",
+    "ratiosplash":"gdt-10",
+    "ratiobanner":"gdt-10",
+    "ratiochaping":"gdt-10",
+    "rationative":"gdt-10",
+    "ratiorewardvideo":"gdt-10",
+    "ratiofullvideo":"gdt-10",
     "gdt":{
     "open":true,
     "appid":"1110125983",
@@ -59,9 +59,8 @@
     "nativect10801920":"6051700808393433",
     "rewardvideo":"6051208868695464"
     },
-
     "toutiao":{
-    "open":true,
+    "open":false,
     "appid":"5060715",
     "nativeid":"945136439",
     "banner600300":"945138286",
@@ -83,8 +82,7 @@
     "drawvideo":"945136443",
     "nativevideo":"945136440"},
     "adview":
-    {
-        "open":false,
+    {    "open":false,
         "appid":"",
          "splash":"",
         "banner":"",
@@ -93,7 +91,6 @@
         "video":"",
         "hudong":"" 
     },
-
     "mintegral":{
         "open":false,
         "appid":"",
