@@ -1604,21 +1604,20 @@ var close_ad_liquid=function(apppkg){
 
 var close_ad_qq=function(apppkg){
     // ccj_file_paths 
-  let  ca=currentActivity()
-  show("关闭qqad activity:"+ca)
+     let  ca=currentActivity()
+    show("关闭qqad activity:"+ca)
+    //激励视频 
     if(ca=="com.qq.e.ads.PortraitADActivity"){
       if(doactionmaxtime( function(){
-            ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
+            ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).findOne(100)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
                     return true
-                }else{
-                    return false
                 }
             }
             if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
+                ci=className("android.widget.ImageView").clickable(true).depth(5).findOne(100)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
@@ -1626,13 +1625,7 @@ var close_ad_qq=function(apppkg){
                     }
                 }
             }
-            ci=className("android.widget.ImageView").clickable().depth(5).findOne(100)
-            if(ci){
-                if(clicknode(ci)){
-                    isclose=true
-                    return true
-                }
-            }
+
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return false
@@ -1649,6 +1642,17 @@ var close_ad_qq=function(apppkg){
         }else{
             forcestoppkg(apppkg)
             return false
+        }
+    }else if(ca=="com.qq.e.ads.ADActivity"){
+        back()
+        return true
+    }
+
+    ci=className("android.widget.ImageView").clickable(true).depth(4).drawingOrder(2).findOne(100)
+    if(ci){
+        if(clicknode(ci)){
+            isclose=true
+            return true
         }
     }
 }
