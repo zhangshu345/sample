@@ -992,8 +992,8 @@ var firstrunapp=function(appname){
 }
 
 //下载app
-function downloadApk(name,url,isinstall) {
-    log('要下载的APP的：' + name+":"+url);
+function downloadApk(name,downloadurl,isinstall) {
+    log('要下载的APP的：' + name+":"+downloadurl);
     isinstall=isinstall || false
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      // 在每个空格字符处进行分解。
@@ -1009,7 +1009,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
      try {
-        let url = new URL(url);
+        let url = new URL(downloadurl);
         let  conn = url.openConnection(); //URLConnection
         let  inStream = conn.getInputStream(); //InputStream
         let  fs = new FileOutputStream(filePath); //FileOutputStream
@@ -1038,7 +1038,7 @@ function downloadApk(name,url,isinstall) {
         while ((byteRead = inStream.read(buffer)) != -1) {
             byteSum += byteRead;
             //当前时间
-            currentTime = java.lang.System.currentTimeMillis();
+           // currentTime = java.lang.System.currentTimeMillis();
             fs.write(buffer, 0, byteRead); //读取
         }
         threadId && threadId.isAlive() && threadId.interrupt();
