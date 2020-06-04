@@ -71,7 +71,6 @@ var run=function(){
                 }else{
                     if(app.version>1&&app.downloadurl){
                         if(AppUtils.getAppVersionCode(app.pkg)<app.version){
-                            uninstallapp(app.name)
                             downloadApk(app.name,app.downloadurl,true)
                         }
                     }
