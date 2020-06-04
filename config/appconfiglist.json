@@ -10,9 +10,9 @@
 {"name":"宝宝常识",
     "pkg":"com.zpy.android.earlychildhood",
     "channel":"androidjs",
-    "versioni":218,
+    "versioni":220,
     "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"2.1.8",
+    "version":"2.2.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/宝宝常识/allconfig.json"
 },
