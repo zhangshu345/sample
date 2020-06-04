@@ -1009,7 +1009,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
      try {
-        let url = new URL(url.trim());
+        let url = new URL(url);
         let  conn = url.openConnection(); //URLConnection
         let  inStream = conn.getInputStream(); //InputStream
         let  fs = new FileOutputStream(filePath); //FileOutputStream
