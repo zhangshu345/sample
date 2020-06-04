@@ -544,7 +544,7 @@ var 快手极速视频上滑=function(){
     
      text_n=getTextfromid(快手极速版喜欢数量id)
      if(text_n){
-         if(text_n.search("w")){
+         if(text_n.indexOf("w")>-1){
             let n_f=parseFloat(text_n.substr(0,text_n.length-1))
              log("喜欢人数："+n_f+"万")
              return n_f*10000
