@@ -1625,7 +1625,6 @@ var close_ad_qq=function(apppkg){
                     }
                 }
             }
-
             sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return false
@@ -1637,6 +1636,8 @@ var close_ad_qq=function(apppkg){
                 click(500,700)
                 threads.start(install_app())
             }
+            let adappname=getTextfromid("com.dongdong.jiantie:raw/bsd2_full")
+            
         },60000)){
             return true
         }else{

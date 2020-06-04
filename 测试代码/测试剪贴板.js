@@ -1,0 +1,1 @@
+setClip("请帮帮窝，谢谢你https://url.cn/yUmU7SjL")
