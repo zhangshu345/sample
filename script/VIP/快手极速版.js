@@ -443,9 +443,9 @@ var app_home_video=function(){
 
 
 var app_close_alter=function(){
-    clickids(快手极速弹窗id集合)
-    clicktexts(快手极速弹窗文本集合)
-    if(text("立即邀请").exists){
+    clickids(快手极速弹窗id集合,100)
+    clicktexts(快手极速弹窗文本集合,100)
+    if(text("立即邀请").findOne(100)){
         back()
         sleep(1000)
     }

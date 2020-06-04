@@ -707,7 +707,7 @@ var clickchilds=function(v){
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
 var clickids=function(ids,t,st){
-    t=t||500
+    t=t||100
     st=st||500
     ids.forEach(idstr => {
        if (idclick(idstr,t)){
