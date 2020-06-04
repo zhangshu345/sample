@@ -1473,25 +1473,28 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
 }
 //检测电量低停止脚本
 var checkbattery=function(btyn){
+    toastLog("检测电池电量:"+btyn)
     btn=btyn||30
     batteryn=device.getBattery()
-    if(batteryn<btyn*2/3){
-        
-        device.lockScreen()
-        sleep(1800000)
-    }else if(batteryn<btyn){
-        //这里应该发送一个电量低信号到服务器
-        toastLog("电量低")
-        if(device.isCharging()){
-            if(changesetting){
-                device.setMusicVolume(0)
-                device.setBrightnessMode(0)
-                device.setBrightness(20)
-            }
-        }else{
-            //休眠十分钟
+    if(isdeviceadmin()){
+        if(batteryn<btyn*2/3){
             device.lockScreen()
-            sleep(600000)
+            sleep(1800000)
+        }else if(batteryn<btyn){
+            //这里应该发送一个电量低信号到服务器
+            
+            toastLog("电量低")
+            if(device.isCharging()){
+                if(changesetting){
+                    device.setMusicVolume(0)
+                    device.setBrightnessMode(0)
+                    device.setBrightness(20)
+                }
+            }else{
+                //休眠十分钟
+                device.lockScreen()
+                sleep(600000)
+            }
         }
     }
 }
