@@ -15,7 +15,7 @@
     "showad":true,
     "enablemta":false,
     "enablebugly":false,
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/唐诗宋词集合_138.apk",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/唐诗宋词集合_128.apk",
     "privacy":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/privacy.md",
     "announce":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/announcement.md",
     "userguide":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/userguide.js",
@@ -28,6 +28,6 @@
     "level":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/levels.json",
     "rewardevent":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/rewardevents.json",
     "tag":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/tags.json",
-    "advice":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/advice/唐诗宋词集合138.json",
+    "advice":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/advice/唐诗宋词集合128.json",
     "uiconfig":""
 }
