@@ -39,7 +39,7 @@ var run=function(){
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,xiaoshi,fen)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐3",selfscriptpath,2,xiaoshi,fen)
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
     let  appruntime={}

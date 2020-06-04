@@ -113,7 +113,7 @@
         "downloadurl":"",
         "version":""}
 },{"name":"定时套餐4",
-    "desc":{"summary":"定时套餐4：每个任务设定固定时间 15, 30 分,1小时 三个档位 任务设为整数时间启动 保证时间不冲突","html":""},
+    "desc":{"summary":"不会自动安装应用 只跑已经在本机安装的应用 最长一天循环定时跑 ","html":""},
     "tags":["短视频","赚钱"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
     "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},

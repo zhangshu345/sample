@@ -39,17 +39,23 @@ var run=function(){
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐2",selfscriptpath,2,xiaoshi,fen)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐4",selfscriptpath,2,xiaoshi,fen)
     var appconfig=httpget(selfrewardlisturl)
-    apps=JSON.parse(appconfig)
+    let  apps=JSON.parse(appconfig)
+    let runapps=[]
+    apps.forEach(app =>{
+        if(getPackageName(app.name)){
+            runapps.push(app)
+        }
+    })
     let  appruntime={}
     let n_xhcs=0
     let sumeruntime=0
     let runtime=120
     while (sumeruntime<=86400&&n_xhcs<2){
         n_xhcs=n_xhcs+1
-        apps= shuffleArray(apps)
-        apps.forEach(app => {
+        runapps= shuffleArray(runapps)
+        runapps.forEach(app => {
             show("开始设置："+app.name)
             if(scriptappname==app.name){
                 return
@@ -62,46 +68,29 @@ var run=function(){
                         appruntime[app.name]=0
                     }
                     show("运行时间:"+app.name+":"+appruntime[app.name])
-                    if(appruntime[app.name]+runconfig.onetime<=runconfig.maxtime){
-                         fen=fen+runtime/60
+                        fen=fen+runtime/60
                          while(fen>=60){
                             xiaoshi=xiaoshi+1
                             fen=fen-60
                             if(xiaoshi==24){
                                 xiaoshi=0
                             }
-                            }
+                          }
                              com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
                              show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                              appruntime[app.name]=appruntime[app.name]+runconfig.onetime
                              sumeruntime=sumeruntime+runconfig.onetime
                              runtime=runconfig.onetime
-                    }else{
-                        nowruntime=runconfig.maxtime-appruntime[app.name]
-                        if(nowruntime>100){
-                            show("本次时间:"+nowruntime+"少于一次："+runconfig.onetime)
-                            fen=fen+nowruntime/60
-                            while(fen>=60){
-                                    xiaoshi=xiaoshi+1
-                                    fen=fen-60
-                                    if(xiaoshi==24){
-                                        xiaoshi=0
-                                    }
-                                }
-                                com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
-                                show("设置"+app.name+"运行"+runconfig.onetime+"秒")
-                                appruntime[app.name]=runconfig.maxtime
-                                sumeruntime=sumeruntime+nowruntime
-                                runtime=nowruntime
-                        }
-                    }
+                   
                 }
             }
+           
         })
     }
+
     sleep(2000)
     show("开始强制关闭运行app")
-    apps.forEach(app => {
+    runapps.forEach(app => {
         if(scriptappname==app.name){
             return
         }
@@ -109,8 +98,11 @@ var run=function(){
             forcestop(app.name)
         }
     })
-    let app=apps[0]
-    runurlscript(app.name,app.path)
+    if(runapps.length>0){
+        let app=apps[0]
+        runurlscript(app.name,app.path)
+    }
+   
 }
 
 var  shuffleArray=function(array) {
@@ -123,5 +115,5 @@ var  shuffleArray=function(array) {
     return array
 }
 
-addbmobchannel("yuedutimer2")
+addbmobchannel("yuedutimer4")
 run()

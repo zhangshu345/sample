@@ -1590,6 +1590,7 @@ var close_ad_toutiao=function(apppkg){
     }
     return false
 }
+
 var close_ad_liquid=function(apppkg){
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
          return  doactionmaxtime(function(){
@@ -1651,6 +1652,7 @@ var close_ad_qq=function(apppkg){
         }
     }
 }
+
 //未知广告商
 var close_ad_iclicash=function(apppkg){
     if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
@@ -1680,6 +1682,7 @@ var close_ad_iclicash=function(apppkg){
     }
     return false 
 }
+
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
     log("运行："+appname+"--"+apppkg+"--"+showadtime)
@@ -1692,6 +1695,8 @@ var runrewardapp=function(appname,apppkg,showadtime){
 var closeappundostate=function(){
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
+
+
 var onerewardapp=function(appname,apppkg){
     apppkg=apppkg||getPackageName(appname)
    if(!idContains(apppkg).findOne(1000)){
@@ -1767,7 +1772,7 @@ var onerewardapp=function(appname,apppkg){
     if(textoneexist(["点击下载"])){
         back()
     }
- }
+    }
 }
 
 //看激励视频  概率点击
@@ -1806,9 +1811,11 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
       return true
     },60000)
 }
+
 var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
+
 var checkstoragestate=function(){
     ava
     if(device.getAvailMem()<device.getTotalMem()/10){
