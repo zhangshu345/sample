@@ -993,12 +993,11 @@ var firstrunapp=function(appname){
 
 //下载app
 function downloadApk(name,url,isinstall) {
+    log('要下载的APP的：' + name+":"+url);
     isinstall=isinstall || false
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      // 在每个空格字符处进行分解。
-     file_name_url = url
      file_name = name+".apk"
-     console.log('要下载的APP的：' + file_name);
      // 设置APP的路径
      file_path_root = files.getSdcardPath()
      filePath = file_path_root + "/" + file_name
@@ -1696,7 +1695,7 @@ var onerewardapp=function(appname,apppkg){
         show(appname+"不在前台")
         app.launchPackage(apppkg)
         sleep(4000)
-        clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许"],100,1500)
+        clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","取消"],100,1500)
         if(textclick("总是允许")){
             sleep(600)
             textclick("总是允许")
@@ -1723,6 +1722,10 @@ var onerewardapp=function(appname,apppkg){
                 }
             }
            }
+       }else if(ca==""){
+           close_ad_qq(apppkg)
+       }else if(ca==""){
+           close_ad_toutiao(apppkg)
        }
          if(textoneexist(["点击下载"])){
             back()
