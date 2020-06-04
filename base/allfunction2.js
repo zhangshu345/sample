@@ -1721,9 +1721,9 @@ var onerewardapp=function(appname,apppkg){
                 }
             }
            }
-       }else if(ca==""){
+       }else if(ca=="com.qq.e.ads.PortraitADActivity"){
            close_ad_qq(apppkg)
-       }else if(ca==""){
+       }else if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
            close_ad_toutiao(apppkg)
        }
          if(textoneexist(["点击下载"])){
@@ -1740,9 +1740,6 @@ var onerewardapp=function(appname,apppkg){
             sleep(1000)
             app.launch(apppkg)
             sleep(3000)
-        }
-        if(close_ad_qq(apppkg)){}
-        if(close_ad_toutiao(apppkg)){
         }
        if(randomint(0,3)==2){
            if(textclick("任务")){
