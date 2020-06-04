@@ -4,7 +4,7 @@
     "versioni":120,
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json",
     "runurl":"http://yuedu.xiequbo.cn/run.js",
     "mtaappkey":"A5Q7R9X8PXCN",
     "bmobappid":"e45aad074ed9369ef3a384057caad047",

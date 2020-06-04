@@ -1,6 +1,6 @@
 [	{
     "name": "唐诗宋词集合",
-    "open": false,
+    "open": true,
     "install": true,
     "wx": true,
     "zfb": true,
@@ -20,13 +20,13 @@
     "scripturl": "",
     "money": 1.0,
     "onetime": 5,
-    "maxtime": 0,
+    "maxtime": 30,
     "day":"2020-3-25",
     "runtime":30,
-    "version": 118,
+    "version": 128,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-    "downloadurl": "http://zhangshuhong888.iask.in:8989/唐诗宋词集合_118.apk"
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/唐诗宋词集合_128.apk"
 },{
     "name": "东东随便",
     "open": true,
@@ -51,13 +51,13 @@
     "scripturl": "",
     "money": 1.0,
     "onetime": 6,
-    "maxtime": 60,
+    "maxtime": 300,
     "day":"2020-3-25",
     "runtime":30,
-    "version": 38,
+    "version": 220,
     "appversion": "",
     "icon": "https://open.weixin.qq.com/zh_CN/htmledition/res/assets/res-design-download/icon64_appwx_logo.png",
-    "downloadurl": "http://zhangshuhong888.iask.in:8989/东东随便_38.apk"
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/东东随便_220.apk"
 },{
     "name": "KeepHealth",
     "open": true,
