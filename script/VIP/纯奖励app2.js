@@ -36,6 +36,7 @@ device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
 var run=function(){
+    stopOtherScript()
     listapp()
     var appconfig=httpget(selfrewardlisturl)
     apps=JSON.parse(appconfig)
@@ -64,7 +65,7 @@ var run=function(){
                    return 
                }
            }
-            stopOtherScript()
+            
             if(app.open){
                 if(!getPackageName(app.name)){
                     downloadApk(app.name,app.downloadurl,true)
