@@ -398,7 +398,7 @@ while(true){
         close_ad_qq(apppkg)
         id_desc=  id("com.jm.video:id/desc").findOne(1000)
         if(id_desc){
-            lastdesc=desc.text()
+            lastdesc=id_desc.text()
             log("当前："+lastdesc)
         }
        滑动(20,13,16,10,4,500,700)
