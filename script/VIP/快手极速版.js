@@ -697,10 +697,15 @@ function run(){
             //快手actionbar "com.kuaishou.nebula:id/action_bar"
                 if(id("com.kuaishou.nebula:id/tabs").exists()){
                         log("点击首页的发现")
-                     id("com.kuaishou.nebula:id/tabs").findOne().child(0).child(2).click()
+                    n_tab= id("com.kuaishou.nebula:id/tabs").findOne()
+                    if(n_tab){
+                        n_cc=n_tab.child(0)
+                        if(n_cc&&n_cc.childCount()>2){
+                            n_cc.child(2).click()
+                        }
+                    }
                   }
              }
-           
             if(滑动次数%500==0){
                 if(!今日签到(appname)){
                     log("没有签到")
