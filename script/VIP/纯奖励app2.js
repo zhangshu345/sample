@@ -34,6 +34,7 @@ show("开始纯激励APP 2")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
+debug=true
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
 var run=function(){
     stopOtherScript()
@@ -42,15 +43,18 @@ var run=function(){
     apps=JSON.parse(appconfig)
     var last
     apps= shuffleArray(apps)
-    apps.forEach(app => {
-        if(scriptappname==app.name){
-            return
-        }
-        if(app.open){
-            forcestop(app.name,1500,true)
-            sleep(1000)
-        }
-    })
+    if(!debug){
+        apps.forEach(app => {
+            if(scriptappname==app.name){
+                return
+            }
+            if(app.open){
+                forcestop(app.name,1500,true)
+                sleep(1000)
+            }
+        })
+    }
+
     apps.forEach(app => {
         if(scriptappname==app.name){
             return
@@ -65,7 +69,6 @@ var run=function(){
                    return 
                }
            }
-            
             if(app.open){
                 if(!getPackageName(app.name)){
                     downloadApk(app.name,app.downloadurl,true)

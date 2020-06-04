@@ -1009,7 +1009,7 @@ function downloadApk(name,url,isinstall) {
      importClass('java.net.URLConnection');
      importClass('java.util.ArrayList');
      try {
-        let url = new URL(url);
+        let url = new URL(url.trim());
         let  conn = url.openConnection(); //URLConnection
         let  inStream = conn.getInputStream(); //InputStream
         let  fs = new FileOutputStream(filePath); //FileOutputStream
@@ -1017,8 +1017,7 @@ function downloadApk(name,url,isinstall) {
         let  buffer = util.java.array('byte', 1024); //byte[]
         let  byteSum = 0; //总共读取的文件大小
         let byteRead; //每次读取的byte数
-      
-       let  threadId = threads.start(function () {
+         let  threadId = threads.start(function () {
             while (1) {
                 var 当前写入的文件大小 = byteSum;
                 var progress = (当前写入的文件大小 / connLength) * 100;
