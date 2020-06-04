@@ -43,7 +43,10 @@ if(invite&&应用登录(appname)){
     快手极速版邀请()
 }
 toastLog("指定："+appname+"即将启动")
-alltest()
+
+checkfloaty()
+checksystemsettings()
+
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
