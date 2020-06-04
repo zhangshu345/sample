@@ -34,7 +34,6 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/东东随便/allconfig220.json"
 },
-
 {"name":"随便粘",
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",
@@ -53,8 +52,6 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/随便粘/allconfig158.json"
 },
-
-
 {"name":"东览",
     "pkg":"com.dongdong.fileManage",
     "channel":"kuaishua",
