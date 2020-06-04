@@ -537,7 +537,6 @@ var 快手极速视频上滑=function(){
                 vp.scrollForward()
          }
     }
-
  }
 
  var 快手极速版获取视频点赞数=function(){
