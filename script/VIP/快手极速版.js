@@ -54,6 +54,7 @@ if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }
+
 if(keepappnewer){
     var appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){
@@ -96,13 +97,11 @@ function discernSlidingblock(img, ratio) {
     } else if (ratio==1440){
         log("分辨率2k")
         checknumber()
-
     }else{
         log("当前设备分辨率不符合规范")
         return -2
     }
     num = Math.ceil(tb[4] / 3.3 - 4);
-    
     //计算滑块位置
     for (var k = 29; k <= 40; k++) {
         temp2 = "";
@@ -731,21 +730,22 @@ function run(){
             if(textoneexist(["点击打开长图","点击打开图集"],200)){
                快手极速版视频滑动()
             }
+            sleep(2000)
             nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
             if(nowdesc){
                 if(nowdesc==lastdesc){
                     快手极速版视频滑动()
-                }else{
-                    n_like=快手极速版获取视频点赞数()
-                    if(n_like >minlike){
-                        idclick(快手极速版喜欢按钮id)
-                        sleep(10000)
-                    }else if(n_like>100){
-                       sleep(5000)
-                    }else{
-                        快手极速版视频滑动()
-                    }
                 }
+            }else{
+                快手极速版视频滑动()
+            }
+
+            n_like=快手极速版获取视频点赞数()
+            if(n_like >minlike){
+                idclick(快手极速版喜欢按钮id)
+                sleep(10000)
+            }else if(n_like>100){
+               sleep(5000)
             }else{
                 快手极速版视频滑动()
             }
@@ -760,7 +760,7 @@ function run(){
         app.launch(apppkg)
         sleep(3000)
        }
-        sleep(1000)
+       
     }
 }
 

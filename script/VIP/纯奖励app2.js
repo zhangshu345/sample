@@ -34,7 +34,7 @@ show("开始纯激励APP 2")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-debug=true
+debug=false
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
 var run=function(){
     stopOtherScript()
