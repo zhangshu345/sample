@@ -559,7 +559,7 @@
     "scripturl": "",
     "money": 1.0,
     "onetime": 5,
-    "maxtime": 0,
+    "maxtime": 60,
     "day":"2020-3-25",
     "runtime":30,
     "version": 128,
