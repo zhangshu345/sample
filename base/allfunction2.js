@@ -1418,6 +1418,7 @@ var randomint=function(min,max){
     let num = Math.floor(Math.random()*(max - min) + min);
     return num
 }
+
 var 刷宝邀请=function(){
     随机邀请文本(刷宝短视频邀请集合)
 }
@@ -1707,14 +1708,14 @@ var onerewardapp=function(appname,apppkg){
     }
     ca=currentActivity()
     if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-        if(randomint(0,5)==2){
+        if(randomint(0,5)==0){
             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
             if(ll_advice){
                 ll_advice_bound=ll_advice.bounds()
                 if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
                    if(enablegenius){
                        click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
-                       if(randomint(0,3)==1){
+                       if(randomint(0,3)==0){
                            threads.start(install_app())
                        }
                    }
@@ -1741,7 +1742,7 @@ var onerewardapp=function(appname,apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
-       if(randomint(0,3)==2){
+       if(randomint(0,3)==0){
            if(textclick("任务")){
                sleep(2000)
                if(textclick("看激励视频")){
@@ -1751,7 +1752,7 @@ var onerewardapp=function(appname,apppkg){
                 seerewardvideo(apppkg,true)
                }
         }
-        if(randomint(0,3)==2){
+        if(randomint(0,3)==0){
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
@@ -1766,14 +1767,17 @@ var onerewardapp=function(appname,apppkg){
  }
 }
 
-var seerewardvideo=function(apppkg,isclickad){
+//看激励视频  概率点击
+var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
+    gailv=gailv||3
+    installgailv=installgailv||2
     let isclickad=isclickad||false
    return  doactionmaxtime(function(){
        if(isclickad){
-            if(randomint(0,5)==2){
+            if(randomint(0,gailv)==0){
                if(clickonetexts(["点击下载","查看详情","下载","立即安装"])){
                    show("点击了立即安装")
-                   if(randomint(0,3)==1){
+                   if(randomint(0,installgailv)==0){
                     threads.start(install_app())
                     }
                    return true
