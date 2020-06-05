@@ -35,6 +35,10 @@ selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时
 var run=function(){
     listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    if(!getPackageName("微信")){
+        nologapps.push(app.name)
+        downloadandinstallapp("微信","com.tencent.mm")
+    }
     sleep(1000)
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
