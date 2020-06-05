@@ -1266,10 +1266,12 @@ var startdeviceadmin=function(){
             show("getid："+eeee.getId())
             engines.stop(eeee.getId())
         }
+        back()
         ss=false
         return true
     }else{
         show("设备管理 no")
+        return false
     }
 }
 
@@ -1893,3 +1895,4 @@ function deleteAllFiles(dir,houzhui){
         }
     }
 }
+alltest()
