@@ -1237,27 +1237,39 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
-    app.launch(context.getPackageName())
-    sleep(5000)
+    if(idContains(context.getPackageName()).findOne(100)){
+
+    }else{
+        app.launch(context.getPackageName())
+        sleep(5000)
+    }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
     var eeee= engines.execScript("uiname",ui函数,{})
-    sleep(1000)
+    sleep(2000)
     let ss=true
-    while(ss){
-        if(isdeviceadmin()){
-            show("设备管理 ok")
-            if(eeee.getId()){
-                show("getid："+eeee.getId())
-                engines.stop(eeee.getId())
-            }
-            ss=false
-            return true
+    let ncsbgl=0
+    while(!isdeviceadmin()){
+        if(textclick("设备管理")){
+            ncsbgl=ncsbgl+1
         }else{
-            show("设备管理 no")
+
         }
-        clicktexts(["设备管理","激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
-        sleepr(500,1000)
-        滑动(20,10,17,10,5,500,300)
+        if(ncsbgl>0){
+            clicktexts(["激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
+            sleepr(500,1000)
+            滑动(20,10,17,10,5,500,300)
+        }
+    }
+    if(isdeviceadmin()){
+        show("设备管理 ok")
+        if(eeee.getId()){
+            show("getid："+eeee.getId())
+            engines.stop(eeee.getId())
+        }
+        ss=false
+        return true
+    }else{
+        show("设备管理 no")
     }
 }
 
