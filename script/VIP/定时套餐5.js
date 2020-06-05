@@ -33,7 +33,7 @@ toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js"
 var run=function(){
-    listapp()
+    listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     sleep(1000)
     let nowtime=nowdate()
@@ -43,13 +43,18 @@ var run=function(){
     var appconfig=httpget(selfrewardlisturl)
     let  apps=JSON.parse(appconfig)
     let runapps=[]
+    let nologapps=[]
     apps.forEach(app =>{
-        if(getPackageName(app.name)){
-            runapps.push(app)
-        }else{
+        if(!getPackageName(app.name)){
+            nologapps.push(app.name)
             downloadandinstallapp(app.name,app.app.pkg)
         }
     })
+    if(nologapps.length>0){
+        nologapps.forEach(app=>{
+            fen=fen+fen*3
+        })
+    }
     let  appruntime={}
     let n_xhcs=0
     let sumeruntime=0
@@ -86,7 +91,6 @@ var run=function(){
                    
                 }
             }
-           
         })
     }
 
