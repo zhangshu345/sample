@@ -37,9 +37,9 @@ function listapp(){
     apps.forEach(app =>{
      if(app.install){
         appnames.push(app.name)
-    }
-})
-log("白名单："+appnames.length+"+++"+appnames)
+     }
+    })
+    log("白名单："+appnames.length+"+++"+appnames)
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
     for (var i = 0; i < packageInfos.size(); i++) {
@@ -71,9 +71,9 @@ log("白名单："+appnames.length+"+++"+appnames)
 //         log(allappsstr.substring(i*300,i*300+300))
 //     }
 //     toastLog("当前apps的数量:"+allapps.length+"--"+GsonUtils.toJson(appnames))
-m=0
-log("白名单："+appnames)
-allapps.forEach(app =>{
+    m=0
+    log("白名单："+appnames)
+    allapps.forEach(app =>{
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
