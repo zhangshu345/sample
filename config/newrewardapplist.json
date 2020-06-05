@@ -369,7 +369,7 @@
         "downloadurl":"",
         "version":""}
     
-},{  "name":"酷狗大字版",
+},{  "name":"酷狗音乐大字版",
     "desc":{"summary":"酷狗大字版 分时间段 看广告 一天3毛 YY语音的","script":"","html":""},
     "tags":["音乐","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
@@ -399,7 +399,7 @@
     "android":24,
     "appversioni":10,
     "androidjs":10,
-    "app":{"name":"酷狗大字版","pkg":"com.kugou.android.elder","icon":"https://pp.myapp.com/ma_icon/0/icon_53960765_1590093359/96",
+    "app":{"name":"酷狗音乐大字版","pkg":"com.kugou.android.elder","icon":"https://pp.myapp.com/ma_icon/0/icon_53960765_1590093359/96",
         "downloadurl":"",
         "version":""}
     
