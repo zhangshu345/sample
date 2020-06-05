@@ -61,8 +61,8 @@ var run=function(){
     let runtime=120
     while (sumeruntime<=86400&&n_xhcs<2){
         n_xhcs=n_xhcs+1
-        runapps= shuffleArray(runapps)
-        runapps.forEach(app => {
+        apps= shuffleArray(apps)
+        apps.forEach(app => {
             show("开始设置："+app.name)
             if(scriptappname==app.name){
                 return
@@ -96,7 +96,7 @@ var run=function(){
 
     sleep(2000)
     show("开始强制关闭运行app")
-    runapps.forEach(app => {
+    apps.forEach(app => {
         if(scriptappname==app.name){
             return
         }
@@ -104,7 +104,7 @@ var run=function(){
             forcestop(app.name)
         }
     })
-    if(runapps.length>0){
+    if(apps.length>0){
         let app=apps[0]
         runurlscript(app.name,app.path)
     }
