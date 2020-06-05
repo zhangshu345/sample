@@ -22,6 +22,9 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 "唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气",
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
+var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身",
+"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","东东随便"
+]
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
@@ -1840,6 +1843,41 @@ function deleteAllEmptyDirs(dir){
         var child = files.join(dir, list[i]);
         if(files.isDir(child)){
             deleteAllEmptyDirs(child);
+        }
+    }
+}
+
+function delectapkfile(){
+    let houzhuis=['apk','tmp']
+    deleteAllFiles(files.getSdcardPath(),houzhuis)
+}
+function deleteAllFiles(dir,houzhui){
+    log("删除目录："+dir+":"+houzhui)
+    dir=dir||files.getSdcardPath()
+    if(!houzhui||houzhui.length==0){return}
+    let list = files.listDir(dir);
+    let len = list.length;
+    if(len > 0){
+        for(let i = 0; i < len; i++){
+            let child = files.join(dir, list[i]);
+            if(files.isDir(child)){
+                deleteAllFiles(child,houzhui);
+            }else{
+                let extendname=files.getExtension(child)
+                if(houzhui.indexOf(extendname)>-1){
+                    log("包含后缀："+extendname)
+                    try {
+                        let tmpfilename=files.getName(child)
+                        let su=  files.remove(child)
+                         log("删除文件:"+tmpfilename+"--"+extendname+"--"+su)
+                    } catch (error) {
+                        log("删除文件出错:"+tmpfilename)
+                    }
+                  
+                }else{
+                    log("不包含后缀："+extendname)
+                }
+            }
         }
     }
 }

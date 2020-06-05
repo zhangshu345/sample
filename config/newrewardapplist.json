@@ -61,7 +61,7 @@
     "android":24,
     "appversioni":0,
     "androidjs":10,
-    "app":{"name":"","pkg":"","icon":"https://pp.myapp.com/ma_icon/0/icon_53960085_1590037539/96",
+    "app":{"name":"天天爱清理","pkg":"com.xiaoqiao.qclean","icon":"https://pp.myapp.com/ma_icon/0/icon_53960085_1590037539/96",
         "downloadurl":"",
         "version":""}
 },{  "name":"快手极速版",
@@ -127,7 +127,7 @@
     "android":24,
     "appversioni":10,
     "androidjs":10,
-    "app":{"name":"彩蛋视频","pkg":"com.jifen.dandan","icon":"https://pp.myapp.com/ma_icon/0/icon_52695369_1590040525/96",
+    "app":{"name":"火山极速版","pkg":"com.ss.android.ugc.livelite","icon":"https://pp.myapp.com/ma_icon/0/icon_52695369_1590040525/96",
         "downloadurl":"",
         "version":""}
     

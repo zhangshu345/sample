@@ -27,9 +27,8 @@ function deleteAllFiles(dir,houzhui){
                 deleteAllFiles(child,houzhui);
             }else{
                 let extendname=files.getExtension(child)
-                log("后缀:"+extendname)
-                if(houzhui.includes(extendname)){
-                    
+                if(houzhui.indexOf(extendname)>-1){
+                    log("包含后缀："+extendname)
                     try {
                         let tmpfilename=files.getName(child)
                         let su=  files.remove(child)
@@ -38,21 +37,29 @@ function deleteAllFiles(dir,houzhui){
                         log("删除文件出错:"+tmpfilename)
                     }
                   
+                }else{
+                    log("不包含后缀："+extendname)
                 }
             }
         }
     }
 }
-//deleteAllFiles(files.getSdcardPath(),["apk","tmp"])
+let houzhuis=['apk','tmp']
+deleteAllFiles(files.getSdcardPath(),houzhuis)
 // if(confirm("该操作会删除SD卡目录及其子目录下所有空文件夹，是否继续？")){
 //     toast("请点击右上角打开日志");
 //     deleteAllEmptyDirs(files.getSdcardPath());
 //     toast("全部完成！");
 // }
-
-log(["apk","tmp"])
-if(["apk","tmp"].includes("apk")){
-    log("包括")
-}else{
-    log("不包括")
-}
+// log(["apk","tmp"])
+// if(Array.isArray(houzhuis)){
+//     log("是数组")
+// }else{
+//     log("不是数组")
+// }
+// ss=houzhuis.indexOf("apk")
+// if(ss>-1){
+//     log("包括"+ss)
+// }else{
+//     log("不包括"+ss)
+// }
