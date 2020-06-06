@@ -20,7 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-
+//微信登录 点击邀请链接 注册 再微信登录
 
 var tomoney=false  
 var invite=false // 邀请

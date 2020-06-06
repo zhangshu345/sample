@@ -17,18 +17,20 @@ importClass(com.hongshu.androidjs.core.script.Scripts)
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
-var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身",
+var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
-"唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气",
+"唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气","手机营业厅",
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
-var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频",
+var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","东东随便"
 ]
+
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
+
 var 多分分身邀请码=["FA9X9K"]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
@@ -180,6 +182,7 @@ var  creatsetfloatywindow=function(){
     })
 }
 
+
 //列出所有应用 delectapp  删除非应用
 function listapp(delectapp){
     let allapps=[]
@@ -288,6 +291,8 @@ function keepappclear(url){
     log("一共第三方应用："+m)
     return allapps
 }
+
+
 var appstophander=function(){
     if( device.brand=="samsung"){clicktexts(["关闭应用","关闭应用程序"]) }
     else if(device.brand=="HONOR"){ clicktexts(["关闭应用","关闭应用程序"])}
@@ -386,6 +391,7 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
+
 var 应用登录=function(name){return getbooleanvalue(name,false)}
 var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);show(name+"今日签到:"+cs);  return cs;}
 var 今日已签到=function(name){数据库.put(name+"_sign_"+today(), true)}
@@ -402,7 +408,7 @@ var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  show(
  //可以通过上次的金币来判断是否 还可以获取金币
 var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
 var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);show(name+"上次余额："+s);    return s; } 
-var 记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
+var  记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);show(name+"上次滑动次数"+s);  return s;} 
 var lastscriptapp=spt.getString("lastscriptapp")
 var closelastscriptapp=function(){ forcestop(lastscriptapp)}
@@ -1895,4 +1901,16 @@ function deleteAllFiles(dir,houzhui){
         }
     }
 }
-alltest()
+
+var weixin_allow_friend=function(weixinname,shenqing){
+    app.launchApp("微信")
+    doactionmaxtime(function(){
+      if(  textclick("通讯录")){
+          滑动(20,10,3,10,17,500,300)
+         wx_vp= className("com.tencent.mm.ui.mogic.WxViewPager").depth(8).findOne(100)
+         wx_txl=wx_vp.child(1)
+         wx_txl.child(0).child(0).child(0).child(0).child(1).child(0).child(1).child(1).child(1).child(0)
+         sleep(1000)
+      }
+    },60000)
+}
