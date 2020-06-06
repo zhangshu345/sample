@@ -23,7 +23,7 @@ log("公共函数实例化成功")
 }else {
 log("公共函数实例化失败,程序返回")
 }
-var appname=dialogs.rawInput("请输入指定操作应用名称","");
+var appname=dialogs.rawInput("请输入指定操作应用名称","",null);
 show("开始自动安装应用");
 creatsetfloatywindow()  //创建设置悬浮窗;
 toastLog("指定："+appname+"即将启动");
@@ -34,6 +34,6 @@ if(appname){
         toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装");
         downloadandinstallapp(appname);
     }else{
-        dialogs.alert("安装提醒","已经存在"+appname);
+        dialogs.alert("安装提醒","已经存在"+appname,null);
     }
 }
