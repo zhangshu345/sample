@@ -75,6 +75,7 @@ var 微信扫一扫=function(){
     intent.setAction("android.intent.action.VIEW");
     context.startActivity(intent);
 }
+
 var 微信浏览=function(url){
     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
      intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
@@ -107,7 +108,6 @@ var  creatgfloatywindow=function(){
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
  }
-
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false" >
@@ -181,7 +181,6 @@ var  creatsetfloatywindow=function(){
         toastLog("恢复正常 视频播放 持续上滑")
     })
 }
-
 
 //列出所有应用 delectapp  删除非应用
 function listapp(delectapp){
