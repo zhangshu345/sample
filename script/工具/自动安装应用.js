@@ -29,8 +29,7 @@ creatsetfloatywindow()  //创建设置悬浮窗;
 toastLog("指定："+appname+"即将启动");
 home();
 if(appname){
-   
-    if(!getPackageName(appname)){
+       if(!getPackageName(appname)){
         toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装");
         downloadandinstallapp(appname);
     }else{

@@ -1712,6 +1712,7 @@ var close_ad_iclicash=function(apppkg){
 
 //运行特殊app
 var runrewardapp=function(appname,apppkg,showadtime){
+    delectapkfile()
     log("运行："+appname+"--"+apppkg+"--"+showadtime)
     appruntime=showadtime||random(5,10)*60000
     doactionmaxtime(function(){
@@ -1867,12 +1868,13 @@ function deleteAllEmptyDirs(dir){
 }
 
 function delectapkfile(){
-    let houzhuis=['apk','tmp']
+    let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
 }
+var allhouzhui=[]
 function deleteAllFiles(dir,houzhui){
     log("删除目录："+dir+":"+houzhui)
-    dir=dir||files.getSdcardPath()
+     dir=dir||files.getSdcardPath()
     if(!houzhui||houzhui.length==0){return}
     let list = files.listDir(dir);
     let len = list.length;
@@ -1883,6 +1885,9 @@ function deleteAllFiles(dir,houzhui){
                 deleteAllFiles(child,houzhui);
             }else{
                 let extendname=files.getExtension(child)
+                if(allhouzhui.indexOf(extendname)==-1){
+                    allhouzhui.push(extendname)
+                }
                 if(houzhui.indexOf(extendname)>-1){
                     log("包含后缀："+extendname)
                     try {
@@ -1899,6 +1904,7 @@ function deleteAllFiles(dir,houzhui){
             }
         }
     }
+ //   log("所有后缀:"+allhouzhui)
 }
 
 var weixin_allow_friend=function(weixinname,shenqing){
