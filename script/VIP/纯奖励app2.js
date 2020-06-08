@@ -108,7 +108,7 @@ var  shuffleArray=function(array) {
     return array
 }
 
-addbmobchannel("rewardad")
+// addbmobchannel("rewardad")
 var thread = threads.start(function(){
     while(true){
         

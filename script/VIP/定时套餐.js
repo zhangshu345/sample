@@ -121,7 +121,7 @@ var  shuffleArray=function(array) {
     return array
 }
 
-addbmobchannel("yuedutimer1")
+// addbmobchannel("yuedutimer1")
 // var thread = threads.start(function(){
 //     while(true){
 //         sleep(60000)

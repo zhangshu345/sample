@@ -1233,9 +1233,9 @@ if (!requestScreenCapture()) {
 
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
-var addbmobchannel=function(channels){ BmobPushUtils.addchannel(channels)}
-var removebmobchannel=function(channels){    BmobPushUtils.removechannel(channels)}
-var bmobpushmessage=function(channels,message){BmobPushUtils.pushmessage(channels,message)}
+var addbmobchannel=function(channels){     BmobPushUtils.getInstance().addchannel(channels) }
+var removebmobchannel=function(channels){   BmobPushUtils.getInstance().removechannel(channels)}
+var bmobpushmessage=function(channels,message){ BmobPushUtils.getInstance().pushmessage(channels,message)}
 //启动deviceadmin
 var startdeviceadmin=function(){
     if(isdeviceadmin()){
@@ -1243,7 +1243,6 @@ var startdeviceadmin=function(){
         return
     }
     if(idContains(context.getPackageName()).findOne(100)){
-
     }else{
         app.launch(context.getPackageName())
         sleep(5000)
@@ -1256,8 +1255,6 @@ var startdeviceadmin=function(){
     while(!isdeviceadmin()){
         if(textclick("设备管理")){
             ncsbgl=ncsbgl+1
-        }else{
-
         }
         if(ncsbgl>0){
             clicktexts(["激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
@@ -1287,12 +1284,11 @@ var checkpermission=function(permissions){
             case "悬浮":
                 checkfloaty()
                 break;
-
             case "设备管理":
-                
+
                  break;
             case "通知管理":
-                
+
                   break;
              case "应用使用情况":
                 
@@ -1302,7 +1298,6 @@ var checkpermission=function(permissions){
         }
     })
 }
-
 //执行函数 在一定时间内 最小10秒
 var doactionmaxtime=function(action,maxtime,intertime){
     if(!action){

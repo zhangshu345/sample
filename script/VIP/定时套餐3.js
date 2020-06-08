@@ -104,5 +104,5 @@ var  shuffleArray=function(array) {
     return array
 }
 
-addbmobchannel("yuedutimer3")
+// addbmobchannel("yuedutimer3")
 run()
