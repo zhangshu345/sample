@@ -4,5 +4,5 @@
     {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/快捷方式.json"},
     {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/工具.json"},
     {"name":"签到","level":0,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/签到.json"},
-    {"name":"二维码","level":0,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},
+    {"name":"二维码","level":0,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"}
 ]
