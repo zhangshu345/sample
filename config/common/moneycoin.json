@@ -1,0 +1,6 @@
+[{"title":"会员服务","summary":"会员充值","level":0,"open":false,"event":7,"key":"key_action_vip_pay","script":"","icon":"","type":"title|button"},
+    {"title":"卡密激活","summary":"卡密激活服务","level":0,"open":false,"event":7,"key":"key_action_charge_card_active","script":"","icon":"","type":"title|button"},
+    {"title":"金币兑换","summary":"金币兑换成卡密","level":0,"open":false,"event":7,"key":"key_action_cointocharge","script":"","icon":"","type":"title|button"},
+    {"title":"任务发布","summary":"发布任务","level":0,"open":false,"event":7,"key":"key_action_push_task","script":"","icon":"","type":"title|button"},
+    {"title":"现金提现","summary":"","level":0,"open":false,"event":7,"key":"key_action_tomoney","script":"","icon":"","type":"title|button"}
+]
