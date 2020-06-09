@@ -44,7 +44,7 @@
         "systemsetting":true,"notificationmanager":true,
         "floatyposition":"0,120,0,220","showfloaty":true,
         "checkbattery":30,"onlyscript":true,
-        "onetime":1800,"maxtime":6400,
+        "onetime":1800,"maxtime":3600,
         "logintype":"phone","tomoney":"weixin",
         "tomoneyaccount":"zfb|姓名|提现账号","daycashcondition":0.3,
         "daycoincondition":2000,"bigmoneyinterval":7,
