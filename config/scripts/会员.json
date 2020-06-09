@@ -166,9 +166,7 @@
     "appversioni":10,
     "requestapi":10,
     "icon":"",
-    "app":{"name":"","pkg":"com.jm.video","icon":"",
-        "downloadurl":"",
-        "version":""}
+    "app":{"name":"","pkg":"com.jm.video","icon":"","downloadurl":"", "version":""}
 },{"name":"公开的阅读集合",
     "desc":{"summary":"带设置自定义的配置可选","html":""},
     "tags":["短视频","赚钱"],
@@ -185,9 +183,7 @@
     "appversioni":10,
     "requestapi":10,
     "icon":"",
-    "app":{"name":"","pkg":"com.jm.video","icon":"",
-        "downloadurl":"",
-        "version":""}
+    "app":{"name":"","pkg":"com.jm.video","icon":"", "downloadurl":"",  "version":""}
 },{"name":"鹏宇专用app",
     "desc":{"summary":"","html":""},
     "tags":["刷宝","短视频","赚钱"],

@@ -33,7 +33,7 @@ toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js"
 var run=function(){
-    listapp()
+    listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     sleep(1000)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐",selfscriptpath,2,0,0)
