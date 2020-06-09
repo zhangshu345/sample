@@ -16,7 +16,6 @@
         "requestapi":10,
         "icon":"",
         "app":{"name":"刷宝视频","pkg":"","icon":"","downloadurl":"","version":""}
-        
     },{"name":"导出微信图片",
         "desc":{"summary":"备份微信图片，可选打包为压缩包 分享到微信收藏和百度网盘,下载到电脑时，请自行修改格式为.zip","html":""},
         "tags":["刷宝","短视频","赚钱"],
@@ -34,7 +33,6 @@
         "requestapi":10,
         "icon":"",
         "app":{"name":"刷宝视频","pkg":"","icon":"","downloadurl":"","version":""}
-        
     },{"name":"清理空文件夹",
         "desc":{"summary":"清除手机存储的空白文件夹","html":""},
         "tags":["刷宝","短视频","赚钱"],
