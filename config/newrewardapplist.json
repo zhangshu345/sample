@@ -946,7 +946,6 @@
     "app":{"name":"天天短视频","pkg":"","icon":"https://pp.myapp.com/ma_icon/0/icon_53983726_1581149506/96",
         "downloadurl":"",
         "version":""}
-
 },{  "name":"微视",
     "desc":{"summary":"看视频能互动，边看边玩 在微视，解锁朋友圈30秒长视频","script":"","html":""},
     "tags":["直播","赚钱"],
@@ -980,7 +979,6 @@
     "app":{"name":"微视","pkg":"com.tencent.weishi","icon":"https://pp.myapp.com/ma_icon/0/icon_10261931_1590656393/96",
         "downloadurl":"",
         "version":""}
-
 },{  "name":"趣看点",
     "desc":{"summary":"趣看点，狂撒现金等你来！看资讯赚金币红包，邀请好友更有大额奖励送不停！","script":"","html":""},
     "tags":["直播","赚钱"],
@@ -1014,7 +1012,6 @@
     "app":{"name":"趣看点","pkg":"com.zhangku.qukandian","icon":"https://pp.myapp.com/ma_icon/0/icon_52467410_1591347934/96",
         "downloadurl":"",
         "version":""}
-
 },{  "name":"趣头条",
     "desc":{"summary":"【拍视频赚钱】作品可以分享给微信好友，让每一部作品都可以赚零花","script":"","html":""},
     "tags":["新闻","赚钱"],
@@ -1048,7 +1045,6 @@
     "app":{"name":"趣头条","pkg":"看资讯赚零花，趣头条狂撒现金等你来，邀请好友一起玩更有大额现金奖励","icon":"https://pp.myapp.com/ma_icon/0/icon_42297806_1591253827/96",
         "downloadurl":"",
         "version":""}
-
 },{  "name":"铃声秀",
     "desc":{"summary":"【拍视频赚钱】作品可以分享给微信好友，让每一部作品都可以赚零花","script":"","html":""},
     "tags":["直播","赚钱"],
@@ -1082,6 +1078,6 @@
     "app":{"name":"铃声秀","pkg":"com.zheyun.bumblebee.lsx","icon":"https://pp.myapp.com/ma_icon/0/icon_53983726_1581149506/96",
         "downloadurl":"",
         "version":""}
-
 }
+
 ]
