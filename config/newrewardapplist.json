@@ -96,7 +96,6 @@
     "app":{"name":"快手极速版","pkg":"com.kuaishou.nebula","icon":"https://pp.myapp.com/ma_icon/0/icon_52750274_1589356726/96",
         "downloadurl":"",
         "version":""}
-    
 },{  "name":"火山极速版",
     "desc":{"summary":"火山极速版","script":"","html":""},
     "tags":["火山极速版","短视频","赚钱"],
