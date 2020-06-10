@@ -1,0 +1,16 @@
+device.wakeUpIfNeeded()
+sleep(200)
+apppkg=app.getPackageName("微信")
+if(apppkg){
+    stopOtherScript()
+    app.launch(apppkg)
+   i=0
+    while(!uiselector.idContains(apppkg).findOne(1000)){
+        sleep(3000)
+        app.launch(apppkg)
+        i=i+1
+        if(i>10){
+            return
+        }
+    }
+}
