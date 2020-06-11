@@ -55,7 +55,6 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
-
 if(keepappnewer){
     keepappisnewer(appname,apppkg)
 }
@@ -760,10 +759,9 @@ function run(){
 }
 try{
     run()
-}catch{
-
-}finally{
-
+}catch(error)
+{
+ 
 }
 
 

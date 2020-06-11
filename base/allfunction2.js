@@ -1876,6 +1876,7 @@ function delectapkfile(){
     let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
 }
+
 var allhouzhui=[]
 function deleteAllFiles(dir,houzhui){
     log("删除目录："+dir+":"+houzhui)
@@ -1940,12 +1941,22 @@ var keepappisnewer=function(name,pkg){
 }
 
 var checkscriptversion=function(){
-    let scriptpkg=context.getPackageName()
-    let appversioncode=AppUtils.getAppVersionCode(scriptappname)
-    if(appversioncode!=-1){
-        if(appversioncode<160){
-            downloadApk("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_160.apk",true);  
+    try {
+        let ver=scriptapps.scriptappname
+        log(scriptappname+":最新版本号:"+ver)
+        if(ver>0){
+            let scriptpkg=context.getPackageName()
+            let appversioncode=AppUtils.getAppVersionCode(scriptappname)
+        
+            if(appversioncode!=-1){
+                if(appversioncode<160){
+                    downloadApk(scriptappname,"http://zhangshuhong888.iask.in:8989/"+scriptappname+"_"+ver+".apk",true);  
+                }
+            }
         }
+    } catch (error) {
+        
     }
 
 }
+checkscriptversion()
