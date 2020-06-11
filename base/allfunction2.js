@@ -587,7 +587,10 @@ var checkfloaty=function(appname){
         if(isfloaty()){
             return
         }else{
-            if(clickonetexts(["允许许可"])){ break }
+            if(clickonetexts(["允许许可"])){ 
+                back()
+                break 
+            }
             if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
               滑动(20,10,15,10,5,500,300)
               sleep(1000)
@@ -897,7 +900,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     }
      if(enablegenius){
         r=r||1000
-     show("滑动"+x1+","+y1+"->"+x2+","+y2)
+     log("滑动"+x1+","+y1+"->"+x2+","+y2)
         swipe(startx, starty , endx , endy, t+random(0, r))
     }else{
         if(startx>=endx){
@@ -1403,7 +1406,7 @@ var alltest=function(){
     device.wakeUpIfNeeded()
     checkfloaty()
     checksystemsettings()
-    startdeviceadmin()
+   // startdeviceadmin()
 }
 
 var 随机邀请文本=function(url){
