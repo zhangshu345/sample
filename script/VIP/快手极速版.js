@@ -55,16 +55,9 @@ if(!app.getPackageName(appname)){
     downloadandinstallapp(appname,apppkg)
 }
 
+
 if(keepappnewer){
-    var appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
-    if(appinfo){
-        let appversioncode=AppUtils.getAppVersionCode(apppkg)
-        if(appversioncode!=-1){
-            if(appversioncode<appinfo.appDetail.versionCode){
-                downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
-            }
-        }
-    }
+    keepappisnewer(appname,apppkg)
 }
 
 if(onlyscript){
@@ -613,6 +606,7 @@ var app_login=function(){
        n_first=n_first+1
     }
 }
+
 var app_tomoney=function(){
     n_tomoney=0
     while(n_tomoney<5){
@@ -622,6 +616,7 @@ var app_tomoney=function(){
         }
     }
 }
+
 var 快手极速版视频滑动=function(){
     if(random(0,20)<20-视频重复次数){
         快手极速视频上滑()
@@ -763,7 +758,12 @@ function run(){
        
     }
 }
+try{
+    run()
+}catch{
 
-run()
+}finally{
+
+}
 
 

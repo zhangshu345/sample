@@ -36,6 +36,7 @@ var changesetting=false
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity=""
 var appname="火火视频极速版"
+var keepappnewer=true
 
 alltest()
 // checkfloaty()
@@ -50,15 +51,21 @@ if(changesetting){
     toastLog("自动设置音量为0")
 }
 
+if(onlyscript){
+    engines.stopOther()
+}
+
 if(!app.getPackageName(appname)){
     show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }else{
     show(appname+"已经安装")
 }
-if(onlyscript){
-    engines.stopOther()
+
+if(keepappnewer){
+    keepappisnewer(appname,apppkg)
 }
+
 
 //关闭最新的app
 closelastscriptapp()

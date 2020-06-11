@@ -25,6 +25,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","东东随便"
 ]
+var scriptapps={"随便粘":160,"东东随便":0}
 
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
@@ -64,6 +65,8 @@ var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
+
+
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
     dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);
@@ -1383,7 +1386,7 @@ var checksystemsettings=function(){
         PermissionUtils.requestWriteSettings(null);
         n_csst=0
         while(n_csst<10){ sleep(1000);
-            if(issystemsettings()){ log("有系统设置权限"); return true; }
+            if(issystemsettings()){ log("有系统设置权限");  back();return true; }
             else{  if(clickonetexts(["允许权限","允许许可","允许修改系统设置"],200,1500)){ sleep(1000) }
                     else{ app.openAppSetting(context.getPackageName()); 滑动(20,10,17,10,3,500,500);
 
@@ -1920,4 +1923,29 @@ var weixin_allow_friend=function(weixinname,shenqing){
          sleep(1000)
       }
     },60000)
+}
+
+
+var keepappisnewer=function(name,pkg){
+         var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
+        if(appinfo){
+            let appversioncode=AppUtils.getAppVersionCode(pkg)
+            if(appversioncode!=-1){
+                if(appversioncode<appinfo.appDetail.versionCode){
+                    downloadApk(name+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
+                }
+            }
+        }
+   
+}
+
+var checkscriptversion=function(){
+    let scriptpkg=context.getPackageName()
+    let appversioncode=AppUtils.getAppVersionCode(scriptappname)
+    if(appversioncode!=-1){
+        if(appversioncode<160){
+            downloadApk("随便粘","http://zhangshuhong888.iask.in:8989/随便粘_160.apk",true);  
+        }
+    }
+
 }
