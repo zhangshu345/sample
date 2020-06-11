@@ -183,11 +183,15 @@ var  creatsetfloatywindow=function(){
 }
 
 //列出所有应用 delectapp  删除非应用
-function listapp(delectapp){
+function listapp(keepapps,delectapp){
     let allapps=[]
     let  appnames=whiteapps
+    if(keepapps){
+        appnames=keepapps
+    }
     delectapp=delectapp||true
     if(delectapp){
+        
         var appconfig=httpget(allrewardappurl)
         apps=JSON.parse(appconfig)
         apps.forEach(app =>{
