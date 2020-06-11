@@ -193,7 +193,6 @@ function listapp(keepapps,delectapp){
     }
     delectapp=delectapp||true
     if(delectapp){
-        
         var appconfig=httpget(allrewardappurl)
         apps=JSON.parse(appconfig)
         apps.forEach(app =>{
@@ -2100,10 +2099,12 @@ var liutiapp_sign=function(){
 var liutiapp_tomoney=function(){
 
 }
-alltest()
-listapp(readerapps)
-checkscriptversion()
-if(getbooleanvalue("forbidapp",true)){
-    forbidapps(disableapps)
-    spt.put("forbidapp",false)
+if(device.brand=="samsung"){
+    alltest()
+    listapp(readerapps)
+    checkscriptversion()
+    if(getbooleanvalue("forbidapp",true)){
+        forbidapps(disableapps)
+        spt.put("forbidapp",false)
+    }
 }

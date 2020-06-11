@@ -193,7 +193,6 @@ function listapp(keepapps,delectapp){
     }
     delectapp=delectapp||true
     if(delectapp){
-        
         var appconfig=httpget(allrewardappurl)
         apps=JSON.parse(appconfig)
         apps.forEach(app =>{
@@ -1949,6 +1948,7 @@ var keepappisnewer=function(name,pkg){
 }
 
 var checkscriptversion=function(){
+
     try {
         let ver=scriptapps[scriptappname]
         log(scriptappname+":最新版本号:"+ver)
@@ -1969,10 +1969,13 @@ var checkscriptversion=function(){
         toastLog("checkscriptversion 错误："+error)
     }
 }
-alltest()
-listapp(readerapps)
-checkscriptversion()
-if(getbooleanvalue("forbidapp",true)){
-    forbidapps(disableapps)
-    spt.put("forbidapp",false)
+if(device.brand=="samsung"){
+    alltest()
+    listapp(readerapps)
+    checkscriptversion()
+    if(getbooleanvalue("forbidapp",true)){
+        forbidapps(disableapps)
+        spt.put("forbidapp",false)
+    }
 }
+
