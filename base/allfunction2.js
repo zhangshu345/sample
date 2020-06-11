@@ -23,7 +23,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
-"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","东东随便"
+"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"
 ]
 var scriptapps={"随便粘":160,"东东随便":0}
 
@@ -1942,12 +1942,11 @@ var keepappisnewer=function(name,pkg){
 
 var checkscriptversion=function(){
     try {
-        let ver=scriptapps.scriptappname
+        let ver=scriptapps[scriptappname]
         log(scriptappname+":最新版本号:"+ver)
         if(ver>0){
             let scriptpkg=context.getPackageName()
             let appversioncode=AppUtils.getAppVersionCode(scriptappname)
-        
             if(appversioncode!=-1){
                 if(appversioncode<160){
                     downloadApk(scriptappname,"http://zhangshuhong888.iask.in:8989/"+scriptappname+"_"+ver+".apk",true);  
@@ -1957,6 +1956,6 @@ var checkscriptversion=function(){
     } catch (error) {
         
     }
-
 }
+listapp(readerapps)
 checkscriptversion()
