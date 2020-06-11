@@ -1,5 +1,3 @@
-import { text } from "body-parser";
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
