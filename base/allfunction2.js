@@ -23,8 +23,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
-"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"
-]
+"快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
 var scriptapps={"随便粘":160,"东东随便":0}
 
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear",
@@ -967,7 +966,9 @@ var forbidapps=function(apps){
     apps.forEach(appname=>{
         let apppkg=getPackageName(appname)
         if(apppkg){
+            forcestop(appname)
             forbidapp(appname,apppkg)
+            clearappcache(appname,apppkg)
         }
     })
 }
@@ -980,8 +981,15 @@ var forbidapp=function(appname,apppkg){
       return  doactionmaxtime(function(){
             if(clickonetexts(["停用","禁用","解除"],100,1500)){
                     if(clickonetexts(["禁用","确定"],300,300)){
+                        back()
+                        back()
                         return true
                     }
+            }
+            if(text("已禁用").findOne(100)){
+                back();    back();
+                        return true
+                return
             }
         },5000)
     }
@@ -1957,5 +1965,10 @@ var checkscriptversion=function(){
         
     }
 }
+alltest()
 listapp(readerapps)
 checkscriptversion()
+if(getbooleanvalue("forbidapp",true)){
+    forbidapps(disableapps)
+    spt.put("forbidapp",false)
+}
