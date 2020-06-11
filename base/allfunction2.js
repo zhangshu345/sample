@@ -968,7 +968,7 @@ var forbidapps=function(apps){
         if(apppkg){
             forcestop(appname)
             forbidapp(appname,apppkg)
-            clearappcache(appname,apppkg)
+            
         }
     })
 }
@@ -1954,15 +1954,19 @@ var checkscriptversion=function(){
         log(scriptappname+":最新版本号:"+ver)
         if(ver>0){
             let scriptpkg=context.getPackageName()
-            let appversioncode=AppUtils.getAppVersionCode(scriptappname)
+            let appversioncode=AppUtils.getAppVersionCode(scriptpkg)
+            log("appversion:"+appversioncode)
             if(appversioncode!=-1){
                 if(appversioncode<160){
+                    toastLog("低版本现在更想")
                     downloadApk(scriptappname,"http://zhangshuhong888.iask.in:8989/"+scriptappname+"_"+ver+".apk",true);  
+                }else{
+                    toastLog("版本正常")
                 }
             }
         }
     } catch (error) {
-        
+        toastLog("checkscriptversion 错误："+error)
     }
 }
 alltest()
