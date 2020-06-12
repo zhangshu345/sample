@@ -1416,7 +1416,7 @@ var alltest=function(){
     device.wakeUpIfNeeded()
     checkfloaty()
     checksystemsettings()
-   // startdeviceadmin()
+   startdeviceadmin()
 }
 
 var 随机邀请文本=function(url){
