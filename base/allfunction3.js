@@ -1410,6 +1410,7 @@ var checksystemsettings=function(){
         }
     }
 }
+
 // 
 var alltest=function(){
     log("全部测试")
