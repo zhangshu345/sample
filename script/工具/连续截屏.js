@@ -101,7 +101,8 @@ var clickchilds=function(v){
    return false 
 }
 
-
+importClass(com.hongshu.androidjs.core.debug.DevPluginService)
+DevPluginService.getInstance().connectToServer("192.168.3.2");
 
 checkscreencapture()
 n=1
