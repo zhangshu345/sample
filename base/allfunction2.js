@@ -588,7 +588,7 @@ var checkfloaty=function(appname){
         if(isfloaty()){
             return
         }else{
-            if(clickonetexts(["允许许可"])){ 
+            if(clickonetexts(["允许许可","在其他应用上层显示"])){ 
                 back()
                 break 
             }
@@ -1746,7 +1746,7 @@ var onerewardapp=function(appname,apppkg){
         clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","取消"],100,1500)
         if(textclick("总是允许")){
             sleep(600)
-            textclick("总是允许")
+            textclick("总是��许")
             sleep(600)
             textclick("总是允许")
             sleep(600)
