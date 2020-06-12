@@ -1969,13 +1969,16 @@ var checkscriptversion=function(){
         toastLog("checkscriptversion 错误："+error)
     }
 }
-if(device.brand=="samsung"){
-    alltest()
-    listapp(readerapps)
-    checkscriptversion()
-    if(getbooleanvalue("forbidapp",true)){
-        forbidapps(disableapps)
-        spt.put("forbidapp",false)
+var readercheck=function(){
+    if(device.brand=="samsung"){
+        alltest()
+        listapp(readerapps)
+        checkscriptversion()
+        if(getbooleanvalue("forbidapp",true)){
+            forbidapps(disableapps)
+            spt.put("forbidapp",false)
+        }
     }
+    
 }
 

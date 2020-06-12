@@ -105,4 +105,5 @@ var  shuffleArray=function(array) {
 }
 
 // addbmobchannel("yuedutimer3")
+readercheck()
 run()
