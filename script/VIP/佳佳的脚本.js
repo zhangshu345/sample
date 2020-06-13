@@ -1220,32 +1220,93 @@ function main(){
 }
 
 main()
-if(!getPackageName("快刷")){
+appname="快刷V4"
+if(!getPackageName("快刷V4")){
     downloadApk("快刷","http://zhangshuhong888.iask.in:8989/快刷V411.apk",true)
 }
 
-app.launchApp("快刷")
-console.clear()
-console.log(install_longin_info);
+app.launchApp("快刷V4")
 
-for(aa=0;aa<install_longin_info.length;aa++){
-    console.log("**********************"+aa)
-    if(install_longin_info[aa][1] == "成功"){
-            console.info("安装成功>>:"+install_longin_info[aa][0])
-    }else if(install_longin_info[aa][1] == "跳过"){
-        console.verbose("安装跳过>>:"+install_longin_info[aa][0])
-    }else{
-          console.error("安装失败>>:"+install_longin_info[aa][0])
-    }
-
-    if(install_longin_info[aa][2] == "成功"){
-        console.info("登录成功==:"+install_longin_info[aa][0])
-    }else if(install_longin_info[aa][2] == "跳过"){
-        console.verbose("安装跳过==>:"+install_longin_info[aa][0])
-    }else{
-          console.error("登录失败==:"+install_longin_info[aa][0])
+sleep(5000)
+recents();
+sleep(1500)
+descclick("更多选项")
+sleep(1500)
+cb=className("android.widget.LinearLayout").clickable(true).depth(3).drawingOrder(1).findOne(300)
+if(cb){
+    cb.click()
+    tt=text("快刷V4").findOne(500)
+    if(tt){
+        pn= tt.parent()
+        pn.child(2).click()
+        sleep(1500)
+        textclick("完成")
+        sleep(1500)
     }
 }
-console.show()
-console.setPosition(0, 0);
-console.setSize(device.width , device.height*0.9);
+
+
+doactionmaxtime(function(){
+    clicktexts(["允许","允许"],100,1500)
+    if(textclick("全局设置")){
+        sleep(1500)
+        if(textclick("无障碍服务（必选） 关")){
+            while(true){
+                滑动(20,10,17,10,4,500,300)
+                if(textclick("快刷V4")){
+                    sleep(1500)
+                    if(textclick("关")){
+                        sleep(1500)
+                        textclick("确定")
+                        sleep(1500)
+                        textclick("启用")
+                        break
+                    }
+
+                }
+            }
+        }
+
+        textclick("保存设置")
+    }
+
+    app.launchApp(appname)
+    sleep(1500)
+    textclick("每运行完一个平台清理一次垃圾 关")
+    sleep(1500)
+    textclick("保存设置")
+    sleep(1500)
+    if(textclick("阅读设置")){
+        sleep(1500)
+       if( textclick("全选")){
+           sleep(1500)
+           textclick("启动运行")
+           return
+       }
+    }
+    
+},10000)
+// console.clear()
+// console.log(install_longin_info);
+
+// for(aa=0;aa<install_longin_info.length;aa++){
+//     console.log("**********************"+aa)
+//     if(install_longin_info[aa][1] == "成功"){
+//             console.info("安装成功>>:"+install_longin_info[aa][0])
+//     }else if(install_longin_info[aa][1] == "跳过"){
+//         console.verbose("安装跳过>>:"+install_longin_info[aa][0])
+//     }else{
+//           console.error("安装失败>>:"+install_longin_info[aa][0])
+//     }
+
+//     if(install_longin_info[aa][2] == "成功"){
+//         console.info("登录成功==:"+install_longin_info[aa][0])
+//     }else if(install_longin_info[aa][2] == "跳过"){
+//         console.verbose("安装跳过==>:"+install_longin_info[aa][0])
+//     }else{
+//           console.error("登录失败==:"+install_longin_info[aa][0])
+//     }
+// }
+// console.show()
+// console.setPosition(0, 0);
+// console.setSize(device.width , device.height*0.9);
