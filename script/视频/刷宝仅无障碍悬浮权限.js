@@ -164,6 +164,7 @@ var appsign=function(){
         }
     }
 }
+
 var applogin=function(){
     i=0
     while(i<10){
@@ -359,6 +360,7 @@ var apptomoney=function(){
 }
 
 lastbattery=0
+lastdesc=""
 applogin()
 appsign()
 show("签到结束")
