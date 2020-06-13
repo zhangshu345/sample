@@ -1980,6 +1980,8 @@ var checkscriptversion=function(){
     }
 }
 
+checkscriptversion()
+
 var readercheck=function(){
     if(device.brand=="samsung"){
         alltest()
