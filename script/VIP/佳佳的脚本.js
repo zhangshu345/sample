@@ -832,12 +832,9 @@ install_func.download_app = function (donw_app_name) {
         return false
     }
 
-
-
-
-
-
 }
+
+
 install_func.install_app = function (app_name, local_file_path) {
     lock_intall_num = 0
     while(true){
@@ -905,15 +902,6 @@ install_func.install_app = function (app_name, local_file_path) {
 
         }
     }
-
-
-
-
-
-
-
-
-
 }
 install_func.donw_insall_name = function (app_name) {
     if (getPackageName(app_name)) {
