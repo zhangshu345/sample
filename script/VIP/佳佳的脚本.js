@@ -1241,18 +1241,24 @@ if(cb){
         pn.child(2).click()
         sleep(1500)
         textclick("完成")
-        sleep(1500)
+        
     }
 }
 
 
 doactionmaxtime(function(){
+  
     clicktexts(["允许","允许"],100,1500)
     if(textclick("全局设置")){
+        sleep(1500)
+        textContains("无障碍服务（必选").waitFor()
+        sleep(500)
+        textclick("每运行完一个平台清理一次垃圾 关")
         sleep(1500)
         if(textclick("无障碍服务（必选） 关")){
             while(true){
                 滑动(20,10,17,10,4,500,300)
+                sleep(1500)
                 if(textclick("快刷V4")){
                     sleep(1500)
                     if(textclick("关")){
@@ -1262,11 +1268,13 @@ doactionmaxtime(function(){
                         textclick("启用")
                         break
                     }
-
+                    break
                 }
             }
+        }else{
+            toastLog("没有点击无障碍服务")
         }
-
+        sleep(1500)
         textclick("保存设置")
     }
 
@@ -1281,11 +1289,13 @@ doactionmaxtime(function(){
        if( textclick("全选")){
            sleep(1500)
            textclick("启动运行")
+           sleep(1500)
+           
            return
        }
     }
     
-},10000)
+},60000)
 // console.clear()
 // console.log(install_longin_info);
 
