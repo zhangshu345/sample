@@ -1857,7 +1857,7 @@ var runtimerscript=function(){
 }
 
 var checkstoragestate=function(){
-    ava
+    
     if(device.getAvailMem()<device.getTotalMem()/10){
 
     }
