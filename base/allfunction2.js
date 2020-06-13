@@ -25,7 +25,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 ]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":161,"东东随便":0}
+var scriptapps={"随便粘":162,"东东随便":0}
 // var sdtotalsize=SDCardUtils.getExternalTotalSize()
 // log("内存总大小:"+sdtotalsize)
 // var sdavailablesize=function(){
