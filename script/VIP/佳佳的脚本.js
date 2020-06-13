@@ -1180,7 +1180,8 @@ can_login = ['波波视频','彩蛋视频','电视家','东方头条','火火视
 '快7浏览器','快看点','快音','米读极速版','刷宝短视频','天天爱清理','微鲤看看','想看',
 '小糖糕','有料看看','趣宠短视频','音浪短视频','高手短视频','变身记短视频','小吃货短视频','有颜短视频','快逗短视频']
 
-
+install_code = "跳过"
+login_code = "跳过"
 function main(){
     install_longin_info= []
     for (app_down_install_um = 0; app_down_install_um < texts.length; app_down_install_um++) {
@@ -1212,10 +1213,10 @@ function main(){
             }
             fun_lofin.clear()
         }
-        one_install_longin_info.push(app_name)
-        one_install_longin_info.push(install_code)
-        one_install_longin_info.push(login_code)
-        install_longin_info.push(one_install_longin_info)
+        // one_install_longin_info.push(app_name)
+        // one_install_longin_info.push(install_code)
+        // one_install_longin_info.push(login_code)
+        // install_longin_info.push(one_install_longin_info)
     }
 }
 
