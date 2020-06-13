@@ -1,3 +1,5 @@
+auto.waitFor()
+auto.setMode("normal")
 importClass('java.io.FileOutputStream');
 importClass('java.io.IOException');
 importClass('java.io.InputStream');
@@ -5,6 +7,26 @@ importClass('java.net.MalformedURLException');
 importClass('java.net.URL');
 importClass('java.net.URLConnection');
 importClass('java.util.ArrayList');
+
+function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
+    } else {
+        return ""
+    }
+}
+
+
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var  公共函数文本=httpget(公共函数url)
+if (公共函数文本 != "") {
+eval(公共函数文本)
+log("公共函数实例化成功")
+}else {
+log("公共函数实例化失败,程序重启")
+//这里应该是重新启动脚本 todo
+}
 
 function boboshipin(package) {
     appname = getAppName(package)
@@ -1253,8 +1275,6 @@ if(!getPackageName("快刷")){
 }
 
 app.launchApp("快刷")
-
-
 console.clear()
 console.log(install_longin_info);
 
