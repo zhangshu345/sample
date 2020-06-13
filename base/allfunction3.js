@@ -24,7 +24,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 ]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":160,"东东随便":0}
+var scriptapps={"随便粘":161,"东东随便":0}
 
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
