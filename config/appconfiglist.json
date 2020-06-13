@@ -70,6 +70,15 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/随便粘/allconfig161.json"
 },
+{"name":"随便粘",
+    "pkg":"com.dongdong.jiantie",
+    "channel":"androidjs",
+    "versioni":162,
+    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
+    "version":"1.6.2",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/随便粘/allconfig162.json"
+},
 {"name":"东览",
     "pkg":"com.dongdong.fileManage",
     "channel":"kuaishua",

@@ -1248,8 +1248,12 @@ function main(){
 }
 
 main()
-downloadApk("快刷","http://zhangshuhong888.iask.in:8989/快刷V411.apk",true)
+if(!getPackageName("快刷")){
+    downloadApk("快刷","http://zhangshuhong888.iask.in:8989/快刷V411.apk",true)
+}
+
 app.launchApp("快刷")
+
 
 console.clear()
 console.log(install_longin_info);
