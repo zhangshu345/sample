@@ -1745,7 +1745,7 @@ var onerewardapp=function(appname,apppkg){
         clicktexts(["同意并继续","开始授权","允许","允许","允许","始终允许","始终允许","取消"],100,1500)
         if(textclick("总是允许")){
             sleep(600)
-            textclick("总是��许")
+            textclick("总是允许")
             sleep(600)
             textclick("总是允许")
             sleep(600)
@@ -1947,7 +1947,6 @@ var keepappisnewer=function(name,pkg){
 }
 
 var checkscriptversion=function(){
-
     try {
         let ver=scriptapps[scriptappname]
         log(scriptappname+":最新版本号:"+ver)
@@ -1968,6 +1967,8 @@ var checkscriptversion=function(){
         toastLog("checkscriptversion 错误："+error)
     }
 }
+
+
 var readercheck=function(){
     if(device.brand=="samsung"){
         alltest()
