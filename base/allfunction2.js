@@ -26,7 +26,7 @@ var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
 var scriptapps={"随便粘":160,"东东随便":0}
 
-const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报",
+const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
@@ -64,7 +64,6 @@ var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
-
 
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
