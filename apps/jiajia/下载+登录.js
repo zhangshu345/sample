@@ -816,83 +816,6 @@ install_func.download_app = function (donw_app_name) {
 
 
 }
-install_func.install_app = function (app_name, local_file_path) {
-    lock_intall_num = 0
-    while(true){
-        lock_intall_num +=1
-        if(lock_intall_num>5){
-            console.error("安装异常0:" + app_name)
-            return
-        }
-        app.viewFile(local_file_path)
-        sleep(2000)
-        var app_install_info = textContains(app_name).findOne(1500)
-        if(app_install_info){
-            break
-        }
-        var error_install = textContains("出现问题").findOne(1500)
-        if (error_install) {
-            error_install_cion = text("确定").findOne(3000)
-            if (!error_install_cion) {
-                console.error("安装异常1:" + app_name)
-                return
-            }
-            click(error_install_cion.bounds().centerX(), error_install_cion.bounds().centerY())
-        }
-    }
-
-
-
-    clickarray = ["继续", "始终允许", "允许", "安装", "继续安装", "下一步", "确定", "我已充分了解该风险，继续安装"]
-
-    num_install = 0
-    while (true) {
-        num_install += 1
-        // toastLog(app_name+"检测安装倒计时:"+(50-num_install))
-        toast(app_name + "检测安装倒计时:" + (50 - num_install))
-        stat_install1 = textContains("扫描").findOne(200)
-        stat_install2 = textContains("检测").findOne(200)
-        if (stat_install1 || stat_install2) {
-            // toastLog("安装检测中...")
-            toast("安装检测中...")
-            sleep(3000)
-        }
-
-        if (num_install > 50) {
-            return
-        }
-        install_func.clicktexts(clickarray)
-
-
-        over_install1 = text("完成").findOne(200)
-        over_install2 = text("打开").findOne(200)
-        if (over_install1 || over_install2) {
-            error_install_cion = text("完成").findOne(500)
-            if (error_install_cion) {
-                click(error_install_cion.bounds().centerX(), error_install_cion.bounds().centerY())
-
-                return 1
-            }
-            sleep(1000)
-            back()
-            return 1
-        }
-        if (currentPackage() == getPackageName(app_name)) {
-            // close_app(app_name)
-            return 1
-
-        }
-    }
-
-
-
-
-
-
-
-
-
-}
 install_func.donw_insall_name = function (app_name) {
     if (getPackageName(app_name)) {
         toastLog("APP已经存在,跳过下载:" + app_name)
@@ -922,7 +845,7 @@ install_func.donw_insall_name = function (app_name) {
             return false
             break
         }
-        install_result = install_func.install_app(app_name, local_file_path)
+        install_result = install_app(app_name, local_file_path)
         if(install_result){
             // break
             return true

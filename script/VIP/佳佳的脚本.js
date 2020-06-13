@@ -903,45 +903,7 @@ install_func.install_app = function (app_name, local_file_path) {
         }
     }
 }
-install_func.donw_insall_name = function (app_name) {
-    if (getPackageName(app_name)) {
-        toastLog("APP已经存在,跳过下载:" + app_name)
-        return
-    }
-    toastLog("准备下载:" + app_name)
-    donw_num_11 = 0
-    while(true){
-        donw_num_11 +=1
-        if(donw_num_11>5){
-            console.error("下载失败:" + app_name)
-            return false
-            // break
-        }
-        local_file_path = install_func.download_app(app_name)
-        if(local_file_path){
-            break
-        }
-    }
-    
-    toastLog("开始安装:" + app_name)
-    insatll_num_11 = 0
-    while(true){
-        insatll_num_11 +=1
-        if(insatll_num_11 >5){
-            console.error("安装失败:" + app_name)
-            return false
-            break
-        }
-        install_result = install_func.install_app(app_name, local_file_path)
-        if(install_result){
-            // break
-            return true
-        }
-    }
 
-    
-
-}
 
 
 /** ----------------------------------------------------------------- **/
@@ -1232,7 +1194,7 @@ function main(){
             login_code = "跳过"
     
         }else{
-            install_code_info = install_func.donw_insall_name(app_name)
+            install_code_info = downloadandinstallapp(app_name)
             if(install_code_info){
                 install_code = "成功"
             }else{

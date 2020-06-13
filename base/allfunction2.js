@@ -1496,6 +1496,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
                     }else{
                         appDetail=e.appDetail
                         if(appDetail.appName==appname){
+                            
                             return e
                         }
                     }
