@@ -138,8 +138,8 @@
         "downloadurl":"",
         "version":""}
     
-},{"name":"刷宝短视频微信登录签到提现",
-    "desc":{"summary":"刷宝短视频使用手机号自动登录 ,签到 刷视频 提现  ","html":""},
+},{"name":"刷宝短视频",
+    "desc":{"summary":"刷宝短视频 仅需要无障碍权限即可使用自动获取悬浮窗权限和 系统配置权限 使用手机号自动登录 ,签到 刷视频 提现  ","html":""},
     "tags":["刷宝","短视频","赚钱","手机号"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
     "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
@@ -160,7 +160,7 @@
     
 },
 {"name":"刷宝短视频简单",
-    "desc":{"summary":"刷宝短视频辅助刷视频 可调速 省流量版 通过同一个视频反复多次观看 减少看视频数量","html":""},
+    "desc":{"summary":"刷宝短视频辅助刷视频  可调速 省流量版 通过同一个视频反复多次观看 减少看视频数量","html":""},
     "tags":["刷宝","短视频","赚钱"],
     "pay":{"coin":-1000,"money":0,"daymoney":0,"monthmoney":0,"yearmoney":0},
     "runconfig":{"starttime":"5:24","time":3600,"perhormoney":0.65,"daymaxmoney":2,"onetime":1800,"logintype":"phone","daycashcondition":0.3,"daymoneyinterval":7},
