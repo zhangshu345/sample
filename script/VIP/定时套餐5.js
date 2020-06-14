@@ -34,4 +34,4 @@ selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时
 
 // addbmobchannel("yuedutimer5")
 readercheck()
-localstartreaderapps("阅读集合1",selfscriptpath)
+localstartreaderapps("阅读集合1",selfscriptpath,selfrewardlisturl)

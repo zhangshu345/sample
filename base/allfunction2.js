@@ -2020,14 +2020,15 @@ var readercheck=function(){
 }
 
 //本地配置启用脚本
-var localstartreaderapps = function(scriptname,scriptpath){
+var localstartreaderapps = function(scriptname,scriptpath,configpath){
     // addbmobchannel("hongshuyuedu")
+    configpath=configpath||rewardapplisturl
     listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     let apps=数据库.get("runlist","")
     if(!apps){
         log("本地运行配置为空，从云端获取默认配置")
-        var appconfig=httpget(rewardapplisturl)
+        var appconfig=httpget(configpath)
         apps=JSON.parse(appconfig)
     }
     if(!apps){
@@ -2047,7 +2048,6 @@ var localstartreaderapps = function(scriptname,scriptpath){
         runapps.push(app)
     })
     if(runapps.length==0){
-      
         dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
         return
     }
