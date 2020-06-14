@@ -1976,8 +1976,8 @@ var keepappisnewer=function(name,pkg){
          var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
         if(appinfo){
             let appversioncode=AppUtils.getAppVersionCode(pkg)
+            log(name+":"+appversioncode+"--最新:"+appinfo.appDetail.versionCode)
             if(appversioncode!=-1){
-                log(name+":"+appversioncode+"--最新:"+appinfo.appDetail.versionCode)
                 if(appversioncode<appinfo.appDetail.versionCode){
                     downloadApk(name+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
                 }
@@ -2065,7 +2065,7 @@ var localstartreaderapps = function(scriptname,scriptpath){
     })
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
-    let fen=nowtime.getMinutes()
+    let fen=nowtime.getMinutes()+1
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
