@@ -2065,7 +2065,7 @@ var localstartreaderapps = function(scriptname,scriptpath){
     })
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
-    let fen=nowtime.getMinutes()+1
+    let fen=nowtime.getMinutes()+2
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
