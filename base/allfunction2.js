@@ -2022,30 +2022,30 @@ var readercheck=function(){
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath){
     // addbmobchannel("hongshuyuedu")
-    // listapp(readerapps)
-    // com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    // let apps=数据库.get("runlist","")
-    // if(!apps){
-    //     log("本地运行配置为空，从云端获取默认配置")
-    //     var appconfig=httpget(rewardapplisturl)
-    //     apps=JSON.parse(appconfig)
-    // }
-    // if(!apps){
-    //     return
-    // }
-    // let runapps=[]
-    // apps.forEach(app=>{
-    //     if(!app.open){
-    //        return
-    //     }
-    //     if(今日已提现(app.app.name)){
-    //         return
-    //     }
-    //     if(今日时长(app.app.name)>app.runconfig.maxtime){
-    //         return
-    //     }
-    //     runapps.push(app)
-    // })
+    listapp(readerapps)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    let apps=数据库.get("runlist","")
+    if(!apps){
+        log("本地运行配置为空，从云端获取默认配置")
+        var appconfig=httpget(rewardapplisturl)
+        apps=JSON.parse(appconfig)
+    }
+    if(!apps){
+        return
+    }
+    let runapps=[]
+    apps.forEach(app=>{
+        if(!app.open){
+           return
+        }
+        if(今日已提现(app.app.name)){
+            return
+        }
+        if(今日时长(app.app.name)>app.runconfig.maxtime){
+            return
+        }
+        runapps.push(app)
+    })
     // if(runapps.length==0){
     //     dialogs.alert("运行提醒", "今日没有可以运行的应用" )
     //     dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
