@@ -1977,6 +1977,7 @@ var keepappisnewer=function(name,pkg){
         if(appinfo){
             let appversioncode=AppUtils.getAppVersionCode(pkg)
             if(appversioncode!=-1){
+                log(name+":"+appversioncode+"--最新:"+appinfo.appDetail.versionCode)
                 if(appversioncode<appinfo.appDetail.versionCode){
                     downloadApk(name+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
                 }
@@ -2021,47 +2022,47 @@ var readercheck=function(){
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath){
     // addbmobchannel("hongshuyuedu")
-    listapp(readerapps)
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    let apps=数据库.get("runlist","")
-    if(!apps){
-        log("本地运行配置为空，从云端获取默认配置")
-        var appconfig=httpget(rewardapplisturl)
-        apps=JSON.parse(appconfig)
-    }
-    if(!apps){
-        return
-    }
-    let runapps=[]
-    apps.forEach(app=>{
-        if(!app.open){
-           return
-        }
-        if(今日已提现(app.app.name)){
-            return
-        }
-        if(今日时长(app.app.name)>app.runconfig.maxtime){
-            return
-        }
-        runapps.push(app)
-    })
-    if(runapps.length==0){
-        dialogs.alert("运行提醒", "今日没有可以运行的应用" )
-        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
-        return
-    }
-    //下载应用 并保持最新
-    runapps.forEach(app=>{
-        if(!getPackageName(app.app.name)){
-            downloadandinstallapp(app.app.name,app.app.pkg)
-        }else{
-            keepappisnewer(app.app.name,app.app.pkg)
-        }
-    })
-    delectapkfile()
-    runapps.forEach(app=>{
-        forcestop(app.app.name)
-    })
+    // listapp(readerapps)
+    // com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    // let apps=数据库.get("runlist","")
+    // if(!apps){
+    //     log("本地运行配置为空，从云端获取默认配置")
+    //     var appconfig=httpget(rewardapplisturl)
+    //     apps=JSON.parse(appconfig)
+    // }
+    // if(!apps){
+    //     return
+    // }
+    // let runapps=[]
+    // apps.forEach(app=>{
+    //     if(!app.open){
+    //        return
+    //     }
+    //     if(今日已提现(app.app.name)){
+    //         return
+    //     }
+    //     if(今日时长(app.app.name)>app.runconfig.maxtime){
+    //         return
+    //     }
+    //     runapps.push(app)
+    // })
+    // if(runapps.length==0){
+    //     dialogs.alert("运行提醒", "今日没有可以运行的应用" )
+    //     dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+    //     return
+    // }
+    // //下载应用 并保持最新
+    // runapps.forEach(app=>{
+    //     if(!getPackageName(app.app.name)){
+    //         downloadandinstallapp(app.app.name,app.app.pkg)
+    //     }else{
+    //         keepappisnewer(app.app.name,app.app.pkg)
+    //     }
+    // })
+    // delectapkfile()
+    // runapps.forEach(app=>{
+    //     forcestop(app.app.name)
+    // })
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
@@ -2072,7 +2073,7 @@ var localstartreaderapps = function(scriptname,scriptpath){
                 if(runconfig&&app.path){
                     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
                     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
-                        fen=fen+runtime/60
+                        fen=fen+runconfig.onetime/60
                          while(fen>=60){
                             xiaoshi=xiaoshi+1
                             fen=fen-60
