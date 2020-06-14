@@ -1065,14 +1065,11 @@ fun_lofin.start = function (appname) {
         hasDialog(package)
     })
 
-
-
     var ii = 5
     while (ii-- > 0) {
         toast(appname+"登录初始化中...")
         sleep(1000);
     }
-
 
     if (currentPackage() != package) {
         var o = fun_lofin.execApp(appname, package)
@@ -1201,18 +1198,22 @@ function main(){
             }else{
                 install_code = "失败"
             }
-            if(isInArray(can_login,app_name)){
-                login_code_info = fun_lofin.start(app_name)
-                if(login_code_info){
-                    login_code = "成功"
-                }else{
-                    login_code = "失败"
-                } 
-            }else{
-                console.error("不支持自动登录:" + app_name)
-            }
-            fun_lofin.clear()
+    
         }
+        if(isInArray(can_login,app_name)&&!getbooleanvalue(app_name+"_login",false)){
+            login_code_info = fun_lofin.start(app_name)
+            if(login_code_info){
+                spt.put(app_name+"_login",true)
+                login_code = "成功"
+            }else{
+                login_code = "失败"
+            } 
+        }else{
+            console.error("不支持自动登录:" + app_name)
+        }
+        fun_lofin.clear()
+
+
         // one_install_longin_info.push(app_name)
         // one_install_longin_info.push(install_code)
         // one_install_longin_info.push(login_code)
