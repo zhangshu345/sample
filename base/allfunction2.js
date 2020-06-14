@@ -2046,23 +2046,23 @@ var localstartreaderapps = function(scriptname,scriptpath){
         }
         runapps.push(app)
     })
-    // if(runapps.length==0){
-    //     dialogs.alert("运行提醒", "今日没有可以运行的应用" )
-    //     dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
-    //     return
-    // }
-    // //下载应用 并保持最新
-    // runapps.forEach(app=>{
-    //     if(!getPackageName(app.app.name)){
-    //         downloadandinstallapp(app.app.name,app.app.pkg)
-    //     }else{
-    //         keepappisnewer(app.app.name,app.app.pkg)
-    //     }
-    // })
-    // delectapkfile()
-    // runapps.forEach(app=>{
-    //     forcestop(app.app.name)
-    // })
+    if(runapps.length==0){
+        dialogs.alert("运行提醒", "今日没有可以运行的应用" )
+        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+        return
+    }
+    //下载应用 并保持最新
+    runapps.forEach(app=>{
+        if(!getPackageName(app.app.name)){
+            downloadandinstallapp(app.app.name,app.app.pkg)
+        }else{
+            keepappisnewer(app.app.name,app.app.pkg)
+        }
+    })
+    delectapkfile()
+    runapps.forEach(app=>{
+        forcestop(app.app.name)
+    })
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
