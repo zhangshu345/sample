@@ -2053,7 +2053,7 @@ var localstartreaderapps = function(scriptname,scriptpath){
             keepappisnewer(app.app.name,app.app.pkg)
         }
     })
-    
+    delectapkfile()
     runapps.forEach(app=>{
         forcestop(app.app.name)
     })
