@@ -444,12 +444,15 @@ var forcestop=function(appname,st,isclearcache){
       let isclearcache=isclearcache||true
       let apppkg=app.getPackageName(appname);  
       if(apppkg){
-        forcestoppkg(apppkg,st,isclearcache)
+        forcestoppkg(apppkg,st,isclearcache,false)
       }
 }
-var forcestoppkg=function(apppkg,st,isclearcache){
-    log("强制停止："+apppkg)
-    app.openAppSetting(apppkg);
+var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
+    show("强制停止："+apppkg)
+    isnewtask=isnewtask||true
+    if(isnewtask){
+        app.openAppSetting(apppkg);
+    }
     confirmtexts=["强制停止","确定"]
     st=st||1800
     if( device.brand=="samsung"){closetexts= ["强制停止","强制停止"];}
@@ -2057,7 +2060,6 @@ var localstartreaderapps = function(scriptname,scriptpath){
     runapps.forEach(app=>{
         forcestop(app.app.name)
     })
-
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
