@@ -17,13 +17,12 @@ eval(公共函数文本)
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-
 engines.stopOther()
 alltest()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-show("开始定时套餐")
+show("开始定时套餐5")
 if(!gfw){
     show("悬浮未定义")
 }
@@ -31,100 +30,8 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js"
-var run=function(){
-    listapp(readerapps)
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    if(!getPackageName("微信")){
-        nologapps.push(app.name)
-        downloadandinstallapp("微信","com.tencent.mm")
-    }
-    sleep(1000)
-    let nowtime=nowdate()
-    let xiaoshi=nowtime.getHours()
-    let fen=nowtime.getMinutes()
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐4",selfscriptpath,2,xiaoshi,fen)
-    var appconfig=httpget(selfrewardlisturl)
-    let  apps=JSON.parse(appconfig)
-    let runapps=[]
-    let nologapps=[]
-    apps.forEach(app =>{
-        if(!getPackageName(app.name)){
-            nologapps.push(app.name)
-            downloadandinstallapp(app.name,app.app.pkg)
-        }
-    })
-    if(nologapps.length>0){
-        nologapps.forEach(app=>{
-            fen=fen+fen*3
-        })
-    }
-    let  appruntime={}
-    let n_xhcs=0
-    let sumeruntime=0
-    let runtime=120
-    while (sumeruntime<=86400&&n_xhcs<2){
-        n_xhcs=n_xhcs+1
-        apps= shuffleArray(apps)
-        apps.forEach(app => {
-            show("开始设置："+app.name)
-            if(scriptappname==app.name){
-                return
-            }
-            if(sumeruntime<=86400&&app.open){
-                show(app.name+"启动")
-                let runconfig=app.runconfig
-                if(runconfig&&app.path){
-                    if(!appruntime[app.name]){
-                        appruntime[app.name]=0
-                    }
-                    show("运行时间:"+app.name+":"+appruntime[app.name])
-                        fen=fen+runtime/60
-                         while(fen>=60){
-                            xiaoshi=xiaoshi+1
-                            fen=fen-60
-                            if(xiaoshi==24){
-                                xiaoshi=0
-                            }
-                          }
-                             com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
-                             show("设置"+app.name+"运行"+runconfig.onetime+"秒")
-                             appruntime[app.name]=appruntime[app.name]+runconfig.onetime
-                             sumeruntime=sumeruntime+runconfig.onetime
-                             runtime=runconfig.onetime
-                   
-                }
-            }
-        })
-    }
-
-    sleep(2000)
-    show("开始强制关闭运行app")
-    apps.forEach(app => {
-        if(scriptappname==app.name){
-            return
-        }
-        if(app.open){
-            forcestop(app.name)
-        }
-    })
-    if(apps.length>0){
-        let app=apps[0]
-        runurlscript(app.name,app.path)
-    }
-   
-}
-
-var  shuffleArray=function(array) {
-    n=array.length - 1
-    for (let i =0 ; i <n; i++) {
-         j = Math.floor(Math.random() * (n + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      //  log("交换："+i+"--"+j)
-    }
-    return array
-}
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐5.js"
 
 // addbmobchannel("yuedutimer5")
 readercheck()
-run()
+localstartreaderapps("阅读集合1",selfscriptpath)

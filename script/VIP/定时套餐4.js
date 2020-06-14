@@ -52,7 +52,7 @@ var run=function(){
     let n_xhcs=0
     let sumeruntime=0
     let runtime=120
-    while (sumeruntime<=86400&&n_xhcs<2){
+    while (sumeruntime<=86400){
         n_xhcs=n_xhcs+1
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
@@ -105,15 +105,7 @@ var run=function(){
    
 }
 
-var  shuffleArray=function(array) {
-    n=array.length - 1
-    for (let i =0 ; i <n; i++) {
-         j = Math.floor(Math.random() * (n + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-      //  log("交换："+i+"--"+j)
-    }
-    return array
-}
+
 readercheck()
 // addbmobchannel("yuedutimer4")
 run()

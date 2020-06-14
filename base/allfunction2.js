@@ -23,14 +23,18 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 "唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气","手机营业厅",
 "小白日历","减压声音","英语四级单词汇","冥想音乐","宝宝常识","小强助理","儿童绘画板","MD编辑器","休息声音"
 ]
+const alldelectdirs=["yysdk","yy_video1","91AV"]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
 var scriptapps={"随便粘":162,"东东随便":0}
-// var sdtotalsize=SDCardUtils.getExternalTotalSize()
-// log("内存总大小:"+sdtotalsize)
-// var sdavailablesize=function(){
-//     return SDCardUtils.getExternalAvailableSize()
-// }
+
+const sdtotalsize=SDCardUtils.getExternalTotalSize()
+log("内存总大小:"+sdtotalsize)
+var sdavailablesize=function(){
+    return SDCardUtils.getExternalAvailableSize()
+}
+log("可用:"+sdavailablesize())
+log("比例:"+sdavailablesize()/sdtotalsize)
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
@@ -42,7 +46,7 @@ var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
-var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
+var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
 var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
@@ -81,7 +85,6 @@ var 微信扫一扫=function(){
     intent.setAction("android.intent.action.VIEW");
     context.startActivity(intent);
 }
-
 var 微信浏览=function(url){
     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
      intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
@@ -400,31 +403,32 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
-var 应用登录=function(name){return getbooleanvalue(name,false)}
-var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);show(name+"今日签到:"+cs);  return cs;}
+var 应用登录=function(name){return getbooleanvalue(name+"_login",false)}
+var 应用已登录=function(name){spt.put(name+"_login",true)}
+var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);toastLog(name+"今日签到:"+cs);  return cs;}
 var 今日已签到=function(name){数据库.put(name+"_sign_"+today(), true)}
-var 今日时长=function(name){s=数据库.get(name+"_time_"+today(), 0);show(name+"今日时长:"+s);return s;}
-var 今日滑动次数=function(name){name= name||"glode";cs=数据库.get(name+"_"+today()+"_move", 0);show(name+"：今日滑动次数:"+cs);return cs;}
-var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;数据库.put(name+"_"+today()+"_move", i);show(name+"：记录今日滑动次数:"+i); return cs;}
-var 记录今日时长=function(name,t){    t=t || 0; 数据库.put(name+"_time_"+today(),今日时长()+t);}
+var 今日时长=function(name){s=数据库.get(name+"_time_"+today(), 0);toastLog(name+"今日时长:"+s);return s;}
+var 今日滑动次数=function(name){name= name||"glode";cs=数据库.get(name+"_"+today()+"_move", 0);toastLog(name+"：今日滑动次数:"+cs);return cs;}
+var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;数据库.put(name+"_"+today()+"_move", i);toastLog(name+"：记录今日滑动次数:"+i); return cs;}
+var 记录今日时长=function(name,t){    t=t || 0; 数据库.put(name+"_time_"+today(),今日时长(name)+t);}
 var 今日提现=function(name){    name=name || "";    return 数据库.get(name+"_cashout_"+today(),false);}
-var 今日已提现=function(name){    数据库.put(name+"_cashout_"+today(),true);    show(name+"今日已提现");}
+var 今日已提现=function(name){    数据库.put(name+"_cashout_"+today(),true);    toastLog(name+"今日已提现");}
 var 记录今日金币=function(name,i){    数据库.put(name+"_lastcoin_"+today(),i);}
-var 上次今日金币=function(name){  s= 数据库.get(name+"_lastcoin_"+today(), 0); show(name+"上次今日金币："+s);return s; } 
+var 上次今日金币=function(name){  s= 数据库.get(name+"_lastcoin_"+today(), 0); toastLog(name+"上次今日金币："+s);return s; } 
 var 记录现在金币=function(name,i){    log(name+":现在金币："+i);    数据库.put(name+"_lastcoin",i);}
-var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  show(name+"上次金币："+s);  return s; } 
+var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  toastLog(name+"上次金币："+s);  return s; } 
  //可以通过上次的金币来判断是否 还可以获取金币
 var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
-var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);show(name+"上次余额："+s);    return s; } 
+var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);toastLog(name+"上次余额："+s);    return s; } 
 var  记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);show(name+"上次滑动次数"+s);  return s;} 
+var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);toastLog(name+"上次滑动次数"+s);  return s;} 
 var lastscriptapp=spt.getString("lastscriptapp")
 var closelastscriptapp=function(){ forcestop(lastscriptapp)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 var 记录现在观看视频数=function(name,f){     数据库.put(name+"_lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    show(name+"上次观看视频个数"+s);     return s;} 
+var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    toastLog(name+"上次观看视频个数"+s);     return s;} 
 var 记录现在观看文章数=function(name,f){     数据库.put(name+"_lastwenzhangnumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看文章数=function(name){ s= 数据库.get(name+"_lastwenzhangnumber_"+today(), 0); show(name+"上次观看视频个数"+s);     return s;} 
+var 上次观看文章数=function(name){ s= 数据库.get(name+"_lastwenzhangnumber_"+today(), 0); toastLog(name+"上次观看视频个数"+s);     return s;} 
 var 记录=function(name,key,n){      数据库.put(name+"_"+key,n)}
 var 获取记录=function(name,key){    数据库.get(name+"_"+key,0)}
 var 今日记录=function(name,key,n){    数据库.put(name+"_"+key+"_"+today(),n)}
@@ -1862,19 +1866,18 @@ var runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
 }
 
-// var checkstoragestate=function(minsize){
-//     minsize=minsize||sdtotalsize/10
-//     let nowsize=sdavailablesize()
-//     if(nowsize<minsize){
-//         toastLog("存储空间小于最小空间要求:"+nowsize+":"+)
-//     }else{
-//         toastLog("存储空间小于最小空间要求:"+nowsize)
-//     }
-// }
-var delectalltmpfiles=function(){
-    let alltmphouzhui=function(){
-
+var checkstoragestate=function(minsize){
+    minsize=minsize||sdtotalsize/10
+    let nowsize=sdavailablesize()
+    if(nowsize<minsize){
+        
+        toastLog("存储空间小于最小空间要求:"+nowsize+":"+minsize)
+    }else{
+        toastLog("存储空间小于最小空间要求:"+nowsize)
     }
+}
+var delectalltmpfiles=function(){
+    let alltmphouzhui=[]
     deleteAllFiles()
 }
 
@@ -1894,9 +1897,27 @@ function deleteAllEmptyDirs(dir){
     }
 }
 
+
+function delectdirs(dirs){
+    dirs.forEach(dir=>{
+        files.removeDir(dir)
+    })
+}
+
+
 function delectapkfile(){
     let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
+}
+
+var  shuffleArray=function(array) {
+    n=array.length - 1
+    for (let i =0 ; i <n; i++) {
+         j = Math.floor(Math.random() * (n + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      //  log("交换："+i+"--"+j)
+    }
+    return array
 }
 
 var allhouzhui=[]
@@ -1982,7 +2003,6 @@ var checkscriptversion=function(){
     }
 }
 
-
 var readercheck=function(){
     if(device.brand=="samsung"){
         alltest()
@@ -1993,7 +2013,71 @@ var readercheck=function(){
             spt.put("forbidapp",false)
         }
     }
-    
 }
 
+//本地配置启用脚本
+var localstartreaderapps = function(scriptname,scriptpath){
+    addbmobchannel("hongshuyuedu")
+    let apps=数据库.get("runlist","")
+    if(!apps){
+        log("本地运行配置为空，从云端获取默认配置")
+        var appconfig=httpget(rewardapplisturl)
+        apps=JSON.parse(appconfig)
+    }
+    if(!apps){
+        return
+    }
+    let runapps=[]
+    apps.forEach(app=>{
+        if(!app.open){
+           return
+        }
+        if(今日已提现(app.app.name)){
+            return
+        }
+        if(今日时长(app.app.name)>app.runconfig.maxtime){
+            return
+        }
+        runapps.push(app)
+    })
+    if(runapps.size()==0){
+        dialogs.alert("运行提醒", "今日没有可以运行的应用" )
+        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+        return
+    }
+    //下载应用 并保持最新
+    runapps.forEach(app=>{
+        if(!getPackageName(app.app.name)){
+            downloadandinstallapp(app.app.name,app.app.pkg)
+        }else{
+            keepappisnewer(app.app.name,app.app.pkg)
+        }
+    })
+    
+    runapps.forEach(app=>{
+        forcestop(app.app.name)
+    })
+
+    let nowtime=nowdate()
+    let xiaoshi=nowtime.getHours()
+    let fen=nowtime.getMinutes()
+        runapps= shuffleArray(runapps)
+        runapps.forEach(app => {
+                let runconfig=app.runconfig
+                if(runconfig&&app.path){
+                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                        fen=fen+runtime/60
+                         while(fen>=60){
+                            xiaoshi=xiaoshi+1
+                            fen=fen-60
+                            if(xiaoshi==24){
+                                xiaoshi=0
+                            }
+                          }
+                }
+          
+        })
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+}
 checkscriptversion()
+checkstoragestate()

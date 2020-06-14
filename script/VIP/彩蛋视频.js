@@ -146,23 +146,7 @@ function run(){
             sleep(2500)
         }
         sleepr(4000*ratio,6000*ratio)
-        if(滑动次数%10==1){
-            if(device.getBattery()<20){
-                toastLog("电量低")
-                if(device.isCharging()){
-                    if(changesetting){
-                        device.setMusicVolume(0)
-                        device.setBrightnessMode(0)
-                        device.setBrightness(0)
-                    }
-                }else{
-                    //休眠三十分钟
-                    device.lockScreen()
-                    sleep(1800000)
-                  
-                }
-            }
-        }
+       
         if(滑动次数%300==1){
             if(!今日签到(appname)){
                 app_sign()

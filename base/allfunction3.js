@@ -1944,7 +1944,6 @@ var keepappisnewer=function(name,pkg){
                 }
             }
         }
-   
 }
 
 var checkscriptversion=function(){

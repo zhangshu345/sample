@@ -76,6 +76,7 @@ function boboshipin(package) {
     }
 
 }
+
 function caidanshipin(package) {
     appname = getAppName(package)
     var o = packageName(package).textMatches('登录|我|我的').visibleToUser().findOnce();
@@ -99,8 +100,8 @@ function caidanshipin(package) {
         fun_lofin.clickObject(o);
         sleep(2000)
     }
-
 }
+
 function dianshijia(package) {
     appname = getAppName(package)
 
