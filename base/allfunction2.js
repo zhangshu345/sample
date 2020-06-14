@@ -2020,7 +2020,9 @@ var readercheck=function(){
 
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath){
-    addbmobchannel("hongshuyuedu")
+    // addbmobchannel("hongshuyuedu")
+    listapp(readerapps)
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     let apps=数据库.get("runlist","")
     if(!apps){
         log("本地运行配置为空，从云端获取默认配置")
@@ -2063,10 +2065,12 @@ var localstartreaderapps = function(scriptname,scriptpath){
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
+    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
+                    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
                     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
                         fen=fen+runtime/60
                          while(fen>=60){
