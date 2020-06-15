@@ -2019,7 +2019,7 @@ var checkscriptversion=function(){
             log("appversion:"+appversioncode)
             if(appversioncode!=-1){
                 if(appversioncode<ver){
-                    toastLog("低版本现在更想")
+                    toastLog("低版本现在更新")
                     downloadApk(scriptappname,"http://zhangshuhong888.iask.in:8989/"+scriptappname+"_"+ver+".apk",true);  
                 }else{
                     toastLog("版本正常")
