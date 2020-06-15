@@ -422,8 +422,8 @@ var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据�
 var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);toastLog(name+"上次余额："+s);    return s; } 
 var  记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);toastLog(name+"上次滑动次数"+s);  return s;} 
-var lastscriptapp=spt.getString("lastscriptapp")
-var closelastscriptapp=function(){ forcestop(lastscriptapp)}
+var lastscriptapp=function(){return spt.getString("lastscriptapp")}
+var closelastscriptapp=function(){ forcestop(lastscriptapp())}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 var 记录现在观看视频数=function(name,f){     数据库.put(name+"_lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    toastLog(name+"上次观看视频个数"+s);     return s;} 
@@ -1655,7 +1655,7 @@ var close_ad_qq=function(apppkg,clickgailv){
     // ccj_file_paths 
         clickgailv=clickgailv||-1
      let  ca=currentActivity()
-    show(apppke+"关闭腾讯广告 activity:"+ca)
+    show(apppkg+"关闭腾讯广告 activity:"+ca)
     //激励视频 
     if(ca=="com.qq.e.ads.PortraitADActivity"){
       if(doactionmaxtime( function(){
@@ -2067,9 +2067,11 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
     })
     delectapkfile()
     checkweixin()
-    runapps.forEach(app=>{
-        forcestop(app.app.name)
-    })
+    // runapps.forEach(app=>{
+    //     forcestop(app.app.name)
+    // })
+    closelastscriptapp()
+    spt.remove("lastscriptapp")
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+2
