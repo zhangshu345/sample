@@ -2140,14 +2140,15 @@ var checkweixin=function(){
              node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
                 if(node_weixin){
                 let weixin=node_weixin.text().substring(4)
-                log("微信号："+weixin)
                 spt.put("weixin",weixin)
+                log("微信号："+weixin)
+                
                 }
                 node_weixinname=className("android.view.View").depth(17).drawingOrder(1).enabled(true).boundsInside(200,200,1080,450).findOne()
                 if(node_weixinname){
                     let weixinname=node_weixinname.text()
-                    log("微信名："+weixinname)
                     spt.put("weixinname",weixinname)
+                    log("微信名："+weixinname)
                 }
             }
             return true
