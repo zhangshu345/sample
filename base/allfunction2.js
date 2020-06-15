@@ -2121,6 +2121,9 @@ var checkweixin=function(){
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath,configpath){
     device.wakeUpIfNeeded()
+    sleep(1000)
+    back()
+    home()
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
