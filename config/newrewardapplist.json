@@ -1,6 +1,6 @@
 [{  "name":"刷宝短视频",
     "desc":{"summary":"刷宝短视频自动刷视频签到提现","script":"","html":""},
-    "tags":["刷宝","短视频","赚钱"],
+    "tags":["刷宝短视频","短视频","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
     "open":true,
     "install":true,
@@ -742,7 +742,7 @@
         "downloadurl":"",
         "version":""}
 
-},{  "name":"com.ziqun.story",
+},{  "name":"趣故事",
     "desc":{"summary":"趣故事，阅天下故事，品味人间百态。","script":"","html":""},
     "tags":["直播","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],

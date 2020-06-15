@@ -204,7 +204,7 @@ function listapp(keepapps,delectapp){
         apps=JSON.parse(appconfig)
         apps.forEach(app =>{
          if(app.install){
-            appnames.push(app.name)
+            appnames.push(app.app.name)
          }
         })
     }
@@ -1336,7 +1336,7 @@ var doactionmaxtime=function(action,maxtime,intertime){
     intertime=intertime||1000
     stime=nowdate().getTime()
     while(nowdate().getTime()-stime<maxtime){
-        if (action()){
+        if(action()){
             return true;
         }
         sleep(intertime)
@@ -2084,6 +2084,18 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
                 }
         })
         com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+}
+var weixinislogin=function(){
+    let weixinpkg=getPackageName("微信")
+    if(!weixinpkg){
+        return false
+    }
+    app.launch(weixinpkg)
+   return doactionmaxtime(function(){
+       if(textclick("我")){
+
+       }
+   },10000)
 }
 checkscriptversion()
 checkstoragestate()
