@@ -15,6 +15,8 @@ importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
+importClass(com.hongshu.androidjs.core.debug.DevPluginService)
+DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
@@ -2176,17 +2178,25 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
                     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+                    while(fen>=60){
+                        xiaoshi=xiaoshi+1
+                        fen=fen-60
+                        if(xiaoshi==24){
+                            xiaoshi=0
+                        }
+                      }
                     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
                         fen=fen+runconfig.onetime/60
-                         while(fen>=60){
-                            xiaoshi=xiaoshi+1
-                            fen=fen-60
-                            if(xiaoshi==24){
-                                xiaoshi=0
-                            }
-                          }
+                      
                 }
         })
+        while(fen>=60){
+            xiaoshi=xiaoshi+1
+            fen=fen-60
+            if(xiaoshi==24){
+                xiaoshi=0
+            }
+          }
         com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
         closelastscriptapp()
         spt.remove("lastscriptapp")
