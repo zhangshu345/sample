@@ -22,7 +22,7 @@ show("公共函数实例化成功")
 else {
 show("公共函数实例化失败,程序返回")
 }
-gfw.setPosition(0,device.height-250)
+
 /*---------------------------------lib-------------------------------*/
 /*明明标准为 作者昵称 简称+app全拼 */
 var apppkg="com.kuaishou.nebula"
@@ -50,6 +50,8 @@ checksystemsettings()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
+
+gfw.setPosition(0,device.height-250)
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
