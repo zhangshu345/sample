@@ -198,16 +198,22 @@ function listapp(keepapps,delectapp){
     if(keepapps){
         appnames=keepapps
     }
-    delectapp=delectapp||true
-    if(delectapp){
-        var appconfig=httpget(allrewardappurl)
-        apps=JSON.parse(appconfig)
-        apps.forEach(app =>{
-         if(app.install){
-            appnames.push(app.app.name)
-         }
-        })
+
+    if(device.brand=="samsung"){
+        delectapp=delectapp||true
+        if(delectapp){
+            var appconfig=httpget(allrewardappurl)
+            apps=JSON.parse(appconfig)
+            apps.forEach(app =>{
+             if(app.install){
+                appnames.push(app.app.name)
+             }
+            })
+        }
+    }else{
+        delectapp=false
     }
+
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);

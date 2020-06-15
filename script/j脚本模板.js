@@ -117,7 +117,6 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
-
     alltest()
     // checkfloaty()
     // checksystemsettings()
