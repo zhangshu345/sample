@@ -2199,4 +2199,4 @@ checkscriptversion()
 //         keepappisnewer(app.app.name,app.app.pkg)
 //     }
 // })
-closelastscriptapp()
+// closelastscriptapp()
