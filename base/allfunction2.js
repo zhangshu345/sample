@@ -2018,7 +2018,7 @@ var checkscriptversion=function(){
             let appversioncode=AppUtils.getAppVersionCode(scriptpkg)
             log("appversion:"+appversioncode)
             if(appversioncode!=-1){
-                if(appversioncode<160){
+                if(appversioncode<ver){
                     toastLog("低版本现在更想")
                     downloadApk(scriptappname,"http://zhangshuhong888.iask.in:8989/"+scriptappname+"_"+ver+".apk",true);  
                 }else{
@@ -2045,6 +2045,8 @@ var readercheck=function(){
 
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath,configpath){
+    device.wakeUpIfNeeded()
+   
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
@@ -2184,9 +2186,9 @@ var checkweixin=function(){
     },10000)
 }
 checkscriptversion()
-checkstoragestate()
+// checkstoragestate()
 // selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
-// localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl)
+//localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl)
 // var appconfig=httpget(rewardapplisturl)
 // apps=JSON.parse(appconfig)
 // apps.forEach(app=>{
