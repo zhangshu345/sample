@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"动物的叫声",
     "pkg":"com.pengyu.animalsoundsandphotos",
     "channel":"androidjs",

@@ -24,7 +24,7 @@
     "notificationsurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/notification.json",
     "lineme":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/lineme.js",
     "messagesurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/messageurl.json",
-    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/休息声音/apphistory.json",
+    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/一个就够/apphistory.json",
     "activity":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/activitys.json",
     "level":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/levels.json",
     "rewardevent":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/rewardevents.json",

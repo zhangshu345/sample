@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"一个就够",
     "pkg":"com.hongshu.onemore",
     "channel":"androidjs",

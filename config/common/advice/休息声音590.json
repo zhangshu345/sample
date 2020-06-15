@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"休息声音",
     "pkg":"net.yuyu.sleepsounds",
     "channel":"androidjs",

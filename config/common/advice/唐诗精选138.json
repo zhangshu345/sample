@@ -1,6 +1,6 @@
 {   "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"唐诗精选",
     "pkg":"com.zpy.poem.ts300",
     "channel":"androidjs",

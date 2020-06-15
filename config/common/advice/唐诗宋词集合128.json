@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"唐诗宋词集合",
     "pkg":"com.yuyu.tangsong",
     "channel":"androidjs",

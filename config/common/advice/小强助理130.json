@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"小强助理",
     "pkg":"com.xiaoqiang.weather",
     "channel":"androidjs",

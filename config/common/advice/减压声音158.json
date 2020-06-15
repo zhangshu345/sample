@@ -1,7 +1,7 @@
 {   
     "jgchaping":60,
     "jgbanner":30,
-    "jgnative":2,
+    "jgnative":3,
     "name":"减压声音",
     "pkg":"net.pengyu.sleepo",
     "channel":"androidjs",
