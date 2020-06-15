@@ -26,7 +26,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 const alldelectdirs=["yysdk","yy_video1","91AV"]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":162,"东东随便":0}
+var scriptapps={"随便粘":163,"东东随便":0}
 
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
@@ -96,7 +96,7 @@ var 微信浏览=function(url){
 var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
-var isshowfloaty=true  //是否显示提醒
+var isshowfloaty=false  //是否显示提醒
 var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
 var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
@@ -105,9 +105,6 @@ var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  r
 var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
 var getstrsetvalue=function(key){   return spt.getStringSet(key)}
 var  creatgfloatywindow=function(){
-    if(!isshowfloaty){
-        return
-    }
     gfw=floaty.rawWindow(
         <horizontal  >
             <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
@@ -116,6 +113,7 @@ var  creatgfloatywindow=function(){
     gfw.setSize(device.width, 120)
     gfw.setTouchable(false)
     gfw.setPosition(0,80)
+    isshowfloaty=true
  }
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
@@ -368,9 +366,17 @@ var sendforcestopIntent=function(apppkg){
 }
 
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
-var show=function(txt){ if(!isshowfloaty){  toastLog(txt);return  };
-    if(!gfw){ creatgfloatywindow(); };
-    ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
+var show=function(txt){ 
+    try {
+        if(!isshowfloaty){  toastLog(txt);return  };
+        if(!gfw){ creatgfloatywindow(); }else{
+            ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
+        }
+       
+    } catch (error) {
+        log(error)
+    }
+
 }
 var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
 var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
@@ -1035,22 +1041,23 @@ var firstrunapp=function(appname){
 
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
-    log('要下载的APP的：' + name+":"+downloadurl);
-    isinstall=isinstall || false
-    runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
-     // 在每个空格字符处进行分解。
-     file_name = name+".apk"
-     // 设置APP的路径
-     file_path_root = files.getSdcardPath()
-     filePath = file_path_root + "/" + file_name
-     importClass('java.io.FileOutputStream');
-     importClass('java.io.IOException');
-     importClass('java.io.InputStream');
-     importClass('java.net.MalformedURLException');
-     importClass('java.net.URL');
-     importClass('java.net.URLConnection');
-     importClass('java.util.ArrayList');
+
      try {
+        log('要下载的APP的：' + name+":"+downloadurl);
+        isinstall=isinstall || false
+        runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
+         // 在每个空格字符处进行分解。
+         file_name = name+".apk"
+         // 设置APP的路径
+         file_path_root = files.getSdcardPath()
+         filePath = file_path_root + "/" + file_name
+         importClass('java.io.FileOutputStream');
+         importClass('java.io.IOException');
+         importClass('java.io.InputStream');
+         importClass('java.net.MalformedURLException');
+         importClass('java.net.URL');
+         importClass('java.net.URLConnection');
+         importClass('java.util.ArrayList');
         let url = new URL(downloadurl);
         let  conn = url.openConnection(); //URLConnection
         let  inStream = conn.getInputStream(); //InputStream
@@ -1985,7 +1992,8 @@ var weixin_allow_friend=function(weixinname,shenqing){
 }
 
 var keepappisnewer=function(name,pkg){
-         var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
+    try {
+        var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
         if(appinfo){
             let appversioncode=AppUtils.getAppVersionCode(pkg)
             log(name+":"+appversioncode+"--最新:"+appinfo.appDetail.versionCode)
@@ -1995,6 +2003,10 @@ var keepappisnewer=function(name,pkg){
                 }
             }
         }
+    } catch (error) {
+        log("keepappisnewer"+"--"+name+":"+error)
+    }
+     
 }
 
 var checkscriptversion=function(){
@@ -2173,4 +2185,15 @@ var checkweixin=function(){
 }
 checkscriptversion()
 checkstoragestate()
-
+// selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
+// localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl)
+// var appconfig=httpget(rewardapplisturl)
+// apps=JSON.parse(appconfig)
+// apps.forEach(app=>{
+//     log(app.app.name+"------"+app)
+//     if(!getPackageName(app.app.name)){
+//         downloadandinstallapp(app.app.name,app.app.pkg)
+//     }else{
+//         keepappisnewer(app.app.name,app.app.pkg)
+//     }
+// })
