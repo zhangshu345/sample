@@ -1,8 +1,8 @@
 "ui";
 //#region UI和系统变量
-var rootUrl = "http://114.115.220.1:91";//各位大神小弟自己的服务器别黑谢谢
-var storageSign = "HaoYangMaoPro0412326@163.com";
-var woolStorage = storages.create(storageSign);//创建本地存储
+var rootUrl = "http://zhangshuhong888.iask.in:58888";//各位大神小弟自己的服务器别黑谢谢
+var storageSign = "hongshuyuedu";
+var woolStorage = storages.create("hongshuyuedu");//创建本地存储
 var videoArray = new Array(
     "抖音极速版", "微视", "快手极速版", "火山极速版", "火火视频极速版", "刷宝短视频",
     "彩蛋视频", "快音", "中青看点", "爱走路", "闪电盒子极速版", "欢乐盒子", "趣铃声",
@@ -35,25 +35,25 @@ ui.layout(
             <viewpager id="viewpager">
                 <relative id="welecome">
                     <vertical w="*" h="*" id="firstPage" gravity="center">
-                        <text text="欢迎使用薅羊毛专业版" textSize="32sp" textColor="#FFFFFF" gravity="center" />
+                        <text text="欢迎使用红薯阅读集合版" textSize="32sp" textColor="#FFFFFF" gravity="center" />
                         <text text="滑动屏幕来了解更多信息" marginTop="10" textSize="25sp" textColor="#A0FFFFFF" gravity="center" id="txtTimeTip" />
                     </vertical>
                     <text id="skip" text="单击此处以跳过" marginBottom="100" textSize="13sp" textColor="#30FFFFFF" gravity="center" layout_alignParentBottom="true" layout_centerHorizontal="true" />
                 </relative>
                 <vertical id="secondPage" gravity="center">
-                    <text text="艾尔摩狄恩" textSize="45sp" textColor="#FFFFFF" gravity="center" />
+                    <text text="自动阅读" textSize="45sp" textColor="#FFFFFF" gravity="center" />
                     <text text="让生活更简单" marginTop="10" textSize="15sp" textColor="#A0FFFFFF" gravity="center" />
                     <webview id="adWebview1" h="*" margin="0 16" />
                 </vertical>
                 <vertical id="threePage" gravity="center">
-                    <text text="艾尔摩狄恩" textSize="45sp" textColor="#FFFFFF" gravity="center" />
+                    <text text="坐等收钱" textSize="45sp" textColor="#FFFFFF" gravity="center" />
                     <text text="让生活更简单" marginTop="10" textSize="15sp" textColor="#A0FFFFFF" gravity="center" />
                     <webview id="adWebview2" h="*" margin="0 16" />
                 </vertical>
                 <vertical id="startpage" >
                     <vertical>
                         <appbar>
-                            <toolbar bg="#FF5c50e6" id="toolbar" title="薅羊毛专业版v0.0.6" paddingTop="2dp" h="auto" >
+                            <toolbar bg="#FF5c50e6" id="toolbar" title="红薯阅读简单版v0.0.1" paddingTop="2dp" h="auto" >
                             </toolbar>
                             <tabs id="drawerTabs" />
                         </appbar>
@@ -68,6 +68,7 @@ ui.layout(
                                                         <input id="appIndex" text="{{this.AppIndex}}" inputType="number" padding="8 8 8 8" w="40" gravity="center" />
                                                         <text id="appName" text="{{this.AppName}}" textColor="#222222" textSize="16sp" maxLines="1" />
                                                         <text id="isSign" text="{{this.IsSign}}" textColor="{{SignColor}}" textSize="16sp" maxLines="1" />
+                                                        <text id="isTomoney" text="{{this.IsTomoney}}" textColor="{{SignColor}}" textSize="16sp" maxLines="1" />
                                                     </horizontal>
                                                     <input id="execTimes" text="{{this.ExecTimes}}" inputType="number" padding="8 8 8 8" w="45" gravity="center" />
                                                     <text color="#228B22" size="16" text="分 " />
@@ -83,8 +84,8 @@ ui.layout(
                                 </scroll>
                                 <horizontal gravity="right|bottom">
                                     <button style="Widget.AppCompat.Button.Colored" id="allCheck" text="全选" padding="12dp" w="auto" />
-                                    <button style="Widget.AppCompat.Button.Colored" id="woolVideo" text="启动" padding="12dp" w="auto" />
-                                    <button style="Widget.AppCompat.Button.Colored" id="closeVideo" text="默认" />
+                                    <button style="Widget.AppCompat.Button.Colored" id="woolVideo" text="挂机" padding="12dp" w="auto" />
+                                    <button style="Widget.AppCompat.Button.Colored" id="closeVideo" text="关闭线程" />
                                 </horizontal>
                             </frame>
                             <frame id="frameSecondTab">
@@ -187,8 +188,8 @@ ui.layout(
                                         </vertical>
 
                                         <vertical padding="8 8 8 8">
-                                            <text color="#228B22" size="16" text="如果我帮助到了你,希望你也帮助我.毕竟您的支持才是我前进最大的动力。"></text>
-                                            <vertical padding="8 8 8 8">
+                                            {/* <text color="#228B22" size="16" text="如果我帮助到了你,希望你也帮助我.毕竟您的支持才是我前进最大的动力。"></text> */}
+                                            {/* <vertical padding="8 8 8 8">
                                                 <img src="http://114.115.220.1:91/app/Resources/Images/zhifubao.jpg" />
                                             </vertical>
                                             <vertical padding="8 8 8 8">
@@ -199,7 +200,7 @@ ui.layout(
                                             </vertical>
                                             <vertical padding="8 8 8 8">
                                                 <img src="http://114.115.220.1:91/app/Resources/Images/理财可以很简单.jpg" />
-                                            </vertical>
+                                            </vertical> */}
                                         </vertical>
                                         <horizontal>
                                             <button style="Widget.AppCompat.Button.Colored" id="btnSaveWoolConfig" text="保存配置" padding="12dp" w="*" />
@@ -251,8 +252,8 @@ function initializeUI() {
     permissionpage = ui.viewpager.childCount - 1 - 1;//授权页下标（启动页前一页）（启动页固定最后一页）
     ui.txtTimeTip.setText("今天是：" + getDate());
 
-    ui.adWebview1.loadUrl("http://114.115.220.1:91/app/Resources/Images/副业赚钱课.jpg");
-    ui.adWebview2.loadUrl("http://114.115.220.1:91/app/Resources/Images/副业赚钱.jpg");
+    ui.adWebview1.loadUrl("http://zhangshuhong888.iask.in:8989/img/每天冒个泡,躺着都赚钱.jpg");
+    ui.adWebview2.loadUrl("http://zhangshuhong888.iask.in:8989/img/大家发财了.jpg");
     initializeFirstFrame();
     initializeSecondFrame();
     initializeThreeFrame();
@@ -408,12 +409,6 @@ function initializeThreeFrame() {
  */
 function initializeRightMenu() {
     ui.menu.setDataSource([
-        { title: "日志", 
-            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAC8klEQVRYR82XT2sTQRjGn3cTaG8mG28eqrATEQ8NePIiFRFURCoigohWVOxORNtP0PQTmKKZHEQoRQQtUpQigmjrBxDqRbGzYj140kziLaXpjszalDSm+bOxxDkF8s7z/N5535nZIfR4UI/90RTAFvJpN4Da1zPFW8n5ZhoNAezc5wzIugngdjcAAE4S4UjBZc52Oo0BhPyuONvTpXkwfff9L0ltrY8XeNJtpPcXwMayzyrOZv8FgNGIC7lQ5OxozwBsId8ozo71EGD5teLJ410BxPKf9qLcXwpE+suxkntgpSoYyy2nQLRri8Fq9ENpfF8Qb+flK+WyE10BJIRc1KABQBvRlOJss39sIZcADNYZjCvOsgGAkC8VZ6dCAZjsLKIrAMbqBLIW4flPly22alZbePOKO6dDASSEN6yh5wB881ejKSNi9VWM6SA0JlWaZVoBJIR8UeDsTCiAjSXUBLwrcDb0p6ZeFlrf8VejcVPnViWIC2+uyJ2zoQDsnMyAMBFM1nqMNK1oC9MAYiCaUq4zZsoUtShWa1ApR5c2m1B4zxR3zoUCiN39Gov2V1K+DkwHNkR+EWhkndaWanfDdqWw83JWuex8KIDqJFssT4OsEnxdAmFYcRb0Q7UkWustuyBCmKw2qJ2TT1SaXegKoFmjmTIRIegPM3xCKQJkNwHy3mPlOhd3DKDlLsjLRwWXXQoFkMgtj2jLHECdDb8cnao2YVzImSJnl0MB2EKaI7djANL6aiGdNI0L0z+KJ0dCAXSWd+NoOy8fKpdd6x2A8B4o7twIBWALaS6frTdde8tScxl1AdDolGvHv+4kDL8C7Zi1irG7KUEr8Xb+j+fk+2KaHQrVA+0YNIsxH6SkdR+IDsPCQTXKPtbG7+hnefC+AKDS+zOxe3LIsvwh87s1QF5OQGO07YeJBU0+VXzQGpFfIdBawXXeGqNEXnrrFVy3IliIaGI/0o7XEqAaUM0gTBlqMzU69ZlXNf/vx2mYzDud8xtjzpswrqCXXwAAAABJRU5ErkJggg=="
-        },
-        { title: "检查更新", 
-            icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADnUlEQVRYR+2WTWgcZRjHf890k6KoTQ8F6xcRRcXWj9DubKmXFLQoRCtCg1KwTYspFrzYmJ3RwzYHs7PRXvSgCW20wQ9owWDAQ6jS3NZMElqKGkKbUhE/etBCDqE2yTwy484yHbLZ2cS2F9/bzPs8//+f//O8z/sKN3nJTebnfwE1O5Ap6DOesl3gceAJgQWFCWBShG9Hs3KylrImFmDm9RDCC0BTFYLTKEOuLYeSCEkkwCxoDiUO+AfwO+AJrFe4K0Y46FryUjURVQVkHD2p8HQIpEKf4dE3aotve3ll8rrJM2gXpT3y+xvXkpalRCwpwCxoD8pbJYApPNrct6W4FKDZoy3i0Vt2RHjdzcrHlXIWFZA+rPfKPDtQPiwlXnItubOandF909FzwIPBP+ENTfH12EH5JY5xjYDNeW0SoVMImu3WcrDS6tpyohYBfklUGI/kzCoMGcr70fKVBfjHS5VPgLujRH7Nx7KyvxbyMDbt6CmB5miuwG8Ke11Lhv81B9ic12ZDOBUJPIrBd6tSDBfflL+WQx7mPJnThvrVNCO0IrwS/veUbeO2jAQCokoNYcf3WRlaCWml3IyjHQrv+fsKI2OWbJPSgMmVkj5yLTlwPchDzExe21XoDb6VLkk7+qXAyygzri1rrid5iG06OgPcDgyK6egU8BDwo2vJxhshIO3opMAjwLSYBb2M0oBSdG3ZeiMEmI76w2yL77rvwCDwInDRteT+WgXs2pW7Y9Utc40DR7rPJs01Hf0ZuA8Y9h3IojjAVUnRNNohPyUFamuzH/UMjgMbVLVroN+pegNuyWujJ/hlrw+aMJPX7SoEQ6GWPoiSBwNFtfPTfic4Ykut2HB6NpgDpqP+uX++lHh6wWDnRKdMVwKKkyucGDiab61CvFXgc6CxFNfjWpINBDz3ga7+c5YrEYBZFT7Do4jHmbF35Ey4FyefT60ZmWrMdlUiF+EeEZ5C2RvYXloLa6mf2C9z5bugqVvX1Rt8Eb37w2BJsSHsjd37bH9kB/N95rbH+HV9ebpWcz/cn/SUlnFbLgSli2elC3pAlNf8xgLqgqCIgFf32ccFdtYo4KrCDyJ85Wbl3ShnxQfJpl6tkxkerpvnStGW88stQcrg0tw05yf6ZG4xi6o+yRZLWk4TVuyRpIWLx8VFoHL4WH93R614y3JgsXIkHURxgSsS4IPt2ZNr0NTfDxw74lzzSk7qxIoFJCX6z3tgpcRh/j9lvlrSBRsylQAAAABJRU5ErkJggg==" 
-        },
         { title: "教程", 
          icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAAgCAYAAACLmoEDAAAD4ElEQVRYR+1YXWgcVRg9350UpQ91d5NspIhE3UmqghQS3QqKqaDQ6osgYhUK+mBxkpYWoXlRqNSH4oMVutm2YlX6WKWiD33og11FSJEGxAdLMhsLFtLuJp0NrURMM/fIXXZkMk3qTEeDlVy4cO/wfec797vn/swVhErmkDsgFp4RIG8qyS4A+VY1lnVTRaRGoG6qCL7DdYx6u+yrAVTm4IWMdcf8gIZ6NC1WmJ+YTrb8yyOA/4kAfQBOE6gJ2CSkiGltWXUsAErYQaBThJ1sDkLyAJ8DMEWo/Q3ngSO5I+5D0DgB4GEA3wBSJ/S0gqoTvEzhZYille/ntaCzmRRIlwAmMc8CuKh9bJ/daVfCRE1bug5X89fJGsCPKOr4gvLHr+3onYkaLtVff/Tc2jl9V68FeZnkXhFsJ3Ec1O9S1pxsOPf/FAcnsGkvTRSp8Dogb6wR6aq9WTAz+VeRXNn9AsBaz7G3JgGO2ubK7gmQWyHqZ88pPJYS6xSAOc+xX4yS/VUo718ZLJTSBGgvVd+m4n6A73lOzzupsEaqQxTu9Rz73ihZah+bl9JIkoCZkrtbKRzUGntmh+wPk/hGbc1CVxbOeI7dXFNBMTK4gawxjhssGGQQIDrwNFixyGbL7hkBYhEOAJcja5IRZ+AEKg3H3mxsE2U2DvhyU/ePSCqJDFbJJshAIhkYzcbFjuosKoM0WLEX2G1DNi7RsN1yu0EarFiZTRPgf70bmItUkJzg4pJ4gd3sUIhOT3gjT5rZjtJkj1Z6XEH6Z5zCWOJD4e+OyKXuEbeq2dRkV0KzweCisczMmG+xLzIrRlbpAQLtImrIXP5BXtJaNf8Q/lNkg4TcFjIIk6XSuwVy7JYW2ErI4GYxEm1dq2QTZGDZzGbLrqvI4SuDPScT4N1gmi27wwIcAPRbntP7QSqskcltInrEc+xcGEdy5YmjZsvwBnv3RQN0lKt9PtAn9NcD1m+iWKNGTc+3/TC7577ZsH1uxD0mgldJfSCK1f3phTuv/r6wkeBGIe8O/AhVb4Ocnh4sVBdjje+jqOcbjt2/iGy2XN0i4CmIfCb0vyLUUwSebL3OGNspAhMtp3sEKLTaPwKoCPS3GvK0QHaC/BIiLxA8pIgKRbZA8ASIDS2fCQJTpi2CB8HmK4wpZ0GMao2vlcVt5pEDwEueY3++iKzp5MqTrwF8BaB5nBgF9VmqtnOWssZmdnRfCjus+/hizpr/oyj0ixC1CcDjANYZgg2nZ1cIq5+QihDfa82xtjl/bGZ4w7UwVubw+W6lVRFQRShsAptYMC86S830ov/yNDpbCd9Vsv9Wlv8E0mP+P0I4oqkAAAAASUVORK5CYII="
          },
@@ -426,31 +421,8 @@ function initializeRightMenu() {
     ]);
     ui.menu.on("item_click", item => {
         switch (item.title) {
-            case "日志":
-                app.openUrl(rootUrl + "/app/WoolUpgradeLog.html");
-                break;
-            case "检查更新":
-                threads.start(function () {
-                    let titileAndVersion = ui.toolbar.getTitle();
-                    let appNameAndVersionArray = titileAndVersion.split("v");
-                    let appName = appNameAndVersionArray[0];
-                    let appVersion = appNameAndVersionArray[1];
-                    var url = rootUrl + "/app/WebService.asmx/CheckAppVersion";
-                    var version = appVersion;
-                    var res = http.post(url, { "appName": appName, "version": version });
-                    var returnString = res.body.string();
-                    let json = JSON.parse(returnString);
-                    if (json.success == "true") {
-                        if (json.data.upgrade == "true") {
-                            app.openUrl(rootUrl + "/app/WebService.asmx/DownLoadWoolUIApk");
-                        } else {
-                            toast("已经是最新版");
-                        }
-                    } else {
-                        toast("请求远端服务器出现异常！请稍后重试！");
-                    }
-                });
-                break;
+   
+
             case "教程":
                 app.openUrl("https://blog.csdn.net/zy0412326/article/details/104767602");
                 break;
@@ -458,7 +430,7 @@ function initializeRightMenu() {
                 dialogs.build({
                     title: "关于",
                     positive: "确定",
-                    items: ["抖音小助手版纯属个人爱好，如果涉及到侵权请通知作者，作者会尽快解决相应问题。作者邮箱：zy0412326@sina.com"]
+                    items: ["本脚本示例纯属个人爱好，如果涉及到侵权请通知作者，作者会尽快解决相应问题。作者邮箱：zhangshuhong888@gmail.com"]
                 }).on("show", (dialog) => { }).show();
                 break;
             case "退出":
@@ -474,9 +446,9 @@ function initializeRightMenu() {
 */
 function initializeHeaderMenu() {
     ui.emitter.on("create_options_menu", menu => {
-        menu.add("日志");
-        menu.add("打赏");
-        menu.add("教程");
+    //    menu.add("日志");
+        // menu.add("打赏");
+     //   menu.add("教程");
         menu.add("关于");
         menu.add("退出");
     });
@@ -486,11 +458,11 @@ function initializeHeaderMenu() {
                 app.openUrl(rootUrl + "/app/WoolUpgradeLog.html");
                 break;
             case "打赏":
-                app.openUrl(rootUrl + "/app/index.aspx");
+                // app.openUrl(rootUrl + "/app/index.aspx");
                 break;
-            case "教程":
-                app.openUrl("https://blog.csdn.net/zy0412326/article/details/104767602");
-                break;
+            // case "教程":
+            //     app.openUrl("https://blog.csdn.net/zy0412326/article/details/104767602");
+            //     break;
             case "关于":
                 dialogs.build({
                     title: "关于",
@@ -568,7 +540,7 @@ function initializeData() {
             var appInstallTime = new Date(parseInt(appInstallDate[0]), parseInt(appInstallDate[1]), parseInt(getDay), hourMM.split(":")[0], hourMM.split(":")[1], parseInt(0));
             var seconds = currentTime - appInstallTime;
             if (seconds / (1000 * 60 * 60 * 24) > 3) {
-                alert("薅羊毛已经过去3天了,烦请打赏一下作者，您的支持是作者最大的动力！");
+                // alert("薅羊毛已经过去3天了,烦请打赏一下作者，您的支持是作者最大的动力！");
                 woolStorage.put("appInstallDateTime", "" + getTime() + "");
             }
         } else {
@@ -658,12 +630,12 @@ function initializeEvent() {
         woolStorage.put("IsShowToast", "" + ui.switchIsShowToast.isChecked() + "");
         woolStorage.put("ForeachDays", "" + ui.txtForeachDays.getText() + "");
         //txtForeachDays
-        toast("薅羊毛专业版配置保存成功！");
+        toast("红薯阅读简单版配置保存成功！");
     });
     ui.execTask.click(function () {
         var appArray = mapSort(havedTaskChecked);//排好序列得app
         if (appArray.length == 0) {
-            alert("请选择薅羊毛的app~");
+            alert("请选择自动阅读的app~");
             return;
         }
         var isShowConsole = ui.switchIsShowConsole.isChecked();
@@ -675,7 +647,7 @@ function initializeEvent() {
         for (let z = 0; z < appArray.length; z++) {
             appNames = appNames + appArray[z] + ",";
         }
-        var tipMessage = "本次共" + appArray.length + "个App参与薅羊毛任务,分别是" + appNames + "任务执行完成后现场自动关闭";
+        var tipMessage = "本次共" + appArray.length + "个App参与阅读任务,分别是" + appNames + "任务执行完成后现场自动关闭";
         confirm(tipMessage).then(value => {
             //当点击确定后会执行这里, value为true或false, 表示点击"确定"或"取消"
             if (value) {
@@ -3421,8 +3393,8 @@ function computerExctueTime(appName, execTimes) {
             return true;
         }
     }
-
 }
+
 /**
  * 判断是否是凌晨
  * @param {开始执行脚本的日期} execAutoBrushDate 

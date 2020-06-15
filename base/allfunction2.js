@@ -362,8 +362,8 @@ var sendforcestopIntent=function(apppkg){
 }
 
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
-var show=function(txt){ log(txt); if(!isshowfloaty){ return  };
-    if(!gfw){ creatgfloatywindow();  };
+var show=function(txt){ if(!isshowfloaty){  toastLog(txt);return  };
+    if(!gfw){ creatgfloatywindow(); };
     ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
 }
 var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
@@ -1608,7 +1608,8 @@ function get_phone_code(app_name,reg,startwords,endwords){
 }
 
 //关闭穿山甲激励视频广告
-var close_ad_toutiao=function(apppkg){
+var close_ad_toutiao=function(apppkg,clickgailv){
+    clickgailv=clickgailv||-1
     let ca=currentActivity()
     show("关闭穿山甲:activity:"+ca)
     if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
@@ -1638,7 +1639,8 @@ var close_ad_toutiao=function(apppkg){
     return false
 }
 
-var close_ad_liquid=function(apppkg){
+var close_ad_liquid=function(apppkg,clickgailv){
+    clickgailv=clickgailv||-1
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
          return  doactionmaxtime(function(){
              if(clickonetexts(["关闭","关闭广告"],500,1500)){
@@ -1649,14 +1651,21 @@ var close_ad_liquid=function(apppkg){
     }
 }
 
-var close_ad_qq=function(apppkg){
+var close_ad_qq=function(apppkg,clickgailv){
     // ccj_file_paths 
+        clickgailv=clickgailv||-1
      let  ca=currentActivity()
-    show("关闭qqad activity:"+ca)
+    show(apppke+"关闭腾讯广告 activity:"+ca)
     //激励视频 
     if(ca=="com.qq.e.ads.PortraitADActivity"){
       if(doactionmaxtime( function(){
-            ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).findOne(100)
+          if(clickgailv>=0){
+            if(randomint(0,clickgailv)==0){
+                click(500,700)
+                threads.start(install_app())
+            }
+          }
+            ci=className("android.widget.ImageView").clickable().depth(5).drawingOrder(2).findOne(150)
             if(ci){
                 if(clicknode(ci)){
                     isclose=true
@@ -1664,7 +1673,7 @@ var close_ad_qq=function(apppkg){
                 }
             }
             if(text("点击下载").exists()){
-                ci=className("android.widget.ImageView").clickable(true).depth(5).findOne(100)
+                ci=className("android.widget.ImageView").clickable(true).depth(5).findOne(150)
                 if(ci){
                     if(clicknode(ci)){
                         isclose=true
@@ -1672,19 +1681,13 @@ var close_ad_qq=function(apppkg){
                     }
                 }
             }
-            sleep(1000)
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return false
             }
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-            if(randomint(0,6)==1){
-                click(500,700)
-                threads.start(install_app())
-            }
             let adappname=getTextfromid("com.dongdong.jiantie:raw/bsd2_full")
-            
         },60000)){
             return true
         }else{
@@ -1695,7 +1698,6 @@ var close_ad_qq=function(apppkg){
         back()
         return true
     }
-
     ci=className("android.widget.ImageView").clickable(true).depth(4).drawingOrder(2).findOne(100)
     if(ci){
         if(clicknode(ci)){
@@ -1706,7 +1708,8 @@ var close_ad_qq=function(apppkg){
 }
 
 //未知广告商
-var close_ad_iclicash=function(apppkg){
+var close_ad_iclicash=function(apppkg,clickgailv){
+    clickgailv=clickgailv||-1
     if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
       return  doactionmaxtime(function()
         {
@@ -1723,7 +1726,11 @@ var close_ad_iclicash=function(apppkg){
                      
                         return true
             }
-            sleep(1000)
+
+            if(!idContains(apppkg).findOne(100)){
+                return false
+            }
+
             if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
                 back()
             }
@@ -1748,7 +1755,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
 var closeappundostate=function(){
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
-
 
 var onerewardapp=function(appname,apppkg){
     apppkg=apppkg||getPackageName(appname)
@@ -2061,7 +2067,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
     })
     delectapkfile()
     checkweixin()
-
     runapps.forEach(app=>{
         forcestop(app.app.name)
     })

@@ -116,7 +116,7 @@ var 火火选中底部导航=function(indexofbottom){
 }
 
 var 点击金蛋=function(){
-    node_gold=id("com.jt.hanhan.video:id/ga").findOne(100)
+    node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
     if(node_gold){
         toastLog("找到了金蛋大奖ga")
         if(node_gold.text()=="金蛋大奖"){
