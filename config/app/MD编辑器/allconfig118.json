@@ -10,9 +10,10 @@
     "bmobappid":"7ff040d7c892a3fb19690c26157935dd",
     "jpushkey":"05899345ce054a3a7124a606",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
-    "isbmobpush":true,
+    "isbmobpush":false,
     "isjpush":false,
     "showad":true,
+    "reward":false,
     "enablemta":false,
     "enablebugly":false,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/MD编辑器_118.apk",
@@ -29,5 +30,6 @@
     "rewardevent":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/rewardevents.json",
     "tag":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/tags.json",
     "advice":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/advice/MD编辑器118.json",
+    "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/moneycoin.json",
     "uiconfig":""
 }

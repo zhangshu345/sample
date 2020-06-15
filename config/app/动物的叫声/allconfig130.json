@@ -13,6 +13,7 @@
     "isbmobpush":false,
     "isjpush":false,
     "showad":true,
+    "reward":false,
     "enablemta":false,
     "enablebugly":false,
     "downloadurl":"http://zhangshuhong888.iask.in:8989/动物的叫声_130.apk",
@@ -28,6 +29,6 @@
     "level":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/levels.json",
     "rewardevent":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/rewardevents.json",
     "tag":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/tags.json",
-    "advice":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/advice/动物的叫声130.json",
+    "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v1/config/common/moneycoin.json",
     "uiconfig":""
 }
