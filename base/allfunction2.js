@@ -2082,7 +2082,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
                             }
                           }
                 }
-          
         })
         com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
 }
