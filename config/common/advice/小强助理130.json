@@ -8,12 +8,12 @@
     "sign":"D9:3C:EC:85:02:0B:74:02:4C:59:70:2F:77:F9:FB:56:2B:78:11:3B",
     "versioni":130,
     "version":"1.3.0",
-    "ratiosplash":"gdt-10|tt-2",
-    "ratiobanner":"gdt-10|tt-2",
-    "ratiochaping":"gdt-10|tt-2",
-    "rationative":"gdt-10|tt-2",
-    "ratiorewardvideo":"gdt-10|tt-2",
-    "ratiofullvideo":"gdt-10|tt-2",
+    "ratiosplash":"gdt-10",
+    "ratiobanner":"gdt-10",
+    "ratiochaping":"gdt-10",
+    "rationative":"gdt-10",
+    "ratiorewardvideo":"gdt-10",
+    "ratiofullvideo":"gdt-10",
     "gdt":{
     "open":true,
     "appid":"1108007706",
@@ -35,7 +35,6 @@
     "nativect10801920":"1071308923384975",
     "rewardvideo":"1001007903888906"
     },
-
     "toutiao":{
     "open":false,
     "appid":"5061058",
