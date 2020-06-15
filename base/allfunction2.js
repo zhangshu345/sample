@@ -2043,10 +2043,85 @@ var readercheck=function(){
     }
 }
 
+
+var checkweixin=function(){
+    let weixinpkg=getPackageName("微信")
+    if(!weixinpkg){
+        spt.put("weixinlogin",false)
+        spt.put("weixinshiming",false)
+        return false
+    }
+    app.launch(weixinpkg)
+    sleep(2000)
+   return doactionmaxtime(function(){
+       ca=currentActivity()
+        if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
+            log("微信欢迎页")
+            spt.put("weixinlogin",false)
+            spt.put("weixinshiming",false)
+            return false;
+        }else 
+        if(ca=="com.tencent.mm.ui.LauncherUI" ){
+            log("微信主页")
+            spt.put("weixinlogin",true)
+            if(textclick("我")){
+                sleep(1500)
+             node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
+                if(node_weixin){
+                let weixin=node_weixin.text().substring(4)
+                spt.put("weixin",weixin)
+                log("微信号："+weixin)
+                
+                }
+                node_weixinname=className("android.view.View").depth(17).drawingOrder(1).enabled(true).boundsInside(200,200,1080,450).findOne()
+                if(node_weixinname){
+                    let weixinname=node_weixinname.text()
+                    spt.put("weixinname",weixinname)
+                    log("微信名："+weixinname)
+                }
+
+                return true
+            }
+            
+        }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
+            log("微信登录页")
+            spt.put("weixinlogin",false)
+            spt.put("weixinshiming",false)
+            return false
+        }else if(ca=="com.tencent.mm.plugin.account.ui.RegByMobileRegAIOUI"){
+            log("微信注册页")
+            spt.put("weixinlogin",false)
+            spt.put("weixinshiming",false)
+            return false
+        }else if(ca=="com.tencent.mm.plugin.sns.ui.SnsTimeLineUI"){
+            log("微信朋友圈")
+            spt.put("weixinlogin",true)
+            spt.put("weixinshiming",false)
+            return true
+        }else if(ca=="com.tencent.mm.plugin.profile.ui.ContactInfoUI"){
+            log("微信个人名片")
+            spt.put("weixinlogin",true)
+            return true
+        }else if(ca=="com.tencent.mm.plugin.webview.ui.tools.WebViewUI"){
+            log("微信网页")
+            spt.put("weixinlogin",true)   
+            back()        
+            return true
+        }else{
+            back()
+            sleep(1000)
+        }
+        if(!packageName("com.tencent.mm").exists()){
+            app.launch(weixinpkg)
+            sleep(1000)
+        }
+    },10000)
+}
+
+
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath,configpath){
     device.wakeUpIfNeeded()
-   
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
@@ -2085,13 +2160,11 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
             keepappisnewer(app.app.name,app.app.pkg)
         }
     })
-    delectapkfile()
-    checkweixin()
+
     // runapps.forEach(app=>{
     //     forcestop(app.app.name)
     // })
-    closelastscriptapp()
-    spt.remove("lastscriptapp")
+
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+2
@@ -2113,78 +2186,11 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
                 }
         })
         com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
-}
-
-var checkweixin=function(){
-    let weixinpkg=getPackageName("微信")
-    if(!weixinpkg){
-        spt.put("weixinlogin",false)
-        spt.put("weixinshiming",false)
-        return false
-    }
-    app.launch(weixinpkg)
-    sleep(2000)
-   return doactionmaxtime(function(){
-       ca=currentActivity()
-        if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
-            log("微信欢迎页")
-            spt.put("weixinlogin",false)
-            spt.put("weixinshiming",false)
-            return false;
-        }else 
-        if(ca=="com.tencent.mm.ui.LauncherUI" ){
-            log("微信主页")
-            spt.put("weixinlogin",true)
-            if(textclick("我")){
-                sleep(1500)
-             node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
-                if(node_weixin){
-                let weixin=node_weixin.text().substring(4)
-                spt.put("weixin",weixin)
-                log("微信号："+weixin)
-                
-                }
-                node_weixinname=className("android.view.View").depth(17).drawingOrder(1).enabled(true).boundsInside(200,200,1080,450).findOne()
-                if(node_weixinname){
-                    let weixinname=node_weixinname.text()
-                    spt.put("weixinname",weixinname)
-                    log("微信名："+weixinname)
-                }
-            }
-            return true
-        }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
-            log("微信登录页")
-            spt.put("weixinlogin",false)
-            spt.put("weixinshiming",false)
-            return false
-        }else if(ca=="com.tencent.mm.plugin.account.ui.RegByMobileRegAIOUI"){
-            log("微信注册页")
-            spt.put("weixinlogin",false)
-            spt.put("weixinshiming",false)
-            return false
-        }else if(ca=="com.tencent.mm.plugin.sns.ui.SnsTimeLineUI"){
-            log("微信朋友圈")
-            spt.put("weixinlogin",true)
-            spt.put("weixinshiming",false)
-            return true
-        }else if(ca=="com.tencent.mm.plugin.profile.ui.ContactInfoUI"){
-            log("微信个人名片")
-            spt.put("weixinlogin",true)
-            return true
-        }else if(ca=="com.tencent.mm.plugin.webview.ui.tools.WebViewUI"){
-            log("微信网页")
-            spt.put("weixinlogin",true)   
-            back()        
-            return true
-        }else{
-            back()
-            sleep(1000)
-        }
-        if(!packageName("com.tencent.mm").exists()){
-            app.launch(weixinpkg)
-            sleep(1000)
-        }
-    },10000)
+        closelastscriptapp()
+        spt.remove("lastscriptapp")
+        checkweixin()
+        delectapkfile()
+        
 }
 checkscriptversion()
 // checkstoragestate()
