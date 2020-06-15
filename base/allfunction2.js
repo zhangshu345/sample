@@ -435,7 +435,7 @@ var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);toa
 var  记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);toastLog(name+"上次滑动次数"+s);  return s;} 
 var lastscriptapp=function(){return spt.getString("lastscriptapp")}
-var closelastscriptapp=function(){ forcestop(lastscriptapp())}
+var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 var 记录现在观看视频数=function(name,f){     数据库.put(name+"_lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次观看视频数=function(name){ s= 数据库.get(name+"_lastvideonumber_"+today(), 0);    toastLog(name+"上次观看视频个数"+s);     return s;} 
@@ -2199,3 +2199,4 @@ checkscriptversion()
 //         keepappisnewer(app.app.name,app.app.pkg)
 //     }
 // })
+closelastscriptapp()
