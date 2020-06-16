@@ -2212,13 +2212,12 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
 
 
 var  sweep_up_pkg_activity_content=function(upgailv,pkg,act,content,chixutime){
-
     doactionmaxtime(function(){
         if(idContains(pkg).findOne(300)){
             if(currentActivity()==act){
 
 
-                
+
             }else{
                 back()
                 sleep()

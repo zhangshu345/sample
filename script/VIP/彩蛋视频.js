@@ -62,7 +62,7 @@ if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
 }else{
-    keepappnewer(appname,apppkg)
+    keepappisnewer(appname,apppkg)
 }
 
 
@@ -92,23 +92,6 @@ spt.put("lastscriptapp",appname)
 
 
 
-function  app_home_video(){
-   if( doactionmaxtime(function(){
-        
-
-
-
-    },10000)){return true}else{
-        forcestop(appname)
-        app.launch(apppkg)
-    }
-}
-
-
-
-
-
-
 
 
 
@@ -120,7 +103,7 @@ function app_run(){
         device.wakeUpIfNeeded()
         ca=currentActivity()
         if(ca!=apphomeactivity){
-           
+            app_go_home()
         }else{
             //这里是视频上滑操作
         }
@@ -129,7 +112,7 @@ function app_run(){
         closeappundostate()
     if(!idoneexist(彩蛋视频首页标识id)){
         log("没有找到一个彩蛋标识")
-        app_home_video()
+        app_go_home()
     }else{
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
         if(desc){
