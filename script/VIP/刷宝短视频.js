@@ -52,41 +52,42 @@ var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
 
-
-
 //回到视频页
 var gotoappvideo=function(){
     show("回到视频页")
-    i=0
-    while (i<5){
-       
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-        if(!idContains(apppkg).findOne(500)){
-            show("没有找到存在包名id控件")
-            app.launch(apppkg)
-            sleep(3000)
+   if(doactionmaxtime(function(){
+        if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+            if(!idContains(apppkg).findOne(500)){
+                show("没有找到存在包名id控件")
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                show("找到存在包名id控件")
+                back()
+                sleep(1500)
+            }
+            if(textclick("同意并继续")){
+    
+            }
+            idclick(刷宝视频广告关闭按钮2id)
+            idclick(刷宝视频广告关闭按钮1id)
+            if(text("首页").exists()){
+                textclick("首页")
+                sleep(1000)
+                textclick("推荐")
+                return true
+            }
         }else{
-            show("找到存在包名id控件")
-            back()
-            sleep(1500)
-        }
-        if(textclick("同意并继续")){
-
-        }
-        if(text("首页").exists()){
-            textclick("首页")
-            sleep(1000)
-            textclick("推荐")
             return true
         }
-        idclick(刷宝视频广告关闭按钮2id)
-        idclick(刷宝视频广告关闭按钮1id)
-    }else{
-        
+
+    },10000)){
         return true
+    }else{
+        forcestop(appname)
+        app.launch(apppkg)
+        sleep(1000)
     }
-    i=i+1
-}
 }
 
 var appsign=function(){
