@@ -960,6 +960,9 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
 }
 /*所有文本存在才返回真 */
 var textallexist=function(texts){
+    if(!texts){
+        return false
+    }
     s=0
     if(texts.length>0){
         for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){s=s+1; }  else{ return false; } }
@@ -970,11 +973,28 @@ var textallexist=function(texts){
 
 /* 所有id都存在才返回真  只要有一个不存在就返回false */
 var idallexist=function(ids){
+    if(!ids){
+        return false
+    }
     s=0
     if(ids.length>0){
         for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){  s=s+1; }else{  return false; }
         }
         if(s==ids.length){ return true;        }
+    }
+    return false
+}
+
+/* 所有id都存在才返回真  只要有一个不存在就返回false */
+var descallexist=function(descs){
+    if(!descs){
+        return false
+    }
+    s=0
+    if(descs.length>0){
+        for(i=0;i<descs.length;i++){  if(desc(descs[i]).exists()){  s=s+1; }else{  return false; }
+        }
+        if(s==descs.length){ return true; }
     }
     return false
 }
@@ -1539,17 +1559,18 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     return null
 }
 //检测电量低停止脚本
-var checkbattery=function(btyn){
+var checkbattery=function(btyn,sleeptime1,sleeptime2){
     toastLog("检测电池电量:"+btyn)
     btn=btyn||30
+    sleeptime1=sleeptime1||600000
+    sleeptime2=sleeptime2||1800000
     batteryn=device.getBattery()
     if(isdeviceadmin()){
         if(batteryn<btyn*2/3){
             device.lockScreen()
-            sleep(1800000)
+            sleep(sleeptime2)
         }else if(batteryn<btyn){
             //这里应该发送一个电量低信号到服务器
-            
             toastLog("电量低")
             if(device.isCharging()){
                 if(changesetting){
@@ -1560,11 +1581,12 @@ var checkbattery=function(btyn){
             }else{
                 //休眠十分钟
                 device.lockScreen()
-                sleep(600000)
+                sleep(sleeptime1)
             }
         }
     }
 }
+
 //通过通知获取验证码有缺点  后期改为java代码原生获取
 function get_phone_code(app_name,reg,startwords,endwords){
   let  contet = ""
@@ -1732,19 +1754,10 @@ var close_ad_iclicash=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
       return  doactionmaxtime(function()
-        {
-            ci=className("android.widget.ImageView").clickable().findOne(100)
-            if(ci){
-                if(clicknode(ci)){
-                    return true
-                }else{
-                    return false
-                }
-            }
+        {   
             if(text("点击重播").exists()){
                     back()
-                     
-                        return true
+                   return true
             }
 
             if(!idContains(apppkg).findOne(100)){
@@ -1753,10 +1766,12 @@ var close_ad_iclicash=function(apppkg,clickgailv){
 
             if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
                 back()
+            }else{
+                if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
+                    return true
+                }
             }
-            if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
-                return true
-            }
+          
         },60000)
     }
     return false 
@@ -2210,24 +2225,42 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
         
 }
 
+var nodesexists=function(nodes){
+        if(nodes){
+            if(textallexist(nodes["texts"])){
+                return true
+            }
+             if(  idallexist(nodes["ids"])){
 
-var  sweep_up_pkg_activity_content=function(upgailv,pkg,act,content,chixutime){
-    doactionmaxtime(function(){
-        if(idContains(pkg).findOne(300)){
-            if(currentActivity()==act){
-
-
-
-            }else{
-                back()
-                sleep()
+              return true
+            }
+             if(descallexist(node["descs"])){
+            return true
             }
         }else{
+            return false
+        }
+     
+    return false
+}
+
+
+var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivityaction,onetime,chixutime){
+    doactionmaxtime(function(){
+       if(currentPackage()==pkg){
+            if(nodesexists(biaozhis)){
+                sweepaction()
+                sleepr(onetime-2000,onetime+2000)
+            }else{
+                goactivityaction()
+            }
+       }else{
             app.launch(pkg)
             sleep(3000)
         }
     },chixutime)
 }
+
 checkscriptversion()
 // checkstoragestate()
 // selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"

@@ -24,8 +24,8 @@ toastLog("公共函数实例化失败,程序返回")
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
-var appname="火火视频极速版"
-var apppkg="com.jt.hanhan.video"
+var appname="长豆短视频"
+var apppkg="com.zf.shuashua"
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
 //应用登录状态
@@ -119,8 +119,6 @@ var app_invite=function(){
     
 
 }
-
-
 
 
 

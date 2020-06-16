@@ -20,10 +20,16 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
+
+
+
+
 //微信登录 点击邀请链接 注册 再微信登录
+var apppkg="com.jifen.dandan"
+var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
+var appname="彩蛋视频"
 
 var tomoney=false  
-var invite=false // 邀请
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
@@ -31,39 +37,13 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3500  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=true
-
-if(onlyscript){
-    engines.stopOther()
-}
-if(changesetting){
-    device.setMusicVolume(0)
-    toastLog("自动设置音量为0")
-}
-
-// 彩蛋邀请 通过 微信链接绑定上级用户 
-
-
-var apppkg="com.jifen.dandan"
-var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
-var appname="彩蛋视频"
-
-toastLog("指定："+appname+"即将启动")
-alltest()
-floaty.closeAll()
-creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-show("开始彩蛋视频辅助滑动")
-gfw.setPosition(0,220)
-device.setMusicVolume(0)
-
-toastLog("自动设置音量为0")
-
-if(!app.getPackageName(appname)){
-    toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,apppkg)
-}else{
-    keepappisnewer(appname,apppkg)
-}
+var login=getbooleanvalue(appname+"_login",false)
+//应用登录状态
+var logintype=getstrvalue(appname+"_login_type","weixin")
+// 应用是否被邀请
+var appinvitestate=getbooleanvalue(appname+"_invite_state",false);
+var tomoney=getbooleanvalue(appname+"_tomoney",false)  //填现
+var invite=getbooleanvalue(appname+"_invite",false) // 邀请
 
 
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
@@ -81,20 +61,6 @@ var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论�
 var 视频次数=0
 var lastdesc=""
 var 滑动次数=0
-closelastscriptapp()
-spt.put("lastscriptapp",appname)
-
-
-
-
-
-
-
-
-
-
-
-
 
 function app_run(){
     app.launchApp(appname)
@@ -277,9 +243,9 @@ var app_login=function(){
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
            if(logintype=="weixin"){
-            刷宝微信登录()
+           app_login_weixin()
            }else{
-            刷宝手机登录()
+           app_login_phone()
            }
        }
         // 
@@ -288,35 +254,14 @@ var app_login=function(){
 }
 
 var app_login_phone=function(){
-    loginet= id("com.jm.video:id/login_edit").findOne(500)
-    if(loginet){
-       loginet.setText(phonenumber())
-       id("com.jm.video:id/btn_login").waitFor()
-       if(idclick("com.jm.video:id/btn_login")){
-           reg = /\d{4}/ig
-           code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
-            toastLog("最后一步了验证码："+code )       
-            loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
-           
-           id( "btn_login").waitFor()
-           id("btn_login").findOne(500).click()
-          sleepr(6000)
-       }
-    }
+
 }
 
+
 var app_login_weixin=function(){
-    while (i<10){
-        textclick("微信账号登录")
-        sleepr(2000)
-        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
-            return true
-        }
-    }
+   
 }
+
 var app_tomoney=function(){
     doactionmaxtime(function(){
         nca=currentActivity()
@@ -350,4 +295,52 @@ var app_tomoney=function(){
     },20000)
 }
 
-app_run()
+
+
+
+
+
+
+
+let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+log("正在集合运行的APP"+runscriptapp)
+let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+log("是否是集合运行："+isreaderunning)
+// 集合运行
+if(runscriptapp==appname && isreaderunning){
+
+}else{
+    if(onlyscript){
+        engines.stopOther()
+    }
+
+    // 彩蛋邀请 通过 微信链接绑定上级用户 
+        
+    toastLog("指定："+appname+"即将启动")
+    alltest()
+    if(changesetting){
+        device.setMusicVolume(0)
+        toastLog("自动设置音量为0")
+    }
+    floaty.closeAll()
+    creatgfloatywindow()
+    creatsetfloatywindow()  //创建设置悬浮窗
+    show("开始彩蛋视频辅助滑动")
+    gfw.setPosition(0,220)
+    if(!app.getPackageName(appname)){
+        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        downloadandinstallapp(appname,apppkg)
+    }else{
+        keepappisnewer(appname,apppkg)
+    }
+
+    closelastscriptapp()
+    spt.put("lastscriptapp",appname)
+    spt.put("hongshuyuedu_running",false)
+    try {
+        app_run()
+    } catch (error) {
+        
+    }
+}
+

@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -23,23 +21,15 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 //微信链接邀请绑定 之后登陆
-
+     看小视频 5000 金币  刮刮卡5000金币 也有金蛋大奖   有点糊涂  看视频 进度 不是一直有 估计是为了均衡广告
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
-var apppkg="com.kugou.android.elder"
-var apphomeactivity="com.kugou.android.app.MediaActivity"
-var apploginactivity="com.kugou.common.useraccount.app.KgUserLoginAndRegActivity"  // 登录页面
-var appname="酷狗音乐大字版"
-
-
-var 首次点击文本集合=["同意","确定","允许","允许","始终允许","始终允许","我知道了","赚钱","立即登录"]
-var 微信登录文本集合=["微信登录","同意"]
-var 微信登录成功文本标志=["获得新人金币","签到成功"]
-
+var appname="快7浏览器"
+var apppkg="com.jifen.browserq"
 //应用登录
-var applogin=getbooleanvalue(appname+"_login",false)
+var login=getbooleanvalue(appname+"_login",false)
 //应用登录状态
-var applogintype=getstrvalue(appname+"_login_type","weixin")
+var logintype=getstrvalue(appname+"_login_type","weixin")
 // 应用是否被邀请
 var appinvitestate=getbooleanvalue(appname+"_invite_state",false);
 var tomoney=getbooleanvalue(appname+"_tomoney",false)  //填现
@@ -51,10 +41,10 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-
+var apphomeactivity=""
 var keepappnewer=true
-var 酷狗大字版邀请码格式="【复制此消息】打开酷狗大字版，可自动填我的邀请码【yqm】一起拿钱！"
-var 邀请码集合=["5K74NU","YCN0VB"]
+
+//关闭最新的app
 
 //app 运行
 var app_run=function(){
@@ -63,56 +53,58 @@ var app_run=function(){
     app_login_check()
     n_i=0
     while(true){
+        sleep(2000)
         log("循环次数："+n_i)
         ca=currentActivity()
         if(ca!=apphomeactivity){
             app_home_video()
         }else{
-            if (textclick("赚钱")){
-                滑动(20,10,16,10,5,500,200)
-                sleep(1000)
-            }
-            //这里是查看广告
-            if(text("填写邀请码").exists()){
-                app_invite()
-            }
-            if(textclick("去分享")){
-                clickoneids([音乐分享按钮id])
-            }
-
-
+            //这里是视频上滑操作
+            app_seevideo()
         }
-
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         n_i=n_i+1
-        sleep(2000)
     }
-
 }
-
-
-
 
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
-    app_go_home()
-    doactionmaxtime(function(){
-        if(textclick("赚钱")){
-            if(text("未登录").exists()){
-               if( textclick("未登录")){
-                   sleep(1500)
-               }
-               clicktexts(["微信登录"],150,1500)
-            }else{
-
-
+    
+        doactionmaxtime(function(){
+            if(!currentPackage()==apppkg){
+                app.launch(apppkg)
+                sleep(3000)
             }
-         
+            clicktexts(["我知道了","允许","允许"],200,1200)
+            //
+            if(idclick("com.jifen.browserq:id/open_red_packet")){
+                sleep(1500)
+            }
+            if( idclick("com.jifen.browserq:id/withDrawLayout")){
+                sleep(1500)
+            }
+            clicktexts(["同意","立即登录","登录领现金"])
+
+
+        },60000)
+
+    
+}
+
+var 点击金蛋=function(){
+    n_jindan=id("com.jifen.browserq:id/tv_egg_progress").findOne(200)
+    if(n_jindan){
+        n_jindan_text=n_jindan.text()
+        if(n_jindan_text=="金蛋大奖"){
+
         }
-        
-    },6000)
+    }
+    n_coin_number=id("com.jifen.browserq:id/tv_medal_num").findOne(200)
+    if(n_coin_number){
+        text_n_coin_number=n_coin_number.text()
+    }
 }
 
 //app 登录
@@ -120,44 +112,15 @@ var app_login=function(){
 
 }
 
-var app_go_home=function(){
-    doactionmaxtime(function(){
-        ca=currentActivity()
-        if(ca==apphomeactivity){
-            return true
-        }else{
-            if(currentPackage()==apppkg){
-                back()
-                sleep(300)
-                back()
-            }else{
-                app.launch(apppkg)
-                sleep(3000)
-            }
-        }
-    },60000)
-}
 //app 微信登录
-
 var app_login_weixin=function(){
-    if(currentActivity()==apploginactivity){
-        doactionmaxtime(function(){
-            clicktexts(微信登录文本集合,100,2000)
-            if(textoneexist(微信登录成功文本标志)){
-                return true
-            }
-        },10000)
-    }
-}
 
+}
 
 //app_手机号登录
 var app_login_phone=function(){
 
 }
-
-
-
 
 //app 签到
 var app_sign=function(){
@@ -173,17 +136,9 @@ var app_tomoney=function(){
 
 function  app_home_video(){
     if(doactionmaxtime(function(){
-        ca=currentActivity()
-        if(ca==apphomeactivity){
-            return true
-        }else if(ca=="com.kugou.android.app.elder.a.c")
-        if(currentPackage()!=apppkg){
-            log("酷狗音乐大字版不在前台")
-            app.launch(apppkg)
-            sleep(3000)
-        }
-        sleep(1000)
+         
 
+ 
  
      },10000)){return true}else{
          forcestop(appname)
@@ -194,16 +149,11 @@ function  app_home_video(){
 
 //app邀请
 var app_invite=function(){
-    if(textclick("去填写")){
-        let text_yqm=邀请码集合[randomint(0,邀请码集合.length)]
-        let text_yqmt=酷狗大字版邀请码格式.replace("yqm",text_yqm)
-        setClip(text_yqmt)
-        text("一键粘贴").waitFor()
-        textclick("一键粘贴")
-        sleep(10000)
-        back()
-    }
+    
+    
+
 }
+
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
@@ -214,6 +164,9 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
+    if(onlyscript){
+        engines.stopOther()
+    }
     alltest()
     // checkfloaty()
     // checksystemsettings()
@@ -225,11 +178,7 @@ if(runscriptapp==appname && isreaderunning){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
-    
-    if(onlyscript){
-        engines.stopOther()
-    }
-    
+  
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)
