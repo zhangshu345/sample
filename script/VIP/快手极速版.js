@@ -418,8 +418,9 @@ var 打开快手极速左边框=function(){
 var app_home_video=function(){
     show("回到快手极速首页")
     n_home=0
-    while(n_home<3){
-         if(idoneexist(快手极速版首页标志)){
+ if(   doactionmaxtime(function(){
+  
+        if(idoneexist(快手极速版首页标志)){
             return true
         }else{
             if(idContains(apppkg).findOne()){
@@ -432,9 +433,33 @@ var app_home_video=function(){
         app_close_alter()
         滑块验证()
         sleep(1000)
-        n_home=n_home+1
+
+        if(!idContains(apppkg).findOne(1000)){
+            log("彩蛋不在前台")
+            app.launch(apppkg)
+            sleep(3000)
+            i=0
+            clicktexts(["首页","推荐","等待"],500,1500)
+        }else{
+            log("彩蛋标识前台")
+            back()
+             滑动(20,13,16,10,4,500,700)
+            sleep(500)
+            if(textclick("立即翻倍")){
+                seead()
+             }
+             if(text("点击重播").exists()){
+                back()
+                sleep(2500)
+            }
+        }
+    })){
+        return true
+    }else{
+        forcestop(appname)
+        app.launch(apppkg)
     }
-    forcestop(appname)
+    
 }
 
 
@@ -664,9 +689,11 @@ var app_get_coin_money=function(){
        n_agcm=n_agcm+1
     }
 }
+
+
 lastdesc=""
 device.wakeUpIfNeeded()
-function run(){
+function app_run(){
     show("快手极速版开始")
     app.launch(apppkg)
     sleep(3000)
@@ -760,10 +787,10 @@ function run(){
     }
 }
 try{
-    run()
+    app_run()
 }catch(error)
 {
- 
+ log(appname+"---err:"+error)
 }
 
 

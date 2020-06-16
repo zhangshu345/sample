@@ -61,7 +61,10 @@ toastLog("自动设置音量为0")
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
+}else{
+    keepappnewer(appname,apppkg)
 }
+
 
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
@@ -70,20 +73,47 @@ const 彩蛋首页奖励中心图标id="com.jifen.dandan:id/image_red_bg_icon"
 const 彩蛋首页喜欢按钮id="com.jifen.dandan:id/iv_like_icon"
 const 彩蛋首页评论按钮id="com.jifen.dandan:id/iv_comment_icon"
 const 彩蛋立即翻倍关闭按钮id="com.jifen.dandan:id/close_bottom_button"
-
 //"恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 const 彩蛋视频录像id="com.jifen.dandan:id/iv_ugc_enter"
 const 彩蛋底部奖励id="com.jifen.dandan:id/bt_tab_welfare_task"
 const 彩蛋弹窗标题id="com.jifen.dandan:id/title_text_view"
 var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论按钮id,彩蛋视频广告立即领取id,彩蛋视频录像id,彩蛋底部奖励id]
 var 视频次数=0
-
 var lastdesc=""
 var 滑动次数=0
 closelastscriptapp()
 spt.put("lastscriptapp",appname)
 
-function run(){
+
+
+
+
+
+
+
+
+function  app_home_video(){
+   if( doactionmaxtime(function(){
+        
+
+
+
+    },10000)){return true}else{
+        forcestop(appname)
+        app.launch(apppkg)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+function app_run(){
     app.launchApp(appname)
     sleep(3000)
     while(true){
@@ -99,26 +129,7 @@ function run(){
         closeappundostate()
     if(!idoneexist(彩蛋视频首页标识id)){
         log("没有找到一个彩蛋标识")
-        if(!idContains(apppkg).findOne(1000)){
-            log("彩蛋不在前台")
-            app.launch(apppkg)
-            sleep(3000)
-            i=0
-            clicktexts(["首页","推荐","等待"],500,1500)
-           
-        }else{
-            log("彩蛋标识前台")
-            back()
-             滑动(20,13,16,10,4,500,700)
-            sleep(500)
-            if(textclick("立即翻倍")){
-                seead()
-             }
-             if(text("点击重播").exists()){
-                back()
-                sleep(2500)
-            }
-        }
+        app_home_video()
     }else{
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
         if(desc){
@@ -356,4 +367,4 @@ var app_tomoney=function(){
     },20000)
 }
 
-run()
+app_run()

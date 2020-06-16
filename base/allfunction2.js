@@ -2209,6 +2209,26 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
         delectapkfile()
         
 }
+
+
+var  sweep_up_pkg_activity_content=function(upgailv,pkg,act,content,chixutime){
+
+    doactionmaxtime(function(){
+        if(idContains(pkg).findOne(300)){
+            if(currentActivity()==act){
+
+
+                
+            }else{
+                back()
+                sleep()
+            }
+        }else{
+            app.launch(pkg)
+            sleep(3000)
+        }
+    },chixutime)
+}
 checkscriptversion()
 // checkstoragestate()
 // selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"

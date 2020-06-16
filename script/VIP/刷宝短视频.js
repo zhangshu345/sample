@@ -361,16 +361,17 @@ var apptomoney=function(){
      }
 }
 
+
 lastbattery=0
 applogin()
 appsign()
 show("签到结束")
 xhcs=0
 
-function run(){
+function app_run(){
     app.launchApp(appname)
     sleep(3000)
-while(true){
+    while(true){
     show("循环次数:"+(xhcs+1))
     closeappundostate()
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
@@ -385,7 +386,7 @@ while(true){
             gotoappvideo()
             sleep(1500)
         }
-   }else{
+     }else{
         show("视频页关闭弹窗")
         idclick(刷宝视频广告关闭按钮1id)
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
@@ -402,7 +403,7 @@ while(true){
             lastdesc=id_desc.text()
             log("当前："+lastdesc)
         }
-       滑动(20,13,16,10,4,500,700)
+        滑动(20,13,16,10,4,500,700)
          sleep(2000)
          id_desc=  id("com.jm.video:id/desc").findOne(1000)
         if(id_desc){
@@ -444,6 +445,7 @@ while(true){
             // 脚本完成了
             device.lockScreen()
         }
+
         if(滑动次数%10==1){
             checkbattery(30)
             battery=device.getBattery()
@@ -453,7 +455,7 @@ while(true){
                 show("电量低:"+battery+"-休眠30分钟")
                 device.lockScreen()
                 sleep(1800000)
-                  device.wakeUpIfNeeded()
+               device.wakeUpIfNeeded()
             }
         }
         if(滑动次数%100==1){
@@ -473,5 +475,5 @@ while(true){
 }
 }
 
-run()
+app_run()
 

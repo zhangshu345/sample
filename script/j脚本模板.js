@@ -98,14 +98,29 @@ var app_tomoney=function(){
 
 }
 
-//app 回到主页
-var app_home_video=function(){
+//app 回到操作的主页
 
-}
+function  app_home_video(){
+    if(doactionmaxtime(function(){
+         
+
+ 
+ 
+     },10000)){return true}else{
+         forcestop(appname)
+         app.launch(apppkg)
+     }
+ }
+
+
 //app邀请
 var app_invite=function(){
     
+    
+
 }
+
+
 
 
 
