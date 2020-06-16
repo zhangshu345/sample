@@ -16,7 +16,7 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.androidjs.core.debug.DevPluginService)
-// DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
+// 
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
@@ -75,6 +75,11 @@ var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
 var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
+const debugip="zhangshuhong888.iask.in"
+var startdebug=function(ip){
+  ip=ip||debugip
+    DevPluginService.getInstance().debugtoip(debugip);
+}
 
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
