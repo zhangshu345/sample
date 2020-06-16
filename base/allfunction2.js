@@ -16,7 +16,7 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.androidjs.core.debug.DevPluginService)
-DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
+// DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
