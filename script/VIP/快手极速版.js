@@ -418,7 +418,7 @@ var 打开快手极速左边框=function(){
 var app_home_video=function(){
     show("回到快手极速首页")
     n_home=0
- if(   doactionmaxtime(function(){
+ if(doactionmaxtime(function(){
   
         if(idoneexist(快手极速版首页标志)){
             return true
@@ -682,9 +682,7 @@ var 快手极速版视频滑动=function(){
          }else{
             快手极速视频上滑()
          }
-
     },20000)
-  
 }
 
 var app_get_coin_money=function(){
@@ -733,10 +731,19 @@ function app_run(){
     show("快手极速版开始")
     app.launch(apppkg)
     sleep(3000)
+    if(!今日签到(appname)){
+        log("没有签到")
+                if (app_sign()){
+                    今日已签到(appname)
+                    todaysign=true
+                }
+       
+    }
     滑动次数=0
     while(true){
         app_close_alter()
         device.wakeUpIfNeeded()
+        滑动次数=滑动次数+1
         log("循环："+滑动次数)
         ca=currentActivity()
         if(ca!=apphomeactivity){
@@ -775,15 +782,7 @@ function app_run(){
         app.launch(apppkg)
         sleep(3000)
        }
-        if(滑动次数%500==0){
-            if(!今日签到(appname)){
-                log("没有签到")
-                        if (app_sign()){
-                            今日已签到(appname)
-                            todaysign=true
-                        }
-               
-            }
+        if(滑动次数%100==0){
             设置今日滑动次数(appname,滑动次数)
         }
         if(滑动次数%1000==0){

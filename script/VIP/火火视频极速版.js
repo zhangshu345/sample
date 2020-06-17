@@ -121,20 +121,24 @@ var 点击金蛋=function(){
         toastLog("找到了金蛋大奖ga")
         if(node_gold.text()=="金蛋大奖"){
             sleep(7500)
+
+   node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
+   if(node_gold){
+        press(node_gold.bounds().centerX(),node_gold.bounds().centerY()-100)
+        show("点击金蛋大奖成功ga")
+        sleep(2500)
+        if(text("赚钱小技巧").exists()){
+            back()
         }
-       if(idclick("com.jt.hanhan.video:id/ga")){
-            show("点击金蛋大奖成功ga")
-            sleep(2500)
-            if(text("赚钱小技巧").exists()){
-                back()
-            }
-            if(maytextclick("看视频再送")){
-                    seead()
-                    小视频广告翻倍次数=小视频广告翻倍次数+1
-            }
-       }else{
-        show("点击金蛋大奖失败")
-       }
+        if(maytextclick("看视频再送")){
+                seead()
+                小视频广告翻倍次数=小视频广告翻倍次数+1
+        }
+ 
+   }
+       
+        }
+      
     }else{
         show("没有找到金蛋大奖：")
     }
