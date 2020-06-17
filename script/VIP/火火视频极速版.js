@@ -18,40 +18,20 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-alltest()
-floaty.closeAll()
-creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-gfw.setPosition(0,220)
 
 var apppkg="com.jt.hanhan.video"
 var apphomeactivity="com.qukandian.video.qkdbase.activity.MainActivity"
 var appname="火火视频极速版"
 var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
+const appcoinalteractivity="com.qukandian.video.qkdbase.ad.coin.CoinAdDialog"
 var changesetting=false
 var onlyscript=true
-show("开始："+appname+"辅助滑动")
-// closerecentapp()
-if(!app.getPackageName(appname)){
-    show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,apppkg)
-}else{
-    show(appname+"已经安装")
-}
-if(changesetting){
-    device.setMusicVolume(0)
-    toastLog("自动设置音量为0")
-}
 
-if(onlyscript){
-    engines.stopOther()
-}
-//关闭最新的app
-closelastscriptapp()
-spt.put("lastscriptapp",appname)
 
 //邀请 
 // 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
+
+//200 个小视频之后查看 荣耀殿堂 领取金币 
 
 // "金币翻倍" ,"com.jt.hanhan.video:id/jp"    // 关闭弹窗的关闭按钮 com.jt.hanhan.video:id/jw
 // "com.jt.hanhan.video:id/jr"
@@ -118,25 +98,25 @@ var 火火选中底部导航=function(indexofbottom){
 var 点击金蛋=function(){
     node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
     if(node_gold){
-        toastLog("找到了金蛋大奖ga")
         if(node_gold.text()=="金蛋大奖"){
-            sleep(7500)
-
-   node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
-   if(node_gold){
-        press(node_gold.bounds().centerX(),node_gold.bounds().centerY()-100)
-        show("点击金蛋大奖成功ga")
-        sleep(2500)
-        if(text("赚钱小技巧").exists()){
-            back()
-        }
-        if(maytextclick("看视频再送")){
-                seead()
-                小视频广告翻倍次数=小视频广告翻倍次数+1
-        }
- 
-   }
-       
+            toastLog("找到了金蛋大奖ga")
+            sleep(200)
+           if( idclick("com.jt.hanhan.video:id/ig")){
+            show("点击金蛋大奖成功ga")
+            sleep(2500)
+            if(text("赚钱小技巧").exists()){
+               back()
+               sleep(1500)
+               滑动(20,13,16,10,3,500,300)
+               sleep(6000)
+               点击金蛋()
+           }
+           if(maytextclick("看视频再送")){
+               seead()
+                   小视频广告翻倍次数=小视频广告翻倍次数+1
+           }
+           }
+   
         }
       
     }else{
@@ -147,112 +127,118 @@ var 点击金蛋=function(){
 
 
 var 火火小视频滑动=function(){
-    滑动(20,13,16,10,4,500,700)
+    
+    doactionmaxtime(function(){
+        滑动(20,13,16,10,4,500,700)
+        sleep(1000)
+        desc=  id(小视频简介id).findOne(300)
+        if(desc){
+            currentdesc=desc.text()
+            log("之前："+lastdesc+"--当前："+currentdesc)
+            if(currentdesc==lastdesc){
+                sleep(1500)
+                textclick("刷新")
+            }else{
+                sleep(3000)
+                tv_dz=id(火火视频小视频点赞id).findOne(300)
+                //点赞多的视频
+                if(tv_dz){
+                    dzstr=tv_dz.text()
+                    if(dzstr.search("万") != -1){
+                        clicknode(tv_dz)
+                    }else{
+                        dz_n=parseInt(dzstr)
+                        if(dz_n>5000){
+                            clicknode(tv_dz)
+                        }
+                    }
+                }
+                lastdesc=currentdesc
+                sleep(3000)
+                return true
+            }
+    
+        }else{
+            if(clickonetexts(广告点击按钮文本集合,500,1500)){
+                seead()
+                小视频广告翻倍次数=小视频广告翻倍次数+1
+             }
+            sleep(1500)
+        }
+        if(textclick("立即翻倍")){
+            seead()
+         }
+       
+    },10000)
+
+ 
 }
+function app_see_video(){
+    app_go_home()
+   
+}
+
+
+function app_see_small_video(){
+    if(!idallexist(火火视频极速版小视频页标识id)){
+        log("没有找到一个"+appname+"小视频标识")
+        app_go_home()
+        clicktexts(进入小视频页面点击文本集合,300,1500)
+        if(clickonetexts(未登录点击显示文本集合),200,1500){
+            sleep(2000)
+           show(appname+"未登录点击显示文本集合")
+            app_login()
+        }
+        火火小视频滑动()
+        if(clickonetexts(广告点击按钮文本集合,500,1500)){
+                seead()
+       }
+        if(text("点击重播").exists()){
+                back()
+                sleep(1500)
+         }
+       }
+       
+     
+}
+
 function app_run(){
     app.launch(apppkg)
     sleep(3000)
     app_islogin()
+    xhcs=0
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
-    if(!idallexist(火火视频极速版小视频页标识id)){
-        log("没有找到一个"+appname+"小视频标识")
-        if(!idContains(apppkg).findOne(1000)){
-            show(appname+"不在前台")
-            app.launch(apppkg)
-            sleep(3000)
-            i=0
-            clicktexts(进入小视频页面点击文本集合,300,1500)
-            if(clickonetexts(未登录点击显示文本集合),200,1500){
-                sleep(2000)
-                show(appname+"未登录点击显示文本集合")
-              //  app_login()
-            }
-            if(idclick("com.jt.hanhan.video:id/jw")){
-                sleep(1000)
-               
-            }
-        }else{
-            show(appname+"已经在前台")
-            clicktexts(进入小视频页面点击文本集合,300,1500)
-            if(idclick("com.jt.hanhan.video:id/jw")){
-                sleep(1000)
-            }
-            back()
-            滑动(20,13,16,10,4,500,700)
-            sleep(500)
-        
-            if(clickonetexts(广告点击按钮文本集合,500,1500)){
-                seead()
-               
-             }
-             if(text("点击重播").exists()){
-                back()
-                sleep(2500)
-            }
-        }
-    }else{
-        if(action=="短视频"){
-                //短视频的操作
-        }else{
-            //小视频的操作
-            desc=  id(小视频简介id).findOne(300)
-            if(desc){
-                火火小视频滑动()
-                sleep(1000)
-                currentdesc=desc.text()
-                log("之前："+lastdesc+"--当前："+currentdesc)
-                if(currentdesc==lastdesc){
-                    if(textclick("立即翻倍")){
-                        seead()
-                     }
-                    textclick("刷新")
-                    sleep(500)
-                }else{
-                    lastdesc=currentdesc
-                    滑动次数=滑动次数+1
-                }
 
-            }else{
-                if(clickonetexts(广告点击按钮文本集合,500,1500)){
-                    seead()
-                    小视频广告翻倍次数=小视频广告翻倍次数+1
-                 }
-               火火小视频滑动()
-                sleep(1500)
-            }
-        }
-        tv_dz=id(火火视频小视频点赞id).findOne(300)
-        //点赞多的视频
-        if(tv_dz){
-            dzstr=tv_dz.text()
-            if(dzstr.search("万") != -1){
-                clicknode(tv_dz)
-            }else{
-                dz_n=parseInt(dzstr)
-                if(dz_n>5000){
-                    clicknode(tv_dz)
-                }
-            }
-        }
-        sleepr(6000*ratio,8000*ratio)
-        if(滑动次数%50==0){
+        if(action=="短视频"){
+            //短视频的操作
+            app_see_video()
+         }else if(action=="小视频"){
+        //小视频的操作
+              app_see_small_video()
+         }else{
+             滑动(20,10,17,11,3,500,300)
+             sleep(8000)
+         }
+
+        if(xhcs%50==0){
            checkbattery(30,1200000,1800000)
         }
-        if(滑动次数%200==0){
+        if(xhcs%200==0){
             if(!今日签到(appname)){
                 app_sign()
             }
+            app_get_reward()
         }
-      }
+  
       if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).exists()){
        node_kai= text("看视频即可打开").className("android.widget.TextView").indexInParent(4).findOne(100).parent().child(3)
        if(node_kai){
          if(clicknode(node_kai)){
                 seead()
+            }
          }
-       }
       }
         点击金蛋()
         if(text("点击重播").findOne(100)){
@@ -289,6 +275,8 @@ function app_run(){
             back()
             sleep(2500)
         }
+       
+        xhcs=xhcs+1
     }
 }
 
@@ -307,6 +295,7 @@ var seead=function(){
             back()
             sleep(1000)
         }
+      
         if(close_ad_toutiao(apppkg)){
             sleep(1000)
             idclick("com.jt.hanhan.video:id/jw")
@@ -345,31 +334,41 @@ var seead=function(){
 
 
 var app_go_home=function(){
-    i=0
-    while (i<10){
-        i=i+1
-    if(!idallexist(火火视频极速版首页标识id)){
-        if(!idContains(apppkg).findOne(1000)){
-            show("没有找到存在包名id控件")
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-            show("找到存在包名id控件")
-            back()
-            sleep(1500)
-        }
-        if(text("首页").exists()){
-            textclick("首页")
-            sleep(1000)
-            textclick("推荐")
-        }
-        if(textclick("同意并继续")){
-
-        }
-    }else{
+   if( doactionmaxtime(function(){
+       ca=currentActivity()
+       if(ca==apphomeactivity){
         return true
-    }
-}
+       }else if(ca==appcoinalteractivity){
+            if(idclick("com.jt.hanhan.video:id/k9")){
+
+            }else{
+              node_close=  className("android.widget.FrameLayout").depth(5).visibleToUser().clickable().findOne(200)
+              node_close.click()
+            }
+
+       } else if(ca==apprewardactivity){
+           if(text("荣耀殿堂").exists()){
+               app_get_reward()
+           }
+           back()
+           sleep(1000)
+       }else{
+           back()
+           sleep(1000)
+           if(currentPackage()!=apppkg){
+               app.launch(apppkg)
+               sleep(300)
+           }
+       }
+       
+   },15000)){
+       return true
+   }else{
+       forcestop(apppkg)
+       app.launch(apppkg)
+       sleep(3000)
+       return 
+   }
 }
 
 var app_sign=function(){
@@ -417,37 +416,52 @@ var app_sign=function(){
       n_sign=n_sign+1
     }
 }
+var selectnavi=function(n){
+ let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n).findOne()
+    if(node_navi){
+        node_navi.click()
+    }
+
+}
 
 var app_get_reward=function(){
     n_r_h=0
+    app_go_home()
     while(true){
-        if(currentActivity()==apphomeactivity){
+        ca=currentActivity()
+        if(ca==apphomeactivity){
+            selectnavi(2)
+            sleep(2000)
+            if(!text("日常任务").boundsInside(0,0,device.width,device.height/2).exists()){
+                滑动(20,10,17,11,10,500,500)
+                sleep(1000)
+            }
+            n_lingqu=text("日常任务").boundsInside(0,0,device.width,device.height/2).findOne(200)
+            if(textclick("领取奖励")){
+
+            }  
             id("a9j").findOne().parent().parent().click()
-        }
-        if(currentActivity()==apprewardactivity){
+
+        }else  if(ca==apprewardactivity){
             if(textclick("可领取")){
                 seead()
             }else{
+                滑动(20,10,17,10,3,500,300)
                 n_r_h=n_r_h+1
-            }
-            if(text("新手解锁").exists()){
-                n_r_h=5
-            }
-        }else{
-            if(text("日常任务").exists()){
-                滑动(20,10,17,11,5,500,500)
-            }else{
-                if(textclick("领取奖励")){
-    
+                if(text("新手解锁").visibleToUser().exists()){
+                    log("找到新手解锁")
+                    back()
+                    sleep(300)
+                    back()
+                    return 
                 }
             }
+        }else{
+         
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
             return 
-        }
-        if(n_r_h>6){
-            return
         }
        sleep(1000)
     }
@@ -534,6 +548,8 @@ var app_login_weixin=function(){
         t_login=t_login+1
     }
 }
+app_get_reward()
+
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)

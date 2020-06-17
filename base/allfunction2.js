@@ -720,7 +720,7 @@ var clicknode=function(v){
          if(clickparents(v)){ return true  }
          if(clickchilds(v)){  return true}
          r=v.bounds()
-          var w = boundsContains(r.left, r.top, r.right, r.bottom).clickable().findOne()
+          var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne()
           if(w){ return w.click() ;}
          else{ return false;  }
     }
@@ -952,7 +952,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
             top=starty
             bottom=endy
         }
-        var w = boundsContains(left, top, right,bottom).scrollable().findOne(100);
+        var w = boundsInside(left, top, right,bottom).scrollable().findOne(100);
         if(w){
             if(startx<endx){
                 w.scrollBackward()
