@@ -1973,7 +1973,7 @@ var  shuffleArray=function(array) {
 
 var allhouzhui=[]
 function deleteAllFiles(dir,houzhui){
-    log("删除目录："+dir+":"+houzhui)
+    //log("删除目录："+dir+":"+houzhui)
      dir=dir||files.getSdcardPath()
     if(!houzhui||houzhui.length==0){return}
     let list = files.listDir(dir);
@@ -1989,7 +1989,7 @@ function deleteAllFiles(dir,houzhui){
                     allhouzhui.push(extendname)
                 }
                 if(houzhui.indexOf(extendname)>-1){
-                    log("包含后缀："+extendname)
+                  //  log("包含后缀："+extendname)
                     try {
                         let tmpfilename=files.getName(child)
                         let su=  files.remove(child)
@@ -1997,9 +1997,8 @@ function deleteAllFiles(dir,houzhui){
                     } catch (error) {
                         log("删除文件出错:"+tmpfilename)
                     }
-                  
                 }else{
-                    log("不包含后缀："+extendname)
+                   // log("不包含后缀："+extendname)
                 }
             }
         }
