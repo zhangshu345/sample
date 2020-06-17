@@ -508,7 +508,7 @@ var  clearappcache=function(appname,apppkg,fromforcestop){
         apppkg=getPackageName(appname)
     }
     if( device.brand=="samsung"){closetexts= ["存储","清除缓存"];}
-    else if(device.brand=="HONOR"){ closetexts= ["存储","清除缓存"]; }
+    else if(device.brand=="HONOR"){ closetexts= ["存储","清除缓存","清空缓存"]; }
     else if(device.brand=="DOCOMO"){closetexts= ["存储","清除缓存"];}
     else if(device.brand=="Meizu"){closetexts= ["存储和备份","清除缓存"];    }
     else if(device.brand=="xiaomi"){closetexts= ["存储","清除缓存"];    }

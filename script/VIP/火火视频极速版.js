@@ -145,7 +145,7 @@ var 点击金蛋=function(){
 var 火火小视频滑动=function(){
     滑动(20,13,16,10,4,500,700)
 }
-function run(){
+function app_run(){
     app.launch(apppkg)
     sleep(3000)
     app_islogin()
@@ -233,25 +233,10 @@ function run(){
             }
         }
         sleepr(6000*ratio,8000*ratio)
-        if(滑动次数%10==1){
-            if(device.getBattery()<20){
-                toastLog("电量低")
-                if(device.isCharging()){
-                    if(changesetting){
-                        device.setMusicVolume(0)
-                        device.setBrightnessMode(0)
-                        device.setBrightness(10)
-                    }
-              
-                }else{
-                    //休眠三十分钟
-                    show("电量低"+device.getBattery()+"休眠半小时")
-                    device.lockScreen()
-                    sleep(1800000)
-                }
-            }
+        if(滑动次数%50==0){
+           checkbattery(30,1200000,1800000)
         }
-        if(滑动次数%50==1){
+        if(滑动次数%200==0){
             if(!今日签到(appname)){
                 app_sign()
             }
@@ -546,10 +531,44 @@ var app_login_weixin=function(){
     }
 }
 
- run()
-//火火关闭锁屏功能()
-// while(true){
-//     点击金蛋()
-//     sleep(1000)
-// }
+let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+log("正在集合运行的APP"+runscriptapp)
+let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+log("是否是集合运行："+isreaderunning)
+// 集合运行
+if(runscriptapp==appname && isreaderunning){
+
+}else{
+    if(onlyscript){
+        engines.stopOther()
+    }
+
+    // 彩蛋邀请 通过 微信链接绑定上级用户 
+        
+    toastLog("指定："+appname+"即将启动")
+    alltest()
+    if(changesetting){
+        device.setMusicVolume(0)
+        toastLog("自动设置音量为0")
+    }
+    floaty.closeAll()
+    creatgfloatywindow()
+    creatsetfloatywindow()  //创建设置悬浮窗
+    show("开始彩蛋视频辅助滑动")
+    gfw.setPosition(0,220)
+    if(!app.getPackageName(appname)){
+        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        downloadandinstallapp(appname,apppkg)
+    }else{
+        keepappisnewer(appname,apppkg)
+    }
+    closelastscriptapp()
+    spt.put("lastscriptapp",appname)
+    spt.put("hongshuyuedu_running",false)
+    try {
+        app_run()
+    } catch (error) {
+        
+    }
+}
 
