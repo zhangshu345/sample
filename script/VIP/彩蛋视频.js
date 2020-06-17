@@ -67,19 +67,13 @@ function app_run(){
     sleep(3000)
     while(true){
         device.wakeUpIfNeeded()
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            app_go_home()
-        }else{
-            //这里是视频上滑操作
-        }
-        if(idclick("com.jifen.dandan:id/iv_close")){
+        app_go_home()
+          if(idclick("com.jifen.dandan:id/iv_close")){
         }
         closeappundostate()
-    if(!idoneexist(彩蛋视频首页标识id)){
-        log("没有找到一个彩蛋标识")
-        app_go_home()
-    }else{
+        if(textclick("立即翻倍")){
+            seead()
+         }
         desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
         if(desc){
             currentdesc=desc.text()
@@ -88,31 +82,28 @@ function app_run(){
                 if(textclick("立即翻倍")){
                     seead()
                  }
-                滑动(20,13,16,10,4,500,700)
+                滑动(20,13,17,10,3,500,300)
                 sleep(500)
             }else{
                 lastdesc=currentdesc
                 滑动次数=滑动次数+1
+                sleepr(4000*ratio,6000*ratio)
             }
         }else{
-            if(textclick("立即翻倍")){
-                seead()
-             }
-            滑动(20,13,16,10,4,500,700)
+            滑动(20,13,17,10,3,500,300)
             sleep(500)
         }
         if(text("点击重播").exists()){
             back()
             sleep(2500)
         }
-        sleepr(4000*ratio,6000*ratio)
        
-        if(滑动次数%300==1){
+        if(滑动次数%300==0){
             if(!今日签到(appname)){
                 app_sign()
             }
         }
-      }
+      
     }
 }
 
@@ -150,32 +141,30 @@ let  n_seead=0
         n_seead=n_seead+1
     }
 }
-var app_go_home=function(){
-    i=0
-    while (i<10){
-        i=i+1
-    if(!idallexist(彩蛋视频首页标识id)){
-        if(!idContains(apppkg).findOne(1000)){
-            show("没有找到存在包名id控件")
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-            show("找到存在包名id控件")
-            back()
-            sleep(1500)
-        }
-        if(text("首页").exists()){
-            textclick("首页")
-            sleep(1000)
-            textclick("推荐")
-        }
-        if(textclick("同意并继续")){
 
+var app_go_home=function(){
+    doactionmaxtime(function(){
+        ca=currentActivity()
+        if(ca==apphomeactivity){
+            if(text("首页").exists()){
+                textclick("首页")
+                sleep(1000)
+                textclick("推荐")
+            }
+            return true
+        }else{
+            if(currentPackage()!=apppkg){
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(300)
+                back()
+            }
+            sleep(1000)
         }
-    }else{
-        return true
-    }
-}
+    },20000)
+  
 }
 
 var app_sign=function(){
@@ -299,9 +288,6 @@ var app_tomoney=function(){
 
 
 
-
-
-
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
@@ -333,7 +319,6 @@ if(runscriptapp==appname && isreaderunning){
     }else{
         keepappisnewer(appname,apppkg)
     }
-
     closelastscriptapp()
     spt.put("lastscriptapp",appname)
     spt.put("hongshuyuedu_running",false)

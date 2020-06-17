@@ -69,12 +69,16 @@
         "hudong":"" 
     },
     "mintegral":{
-        "open":false,
-        "appid":"",
-        "splash":"",
-        "banner":"",
-        "chaping":"",
-        "native":"",
-        "rewardvideo":""
+        "open":true,
+        "appid":"129079",
+        "apppky":"d62bd37b8de85bf80b176dc68fcbf05f",
+        "splash":"283676",
+        "banner":"255846",
+        "chaping":"255836",
+        "native":"283676",
+        "rewardvideo":"255842",
+        "appwall":"283748",
+        "appwallnative":"283749"
+       
     }
 }

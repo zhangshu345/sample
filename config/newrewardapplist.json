@@ -540,7 +540,7 @@
 
 },{  "name":"长豆短视频",
     "desc":{"summary":"长豆短视频  未知  实名卡可以 虚拟卡不要勾选 微信登录后直接弹出绑卡页面不能跳过","script":"","html":""},
-    "tags":["短视频","赚钱"],
+    "tags":["短视频","赚钱","实卡"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
     "open":false,
     "install":true,

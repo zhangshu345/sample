@@ -71,6 +71,7 @@
     "mintegral":{
         "open":false,
         "appid":"",
+        "apppky":"",
         "splash":"",
         "banner":"",
         "chaping":"",

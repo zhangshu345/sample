@@ -63,7 +63,7 @@
     {
         "open":false,
         "appid":"",
-         "splash":"",
+        "splash":"",
         "banner":"",
         "chaping":"",
         "native":"",
@@ -73,6 +73,7 @@
     "mintegral":{
         "open":false,
         "appid":"",
+        "apppky":"",
         "splash":"",
         "banner":"",
         "chaping":"",

@@ -17,6 +17,7 @@ importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.androidjs.core.debug.DevPluginService)
 // 
+log(device)
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
@@ -53,9 +54,12 @@ var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+
 var enablegenius=device.sdkInt>=24
 var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
-var scriptappname=app.getAppName(context.getPackageName())
+
+const scriptapppkg=context.getPackageName()
+const scriptappname=app.getAppName(scriptapppkg)
+
 log("脚本app名："+scriptappname)
-var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
+var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3","9X4T2X"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz","8ca66w","2gz5jwv","2bu24wu","26b2w7z","2bn23jb","26bmyff"]
 var 趣多多邀请码=["89797906"]
 var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/invitecode.txt"
@@ -1311,39 +1315,33 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
-    if(idContains(context.getPackageName()).findOne(100)){
-    }else{
-        app.launch(context.getPackageName())
-        sleep(5000)
-    }
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
-    var eeee= engines.execScript("uiname",ui函数,{})
-    sleep(2000)
-    let ss=true
-    let ncsbgl=0
-    while(!isdeviceadmin()){
-        if(textclick("设备管理")){
-            ncsbgl=ncsbgl+1
+   return doactionmaxtime(function(){
+        if(isdeviceadmin()){
+            return true
         }
-        if(ncsbgl>0){
-            clicktexts(["激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
-            sleepr(500,1000)
-            滑动(20,10,17,10,5,500,300)
+        if(currentPackage()==scriptapppkg){
+            return true
+        }else{
+            app.launch(scriptapppkg)
+            sleep(5000)
+            engines.execScript("uiname",ui函数,{})
+            sleep(2000)
+            if(textclick("设备管理")){
+                ncsbgl=ncsbgl+1
+                while(!isdeviceadmin()){
+                    if(ncsbgl>0){
+                        clicktexts(["激活",scriptappname,"启动","启用此设备管理应用","激活此设备管理员"],500,2000)
+                        sleepr(500,1000)
+                        滑动(20,10,17,10,5,500,300)
+                    }
+                    
+                }
+            }
         }
-    }
-    if(isdeviceadmin()){
-        show("设备管理 ok")
-        if(eeee.getId()){
-            show("getid："+eeee.getId())
-            engines.stop(eeee.getId())
-        }
-        back()
-        ss=false
-        return true
-    }else{
-        show("设备管理 no")
-        return false
-    }
+
+    },60000)
+
 }
 
 //检测权限
@@ -1468,7 +1466,13 @@ var alltest=function(){
     device.wakeUpIfNeeded()
     checkfloaty()
     checksystemsettings()
-    startdeviceadmin()
+    if( device.brand=="samsung"){startdeviceadmin()}
+    else if(device.brand=="HONOR"){startdeviceadmin() }
+    else if(device.brand=="DOCOMO"){startdeviceadmin()}
+    else if(device.brand=="Meizu"){ }
+    else if(device.brand=="xiaomi"){  }
+    else if(device.brand=="OPPO"){   }
+    
 }
 
 var 随机邀请文本=function(url){
@@ -1725,6 +1729,8 @@ var close_ad_qq=function(apppkg,clickgailv){
             }
             if(currentActivity()!="com.qq.e.ads.PortraitADActivity"){
                 return false
+            }else{
+                
             }
             if(!idContains(apppkg).findOne(100)){
                 return false
