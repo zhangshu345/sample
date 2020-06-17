@@ -48,7 +48,7 @@ var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
-var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
+var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
