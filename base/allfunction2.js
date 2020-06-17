@@ -1311,6 +1311,7 @@ var removebmobchannel=function(channels){   BmobPushUtils.getInstance().removech
 var bmobpushmessage=function(channels,message){ BmobPushUtils.getInstance().pushmessage(channels,message)}
 //启动deviceadmin
 var startdeviceadmin=function(){
+    toastLog("检测设备管理器是否激活")
     if(isdeviceadmin()){
         show("设备管理器激活了")
         return
