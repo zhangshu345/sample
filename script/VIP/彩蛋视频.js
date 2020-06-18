@@ -82,7 +82,10 @@ function app_run(){
         if(textclick("立即翻倍")){
             seead()
          }
-         app_home_sweep()
+         
+
+
+        app_home_sweep()
         if(text("点击重播").exists()){
             back()
             sleep(2500)
@@ -99,12 +102,23 @@ function app_run(){
 
 var app_home_sweep=function(){
     doactionmaxtime(function(){
-        if(textclick("立即翻倍")){
-            seead()
-         }
+
          滑动(20,13,17,10,3,500,300)
-         sleep(1000)
-        desc=  id("com.jifen.dandan:id/tv_title").findOne(300)
+         sleep(3000)
+         if(getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")=="立即领取"){
+             show("立即领取 看广告30秒")
+             doactionmaxtime(function(){
+               if(!id("com.jifen.dandan:id/tv_ad_red_pack_count_down").exists()){
+                   return true
+               }else{
+                   sleepr(3000)
+               }
+             },30000)
+            idclick("com.jifen.dandan:id/tv_ad_red_pack_status")
+            滑动(20,13,17,10,3,500,300)
+            sleep(1000)
+         }
+        desc=  id("com.jifen.dandan:id/tv_like_num").findOne(300)
         if(desc){
             currentdesc=desc.text()
             show("之前："+lastdesc+"--当前："+currentdesc)
@@ -121,9 +135,11 @@ var app_home_sweep=function(){
                    n=parseInt(txt_like)
                    if(n>1000){
                        idclick("com.jifen.dandan:id/tv_like_num")
-                       sleepr(6000*ratio,8000*ratio)
+                       sleepr(7000*ratio,9000*ratio)
                    }else if(n>500){
-                    sleepr(2000*ratio,4000*ratio)
+                    sleepr(5000*ratio,7000*ratio)
+                   }else if(n>100){
+                    sleepr(3000*ratio,5000*ratio)
                    }
                }
                 return true
@@ -207,16 +223,14 @@ var app_sign=function(){
     app_go_home()
     doactionmaxtime(function(){
     if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
-        sleep(2000)
+        sleep(4000)
    
     }
-
     if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
         if(text("我的金币").exists()){
             log("找到金币")
         }
     }
-
      if(idContains("coins-number").findOne(100)){
             txt_coin=idContains("coins-number").findOne(100).text()
             if(txt_coin){
@@ -236,7 +250,6 @@ var app_sign=function(){
            今日已签到(appname)
            return true
        }
-
        if(textclick("翻倍")){
            seead()
            今日已签到(appname)
@@ -250,13 +263,12 @@ var app_sign=function(){
         back()
         return  true
     }
-
     if(text("邀请好友").findOne(500)){
         back()
         return  
     }
   
-},10000)
+},30000)
 
 }
 
