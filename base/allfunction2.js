@@ -1317,6 +1317,7 @@ var startdeviceadmin=function(){
         show("设备管理器激活了")
         return
     }
+    let ncsbgl=0
     ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
    return doactionmaxtime(function(){
         if(isdeviceadmin()){

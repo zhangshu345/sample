@@ -27,6 +27,7 @@ var apppkg="com.jifen.dandan"
 var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
 var appname="彩蛋视频"
 var  apprewardactivity="com.jifen.dandan.webview.WebViewActivity"
+var appliveactivity="com.uqu.live.liveroom.pages.LiveActivity"
 var tomoney=false  
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var onetime=30 // 一次的时间
@@ -71,7 +72,11 @@ function app_run(){
         toastLog("循环 "+xhcs)
         device.wakeUpIfNeeded()
         app_go_home()
-          if(idclick("com.jifen.dandan:id/iv_close")){
+        n_tj=text("推荐").clickable().boundsInside(0,0,device.width,device.height/5).findOne(100)
+        if(n_tj){
+            n_tj.click()
+        }
+        if(idclick("com.jifen.dandan:id/iv_close")){
         }
         closeappundostate()
         if(textclick("立即翻倍")){
@@ -178,13 +183,12 @@ var app_go_home=function(){
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            if(text("首页").exists()){
-                textclick("首页")
-                sleep(1000)
-                textclick("推荐")
-            }
+            idclick("com.jifen.dandan:id/bt_tab_home_page")
             return true
-        }else{
+        }else if(ca==appliveactivity){
+            back()
+            sleep(300)
+        }else {
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
