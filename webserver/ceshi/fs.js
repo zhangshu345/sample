@@ -1,0 +1,6 @@
+var fs=require("fs")
+console.log("当前目录："+__dirname)
+var data=fs.readFileSync(__dirname+"/http1.js")
+console.log(data.toString())
+console.log("结束")
+eval(data.toString())

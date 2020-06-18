@@ -59,7 +59,8 @@ var 彩蛋视频首页标识id =[彩蛋首页喜欢按钮id,彩蛋首页评论�
 var 视频次数=0
 var lastdesc=""
 var 滑动次数=0
-
+var seevideo= true  //记录是不是看视频
+var 当前金蛋=false
 function app_run(){
     app.launchApp(appname)
     sleep(3000)
@@ -82,8 +83,6 @@ function app_run(){
         if(textclick("立即翻倍")){
             seead()
          }
-         
-
 
         app_home_sweep()
         if(text("点击重播").exists()){
@@ -102,10 +101,14 @@ function app_run(){
 
 var app_home_sweep=function(){
     doactionmaxtime(function(){
-
+        if(textclick("立即翻倍")){
+            seead()
+         }
+         
          滑动(20,13,17,10,3,500,300)
-         sleep(3000)
-         if(getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")=="立即领取"){
+         sleep(2388)
+         jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")
+         if(jl=="立即领取"){
              show("立即领取 看广告30秒")
              doactionmaxtime(function(){
                if(!id("com.jifen.dandan:id/tv_ad_red_pack_count_down").exists()){
@@ -117,6 +120,8 @@ var app_home_sweep=function(){
             idclick("com.jifen.dandan:id/tv_ad_red_pack_status")
             滑动(20,13,17,10,3,500,300)
             sleep(1000)
+         }else if(jl.search("上限")>-1){
+            seevideo=false
          }
         desc=  id("com.jifen.dandan:id/tv_like_num").findOne(300)
         if(desc){
