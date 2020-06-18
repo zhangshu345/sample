@@ -1,5 +1,5 @@
 var window = floaty.window(
-    <vertical>
+    <vertical >
         <input id="input" text="请输入你的名字" textSize="16sp" focusable="true"/>
         <button id="ok" text="确定"/>
     </vertical>

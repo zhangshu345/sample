@@ -488,10 +488,8 @@ var app_login=function(){
             app_login_phone()
         }else{
             app_login_weixin()
-        }
-    
-
-        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
+        } 
+       clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
        if(id("login_tip").exists()||text("微信账号登录")){
            toastLog("登录页面")
            if(logintype=="weixin"){

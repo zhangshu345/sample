@@ -22,8 +22,6 @@ toastLog("公共函数实例化失败,程序返回")
 }
 
 // 签到增加 活跃度  不然 每天到不了 3500 
-
-
 //微信登录 点击邀请链接 注册 再微信登录
 var apppkg="com.jifen.dandan"
 var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
@@ -44,7 +42,6 @@ var logintype=getstrvalue(appname+"_login_type","weixin")
 var appinvitestate=getbooleanvalue(appname+"_invite_state",false);
 var tomoney=getbooleanvalue(appname+"_tomoney",false)  //填现
 var invite=getbooleanvalue(appname+"_invite",false) // 邀请
-
 
 const 彩蛋视频广告立即领取id="com.jifen.dandan:id/tv_ad_red_pack_staus"
 const 彩蛋首页奖励计时布局id="com.jifen.dandan:id/view_default_timer"
@@ -71,6 +68,7 @@ function app_run(){
     }
     while(true){
         xhcs=xhcs+1
+        toastLog("循环 "+xhcs)
         device.wakeUpIfNeeded()
         app_go_home()
           if(idclick("com.jifen.dandan:id/iv_close")){
@@ -87,6 +85,7 @@ function app_run(){
        
         if(xhcs%200==0){
            show(appname+":循环:"+xhcs)
+           app_tomoney()
            app_getreward()
         }
       
@@ -130,7 +129,7 @@ var app_home_sweep=function(){
 }
 
 var seead=function(){
-   
+    log("seead")
     doactionmaxtime(function(){
         show(appname+"看广告")
         if(text("勋章殿堂").exists()){
@@ -202,34 +201,38 @@ var app_go_home=function(){
 
 var app_sign=function(){
     app_go_home()
-
-doactionmaxtime(function(){
+    doactionmaxtime(function(){
     if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
         sleep(2000)
-      
+   
     }
+
     if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
         if(text("我的金币").exists()){
-
+            log("找到金币")
         }
     }
-        if(idContains("coins-number").findOne(100)){
+
+     if(idContains("coins-number").findOne(100)){
             txt_coin=idContains("coins-number").findOne(100).text()
             if(txt_coin){
                 记录现在金币(appname,parseInt(txt_coin))
             }
         }
-        n_sign=n_sign+1
+
         if(maytextclick("看视频再送")){
+            log("33")
             seead()
             今日已签到(appname)
             return true
         }
+
        if(textclick("看视频再送100金币")){
            seead()
            今日已签到(appname)
            return true
        }
+
        if(textclick("翻倍")){
            seead()
            今日已签到(appname)
@@ -243,11 +246,13 @@ doactionmaxtime(function(){
         back()
         return  true
     }
+
     if(text("邀请好友").findOne(500)){
         back()
         return  
     }
-},100000)
+  
+},10000)
 
 }
 
@@ -354,15 +359,64 @@ var app_tomoney=function(){
                 记录现在金币(appname,n_coin)
                }
             }
-            
             text_todaycoin=getTextfromid("com.jifen.dandan:id/tv_person_today_gold_title");
             n_todaycoin=parseInt(text_todaycoin.replace("今日金币","").trim())
             if(n_todaycoin>=mintodaycoin){
                 if(idclick("com.jifen.dandan:id/tv_person_total_gold_title")){
-                    
+                    while(true){
+                        if(text("金币提现").exists()){
+                            n_int_coin=parseInt(n_coin/10000)
+                        
+                            if(n_int_coin>=5){
+                                textclick("5 元")
+                                sleep(1000)
+                                n_can=textStartsWith("5元提现说明").findOne(200)
+                                if(n_can.text.search("未满足")==-1){
+                                    if  (textclick("立即提现")){
+                                        seead()
+                                        back()
+                                        return true
+                                    }
+                                }
+                               
+                            }
+                            else if(n_int_coin>=3){
+                                textclick("3 元")
+                                sleep(1000)
+                                n_can=textStartsWith("3元提现说明").findOne(200)
+                                if(n_can.text.search("未满足")==-1){
+                                    if  (textclick("立即提现")){
+                                        seead()
+                                        back()
+                                        return true
+                                    }
+                                }
+                            }else if(n_int_coin>=1){
+                                textclick("1 元")
+                                sleep(1000)
+                                n_can=textStartsWith("1元提现说明").findOne(200)
+                                if(n_can.text.search("未满足")==-1){
+                                    if  (textclick("立即提现")){
+                                        seead()
+                                        back()
+                                        return true
+                                    }
+                                }
+                            }else {
+                                textclick("0.3 元")
+                                sleep(1000)
+                              if  (textclick("立即提现")){
+                                  seead()
+                                  back()
+                                  return true
+                              }
+                            }
+                        }
+                    }
                 }
             }else{
                 show("今日金币数:"+n_todaycoin)
+                return false
             }
         }
     },20000)
@@ -384,7 +438,6 @@ if(runscriptapp==appname && isreaderunning){
     }
 
     // 彩蛋邀请 通过 微信链接绑定上级用户 
-        
     toastLog("指定："+appname+"即将启动")
     alltest()
     if(changesetting){

@@ -116,8 +116,9 @@ var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  r
 var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
 var getstrsetvalue=function(key){   return spt.getStringSet(key)}
 var  creatgfloatywindow=function(){
+    log("createdfloaty")
     gfw=floaty.rawWindow(
-        <horizontal  >
+        <horizontal>
             <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
     );
@@ -128,7 +129,7 @@ var  creatgfloatywindow=function(){
  }
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
-        <horizontal clickable="false" >
+        <horizontal clickable="false"  >
               <vertical  w="90" h="65" >
               <text id="stop" w="auto" h="45"  textSize="16sp" textColor="#000000"  background="#1C86EE" >设置</text>
               <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#1C86EE"  >收缩</text>
@@ -2282,3 +2283,4 @@ checkscriptversion()
 //     }
 // })
 // closelastscriptapp()
+
