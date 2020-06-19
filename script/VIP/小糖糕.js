@@ -41,7 +41,7 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apphomeactivity=""
+var apphomeactivity="com.jifen.ponycamera.commonbusiness.MainActivity"
 var keepappnewer=true
 
 //关闭最新的app
@@ -55,18 +55,41 @@ var app_run=function(){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
+      
             app_home_video()
-        }else{
+     
             //这里是视频上滑操作
-            app_seevideo()
-        }
+            app_home_sweep()
+       
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         n_i=n_i+1
     }
+}
+
+var app_home_sweep=function(){
+    lastlike=""
+    doactionmaxtime(function(){
+        app_home_video()
+        滑动(20,10,17,10,3,500,300)
+        sleep(2000)
+        txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
+        if(txt_like){
+            if(txt_like.search("")-1){
+                idclick("com.jifen.ponycamera:id/tv_like")
+            }else{
+                n_like=parseInt(txt_like)
+                
+            }
+            if(lastlike!=txt_like){
+                lastlike=txt_like
+                return true
+            }
+        }
+
+    },30000)
+
 }
 
 var app_login_check=function(){
@@ -105,11 +128,29 @@ var app_tomoney=function(){
 
 function  app_home_video(){
     if(doactionmaxtime(function(){
-         
-
+        ca=currentActivity()
+        if(ca==apphomeactivity){
+            if(id("com.jifen.ponycamera:id/image_red_bg_icon").exists()){
+                return true
+            }else{
+                textclick("小视频")
+            }
+            
+           
+        }else{
+            back()
+        }
+        if(currentPackage()!=apppkg){
+            app.launch(apppkg);
+            sleep(3000)
+        }
+        if(maytextclick("看视频再领")){
+            seead()
+        }
  
- 
-     },10000)){return true}else{
+     },10000)){return true
+    
+    }else{
          forcestop(appname)
          app.launch(apppkg)
      }
@@ -121,6 +162,52 @@ var app_invite=function(){
     
     
 
+}
+
+
+var seead=function(){
+    log("seead")
+    doactionmaxtime(function(){
+        show(appname+"看广告")
+        if(text("勋章殿堂").exists()){
+            clickonetexts(["去领取","待领取","可领取"])
+        }
+         if(maytextclick("看视频再领")){
+            
+        }
+        if(clickoneids(["com.jifen.ponycamera:id/iv_close","com.jifen.ponycamera:id/tv_close"],150,1500)){
+            back()
+            return true
+        }
+        if(text("点击重播").exists()){
+            back()
+            sleep(2500)
+            back()
+            return  true
+        }
+       if(idclick("com.jifen.ponycamera:id/tt_video_ad_close")){
+           return  true
+       }
+       
+        if(text("邀请好友").findOne(500)){
+            back()
+            return  true
+        }
+        if(textclick("金币已到账")){
+            back()
+            return true
+        }
+      if(close_ad_iclicash(apppkg)){
+         
+      }
+       if(close_ad_toutiao(apppkg)){
+           
+       }
+      if(close_ad_qq(apppkg)){
+         
+      }
+        sleep(2000)
+    },60000)
 }
 
 

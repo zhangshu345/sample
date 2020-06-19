@@ -546,8 +546,6 @@ var app_login_weixin=function(){
         t_login=t_login+1
     }
 }
-app_get_reward()
-
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)

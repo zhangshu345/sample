@@ -32,10 +32,9 @@ selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewa
 var run=function(){
     
     var appconfig=httpget(selfrewardlisturl)
-     apps=JSON.parse(appconfig)
+    apps=JSON.parse(appconfig)
     var last
-   apps= shuffleArray(apps)
-
+    apps= shuffleArray(apps)
     apps.forEach(app => {
            if(last){
                记录今日时长(last.name,last.onetime)

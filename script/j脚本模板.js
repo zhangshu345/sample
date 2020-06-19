@@ -60,7 +60,7 @@ var app_run=function(){
             app_home_video()
         }else{
             //这里是视频上滑操作
-            app_seevideo()
+            app_home_sweep()
         }
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)

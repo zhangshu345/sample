@@ -97,11 +97,67 @@ var 微信扫一扫=function(){
     context.startActivity(intent);
 }
 var 微信浏览=function(url){
-    var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
-     intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
-    // intent.setFlags(335544320);
-    // intent.setAction("android.intent.action.VIEW");
-    context.startActivity(intent);
+  let  weixinpkg=getPackageName("微信")
+ if(wexinpkg){
+     app.launch(weixinpkg)
+     sleep(3000)
+
+     if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
+        log("微信欢迎页")
+
+    }else if(ca=="com.tencent.mm.ui.LauncherUI" ){
+        log("微信主页")
+    
+        if(textclick("微信")){
+            sleep(1500)
+             node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
+            if(node_weixin){
+            let weixin=node_weixin.text().substring(4)
+            spt.put("weixin",weixin)
+            log("微信号："+weixin)
+            }
+            node_weixinname=className("android.view.View").depth(17).drawingOrder(1).enabled(true).boundsInside(200,200,1080,450).findOne()
+            if(node_weixinname){
+                let weixinname=node_weixinname.text()
+                spt.put("weixinname",weixinname)
+                log("微信名："+weixinname)
+            }
+        
+        }
+        
+    }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
+        log("微信登录页")
+        spt.put("weixinlogin",false)
+        spt.put("weixinshiming",false)
+        return false
+    }else if(ca=="com.tencent.mm.plugin.account.ui.RegByMobileRegAIOUI"){
+        log("微信注册页")
+        spt.put("weixinlogin",false)
+        spt.put("weixinshiming",false)
+        return false
+    }else if(ca=="com.tencent.mm.plugin.sns.ui.SnsTimeLineUI"){
+        log("微信朋友圈")
+        spt.put("weixinlogin",true)
+        spt.put("weixinshiming",false)
+        return true
+    }else if(ca=="com.tencent.mm.plugin.profile.ui.ContactInfoUI"){
+        log("微信个人名片")
+        spt.put("weixinlogin",true)
+        return true
+    }else if(ca=="com.tencent.mm.plugin.webview.ui.tools.WebViewUI"){
+        log("微信网页")
+        spt.put("weixinlogin",true)   
+        back()        
+        return true
+    }else{
+        back()
+        sleep(1000)
+    }
+  }
+}
+
+var 微信打开链接=function(weburl){
+    
 }
 
 var 视频重复次数=2
@@ -369,8 +425,8 @@ var sendforcestopIntent=function(apppkg){
         extras:{
             "action":"forcestop",
             "tast_source":2,
-            "source":2,
-            "path":scriptsurl
+            "source":2
+           // "path":scriptsurl
             }
         }
     );
@@ -1133,9 +1189,10 @@ function downloadApk(name,downloadurl,isinstall) {
     
  }
  
- function install_app(filePath, name,maxtime,isopen) {
+ function install_app(filePath, name,maxtime,isopen,delect) {
      maxtime=maxtime||180000
      isopen=isopen||false
+     delect=delect||true
      ////--------------安装--------------////
      if(filePath){
         installapp(filePath)
@@ -1190,14 +1247,17 @@ function downloadApk(name,downloadurl,isinstall) {
                 true
              }else{
                 return true  
-            }  }
-         if (text("打开").exists()){ return   }   
+             }
+            
+            }
+        
         //系统可以获取到app 的包名的时候就
         if(name){
             if(app.getPackageName(name)){  sleep(1000);  return true}
         }
        
      },maxtime)
+    
      back()
      sleep(300)
      back()
@@ -1391,6 +1451,7 @@ var doactionmaxnumber=function(action,maxnumber){
     while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
     return false
 }
+
 //卸载应用
 var uninstallapp=function(appname){
   pkg=getPackageName(appname)
@@ -1432,6 +1493,7 @@ var uninstallpackage=function(packageName){
 var issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
+
 var checksystemsettings=function(){
     if(issystemsettings()){ log("有系统设置权限"); return true    }
     else{ log("没有系统设置权限");
@@ -1565,6 +1627,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
     }
     return null
 }
+
 //检测电量低停止脚本
 var checkbattery=function(btyn,sleeptime1,sleeptime2){
     toastLog("检测电池电量:"+btyn)
@@ -1819,15 +1882,15 @@ var onerewardapp=function(appname,apppkg){
     }
     ca=currentActivity()
     if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-        if(randomint(0,5)==0){
+        if(randomint(0,3)==0){
             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
             if(ll_advice){
                 ll_advice_bound=ll_advice.bounds()
                 if(ll_advice_bound.centerX()>0&&ll_advice_bound.centerY()>0){
                    if(enablegenius){
                        click(ll_advice_bound.centerX(),ll_advice_bound.centerY())
-                       if(randomint(0,3)==0){
-                           threads.start(install_app())
+                       if(randomint(0,2)==0){
+                          install_app()
                        }
                    }
                 }
@@ -1853,7 +1916,7 @@ var onerewardapp=function(appname,apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
-       if(randomint(0,3)==0){
+       if(randomint(0,1)==0){
            if(textclick("任务")){
                sleep(2000)
                if(textclick("看激励视频")){
@@ -1863,7 +1926,7 @@ var onerewardapp=function(appname,apppkg){
                 seerewardvideo(apppkg,true)
                }
         }
-        if(randomint(0,3)==0){
+        if(randomint(0,1)==0){
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
@@ -2226,6 +2289,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
             }
           }
         com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+        closerecentapp()
         closelastscriptapp()
         spt.remove("lastscriptapp")
         delectapkfile()

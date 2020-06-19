@@ -220,6 +220,9 @@ var app_go_home=function(){
             if(textclick("立即翻倍")){
                 seead()
              }
+             if(textclick("点击领取")){
+                 app_getreward()
+             }
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
@@ -231,7 +234,6 @@ var app_go_home=function(){
             sleep(1000)
         }
     },20000)
-  
 }
 
 var app_sign=function(){

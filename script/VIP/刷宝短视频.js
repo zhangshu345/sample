@@ -121,11 +121,17 @@ var app_sign=function(){
             if(textclick("任务")){
                 下滑()
                 sleep(2000)
+            }
                     if(textContains("恭喜您获得").findOne(200)){
                         back()
                         return true
                     }
-                    ds=desc("立即签到").findOne(300);
+                    ds=text("立即签到").findOne(1000);
+                    if(ds){
+                        clicknode(ds)
+                        sleep(2000)
+                    }
+                    ds=desc("立即签到").findOne(1000);
                     if(ds){
                         clicknode(ds)
                         sleep(2000)
@@ -138,7 +144,6 @@ var app_sign=function(){
                         }
                         return false
                     }
-                    sleep(1500)
                     if(textclick("看视频签到")){
                         while(i<20){
                             show("等待视频广告3秒")
@@ -160,14 +165,13 @@ var app_sign=function(){
                     
                         }
                     }
-            }
+            
         }
     },60000)
 
 }
 var app_login=function(){
-  
-    doactionmaxtime(function(){
+      doactionmaxtime(function(){
         show(appname+"登录")
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
@@ -391,9 +395,10 @@ function app_go_videolist(){
 
 
 function app_run(){
+    toastLog(appname+"---apprun")
     app.launchApp(appname)
     sleep(3000)
-lastbattery=0
+
 app_login()
 app_sign()
 show("签到结束")
