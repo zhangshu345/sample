@@ -85,6 +85,12 @@ function app_run(){
          }
 
         app_home_sweep()
+        if(text("注册/登录").clickable().boundsInside(0,0,300,300).exists()){
+           if (textclick("注册/登录")){
+               app_login()
+
+           }
+        }
         if(text("点击重播").exists()){
             back()
             sleep(2500)
@@ -101,6 +107,7 @@ function app_run(){
 
 var app_home_sweep=function(){
     doactionmaxtime(function(){
+        app_go_home()
         if(textclick("立即翻倍")){
             seead()
          }
@@ -210,6 +217,9 @@ var app_go_home=function(){
             back()
             sleep(300)
         }else {
+            if(textclick("立即翻倍")){
+                seead()
+             }
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
@@ -229,14 +239,13 @@ var app_sign=function(){
     doactionmaxtime(function(){
     if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
         sleep(4000)
-   
     }
-    if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
-        if(text("我的金币").exists()){
-            log("找到金币")
-        }
-    }
-     if(idContains("coins-number").findOne(100)){
+        if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
+             if(text("我的金币").exists()){
+               log("找到金币")
+             }
+         }
+        if(idContains("coins-number").findOne(100)){
             txt_coin=idContains("coins-number").findOne(100).text()
             if(txt_coin){
                 记录现在金币(appname,parseInt(txt_coin))
@@ -272,7 +281,24 @@ var app_sign=function(){
         back()
         return  
     }
-  
+    doactionmaxtime(function(){
+        if(text("日常福利").exists()){
+            if(textclick("去赚钱")){
+                seead()
+            }
+            if(textclick("去抢红包")){
+                seead()
+            }
+            sleep(1000)
+            back()
+           return true
+        }else{
+            滑动(20,10,18,10,3,500,500)
+            sleep(1000)
+         
+        }
+    },10000)
+
 },30000)
 
 }
@@ -325,39 +351,12 @@ var app_getreward=function(){
 
 
 var app_login=function(){
-    i=0
-    while(i<10){
-        show("彩蛋登录")
-           if(!idContains("com.jm.video").findOne(1000)){
-                show("找到存在包名id控件")
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
-                back()
-                sleep(1200)
-            }
-
-        if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-            show("我界面找到昵称和设置")
-            spt.put("shuabaologin",true)
-               return true
-        }else{
-            show("没有找到昵称和设置")
-            back()
-            sleep(1000)
-        }
-        clicktexts(["去授权","允许","允许","允许","我","同意并继续"],500,1500)
-       if(id("login_tip").exists()||text("微信账号登录")){
-           toastLog("登录页面")
-           if(logintype=="weixin"){
-           app_login_weixin()
-           }else{
-           app_login_phone()
-           }
-       }
-        // 
-        i=i+1
-    }
+  doactionmaxtime(function(){
+      clicktexts(["微信一键登录","同意"],200,2000)
+      if(currentActivity()==apphomeactivity){
+          return true
+      }
+  },10000)
 }
 
 var app_login_phone=function(){
