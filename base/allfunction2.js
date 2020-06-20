@@ -29,7 +29,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 const alldelectdirs=["yysdk","yy_video1","91AV"]
 var readerapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","抖音短视频","手机营业厅","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":163,"东东随便":0}
+var scriptapps={"随便粘":164,"东东随便":0}
 
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
@@ -1882,7 +1882,7 @@ var onerewardapp=function(appname,apppkg){
     }
     ca=currentActivity()
     if(ca=="com.dongdong.suibian.ui.usermain.BottomNavigationActivity"){
-        if(randomint(0,3)==0){
+        if(randomint(0,2)==0){
             ll_advice=id(apppkg+":id/ll_advice").findOne(100)
             if(ll_advice){
                 ll_advice_bound=ll_advice.bounds()
@@ -1897,9 +1897,9 @@ var onerewardapp=function(appname,apppkg){
             }
            }
        }else if(ca=="com.qq.e.ads.PortraitADActivity"){
-           close_ad_qq(apppkg)
+           close_ad_qq(apppkg,2)
        }else if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
-           close_ad_toutiao(apppkg)
+           close_ad_toutiao(apppkg,2)
        }
          if(textoneexist(["点击下载"])){
             back()

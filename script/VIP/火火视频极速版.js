@@ -88,7 +88,6 @@ var 火火选中底部导航=function(indexofbottom){
     node_me=className("android.widget.RelativeLayout").clickable(true).depth(7).indexInParent(indexofbottom).findOne(100)
     if(node_me){
         if(clicknode(node_me)){
-            
             return true
         }
     }
@@ -184,11 +183,7 @@ function app_see_small_video(){
         log("没有找到一个"+appname+"小视频标识")
         app_go_home()
         clicktexts(进入小视频页面点击文本集合,300,1500)
-        if(clickonetexts(未登录点击显示文本集合),200,1500){
-            sleep(2000)
-           show(appname+"未登录点击显示文本集合")
-            app_login()
-        }
+   
         火火小视频滑动()
         if(clickonetexts(广告点击按钮文本集合,500,1500)){
                 seead()
@@ -198,8 +193,6 @@ function app_see_small_video(){
                 sleep(1500)
          }
        }
-       
-     
 }
 
 function app_run(){
