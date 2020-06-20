@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -389,7 +387,10 @@ var  app_home_video_sweep=function(){
 //     },20000)
 // }
 
+var seeadnum=0
 var seead=function(timeout){
+    seeadnum=seeadnum+1
+    show(appname+":看广告："+seeadnum)
     doactionmaxtime(function(){
         if(text("点击重播").exists()){
             back()
