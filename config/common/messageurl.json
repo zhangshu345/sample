@@ -1,5 +1,5 @@
 [{"title":"全部更新到1.6.4版本","script":"","time":"2020-06-20 19:56:29","img":["","",""],"importance":1,
-    "summary":"重要提醒 ",
+    "summary":"1.6.4修复了 bmobpush 缓存引起的奔溃 ",
     "contenturl":"1.6.4修复了 bmobpush 缓存引起的奔溃 ",
     "level":0,"tags":["更新说明","测试消息","测试消息"]},
     {"title":"全部更新到1.6.1版本","script":"","time":"2020-04-24 14:56:29","img":["","",""],"importance":1,
