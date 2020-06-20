@@ -1728,6 +1728,7 @@ var close_ad_toutiao=function(apppkg,clickgailv){
     if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
         doactionmaxtime(function(){
             if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+           
             }else{
                 return false
             }
@@ -1739,7 +1740,7 @@ var close_ad_toutiao=function(apppkg,clickgailv){
             }
             sleep(1000)
             if(!idContains(apppkg).findOne(100)){
-                return false
+                return true
             }
         },60000)
     }

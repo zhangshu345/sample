@@ -304,7 +304,6 @@ var  app_home_video_sweep=function(){
     },3000)
 }
 
-
 // var 天天爱清理下滑=function(){
 //     node_rv=id("com.xiaoqiao.qclean:id/community_recycler_view").findOne(300)
 //     if(node_rv){
