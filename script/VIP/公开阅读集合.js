@@ -1080,10 +1080,10 @@ function 抖音极速版(appName, executeCount, execTimes, timesInterval, IsAuto
         }
     }
 }
+
+
 function 快手极速版(appName, executeCount, execTimes, timesInterval, IsAutoSign, IsAutoComment, IsClearCache, IsCashOut, probability,execAutoBrushDate) {
-   
     for (var i = 1; i < executeCount; i++) {
-        
         try {
             if (checkTimesIsZeroTime(execAutoBrushDate)) {
                 return;
@@ -2801,6 +2801,7 @@ function 刷宝短视频(appName, executeCount, execTimes, timesInterval, IsAuto
             toastError(appName + "刷刷刷时出现错误！" + error);
         }
     }
+    //刷宝随机关注
     function shuaBaoRandomFollow(probability) {
         index = random(1, parseInt(probability));
         if (index == 1) {
@@ -2813,6 +2814,7 @@ function 刷宝短视频(appName, executeCount, execTimes, timesInterval, IsAuto
             }
         }
     }
+
     function autoSign(appName) {
         let signValue = getSignTime(appName);
         if (getDate() == signValue) {
@@ -2828,7 +2830,6 @@ function 刷宝短视频(appName, executeCount, execTimes, timesInterval, IsAuto
         if (id("imgClose").exists()) {
             id("imgClose").findOnce().click();
         }
-
 
         sleep(60000)//1分钟还不行就放弃吧
         toastLog("准备签到");
@@ -2976,6 +2977,8 @@ function 闪鸭短视频(appName, executeCount, execTimes, timesInterval, IsAuto
         }
     }
 }
+
+
 function 京东领京豆(appName, IsAutoSign, IsShowToast) {
     toastLog("进入京东");
     sleep(10000);
@@ -3123,6 +3126,8 @@ function 今日头条极速版(appName, IsAutoSign, IsShowToast) {
     back();//返回到首页为下一个任务准备
     sleep(2200);
 }
+
+
 function 多多步(appName, IsAutoSign, IsShowToast) {
     if (className("android.widget.Button").text("领取金币").exists()) {
         console.info("点击领取金币");
@@ -3137,6 +3142,7 @@ function 多多步(appName, IsAutoSign, IsShowToast) {
         } catch (ex) { }
     }
 }
+
 function 步多多(appName, IsAutoSign, IsShowToast) {
     if (IsAutoSign) {
         //autoSign();
@@ -3175,6 +3181,7 @@ function 步多多(appName, IsAutoSign, IsShowToast) {
         }
     }
 }
+
 function 猫扑运动(appName, IsAutoSign, IsShowToast) {
     if (className("android.widget.TextView").text("领取金币").exists()) {
         let b = className("android.widget.TextView").text("领取金币").findOnce().bounds();
@@ -3229,6 +3236,7 @@ function huoHuoClickVideo() {
         sleep(5000);
     } catch (e) { toastError(e) }
 }
+
 function huoHuoClickGoldEgg() {
     try {
         let widgetViews = className("android.widget.FrameLayout").find();
@@ -3351,6 +3359,7 @@ function autoSignZhouKouKeJi(appName) {
         console.error(error);
     }
 }
+
 function autoCashOutZhouKouKeJi() {
     if (className("android.widget.TextView").text("我").exists()) {
         let b = className("android.widget.TextView").text("我").findOne().parent().bounds();
@@ -3375,6 +3384,7 @@ function autoCashOutZhouKouKeJi() {
         }
     }
 }
+
 /**
  * 周口科技短视频统一方法
  * 快逗视频 小吃货 趣宠短视频
@@ -3395,6 +3405,7 @@ function zhouKouKeJiCloseRedFloatTip() {
         }
     } catch (e) { }
 }
+
 /**
  * 统一看广告得金币方法
  */
@@ -3403,6 +3414,7 @@ function waitAdForCoin() {
         sleep(20000);
     }
 }
+
 /**
  * 判断app今日时间否到达
  * @param {app名称} appName 
@@ -3421,8 +3433,8 @@ function computerExctueTime(appName, execTimes) {
             return true;
         }
     }
-
 }
+
 /**
  * 判断是否是凌晨
  * @param {开始执行脚本的日期} execAutoBrushDate 
@@ -3456,6 +3468,7 @@ function checkTimesIsZeroTime(execAutoBrushDate) {
         }
     }
 }
+
 /**
  * 屏幕向下滑动并延迟timesInterval+-秒
  */
@@ -3496,6 +3509,7 @@ function randomDownSildeScreen(startX, startY, endX, endY, pressTime, timesInter
         sleep(timesInterval);
     }
 }
+
 /**
  * 屏幕向下滑动并延迟8至12秒
  */
@@ -3561,6 +3575,7 @@ function toastWarn(message) {
     toast(message);
     console.warn(getTime() + "" + message);
 }
+
 /**
  * 记录App签到时间
  * @param {App名称} appName 
