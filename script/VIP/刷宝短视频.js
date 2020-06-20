@@ -104,7 +104,7 @@ function app_go_home(){
     },6000)
 }
 var app_sign=function(){
-    i=0
+  show(appname+":签到")
     doactionmaxtime(function(){
         if(currentPackage()!=apppkg){
             show("没有找到存在包名id控件")
@@ -145,6 +145,7 @@ var app_sign=function(){
                         return false
                     }
                     if(textclick("看视频签到")){
+                      let  i=0
                         while(i<20){
                             show("等待视频广告3秒")
                             sleep(3000)

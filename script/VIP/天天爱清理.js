@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -58,7 +60,7 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login()
-    app_sign()
+    app_clean()
     滑动次数=0
     ii=0
     while(true){
@@ -66,7 +68,7 @@ var app_run=function(){
     
         closeappundostate()
         log("循环次数:"+ii)
-        app_home_video(2)
+        app_home_activity(2)
                   //应该做可以回到首页的操作
             if(close_ad_qq(apppkg)){
             
@@ -118,10 +120,30 @@ var app_run=function(){
        }
 }
 var app_home_activity=function(index){
+    index=index||2
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            selectnavi(index)
+            if(index==1){
+                if(id("com.xiaoqiao.qclean:id/tv_how_to_make_money").exists()){
+                    return true
+                }else{
+                    selectnavi(1)
+                }
+            }else if(index==2){
+                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like"])){
+                    return true
+                }else{
+                    selectnavi(2)
+                }
+            }else if(index==3){
+                selectnavi(3)
+                return true
+            }else if(index==4){
+                selectnavi(4)
+                return true
+            }
+           
            return true
         }else if(ca==appcleanactivity){
             back()
@@ -129,6 +151,7 @@ var app_home_activity=function(index){
         }
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
+            sleep(3000)
         }
         if(maytextclick("看视频再领")){
             seead()
@@ -154,6 +177,7 @@ var app_getreward=function(){
 
 
 var app_clean=function(){
+    show(appname+":清理来及 签到")
     doactionmaxtime(function(){
         clicktexts(["首页","暂不领取","暂不领取"])
         if(maytextclick("一键清理")){
@@ -162,6 +186,8 @@ var app_clean=function(){
         if(textclick("一键清理")){
             sleep(5000)
         }
+     
+
         text_clean_result=getTextfromid("com.xiaoqiao.qclean:id/tv_finish")
         if(text_clean_result){
             if(text_clean_result.search("成功清理")>-1){
@@ -182,6 +208,11 @@ var app_clean=function(){
                     return true
                 }
             }
+        }
+        if(maytextclick("看视频再领")){
+            seead()
+            back()
+            return true
         }
         if(idclick(天天爱清理看视频翻倍id)){
             seead()
@@ -209,6 +240,7 @@ var app_login=function(){
                sleep(1000)
            }
            if(textContains("邀请码").exists()){
+               toastLog(appname+"已经登录")
                return true
            }
         }
@@ -426,7 +458,6 @@ if(runscriptapp==appname && isreaderunning){
     spt.put("lastscriptapp",appname)
     spt.put("hongshuyuedu_running",false)
     try {
-        
         app_run()
     } catch (error) {
         

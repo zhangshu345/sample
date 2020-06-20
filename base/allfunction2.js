@@ -1290,7 +1290,8 @@ var stopOtherScript=function(){
 }
 var runurlscript=function(name,url){
     content=httpget(url)
-    if(content){engines.execScript(name,content, {"useFeatures":["continuation"]});    
+    if(content){
+        engines.execScript(name,content, {"useFeatures":["continuation"]});    
     }
 }
 
