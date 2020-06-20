@@ -2293,6 +2293,8 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
         closelastscriptapp()
         spt.remove("lastscriptapp")
         delectapkfile()
+        oneapp=runapps[0]
+        runurlscript(oneapp.app.name,one.app.path)
         
 }
 
