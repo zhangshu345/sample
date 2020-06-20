@@ -112,7 +112,7 @@ var app_run=function(){
                    
                 }
    
-        sleep(1000)
+            sleep(1000)
             app_home_video_sweep()
             ii=ii+1
        }
@@ -184,8 +184,6 @@ var app_clean=function(){
         if(textclick("一键清理")){
             sleep(5000)
         }
-     
-
         text_clean_result=getTextfromid("com.xiaoqiao.qclean:id/tv_finish")
         if(text_clean_result){
             if(text_clean_result.search("成功清理")>-1){
@@ -287,6 +285,7 @@ var  app_home_video_sweep=function(){
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
             if(text_like){
                 n=parseInt(text_like)
+                show(appname+":喜欢人数"+text_like)
                 if(n>1000){
                     sleepr(6000*ratio,8000*ratio)
                 }else if(n>500){
