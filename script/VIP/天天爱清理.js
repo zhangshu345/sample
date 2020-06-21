@@ -19,7 +19,6 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
-
 // /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
@@ -49,7 +48,7 @@ var 天天爱清理底部导航任务id="com.xiaoqiao.qclean:id/ll_task"
 var 天天爱清理底部导航我id="com.xiaoqiao.qclean:id/ll_mine"
 var 天天爱清理看视频翻倍id="com.xiaoqiao.qclean:id/tv_gold_double"
 
- var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载","优化完成"]
+var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载","优化完成"]
 
 // //关闭最新的app
 

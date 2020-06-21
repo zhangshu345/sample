@@ -135,7 +135,7 @@ if(runscriptapp==appname && isreaderunning){
     // checksystemsettings()
     floaty.closeAll()
     creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
+   creatsetfloatywindow()  //创建设置悬浮窗
     gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)

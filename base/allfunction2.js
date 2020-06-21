@@ -1918,7 +1918,7 @@ var onerewardapp=function(appname,apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
-       if(randomint(0,1)==0){
+
            if(textclick("任务")){
                sleep(2000)
                if(textclick("看激励视频")){
@@ -1927,8 +1927,8 @@ var onerewardapp=function(appname,apppkg){
                if(textclick("看视频")){
                 seerewardvideo(apppkg,true)
                }
-        }
-        if(randomint(0,1)==0){
+         }
+  
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
@@ -1936,11 +1936,7 @@ var onerewardapp=function(appname,apppkg){
             }
             textclick("退出")
             back()
-         }
-    if(textoneexist(["点击下载"])){
-        back()
-    }
-    }
+      
 }
 
 //看激励视频  概率点击
@@ -1954,7 +1950,7 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
                if(clickonetexts(["点击下载","查看详情","下载","立即安装"])){
                    show("点击了立即安装")
                    if(randomint(0,installgailv)==0){
-                    threads.start(install_app())
+                      threads.start(install_app())
                     }
                    return true
                }
@@ -1967,7 +1963,7 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
            return  true
        }
        if(text("创意视频").findOne(100)){
-        return  true
+         return  true
        }
        if(close_ad_liquid(apppkg)){
         return  true
