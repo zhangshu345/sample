@@ -1918,8 +1918,7 @@ var onerewardapp=function(appname,apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
-
-           if(textclick("任务")){
+        if(textclick("任务")){
                sleep(2000)
                if(textclick("看激励视频")){
                 seerewardvideo(apppkg,true)
@@ -1928,7 +1927,7 @@ var onerewardapp=function(appname,apppkg){
                 seerewardvideo(apppkg,true)
                }
          }
-  
+
             runadui(apppkg)
             sleep(3000)
            if(textclick("创意视频")){
