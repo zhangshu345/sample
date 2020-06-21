@@ -1910,6 +1910,10 @@ var onerewardapp=function(appname,apppkg){
             show("工具箱点击成功")
             滑动(20,10,16,11,6,500,1500)
             sleep(random(3,4)*1000)
+            滑动(20,10,16,11,6,500,1500)
+            sleep(random(3,4)*1000)
+            滑动(20,10,16,11,6,500,1500)
+            sleep(random(3,4)*1000)
         }
          
          if(closeappundostate()){
@@ -1919,18 +1923,22 @@ var onerewardapp=function(appname,apppkg){
             sleep(3000)
         }
         if(textclick("任务")){
-               sleep(2000)
+               sleep(3000)
                if(textclick("看激励视频")){
+                   sleep(5000)
                 seerewardvideo(apppkg,true)
                }
                if(textclick("看视频")){
+                sleep(5000)
                 seerewardvideo(apppkg,true)
                }
          }
 
             runadui(apppkg)
-            sleep(3000)
+            sleep(5000)
            if(textclick("创意视频")){
+           
+               sleep(5000)
                 seerewardvideo(apppkg,true)
             }
             textclick("退出")
