@@ -93,7 +93,9 @@ var app_run=function(){
             if(textclick("看视频最高翻5倍",100)){
                  seead()
             }
-         
+            if(idclick("com.xiaoqiao.qclean:id/rl_close")){
+                return true
+            }
             if(idoneexist(视频页标记id集合)){
                 show("在视频页")
              }else{
@@ -118,7 +120,9 @@ var app_run=function(){
        }
 }
 var app_home_activity=function(index){
+    
     index=index||2
+    show("回到主页："+index)
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
@@ -129,7 +133,7 @@ var app_home_activity=function(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like"])){
+                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon"])){
                     return true
                 }else{
                     selectnavi(2)
@@ -146,6 +150,8 @@ var app_home_activity=function(index){
         }else if(ca==appcleanactivity){
             back()
             sleep(300)
+        }else{
+            back()
         }
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
@@ -154,6 +160,13 @@ var app_home_activity=function(index){
         if(maytextclick("看视频再领")){
             seead()
         }
+
+        if(idclick("com.xiaoqiao.qclean:id/rl_close")){
+            return true
+        }
+
+
+
     },2000)
 }
 
@@ -175,7 +188,7 @@ var app_getreward=function(){
 
 
 var app_clean=function(){
-    show(appname+":清理来及 签到")
+    show(appname+":清理 签到")
     doactionmaxtime(function(){
         clicktexts(["首页","暂不领取","暂不领取"])
         if(maytextclick("一键清理")){
@@ -204,6 +217,10 @@ var app_clean=function(){
                     return true
                 }
             }
+        }
+        if(idclick("com.xiaoqiao.qclean:id/rl_close")){
+            sleep(300)
+            return true
         }
         if(maytextclick("看视频再领")){
             seead()
@@ -248,6 +265,7 @@ var app_login=function(){
     },60000)
 }
 
+
 // //app 微信登录
 var app_login_weixin=function(){
 
@@ -274,6 +292,7 @@ var app_login_weixin=function(){
 // var app_sign=function(){
 
 // }
+
 var  app_home_video_sweep=function(){
     doactionmaxtime(function(){
         滑动(20,10,17,10,5,500,300)
@@ -281,7 +300,6 @@ var  app_home_video_sweep=function(){
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
         if(nowtitle!=lasttitle){
             lasttitle=nowtitle
-
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
             if(text_like){
                 n=parseInt(text_like)
@@ -301,7 +319,7 @@ var  app_home_video_sweep=function(){
                 return  true
          }
 
-    },3000)
+    },60000)
 }
 
 // var 天天爱清理下滑=function(){
@@ -393,6 +411,7 @@ var seead=function(timeout){
         if(text("点击重播").exists()){
             back()
             sleep(1000)
+            return true
         }
        if( close_ad_qq(apppkg)){
            return true
@@ -406,16 +425,19 @@ var seead=function(timeout){
             return true
         }
         if(currentActivity()==apphomeactivity){
-            return 
+            return  true
         }
         if(idoneexist(视频页标记id集合)){
-            return
+            return true
         }
         if(!idContains(apppkg).exists()){
-            return
+            return true
         }
         if(idclick("com.xiaoqiao.qclean:id/tv_ad_button")){
             sleep(3000)
+        }
+        if(idclick("com.xiaoqiao.qclean:id/rl_close")){
+            return true
         }
       
     },60000)
@@ -429,12 +451,8 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
-    if(onlyscript){
-        engines.stopOther()
-    }
-
+    engines.stopOther()
     // 彩蛋邀请 通过 微信链接绑定上级用户 
-        
     toastLog("指定："+appname+"即将启动")
     alltest()
     if(changesetting){
