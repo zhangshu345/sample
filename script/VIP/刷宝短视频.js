@@ -50,7 +50,6 @@ var gotoappvideo=function(){
    if(doactionmaxtime(function(){
        app_go_home()
         if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-          
             if(textclick("同意并继续")){
     
             }

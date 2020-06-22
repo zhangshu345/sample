@@ -2217,8 +2217,9 @@ var checkweixin=function(){
 
 
 //本地配置启用脚本
-var localstartreaderapps = function(scriptname,scriptpath,configpath){
+var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
+    issyncwebconfig=issyncwebconfig||true
     sleep(1000)
     back()
     home()
@@ -2226,8 +2227,8 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    let apps=数据库.get("runlist","")
-    if(!apps){
+    let localapps=数据库.get("runlist","")
+    if(!localapps||issyncwebconfig){
         log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(configpath)
         apps=JSON.parse(appconfig)
@@ -2300,7 +2301,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath){
         delectapkfile()
         oneapp=runapps[0]
         runurlscript(oneapp.app.name,oneapp.app.path)
-        
+
 }
 
 var nodesexists=function(nodes){

@@ -19,6 +19,7 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
+
 // /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
@@ -33,7 +34,6 @@ var minmoney=10 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var islogin=false
 var onlyscript=true  //仅允许当前一个脚本运行 
-
 var 天天爱清理清理数据完成页面="com.xiaoqiao.qclean.base.view.guide.GuidePageViewActivity"
 var 天天爱清理红包奖励id="com.xiaoqiao.qclean:id/image_red_bg_icon"
 var 天天爱清理红包奖励状态id="com.xiaoqiao.qclean:id/tv_task_status"
@@ -47,9 +47,7 @@ var 天天爱清理底部导航视频id="com.xiaoqiao.qclean:id/ll_video"
 var 天天爱清理底部导航任务id="com.xiaoqiao.qclean:id/ll_task"
 var 天天爱清理底部导航我id="com.xiaoqiao.qclean:id/ll_mine"
 var 天天爱清理看视频翻倍id="com.xiaoqiao.qclean:id/tv_gold_double"
-
 var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载","优化完成"]
-
 // //关闭最新的app
 
 var lasttitle=""
@@ -62,7 +60,6 @@ var app_run=function(){
     ii=0
     while(true){
         device.wakeUpIfNeeded()
-    
         closeappundostate()
         log("循环次数:"+ii)
         app_home_activity(2)
@@ -107,10 +104,8 @@ var app_run=function(){
                  }
                  sleep(1000)
             }
-            
                 if(ii%200==0){
                     app_clean
-                   
                 }
    
             sleep(1000)
@@ -118,8 +113,8 @@ var app_run=function(){
             ii=ii+1
        }
 }
+
 var app_home_activity=function(index){
-    
     index=index||2
     show("回到主页："+index)
     doactionmaxtime(function(){
@@ -144,7 +139,6 @@ var app_home_activity=function(index){
                 selectnavi(4)
                 return true
             }
-           
            return true
         }else if(ca==appcleanactivity){
             back()
@@ -159,14 +153,11 @@ var app_home_activity=function(index){
         if(maytextclick("看视频再领")){
             seead()
         }
-
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
-
-
-
     },2000)
+
 }
 
 var selectnavi=function(index){
@@ -201,6 +192,7 @@ var app_clean=function(){
             if(text_clean_result.search("成功清理")>-1){
                 if(textclick("优化完成")){
                     var node_coins=idContains("com.xiaoqiao.qclean:id/tv_bubble_").filter(function(w){
+                        log("判断是否文本内容为空："+w.text())
                         return w.text()!=""
                     }).untilFind()
                     if(node_coins){
@@ -461,7 +453,7 @@ if(runscriptapp==appname && isreaderunning){
     floaty.closeAll()
     creatgfloatywindow()
     creatsetfloatywindow()  //创建设置悬浮窗
-    show("开始彩蛋视频辅助滑动")
+    show(appname+"辅助滑动")
     gfw.setPosition(0,220)
     if(!app.getPackageName(appname)){
         toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")

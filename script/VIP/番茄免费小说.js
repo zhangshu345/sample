@@ -150,7 +150,7 @@ var app_invite=function(){
     let ric=invitecodes[randomint(invitecodes.length)]
     log(appname+":随机邀请码为:"+ric)
     let ricword=invitecodeword.replace("7326544811",ric)
-    
+    setClip(ricword)
 
 }
 
@@ -169,7 +169,7 @@ if(runscriptapp==appname && isreaderunning){
     // checksystemsettings()
     floaty.closeAll()
     creatgfloatywindow()
-   creatsetfloatywindow()  //创建设置悬浮窗
+    creatsetfloatywindow()  //创建设置悬浮窗
     gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
