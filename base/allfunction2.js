@@ -2250,7 +2250,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                 }
 
                 localapps.forEach(app=>{
-                    if(webappnames.include(app.app.name)){
+                    if(webappnames.indexOf(app.app.name)==-1){
                         runapps.push(app)
                     }
                 })
@@ -2274,6 +2274,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         }
         return true
     })
+    toastLog("runapp："+runapps.length)
     if(runapps.length==0){
         dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
         return
