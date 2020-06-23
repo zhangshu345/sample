@@ -2220,6 +2220,9 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
+    let nowtime=nowdate()
+    let xiaoshi=nowtime.getHours()
+    let fen=nowtime.getMinutes()+3
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     var runapps=[]
     let localapps=数据库.get("runlist","")
@@ -2249,6 +2252,8 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         }
     }
     if(!runapps){
+        //一小时重启
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi+1,fen)
         return
     }else{
         数据库.put("runlist",runapps)
@@ -2282,9 +2287,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 
 
 
-    let nowtime=nowdate()
-    let xiaoshi=nowtime.getHours()
-    let fen=nowtime.getMinutes()+3
+
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
