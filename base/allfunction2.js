@@ -2227,14 +2227,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(configpath)
         webapps=JSON.parse(appconfig)
-        if(issyncwebconfig){
-            webappnames=[]
-            if(webapps){
-                webapps.forEach(app=>{
-                    webappnames.push(app.app.name)
-                })
-            }
-        }
         if(webapps){
             runapps=webapps
         }
@@ -2250,7 +2242,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                 }
 
                 localapps.forEach(app=>{
-                    if(webappnames.indexOf(app.app.name)==-1){
+                    if(webappnames.indexOf(app.app.name)!=-1){
                         runapps.push(app)
                     }
                 })
