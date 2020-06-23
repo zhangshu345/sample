@@ -1538,6 +1538,15 @@ var alltest=function(){
     
 }
 
+var checkdevicemanager=function(){
+
+    if( device.brand=="samsung"){startdeviceadmin()}
+    else if(device.brand=="HONOR"){startdeviceadmin() }
+    else if(device.brand=="DOCOMO"){startdeviceadmin()}
+    else if(device.brand=="Meizu"){ }
+    else if(device.brand=="xiaomi"){  }
+    else if(device.brand=="OPPO"){   }
+}
 var 随机邀请文本=function(url){
     let content=httpget(url);
     log("返回随机邀请文本："+content)
@@ -1988,15 +1997,15 @@ var checkstoragestate=function(minsize){
     minsize=minsize||sdtotalsize/10
     let nowsize=sdavailablesize()
     if(nowsize<minsize){
-        
         toastLog("存储空间小于最小空间要求:"+nowsize+":"+minsize)
+        delectalltmpfiles()
     }else{
-        toastLog("存储空间小于最小空间要求:"+nowsize)
+        toastLog("存储空间大于最小空间要求:"+nowsize)
     }
 }
 var delectalltmpfiles=function(){
-    let alltmphouzhui=[]
-    deleteAllFiles()
+    let alltmphouzhui=["txt","log","apk","dat","inf","zip","rar","qlog","info","dump"]
+    deleteAllFiles(files.getSdcardPath(),alltmphouzhui)
 }
 
 function deleteAllEmptyDirs(dir){
@@ -2040,7 +2049,7 @@ var  shuffleArray=function(array) {
 
 var allhouzhui=[]
 function deleteAllFiles(dir,houzhui){
-    //log("删除目录："+dir+":"+houzhui)
+    log("删除目录："+dir+":"+houzhui)
      dir=dir||files.getSdcardPath()
     if(!houzhui||houzhui.length==0){return}
     let list = files.listDir(dir);
@@ -2204,8 +2213,8 @@ var checkweixin=function(){
             sleep(1000)
         }
         if(!packageName("com.tencent.mm").exists()){
-            app.launch(weixinpkg)
-            sleep(1000)
+            app.launch("com.tencent.mm")
+            sleep(3000)
         }
     },10000)
 }
@@ -2329,6 +2338,57 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 
 }
 
+
+var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
+    
+let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+log("正在集合运行的APP"+runscriptapp)
+let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+log("是否是集合运行："+isreaderunning)
+// 集合运行
+if(runscriptapp==appname && isreaderunning){
+
+}else{
+
+    checksystemsettings()
+    if(isdevicemanager){
+        checkdevicemanager()
+    }
+    if(isshowfloaty){
+        checkfloaty()
+        floaty.closeAll()
+        creatgfloatywindow()
+    }
+    if(isshowsettingfloaty){
+        creatsetfloatywindow()  //创建设置悬浮窗
+    }
+    
+    if(isonlyscript){
+        engines.stopOther()
+    }
+    
+    if(!app.getPackageName(appname)){
+        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        downloadandinstallapp(appname,apppkg)
+    }else{
+        if(iskeepappnewer){
+            keepappisnewer(appname,apppkg)
+        }
+        show(appname+"已经安装")
+    }
+    closelastscriptapp()
+    closerecentapp()
+    spt.put("lastscriptapp",appname)
+    spt.put("hongshuyuedu_running",false)
+    try {
+        app_run()
+    } catch (error) {
+        
+    }
+}
+
+}
+
 var nodesexists=function(nodes){
         if(nodes){
             if(textallexist(nodes["texts"])){
@@ -2365,18 +2425,5 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 checkscriptversion()
-// checkstoragestate()
-// selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
-//localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl)
-// var appconfig=httpget(rewardapplisturl)
-// apps=JSON.parse(appconfig)
-// apps.forEach(app=>{
-//     log(app.app.name+"------"+app)
-//     if(!getPackageName(app.app.name)){
-//         downloadandinstallapp(app.app.name,app.app.pkg)
-//     }else{
-//         keepappisnewer(app.app.name,app.app.pkg)
-//     }
-// })
-// closelastscriptapp()
+checkstoragestate()
 

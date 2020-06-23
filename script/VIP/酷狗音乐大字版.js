@@ -27,8 +27,8 @@ toastLog("公共函数实例化失败,程序返回")
 var apppkg="com.kugou.android.elder"
 var apphomeactivity="com.kugou.android.app.MediaActivity"
 var apploginactivity="com.kugou.common.useraccount.app.KgUserLoginAndRegActivity"  // 登录页面
-var appname="酷狗音乐大字版"
-
+var appname="酷狗音乐大字版" 
+var appmediaactivity="com.kugou.android.app.MediaActivity"  //
 
 var 首次点击文本集合=["同意","确定","允许","允许","始终允许","始终允许","我知道了","赚钱","立即登录"]
 var 微信登录文本集合=["微信登录","同意"]
@@ -64,7 +64,7 @@ var app_run=function(){
         log("循环次数："+n_i)
         ca=currentActivity()
         if(ca!=apphomeactivity){
-            app_home_video()
+            app_go_home()
         }else{
             if (textclick("赚钱")){
                 滑动(20,10,16,10,5,500,200)
@@ -91,26 +91,24 @@ var app_run=function(){
 }
 
 
-
-
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
     app_go_home()
     doactionmaxtime(function(){
         if(textclick("赚钱")){
+            sleep(2000)
             if(text("未登录").exists()){
                if( textclick("未登录")){
                    sleep(1500)
                }
-               clicktexts(["微信登录"],150,1500)
+               clicktexts(["微信登录","同意"],150,1500)
             }else{
-
-
+                return true
             }
-         
         }
-        
-    },6000)
+        clicktexts(["同意","确定","允许","我知道了","允许"])
+        sleep(1000)
+    },30000)
 }
 
 //app 登录
@@ -118,6 +116,7 @@ var app_login=function(){
 
 }
 
+//
 var app_go_home=function(){
     doactionmaxtime(function(){
         ca=currentActivity()
@@ -127,7 +126,6 @@ var app_go_home=function(){
             if(currentPackage()==apppkg){
                 back()
                 sleep(300)
-                back()
             }else{
                 app.launch(apppkg)
                 sleep(3000)
@@ -192,6 +190,14 @@ function  app_home_video(){
 
 //app邀请
 var app_invite=function(){
+    app_go_home()
+    if(textclick("赚钱")){
+        sleep(1000)
+        滑动(20,10,17,11,3,500,300)
+        sleep(1000)
+        滑动(20,10,17,11,3,500,300)
+        sleep(1000)
+    }
     if(textclick("去填写")){
         let text_yqm=邀请码集合[randomint(0,邀请码集合.length)]
         let text_yqmt=酷狗大字版邀请码格式.replace("yqm",text_yqm)
@@ -203,49 +209,7 @@ var app_invite=function(){
     }
 }
 
+app_invite()
 
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    alltest()
-    // checkfloaty()
-    // checksystemsettings()
-    floaty.closeAll()
-    creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,220)
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    
-    if(onlyscript){
-        engines.stopOther()
-    }
-    
-    if(!app.getPackageName(appname)){
-        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        if(keepappnewer){
-            keepappisnewer(appname,apppkg)
-        }
-        show(appname+"已经安装")
-    }
-
-    closelastscriptapp()
-    spt.put("lastscriptapp",appname)
-
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
-        
-    }
-}
+startapp()
 
