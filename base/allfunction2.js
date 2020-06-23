@@ -2138,7 +2138,6 @@ var readercheck=function(){
     }
 }
 
-
 var checkweixin=function(){
     let weixinpkg=getPackageName("微信")
     if(!weixinpkg){
@@ -2176,7 +2175,6 @@ var checkweixin=function(){
                 }
                 return true
             }
-            
         }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
             log("微信登录页")
             spt.put("weixinlogin",false)
@@ -2211,7 +2209,6 @@ var checkweixin=function(){
         }
     },10000)
 }
-
 
 //本地配置启用脚本
 var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebconfig){
@@ -2251,9 +2248,9 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                         webappnames.push(app.app.name)
                     })
                 }
-                
+
                 localapps.forEach(app=>{
-                    if(webappnames.includes(app.app.name)){
+                    if(webappnames.include(app.app.name)){
                         runapps.push(app)
                     }
                 })
