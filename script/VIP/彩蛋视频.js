@@ -351,7 +351,6 @@ var app_getreward=function(){
     },300000)
 }
 
-
 var app_login=function(){
   doactionmaxtime(function(){
       clicktexts(["微信一键登录","同意"],200,2000)

@@ -101,13 +101,10 @@ var 微信浏览=function(url){
  if(wexinpkg){
      app.launch(weixinpkg)
      sleep(3000)
-
      if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
         log("微信欢迎页")
-
     }else if(ca=="com.tencent.mm.ui.LauncherUI" ){
         log("微信主页")
-    
         if(textclick("微信")){
             sleep(1500)
              node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
@@ -2227,27 +2224,58 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    var runapps=[]
     let localapps=数据库.get("runlist","")
-    if(!localapps||issyncwebconfig){
+    if(!localapps){
         log("本地运行配置为空，从云端获取默认配置")
         var appconfig=httpget(configpath)
-        apps=JSON.parse(appconfig)
+        webapps=JSON.parse(appconfig)
+        if(issyncwebconfig){
+            webappnames=[]
+            if(webapps){
+                webapps.forEach(app=>{
+                    webappnames.push(app.app.name)
+                })
+            }
+        }
+        if(webapps){
+            runapps=webapps
+        }
+    }else{
+        if(issyncwebconfig){
+            var appconfig=httpget(configpath)
+            webapps=JSON.parse(appconfig)
+                 webappnames=[]
+                if(webapps){
+                    webapps.forEach(app=>{
+                        webappnames.push(app.app.name)
+                    })
+                }
+                
+                localapps.forEach(app=>{
+                    if(webappnames.includes(app.app.name)){
+                        runapps.push(app)
+                    }
+                })
+        }
     }
-    if(!apps){
+    if(!runapps){
         return
+    }else{
+        数据库.put("runlist",runapps)
     }
-    let runapps=[]
-    apps.forEach(app=>{
+
+    runapps.filter(function(){
         if(!app.open){
-           return
+           return false
         }
         if(今日已提现(app.app.name)){
-            return
+            return false
         }
         if(今日时长(app.app.name)>app.runconfig.maxtime){
-            return
+            return false
         }
-        runapps.push(app)
+        return true
     })
     if(runapps.length==0){
         dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
@@ -2262,9 +2290,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         }
     })
 
-    // runapps.forEach(app=>{
-    //     forcestop(app.app.name)
-    // })
+
 
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
@@ -2275,9 +2301,11 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
                     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+              
                     while(fen>=60){
-                        xiaoshi=xiaoshi+1
                         fen=fen-60
+                        xiaoshi=xiaoshi+1
+                        
                         if(xiaoshi==24){
                             xiaoshi=0
                         }
@@ -2298,7 +2326,11 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         closerecentapp()
         closelastscriptapp()
         spt.remove("lastscriptapp")
-        delectapkfile()
+        spt.remove("hongshuyuedu_run_app")
+        spt.put("hongshuyuedu_running",true)
+        thread.start(
+            delectapkfile()
+        )
         oneapp=runapps[0]
         runurlscript(oneapp.app.name,oneapp.app.path)
 
@@ -2339,7 +2371,6 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
         }
     },chixutime)
 }
-
 checkscriptversion()
 // checkstoragestate()
 // selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
