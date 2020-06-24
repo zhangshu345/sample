@@ -23,13 +23,14 @@ toastLog("公共函数实例化失败,程序返回")
 var apppkg="com.xiaoqiao.qclean"
 var apphomeactivity="com.jifen.open.framework.biz.main.MainActivity"
 var appcleanactivity="com.xiaoqiao.qclean.base.view.guide.GuidePageViewActivity"
+var applaunchactivity="com.jifen.open.framework.biz.splash.LaunchActivity"
 var appname="天天爱清理"
 var tomoney=false  
 var invite=false // 邀请
 var logintype="weixin"  //登录使用微信
 var onetime=30 // 一次的时间
 var maxtime=60 //一天最长时间  
-var minmoney=10 // 最小提现余额
+var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var islogin=false
 var onlyscript=true  //仅允许当前一个脚本运行 
@@ -122,6 +123,7 @@ var app_home_activity=function(index){
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
+            sleep(1000)
             if(index==1){
                 if(id("com.xiaoqiao.qclean:id/tv_how_to_make_money").exists()){
                     return true
@@ -135,17 +137,31 @@ var app_home_activity=function(index){
                     selectnavi(2)
                 }
             }else if(index==3){
-                selectnavi(3)
-                return true
+                if(textoneexist(["我的金币","连续3天未登录，账户金币会被瓜分哦！"])){
+                    return true
+                }else{
+                    selectnavi(3)
+                    sleep(1000)
+                }
+         
             }else if(index==4){
-                selectnavi(4)
+                if(textoneexist(["我的钱包","金币余额"])){
+                    return true
+                }else{
+                    selectnavi(4)
+                }
+                
+            }else{
                 return true
             }
-           return true
+           
         }else if(ca==appcleanactivity){
             back()
-            sleep(300)
+            sleep(1000)
+        }else if(ca==applaunchactivity){
+            sleep(3000)
         }else{
+            idclick("com.xiaoqiao.qclean:id/iv_close")
             back()
         }
         if(currentPackage()!=apppkg){
@@ -158,7 +174,8 @@ var app_home_activity=function(index){
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
-    },2000)
+        sleep(1000)
+    },20000)
 
 }
 
@@ -247,9 +264,12 @@ var app_login=function(){
            }
            if(textContains("邀请码").exists()){
                toastLog(appname+"已经登录")
+
+
                return true
            }
         }
+        idclick("com.xiaoqiao.qclean:id/iv_close")
         clicktexts(["暂不领取","确定","微信"],150,2000)
        if(currentPackage()!=apppkg){
             app.launch(apppkg)
@@ -288,6 +308,12 @@ var app_login_weixin=function(){
 
 var  app_home_video_sweep=function(){
     doactionmaxtime(function(){
+        if(maytextclick("看视频再领")){
+            seead()
+        }
+        if(!id("com.xiaoqiao.qclean:id/tv_like").exists()){
+            app_home_activity(2)
+        }
         滑动(20,10,17,10,5,500,300)
         sleep(2000)
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
@@ -315,35 +341,33 @@ var  app_home_video_sweep=function(){
     },60000)
 }
 
-// var 天天爱清理下滑=function(){
-//     node_rv=id("com.xiaoqiao.qclean:id/community_recycler_view").findOne(300)
-//     if(node_rv){
-//         node_rv.scrollForward()
-//         sleep(100)
-//         id("com.xiaoqiao.qclean:id/ll_task").findOne(100).click()
-//         sleep(200)
-//         id("com.xiaoqiao.qclean:id/ll_video").findOne(100).click()
-//         sleep(500)
-//         if(text("查看详情").exists()){
-//            back()
-//            back()
-//            sleep(1000)
-//            app.launchApp("天天爱清理")
-//            sleep(1000)
-//         }
-//         return true
-//     }
-//     return false 
-// }
 
 // //app提现
 var app_tomoney=function(){
      show("开始提现")
+     if(今日提现(appname)){
+         show(appname+":今日已经提现了")
+         return true
+     }
     doactionmaxtime(function(){
+        app_home_activity(4)
+        sleep(1000)
         nca=currentActivity()
         show("当前activity:"+nca)
+        idclick("com.xiaoqiao.qclean:id/iv_close")
         if(nca==apphomeactivity){
-           
+           node_ktx=text("可提现(元)").depth(16).findOne()
+           if(node_ktx){
+               node_money=node_ktx.parent().child(0)
+               if(node_money){
+                   f_money=parseFloat(node_money.text())
+                   toastLog(appname+"可提现金额:"+node_money.text())
+                   if(f_money<minmoney){
+                       toastLog("不够提现余额")
+                       return true
+                   }
+               }
+           }
         }else if(nca=="com.jifen.qu.open.QX5WebViewActivity"){
             clicktexts(["去提现","每天可提现","立即提现"],300,2000)
            idclick("com.xiaoqiao.qclean:id/btn_back")
@@ -371,6 +395,8 @@ var app_tomoney=function(){
                             if(textclick("去提现")){
                                 text("立即提现").waitFor()
                                 clicktexts(["每天可提","立即提现"],300,2000)
+                                sleep(2000)
+                                return true
                             }
                         }else{
                             textclick("视频")
@@ -385,7 +411,6 @@ var app_tomoney=function(){
             }else{
                 show("没找到可提现")
             }
-
         }else{
             show("点击我的 失败了")
         }
@@ -436,6 +461,11 @@ var seead=function(timeout){
     },60000)
 }
 
+
+app_home_activity(3)
+sleep(4000)
+
+// app_tomoney()
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
