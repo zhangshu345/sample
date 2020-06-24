@@ -1952,8 +1952,8 @@ var onerewardapp=function(appname,apppkg){
 
 //看激励视频  概率点击
 var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
-    gailv=gailv||3
-    installgailv=installgailv||2
+    gailv=gailv||2
+    installgailv=installgailv||1
     let isclickad=isclickad||false
    return  doactionmaxtime(function(){
        if(isclickad){
@@ -1967,7 +1967,7 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
                }
             }
         }
-      if(close_ad_qq(apppkg)){
+      if(close_ad_qq(apppkg,1)){
         return  true
       }
        if(close_ad_toutiao(apppkg)){
