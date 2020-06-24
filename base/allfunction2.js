@@ -1947,7 +1947,7 @@ var onerewardapp=function(appname,apppkg){
             }
             textclick("退出")
             back()
-      
+
 }
 
 //看激励视频  概率点击
