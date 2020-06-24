@@ -111,7 +111,7 @@ var app_run=function(){
        }
 }
 
-
+//荣耀殿堂那个
 var app_getreward=function(){
 
     
@@ -131,7 +131,7 @@ var app_home_activity=function(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon"])){
+                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_task_status"])){
                     return true
                 }else{
                     selectnavi(2)
@@ -191,7 +191,9 @@ var selectnavi=function(index){
     }
 }
 
+// 
 var app_getreward=function(){
+
 
 }
 
@@ -400,6 +402,7 @@ var app_tomoney=function(){
                             }
                         }else{
                             textclick("视频")
+                            
                              return true
                         }
                     }else{
