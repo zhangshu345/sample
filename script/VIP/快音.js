@@ -20,7 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//微信链接邀请绑定 之后登陆
+//微信链接邀请绑定 之后登陆  快音存在金币不到账的浪费时间
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
@@ -44,6 +44,8 @@ var changesetting=false
 var apphomeactivity="com.kuaiyin.player.v2.ui.main.MainActivity"
 var keepappnewer=true
 
+var 快音视频喜欢id="com.kuaiyin.player:id/video_like_value"
+
 //关闭最新的app
 
 //app 运行
@@ -55,13 +57,9 @@ var app_run=function(){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            app_home_video()
-        }else{
-            //这里是视频上滑操作
-            app_home_sweep()
-        }
+        app_go_home(2)
+        滑动(20,10,17,10,3,500,200)
+        sleep(15000)
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
@@ -126,7 +124,10 @@ var app_sign=function(){
 var seead=function(){
     doactionmaxtime(function(){
         if(close_ad_qq(apppkg,-1)){
-            
+            return true
+        }
+        if(close_ad_toutiao(apppkg,-1)){
+            return true
         }
     },60000)
 }
@@ -155,7 +156,7 @@ function  app_go_home(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-                if(id("com.kuaiyin.player:id/searchIcon").exist()){
+                if(idoneexist(["com.kuaiyin.player:id/video_like_value","com.kuaiyin.player:id/tv_title"]){
                     return true
                 }else{
                     selectnavi(2)

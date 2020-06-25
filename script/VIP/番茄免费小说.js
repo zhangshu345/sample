@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -21,7 +23,7 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 //微信链接邀请绑定 之后登陆
-
+ //番茄小说 需要手机号登陆 后  绑定微信 首次提现 1元 5分钟
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
 
@@ -47,8 +49,8 @@ var changesetting=false
 var apphomeactivity=""
 var keepappnewer=true
 
-
 var appslashactivity="com.dragon.read.pages.splash.SplashActivity"
+var appmainactivity="com.dragon.read.pages.main.MainFragmentActivity"
 
 //关闭最新的app
 
@@ -77,10 +79,9 @@ var app_run=function(){
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
     doactionmaxtime(function(){
-
         ca=currentActivity()
         if(ca==appslashactivity){
-            clicktexts(["我知道了","允许","允许"],100,2000)
+            clicktexts(["我知道了","允许","允许","始终允许","始终允许"],150,1500)
         }else if(ca=="com.dragon.read.reader.widget.ReaderViewLayout$4"){
             click(device.width/2,device.height/2)
             sleep(1000)
@@ -93,6 +94,16 @@ var app_login_check=function(){
             if(n_kai){
                 n_kai.click()
             }
+        }else if(ca==appmainactivity){
+            
+            selectnavi(5)
+            sleep(1000)
+            if(textclick("马上登录")){
+                app_login_phone()
+            }
+        }
+        if(text("选择你感兴趣的内容").exist()){
+            click(device.width/4,device.height/2)
         }
 
     },60000)
@@ -117,6 +128,16 @@ var app_login_weixin=function(){
 
 //app_手机号登录
 var app_login_phone=function(){
+    
+    doactionmaxtime(function(){
+        node_phone=text("请输入您的手机号").clickable().editable(true).findOne()
+        if(node_phone){
+            node_phone.setText(phonenumber())
+            sleep(500)
+            textclick("获取验证码")
+
+        }
+    },12000)
 
 }
 
@@ -154,6 +175,12 @@ var app_invite=function(){
 
 }
 
+var selectnavi=function(index){
+    node_navi=className("android.widget.RadioButton").clickable().depth(9).drawingOrder(index).findOne()
+    if(node_navi){
+        node_navi.click()
+    }
+}
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
@@ -164,22 +191,21 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
+    if(onlyscript){
+        engines.stopOther()
+    }
     alltest()
     // checkfloaty()
     // checksystemsettings()
-    floaty.closeAll()
-    creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,220)
+    // floaty.closeAll()
+    // creatgfloatywindow()
+    // creatsetfloatywindow()  //创建设置悬浮窗
+    // gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
-    
-    if(onlyscript){
-        engines.stopOther()
-    }
-    
+
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)

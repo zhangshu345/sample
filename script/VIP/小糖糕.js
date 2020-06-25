@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -56,7 +58,7 @@ var app_run=function(){
         sleep(2000)
         log("循环次数："+n_i)
       
-            app_home_video()
+            app_go_home(1)
      
             //这里是视频上滑操作
             app_home_sweep()
@@ -71,7 +73,10 @@ var app_run=function(){
 var app_home_sweep=function(){
     lastlike=""
     doactionmaxtime(function(){
-        app_home_video()
+        if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
+            app_go_home(1)
+        }
+        clickgold()
         滑动(20,10,17,10,3,500,300)
         sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
@@ -87,13 +92,19 @@ var app_home_sweep=function(){
                 return true
             }
         }
-
     },30000)
 
 }
 
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
+    doactionmaxtime(function(){
+        clicktexts(["同意","允许","允许","始终允许","始终允许"])
+        if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
+            app_login()
+        }
+
+    },6000)
 }
 
 var app_close_alter=function(){
@@ -101,12 +112,18 @@ var app_close_alter=function(){
 }
 //app 登录
 var app_login=function(){
-
+ app_login_weixin()
 }
 
 //app 微信登录
 var app_login_weixin=function(){
+    doactionmaxtime(function(){
+        clicktexts(["微信一键登录","同意","立即提现"],150,2000)
+        if(text("我的钱包").exists()){
+            return true
+        }
 
+    },60000)
 }
 
 //app_手机号登录
@@ -120,21 +137,84 @@ var app_sign=function(){
 }
 
 //app提现
+// //app提现
 var app_tomoney=function(){
+    show("开始提现")
+    if(今日提现(appname)){
+        show(appname+":今日已经提现了")
+        return true
+    }
+   doactionmaxtime(function(){
+       app_go_home(4)
+       sleep(1000)
+       nca=currentActivity()
+       show("当前activity:"+nca)
+       idclick("com.xiaoqiao.qclean:id/iv_close")
+       if(nca==apphomeactivity){
+          node_ktx=text("可提现").depth(13).findOne()
+          if(node_ktx){
+              node_money=node_ktx.parent().child(0)
+              if(node_money){
+                  f_money=parseFloat(node_money.text())
+                  toastLog(appname+"可提现金额:"+node_money.text())
+                  if(f_money<minmoney){
+                      toastLog("不够提现余额")
+                      return true
+                  }else{
+                      textclick("可提现")
+                    
+                  }
+              }
+          }
+       }else if(nca=="com.jifen.qu.withdraw.WithdrawActivity"){
+           clicktexts(["去提现","每天可提现","立即提现"],300,2000)
+           
+       }else{
+           if(!idContains(apppkg).exists()){
+               app.launch(apppkg)
+               sleep(4000)
+           }else{
+               back()
+           }
+       }
+    
+       if(textContains("提现申请提交成功").exists()){
+           今日已提现(appname)
+           return true
+       }
+   },20000)
+}
+
+
+
+
+//app邀请
+var app_invite=function(){
+    
+    
 
 }
 
-//app 回到操作的主页
 
-function  app_home_video(){
+var app_go_home=function(index){
     if(doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            if(id("com.jifen.ponycamera:id/image_red_bg_icon").exists()){
-                return true
-            }else{
-                textclick("小视频")
+
+            if(index==1){
+                if(idoneexist(["com.jifen.ponycamera:id/image_complete"])){
+                    return true
+                }else{
+                    selectnavi(1)
+                }
+            }else if(index==2){
+
+            }else if(index==3){
+
+            } else if(index==4){
+
             }
+          
             
            
         }else{
@@ -148,22 +228,43 @@ function  app_home_video(){
             seead()
         }
  
-     },10000)){return true
+     },30000)){return true
     
     }else{
          forcestop(appname)
          app.launch(apppkg)
      }
- }
-
-
-//app邀请
-var app_invite=function(){
-    
-    
-
 }
 
+var clickgold=function(){
+    node_gold=id("com.jifen.ponycamera:id/image_complete")
+  if(idclick("com.jifen.ponycamera:id/image_complete")){
+    sleep(2000)
+    if(maytextclick("看视频再领")){
+        seead()
+            小视频广告翻倍次数=小视频广告翻倍次数+1
+    }
+  }
+    node_gold=id("com.jifen.ponycamera:id/tv_task_status").visibleToUser().findOne(100)
+    if(node_gold){
+        if(node_gold.text()=="金蛋大奖"){
+            toastLog("找到了金蛋大奖")
+          
+           }
+   
+        }
+      
+    }else{
+        show("没有找到金蛋大奖：")
+    }
+}
+
+var selectnavi=function(index){
+   node_navi= className("android.widget.FrameLayout").clickable(true).drawingOrder(index).depth(7).findOne(200)
+   if(node_navi){
+       node_navi.click()
+   }
+}
 
 var seead=function(){
     log("seead")
@@ -220,21 +321,22 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
+    if(onlyscript){
+        engines.stopOther()
+    }
     alltest()
     // checkfloaty()
     // checksystemsettings()
-    floaty.closeAll()
-    creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,220)
+    // floaty.closeAll()
+    // creatgfloatywindow()
+    // creatsetfloatywindow()  //创建设置悬浮窗
+    // gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
     
-    if(onlyscript){
-        engines.stopOther()
-    }
+ 
     
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")

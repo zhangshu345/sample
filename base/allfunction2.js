@@ -704,24 +704,24 @@ var getTextfromid=function(idstr,defaulttext){
 }
 
 function idclick(idstr,t,left,top,right,bottom){
-    t= t|| 100;
+    t= t|| 200;
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
+    var f=id(idstr).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(f){ if(clicknode(f)){ return true}  
     }
     return false
 }
 
 function descclick(desctext,t,left,top,right,bottom){
-    t= t|| 100;
+    t= t|| 200;
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=desc(desctext).boundsInside(left, top, right, bottom).findOne(t);
+    var f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(f){ if(clicknode(f)){ return true}  
     }
     return false
@@ -729,12 +729,12 @@ function descclick(desctext,t,left,top,right,bottom){
 
 //文本点击
 function textclick(i,t,left,top,right,bottom){
-    t=t || 100
+    t=t || 200
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
         log("text："+i+":没找到了")
         return false
@@ -745,14 +745,14 @@ function textclick(i,t,left,top,right,bottom){
 
 function maytextclick(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false;    }
-    t=t || 100
+    t=t || 200
     left = left || 0;
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(maytext).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
-         f=textContains(maytext).boundsInside(left, top, right, bottom).findOne(t)
+         f=textContains(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t)
          if(!f){
              return false
          }
