@@ -24,8 +24,8 @@ toastLog("公共函数实例化失败,程序返回")
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
-var appname="长豆短视频"
-var apppkg="com.zf.shuashua"
+var appname="快音"
+var apppkg="com.kuaiyin.player"
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
 //应用登录状态
@@ -71,6 +71,9 @@ var app_run=function(){
 
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
+    doactionmaxtime(function(){
+
+    },60000)
 }
 
 //app 登录
@@ -130,21 +133,22 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
+    if(onlyscript){
+        engines.stopOther()
+    }
     alltest()
     // checkfloaty()
     // checksystemsettings()
-    floaty.closeAll()
-    creatgfloatywindow()
-   creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,220)
+//     floaty.closeAll()
+//     creatgfloatywindow()
+//    creatsetfloatywindow()  //创建设置悬浮窗
+//     gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
     
-    if(onlyscript){
-        engines.stopOther()
-    }
+  
     
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")

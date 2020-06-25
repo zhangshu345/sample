@@ -398,6 +398,10 @@ function app_run(){
     show("循环次数:"+(xhcs+1))
     closeappundostate()
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
+        if(text("点击进入直播间").exists()){
+            滑动(20,10,16,10,3,500,300)
+            sleep(1000)
+        }
           show("不是视频页")
           app_go_home(1)
           clickonetexts(["推荐","等待"],300,1500)
@@ -482,8 +486,6 @@ function app_run(){
     xhcs=xhcs+1
 }
 }
-
-
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)

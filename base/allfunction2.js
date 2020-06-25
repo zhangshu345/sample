@@ -1543,7 +1543,6 @@ var alltest=function(){
     else if(device.brand=="Meizu"){ }
     else if(device.brand=="xiaomi"){  }
     else if(device.brand=="OPPO"){   }
-    
 }
 
 var checkdevicemanager=function(){
@@ -1961,7 +1960,7 @@ var onerewardapp=function(appname,apppkg){
 //看激励视频  概率点击
 var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
     gailv=gailv||2
-    installgailv=installgailv||1
+    installgailv=installgailv||2
     let isclickad=isclickad||false
    return  doactionmaxtime(function(){
        if(isclickad){
@@ -1975,16 +1974,16 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
                }
             }
         }
-      if(close_ad_qq(apppkg,1)){
+      if(close_ad_qq(apppkg,-1)){
         return  true
       }
-       if(close_ad_toutiao(apppkg)){
+       if(close_ad_toutiao(apppkg,-1)){
            return  true
        }
        if(text("创意视频").findOne(100)){
          return  true
        }
-       if(close_ad_liquid(apppkg)){
+       if(close_ad_liquid(apppkg,-1)){
         return  true
       }
        if(textoneexist(["点击下载"])){
