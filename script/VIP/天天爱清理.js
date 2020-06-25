@@ -57,11 +57,15 @@ var app_run=function(){
     app_login()
     app_clean()
     滑动次数=0
-    ii=0
+    n_i=0
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
-        log("循环次数:"+ii)
+        log("循环次数:"+n_i)
+        if(n_i%100==0){
+            app_sign()
+        }
+
         app_home_activity(2)
                   //应该做可以回到首页的操作
             if(close_ad_qq(apppkg)){
@@ -107,7 +111,7 @@ var app_run=function(){
    
             sleep(1000)
             app_home_video_sweep()
-            ii=ii+1
+            n_i=n_i+1
        }
 }
 
@@ -120,7 +124,7 @@ var app_getreward=function(){
 var app_home_activity=function(index){
     index=index||2
     show("回到主页："+index)
-    doactionmaxtime(function(){
+    if(doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             sleep(1000)
@@ -173,8 +177,18 @@ var app_home_activity=function(index){
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
+
+        if(currentPackage()!=apppkg){
+            app.launch(apppkg)
+            sleep(3000)
+        }
         sleep(1000)
-    },20000)
+    },20000)){
+        return true
+    }else{
+        forcestop(appname)
+        return app_home_activity(index)
+    }
 
 }
 
@@ -304,9 +318,37 @@ var app_login_weixin=function(){
 //         }
 // }
 // //app 签到
-// var app_sign=function(){
+var app_sign=function(){
+    app_home_activity(3)
+    doactionmaxtime(function(){
+        if(maytextclick("看视频再送")){
+            seead()
+        }
 
-// }
+        
+    },120000)
+
+}
+
+
+var app_reward_coin=function(){
+    app_home_activity(3)
+    doactionmaxtime(function(){
+        node_img=className("android.widget.Image").clickable().depth(15).drawingOrder(0).findOne(200)
+        if(node_img){
+            node_img.click()
+            sleep(1000)
+        }
+        node_coin=className("android.view.View").clickable().depth(12).dismissable(false).indexInParent(5).findOne(200)
+        if(node_coin){
+            node_coin.click()
+            sleep(1000)
+            seead()
+        }
+        
+     
+    },300000)
+}
 
 var  app_home_video_sweep=function(){
     doactionmaxtime(function(){

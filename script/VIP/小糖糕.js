@@ -56,7 +56,9 @@ var app_run=function(){
     while(true){
         sleep(2000)
         log("循环次数："+n_i)
-      
+        if(n_i%100==0){
+            app_sign()
+        }
             app_go_home(1)
      
             //这里是视频上滑操作
@@ -132,7 +134,7 @@ var app_login_phone=function(){
 
 //app 签到
 var app_sign=function(){
-
+    app_go_home(3)
 }
 
 //app提现
