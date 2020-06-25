@@ -1527,11 +1527,19 @@ var checksystemsettings=function(){
 var alltest=function(){
     log("全部测试")
     device.wakeUpIfNeeded()
-    checkfloaty()
+    
+    if( device.brand=="samsung"){
+        checkfloaty()
     checksystemsettings()
-    if( device.brand=="samsung"){startdeviceadmin()}
-    else if(device.brand=="HONOR"){startdeviceadmin() }
-    else if(device.brand=="DOCOMO"){startdeviceadmin()}
+        startdeviceadmin()}
+    else if(device.brand=="HONOR"){
+        checkfloaty()
+    checksystemsettings()
+        startdeviceadmin() }
+    else if(device.brand=="DOCOMO"){
+        checkfloaty()
+        checksystemsettings()
+        startdeviceadmin()}
     else if(device.brand=="Meizu"){ }
     else if(device.brand=="xiaomi"){  }
     else if(device.brand=="OPPO"){   }
