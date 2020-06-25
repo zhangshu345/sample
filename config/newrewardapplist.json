@@ -474,7 +474,7 @@
     "desc":{"summary":"小糖糕是一款可以制作影集、美化照片的相机拍摄工具；拍摄照片，不同模板让你的照片更有趣；分享你的作品，结交同类兴趣的好友；拍模板同款，丰富的照片制作模板，一键使用，让你的照片一起动起来；海量视频让你轻松度过悠闲时光；更有丰富多彩的任务，金币赚取享不停。每天来拍照，记录你的甜蜜时光，轻松赚零花。\r\n\r\n*美颜拍照，影集制作，记录生活*\r\n【拍照赚钱】多种滤镜随意选，每一张都是你的专属大片，拍的越多赚得越多\r\n【影集制作】拍摄模板样式缤纷多彩，拍广场舞、拍宠物、挑战朋友圈炫酷视频\r\n【拍视频赚钱】作品可以分享给微信好友，让每一部作品都可以赚零花","script":"","html":""},
     "tags":["短视频","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
-    "open":false,
+    "open":true,
     "install":true,
     "pay":{"coin":-1000,"daycoin":-10000,"monthcoin":-200000,"yearcoin":-1000000,"money":0.001,"daymoney":0.0001,"monthmoney":0.001,"yearmoney":0.0001},
     "runconfig":{"accepttime":0,"starttime":"0:0","runtime":0,"seenews":0,"seevideo":0,"seeshortvideo":0,"sign":true,
@@ -537,7 +537,6 @@
     "app":{"name":"波波视频","pkg":"tv.yixia.bobo","icon":"https://pp.myapp.com/ma_icon/0/icon_54034947_1591328693/96",
         "downloadurl":"",
         "version":""}
-
 },{  "name":"电视家",
     "desc":{"summary":"【拍视频赚钱】作品可以分享给微信好友，让每一部作品都可以赚零花","script":"","html":""},
     "tags":["直播","赚钱"],

@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -46,6 +44,7 @@ var changesetting=false
 var apphomeactivity="com.jifen.ponycamera.commonbusiness.MainActivity"
 var keepappnewer=true
 
+var 小视频广告翻倍次数=0
 //关闭最新的app
 
 //app 运行
@@ -237,26 +236,15 @@ var app_go_home=function(index){
 }
 
 var clickgold=function(){
-    node_gold=id("com.jifen.ponycamera:id/image_complete")
+  
   if(idclick("com.jifen.ponycamera:id/image_complete")){
     sleep(2000)
     if(maytextclick("看视频再领")){
         seead()
-            小视频广告翻倍次数=小视频广告翻倍次数+1
+        小视频广告翻倍次数=小视频广告翻倍次数+1
     }
   }
-    node_gold=id("com.jifen.ponycamera:id/tv_task_status").visibleToUser().findOne(100)
-    if(node_gold){
-        if(node_gold.text()=="金蛋大奖"){
-            toastLog("找到了金蛋大奖")
-          
-           }
-   
-        }
-      
-    }else{
-        show("没有找到金蛋大奖：")
-    }
+
 }
 
 var selectnavi=function(index){
