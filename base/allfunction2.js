@@ -2145,6 +2145,36 @@ var readercheck=function(){
     }
 }
 
+function findwebImgPoint(imgurl,trytime,isclick){
+    try {
+        if(!requestScreenCapture()){
+            checkscreencapture()
+        }
+        trytime=trytime||10
+        let urlimg=images.load(imgurl)
+        let i=0
+        let pp
+        while(i<trytime){
+            i=i+1;
+            pp=images.findImage(captureScreen(),urlimg)
+           
+            if(pp){
+                log("pp:"+pp.x+","+pp.y)
+                if(isclick){
+                    click(pp.x,pp.y)
+                }
+                return pp
+            }
+           sleep(1000)
+        }
+       
+    } catch (error) {
+        
+    }
+}
+
+
+
 var checkweixin=function(){
     let weixinpkg=getPackageName("微信")
     if(!weixinpkg){
@@ -2291,9 +2321,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
             keepappisnewer(app.app.name,app.app.pkg)
         }
     })
-
-
-
 
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)

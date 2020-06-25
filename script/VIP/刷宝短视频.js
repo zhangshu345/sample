@@ -21,8 +21,6 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
-
-
 var tomoney=true
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
 var apphomeactivity="com.jm.video.ui.main.MainActivity"
@@ -48,7 +46,7 @@ var 刷宝金币id="com.jm.video:id/tv_gold_num"
 var gotoappvideo=function(){
     show("回到视频页")
    if(doactionmaxtime(function(){
-       app_go_home()
+       app_go_home(1)
         if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
             if(textclick("同意并继续")){
     
@@ -64,8 +62,7 @@ var gotoappvideo=function(){
         }else{
             return true
         }
-
-    },10000)){
+    },20000)){
         return true
     }else{
         forcestop(appname)
@@ -74,15 +71,39 @@ var gotoappvideo=function(){
     }
 }
 
-function app_go_home(){
+function app_go_home(index){
+    index=index||1
     doactionmaxtime(function(){
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
+        idclick("com.jm.video:id/imgClose")
         ca=currentActivity()
         if(ca=="com.jm.video.ui.main.MainActivity"){
-            return true
+            if(index==1){
+                if(id("com.jm.video:id/iv_home_search").exists()){
+                    return true
+                }else{
+                    selectnavi(1)
+                }
+            }else if(index==2){
+                
+                selectnavi(2)
+                return true
+            }else if(index==3){
+                selectnavi(3)
+                return true
+            } else if(index==4){
+                selectnavi(4)
+                return true
+            }else if(index==5){
+                selectnavi(5)
+                return true
+            }else{
+                return true
+            }
+           
         }else if(ca==appminelikeactivity){
             back()
             sleep(1000)
@@ -94,121 +115,94 @@ function app_go_home(){
         else if(ca==appwebactivity){
             back()
             sleep(1000)
+        }else if(ca=="android.widget.FrameLayout"){
+            textclick("取消")
         }else{
             back()
             sleep(200)
             back()
             sleep(200)
         }
-    },6000)
+       
+    },15000)
 }
+
+var selectnavi=function(index){
+    node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().packageName(apppkg).boundsInside(0,device.height*4/5,device.width,device.height).findOne()
+    if(node_ll){
+        node_ll.click()
+    }
+}
+
+
 var app_sign=function(){
   show(appname+":签到")
     doactionmaxtime(function(){
-        if(currentPackage()!=apppkg){
-            show("没有找到存在包名id控件")
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-            if(id("com.jm.video:id/imgClose").exists()){
-                back()
+            app_go_home(4)
+            sleep(2000)
+            idclick("com.jm.video:id/imgClose")
+           if(textContains("恭喜您获得").findOne(400)){
+                 back()
+                 return true
             }
-            if(text("继续赚元宝").exists()){
-                textclick("首页")
-                return false
-            }
-            if(textclick("任务")){
-                下滑()
-                sleep(2000)
-            }
-                    if(textContains("恭喜您获得").findOne(200)){
+            textclick("点击领取",500)
+            textclick("立即签到",500)
+                    if(text("继续赚元宝").exists()){
                         back()
                         return true
                     }
-                    ds=text("立即签到").findOne(1000);
-                    if(ds){
-                        clicknode(ds)
-                        sleep(2000)
-                    }
-                    ds=desc("立即签到").findOne(1000);
-                    if(ds){
-                        clicknode(ds)
-                        sleep(2000)
-                    }
-                    if(text("继续赚元宝").exists()){
-                        back()
-                        sleep(2000)
-                        if( textclick("首页")){
-                            return true
-                        }
-                        return false
-                    }
-                    if(textclick("看视频签到")){
-                      let  i=0
-                        while(i<20){
-                            show("等待视频广告3秒")
-                            sleep(3000)
-                            t= idclick(刷宝视频广告关闭按钮1id)
-                        
-                           if(t ) {
-                            show("成功点击关闭按钮")
-                             今日已签到(appname)
-                             return true
-                            }
-                            t= idclick(刷宝视频广告关闭按钮2id)
-                            show("点击关闭按钮")
-                           if(t ) {
-                             show("成功点击关闭按钮")
-                             今日已签到(appname)
-                             return true
-                            }
-                    
-                        }
-                    }
-            
-        }
+                    if(textclick("看视频签到",300)){
+                        let  i=0
+                          while(i<20){
+                              show("等待视频广告3秒")
+                              sleep(3000)
+                              t= idclick(刷宝视频广告关闭按钮1id)
+                          
+                             if(t ) {
+                              show("成功点击关闭按钮")
+                               今日已签到(appname)
+                               return true
+                              }
+                              t= idclick(刷宝视频广告关闭按钮2id)
+                              show("点击关闭按钮")
+                             if(t ) {
+                               show("成功点击关闭按钮")
+                               今日已签到(appname)
+                               return true
+                              }
+                      
+                          }
+                      }      
+                      sleep(2000)
+       
     },60000)
 
 }
 var app_login=function(){
       doactionmaxtime(function(){
         show(appname+"登录")
-        if(currentPackage()!=apppkg){
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-
-            clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
-             idclick("com.jm.video:id/imgClose")
-         
-            if(textclick("我")){
-                sleep(1000)
-                滑动(20,10,3,10,17,500,400)
-                sleep(2000)
-                if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-                    show("我界面找到昵称和设置")
-                    spt.put(appname+"_login",true)
-                    return true
-                }
-                if(id("login_tip").exists()||text("微信账号登录")){
-                    show("登录页面")
-                    if(logintype=="weixin"){
-                     app_login_weixin()
-                     return true
-                    }else{
-                     app_login_phone()
-                     return true
-                    }
-                }
-            }
-        
-        }
-
+         app_go_home(5)
+         滑动(20,10,3,10,17,500,400)
+         sleep(2000)
+         idclick("com.jm.video:id/imgClose")
+         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
+         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+             show("我界面找到昵称和设置")
+             spt.put(appname+"_login",true)
+             return true
+         }
+         if(id("login_tip").exists()||text("微信账号登录")){
+             show("登录页面")
+             if(logintype=="weixin"){
+              app_login_weixin()
+              return true
+             }else{
+              app_login_phone()
+              return true
+             }
+         }
     },60000)
-   
-       
         // 
-    
 }
 
 var app_login_phone=function(){
@@ -221,7 +215,6 @@ var app_login_phone=function(){
            code= get_phone_code("刷宝登录验证码",reg,"刷宝短视频","刷宝登录验证码")
             toastLog("最后一步了验证码："+code )       
             loginet= id("com.jm.video:id/login_edit").findOne(500).setText(code)
-           
            id( "btn_login").waitFor()
            id("btn_login").findOne(500).click()
           sleepr(6000)
@@ -242,7 +235,6 @@ var app_login_weixin=function(){
         }
         i=i+1
     }
-
 }
 
 
@@ -265,9 +257,7 @@ function app_getcoinnumber(){
              i=i+1
          }
      },60000)
-  
  }
-       
         
 
 var app_getmoneyinfo=function(){
@@ -387,6 +377,8 @@ function app_go_videolist(){
             sleep(1000)
         }else if(ca=="com.jm.video.ui.main.MainActivity"){
             clicktexts(["我","喜欢","查看更多"],200,1500)
+        }else{
+            textclick("取消")
         }
         
 
@@ -398,26 +390,18 @@ function app_run(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
     sleep(3000)
-
-app_login()
-app_sign()
-show("签到结束")
-xhcs=0
+    app_login()
+    app_sign()
+    show("签到结束")
+    xhcs=0
     while(true){
     show("循环次数:"+(xhcs+1))
     closeappundostate()
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
+    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
           show("不是视频页")
-        if(!idContains(apppkg).findOne(1000)){
-            app.launch(apppkg)
-            sleep(3000)
-            i=0
-            clickonetexts(["首页","推荐","等待"],300,1500)
-        }else{
-            show("")
-            gotoappvideo()
-            sleep(1500)
-        }
+          app_go_home(1)
+          clickonetexts(["推荐","等待"],300,1500)
+   
      }else{
         show("视频页关闭弹窗")
         idclick(刷宝视频广告关闭按钮1id)
@@ -456,7 +440,8 @@ xhcs=0
                           if(comment.text()!="评论"){
                               if(comment.text().includes("万")||parseInt(comment.text())>1000){
                                   log('评论过千了')
-                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));if(target){clicknode(target);}});
+                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));
+                                if(target){clicknode(target);}});
                               }
                           }else{
                               log("没有人评论")
@@ -470,6 +455,7 @@ xhcs=0
             滑动(20,13,16,10,4,500,700)
             sleep(1000)
         }
+        idclick("com.jm.video:id/imgClose")
         clicktexts(["继续看视频领取"],100,1500)
         滑动次数=滑动次数+1
         sleepr(6000*ratio,10000*ratio)
@@ -499,6 +485,7 @@ xhcs=0
 
 
 
+
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
@@ -507,15 +494,14 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
- 
-   engines.stopOther()
+    engines.stopOther()
     alltest()
     // checkfloaty()
     // checksystemsettings()
-    floaty.closeAll()
-    creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,220)
+  //  floaty.closeAll()
+ //   creatgfloatywindow()
+  //  creatsetfloatywindow()  //创建设置悬浮窗
+ //   gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
@@ -525,15 +511,12 @@ if(runscriptapp==appname && isreaderunning){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)
     }else{
-      
-            keepappisnewer(appname,apppkg)
-   
+        keepappisnewer(appname,apppkg)
         show(appname+"已经安装")
     }
 
     closelastscriptapp()
     spt.put("lastscriptapp",appname)
-
     spt.put("hongshuyuedu_running",false)
     try {
         app_run()

@@ -9,6 +9,7 @@ var clicktexts=function(texts,t,st){
         }
     }
 }
+
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||1200
@@ -45,6 +46,8 @@ var alter=sync(function(txt,t,left,top,width,height){
         },t)
      })
 });
+
+
 function textclick(i,t,left,top,right,bottom){
     t=t || 500
     left = left || 0;
@@ -76,6 +79,7 @@ threads.start(function(){
         }
     }
 })
+
 //请求截图
 if(!requestScreenCapture()){
     toast("请求截图失败");

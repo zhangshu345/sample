@@ -102,7 +102,7 @@ var app_run=function(){
                  sleep(1000)
             }
                 if(ii%200==0){
-                    app_clean
+                    app_clean()
                 }
    
             sleep(1000)
@@ -150,7 +150,6 @@ var app_home_activity=function(index){
                 }else{
                     selectnavi(4)
                 }
-                
             }else{
                 return true
             }
@@ -201,12 +200,12 @@ var app_getreward=function(){
 var app_clean=function(){
     show(appname+":清理 签到")
     doactionmaxtime(function(){
+     
         clicktexts(["首页","暂不领取","暂不领取"])
         if(maytextclick("一键清理")){
             sleep(5000)
-        }
-        if(textclick("一键清理")){
-            sleep(5000)
+        }else{
+            app_home_activity(1)
         }
         text_clean_result=getTextfromid("com.xiaoqiao.qclean:id/tv_finish")
         if(text_clean_result){
@@ -249,6 +248,7 @@ var app_clean=function(){
         }
     },10000)
 }
+
 
 // //app 登录
 var app_login=function(){
@@ -326,13 +326,13 @@ var  app_home_video_sweep=function(){
                 n=parseInt(text_like)
                 show(appname+":喜欢人数"+text_like)
                 if(n>1000){
-                    sleepr(6000*ratio,8000*ratio)
+                    sleepr(8000*ratio,12000*ratio)
                 }else if(n>500){
-                    sleepr(5000*ratio,7000*ratio)
+                    sleepr(7000*ratio,9000*ratio)
                 }else if(n>100){
-                    sleepr(4000*ratio,6000*ratio)
+                    sleepr(6000*ratio,8000*ratio)
                 }else{
-                    sleepr(3000*ratio,5000*ratio)
+                    sleepr(5000*ratio,7000*ratio)
                 }
             }else{
                 sleepr(2000*ratio,5000*ratio)
@@ -460,13 +460,9 @@ var seead=function(timeout){
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
-      
     },60000)
 }
 
-
-app_home_activity(3)
-sleep(4000)
 
 // app_tomoney()
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
