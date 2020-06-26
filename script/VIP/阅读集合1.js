@@ -18,11 +18,11 @@ eval(公共函数文本)
 toastLog("公共函数实例化失败,程序返回")
 }
 engines.stopOther()
-alltest()
+readercheck()
 floaty.closeAll()
 creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-show("开始定时套餐5")
+//creatsetfloatywindow()  //创建设置悬浮窗
+show("开始阅读集合1")
 if(!gfw){
     show("悬浮未定义")
 }
@@ -33,6 +33,6 @@ selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewa
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
 
 // addbmobchannel("yuedutimer5")
-readercheck()
+
 localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl,true)
 //js:runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js

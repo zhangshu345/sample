@@ -495,7 +495,7 @@ var 上次今日金币=function(name){  s= 数据库.get(name+"_lastcoin_"+today
 var 记录现在金币=function(name,i){    log(name+":现在金币："+i);    数据库.put(name+"_lastcoin",i);}
 var 上次金币=function(name){   s= 数据库.get(name+"_lastcoin", 0);  toastLog(name+"上次金币："+s);  return s; } 
  //可以通过上次的金币来判断是否 还可以获取金币
-var 记录现在余额=function(name,f){log(name+":现在余额："+i);  数据库.put(name+"_lastmoney",f); } 
+var 记录现在余额=function(name,f){log(name+":现在余额："+f);  数据库.put(name+"_lastmoney",f); } 
 var 上次余额=function(name){  s=   数据库.get(name+"_lastmoney", 0.0);toastLog(name+"上次余额："+s);    return s; } 
 var  记录现在滑动次数=function(name,f){     数据库.put(name+"_lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){ s=数据库.get(name+"_lastswipetime_"+today(), 0);toastLog(name+"上次滑动次数"+s);  return s;} 

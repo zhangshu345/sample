@@ -38,35 +38,7 @@ var money=上次余额(appname)
 var like=true
 var minlike=100000 
 var keepappnewer=true
-
-if(invite&&应用登录(appname)){
-    快手极速版邀请()
-}
-toastLog("指定："+appname+"即将启动")
-
-checkfloaty()
-checksystemsettings()
-
-floaty.closeAll()
-creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-
-gfw.setPosition(0,device.height-250)
-if(!app.getPackageName(appname)){
-    toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,apppkg)
-}
-
-if(keepappnewer){
-    keepappisnewer(appname,apppkg)
-}
-
-if(onlyscript){
-    engines.stopOther()
-}
-
-closelastscriptapp()
-spt.put("lastscriptapp",appname)
+var lastdesc=""
 
 /** 
  * 识别滑块位置
@@ -387,20 +359,25 @@ var 快手极速微信登录显示标题id="com.kuaishou.nebula:id/qm"   //显�
 var 快手极速微信确认登录按钮id="com.tencent.mm:id/d17"  //确认登录  包名是com.tencent.mm  "com.kuaishou.nebula:id/wechat_login_view"
 var 快手极速微信关闭按钮id="android:id/text1"  //关闭 
 var 快手极速弹窗文本集合=["同意并继续","立即领取","我知道了"] //,"点击重播"
-var 快手极速弹窗id集合=["btn_privacy_action","close"]
+var 快手极速弹窗id集合=["com.kuaishou.nebula:id/btn_privacy_action","com.kuaishou.nebula:id/close"]
 var 快手极速首次登录点击id集合=[快手极速首次立即领取id,快手极速登录微信登录按钮id,快手极速微信确认登录按钮id]
 var 快手极速摄像头图标id="com.kuaishou.nebula:id/home_shot_view"
 var 快手极速左边框按钮id="com.kuaishou.nebula:id/left_btn"
 var 快手极速左边作者名称id="com.kuaishou.nebula:id/tab_name"  //text 是作者的昵称
 var 快手极速左边设置按钮id="com.kuaishou.nebula:id/tab_settings" //设置
-var 快手极速版喜欢数量id="com.kuaishou.nebula:id/like_count_view" //
-var 快手极速版喜欢按钮id="com.kuaishou.nebula:id/like_button"  //
+var 快手极速版喜欢数量id="com.kuaishou.nebula:id/like_count_view" //获取喜欢数量
+var 快手极速版喜欢按钮id="com.kuaishou.nebula:id/like_button"  // 
 var 快手极速版评论数量id="com.kuaishou.nebula:id/comment_count_view"// 评论数量
+var 快手极速版视频作者名id="com.kuaishou.nebula:id/user_name_text_view"  //作者用户名  @
+var 快手极速版视频标题id="com.kuaishou.nebula:id/label"   //视频标题
 var 快手极速版评论按钮id="com.kuaishou.nebula:id/comment_button" //评论数量
 var 快手极速版首页顶部搜索按钮id="com.kuaishou.nebula:id/home_search_entrance" //搜索按钮id
 var 快手极速首页="com.yxcorp.gifshow.HomeActivity" 
-var 快手极速首页奖励悬浮="com.kuaishou.nebula:id/red_packet"   //悬浮按钮
-var 快手极速版首页标志=[快手极速摄像头图标id,快手极速摄像头图标id,快手极速首页奖励悬浮,快手极速版喜欢按钮id,快手极速版评论按钮id]
+var 快手极速版首页奖励悬浮id="com.kuaishou.nebula:id/red_packet"   //悬浮按钮
+var 快手极速版视频页奖励id="com.kuaishou.nebula:id/redFloat"  
+var 快手极速版首页标志=[快手极速版首页奖励悬浮id,快手极速版喜欢按钮id,快手极速版评论按钮id,快手极速版评论数量id]
+
+var 快手极速版视频页标志集合id=[快手极速版视频页奖励id,快手极速版喜欢数量id,快手极速版视频作者名id]
 var 快手极速设置密码=function(){
     if(打开快手极速左边框()){
         while(!idclick(快手极速左边设置按钮id)){}
@@ -419,8 +396,7 @@ var app_home_video=function(){
     show("回到快手极速首页")
     n_home=0
  if(doactionmaxtime(function(){
-  
-        if(idoneexist(快手极速版首页标志)){
+         if(idoneexist(快手极速版首页标志)){
             return true
         }else{
             if(idContains(apppkg).findOne()){
@@ -432,27 +408,7 @@ var app_home_video=function(){
         }
         app_close_alter()
         滑块验证()
-        sleep(1000)
 
-        if(!idContains(apppkg).findOne(1000)){
-            log("彩蛋不在前台")
-            app.launch(apppkg)
-            sleep(3000)
-            i=0
-            clicktexts(["首页","推荐","等待"],500,1500)
-        }else{
-            log("彩蛋标识前台")
-            back()
-             滑动(20,13,16,10,4,500,700)
-            sleep(500)
-            if(textclick("立即翻倍")){
-                seead()
-             }
-             if(text("点击重播").exists()){
-                back()
-                sleep(2500)
-            }
-        }
     })){
         return true
     }else{
@@ -464,21 +420,24 @@ var app_home_video=function(){
 
 
 var app_close_alter=function(){
-    clickids(快手极速弹窗id集合,100)
-    clicktexts(快手极速弹窗文本集合,100)
+    show(appname+":关闭弹窗")
+    clickids(快手极速弹窗id集合,200)
+    clicktexts(快手极速弹窗文本集合,200)
     if(text("立即邀请").findOne(100)){
         back()
         sleep(1000)
     }
     if (textclick("立即重播",100)){
-            快手极速视频上滑()
+        app_sweep()
     }
     show("关闭弹窗完毕")
 }
 var app_sign=function(){
     show("快手签到")
+    if(今日签到(appname)){return true}
+    app_home_activity(3)
     doactionmaxtime(function(){
-        if(clickids([快手极速首页奖励悬浮])){
+        if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
             sleep(1500)
         }
         滑块验证()
@@ -487,7 +446,7 @@ var app_sign=function(){
             if(text("填写邀请码").exists()){
                 log("找到填写邀请码，是新用户")
                 if(textclick("去填写")){
-                   if (快手极速填写邀请码()){
+                   if (app_invite()){
                        back()
                        return 
                    }
@@ -524,10 +483,57 @@ var app_sign=function(){
         }
         app_close_alter()
     },20000)
-
+}
+var selectnavi=function(index){
+    node_tabs=id("com.kuaishou.nebula:id/tabs").depth(7).findOne(200)
+    if(node_tabs){
+        if( node_tabs.child(0).child(index-1)){
+            node_tabs.child(0).child(index-1).click()
+        }
+        
+    }
 }
 
-var 快手极速填写邀请码=function(){
+var app_home_activity=function(index){
+    show(appname+"回到主页")
+        index=index||-1
+        doactionmaxtime(function(){
+            ca=currentActivity()
+            if(ca==apphomeactivity){
+                if(index==1){
+                    //同城
+                    selectnavi(1)
+                    return true
+                }else if(index==2){
+                    selectnavi(2)
+                    return true
+                }else if(index==3){
+                
+                    if(idoneexist(快手极速版视频页标志集合id)){
+                        return true
+                    }else{
+                        selectnavi(3)
+                    }
+
+                }else{
+                    selectnavi(3)
+                    return true
+                }
+            }else{
+                app_close_alter()
+                back()
+                sleep(500)
+            }
+            if(currentPackage()!=apppkg){
+                app.launch(apppkg)
+                sleep(3000)
+            }
+
+        },60000)
+}
+
+
+var app_invite=function(){
     i=0
     while(i<10){
         if(text("填邀请码领现金").exists()){
@@ -550,11 +556,10 @@ var 快手极速填写邀请码=function(){
             sleep(1500)
         }
        i=i+1
-       
     }
    return false
 }
-var 快手极速视频上滑=function(){
+var app_sweep=function(){
     if(enablegenius){
         滑动(20,13,16,10,3,400,400)
     }else{
@@ -597,8 +602,8 @@ var islogin=false
 
 var app_login=function(){
     show(appname+"登录")
-    n_first=0
-    while(n_first<5){
+
+    doactionmaxtime(function(){
         if(!idContains(apppkg).findOne(300)){
             app.launch(apppkg)
             sleep(3000)
@@ -635,15 +640,15 @@ var app_login=function(){
             }
            return true
        }
-       n_first=n_first+1
-    }
+   
+    },120000)
 }
 
 var app_tomoney=function(){
     n_tomoney=0
     while(n_tomoney<5){
         n_tomoney=n_tomoney+1
-        if(idclick(快手极速首页奖励悬浮)){
+        if(idclick(快手极速版首页奖励悬浮id)){
             sleep(3500)
         }
     }
@@ -651,22 +656,22 @@ var app_tomoney=function(){
 
 var 快手极速版视频滑动=function(){
     if(random(0,20)<20-视频重复次数){
-        快手极速视频上滑()
+        app_sweep()
     }else{
         快手极速视频下滑()
     }
     doactionmaxtime(function(){
+        if(idoneexist(快手极速版视频页标志集合id))
         if(textoneexist(["点击打开长图","点击打开图集"],200)){
-            快手极速视频上滑()
+            app_sweep()
          }
          sleep(2000)
          nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
              if(nowdesc==lastdesc){
-                快手极速视频上滑()
+                app_sweep()
 
              }else{
-
                 n_like=快手极速版获取视频点赞数()
                 if(n_like >minlike){
                     idclick(快手极速版喜欢按钮id)
@@ -680,16 +685,21 @@ var 快手极速版视频滑动=function(){
                  return true
              }
          }else{
-            快手极速视频上滑()
+            app_sweep()
          }
     },20000)
 }
 
 var app_get_coin_money=function(){
-    log("获取金币数和余额")
-    n_agcm=0
-    while(n_agcm<5){
-       node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
+    show("获取金币数和余额")
+ doactionmaxtime(function(){      
+    if(currentActivity()!=appsignactivity){
+        app_home_activity(3)
+        sleep(1000)
+        clickoneids([快手极速版视频页奖励id,快手极速版首页奖励悬浮id])
+        sleep(3800)
+    }
+        node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
        if(node_webkit&&node_webkit.childCount()>3){
            node_coin_money_layout=node_webkit.child(2)
            if(node_coin_money_layout){
@@ -701,50 +711,45 @@ var app_get_coin_money=function(){
                log(node_coin_money_layout)
                node_coin=node_coin_money_layout.child(0).child(0)
                if(node_coin){
-                   log("金币："+node_coin)
+ 
                    coin=parseInt(node_coin.contentDescription)
                    log("金币数："+coin)
                    记录现在金币(appname,coin)
                }
                node_money=node_coin_money_layout.child(1).child(0)
                if(node_money){
-                   log("yue："+node_money)
                    money=parseFloat(node_money.contentDescription)
                    log("余额数："+money)
                    记录现在余额(appname,money)
                }
-            return
+             return true
            }
        }
-       if(currentActivity()!=appsignactivity){
-           return
-       }
+    
        sleep(2000)
-       n_agcm=n_agcm+1
-    }
+  
+    },60000)
 }
 
 
-lastdesc=""
-device.wakeUpIfNeeded()
+
+
 function app_run(){
+    if(invite&&应用登录(appname)){
+        快手极速版邀请()
+    }
     show("快手极速版开始")
     app.launch(apppkg)
     sleep(3000)
-    if(!今日签到(appname)){
-        log("没有签到")
-                if (app_sign()){
-                    今日已签到(appname)
-                    todaysign=true
-                }
-       
-    }
+    app_sign()
+    todaysign=true
     滑动次数=0
     while(true){
         app_close_alter()
         device.wakeUpIfNeeded()
         滑动次数=滑动次数+1
         log("循环："+滑动次数)
+        app_go_video()
         ca=currentActivity()
         if(ca!=apphomeactivity){
             滑块验证()
@@ -793,11 +798,45 @@ function app_run(){
         }
     }
 }
-try{
-    app_run()
-}catch(error)
-{
- log(appname+"---err:"+error)
-}
 
+app_get_coin_money()
+
+
+let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+log("正在集合运行的APP"+runscriptapp)
+let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+log("是否是集合运行："+isreaderunning)
+// 集合运行
+if(runscriptapp==appname && isreaderunning){
+
+}else{
+    engines.stopOther()
+    // 彩蛋邀请 通过 微信链接绑定上级用户 
+    toastLog("指定："+appname+"即将启动")
+    alltest()
+    if(changesetting){
+        device.setMusicVolume(0)
+        toastLog("自动设置音量为0")
+    }
+    floaty.closeAll()
+    creatgfloatywindow()
+    // creatsetfloatywindow()  //创建设置悬浮窗
+    show(appname+"辅助滑动")
+    gfw.setPosition(0,device.height-250)
+    if(!app.getPackageName(appname)){
+        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        downloadandinstallapp(appname,apppkg)
+    }else{
+        keepappisnewer(appname,apppkg)
+    }
+    closelastscriptapp()
+    toastLog(appname+"开始运行")
+    spt.put("lastscriptapp",appname)
+    spt.put("hongshuyuedu_running",false)
+    try {
+        app_run()
+    } catch (error) {
+        
+    }
+}
 
