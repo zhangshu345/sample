@@ -136,6 +136,9 @@ if(runscriptapp==appname && isreaderunning){
     if(onlyscript){
         engines.stopOther()
     }
+
+    checkscriptversion()
+    checkstoragestate()
     alltest()
     // checkfloaty()
     // checksystemsettings()
