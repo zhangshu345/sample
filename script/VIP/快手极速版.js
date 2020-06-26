@@ -454,7 +454,6 @@ var app_sign=function(){
                 }
             }
         }
-      
        if(textclick("立即签到")){
            sleep(1000)
            back()
@@ -699,14 +698,15 @@ var app_get_coin_money=function(){
     if(currentActivity()!=appsignactivity){
         show("获取金币数和余额")
         app_home_activity(3)
-        sleep(1000)
-        if(idclick(快手极速版视频页奖励id,200)){
-            show("奖励点击成功")
-            sleep(10000)
-        }else{
-            show("奖励点击失败")
+        sleep(2000)
+        node_reward=id(快手极速版视频页奖励id).findOne(200)
+        if(node_reward){
+            let bds=node_reward.bounds()
+            click(bds.centerX(),bds.centerY())
+            show("点击奖励中心")
+            sleep(5000)
         }
-    }
+    }else{
         node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
        if(node_webkit&&node_webkit.childCount()>3){
            node_coin_money_layout=node_webkit.child(2)
@@ -732,6 +732,7 @@ var app_get_coin_money=function(){
              return true
            }
        }
+    }
     
        sleep(2000)
   
@@ -807,8 +808,7 @@ function app_run(){
 }
 
 
-app_sign()
-
+app_get_coin_money()
 
 
 

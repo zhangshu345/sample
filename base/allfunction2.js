@@ -708,10 +708,11 @@ function idclick(idstr,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
-    right = bottom || device.width;
+    right = right || device.width;
     bottom = bottom || device.height;
     var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
-    if(f){ if(clicknode(f)){ return true}  
+    if(f){ 
+        if(clicknode(f)){  return true        }  
     }
     return false
 }
@@ -720,7 +721,7 @@ function descclick(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
-    right = bottom || device.width;
+    right = right || device.width;
     bottom = bottom || device.height;
     var f=desc(desctext).boundsInside(left, top, right, bottom).findOne(t); //.visibleToUser()
     if(f){ if(clicknode(f)){ return true}  
@@ -733,7 +734,7 @@ function textclick(i,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
-    right = bottom || device.width;
+    right = right|| device.width;
     bottom = bottom || device.height;
     var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
@@ -766,12 +767,16 @@ function maytextclick(maytext,t,left,top,right,bottom){
 var clicknode=function(v,time){
     if(!v){return false; }
     time=time||200
-    if(v.clickable()){ return  v.click();}
+  
     if(enablegenius){
+        toastLog("可以手势点击")
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
-            return click(b.centerX(),b.centerY())
+            toastLog("点击中心位置"+b.centerX()+"--"+b.centerY())
+            return v.click()&&click(b.centerX(),b.centerY())
         }
+     }else{
+        toastLog("不可以手势点击")
      }
          if(clickparents(v)){ return true  }
          if(clickchilds(v)){  return true}
@@ -2457,4 +2462,6 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
         }
     },chixutime)
 }
+
+idclick("com.kuaishou.nebula:id/redFloat")
 
