@@ -2371,7 +2371,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         }
         )
         oneapp=runapps[0]
-        runurlscript(oneapp.app.name,oneapp.app.path)
+        runurlscript(oneapp.app.name,oneapp.path)
 }
 
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){

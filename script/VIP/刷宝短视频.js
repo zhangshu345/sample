@@ -380,8 +380,6 @@ function app_go_videolist(){
         }else{
             textclick("取消")
         }
-        
-
     },60000)
 }
 
