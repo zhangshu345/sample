@@ -457,6 +457,7 @@ var app_sign=function(){
        if(textclick("立即签到")){
            sleep(1000)
            back()
+           今日签到(appname)
            return true
        }
        if(text("去补签").exists()){
@@ -464,6 +465,7 @@ var app_sign=function(){
            sleep(300)
            back()
            sleep(1000)
+           今日签到(appname)
            return true
        }
         sleep(1000)
@@ -482,7 +484,7 @@ var app_sign=function(){
             return false
         }
         app_close_alter()
-    },20000)
+    },60000)
 }
 var selectnavi=function(index){
     node_tabs=id("com.kuaishou.nebula:id/tabs").depth(7).findOne(200)
@@ -698,11 +700,10 @@ var app_get_coin_money=function(){
         sleep(1000)
         if(idclick(快手极速版视频页奖励id,200)){
             show("奖励点击成功")
-            sleep(5000)
+            sleep(10000)
         }else{
             show("奖励点击失败")
         }
-        
     }
         node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
        if(node_webkit&&node_webkit.childCount()>3){

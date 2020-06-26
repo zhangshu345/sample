@@ -2360,7 +2360,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         spt.remove("lastscriptapp")
         spt.remove("hongshuyuedu_run_app")
         spt.put("hongshuyuedu_running",true)
-        thread.start(
+        threads.start(
             delectapkfile()
         )
         oneapp=runapps[0]
