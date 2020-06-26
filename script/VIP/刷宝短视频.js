@@ -474,14 +474,13 @@ function app_run(){
             if(!今日已签到(appname)){
                 app_sign()
             }
-        }
-        if(滑动次数%300==1){
             if(tomoney){
                 if(!今日提现(appname)){
                     app_tomoney()
                 }
             }
         }
+    
     }
     xhcs=xhcs+1
 }

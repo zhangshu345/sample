@@ -2267,7 +2267,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+3
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+   
     var runapps=[]
     let localapps=数据库.get("runlist","")
     if(!localapps){
@@ -2303,6 +2303,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         数据库.put("runlist",runapps)
     }
 
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     runapps.filter(function(){
         if(!app.open){
            return false
@@ -2328,25 +2329,21 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
             keepappisnewer(app.app.name,app.app.pkg)
         }
     })
-
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
                 let runconfig=app.runconfig
                 if(runconfig&&app.path){
                     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
-              
                     while(fen>=60){
                         fen=fen-60
                         xiaoshi=xiaoshi+1
-                        
                         if(xiaoshi==24){
                             xiaoshi=0
                         }
                       }
                     com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
-                        fen=fen+runconfig.onetime/60
-                      
+                     fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
         while(fen>=60){
@@ -2367,12 +2364,9 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         )
         oneapp=runapps[0]
         runurlscript(oneapp.app.name,oneapp.app.path)
-
 }
 
-
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
-    
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
