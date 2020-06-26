@@ -136,7 +136,6 @@ if(runscriptapp==appname && isreaderunning){
     if(onlyscript){
         engines.stopOther()
     }
-
     checkscriptversion()
     checkstoragestate()
     alltest()
@@ -150,9 +149,7 @@ if(runscriptapp==appname && isreaderunning){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
-    
-  
-    
+
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)

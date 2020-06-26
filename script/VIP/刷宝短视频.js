@@ -237,10 +237,9 @@ var app_login_weixin=function(){
 
 function app_getcoinnumber(){
      show(appname+"获取金币数")
-     app_go_home()
      doactionmaxtime(function(){
-         if(textclick("我")){
-            sleep(1000)
+        app_go_home(5)
+        sleep(2000)
             coin=id(刷宝金币id).findOne(1000)
             if(coin){
                 n=parseInt(coin.text())
@@ -251,17 +250,15 @@ function app_getcoinnumber(){
                 滑动(20,10,3,10,17,500,300)
                 sleep(2000)
              }
-             i=i+1
-         }
+        
      },60000)
  }
         
 
 var app_getmoneyinfo=function(){
     doactionmaxtime(function(){
-        app_go_home()
-        if(textclick("我")){
-            sleep(1000)
+        app_go_home(5)
+            sleep(2000)
             money=id(刷宝余额id).findOne(1000)
             if(money){
                 f=parseFloat(money.text())
@@ -271,7 +268,7 @@ var app_getmoneyinfo=function(){
                 滑动(20,10,3,10,17,500,300)
                 sleep(2000)
             }
-         }
+
     },20000)
 
 
@@ -309,63 +306,69 @@ var cantomoney=function(){
 
 var app_tomoney=function(){
     show(appname+"提现")
-    f=app_getcoinnumber()
-     if(f>6800){
-         i=0
-        while(i<10){
-           if(idclick(刷宝余额id)){
-             show("点击刷宝余额成功")
-                sleep(1000)
-            }
-            if(textclick("立即提现")){
-             }
-             if(textclick("每日可提")){
-                    show("点击每日")
-                    return false
-              }
-             if(textclick("仅当日有效")){
-                    show("仅当日有效")
-                    break
-              }
-              if(textclick("已解锁")){
-                    show("点击每日")
-                    break
-              }
-           i=i+1
-        }
-        if(cantomoney()){
+
+    doactionmaxtime(function(){
+        f=app_getcoinnumber()
+        if(f>6800){
             i=0
-             while(i<10){
-                if(textclick("仅当日有效")){
-                    show("点击仅当日有效")
+           while(i<10){
+              if(idclick(刷宝余额id)){
+                show("点击刷宝余额成功")
+                   sleep(1000)
+               }
+               if(textclick("立即提现")){
                 }
-                 sleep(1000)
-                 textclick("立即提现")
-                 if(textclick("同意")){
-                     show("微信同意")
+                if(textclick("每日可提")){
+                       show("点击每日")
+                       return false
                  }
-                 if(text("提现详情").exists()){
-                      今日已提现(appname)
-                     return true
+                if(textclick("仅当日有效")){
+                       show("仅当日有效")
+                       break
                  }
-                 if(text("去邀请好友").exists()){
-                     back()
-                     今日已提现(appname)
-                     return true
+                 if(textclick("已解锁")){
+                       show("点击每日")
+                       break
                  }
-                 i=i+1
-             }
-            return false
+              i=i+1
+           }
+           if(cantomoney()){
+              let i=0
+                while(i<5){
+                   if(textclick("仅当日有效")){
+                       show("点击仅当日有效")
+                   }
+                    sleep(1000)
+                    textclick("立即提现")
+                    if(textclick("同意")){
+                        show("微信同意")
+                    }
+                    if(text("提现详情").exists()){
+                         今日已提现(appname)
+                        return true
+                    }
+                    if(text("去邀请好友").exists()){
+                        back()
+                        今日已提现(appname)
+                        return true
+                    }
+                    i=i+1
+                }
+                return true
+           }else{
+            return true
+           }
         }else{
-         return false
+            return true
         }
-     }else{
-         return false
-     }
+    },120000)
+
 }
 
-function app_go_videolist(){
+
+function app_go_likevideolist(){
     doactionmaxtime(function(){
+        app_go_home(5)
         ca=currentActivity()
         if(ca=="com.jm.video.ui.videolist.list.ListVideoActivity"){
             return true
@@ -387,6 +390,7 @@ function app_run(){
     sleep(3000)
     app_login()
     app_sign()
+
     show("签到结束")
     xhcs=0
     while(true){
@@ -460,7 +464,7 @@ function app_run(){
         sleepr(6000*ratio,10000*ratio)
         if(text("空空如也").exists()){
             // 脚本完成了
-            app_go_videolist()
+            app_go_likevideolist()
         }
         if(滑动次数%50==0){
             checkbattery(30)
@@ -481,6 +485,7 @@ function app_run(){
 }
 }
 
+app_go_likevideolist()
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
@@ -510,7 +515,6 @@ if(runscriptapp==appname && isreaderunning){
         keepappisnewer(appname,apppkg)
         show(appname+"已经安装")
     }
-
     closelastscriptapp()
     spt.put("lastscriptapp",appname)
     spt.put("hongshuyuedu_running",false)

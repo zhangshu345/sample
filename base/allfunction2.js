@@ -710,7 +710,7 @@ function idclick(idstr,t,left,top,right,bottom){
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=id(idstr).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
     if(f){ if(clicknode(f)){ return true}  
     }
     return false
@@ -722,7 +722,7 @@ function descclick(desctext,t,left,top,right,bottom){
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    var f=desc(desctext).boundsInside(left, top, right, bottom).findOne(t); //.visibleToUser()
     if(f){ if(clicknode(f)){ return true}  
     }
     return false
@@ -735,7 +735,7 @@ function textclick(i,t,left,top,right,bottom){
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
         log("text："+i+":没找到了")
         return false
@@ -751,9 +751,9 @@ function maytextclick(maytext,t,left,top,right,bottom){
     top = top || 0;
     right = bottom || device.width;
     bottom = bottom || device.height;
-    var f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    var f=text(maytext).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
-         f=textContains(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t)
+         f=textContains(maytext).boundsInside(left, top, right, bottom).findOne(t)
          if(!f){
              return false
          }
