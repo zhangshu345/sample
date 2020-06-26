@@ -437,7 +437,7 @@ var app_sign=function(){
     if(今日签到(appname)){return true}
     app_home_activity(3)
     doactionmaxtime(function(){
-        log("快手签到")
+        log("快手签到内部")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
             sleep(1500)
         }
@@ -449,7 +449,7 @@ var app_sign=function(){
                 if(textclick("去填写")){
                    if (app_invite()){
                        back()
-                       return 
+                       return  true
                    }
                 }
             }
@@ -694,9 +694,10 @@ var 快手极速版视频滑动=function(){
 }
 
 var app_get_coin_money=function(){
-    show("获取金币数和余额")
- doactionmaxtime(function(){      
+   
+    doactionmaxtime(function(){      
     if(currentActivity()!=appsignactivity){
+        show("获取金币数和余额")
         app_home_activity(3)
         sleep(1000)
         if(idclick(快手极速版视频页奖励id,200)){
@@ -718,8 +719,7 @@ var app_get_coin_money=function(){
                log(node_coin_money_layout)
                node_coin=node_coin_money_layout.child(0).child(0)
                if(node_coin){
- 
-                   coin=parseInt(node_coin.contentDescription)
+                    coin=parseInt(node_coin.contentDescription)
                    log("金币数："+coin)
                    记录现在金币(appname,coin)
                }
