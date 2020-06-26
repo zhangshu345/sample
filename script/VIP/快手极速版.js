@@ -437,6 +437,7 @@ var app_sign=function(){
     if(今日签到(appname)){return true}
     app_home_activity(3)
     doactionmaxtime(function(){
+        log("快手签到")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
             sleep(1500)
         }
@@ -805,7 +806,12 @@ function app_run(){
     }
 }
 
-app_get_coin_money()
+
+app_sign()
+
+
+
+
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)

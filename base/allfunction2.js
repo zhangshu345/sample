@@ -433,8 +433,8 @@ var sendforcestopIntent=function(apppkg){
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 var show=function(txt){ 
     try {
-    
-        if(!isshowfloaty){ toastLog(txt); return  };
+        toastLog(txt);
+         if(!isshowfloaty){  return  };
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
         }
