@@ -72,12 +72,13 @@ var gotoappvideo=function(){
 }
 
 function app_go_home(index){
+    show(appname+"回到首页"+index)
     index=index||1
     doactionmaxtime(function(){
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
-        }
+        }else{
         idclick("com.jm.video:id/imgClose")
         ca=currentActivity()
         if(ca=="com.jm.video.ui.main.MainActivity"){
@@ -117,12 +118,8 @@ function app_go_home(index){
             sleep(1000)
         }else if(ca=="android.widget.FrameLayout"){
             textclick("取消")
-        }else{
-            back()
-            sleep(200)
-            back()
-            sleep(200)
         }
+    }
        
     },15000)
 }
@@ -136,7 +133,7 @@ var selectnavi=function(index){
 
 
 var app_sign=function(){
-  show(appname+":签到")
+    show(appname+":签到")
     doactionmaxtime(function(){
             app_go_home(4)
             sleep(2000)
@@ -497,10 +494,10 @@ if(runscriptapp==appname && isreaderunning){
     alltest()
     // checkfloaty()
     // checksystemsettings()
-  //  floaty.closeAll()
- //   creatgfloatywindow()
+   floaty.closeAll()
+   creatgfloatywindow()
   //  creatsetfloatywindow()  //创建设置悬浮窗
- //   gfw.setPosition(0,220)
+    gfw.setPosition(0,device.height-250)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
@@ -518,6 +515,7 @@ if(runscriptapp==appname && isreaderunning){
     spt.put("lastscriptapp",appname)
     spt.put("hongshuyuedu_running",false)
     try {
+        show("开始运行:"+appname)
         app_run()
     } catch (error) {
         

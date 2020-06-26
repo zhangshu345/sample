@@ -433,7 +433,8 @@ var sendforcestopIntent=function(apppkg){
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 var show=function(txt){ 
     try {
-        if(!isshowfloaty){  toastLog(txt);return  };
+    
+        if(!isshowfloaty){ toastLog(txt); return  };
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ gfw.text.setText("运行:"+scriptruntime()+"秒："+txt);})
         }
@@ -2375,40 +2376,40 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 }
 
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
+    let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 
-}else{
-    checksystemsettings()
-    if(isdevicemanager){
-        checkdevicemanager()
-    }
-    if(isshowfloaty){
-        checkfloaty()
-        floaty.closeAll()
-        creatgfloatywindow()
-    }
-    if(isshowsettingfloaty){
-        creatsetfloatywindow()  //创建设置悬浮窗
-    }
-    
-    if(isonlyscript){
-        engines.stopOther()
-    }
-    
-    if(!app.getPackageName(appname)){
-        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
+    let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+
+    // 集合运行
+    if(runscriptapp==appname && isreaderunning){
+
     }else{
-        if(iskeepappnewer){
-            keepappisnewer(appname,apppkg)
+       checksystemsettings()
+      if(isdevicemanager){
+            checkdevicemanager()
         }
-        show(appname+"已经安装")
-    }
+        if(isshowfloaty){
+          checkfloaty()
+          floaty.closeAll()
+          creatgfloatywindow()
+         }
+        if(isshowsettingfloaty){
+             creatsetfloatywindow()  //创建设置悬浮窗
+        }
+    
+         if(isonlyscript){
+              engines.stopOther()
+         }
+    
+         if(!app.getPackageName(appname)){
+              show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+             downloadandinstallapp(appname,apppkg)
+            }else{
+         if(iskeepappnewer){
+               keepappisnewer(appname,apppkg)
+            }
+         show(appname+"已经安装")
+        }
     closelastscriptapp()
     closerecentapp()
     spt.put("lastscriptapp",appname)
@@ -2419,7 +2420,6 @@ if(runscriptapp==appname && isreaderunning){
         
     }
 }
-
 }
 
 var nodesexists=function(nodes){
@@ -2459,4 +2459,3 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 }
 checkscriptversion()
 checkstoragestate()
-
