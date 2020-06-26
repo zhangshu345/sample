@@ -762,28 +762,29 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-var clicknode=function(v){
+var clicknode=function(v,time){
     if(!v){return false; }
+    time=time||200
     if(v.clickable()){ return  v.click();}
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             return click(b.centerX(),b.centerY())
-        }else{  return false }
-     }else{ 
+        }
+     }
          if(clickparents(v)){ return true  }
          if(clickchilds(v)){  return true}
          r=v.bounds()
-          var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne()
+          var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
           if(w){ return w.click() ;}
          else{ return false;  }
-    }
+   
 }
 
 //一直找到可以点击控件向上查找
 var clickparents=function(v,n){
     let i=0
-    n=n||15
+    n=n||40
     while(i<n){  p=v.parent();
         if(p&&p.clickable()){log("找到可点击控件"+toString(p));  return p.click(); }
         else{ i=i+1; log("向上查找层数："+i); v=p }    }

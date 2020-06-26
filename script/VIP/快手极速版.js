@@ -696,8 +696,13 @@ var app_get_coin_money=function(){
     if(currentActivity()!=appsignactivity){
         app_home_activity(3)
         sleep(1000)
-        clickoneids([快手极速版视频页奖励id,快手极速版首页奖励悬浮id])
-        sleep(3800)
+        if(idclick(快手极速版视频页奖励id,200)){
+            show("奖励点击成功")
+            sleep(5000)
+        }else{
+            show("奖励点击失败")
+        }
+        
     }
         node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
        if(node_webkit&&node_webkit.childCount()>3){
