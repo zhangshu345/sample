@@ -393,7 +393,7 @@ var 打开快手极速左边框=function(){
     return false
 }
 var app_home_video=function(){
-    show("回到快手极速首页")
+    show("回到快手极速版视频滑动页面")
     n_home=0
  if(doactionmaxtime(function(){
          if(idoneexist(快手极速版首页标志)){
@@ -408,14 +408,13 @@ var app_home_video=function(){
         }
         app_close_alter()
         滑块验证()
-
     })){
         return true
     }else{
         forcestop(appname)
         app.launch(apppkg)
+        sleep(3000)
     }
-    
 }
 
 
@@ -565,7 +564,7 @@ var app_sweep=function(){
     if(enablegenius){
         滑动(20,13,16,10,3,400,400)
     }else{
-         vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
+         vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(200)
          if(vp){
                 log("找到快手滑动vp")
                 vp.scrollForward()
@@ -693,8 +692,7 @@ var 快手极速版视频滑动=function(){
 }
 
 var app_get_coin_money=function(){
-   
-    doactionmaxtime(function(){      
+       doactionmaxtime(function(){      
     if(currentActivity()!=appsignactivity){
         show("获取金币数和余额")
         app_home_activity(3)
@@ -712,20 +710,20 @@ var app_get_coin_money=function(){
            node_coin_money_layout=node_webkit.child(2)
            if(node_coin_money_layout){
                if(node_coin_money_layout.className=="android.widget.ListView"){
-                log("列表 sss"+node_coin_money_layout.className)
+                    log("列表 sss"+node_coin_money_layout.className)
                }else{
                    log("列表"+node_coin_money_layout.className)
                }
-               log(node_coin_money_layout)
+             //  log(node_coin_money_layout)
                node_coin=node_coin_money_layout.child(0).child(0)
                if(node_coin){
-                    coin=parseInt(node_coin.contentDescription)
+                    coin=parseInt(node_coin.text())
                    log("金币数："+coin)
                    记录现在金币(appname,coin)
                }
                node_money=node_coin_money_layout.child(1).child(0)
                if(node_money){
-                   money=parseFloat(node_money.contentDescription)
+                   money=parseFloat(node_money.text())
                    log("余额数："+money)
                    记录现在余额(appname,money)
                }
@@ -757,38 +755,10 @@ function app_run(){
         device.wakeUpIfNeeded()
         滑动次数=滑动次数+1
         log("循环："+滑动次数)
-        app_go_video()
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            滑块验证()
-            if(!idContains(apppkg).findOne(100)){    
-                 app.launch(apppkg)
-                 sleepr(5000)
-            }
-        }
-        if(idoneexist(快手极速版首页标志)){
-            if(滑动次数%20==0){
-                //快手actionbar "com.kuaishou.nebula:id/action_bar"
-                    if(id("com.kuaishou.nebula:id/tabs").exists()){
-                            log("点击首页的发现")
-                        n_tab= id("com.kuaishou.nebula:id/tabs").findOne()
-                        if(n_tab){
-                            n_cc=n_tab.child(0)
-                            if(n_cc&&n_cc.childCount()>2){
-                                n_cc.child(2).click()
-                            }
-                        }
-                      }
-             }
-            show("快手极速版首页标志找到了")
-            sleep(1000)
-            //快手actionbar "com.kuaishou.nebula:id/action_bar"
-            滑块验证()
-            快手极速版视频滑动()
-       }else{
-        show("快手极速版首页标志没有找到了")
+        app_home_activity(3)
         app_home_video()
-       }
+        快手极速版视频滑动()
+
        idclick("com.kuaishou.nebula:id/close")
        if(closeappundostate()){
         sleep(1000)
@@ -806,10 +776,6 @@ function app_run(){
         }
     }
 }
-
-
-app_get_coin_money()
-
 
 
 

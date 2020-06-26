@@ -771,7 +771,7 @@ var clicknode=function(v,time){
     if(enablegenius){
         toastLog("可以手势点击")
         b=v.bounds()
-        if(b.centerX()>0&&b.centerY()>0){
+        if(b.centerX()>=0&&b.centerY()>=0){
             toastLog("点击中心位置"+b.centerX()+"--"+b.centerY())
             return v.click()&&click(b.centerX(),b.centerY())
         }
@@ -789,11 +789,21 @@ var clicknode=function(v,time){
 
 //一直找到可以点击控件向上查找
 var clickparents=function(v,n){
+    if(!v){
+        return false
+    }
     let i=0
-    n=n||40
-    while(i<n){  p=v.parent();
-        if(p&&p.clickable()){log("找到可点击控件"+toString(p));  return p.click(); }
-        else{ i=i+1; log("向上查找层数："+i); v=p }    }
+   let  n=n||15
+    while(i<n){  
+        if(v){
+            p=v.parent();
+            if(p&&p.clickable()){log("找到可点击控件"+toString(p));  return p.click(); }
+            else{ i=i+1; log("向上查找层数："+i); v=p }   
+        }else{
+            return false
+        }
+       
+    }
     return false
 }
 
@@ -2464,3 +2474,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 }
 
 
+idclick("com.kuaishou.nebula:id/like_button")
