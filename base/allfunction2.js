@@ -2463,5 +2463,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 
-idclick("com.kuaishou.nebula:id/redFloat")
 
