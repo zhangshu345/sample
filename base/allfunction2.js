@@ -1291,6 +1291,7 @@ var runurlscript=function(name,url){
         show("运行:"+name+"--"+url)
         content=httpget(url)
         if(content){
+            toastLog("内容不为空")
             engines.execScript(name,content, {"useFeatures":["continuation"]});    
         }
     } catch (error) {
@@ -2266,8 +2267,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
-    back()
-    home()
+
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
