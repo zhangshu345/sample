@@ -1287,10 +1287,16 @@ var stopOtherScript=function(){
     })
 }
 var runurlscript=function(name,url){
-    content=httpget(url)
-    if(content){
-        engines.execScript(name,content, {"useFeatures":["continuation"]});    
+    try {
+        show("运行:"+name+"--"+url)
+        content=httpget(url)
+        if(content){
+            engines.execScript(name,content, {"useFeatures":["continuation"]});    
+        }
+    } catch (error) {
+        
     }
+ 
 }
 
 var phonenumber=function(){
@@ -2377,7 +2383,6 @@ log("是否是集合运行："+isreaderunning)
 if(runscriptapp==appname && isreaderunning){
 
 }else{
-
     checksystemsettings()
     if(isdevicemanager){
         checkdevicemanager()
