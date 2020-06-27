@@ -710,8 +710,10 @@ function idclick(idstr,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    var f=id(idstr).boundsInside(left, top, right, bottom).findOne(t);
-    if(f){ 
+    log("l ,t,r,b"+left+","+top+","+right+","+bottom)
+    let f=id(idstr).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    if(f){
+     
         if(clicknode(f)){  return true        }  
     }
     return false
@@ -723,7 +725,7 @@ function descclick(desctext,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    var f=desc(desctext).boundsInside(left, top, right, bottom).findOne(t); //.visibleToUser()
+    var f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
     if(f){ if(clicknode(f)){ return true}  
     }
     return false
@@ -736,7 +738,7 @@ function textclick(i,t,left,top,right,bottom){
     top = top || 0;
     right = right|| device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
         log("text："+i+":没找到了")
         return false
@@ -750,7 +752,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
-    right = bottom || device.width;
+    right = right || device.width;
     bottom = bottom || device.height;
     var f=text(maytext).boundsInside(left, top, right, bottom).findOne(t);
     if(!f){
@@ -759,7 +761,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
              return false
          }
     }
-    log("text："+i+":控件找到了")
+   // log("text："+i+":控件找到了")
     return clicknode(f)
 }
 
@@ -767,19 +769,20 @@ function maytextclick(maytext,t,left,top,right,bottom){
 var clicknode=function(v,time){
     if(!v){return false; }
     time=time||200
-  
     if(enablegenius){
-        toastLog("可以手势点击")
+       // toastLog("可以手势点击")
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
             toastLog("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return v.click()&&click(b.centerX(),b.centerY())
+            return click(b.centerX(),b.centerY())
+        }else{
+            toastLog("没有点击中心位置"+b.centerX()+"--"+b.centerY())
         }
      }else{
-        toastLog("不可以手势点击")
+      //  toastLog("不可以手势点击")
      }
-         if(clickparents(v)){ return true  }
-         if(clickchilds(v)){  return true}
+        //  if(clickparents(v)){ return true  }
+        //  if(clickchilds(v)){  return true}
          r=v.bounds()
           var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
           if(w){ return w.click() ;}
@@ -802,7 +805,6 @@ var clickparents=function(v,n){
         }else{
             return false
         }
-       
     }
     return false
 }
@@ -811,14 +813,17 @@ var clickparents=function(v,n){
 var clickchilds=function(v){
    if(v.childCount()>0){
        for(i=0;i<v.childCount();i++){
-           c=i.child(i)
-           if(c.clickable()){
-               return c.click()
-           }else{
-             if(clickchilds(v.child(i))){
-                return true
-             }
+           c=v.child(i)
+           if(c){
+            if(c.clickable()){
+                return c.click()
+            }else{
+              if(clickchilds(v.child(i))){
+                 return true
+              }
+            }
            }
+        
        }
    }else{
        return false

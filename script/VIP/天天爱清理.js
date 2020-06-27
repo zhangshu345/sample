@@ -183,7 +183,7 @@ var app_home_activity=function(index){
             sleep(3000)
         }
         sleep(1000)
-    },20000)){
+    },30000)){
         return true
     }else{
         forcestop(appname)
