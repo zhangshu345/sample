@@ -772,7 +772,6 @@ var app_get_coin_money=function(){
 
 
 
-
 function app_run(){
     if(invite&&应用登录(appname)){
         快手极速版邀请()
@@ -791,7 +790,7 @@ function app_run(){
         app_home_activity(3)
         app_home_video()
         快手极速版视频滑动()
-
+        
        idclick("com.kuaishou.nebula:id/close")
        if(closeappundostate()){
         sleep(1000)
@@ -809,7 +808,6 @@ function app_run(){
         }
     }
 }
-
 
 
 
