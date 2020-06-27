@@ -64,20 +64,25 @@ var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=true
 
-var app_islogin=function(){
+var app_checklogin=function(){
     n_islogin=0
-    while(n_islogin<10){
-        n_islogin=n_islogin+1
-        ca=currentActivity()
-        if(ca==apphomeactivity){
-
-            if(textoneexist(["声明与政策","開"])){
-                clicktexts(["我知道了","允许","始终允许","開"],100)
-            }
-        }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
-                textclick("取消")
+   doactionmaxtime(function(){
+    ca=currentActivity()
+    if(ca==apphomeactivity){
+        if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
+         
         }
+    }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
+            textclick("取消")
     }
+    if(textclick("微信一键登录")){
+        app_login_weixin()
+    }
+   
+   },60000)
+       
+      
+    
 }
 
 var 火火关闭锁屏功能=function(){
@@ -198,7 +203,7 @@ function app_see_small_video(){
 function app_run(){
     app.launch(apppkg)
     sleep(3000)
-    app_islogin()
+    app_checklogin()
     xhcs=0
     while(true){
         device.wakeUpIfNeeded()
@@ -326,7 +331,7 @@ var seead=function(){
 }
 
 
-var app_go_home=function(){
+var app_go_home=function(index){
    if( doactionmaxtime(function(){
        ca=currentActivity()
        if(ca==apphomeactivity){
@@ -360,7 +365,7 @@ var app_go_home=function(){
        forcestop(apppkg)
        app.launch(apppkg)
        sleep(3000)
-       return 
+       
    }
 }
 
@@ -526,18 +531,19 @@ var app_login_phone=function(){
 }
 
 var app_login_weixin=function(){
-    t_login=0
-    while (t_login<10){
-        textclick("微信账号登录")
-        sleepr(2000)
-        clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
-        if(idallexist([登录成功后界面显示id集合])){
-            show("我界面找到昵称和设置")
-            spt.put(apppkg+"login",true)
-            return true
-        }
-        t_login=t_login+1
+ 
+  doactionmaxtime(function(){
+    textclick("微信账号登录")
+    sleep(2000)
+    clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+    if(idoneexist(["com.jt.hanhan.video:id/ig",""])){
+        show("我界面找到昵称和设置")
+        spt.put(apppkg+"login",true)
+        return true
     }
+  },60000)
+       
+   
 }
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
