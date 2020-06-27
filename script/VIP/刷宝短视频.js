@@ -485,7 +485,7 @@ function app_run(){
 }
 }
 
-app_go_likevideolist()
+
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
