@@ -65,6 +65,7 @@ var app_run=function(){
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
+        sleep(5000)
         n_i=n_i+1
     }
 }
@@ -83,8 +84,8 @@ var app_home_sweep=function(){
         sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
         if(txt_like){
-            if(txt_like.search("")-1){
-                idclick("com.jifen.ponycamera:id/tv_like")
+            if(txt_like.search("w")>-1){
+               // idclick("com.jifen.ponycamera:id/tv_like")
             }else{
                 n_like=parseInt(txt_like)
                 
@@ -215,7 +216,7 @@ var app_go_home=function(index){
         ca=currentActivity()
         if(ca==apphomeactivity){
             if(index==1){
-                if(idoneexist(["com.jifen.ponycamera:id/image_complete"])){
+                if(idoneexist(["com.jifen.ponycamera:id/image_complete","com.jifen.ponycamera:id/tv_task_status","com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
                     return true
                 }else{
                     selectnavi(1)
