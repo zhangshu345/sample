@@ -64,19 +64,29 @@ var app_run=function(){
         log("循环次数:"+n_i)
         if(n_i%100==0){
             app_sign()
+            app_clean()
+        }
+        if(idoneexist(视频页标记id集合)){
+            show("在视频页")
+
+         }else{
+             show("不在视频页,执行回到视频页操作")
+             app_home_activity(2)
+                //回到视频页的操作  var  天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
+     
+             sleep(1000)
         }
 
-        app_home_activity(2)
                   //应该做可以回到首页的操作
             if(close_ad_qq(apppkg)){
             
             }
-             if( close_ad_toutiao(apppkg)){
+             if(close_ad_toutiao(apppkg)){
              }
       
-            if(idclick("com.xiaoqiao.qclean:id/iv_end_close",50)){
+            if(idclick("com.xiaoqiao.qclean:id/iv_end_close",200)){
              }
-            if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",50)){
+            if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",200)){
                 seead()
             }
             if(textoneexist(广告标志集合)){
@@ -94,22 +104,8 @@ var app_run=function(){
                  seead()
             }
             if(idclick("com.xiaoqiao.qclean:id/rl_close")){
-                return true
+               
             }
-            if(idoneexist(视频页标记id集合)){
-                show("在视频页")
-             }else{
-                 show("不在视频页,执行回到视频页操作")
-                 app_home_activity(2)
-                    //回到视频页的操作  var  天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
-         
-                 sleep(1000)
-            }
-                if(ii%200==0){
-                    app_clean()
-                }
-   
-            sleep(1000)
             app_home_video_sweep()
             n_i=n_i+1
        }
@@ -130,11 +126,13 @@ var app_home_activity=function(index){
             sleep(1000)
             if(index==1){
                 if(id("com.xiaoqiao.qclean:id/tv_how_to_make_money").exists()){
+                    toastLog("1")
                     return true
                 }else{
                     selectnavi(1)
                 }
             }else if(index==2){
+                toastLog("2")
                 if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_task_status"])){
                     return true
                 }else{
@@ -187,6 +185,8 @@ var app_home_activity=function(index){
         return true
     }else{
         forcestop(appname)
+        app.launch(apppkg)
+        sleep(3000)
         return app_home_activity(index)
     }
 
@@ -358,7 +358,7 @@ var  app_home_video_sweep=function(){
         if(!id("com.xiaoqiao.qclean:id/tv_like").exists()){
             app_home_activity(2)
         }
-        滑动(20,10,17,10,5,500,300)
+        滑动(20,15,17,7,3,500,300)
         sleep(2000)
         nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
         if(nowtitle!=lasttitle){
@@ -525,7 +525,7 @@ if(runscriptapp==appname && isreaderunning){
     }
     floaty.closeAll()
     creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
+  //  creatsetfloatywindow()  //创建设置悬浮窗
     show(appname+"辅助滑动")
     gfw.setPosition(0,220)
     if(!app.getPackageName(appname)){
