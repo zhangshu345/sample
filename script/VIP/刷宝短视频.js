@@ -368,7 +368,7 @@ var app_tomoney=function(){
 
 function app_go_likevideolist(){
     doactionmaxtime(function(){
-        app_go_home(5)
+       
         ca=currentActivity()
         if(ca=="com.jm.video.ui.videolist.list.ListVideoActivity"){
             return true
@@ -378,6 +378,7 @@ function app_go_likevideolist(){
         }else if(ca=="com.jm.video.ui.main.MainActivity"){
             clicktexts(["我","喜欢","查看更多"],200,1500)
         }else{
+            app_go_home(5)
             textclick("取消")
         }
     },60000)
@@ -484,7 +485,6 @@ function app_run(){
     xhcs=xhcs+1
 }
 }
-
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
