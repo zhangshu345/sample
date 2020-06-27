@@ -1,5 +1,3 @@
-const { text } = require("body-parser")
-
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -1803,23 +1801,6 @@ var close_ad_toutiao=function(apppkg,clickgailv){
     return false
 }
 
-var close_ad_liquid=function(apppkg,clickgailv){
-    clickgailv=clickgailv||-1
-    if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
-         return  doactionmaxtime(function(){
-             if(clickonetexts(["关闭","关闭广告"],500,1500)){
-                 return true
-             }
-
-  
-             if(currentActivity()!="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
-                 return true
-             }
-             sleep(2000)
-           },60000)
-    }
-}
-
 var close_ad_kk=function(apppkg){
     if(currentActivity()=="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
         doactionmaxtime(function(){
@@ -1836,6 +1817,24 @@ var close_ad_kk=function(apppkg){
                 return true
             }
         },60000)
+    }
+}
+
+
+
+var close_ad_liquid=function(apppkg,clickgailv){
+    clickgailv=clickgailv||-1
+    if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+         return  doactionmaxtime(function(){
+             if(clickonetexts(["关闭","关闭广告"],500,1500)){
+                 return true
+             }
+
+            if(currentActivity()!="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+                 return true
+             }
+             sleep(2000)
+           },60000)
     }
 }
 
