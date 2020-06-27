@@ -36,7 +36,7 @@ var todaysign=今日签到(appname)
 var coin=上次金币(appname)
 var money=上次余额(appname)
 var like=true
-var minlike=1000000  //仅点赞百万喜欢的视频
+var minlike=500000  //仅点赞百万喜欢的视频
 var keepappnewer=true
 var lastdesc=""
 
