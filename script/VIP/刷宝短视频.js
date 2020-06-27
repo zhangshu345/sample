@@ -368,7 +368,6 @@ var app_tomoney=function(){
 
 function app_go_likevideolist(){
     doactionmaxtime(function(){
-       
         ca=currentActivity()
         if(ca=="com.jm.video.ui.videolist.list.ListVideoActivity"){
             return true

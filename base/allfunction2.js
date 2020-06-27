@@ -2449,7 +2449,7 @@ var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicema
         if(isshowsettingfloaty){
              creatsetfloatywindow()  //创建设置悬浮窗
         }
-    
+  
      
     
          if(!app.getPackageName(appname)){

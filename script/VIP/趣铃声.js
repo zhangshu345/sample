@@ -43,45 +43,19 @@ var 首次点击文本集合=["允许","允许","始终允许","始终允许","�
 var 设置第一个来电铃声赚钱的关闭id="com.zheyun.bumblebee:id/base_card_dialog_close"  //设置第一个来电铃声   赚
 var 设置第一个来电铃声赚钱的立即设置按钮id="com.zheyun.bumblebee:id/tv_confirm"  // 立即设置    之后弹出暂不领取
 var 视频广告结束弹窗关闭id="com.zheyun.bumblebee:id/iv_close"
-alltest()
-// checkfloaty()
-// checksystemsettings()
-floaty.closeAll()
-creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-gfw.setPosition(0,220)
-
-if(changesetting){
-    device.setMusicVolume(1)
-    toastLog("自动设置音量为2")
-}
-
-if(!app.getPackageName(appname)){
-    show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,apppkg)
-}else{
-    show(appname+"已经安装")
-}
-if(onlyscript){
-    engines.stopOther()
-}
-
-//关闭最新的app
-closelastscriptapp()
-spt.put("lastscriptapp",appname)
-
+var loopn=0
 //app 运行
 var run=function(){
     app.launch(apppkg)
     sleep(3000)
-    n_i=0
+    loopn=0
     if(!今日签到(appname)){
         app_sign()
     }
     while(true){
         sleep(2000)
         closeappundostate()
-        log("循环次数："+n_i)
+        log("循环次数："+loopn)
         if(!idContains(apppkg).exists()){
             app.launch(apppkg)
             sleep(3000)
@@ -100,9 +74,9 @@ var run=function(){
             }
         }
   
-        if(n_i<100){
+        if(loopn<100){
             textclick("音乐")
-            if(n_i%20==0){
+            if(loopn%20==0){
                 textclick("音乐")
                 sleep(1000)
                 node_tablay=id("com.zheyun.bumblebee:id/tab_layout").className("android.widget.HorizontalScrollView").findOne(100)
@@ -127,10 +101,10 @@ var run=function(){
             
             
         }else{
-            if(n_i%150){
+            if(loopn%150){
                 app_tomoney()
             }
-            if(n_i%20==0){
+            if(loopn%20==0){
                 textclick("小视频")
             }
 
@@ -147,7 +121,7 @@ var run=function(){
                 textclick("小视频")
             }
         }
-
+        
         doactionmaxtime(function(){
             if(textclick("看视频，金币再翻1倍！")){
                 if (app_seevideoad()){
@@ -164,7 +138,7 @@ var run=function(){
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
       
-        n_i=n_i+1
+        loopn=loopn+1
     }
 }
 
@@ -264,4 +238,48 @@ var app_seevideoad=function(){
     }
 }
 
-run()
+let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+log("正在集合运行的APP"+runscriptapp)
+let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
+log("是否是集合运行："+isreaderunning)
+// 集合运行
+if(runscriptapp==appname && isreaderunning){
+
+}else{
+    if(onlyscript){
+        engines.stopOther()
+    }
+    checkscriptversion()
+    checkstoragestate()
+    alltest()
+    // checkfloaty()
+    // checksystemsettings()
+//     floaty.closeAll()
+//     creatgfloatywindow()
+//    creatsetfloatywindow()  //创建设置悬浮窗
+//     gfw.setPosition(0,220)
+    if(changesetting){
+        device.setMusicVolume(0)
+        toastLog("自动设置音量为0")
+    }
+
+    if(!app.getPackageName(appname)){
+        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        downloadandinstallapp(appname,apppkg)
+    }else{
+        if(keepappnewer){
+            keepappisnewer(appname,apppkg)
+        }
+        show(appname+"已经安装")
+    }
+
+    closelastscriptapp()
+    spt.put("lastscriptapp",appname)
+
+    spt.put("hongshuyuedu_running",false)
+    try {
+        app_run()
+    } catch (error) {
+        
+    }
+}

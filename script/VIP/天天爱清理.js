@@ -49,7 +49,7 @@ var 天天爱清理底部导航我id="com.xiaoqiao.qclean:id/ll_mine"
 var 天天爱清理看视频翻倍id="com.xiaoqiao.qclean:id/tv_gold_double"
 var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭","下载","点击下载","优化完成"]
 // //关闭最新的app
-
+var loopn=0
 var lasttitle=""
 var app_run=function(){
     app.launch(apppkg)
@@ -57,13 +57,13 @@ var app_run=function(){
     app_login()
     app_clean()
     app_tomoney()
-    滑动次数=0
-    n_i=0
+    loopn=0
+
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
         log("循环次数:"+n_i)
-        if(n_i%100==0){
+        if(loopn%100==0){
             app_sign()
             app_clean()
         }
@@ -77,7 +77,6 @@ var app_run=function(){
      
              sleep(1000)
         }
-
                   //应该做可以回到首页的操作
             if(close_ad_qq(apppkg)){
             
@@ -108,7 +107,7 @@ var app_run=function(){
                
             }
             app_home_video_sweep()
-            n_i=n_i+1
+            loopn=loopn+1
        }
 }
 

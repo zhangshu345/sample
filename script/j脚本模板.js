@@ -43,7 +43,7 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var changesetting=false
 var apphomeactivity=""
 var keepappnewer=true
-
+var loopn=今日滑动次数(appname)
 //关闭最新的app
 
 //app 运行
@@ -51,10 +51,10 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
-    n_i=0
+    loopn=0
     while(true){
         sleep(2000)
-        log("循环次数："+n_i)
+        log("循环次数："+loopn)
         ca=currentActivity()
         if(ca!=apphomeactivity){
             app_home_video()
@@ -65,7 +65,7 @@ var app_run=function(){
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
-        n_i=n_i+1
+        loopn=loopn+1
     }
 }
 

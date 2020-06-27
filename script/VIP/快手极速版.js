@@ -39,7 +39,7 @@ var like=true
 var minlike=500000  //仅点赞百万喜欢的视频
 var keepappnewer=true
 var lastdesc=""
-
+var loopn=今日滑动次数(appname)
 /** 
  * 识别滑块位置
  * 
@@ -801,12 +801,12 @@ function app_run(){
     sleep(3000)
     app_sign()
     todaysign=true
-    滑动次数=0
+    loopn=0
     while(true){
         app_close_alter()
         device.wakeUpIfNeeded()
-        滑动次数=滑动次数+1
-        log("循环："+滑动次数)
+        loopn=loopn+1
+        log("循环："+loopn)
         app_home_activity(3)
         app_home_video()
         快手极速版视频滑动()
@@ -817,10 +817,13 @@ function app_run(){
         app.launch(apppkg)
         sleep(3000)
        }
-        if(滑动次数%100==0){
-            设置今日滑动次数(appname,滑动次数)
+       if(loopn%25==0){
+        checkbattery(30,1200000,1800000)
         }
-        if(滑动次数%1000==0){
+        if(loopn%100==0){
+            设置今日滑动次数(appname,loopn)
+        }
+        if(loopn%1000==0){
             if(tomoney){
                 log("提现")
                 app_tomoney()
