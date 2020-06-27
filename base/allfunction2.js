@@ -1,3 +1,5 @@
+const { text } = require("body-parser")
+
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -1808,8 +1810,32 @@ var close_ad_liquid=function(apppkg,clickgailv){
              if(clickonetexts(["关闭","关闭广告"],500,1500)){
                  return true
              }
+
+  
+             if(currentActivity()!="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+                 return true
+             }
              sleep(2000)
            },60000)
+    }
+}
+
+var close_ad_kk=function(apppkg){
+    if(currentActivity()=="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
+        doactionmaxtime(function(){
+            if(getTextfromid(apppkg+":id/video_countdown")=="关闭广告"){
+                idclick(apppkg+":id/video_countdown")
+                return true
+            }
+            
+            if(textoneexist(["点击重播","免费下载","关闭广告"])){
+                back()
+                return true
+            }
+            if(currentActivity()!="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+                return true
+            }
+        },60000)
     }
 }
 
@@ -2404,13 +2430,14 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-
     // 集合运行
     if(runscriptapp==appname && isreaderunning){
 
     }else{
+        if(isonlyscript){
+            engines.stopOther()
+       }
        checksystemsettings()
       if(isdevicemanager){
             checkdevicemanager()
@@ -2424,9 +2451,7 @@ var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicema
              creatsetfloatywindow()  //创建设置悬浮窗
         }
     
-         if(isonlyscript){
-              engines.stopOther()
-         }
+     
     
          if(!app.getPackageName(appname)){
               show("未找到指定应用:"+appname+"将自动查找应用并下载安装")

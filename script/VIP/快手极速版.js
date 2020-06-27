@@ -417,7 +417,6 @@ var app_home_video=function(){
     }
 }
 
-
 var app_close_alter=function(){
     show(appname+":关闭弹窗")
     clickids(快手极速弹窗id集合,200)
@@ -429,8 +428,9 @@ var app_close_alter=function(){
     if (textclick("立即重播",100)){
         app_sweep()
     }
-    show("关闭弹窗完毕")
+    show(appname+"关闭弹窗完毕")
 }
+
 var app_sign=function(){
     show("快手签到")
     if(今日签到(appname)){return true}
@@ -444,6 +444,18 @@ var app_sign=function(){
        if(app_get_coin_money()){
             滑动(20,10,17,10,3,500,200)
             sleep(1000)
+            doactionmaxnumber(function(){
+                if(app_getrewardnum()>=10){
+                  return true
+                }
+                if(textclick("福利",500)){
+                    close_ad_kk(apppkg)
+                }
+              
+            },10)
+           
+
+
        }
         if(invite){
             if(text("填写邀请码").exists()){
@@ -483,6 +495,16 @@ var app_sign=function(){
        
         app_close_alter()
     },60000)
+}
+
+var app_getrewardnum=function(){
+    title_node=textStartsWith("每次100金币").depth(9).findOne(1000)
+    if(title_node){
+        txt_n=title_node.text().replace("每次100金币，每天1000金币","").replace("/10","")
+        log(appname+"已经福利次数:"+txt_n)
+        return parseInt(txt_n)
+    }
+    return 0;
 }
 
 
@@ -790,7 +812,7 @@ function app_run(){
         app_home_activity(3)
         app_home_video()
         快手极速版视频滑动()
-        
+
        idclick("com.kuaishou.nebula:id/close")
        if(closeappundostate()){
         sleep(1000)

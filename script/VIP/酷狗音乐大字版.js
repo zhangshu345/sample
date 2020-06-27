@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -62,25 +64,27 @@ var app_run=function(){
     n_i=0
     while(true){
         log("循环次数："+n_i)
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            app_go_home()
-        }else{
-            if (textclick("赚钱")){
-                滑动(20,10,16,10,5,500,200)
-                sleep(1000)
-            }
-            //这里是查看广告
-            if(text("填写邀请码").exists()){
-                app_invite()
-            }
-            if(textclick("去分享")){
-                clickoneids([音乐分享按钮id])
-            }
+ 
+        app_go_home(5)
 
+        if(textclick("赚钱")){
+            滑动(20,10,16,10,5,500,200)
+            sleep(1000)
+        }
+        node_rewardvideo_title=textStartsWith("刷创意视频(").findOne(200)
+        if(node_rewardvideo_title){
+            title=node_rewardvideo_title.text()
+            n=title.replace("刷创意视频(","").replace("/20","")
+            log("已经奖励的次数："+n)
+            i_n=parseInt(n)
+            if(i_n<20){
+                textclick("去赚钱")
+            }
 
         }
+        
 
+        idclick("com.kugou.android.elder:id/ezq")
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
@@ -93,7 +97,7 @@ var app_run=function(){
 
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
-    app_go_home()
+
     doactionmaxtime(function(){
         if(textclick("赚钱")){
             sleep(2000)
@@ -108,6 +112,7 @@ var app_login_check=function(){
         }
         clicktexts(["同意","确定","允许","我知道了","允许"])
         sleep(1000)
+        app_go_home()
     },30000)
 }
 
@@ -117,11 +122,43 @@ var app_login=function(){
 }
 
 //
-var app_go_home=function(){
+var app_go_home=function(index){
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            return true
+            if(index==1){
+                if(getTextfromid("com.kugou.android.elder:id/fos")=="听歌"){
+                    return true
+                }else{
+                    selectnavi(1)
+                }
+                
+            }else if(index==2){
+                if(getTextfromid("com.kugou.android.elder:id/fos")=="视频"){
+                    return true
+                }else{
+                    selectnavi(1)
+                }
+            }else if(index==3){
+                
+            }else if(index==4){
+              if(text("K歌").findOne(300)){
+                  return true
+              }else{
+                  selectnavi(4)
+              }
+            }else if(index==5){
+                if(text("提现").findOne(300)){
+                    return true
+                }
+                if(text("每日签到").findOne(300)){
+                    return true
+                }
+                if(text("看视频获金币").findOne(300)){
+                    return true
+                }
+                selectnavi(5)
+            }
         }else{
             if(currentPackage()==apppkg){
                 back()
@@ -134,6 +171,14 @@ var app_go_home=function(){
     },60000)
 }
 //app 微信登录
+
+
+var selectnavi=function(index){
+    node_tabs=className("android.widget.RelativeLayout").depth(9).drawingOrder(index).findOne(200)
+    if(node_tabs){
+       node_tabs.click()
+    }
+}
 
 var app_login_weixin=function(){
     if(currentActivity()==apploginactivity){
@@ -209,7 +254,6 @@ var app_invite=function(){
     }
 }
 
-app_invite()
 
-startapp()
+startapp(appname,apppkg,true,false,false,true,true)
 
