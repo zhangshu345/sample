@@ -710,7 +710,7 @@ function idclick(idstr,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    log("l ,t,r,b"+left+","+top+","+right+","+bottom)
+  //  log("l ,t,r,b"+left+","+top+","+right+","+bottom)
     let f=id(idstr).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(f){
      
@@ -781,12 +781,12 @@ var clicknode=function(v,time){
      }else{
       //  toastLog("不可以手势点击")
      }
-        //  if(clickparents(v)){ return true  }
-        //  if(clickchilds(v)){  return true}
+      
          r=v.bounds()
           var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
-          if(w){ return w.click() ;}
-         else{ return false;  }
+          if(w&&w.click()){ return true;}
+          if(clickparents(v)){ return true  }
+          if(clickchilds(v)){  return true}
    
 }
 
@@ -1769,17 +1769,23 @@ var close_ad_toutiao=function(apppkg,clickgailv){
     show("关闭穿山甲:activity:"+ca)
     if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
         doactionmaxtime(function(){
-            if(currentActivity()=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
-           
+            ca=currentActivity()
+            if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+                
+            }else if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity"){
+
             }else{
                 return false
             }
+
             if(idclick(apppkg+":id/tt_video_ad_close_layout",300)){
                 return true
             }
+
             if( idclick(apppkg+":id/tt_video_ad_close",100)){
                 return true
             }
+            
             sleep(1000)
             if(!idContains(apppkg).findOne(100)){
                 return true

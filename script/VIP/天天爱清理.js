@@ -319,14 +319,14 @@ var app_login_weixin=function(){
 // }
 // //app 签到
 var app_sign=function(){
+    show(appname+"：签到")
     app_home_activity(3)
     doactionmaxtime(function(){
         if(maytextclick("看视频再送")){
             seead()
         }
 
-        
-    },120000)
+    },20000)
 
 }
 
