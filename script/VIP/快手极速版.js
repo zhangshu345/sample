@@ -450,8 +450,9 @@ var app_sign=function(){
                 }
                 if(textclick("福利",500)){
                     close_ad_kk(apppkg)
+                    sleep(2000)
                 }
-              
+                sleep(1000)
             },10)
        }
         if(invite){
