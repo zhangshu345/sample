@@ -111,7 +111,8 @@ var app_home_sweep=function(){
         if(textclick("立即翻倍")){
             seead()
          }
-         
+     
+
          滑动(20,13,17,10,3,500,300)
          sleep(2388)
          jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")

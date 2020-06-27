@@ -59,8 +59,6 @@ var app_run=function(){
         if(n_i%100==0){
             app_sign()
         }
-            app_go_home(1)
-     
             //这里是视频上滑操作
             app_home_sweep()
        
@@ -78,6 +76,9 @@ var app_home_sweep=function(){
             app_go_home(1)
         }
         clickgold()
+        if(idclick("com.jifen.ponycamera:id/base_card_dialog_confirm")){
+            seead()
+        }
         滑动(20,10,17,10,3,500,300)
         sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
@@ -100,13 +101,19 @@ var app_home_sweep=function(){
 var app_login_check=function(){
     show("检测"+appname+"登录状况")
     doactionmaxtime(function(){
-        clicktexts(["同意","允许","允许","始终允许","始终允许"])
+        app_go_home(4)
+
+        clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
         if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
             app_login()
         }
-
-    },6000)
+    if( node_ktx=text("可提现").depth(13).findOne(300)){
+        return true
+    }
+    },60000)
 }
+
+
 
 var app_close_alter=function(){
 
@@ -122,6 +129,12 @@ var app_login_weixin=function(){
         clicktexts(["微信一键登录","同意","立即提现"],150,2000)
         if(text("我的钱包").exists()){
             return true
+        }
+        if(idclick("com.jifen.ponycamera:id/base_card_dialog_close")){
+
+        }
+        if(maytextclick("看视频再送")){
+            seead()
         }
 
     },60000)
@@ -145,7 +158,7 @@ var app_tomoney=function(){
         show(appname+":今日已经提现了")
         return true
     }
-   doactionmaxtime(function(){
+  return doactionmaxtime(function(){
        app_go_home(4)
        sleep(1000)
        nca=currentActivity()
@@ -201,7 +214,6 @@ var app_go_home=function(index){
     if(doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-
             if(index==1){
                 if(idoneexist(["com.jifen.ponycamera:id/image_complete"])){
                     return true
@@ -209,22 +221,30 @@ var app_go_home=function(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-
+                selectnavi(2)
+                return true
             }else if(index==3){
-
+                selectnavi(3)
+                return true
             } else if(index==4){
-
+                if( node_ktx=text("可提现").depth(13).findOne(300)){
+                    return true
+                }else{
+                    selectnavi(4)
+                    sleep(1000)
+                }
             }
-          
-            
-           
+
         }else{
-            back()
+            if(currentPackage()!=apppkg){
+                app.launch(apppkg);
+                sleep(3000)
+            }else{
+                back()
+            }
+           
         }
-        if(currentPackage()!=apppkg){
-            app.launch(apppkg);
-            sleep(3000)
-        }
+      
         if(maytextclick("看视频再领")){
             seead()
         }
@@ -234,6 +254,7 @@ var app_go_home=function(index){
     }else{
          forcestop(appname)
          app.launch(apppkg)
+         sleep(3000)
      }
 }
 
@@ -250,6 +271,16 @@ var clickgold=function(){
 }
 
 var selectnavi=function(index){
+    node_bottom=id("com.jifen.ponycamera:id/main_bottom_layout").findOne(300)
+    if(node_bottom){
+        if(node_bottom.childCount()>=index){
+            if(node_bottom.child(index-1)){
+                clicknode(node_bottom.child(index-1))
+                return true
+            }
+        }
+       
+    }
    node_navi= className("android.widget.FrameLayout").clickable(true).drawingOrder(index).depth(7).findOne(200)
    if(node_navi){
        node_navi.click()
@@ -300,7 +331,7 @@ var seead=function(){
         sleep(2000)
     },60000)
 }
-
+selectnavi(4)
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
