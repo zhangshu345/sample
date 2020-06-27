@@ -1910,13 +1910,13 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-
-            if(currentActivity()=="com.iclicash.advlib.ui.front.ADBrowser"){
+            ca=currentActivity()
+            if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                 back()
+            }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"){
+                
             }else{
-                if(currentActivity()!="com.iclicash.advlib.ui.front.InciteADActivity"){
-                    return true
-                }
+
             }
           
         },60000)
@@ -2510,4 +2510,3 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 }
 
 
-idclick("com.kuaishou.nebula:id/like_button")

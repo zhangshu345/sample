@@ -72,7 +72,7 @@ function app_run(){
         xhcs=xhcs+1
         toastLog("循环 "+xhcs)
         device.wakeUpIfNeeded()
-        app_go_home()
+        app_go_home(1)
         n_tj=text("推荐").clickable().boundsInside(0,0,device.width,device.height/5).findOne(100)
         if(n_tj){
             n_tj.click()
@@ -107,7 +107,7 @@ function app_run(){
 
 var app_home_sweep=function(){
     doactionmaxtime(function(){
-        app_go_home()
+        app_go_home(1)
         if(textclick("立即翻倍")){
             seead()
          }
@@ -168,7 +168,7 @@ var seead=function(){
         if(text("勋章殿堂").exists()){
             clickonetexts(["去领取","待领取","可领取"])
         }
-         if(maytextclick("看视频再送")){
+        if(maytextclick("看视频再送")){
             
         }
         if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],150,1500)){
@@ -184,35 +184,59 @@ var seead=function(){
        if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
            return  true
        }
-       
-        if(text("邀请好友").findOne(500)){
-            back()
-            return  true
-        }
-        if(textclick("金币已到账")){
-            back()
-            return true
-        }
+
       if(close_ad_iclicash(apppkg)){
-         
+            return true
       }
        if(close_ad_toutiao(apppkg)){
-           
+            return true
        }
       if(close_ad_qq(apppkg)){
-         
+         return true
       }
-        sleep(2000)
+     sleep(2000)
     },60000)
 }
 
-var app_go_home=function(){
-    show(appname+"回到主页")
+var app_go_home=function(index){
+    show(appname+"回到主页:"+index)
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            idclick("com.jifen.dandan:id/bt_tab_home_page")
-            return true
+            
+
+            if(index==1){
+                if(idoneexist(["com.jifen.dandan:id/tv_task_status","com.jifen.dandan:id/tv_like_num","com.jifen.dandan:id/view_ad_timer"])){
+                    return true
+                }else{
+                    selectnavi(1)
+                    sleep(1000)
+                    textclick("推荐")
+                }
+
+            }else if(index==2){
+                selectnavi(2)
+                return true
+            }else if(index==3){
+                selectnavi(3)
+                return true
+            }else if(index==4){
+                if(getTextfromid("com.jifen.dandan:id/tv_title")=="消息"){
+                    return true
+                }else{
+                    selectnavi(4)
+                  
+                }
+            }else if(index==5){
+                if(getTextfromid("com.jifen.dandan:id/tv_title")=="个人中心"){
+                    return true
+                }else{
+                    selectnavi(5)
+                  
+                }
+               
+            }
+
         }else if(ca==appliveactivity){
             back()
             sleep(300)
@@ -236,8 +260,22 @@ var app_go_home=function(){
     },20000)
 }
 
+
+var selectnavi=function(index){
+    if(index==1){
+        idclick("com.jifen.dandan:id/bt_tab_home_page",300)
+    }else if(index==2){
+        idclick("com.jifen.dandan:id/bt_tab_find",300)
+    }else if(index==3){
+        idclick("com.jifen.dandan:id/bt_tab_welfare_task",300)
+    }else if(index==4){
+        idclick("com.jifen.dandan:id/bt_tab_msg",300)
+    }else if(index==5){
+        idclick("com.jifen.dandan:id/bt_tab_mine",300)
+    }
+}
 var app_sign=function(){
-    app_go_home()
+    app_go_home(3)
     doactionmaxtime(function(){
     if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
         sleep(4000)
@@ -255,7 +293,6 @@ var app_sign=function(){
         }
 
         if(maytextclick("看视频再送")){
-            log("33")
             seead()
             今日已签到(appname)
             return true
@@ -306,27 +343,17 @@ var app_sign=function(){
 }
 
 var app_getreward=function(){
-    app_go_home()
+    app_go_home(3)
     doactionmaxtime(function(){
-        if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
-            sleep(2000)
-            while(true){
                 if(text("日常福利").exists()){
                     textclick("去领取")
                     sleep(1000)
-                    break
+                   
                 }else{
                     滑动(20,10,18,10,3,500,500)
                     sleep(1000)
-                 
                 }
-                if(text("勋章殿堂").exists()){
-                    break
-                }
-            }
-        }
-        if(currentActivity()==apprewardactivity){
-        
+          if(currentActivity()==apprewardactivity){
             if(text("勋章殿堂").exists()){
               if(clickonetexts(["待领取","可领取"])){
                   sleep(2000)
@@ -346,6 +373,65 @@ var app_getreward=function(){
                   return true
               }
            }
+        }else{
+            app_go_home(3)
+        }
+
+        if(maytextclick("看视频抽大奖")){
+            seead()
+        }
+        if(maytextclick("看视频再送100金币")){
+            seead()
+        }
+        if(getTextfromid("com.jifen.dandan:id/tv_title")=="幸运领红包!"){
+            back()
+        }
+        clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
+    },300000)
+}
+
+
+var app_getreward1=function(){
+    app_go_home(3)
+    doactionmaxtime(function(){
+                if(text("每日签到").exists()){
+                    textclick("抢红包")
+                    sleep(1000)
+                }else{
+                    滑动(20,10,18,10,3,500,500)
+                    sleep(1000)
+                }
+          if(currentActivity()==apprewardactivity){
+            if(text("勋章殿堂").exists()){
+              if(clickonetexts(["待领取","可领取"])){
+                  sleep(2000)
+                  seead()
+              }else{
+                滑动(20,10,18,10,3,500,500)
+                sleep(1000)
+              }
+              
+            if(text("新人解锁").boundsInside(0,device.height/2,device.width,device.height).exists()){
+                    return true
+              }
+              if(text("日积月累").exists()){
+                  back()
+                  sleep(500)
+                  back()
+                  return true
+              }
+           }
+        }else{
+            app_go_home(3)
+        }
+        if(maytextclick("看视频抽大奖")){
+            seead()
+        }
+        if(maytextclick("看视频再送100金币")){
+            seead()
+        }
+        if(getTextfromid("com.jifen.dandan:id/tv_title")=="幸运领红包!"){
+            back()
         }
         clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
     },300000)
@@ -371,9 +457,8 @@ var app_login_weixin=function(){
 
 var app_tomoney=function(){
     doactionmaxtime(function(){
-         app_go_home()
-        if(idclick("com.jifen.dandan:id/bt_tab_mine")){
-            text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
+         app_go_home(5)
+        text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
             if(text_coin){
                n_coin=parseInt(text_coin.replace("我的金币","").trim())
                if(n_coin){
@@ -439,7 +524,7 @@ var app_tomoney=function(){
                 show("今日金币数:"+n_todaycoin)
                 return false
             }
-        }
+       
     },20000)
 }
 
