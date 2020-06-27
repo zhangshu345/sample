@@ -360,11 +360,10 @@ var  app_home_video_sweep=function(){
         }
         滑动(20,15,17,7,3,500,300)
         sleep(2000)
-        nowtitle=getTextfromid(天天爱清理视频页内容摘要id)
-        if(nowtitle!=lasttitle){
-            lasttitle=nowtitle
+    
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
-            if(text_like){
+            if(text_like!=lasttitle){
+              
                 n=parseInt(text_like)
                 show(appname+":喜欢人数"+text_like)
                 if(n>1000){
@@ -376,11 +375,11 @@ var  app_home_video_sweep=function(){
                 }else{
                     sleepr(5000*ratio,7000*ratio)
                 }
-            }else{
-                sleepr(2000*ratio,5000*ratio)
+               
+                lasttitle=text_like
+                return true
             }
-                return  true
-         }
+              
 
     },60000)
 }
