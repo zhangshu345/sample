@@ -56,6 +56,7 @@ var app_run=function(){
     sleep(3000)
     app_login()
     app_clean()
+    app_tomoney()
     滑动次数=0
     n_i=0
     while(true){
@@ -375,12 +376,9 @@ var  app_home_video_sweep=function(){
                 }else{
                     sleepr(5000*ratio,7000*ratio)
                 }
-               
                 lasttitle=text_like
                 return true
             }
-              
-
     },60000)
 }
 
@@ -462,7 +460,7 @@ var app_tomoney=function(){
             今日已提现(appname)
             return true
         }
-    },20000)
+    },60000)
 }
 
 var seeadnum=0
@@ -505,7 +503,7 @@ var seead=function(timeout){
 }
 
 
-// app_tomoney()
+ app_tomoney()
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
