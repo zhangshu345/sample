@@ -72,7 +72,7 @@ function app_run(){
         xhcs=xhcs+1
         toastLog("循环 "+xhcs)
         device.wakeUpIfNeeded()
-        app_go_home(1)
+     
         n_tj=text("推荐").clickable().boundsInside(0,0,device.width,device.height/5).findOne(100)
         if(n_tj){
             n_tj.click()
@@ -204,8 +204,6 @@ var app_go_home=function(index){
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
-            
-
             if(index==1){
                 if(idoneexist(["com.jifen.dandan:id/tv_task_status","com.jifen.dandan:id/tv_like_num","com.jifen.dandan:id/view_ad_timer"])){
                     return true
@@ -248,17 +246,19 @@ var app_go_home=function(index){
              if(textclick("点击领取")){
                  app_getreward()
              }
-            if(currentPackage()!=apppkg){
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
-                back()
-                sleep(300)
-                back()
-            }
+          
             sleep(1000)
         }
-    },20000)
+        if(currentPackage()!=apppkg){
+            app.launch(apppkg)
+            sleep(3000)
+        }else{
+            back()
+            sleep(300)
+            back()
+        }
+
+    },30000)
 }
 
 
