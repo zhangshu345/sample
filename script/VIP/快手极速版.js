@@ -453,9 +453,6 @@ var app_sign=function(){
                 }
               
             },10)
-           
-
-
        }
         if(invite){
             if(text("填写邀请码").exists()){
