@@ -54,28 +54,18 @@ var lasttitle=""
 var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
-    app_login()
-    app_clean()
+    app_checklogin()
+    
     app_tomoney()
+    app_sign()
     loopn=0
 
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
-        log("循环次数:"+n_i)
+        log("循环次数:"+loopn)
         if(loopn%100==0){
-            app_sign()
             app_clean()
-        }
-        if(idoneexist(视频页标记id集合)){
-            show("在视频页")
-
-         }else{
-             show("不在视频页,执行回到视频页操作")
-             app_home_activity(2)
-                //回到视频页的操作  var  天天爱清理底部导航id="com.xiaoqiao.qclean:id/ll_bottom_bar"
-     
-             sleep(1000)
         }
                   //应该做可以回到首页的操作
             if(close_ad_qq(apppkg)){
@@ -117,7 +107,36 @@ var app_getreward=function(){
     
 }
 
-var app_home_activity=function(index){
+
+var app_checklogin=function(){
+    
+    doactionmaxtime(function(){
+        clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
+        clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
+        idclick("com.xiaoqiao.qclean:id/iv_close")
+        app_go_home(4)
+
+           if(text("立即登录").exists()){
+                if(textclick("立即登录")){
+                    sleep(1000)
+                    app_login_weixin()
+                    return  true
+                 }
+           }
+        
+           if(textContains("邀请码").exists()){
+               toastLog(appname+"已经登录")
+
+
+               return true
+           }
+      
+  
+      
+
+    },60000)
+}
+var app_go_home=function(index){
     index=index||2
     show("回到主页："+index)
     if(doactionmaxtime(function(){
@@ -151,6 +170,12 @@ var app_home_activity=function(index){
                     return true
                 }else{
                     selectnavi(4)
+                    sleep(2000)
+                    if(text("立即登录").exists()){
+                        textclick("立即登录")
+                         app_login_weixin()
+                        
+                    }
                 }
             }else{
                 return true
@@ -175,19 +200,19 @@ var app_home_activity=function(index){
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
-
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
         }
+        seead()
         sleep(1000)
-    },30000)){
+    },60000)){
         return true
     }else{
-        forcestop(appname)
+       
         app.launch(apppkg)
         sleep(3000)
-        return app_home_activity(index)
+       
     }
 
 }
@@ -219,7 +244,7 @@ var app_clean=function(){
         if(maytextclick("一键清理")){
             sleep(5000)
         }else{
-            app_home_activity(1)
+            app_go_home(1)
         }
         text_clean_result=getTextfromid("com.xiaoqiao.qclean:id/tv_finish")
         if(text_clean_result){
@@ -273,11 +298,16 @@ var app_login=function(){
         ca=currentActivity();
         if(ca==apphomeactivity){
            if( idclick("com.xiaoqiao.qclean:id/ll_mine")){
-               sleep(1000)
+               sleep(2000)
            }
-           if(textclick("立即登录")){
-               sleep(1000)
+           if(text("立即登录").exists()){
+                if(textclick("立即登录")){
+                    sleep(1000)
+                    app_login_weixin()
+                    return  true
+                 }
            }
+        
            if(textContains("邀请码").exists()){
                toastLog(appname+"已经登录")
 
@@ -297,6 +327,15 @@ var app_login=function(){
 
 // //app 微信登录
 var app_login_weixin=function(){
+doactionmaxtime(function(){
+    clicktexts(["确定","微信","同意"],300,2000)
+    if(text("恭喜你，解锁荣誉勋章").exists()){
+        if(maytextclick("立即领取")){
+            seead()
+        }
+        return true
+    }
+},60000)
 
 }
 // //app_手机号登录
@@ -320,7 +359,7 @@ var app_login_weixin=function(){
 // //app 签到
 var app_sign=function(){
     show(appname+"：签到")
-    app_home_activity(3)
+    app_go_home(3)
     doactionmaxtime(function(){
         if(maytextclick("看视频再送")){
             seead()
@@ -332,7 +371,7 @@ var app_sign=function(){
 
 
 var app_reward_coin=function(){
-    app_home_activity(3)
+    app_go_home(3)
     doactionmaxtime(function(){
         node_img=className("android.widget.Image").clickable().depth(15).drawingOrder(0).findOne(200)
         if(node_img){
@@ -355,12 +394,11 @@ var  app_home_video_sweep=function(){
         if(maytextclick("看视频再领")){
             seead()
         }
-        if(!id("com.xiaoqiao.qclean:id/tv_like").exists()){
-            app_home_activity(2)
+        if(!idoneexist(视频页标记id集合)){
+            app_go_home(2)
         }
-        滑动(20,15,17,7,3,500,300)
-        sleep(2000)
-    
+          滑动(20,15,17,7,3,500,300)
+          sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
             if(text_like!=lasttitle){
               
@@ -390,7 +428,7 @@ var app_tomoney=function(){
          return true
      }
     doactionmaxtime(function(){
-        app_home_activity(4)
+        app_go_home(4)
         sleep(1000)
         nca=currentActivity()
         show("当前activity:"+nca)

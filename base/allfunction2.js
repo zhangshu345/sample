@@ -526,6 +526,7 @@ var forcestop=function(appname,st,isclearcache){
       }
 }
 var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
+
     show("强制停止："+apppkg)
     isnewtask=isnewtask||true
     if(isnewtask){
@@ -700,7 +701,7 @@ var sleepr=function(short,long){
 var getTextfromid=function(idstr,defaulttext){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
-    node_id=id(idstr).findOne(100)
+    node_id=id(idstr).visibleToUser().findOne(200)
     if(node_id){ return node_id.text(); }else{ return "";}
 }
 
@@ -2446,9 +2447,9 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         }
     }
     if(!runapps){
-        //一小时重启
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi+1,fen)
-        return
+        //10分钟重启
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        return true
     }else{
         数据库.put("runlist",runapps)
     }

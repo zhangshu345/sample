@@ -452,6 +452,9 @@ var app_sign=function(){
                     close_ad_kk(apppkg)
                     sleep(2000)
                 }
+                if(text("明日再来").exists()){
+                    return true
+                }
                 sleep(1000)
             },10)
        }
@@ -501,6 +504,10 @@ var app_getrewardnum=function(){
         txt_n=title_node.text().replace("每次100金币，每天1000金币","").replace("/10","")
         log(appname+"已经福利次数:"+txt_n)
         return parseInt(txt_n)
+    }
+    if(text("明天看视频继续领取1000金币").exists()){
+        toastLog("看广告视频已经全部完成")
+     return 10    
     }
     return 0;
 }
