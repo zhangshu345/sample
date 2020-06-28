@@ -136,8 +136,8 @@ var app_small_video_swipe=function(){
         if(idclick("com.jt.hanhan.video:id/k9")){
             //关闭金币弹窗
         }
-        滑动(20,13,16,10,4,500,700)
-        sleep(1000)
+        滑动(20,13,17,10,3,500,200)
+        sleep(3000)
         desc=  id(小视频简介id).visibleToUser().findOne(300)
         if(desc){
             currentdesc=desc.text()
@@ -337,6 +337,7 @@ var seead=function(){
         if(currentPackage()!=apppkg){
             app_go_home(2)
         }
+       
     },60000)
 
     if(idclick("com.jt.hanhan.video:id/jw")){
