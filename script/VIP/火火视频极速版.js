@@ -67,7 +67,7 @@ var tomoney=true
 var app_checklogin=function(){
     n_islogin=0
    doactionmaxtime(function(){
-       
+       show(appname+"检测登录状况")
     ca=currentActivity()
     if(ca==apphomeactivity){
         if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
@@ -381,6 +381,9 @@ var seead=function(){
         if(currentPackage()!=apppkg){
             app_go_home(2)
         }
+        if(text("已签到").exists()){
+            return true
+        }
        
     },60000)
 
@@ -459,6 +462,7 @@ var app_go_home=function(index){
 var app_sign=function(){
     n_sign=0
     doactionmaxtime(function(){
+        show(appname+"签到")
         hi=id("com.jt.hanhan.video:id/hi").findOne(300)
         if(hi){
             if(clicknode(hi.child(2))){
@@ -502,6 +506,9 @@ var app_sign=function(){
               }
           }
       }
+      if(textoneexist(["新手任务","已签到"])){
+        return true
+    }
       seead()
       n_sign=n_sign+1
     },60000)
