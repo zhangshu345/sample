@@ -60,18 +60,28 @@ var app_run=function(){
     while(true){
         sleep(2000)
         log("循环次数："+loopn)
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            app_home_video()
-        }else{
-            //这里是视频上滑操作
-            app_home_sweep()
-        }
+                   //这里是视频上滑操作
+       app_home_swipe()
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         loopn=loopn+1
     }
+}
+
+var app_home_swipe=function(){
+    show(appname+"首页滑动")
+    doactionmaxtime(function(){
+        if(idclick("com.preface.megatron:id/tv_reward_confirm_content")){
+            seead()
+        }
+        if(idoneexist(["com.preface.megatron:id/progressView","com.preface.megatron:id/tv_video_zan_num"])){
+
+        }else{
+            app_go_home(3)
+        }
+    },15000)
+
 }
 
 var app_login_check=function(){
@@ -89,7 +99,7 @@ var app_login_check=function(){
         if(textclick("立即登录")){
            app_login_weixin()
         }
-        if(text(" 邀请码:").exists()){
+        if(text("邀请码:").exists()){
             return true
         }
 
@@ -160,7 +170,6 @@ var app_go_home=function(index){
                 selectnavi(5)
                 return true
             }
-
          }else {
              if(currentPackage()!=apppkg){
                  app.launch(apppkg)

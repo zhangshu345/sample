@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -580,6 +582,32 @@ var app_get_reward=function(){
         }
         seead()
        sleep(1000)
+    },60000)
+}
+
+var app_tomoney=function(){
+
+    doactionmaxtime(function(){
+        if(text("我的钱包").exists()){
+            clicktexts(["立即提现"])
+            
+
+        }else{
+            if(text("立即提现").exists()){
+                if(textclick("立即提现")){
+                    
+    
+                }
+    
+    
+            }else{
+                app_go_home(3)
+            }
+            
+        }
+       
+
+
     },60000)
 }
 
