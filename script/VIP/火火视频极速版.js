@@ -110,7 +110,7 @@ var clickgold=function(){
             if(text("赚钱小技巧").exists()){
                back()
                sleep(1500)
-               滑动(20,13,16,10,3,500,300)
+               滑动1(20,13,16,10,3,500,300)
                sleep(6000)
                clickgold()
            }
@@ -128,6 +128,50 @@ var clickgold=function(){
 
 }
 
+//  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
+function 滑动1(z,x1,y1,x2,y2,t,r) {
+    if(z>0){
+        var w = device.width/z;
+        var h = device.height/z;
+        startx=w * x1
+        endx=w*x2
+        starty=h*y1
+        endy=h*y2
+    }else{
+        startx=x1
+        endx=x2
+        starty=y1
+        endy=y2
+    }
+     if(enablegenius){
+        r=r||1000
+         log("滑动"+x1+","+y1+"->"+x2+","+y2)
+         randomSwipe(startx, starty , endx , endy)
+    }else{
+        if(startx>=endx){
+            left=endx
+            right=startx
+        }else{
+            left=startx
+            right=endx
+        }
+        if(starty>endy){
+            top=endy
+            bottom=starty
+        }else{
+            top=starty
+            bottom=endy
+        }
+        var w = boundsInside(left, top, right,bottom).scrollable().findOne(100);
+        if(w){
+            if(startx<endx){
+                w.scrollBackward()
+            }else{
+                w.scrollForward()
+            }
+        }
+    }
+}
 
 var app_small_video_swipe=function(){
     
@@ -136,7 +180,7 @@ var app_small_video_swipe=function(){
         if(idclick("com.jt.hanhan.video:id/k9")){
             //关闭金币弹窗
         }
-        滑动(20,13,17,10,3,500,200)
+        滑动1(20,13,17,10,3,500,200)
         sleep(3000)
         desc=  id(小视频简介id).visibleToUser().findOne(300)
         if(desc){
@@ -220,7 +264,7 @@ function app_run(){
         //小视频的操作
               app_see_small_video()
          }else{
-             滑动(20,10,17,11,3,500,300)
+             滑动1(20,10,17,11,3,500,300)
              sleep(8000)
          }
 
@@ -490,7 +534,7 @@ var app_get_reward=function(){
            }
         }else{
             show("没有找到可领取")
-            滑动(20,10,17,10,3,500,300)
+            滑动1(20,10,17,10,3,500,300)
             sleep(1000)
             if(text("新手解锁").visibleToUser().exists()){
                 show("找到新手解锁")
@@ -507,7 +551,7 @@ var app_get_reward=function(){
         if(ca==apphomeactivity){
             sleep(2000)
             if(!text("日常任务").boundsInside(0,0,device.width,device.height/2).exists()){
-                滑动(20,10,17,11,10,500,500)
+                滑动1(20,10,17,11,10,500,500)
                 sleep(1000)
             }
             n_lingqu=text("日常任务").boundsInside(0,0,device.width,device.height/2).findOne(300)
@@ -620,8 +664,6 @@ if(runscriptapp==appname && isreaderunning){
     }
 
     // 彩蛋邀请 通过 微信链接绑定上级用户 
-        
-
     alltest()
     if(changesetting){
         device.setMusicVolume(0)

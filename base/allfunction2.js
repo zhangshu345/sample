@@ -1011,7 +1011,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     }
      if(enablegenius){
         r=r||1000
-     log("滑动"+x1+","+y1+"->"+x2+","+y2)
+         log("滑动"+x1+","+y1+"->"+x2+","+y2)
         swipe(startx, starty , endx , endy, t+random(0, r))
     }else{
         if(startx>=endx){
@@ -1040,6 +1040,12 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
 }
 
 function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
+    if(!x2){
+        x2=x1
+    }
+    if(!x3){
+        x3=x1
+    }
     //构建参数
     var h=100;
     var cp=[{x:x1,y:y1+h},{x:x2,y:y2+h},{x:x3,y:y3+h},{x:x4,y:y4+h}];
