@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -48,7 +46,7 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apphomeactivity=""
+
 var keepappnewer=true
 var loopn=今日滑动次数(appname)
 //关闭最新的app
@@ -87,7 +85,7 @@ var app_login_check=function(){
 
         }
         app_go_home(5)
-       
+
         if(textclick("立即登录")){
            app_login_weixin()
         }
@@ -142,35 +140,40 @@ var app_invite=function(){
 var app_go_home=function(index){
     show(appname+"回到主页:"+index)
     if(doactionmaxtime(function(){
+        show(appname+"回到首页循环"+index)
          ca=currentActivity()
          if(ca==apphomeactivity){
+             show(appname+"在首页："+index)
             if(index==1){
-
+                selectnavi(1)
+                return true
             }else if(index==2){
-
+                selectnavi(2)
+                return true
             }else if(index==3){
-
+                selectnavi(3)
+                return true
             }else if(index==4){
-
+                selectnavi(4)
+                 return true
             }else if(index==5){
-
+                selectnavi(5)
+                return true
             }
 
-
-        
          }else {
              if(currentPackage()!=apppkg){
                  app.launch(apppkg)
                  sleep(3000)
+             }else{
+                 back()
              }
          }
 
-
- 
- 
     },60000)){return true}else{
         forcestop(appname)
         app.launch(apppkg)
+        sleep(3000)
     }
 }
 

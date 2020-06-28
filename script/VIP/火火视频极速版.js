@@ -257,17 +257,7 @@ function app_run(){
         device.wakeUpIfNeeded()
         closeappundostate()
         show(appname+"循环："+loopn)
-        if(action=="短视频"){
-            //短视频的操作
-            app_see_video()
-         }else if(action=="小视频"){
-        //小视频的操作
-              app_see_small_video()
-         }else{
-             滑动(20,10,16,11,3,500,300)
-             sleep(8000)
-         }
-
+      
         if(loopn%50==0){
            checkbattery(30,1200000,1800000)
         }
@@ -276,7 +266,10 @@ function app_run(){
                 app_sign()
             }
         }
-  
+        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
+            seead()
+        }
+
       if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).visibleToUser().exists()){
        node_kai= text("看视频即可打开").className("android.widget.TextView").indexInParent(4).findOne(100).parent().child(3)
        if(node_kai){
@@ -323,6 +316,17 @@ function app_run(){
             back()
             sleep(2500)
         }
+        if(action=="短视频"){
+            //短视频的操作
+            app_see_video()
+         }else if(action=="小视频"){
+        //小视频的操作
+              app_see_small_video()
+         }else{
+             滑动(20,10,16,11,3,500,300)
+             sleep(8000)
+         }
+
        sleep(3000)
         loopn=loopn+1
     }
@@ -448,7 +452,9 @@ var app_go_home=function(index){
         sleep(3000)   
         return true
         }
-       
+        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
+            seead()
+        }
    },15000)){
        return true
    }else{
