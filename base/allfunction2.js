@@ -771,7 +771,6 @@ var clicknode=function(v,time){
     if(!v){return false; }
     time=time||200
     if(enablegenius){
-      
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
             Log("点击中心位置"+b.centerX()+"--"+b.centerY())
