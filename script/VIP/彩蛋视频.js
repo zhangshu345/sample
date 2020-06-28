@@ -111,9 +111,7 @@ var app_home_sweep=function(){
         if(textclick("立即翻倍")){
             seead()
          }
-     
-
-         滑动(20,13,17,10,3,500,300)
+         滑动(20,10,15,10,3,688,200)
          sleep(2388)
          jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")
          if(jl=="立即领取"){
@@ -126,7 +124,7 @@ var app_home_sweep=function(){
                }
              },30000)
             idclick("com.jifen.dandan:id/tv_ad_red_pack_status")
-            滑动(20,13,17,10,3,500,300)
+           
             sleep(1000)
          }else if(jl.search("上限")>-1){
             seevideo=false
@@ -210,9 +208,8 @@ var app_go_home=function(index){
                 }else{
                     selectnavi(1)
                     sleep(1000)
-                    textclick("推荐")
+                    textclick("推荐",300)
                 }
-
             }else if(index==2){
                 selectnavi(2)
                 return true
@@ -248,15 +245,15 @@ var app_go_home=function(index){
              }
           
             sleep(1000)
+            if(currentPackage()!=apppkg){
+                app.launch(apppkg)
+                sleep(3000)
+            }else{
+                back()
+                sleep(300)
+            }
         }
-        if(currentPackage()!=apppkg){
-            app.launch(apppkg)
-            sleep(3000)
-        }else{
-            back()
-            sleep(300)
-            back()
-        }
+        
 
     },30000)
 }
