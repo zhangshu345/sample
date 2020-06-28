@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -55,11 +57,9 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
-    
     app_tomoney()
     app_sign()
     loopn=0
-
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
@@ -365,7 +365,74 @@ var app_sign=function(){
             seead()
         }
 
-    },20000)
+        //金币派对  天天乐
+        if(textclick("轮播")){
+            doactionmaxtime(function(){
+                if(text("本期剩余次数0").exists()){
+                    return true
+                }
+               node_yyy= className("android.widget.Button").text("摇一摇").findOne(1000)
+               if(node_yyy){
+                node_yyy.click()
+               }
+               node_yyy= className("android.widget.Button").text("免费抽华为5G手机").findOne(1000)
+               if(node_yyy){
+                node_yyy.click()
+               }
+                if(clickonetexts(["继续抽数字",""])){
+                    seead()
+                }
+                
+            },500000)
+        }
+        if(textclick("瓜分金币",1000)){
+            doactionmaxtime(function(){
+                if(textclick("瓜分ta")){
+                    seead()
+                }
+                
+                node_cishu=textMatches("还有 \\d+ 次机会").findOne(1000)
+                if(node_cishu.text()=="还有 0 次机会"){
+                    back()
+                    return true
+                }
+                if(text("今日瓜分机会已用完").exists()){
+                    return true
+                }
+
+            },300000)
+        }
+        if(textclick("幸运转盘",1000)){
+            doactionmaxtime(function(){
+                if(textclick("看视频抽大奖")){
+                    seead()
+                }
+                if(textclick("看视频再试一次")){
+                    seead()
+                }
+                node_cishu=textMatches("今日还剩 \\d+ 次机会").findOne(1000)
+                if(node_cishu.text()=="今日还剩 0 次机会"){
+                    back()
+                    return true
+                }
+             
+
+            },300000)
+        }
+        
+        if(textclick("金币派对",1000)){
+            doactionmaxtime(function(){
+                if(maytextclick("看视频")){
+                    seead()
+                }
+                if(textclick("免费再玩一次")){
+                    seead()
+                }
+            },300000)
+        }
+
+
+    },500000)
 
 }
 
@@ -401,8 +468,7 @@ var  app_home_video_sweep=function(){
           sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
             if(text_like!=lasttitle){
-              
-                n=parseInt(text_like)
+                 n=parseInt(text_like)
                 show(appname+":喜欢人数"+text_like)
                 if(n>1000){
                     sleepr(8000*ratio,12000*ratio)
@@ -521,8 +587,12 @@ var seead=function(timeout){
             sleep(1000)
             return true
         }
-        if(currentActivity()==apphomeactivity){
+        ca=currentActivity()
+        if(ca==apphomeactivity){
             return  true
+        }else if(ca==appcleanactivity){
+            back()
+            app_go_home(2)
         }
         if(idoneexist(视频页标记id集合)){
             return true
