@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -408,6 +410,9 @@ var app_getreward1=function(){
                     滑动(20,10,18,10,3,500,500)
                     sleep(1000)
                 }
+                if(textclick("iPhone免费抽")){
+
+                }
        if(textclick("收金币")){
             seead()
         }
@@ -417,9 +422,20 @@ var app_getreward1=function(){
         if(maytextclick("看视频再送100金币")){
             seead()
         }
-        if(getTextfromid("com.jifen.dandan:id/tv_title")=="幸运领红包!"){
+        title=getTextfromid("com.jifen.dandan:id/tv_title")
+        if(title=="幸运领红包!"){
             back()
+        }else if(title=="限时抽大奖"){
+            if(textStartsWith("今日机会已用完").exists()){
+                back()
+            }
+            if(textStartsWith("明天再来").exists()){
+                back()
+            }
+        }else if(title=="幸运扭蛋"){
+            
         }
+      
         clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
     },300000)
 }

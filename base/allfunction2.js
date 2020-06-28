@@ -755,7 +755,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    var f=text(maytext).boundsInside(left, top, right, bottom).findOne(t);
+    var f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
          f=textContains(maytext).boundsInside(left, top, right, bottom).findOne(t)
          if(!f){
@@ -1990,7 +1990,8 @@ var close_ad_qq=function(apppkg,clickgailv){
 //未知广告商
 var close_ad_iclicash=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
-    if(currentActivity()=="com.iclicash.advlib.ui.front.InciteADActivity"){
+    ca=currentActivity()
+    if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
       return  doactionmaxtime(function()
         {   
             if(text("点击重播").exists()){
@@ -2003,13 +2004,15 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             }
             ca=currentActivity()
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
+              
                 back()
             }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"){
                 
             }else{
-
+                return true
             }
           
+        
         },60000)
     }
     return false 

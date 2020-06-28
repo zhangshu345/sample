@@ -82,6 +82,9 @@ var app_checklogin=function(){
         app_login_weixin()
     }
    //缺判断登录的标志
+   if(idoneexist(["com.jt.hanhan.video:id/ig"])){
+    return true
+}
 
    },60000)
        
@@ -89,21 +92,9 @@ var app_checklogin=function(){
     
 }
 
-var 火火关闭锁屏功能=function(){
-    火火选中底部导航(2)
-}
 
-var 火火选中底部导航=function(indexofbottom){
-    node_me=className("android.widget.RelativeLayout").clickable(true).depth(7).indexInParent(indexofbottom).findOne(100)
-    if(node_me){
-        if(clicknode(node_me)){
-            return true
-        }
-    }
-    return false
-}
 
-var 点击金蛋=function(){
+var clickgold=function(){
     node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
     if(node_gold){
         if(node_gold.text()=="金蛋大奖"){
@@ -117,7 +108,7 @@ var 点击金蛋=function(){
                sleep(1500)
                滑动(20,13,16,10,3,500,300)
                sleep(6000)
-               点击金蛋()
+               clickgold()
            }
            if(maytextclick("看视频再送")){
                seead()
@@ -134,12 +125,12 @@ var 点击金蛋=function(){
 }
 
 
-var 火火小视频滑动=function(){
+var app_small_video_swipe=function(){
     
     doactionmaxtime(function(){
         滑动(20,13,16,10,4,500,700)
         sleep(1000)
-        desc=  id(小视频简介id).findOne(300)
+        desc=  id(小视频简介id).visibleToUser().findOne(300)
         if(desc){
             currentdesc=desc.text()
             log("之前："+lastdesc+"--当前："+currentdesc)
@@ -177,12 +168,12 @@ var 火火小视频滑动=function(){
             seead()
          }
        
-    },10000)
+    },20000)
 
  
 }
 function app_see_video(){
-    app_go_home()
+    app_go_home(1)
    
 }
 
@@ -190,25 +181,26 @@ function app_see_video(){
 function app_see_small_video(){
     if(!idallexist(火火视频极速版小视频页标识id)){
         log("没有找到一个"+appname+"小视频标识")
-        app_go_home()
+        app_go_home(2)
         clicktexts(进入小视频页面点击文本集合,300,1500)
-   
-        火火小视频滑动()
-        if(clickonetexts(广告点击按钮文本集合,500,1500)){
-                seead()
-       }
-        if(text("点击重播").exists()){
-                back()
-                sleep(1500)
-         }
-       }
+    
+    }
+       
+    if(clickonetexts(广告点击按钮文本集合,500,1500)){
+        seead()
+    }
+    if(text("点击重播").exists()){
+        back()
+        sleep(1500)
+    }
+       app_small_video_swipe()
 }
 
 function app_run(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
-    xhcs=0
+    loopn=0
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
@@ -224,17 +216,17 @@ function app_run(){
              sleep(8000)
          }
 
-        if(xhcs%50==0){
+        if(loopn%50==0){
            checkbattery(30,1200000,1800000)
         }
-        if(xhcs%200==0){
+        if(loopn%200==0){
             if(!今日签到(appname)){
                 app_sign()
             }
             app_get_reward()
         }
   
-      if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).exists()){
+      if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).visibleToUser().exists()){
        node_kai= text("看视频即可打开").className("android.widget.TextView").indexInParent(4).findOne(100).parent().child(3)
        if(node_kai){
          if(clicknode(node_kai)){
@@ -242,7 +234,7 @@ function app_run(){
             }
          }
       }
-        点击金蛋()
+        clickgold()
         if(text("点击重播").findOne(100)){
             
         }
@@ -278,14 +270,14 @@ function app_run(){
             sleep(2500)
         }
        
-        xhcs=xhcs+1
+        loopn=loopn+1
     }
 }
 
 var seead=function(){
     n_seead=0
-    sleep(10000)
-    while(n_seead<20){
+    show(appname+"看广告")
+    doactionmaxtime(function(){
         show("广告循环:"+n_seead)
         sleep(2500)
         n_seead=n_seead+1
@@ -301,36 +293,39 @@ var seead=function(){
         if(close_ad_toutiao(apppkg)){
             sleep(1000)
             idclick("com.jt.hanhan.video:id/jw")
-            return
+            return true
         }
         if( close_ad_qq(apppkg)){
-            return
+            return true
         }
         if(close_ad_iclicash(apppkg)){
-           return
+           return true
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
-            return 
+            return  true
         }
         node_close=className("android.widget.FrameLayout").clickable(true).depth(5).drawingOrder(2).findOne(100)
         if(node_close){
             if(clicknode(node_close)){
-                return
+                return true
             }
         }
         jddj=id(火火视频金蛋大奖id).findOne(300)
         if(jddj){
-            return
+            return true
         }
         if(textclick("确定")){
 
         }
-    }
-    back()
+        if(currentPackage()!=apppkg){
+            app_go_home(2)
+        }
+    },60000)
+
     if(idclick("com.jt.hanhan.video:id/jw")){
         sleep(1000)
-        return 
+        return true
     }
 }
 
@@ -340,7 +335,28 @@ var app_go_home=function(index){
    if( doactionmaxtime(function(){
        ca=currentActivity()
        if(ca==apphomeactivity){
-        return true
+           if(index==1){
+            if(idoneexist(["com.jt.hanhan.video:id/ig"])){
+                return true
+            }
+                selectnavi(1)
+                return true
+           }else if(index==2){
+           
+            if(textoneexist(["收藏","我来说两句..."])){
+                return true
+            }
+            selectnavi(2)
+            return true
+
+           }else if(index==3){
+            selectnavi(3)
+            return true
+           }else{
+               selectnavi(1)
+            return true
+           }
+    
        }else if(ca==appcoinalteractivity){
             if(idclick("com.jt.hanhan.video:id/k9")){
 
@@ -363,6 +379,11 @@ var app_go_home=function(index){
                sleep(300)
            }
        }
+       if(currentPackage()!=apppkg){
+        app.launch(apppkg)
+        sleep(3000)   
+        return true
+        }
        
    },15000)){
        return true
@@ -420,7 +441,7 @@ var app_sign=function(){
     }
 }
 var selectnavi=function(n){
- let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n).findOne()
+ let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n-1).findOne()
     if(node_navi){
         node_navi.click()
     }
@@ -428,12 +449,12 @@ var selectnavi=function(n){
 }
 
 var app_get_reward=function(){
-    n_r_h=0
+    show(appname+"获取奖励")
     app_go_home(3)
-   doactionmaxtime(function(){
+    doactionmaxtime(function(){
+    show(appname+"获取奖励内部")
         ca=currentActivity()
         if(ca==apphomeactivity){
-            selectnavi(2)
             sleep(2000)
             if(!text("日常任务").boundsInside(0,0,device.width,device.height/2).exists()){
                 滑动(20,10,17,11,10,500,500)
@@ -441,16 +462,17 @@ var app_get_reward=function(){
             }
             n_lingqu=text("日常任务").boundsInside(0,0,device.width,device.height/2).findOne(200)
             if(textclick("领取奖励")){
-
+               
             }  
             id("a9j").findOne().parent().parent().click()
 
         }else  if(ca==apprewardactivity){
             if(textclick("可领取")){
+                show("点击 可领取")
                 seead()
             }else{
                 滑动(20,10,17,10,3,500,300)
-                n_r_h=n_r_h+1
+              
                 if(text("新手解锁").visibleToUser().exists()){
                     log("找到新手解锁")
                     back()
@@ -462,7 +484,7 @@ var app_get_reward=function(){
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
-            return 
+            return true
         }
        sleep(1000)
     },600000)
@@ -563,7 +585,7 @@ if(runscriptapp==appname && isreaderunning){
 
     // 彩蛋邀请 通过 微信链接绑定上级用户 
         
-    toastLog("指定："+appname+"即将启动")
+
     alltest()
     if(changesetting){
         device.setMusicVolume(0)
@@ -571,8 +593,8 @@ if(runscriptapp==appname && isreaderunning){
     }
     floaty.closeAll()
     creatgfloatywindow()
-    creatsetfloatywindow()  //创建设置悬浮窗
-    show("开始彩蛋视频辅助滑动")
+   // creatsetfloatywindow()  //创建设置悬浮窗
+    show("指定："+appname+"即将启动")
     gfw.setPosition(0,220)
     if(!app.getPackageName(appname)){
         toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
