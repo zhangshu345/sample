@@ -78,33 +78,32 @@ var app_login_check=function(){
 
 //app 登录
 var app_login=function(){
-    show(appname+"登录")
+
 }
 
 //app 微信登录
 var app_login_weixin=function(){
-    show(appname+"微信登录")
+
 }
 
 //app_手机号登录
 var app_login_phone=function(){
-    show(appname+"手机登录登录")
+
 }
 
 //app 签到
 var app_sign=function(){
-    show(appname+"签到")
+
 }
 
 //app提现
 var app_tomoney=function(){
-    show(appname+"提现")
+
 }
 
 //app 回到操作的主页
 
 function  app_home_video(){
-    show(appname+"回到视频页")
     if(doactionmaxtime(function(){
          
 
@@ -119,20 +118,8 @@ function  app_home_video(){
 
 //app邀请
 var app_invite=function(){
-    show(appname+"邀请")
     
-
-}
-
-var app_go_home=function(index){
-    show(appname+"回到主页:"+index)
-}
-
-
-var selectnavi=function(index){
-    show(appname+"选择导航:"+index)
     
-
 
 }
 

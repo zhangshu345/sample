@@ -103,7 +103,13 @@ var app_run=function(){
 
 //荣耀殿堂那个
 var app_getreward=function(){
+doactionmaxtime(function(){
+    n_gold=text("+100金币").visibleToUser().findOne(1000)
+    if(n_gold){
+        clicknode(n_gold)
+    }
 
+},600000)
     
 }
 
@@ -174,7 +180,6 @@ var app_go_home=function(index){
                     if(text("立即登录").exists()){
                         textclick("立即登录")
                          app_login_weixin()
-                        
                     }
                 }
             }else{
@@ -382,11 +387,18 @@ var app_sign=function(){
                 if(clickonetexts(["继续抽数字",""])){
                     seead()
                 }
-                
+                if(textclick("领取专属勋章和金币")){
+                    app_getreward()
+                    return true
+                }
             },500000)
         }
         if(textclick("瓜分金币",1000)){
             doactionmaxtime(function(){
+                if(textclick("领取专属勋章和金币")){
+                    app_getreward()
+                    return true
+                }
                 if(textclick("瓜分ta")){
                     seead()
                 }
@@ -399,7 +411,9 @@ var app_sign=function(){
                 if(text("今日瓜分机会已用完").exists()){
                     return true
                 }
-
+                if(textclick("领取专属勋章和金币")){
+                    app_getreward()
+                }
             },300000)
         }
         if(textclick("幸运转盘",1000)){
@@ -415,7 +429,10 @@ var app_sign=function(){
                     back()
                     return true
                 }
-             
+                if(textclick("领取专属勋章和金币")){
+                    app_getreward()
+                    return true
+                }
 
             },300000)
         }
@@ -427,6 +444,10 @@ var app_sign=function(){
                 }
                 if(textclick("免费再玩一次")){
                     seead()
+                }
+                if(textclick("领取专属勋章和金币")){
+                    app_getreward()
+                    return true
                 }
             },300000)
         }

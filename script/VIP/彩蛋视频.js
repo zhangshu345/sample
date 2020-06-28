@@ -60,19 +60,26 @@ var 视频次数=0
 var lastdesc=""
 var 滑动次数=0
 var seevideo= true  //记录是不是看视频
+var loopn=0
+
 var 当前金蛋=false
 function app_run(){
     app.launchApp(appname)
     sleep(3000)
-    xhcs=0
+    loopn=0
     if(!今日签到(appname)){
         app_sign()
     }
+    app_getreward1()
     while(true){
-        xhcs=xhcs+1
-        toastLog("循环 "+xhcs)
+        loopn=loopn+1
+        toastLog("循环 "+loopn)
         device.wakeUpIfNeeded()
-     
+        if(id("com.jifen.dandan:id/view_status_reach_limit").visibleToUser().findOne(300)){
+            show("看视频奖励达到最高")
+            app_tomoney()
+            return true
+        }
         n_tj=text("推荐").clickable().boundsInside(0,0,device.width,device.height/5).findOne(100)
         if(n_tj){
             n_tj.click()
@@ -96,8 +103,8 @@ function app_run(){
             sleep(2500)
         }
        
-        if(xhcs%200==0){
-           show(appname+":循环:"+xhcs)
+        if(loopn%200==0){
+           show(appname+":循环:"+loopn)
            app_tomoney()
            app_getreward()
         }
@@ -193,6 +200,8 @@ var seead=function(){
       if(close_ad_qq(apppkg)){
          return true
       }
+      ca=currentActivity()
+      if(ca==apphomeactivity){ return true}else if(ca==apprewardactivity) { return true}else if(ca==appliveactivity){return true}
      sleep(2000)
     },60000)
 }
@@ -334,9 +343,9 @@ var app_sign=function(){
             sleep(1000)
          
         }
-    },10000)
+    },60000)
 
-},30000)
+},300000)
 
 }
 
@@ -399,28 +408,8 @@ var app_getreward1=function(){
                     滑动(20,10,18,10,3,500,500)
                     sleep(1000)
                 }
-          if(currentActivity()==apprewardactivity){
-            if(text("勋章殿堂").exists()){
-              if(clickonetexts(["待领取","可领取"])){
-                  sleep(2000)
-                  seead()
-              }else{
-                滑动(20,10,18,10,3,500,500)
-                sleep(1000)
-              }
-              
-            if(text("新人解锁").boundsInside(0,device.height/2,device.width,device.height).exists()){
-                    return true
-              }
-              if(text("日积月累").exists()){
-                  back()
-                  sleep(500)
-                  back()
-                  return true
-              }
-           }
-        }else{
-            app_go_home(3)
+       if(textclick("收金币")){
+            seead()
         }
         if(maytextclick("看视频抽大奖")){
             seead()

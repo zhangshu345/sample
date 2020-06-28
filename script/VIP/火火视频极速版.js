@@ -67,6 +67,7 @@ var tomoney=true
 var app_checklogin=function(){
     n_islogin=0
    doactionmaxtime(function(){
+       
     ca=currentActivity()
     if(ca==apphomeactivity){
         if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
@@ -74,11 +75,14 @@ var app_checklogin=function(){
         }
     }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
             textclick("取消")
+    }else{
+        app_go_home(1)
     }
     if(textclick("微信一键登录")){
         app_login_weixin()
     }
-   
+   //缺判断登录的标志
+
    },60000)
        
       
@@ -332,6 +336,7 @@ var seead=function(){
 
 
 var app_go_home=function(index){
+    show(appname+"回到主页"+index)
    if( doactionmaxtime(function(){
        ca=currentActivity()
        if(ca==apphomeactivity){
@@ -424,8 +429,8 @@ var selectnavi=function(n){
 
 var app_get_reward=function(){
     n_r_h=0
-    app_go_home()
-    while(true){
+    app_go_home(3)
+   doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             selectnavi(2)
@@ -451,18 +456,16 @@ var app_get_reward=function(){
                     back()
                     sleep(300)
                     back()
-                    return 
+                    return  true
                 }
             }
-        }else{
-         
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
             return 
         }
        sleep(1000)
-    }
+    },600000)
 }
 
 var app_login=function(){
