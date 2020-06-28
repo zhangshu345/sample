@@ -157,10 +157,7 @@ var app_go_home=function(index){
             }
 
 
-         }else if(ca==){
-
-         }else if(ca==){
-
+        
          }else {
              if(currentPackage()!=apppkg){
                  app.launch(apppkg)
@@ -191,7 +188,6 @@ var selectnavi=function(index){
     }else if(index==5){
         idclick("com.preface.megatron:id/iv_tab_my")
     }
-
 
 }
 

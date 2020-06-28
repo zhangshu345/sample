@@ -84,7 +84,10 @@ var app_checklogin=function(){
    //缺判断登录的标志
    if(idoneexist(["com.jt.hanhan.video:id/ig"])){
     return true
-}
+    }
+    if(textoneexist(["新手任务","已签到"])){
+        return true
+    }
 
    },60000)
        
@@ -95,11 +98,12 @@ var app_checklogin=function(){
 
 
 var clickgold=function(){
+    show(appname+"点击金蛋")
     node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
     if(node_gold){
         if(node_gold.text()=="金蛋大奖"){
             toastLog("找到了金蛋大奖ga")
-            sleep(200)
+            sleep(2500)
            if( idclick("com.jt.hanhan.video:id/ig")){
             show("点击金蛋大奖成功ga")
             sleep(2500)
@@ -128,6 +132,10 @@ var clickgold=function(){
 var app_small_video_swipe=function(){
     
     doactionmaxtime(function(){
+        clickgold()
+        if(idclick("com.jt.hanhan.video:id/k9")){
+            //关闭金币弹窗
+        }
         滑动(20,13,16,10,4,500,700)
         sleep(1000)
         desc=  id(小视频简介id).visibleToUser().findOne(300)
@@ -167,7 +175,7 @@ var app_small_video_swipe=function(){
         if(textclick("立即翻倍")){
             seead()
          }
-       
+    
     },20000)
 
  
@@ -204,7 +212,7 @@ function app_run(){
     while(true){
         device.wakeUpIfNeeded()
         closeappundostate()
-
+        show(appname+"循环："+loopn)
         if(action=="短视频"){
             //短视频的操作
             app_see_video()
@@ -219,11 +227,10 @@ function app_run(){
         if(loopn%50==0){
            checkbattery(30,1200000,1800000)
         }
-        if(loopn%200==0){
+        if(loopn%100==0){
             if(!今日签到(appname)){
                 app_sign()
             }
-            app_get_reward()
         }
   
       if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).visibleToUser().exists()){
@@ -235,7 +242,7 @@ function app_run(){
          }
       }
         clickgold()
-        if(text("点击重播").findOne(100)){
+        if(text("点击重播").findOne(200)){
             
         }
         if(close_ad_toutiao(apppkg)){
@@ -246,6 +253,9 @@ function app_run(){
         }
         if(idclick("com.jt.hanhan.video:id/gi")){
             sleep(1000)
+        }
+        if(idclick("com.jt.hanhan.video:id/k9")){
+            //关闭金币弹窗
         }
         tv_hb=text("领取红包").findOne(300)
         if(tv_hb){
@@ -269,7 +279,7 @@ function app_run(){
             back()
             sleep(2500)
         }
-       
+       sleep(3000)
         loopn=loopn+1
     }
 }
@@ -280,6 +290,9 @@ var seead=function(){
     doactionmaxtime(function(){
         show("广告循环:"+n_seead)
         sleep(2500)
+        if(idclick("com.jt.hanhan.video:id/k9")){
+            return true
+        }
         n_seead=n_seead+1
         if(text("邀请好友").findOne(500)){
             back()
@@ -317,6 +330,9 @@ var seead=function(){
         }
         if(textclick("确定")){
 
+        }
+        if(text("勋章殿堂").visibleToUser().exists()){
+            return true
         }
         if(currentPackage()!=apppkg){
             app_go_home(2)
@@ -397,7 +413,7 @@ var app_go_home=function(index){
 
 var app_sign=function(){
     n_sign=0
-    while(n_sign<3){
+    doactionmaxtime(function(){
         hi=id("com.jt.hanhan.video:id/hi").findOne(300)
         if(hi){
             if(clicknode(hi.child(2))){
@@ -405,6 +421,10 @@ var app_sign=function(){
 
            }
         }
+        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
+            seead()
+        }
+
         tv_coin=id("com.jt.hanhan.video:id/a4i").findOne(300)
         if(tv_coin){
             n_coin=parseInt(tv_coin.text().replace("今日金币：",""))
@@ -427,7 +447,7 @@ var app_sign=function(){
         }
      
       if(textclick("金币翻倍")){
-          seead()
+          
       }
       b_sign=id("com.jt.hanhan.video:id/u8").findOne(200)
       if(b_sign){
@@ -437,8 +457,9 @@ var app_sign=function(){
               }
           }
       }
+      seead()
       n_sign=n_sign+1
-    }
+    },60000)
 }
 var selectnavi=function(n){
  let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n-1).findOne()
@@ -453,6 +474,34 @@ var app_get_reward=function(){
     app_go_home(3)
     doactionmaxtime(function(){
     show(appname+"获取奖励内部")
+    idclick("com.jt.hanhan.video:id/k9")
+    if(text("勋章殿堂").exists()){
+        node_clq=text("可领取").className("android.view.View").visibleToUser().findOne(1000)
+        if(node_clq){
+            bd=node_clq.bounds()
+            x=bd.centerX()
+            y=bd.centerY()
+           if(click(x,y)){
+            show("点击可领取位置成功")
+             seead()
+           }else{
+               show("点击可领取位置失败")
+           }
+        }else{
+            show("没有找到可领取")
+            滑动(20,10,17,10,3,500,300)
+            sleep(1000)
+            if(text("新手解锁").visibleToUser().exists()){
+                show("找到新手解锁")
+                back()
+                sleep(300)
+                back()
+                return  true
+            }else{
+                show("没有找到新手解锁")
+            }
+        }
+    }
         ca=currentActivity()
         if(ca==apphomeactivity){
             sleep(2000)
@@ -460,34 +509,20 @@ var app_get_reward=function(){
                 滑动(20,10,17,11,10,500,500)
                 sleep(1000)
             }
-            n_lingqu=text("日常任务").boundsInside(0,0,device.width,device.height/2).findOne(200)
+            n_lingqu=text("日常任务").boundsInside(0,0,device.width,device.height/2).findOne(300)
             if(textclick("领取奖励")){
                
             }  
-            id("a9j").findOne().parent().parent().click()
+         //  id("a9j").findOne().parent().parent().click()
 
-        }else  if(ca==apprewardactivity){
-            if(textclick("可领取")){
-                show("点击 可领取")
-                seead()
-            }else{
-                滑动(20,10,17,10,3,500,300)
-              
-                if(text("新手解锁").visibleToUser().exists()){
-                    log("找到新手解锁")
-                    back()
-                    sleep(300)
-                    back()
-                    return  true
-                }
-            }
         }
         if(idclick("com.jt.hanhan.video:id/jw")){
             sleep(1000)
             return true
         }
+        seead()
        sleep(1000)
-    },600000)
+    },60000)
 }
 
 var app_login=function(){

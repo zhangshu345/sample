@@ -771,13 +771,13 @@ var clicknode=function(v,time){
     if(!v){return false; }
     time=time||200
     if(enablegenius){
-       // toastLog("可以手势点击")
+      
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
-            toastLog("点击中心位置"+b.centerX()+"--"+b.centerY())
+            Log("点击中心位置"+b.centerX()+"--"+b.centerY())
             return click(b.centerX(),b.centerY())
         }else{
-            toastLog("没有点击中心位置"+b.centerX()+"--"+b.centerY())
+            Log("没有点击中心位置"+b.centerX()+"--"+b.centerY())
         }
      }else{
       //  toastLog("不可以手势点击")
@@ -1172,7 +1172,7 @@ var descallexist=function(descs){
 
 /*文本只要存在一个就返回真 */
 var textoneexist=function(texts){
-     if(texts.length>0){for(i=0;i<texts.length;i++){ if(text(texts[i]).exists()){  return true }  }    }
+     if(texts.length>0){for(i=0;i<texts.length;i++){ if(text(texts[i]).visibleToUser().exists()){  return true }  } }
     return false
 }
 /**只要存在一个id就返回真 */
