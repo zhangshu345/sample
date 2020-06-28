@@ -773,10 +773,10 @@ var clicknode=function(v,time){
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
-            Log("点击中心位置"+b.centerX()+"--"+b.centerY())
+            log("点击中心位置"+b.centerX()+"--"+b.centerY())
             return click(b.centerX(),b.centerY())
         }else{
-            Log("没有点击中心位置"+b.centerX()+"--"+b.centerY())
+           log("没有点击中心位置"+b.centerX()+"--"+b.centerY())
         }
      }else{
       //  toastLog("不可以手势点击")
