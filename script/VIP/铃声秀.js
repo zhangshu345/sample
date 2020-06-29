@@ -130,21 +130,33 @@ var app_login_check=function(){
 var app_reward_luck=function(){
     doactionmaxtime(function(){
         if(text("幸运抽奖").exists()){
-
-        }
-        if(textclick("继续抽数字",300)){
-            seead()
-        }
-       node_yyy= className("android.widget.Button").clickable().findOne(500)
-        if(node_yyy){
-            show("找到摇一摇")
-            if(clicknode(node_yyy)){
+        
+            if(text("本期剩余次数0").exists()){
+                return true
+            }
+            sleep(1000)
+            textclick("返回")
+            node_jjcsz=text("继续抽数字").visibleToUser().depth(13).clickable().findOne(500)
+            if(node_jjcsz){
+                show("继续抽数字")
+                bd=node_jjcsz.bounds()
+                log("继续抽数字:"+bd.centerX()+","+bd.centerY())
+                click(bd.centerX(),bd.centerY())
                 seead()
             }
+           node_yyy= className("android.widget.Button").visibleToUser().depth(13).clickable().findOne(500)
+            if(node_yyy){
+                show("找到摇一摇")
+                bd=node_yyy.bounds()
+                log("摇一摇位置:"+bd.centerX()+","+bd.centerY())
+                click(bd.centerX(),bd.centerY())
+                seead()
+              
+            }
+        
         }
-        if(text("本期剩余次数0").exists()){
-            return true
-        }
+
+    sleep(2000)
     },500000)
 }
 
@@ -244,6 +256,10 @@ var selectnavi=function(index){
 
 var seead=function(){
     doactionmaxtime(function(){
+        show(appname+"查看广告")
+        if(text("幸运抽奖").exists()){
+            return true
+        }
         ca=currentActivity()
         if(ca==apphomeactivity){
             return true
@@ -259,7 +275,7 @@ var seead=function(){
 }
 
 
-app_reward_luck()
+// app_reward_luck()
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
