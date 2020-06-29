@@ -24,10 +24,10 @@ toastLog("公共函数实例化失败,程序返回")
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
-var appname="趣多多"
-var apppkg="cn.lingyongqian.bronn"
+var appname="京东极速版"
+var apppkg="com.jd.jdlite"
 
-var invitecodes=["89797906"]
+var invitecodes=[]
 
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
@@ -44,15 +44,15 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apphomeactivity="cn.lingyongqian.bronn.business.main.MainActivity"
+var apphomeactivity="com.jd.jdlite.MainActivity"
 var keepappnewer=true
 var loopn=今日滑动次数(appname)
-var coinaltercloseid="com.zheyun.bumblebee.lsx:id/iv_close"
-var coinalterconfirmid="com.zheyun.bumblebee.lsx:id/tv_confirm" //看视频，签到奖励翻倍！
-var rewardbgid="cn.lingyongqian.bronn:id/vgRewardTimer"
-var rewardstatusid="cn.lingyongqian.bronn:id/vgRewardTimer"
-var videolikeid="cn.lingyongqian.bronn:id/tvLike"
-var videocommentid="cn.lingyongqian.bronn:id/tvComment"
+var coinaltercloseid=""
+var coinalterconfirmid="" //看视频，签到奖励翻倍！
+var rewardbgid=""
+var rewardstatusid=""
+var videolikeid="com.jd.lib.jdlivelist:id/vi_text_fond"
+var videocommentid=""
 var isinvite=getbooleanvalue(appname+"_invite",false)
 //关闭最新的app
 var lastlike=""
@@ -60,17 +60,15 @@ var lastlike=""
 var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
-    app_login_check()
-    if(!isinvite){
-        app_invite()
-    }
+//    app_login_check()
+
     loopn=0
     while(true){
         sleep(2000)
         log("循环次数："+loopn)
         app_small_video_swipe()
-
-        close_ad_iclicash(apppkg)
+        sleep(15000)
+        // close_ad_iclicash(apppkg)
         loopn=loopn+1
     }
 }
@@ -80,11 +78,21 @@ var app_small_video_swipe=function(){
         if(clickoneids([coinalterconfirmid])){
             seead()
         }
-        if(idoneexist([videolikeid,rewardbgid])){
-
-        }else{
-            app_go_home(1)
+        if(currentActivity()!="com.jd.lib.videoimmersion.view.activity.VideoImmersionActivity"){
+            app_go_home(2)
+            sleep(1000)
+            click(device.width/4,device.height/2)
+            sleep(1000)
         }
+        // if(idoneexist(["com.jd.lib.jdlivelist:id/vi_text_fond","com.jd.lib.jdlivelist:id/vi_text_comment"])){
+
+        // }else{
+        //     app_go_home(2)
+        //     sleep(1000)
+        //     click(device.width/4,device.height/2)
+        //     sleep(1000)
+
+        // }
         滑动(20,10,17,11,4,500,300)
         sleep(2000)
         text_like=getTextfromid(videolikeid)
@@ -116,9 +124,7 @@ var app_login_check=function(){
         if(idoneexist([rewardbgid,videolikeid])){
             return true
         }
-        if(textoneexist(["小视频","铃声","任务"])){
-            return true
-        }
+ 
         clicktexts(["同意","允许","允许","始终允许","始终允许"],150,1500)
         if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
             text("立即提现").waitFor()
@@ -176,14 +182,21 @@ var app_login=function(){
 var app_login_weixin=function(){
     show(appname+"微信登录")
    if( doactionmaxtime(function(){
-        clicktexts(["微信登录"],200,2000)
+
+    //com.jd.jdlite.lib.personal:id/user_login_view_new  登录/注册
+        clicktexts(["登录/注册"],200,2000)
         if(textclick("同意")){
             sleep(5000)
+        }
+        if(idclick("com.jd.lib.login:id/wx_login_btn",200)){
+            text("同意").waitFor()
+            textclick("同意")
+
         }
         if(textoneexist(["看视频，金币再翻1倍"])){
             return true
         }
-        if(idoneexist(["com.zheyun.bumblebee.lsx:id/tv_confirm"])){
+        if(idoneexist([])){
             return true
         }
         if(idclick(coinaltercloseid)){
@@ -239,6 +252,7 @@ var app_go_home=function(index){
     doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
+            sleep(1000)
             selectnavi(index)
             return true
         }else {
@@ -249,25 +263,27 @@ var app_go_home=function(index){
                 back()
             }
         }
-        if(clickoneids([coinalterconfirmid])){
-            seead()
+
+        if(currentPackage()!=apppkg){
+            app.launch(apppkg)
+            sleep(3000)
         }
-        clickids([],200,1500)
     },20000)
 }
 
 
 var selectnavi=function(index){
     show(appname+"选择导航:"+index)
-    node_bottom=id("cn.lingyongqian.bronn:id/rgTabController").visibleToUser().findOne(300)
+    node_bottom=id("com.jd.jdlite:id/bottomMenu").visibleToUser().findOne(300)
     if(node_bottom){
         show("找到底部")
         if(node_bottom.childCount()>=index){
 
            node_target= node_bottom.child(index-1)
-           log(node_target+"---selected:"+node_target.checked())
-           if(!node_target.checked()){
+            
+           if(!node_target.child(2).selected()){
                bd=node_target.bounds()
+               log("点击位置:"+bd.centerX()+"-"+bd.centerY())
                click(bd.centerX(),bd.centerY())
            }
         }

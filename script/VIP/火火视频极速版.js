@@ -384,6 +384,7 @@ var seead=function(){
         }
         if(currentPackage()!=apppkg){
             app_go_home(2)
+            return true
         }
         if(text("已签到").exists()){
             return true
