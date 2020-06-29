@@ -44,6 +44,7 @@ var 设置第一个来电铃声赚钱的关闭id="com.zheyun.bumblebee:id/base_c
 var 设置第一个来电铃声赚钱的立即设置按钮id="com.zheyun.bumblebee:id/tv_confirm"  // 立即设置    之后弹出暂不领取
 var 视频广告结束弹窗关闭id="com.zheyun.bumblebee:id/iv_close"
 var loopn=0
+var keepappnewer=true
 //app 运行
 var run=function(){
     app.launch(apppkg)
