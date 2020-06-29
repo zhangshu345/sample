@@ -1862,7 +1862,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 var close_ad_toutiao=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     let ca=currentActivity()
-    show("关闭穿山甲:activity:"+ca)
+  //  show("关闭穿山甲:activity:"+ca)
     if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
         doactionmaxtime(function(){
             ca=currentActivity()
@@ -1938,7 +1938,7 @@ var close_ad_qq=function(apppkg,clickgailv){
     // ccj_file_paths 
         clickgailv=clickgailv||-1
      let  ca=currentActivity()
-    show(apppkg+"关闭腾讯广告 activity:"+ca)
+ //   show(apppkg+"关闭腾讯广告 activity:"+ca)
     //激励视频 
     if(ca=="com.qq.e.ads.PortraitADActivity"){
       if(doactionmaxtime( function(){
