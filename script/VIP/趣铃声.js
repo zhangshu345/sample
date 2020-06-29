@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
