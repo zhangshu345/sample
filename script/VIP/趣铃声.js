@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -46,9 +48,10 @@ var 视频广告结束弹窗关闭id="com.zheyun.bumblebee:id/iv_close"
 var loopn=0
 var keepappnewer=true
 //app 运行
-var run=function(){
+var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
+    app_checklogin()
     loopn=0
     if(!今日签到(appname)){
         app_sign()
@@ -143,6 +146,17 @@ var run=function(){
     }
 }
 
+var app_checklogin=function(){
+
+    doactionmaxtime(function(){
+        show(appname+"检测登录状态")
+        clicktexts(["允许","始终允许"])
+
+    },60000)
+}
+
+
+
 //app 登录  
 var app_login=function(){
      clicktexts(首次点击文本集合)
@@ -210,9 +224,12 @@ var app_tomoney=function(){
 
 }
 
-var app_home_video=function(){
+var app_go_home=function(index){
     doactionmaxnumber(function(){
-        if(currentActivity()==apphomeactivity){
+        ca=currentActivity()
+        if(ca==apphomeactivity){
+
+            
             return true
         }
        if(!idContains(apppkg).findOne(1000)){
@@ -229,6 +246,17 @@ var app_home_video=function(){
            sleep(3888)
         return true
     }
+}
+
+var app_reward_rongyu=function(){
+    doactionmaxtime(function(){
+        if(text("勋章殿堂").exists()){
+            if(textclick("可领取",500)){
+                seead()
+            }
+        }
+
+    },500000)
 }
 
 var app_seevideoad=function(){

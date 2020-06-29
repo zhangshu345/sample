@@ -714,7 +714,6 @@ function idclick(idstr,t,left,top,right,bottom){
   //  log("l ,t,r,b"+left+","+top+","+right+","+bottom)
     let f=id(idstr).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(f){
-     
         if(clicknode(f)){  return true        }  
     }
     return false
@@ -757,7 +756,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
-         f=textContains(maytext).boundsInside(left, top, right, bottom).findOne(t)
+         f=textContains(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t)
          if(!f){
              return false
          }

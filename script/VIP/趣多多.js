@@ -137,7 +137,6 @@ var app_login_check=function(){
 var app_reward_luck=function(){
     doactionmaxtime(function(){
         if(text("幸运抽奖").exists()){
-        
             if(text("本期剩余次数0").exists()){
                 return true
             }
@@ -158,14 +157,13 @@ var app_reward_luck=function(){
                 log("摇一摇位置:"+bd.centerX()+","+bd.centerY())
                 click(bd.centerX(),bd.centerY())
                 seead()
-              
             }
-        
         }
-
     sleep(2000)
     },500000)
 }
+
+
 
 //app 登录
 var app_login=function(){

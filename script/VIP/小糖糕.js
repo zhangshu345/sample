@@ -43,7 +43,8 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var changesetting=false
 var apphomeactivity="com.jifen.ponycamera.commonbusiness.MainActivity"
 var keepappnewer=true
-
+var  lastlike=""
+var loopn=0
 var 小视频广告翻倍次数=0
 //关闭最新的app
 
@@ -52,26 +53,24 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
-    n_i=0
+    app_tomoney()
+    app_sign()
+    loopn=0
     while(true){
         sleep(2000)
-        log("循环次数："+n_i)
-        if(n_i%100==0){
-            app_sign()
-        }
+        log("循环次数："+loopn)
             //这里是视频上滑操作
             app_home_sweep()
-       
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
         sleep(5000)
-        n_i=n_i+1
+        loopn=loopn+1
     }
 }
 
 var app_home_sweep=function(){
-    lastlike=""
+   
     doactionmaxtime(function(){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
             app_go_home(1)
@@ -100,17 +99,37 @@ var app_home_sweep=function(){
 }
 
 var app_login_check=function(){
-    show("检测"+appname+"登录状况")
+    
     doactionmaxtime(function(){
+        show("检测"+appname+"登录状况")
         app_go_home(4)
-
         clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
         if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
             app_login()
         }
-    if( node_ktx=text("可提现").depth(13).findOne(300)){
+    if(text("可提现").exists()){
         return true
+    }else{
+       show(appname+" 没有找到可提现")
     }
+
+    if(textContains("邀请码").exists()){
+        return true
+    }else{
+        show(appname+" 没有找到邀请码")
+    }
+    if(desc("可提现").exists()){
+        return true
+    }else{
+       show(appname+" 没有找到可提现")
+    }
+
+    if(descContains("邀请码").exists()){
+        return true
+    }else{
+        show(appname+" 没有找到邀请码")
+    }
+
     },60000)
 }
 
@@ -127,6 +146,7 @@ var app_login=function(){
 //app 微信登录
 var app_login_weixin=function(){
     doactionmaxtime(function(){
+        show(appname+"微信登录")
         clicktexts(["微信一键登录","同意","立即提现"],150,2000)
         if(text("我的钱包").exists()){
             return true
@@ -149,22 +169,74 @@ var app_login_phone=function(){
 //app 签到
 var app_sign=function(){
     app_go_home(3)
+    doactionmaxtime(function(){
+        if(maytextclick("看视频再送")){
+            seead()
+        }
+        if(textclick("天天分现金")){
+            app_reward_luck()
+        }
+
+        if(text("看福利视频").exists()){
+            app_reward_video()
+        }else{
+            滑动(20,10,17,10,3,500,300)
+        }
+    },20000)
+}
+
+var app_reward_video=function(){
+    doactionmaxnumber(function(){
+        if(textclick("去观看")){
+          
+        }
+        if(descclick("去观看")){
+ 
+        }
+        seead()
+      sleep(1000)
+    },5)
+}
+
+
+//小糖糕是12 
+var app_reward_luck=function(){
+    doactionmaxtime(function(){
+        if(text("幸运抽奖").exists()){
+            if(text("本期剩余次数0").exists()){
+                return true
+            }
+            textclick("返回",200)
+           node_yyy= className("android.widget.Button").visibleToUser().depth(12).clickable().findOne(300)
+            if(node_yyy){
+                show("找到摇一摇")
+                bd=node_yyy.bounds()
+                log("摇一摇位置:"+bd.centerX()+","+bd.centerY())
+                click(bd.centerX(),bd.centerY())
+                seead()
+            }
+        }else{
+
+        }
+   
+    },500000)
 }
 
 //app提现
 // //app提现
 var app_tomoney=function(){
-    show("开始提现")
+    show(appname+"开始提现")
     if(今日提现(appname)){
         show(appname+":今日已经提现了")
         return true
     }
   return doactionmaxtime(function(){
+    show(appname+"开始提现")
        app_go_home(4)
        sleep(1000)
        nca=currentActivity()
        show("当前activity:"+nca)
-       idclick("com.xiaoqiao.qclean:id/iv_close")
+       //idclick("com.xiaoqiao.qclean:id/iv_close")
        if(nca==apphomeactivity){
           node_ktx=text("可提现").depth(13).findOne()
           if(node_ktx){
@@ -205,14 +277,14 @@ var app_tomoney=function(){
 
 //app邀请
 var app_invite=function(){
-    
-    
+
 
 }
 
 
 var app_go_home=function(index){
     if(doactionmaxtime(function(){
+        closeappundostate()
         ca=currentActivity()
         if(ca==apphomeactivity){
             if(index==1){
@@ -228,12 +300,8 @@ var app_go_home=function(index){
                 selectnavi(3)
                 return true
             } else if(index==4){
-                if( node_ktx=text("可提现").depth(13).findOne(300)){
-                    return true
-                }else{
-                    selectnavi(4)
-                    sleep(1000)
-                }
+                selectnavi(4)
+                return true
             }
 
         }else{
@@ -260,13 +328,16 @@ var app_go_home=function(index){
 }
 
 var clickgold=function(){
-  
-  if(idclick("com.jifen.ponycamera:id/image_complete")){
-    sleep(2000)
+    
+  if(idclick("com.jifen.ponycamera:id/image_complete",300)){
+      show(appname+"金蛋点击成功")
+    sleep(1500)
     if(maytextclick("看视频再领")){
         seead()
         小视频广告翻倍次数=小视频广告翻倍次数+1
     }
+  }else{
+      
   }
 
 }
@@ -280,7 +351,6 @@ var selectnavi=function(index){
                 return true
             }
         }
-       
     }
    node_navi= className("android.widget.FrameLayout").clickable(true).drawingOrder(index).depth(7).findOne(200)
    if(node_navi){
@@ -289,13 +359,16 @@ var selectnavi=function(index){
 }
 
 var seead=function(){
-    log("seead")
     doactionmaxtime(function(){
         show(appname+"看广告")
+     
         if(text("勋章殿堂").exists()){
             clickonetexts(["去领取","待领取","可领取"])
         }
          if(maytextclick("看视频再领")){
+            
+        }
+        if(maytextclick("看视频再送")){
             
         }
         if(clickoneids(["com.jifen.ponycamera:id/iv_close","com.jifen.ponycamera:id/tv_close"],150,1500)){
@@ -304,14 +377,13 @@ var seead=function(){
         }
         if(text("点击重播").exists()){
             back()
-            sleep(2500)
+            sleep(500)
             back()
             return  true
         }
        if(idclick("com.jifen.ponycamera:id/tt_video_ad_close")){
            return  true
        }
-       
         if(text("邀请好友").findOne(500)){
             back()
             return  true
@@ -321,18 +393,23 @@ var seead=function(){
             return true
         }
       if(close_ad_iclicash(apppkg)){
-         
+         return true
       }
        if(close_ad_toutiao(apppkg)){
-           
+           return true 
        }
       if(close_ad_qq(apppkg)){
-         
+         return true
       }
-        sleep(2000)
+
+      ca=currentActivity()
+      if(ca==apphomeactivity){
+          return true
+      }
+      sleep(1000)
     },60000)
 }
-selectnavi(4)
+
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
