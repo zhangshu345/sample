@@ -434,6 +434,7 @@ function app_run(){
             lastdesc=id_desc.text()
             log("当前："+lastdesc)
         }
+        textclick("继续看视频")
         滑动(20,13,16,10,4,500,700)
          sleep(2000)
          id_desc=  id("com.jm.video:id/desc").findOne(1000)
