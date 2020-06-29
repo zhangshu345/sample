@@ -74,7 +74,8 @@ var gotoappvideo=function(){
 function app_go_home(index){
     show(appname+"回到首页"+index)
     index=index||1
-    doactionmaxtime(function(){
+   if( doactionmaxtime(function(){
+       closeappundostate()
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
@@ -121,11 +122,16 @@ function app_go_home(index){
         }
     }
        
-    },15000)
+    },15000)){return true}else{
+        forcestop(appname)
+        app.launch(apppkg)
+        sleep(3000)
+        return false
+    }
 }
 
 var selectnavi=function(index){
-    node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().packageName(apppkg).boundsInside(0,device.height*4/5,device.width,device.height).findOne()
+    node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().boundsInside(0,device.height*4/5,device.width,device.height).findOne(500)
     if(node_ll){
         node_ll.click()
     }
@@ -138,17 +144,19 @@ var app_sign=function(){
             app_go_home(4)
             sleep(2000)
             idclick("com.jm.video:id/imgClose")
+
            if(textContains("恭喜您获得").findOne(400)){
                  back()
                  return true
             }
             textclick("点击领取",500)
             textclick("立即签到",500)
+            descclick("立即签到",500) //有的手机是 desc 
                     if(text("继续赚元宝").exists()){
                         back()
                         return true
                     }
-                    if(textclick("看视频签到",300)){
+                    if(textclick("看视频签到",300)||descclick("看视频签到",500)){
                         let  i=0
                           while(i<20){
                               show("等待视频广告3秒")
@@ -175,6 +183,11 @@ var app_sign=function(){
     },60000)
 
 }
+
+var app_checklogin=function(){
+
+}
+
 var app_login=function(){
       doactionmaxtime(function(){
         show(appname+"登录")
@@ -390,7 +403,6 @@ function app_run(){
     sleep(3000)
     app_login()
     app_sign()
-
     show("签到结束")
     xhcs=0
     while(true){

@@ -2035,6 +2035,7 @@ var runrewardapp=function(appname,apppkg,showadtime){
 
 var closeappundostate=function(){
     maytextclick("关闭")
+   
    return clickonetexts(["关闭应用","关闭应用程序"],100,1500)
 }
 

@@ -249,7 +249,7 @@ var app_invite=function(){
 
 var app_go_home=function(index){
     show(appname+"回到主页:"+index)
-    doactionmaxtime(function(){
+  if(  doactionmaxtime(function(){
         ca=currentActivity()
         if(ca==apphomeactivity){
             sleep(1000)
@@ -268,7 +268,15 @@ var app_go_home=function(index){
             app.launch(apppkg)
             sleep(3000)
         }
-    },20000)
+    },20000)){
+        return true
+    }else
+    {
+        forcestop(appname)
+        app.launch(apppkg)
+        sleep(3000)
+        return false
+    }
 }
 
 
