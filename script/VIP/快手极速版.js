@@ -475,6 +475,12 @@ var app_sign=function(){
            今日签到(appname)
            return true
        }
+       if(descclick("立即签到")){
+        sleep(1000)
+        back()
+        今日签到(appname)
+        return true
+        }
        if(text("去补签").exists()){
            back()
            sleep(300)
@@ -493,7 +499,6 @@ var app_sign=function(){
                 return true
             }
         }
-       
         app_close_alter()
     },60000)
 }
