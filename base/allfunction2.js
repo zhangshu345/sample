@@ -172,7 +172,7 @@ var  creatgfloatywindow=function(){
     log("createdfloaty")
     gfw=floaty.rawWindow(
         <horizontal>
-            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
+            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#22ffff00">提醒</text>
         </horizontal>
     );
     gfw.setSize(device.width, 120)
@@ -184,8 +184,8 @@ var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false"  >
               <vertical  w="90" h="65" >
-              <text id="stop" w="auto" h="45"  textSize="16sp" textColor="#000000"  background="#1C86EE" >设置</text>
-              <text id="coll" w="auto" h="45"  textSize="16sp"  textColor="#000000" background="#1C86EE"  >收缩</text>
+              <text id="stop" w="auto" h="40"  textSize="16sp" textColor="#000000"  background="#1C86EE" >设置</text>
+              <text id="coll" w="auto" h="40"  textSize="16sp"  textColor="#000000" background="#1C86EE"  >收缩</text>
               </vertical>
             <vertical  w="90" h="90" >
             <horizontal  >
@@ -1009,9 +1009,19 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         endy=y2
     }
      if(enablegenius){
-        r=r||1000
-         log("滑动"+x1+","+y1+"->"+x2+","+y2)
-        swipe(startx, starty , endx , endy, t+random(0, r))
+        // r=r||1000
+        //  log("滑动"+x1+","+y1+"->"+x2+","+y2)
+        // points=[]
+        // zx=startx
+        // zy=starty
+        // for(let i=0;i<z;i++){
+        //     points.push([zx+i*randomint(w/2,w*3/2),zy+randomint(h/2,h/2*3)])
+        // }
+        // points.push([endx,endy])
+        // delay=t+random(0, r)
+        // gestures(delay,delay/z,points)
+        // swipe(startx, starty , endx , endy, t+random(0, r))
+        randomSwipe(startx, starty , endx , endy)
     }else{
         if(startx>=endx){
             left=endx

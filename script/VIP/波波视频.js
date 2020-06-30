@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -26,8 +24,8 @@ toastLog("公共函数实例化失败,程序返回")
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
-var appname="小糖糕"
-var apppkg="com.jifen.ponycamera"
+var appname="波波视频"
+var apppkg="tv.yixia.bobo"
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
 //应用登录状态
@@ -107,12 +105,8 @@ var app_home_sweep=function(){
         }
         clickgold()
 
-
         滑动(20,10,17,10,3,500,300)
-        sleep(1000)
-        if(text("查看详情").exists()){
-            滑动(20,10,14,10,3,300,100)
-        }
+        sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
         if(txt_like){
             if(txt_like.search("w")>-1){

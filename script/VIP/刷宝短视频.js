@@ -71,7 +71,7 @@ var gotoappvideo=function(){
     }
 }
 
-function app_go_home(index){
+var  app_go_home=function(index){
     show(appname+"回到首页"+index)
     index=index||1
    if( doactionmaxtime(function(){
@@ -90,7 +90,6 @@ function app_go_home(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-                
                 selectnavi(2)
                 return true
             }else if(index==3){
@@ -121,7 +120,7 @@ function app_go_home(index){
             textclick("取消")
         }
     }
-       
+    textclick("取消")
     },15000)){return true}else{
         forcestop(appname)
         app.launch(apppkg)
@@ -131,27 +130,50 @@ function app_go_home(index){
 }
 
 var selectnavi=function(index){
-    node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().boundsInside(0,device.height*4/5,device.width,device.height).findOne(500)
+    node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().visibleToUser().findOne(500)
     if(node_ll){
-        node_ll.click()
+        bd=node_ll.bounds()
+        show("点击导航位置"+bd.centerX()+","+bd.centerY())
+        click(bd.centerX(),bd.centerY())
+        return true
+    }else{
+        show("没有找到导航")
+    }
+    if(index==1){
+        textclick("首页")
+    }else if(index==2){
+        textclick("直播")
+    }else if(index==3){
+      
+    }else if(index==4){
+        textclick("任务")
+    }else if(index==5){
+        textclick("我")
     }
 }
 
 
 var app_sign=function(){
-    show(appname+":签到")
-    doactionmaxtime(function(){
-            app_go_home(4)
+       doactionmaxtime(function(){
+        selectnavi(4)
+         show(appname+":签到")
             sleep(2000)
             idclick("com.jm.video:id/imgClose")
 
-           if(textContains("恭喜您获得").findOne(400)){
+           if(textContains("恭喜您获得").findOne(300)){
                  back()
                  return true
             }
-            textclick("点击领取",500)
-            textclick("立即签到",500)
-            descclick("立即签到",500) //有的手机是 desc 
+           if(textclick("点击领取",200)){
+               sleep(1000)
+               textclick("继续看视频领取")
+           }
+           if(descclick("点击领取",200)){
+                sleep(1000)
+                descclick("继续看视频领取")
+            }
+            textclick("立即签到",300)
+            descclick("立即签到",300) //有的手机是 desc 
                     if(text("继续赚元宝").exists()){
                         back()
                         return true
@@ -178,9 +200,9 @@ var app_sign=function(){
                       
                           }
                       }      
-                      sleep(2000)
+                     滑动(20,10,3,10,17,500,100)
        
-    },60000)
+    },45000)
 
 }
 
@@ -403,7 +425,12 @@ function app_run(){
     sleep(3000)
     app_login()
     app_sign()
-    show("签到结束")
+    if(tomoney){
+        if(!今日提现(appname)){
+            app_tomoney()
+        }
+    }
+    
     xhcs=0
     while(true){
     show("循环次数:"+(xhcs+1))
@@ -482,7 +509,7 @@ function app_run(){
         if(滑动次数%50==0){
             checkbattery(30)
         }
-        if(滑动次数%200==0){
+        if(滑动次数%100==0){
             if(!今日已签到(appname)){
                 app_sign()
             }

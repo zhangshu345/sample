@@ -99,29 +99,22 @@ var app_checklogin=function(){
 
 var clickgold=function(){
     show(appname+"点击金蛋")
-    node_gold=id("com.jt.hanhan.video:id/ga").visibleToUser().findOne(100)
+    node_gold=text("金蛋大奖").visibleToUser().findOne(200)
     if(node_gold){
-        if(node_gold.text()=="金蛋大奖"){
-            toastLog("找到了金蛋大奖ga")
-            sleep(2500)
-           if( idclick("com.jt.hanhan.video:id/ig")){
-            show("点击金蛋大奖成功ga")
-            sleep(2500)
-            if(text("赚钱小技巧").exists()){
-               back()
-               sleep(1500)
-               滑动1(20,13,16,10,3,500,300)
-               sleep(6000)
-               clickgold()
-           }
-           if(maytextclick("看视频再送")){
-               seead()
-                   小视频广告翻倍次数=小视频广告翻倍次数+1
-           }
-           }
-   
-        }
-      
+        bd=node_gold.bounds()
+        click(bd.centerX(),bd.top-30)
+        sleep(2000)
+        if(text("赚钱小技巧").exists()){
+           back()
+           sleep(1500)
+           滑动(20,13,16,10,3,500,300)
+           sleep(6000)
+           clickgold()
+       }
+       if(maytextclick("看视频再送")){
+           seead()
+               小视频广告翻倍次数=小视频广告翻倍次数+1
+       }
     }else{
         show("没有找到金蛋大奖：")
     }
@@ -235,9 +228,7 @@ function app_see_small_video(){
         log("没有找到一个"+appname+"小视频标识")
         app_go_home(2)
         clicktexts(进入小视频页面点击文本集合,300,1500)
-    
     }
-       
     if(clickonetexts(广告点击按钮文本集合,500,1500)){
         seead()
     }
@@ -266,9 +257,6 @@ function app_run(){
                 app_sign()
             }
         }
-        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
-            seead()
-        }
 
       if (text("看视频即可打开").className("android.widget.TextView").indexInParent(4).visibleToUser().exists()){
        node_kai= text("看视频即可打开").className("android.widget.TextView").indexInParent(4).findOne(100).parent().child(3)
@@ -293,6 +281,14 @@ function app_run(){
         }
         if(idclick("com.jt.hanhan.video:id/k9")){
             //关闭金币弹窗
+        }
+        if(text("看视频即可打开").exists()){
+            node_kspjkdk=text("看视频即可打开").findOne(300)
+            if(node_kspjkdk){
+                bd=node_kspjkdk.bounds()
+                click(bd.centerX(),bd.top-100)
+                seead()
+            }
         }
         tv_hb=text("领取红包").findOne(300)
         if(tv_hb){
@@ -337,7 +333,8 @@ var seead=function(){
     show(appname+"看广告")
     doactionmaxtime(function(){
         show("广告循环:"+n_seead)
-        sleep(2500)
+        
+       
         if(idclick("com.jt.hanhan.video:id/k9")){
             return true
         }
@@ -383,13 +380,13 @@ var seead=function(){
             return true
         }
         if(currentPackage()!=apppkg){
-            app_go_home(2)
-            return true
+            app.launch(apppkg)
+          sleep(3000)
         }
         if(text("已签到").exists()){
             return true
         }
-       
+        sleep(2500)
     },60000)
 
     if(idclick("com.jt.hanhan.video:id/jw")){
@@ -441,25 +438,20 @@ var app_go_home=function(index){
            back()
            sleep(1000)
        }else{
-           back()
-           sleep(1000)
            if(currentPackage()!=apppkg){
                app.launch(apppkg)
-               sleep(300)
+               sleep(3000)
+           }else{
+            back()
            }
+           
        }
-       if(currentPackage()!=apppkg){
-        app.launch(apppkg)
-        sleep(3000)   
-        return true
-        }
-        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
-            seead()
-        }
+    
+
    },15000)){
        return true
    }else{
-       forcestop(apppkg)
+       forcestop(appname)
        app.launch(apppkg)
        sleep(3000)
        
@@ -477,10 +469,6 @@ var app_sign=function(){
 
            }
         }
-        if(clickoneids(["com.jt.hanhan.video:id/mk"])){
-            seead()
-        }
-
         tv_coin=id("com.jt.hanhan.video:id/a4i").findOne(300)
         if(tv_coin){
             n_coin=parseInt(tv_coin.text().replace("今日金币：",""))
@@ -523,7 +511,11 @@ var app_sign=function(){
 var selectnavi=function(n){
  let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n-1).findOne()
     if(node_navi){
-        node_navi.click()
+        
+       clicknode(node_navi)
+        return true
+    }else{
+
     }
 
 }
@@ -587,26 +579,35 @@ var app_get_reward=function(){
 var app_tomoney=function(){
 
     doactionmaxtime(function(){
+      
         if(text("我的钱包").exists()){
+        
             clicktexts(["立即提现"])
-            
-
         }else{
             if(text("立即提现").exists()){
+                node_tiaojian=textContains("每日获得1000以上金币即可获得一次提现机会").findOne(500)
+                if(node_tiaojian){
+                   if( node_tiaojian.text().search("还需获得")>-1){
+                       console.log(appname+"不够提现条件");
+                       
+                        back()
+                        return true
+                   }else{
+    
+                   }
+                }else{
+                    滑动(20,10,10,10,8,500,100)
+                }
+
                 if(textclick("立即提现")){
                     
     
                 }
-    
-    
             }else{
                 app_go_home(3)
             }
             
         }
-       
-
-
     },60000)
 }
 
@@ -690,6 +691,8 @@ var app_login_weixin=function(){
        
    
 }
+
+app_tomoney()
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
