@@ -59,6 +59,7 @@ var app_run=function(){
     app_sign()
     loopn=0
     while(true){
+        device.wakeUpIfNeeded()
         sleep(2000)
         log("循环次数："+loopn)
             //这里是视频上滑操作
