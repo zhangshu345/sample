@@ -62,7 +62,6 @@ var app_run=function(){
         sleep(2000)
         log("循环次数："+loopn)
         app_small_video_swipe()
-
         close_ad_iclicash(apppkg)
         loopn=loopn+1
     }
@@ -98,10 +97,9 @@ var app_small_video_swipe=function(){
                 }
             }
         }
-      
-
     },30000)
 }
+
 
 var app_login_check=function(){
     doactionmaxtime(function(){
@@ -126,6 +124,7 @@ var app_login_check=function(){
          app_go_home(2)
     },60000)
 }
+
 
 var app_reward_luck=function(){
     doactionmaxtime(function(){
@@ -153,9 +152,7 @@ var app_reward_luck=function(){
                 seead()
               
             }
-        
         }
-
     sleep(2000)
     },500000)
 }

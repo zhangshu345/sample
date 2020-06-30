@@ -143,7 +143,6 @@ var app_run=function(){
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
-      
         loopn=loopn+1
     }
 }

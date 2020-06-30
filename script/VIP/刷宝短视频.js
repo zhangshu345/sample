@@ -44,33 +44,6 @@ var 刷宝金币id="com.jm.video:id/tv_gold_num"
 var lastdesc=""
 var loopn=0
 //回到视频页
-var gotoappvideo=function(){
-    show("回到视频页")
-   if(doactionmaxtime(function(){
-       app_go_home(1)
-        if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment"])){
-            if(textclick("同意并继续")){
-    
-            }
-            idclick(刷宝视频广告关闭按钮2id)
-            idclick(刷宝视频广告关闭按钮1id)
-            if(text("首页").exists()){
-                textclick("首页")
-                sleep(1000)
-                textclick("推荐")
-                return true
-            }
-        }else{
-            return true
-        }
-    },20000)){
-        return true
-    }else{
-        forcestop(appname)
-        app.launch(apppkg)
-        sleep(1000)
-    }
-}
 
 var  app_go_home=function(index){
     show(appname+"回到首页"+index)
@@ -198,14 +171,34 @@ var app_sign=function(){
                       
                           }
                       }      
-                     
-       
     },45000)
-
 }
 
-var app_checklogin=function(){
 
+var app_checklogin=function(){
+    doactionmaxtime(function(){
+        show(appname+"检测登录")
+         app_go_home(5)
+         滑动(20,10,3,10,17,500,400)
+         sleep(2000)
+         idclick("com.jm.video:id/imgClose")
+         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
+         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+             show("我界面找到昵称和设置")
+             spt.put(appname+"_login",true)
+             return true
+         }
+         if(id("login_tip").exists()||text("微信账号登录")){
+             show("登录页面")
+             if(logintype=="weixin"){
+              app_login_weixin()
+              return true
+             }else{
+              app_login_phone()
+              return true
+             }
+         }
+    },60000)
 }
 
 var app_login=function(){

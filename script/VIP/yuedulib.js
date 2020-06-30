@@ -2581,7 +2581,6 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         let localapps=数据库.get("runlist","")
         if(!localapps){
             log("本地运行配置为空，从云端获取默认配置")
-        
         }else{
            runapps=localapps
         }
@@ -2593,7 +2592,6 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
     }else{
         数据库.put("runlist",runapps)
     }
-
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
     runapps.filter(function(){
         if(!app.open){
@@ -2658,6 +2656,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         runurlscript(oneapp.app.name,oneapp.path)
 }
 
+
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
@@ -2680,9 +2679,6 @@ var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicema
         if(isshowsettingfloaty){
              creatsetfloatywindow()  //创建设置悬浮窗
         }
-  
-     
-    
          if(!app.getPackageName(appname)){
               show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
              downloadandinstallapp(appname,apppkg)
