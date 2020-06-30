@@ -2,8 +2,8 @@ auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
 function httpget(url) {
-    var r = http.get(url);
-       if (r.statusCode == 200) {
+    let r = http.get(url);
+     if (r.statusCode == 200) {
         return r.body.string()
     } else {
         toastLog("网络有问题五秒后重试")
@@ -279,11 +279,7 @@ if(runscriptapp==appname && isreaderunning){
     checkscriptversion()
     checkstoragestate()
     alltest()
-    // checkfloaty()
-    // checksystemsettings()
-//     floaty.closeAll()
-//     creatgfloatywindow()
-//    creatsetfloatywindow()  //创建设置悬浮窗
+
 //     gfw.setPosition(0,220)
     if(changesetting){
         device.setMusicVolume(0)
