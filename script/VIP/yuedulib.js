@@ -1,3 +1,5 @@
+const { text } = require("express")
+
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -2188,6 +2190,20 @@ var checkstoragestate=function(minsize){
 var delectalltmpfiles=function(){
     let alltmphouzhui=["txt","log","apk","dat","inf","zip","rar","qlog","info","dump"]
     deleteAllFiles(files.getSdcardPath(),alltmphouzhui)
+}
+
+var textexists=function(t,isclickable){
+    if(!isclickable){
+        isclickable=false
+    }
+    if(text(t).visibleToUser().clickable(isclickable).exists()){
+        return true
+    }else{
+        if(desc(t).visibleToUser().clickable(isclickable).exists()){
+            return true
+        }
+    }
+    return false
 }
 
 function deleteAllEmptyDirs(dir){

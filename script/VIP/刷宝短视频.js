@@ -157,8 +157,9 @@ var selectnavi=function(index){
 var app_sign=function(){
        doactionmaxtime(function(){
         selectnavi(4)
+        滑动(20,10,3,10,17,500,100)
          show(appname+":签到")
-            sleep(2000)
+            sleep(5000)
             idclick("com.jm.video:id/imgClose")
 
            if(textContains("恭喜您获得").findOne(300)){
@@ -169,13 +170,9 @@ var app_sign=function(){
                sleep(1000)
                textclick("继续看视频领取")
            }
-           if(descclick("点击领取",200)){
-                sleep(1000)
-                descclick("继续看视频领取")
-            }
             textclick("立即签到",300)
-            descclick("立即签到",300) //有的手机是 desc 
-                    if(text("继续赚元宝").exists()){
+
+                    if(textexists("继续赚元宝")){
                         back()
                         return true
                     }
@@ -201,7 +198,7 @@ var app_sign=function(){
                       
                           }
                       }      
-                     滑动(20,10,3,10,17,500,100)
+                     
        
     },45000)
 
