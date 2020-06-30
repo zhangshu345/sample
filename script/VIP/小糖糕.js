@@ -108,11 +108,10 @@ var app_home_sweep=function(){
         }
         clickgold()
 
-
-        滑动(20,10,17,10,3,500,300)
+        滑动(20,10,17,10,1,500,300)
         sleep(1000)
         if(text("查看详情").exists()){
-            滑动(20,10,14,10,3,300,100)
+            滑动(20,10,14,10,1,300,100)
         }
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
         if(txt_like){

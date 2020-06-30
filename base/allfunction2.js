@@ -726,9 +726,11 @@ function descclick(desctext,t,left,top,right,bottom){
     right = right || device.width;
     bottom = bottom || device.height;
     var f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
-    if(f){ if(clicknode(f)){ return true}  
+    if(!f){ 
+        f=text(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
+        if(!f){ return f}  
     }
-    return false
+    return clicknode(f)
 }
 
 //文本点击
@@ -741,7 +743,10 @@ function textclick(i,t,left,top,right,bottom){
     var f=text(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
         log("text："+i+":没找到了")
-        return false
+        f=desc(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+        if(!f){
+            return false
+        }
     }
     log("text："+i+":找到了")
     return clicknode(f)
@@ -2617,5 +2622,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
         }
     },chixutime)
 }
-
 
