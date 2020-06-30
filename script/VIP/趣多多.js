@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -20,7 +22,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//检测到提醒 有刷单软件 数据异常  这是为啥
+//检测到提醒 有刷单软件 数据异常  这是为啥 
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
@@ -54,6 +56,10 @@ var rewardstatusid="cn.lingyongqian.bronn:id/vgRewardTimer"
 var videolikeid="cn.lingyongqian.bronn:id/tvLike"
 var videocommentid="cn.lingyongqian.bronn:id/tvComment"
 var isinvite=getbooleanvalue(appname+"_invite",false)
+var appyichang=getbooleanvalue(appname+"yichang",false)
+if(appyichang){
+    //这只直接执行下一个任务
+}
 //关闭最新的app
 var lastlike=""
 //app 运行
@@ -84,6 +90,9 @@ var app_small_video_swipe=function(){
 
         }else{
             app_go_home(1)
+        }
+        if(text("数据异常通知").exists()){
+            spt.put(appname+"yichang",true)
         }
         滑动(20,10,17,11,4,500,300)
         sleep(2000)
@@ -218,6 +227,7 @@ var app_invite=function(){
     doactionmaxtime(function(){
         show(appname+"邀请")
         app_go_home(5)
+        sleep(300)
         if(textclick("填写邀请码")){
             sleep(1500)
            node_yym= text("输入邀请码").editable().findOne(500)
@@ -227,6 +237,8 @@ var app_invite=function(){
                spt.put(appname+"_invite",true)
                return true
            }
+        }else{
+            return true
         }
     },60000)
 
@@ -250,7 +262,7 @@ var app_go_home=function(index){
         if(clickoneids([coinalterconfirmid])){
             seead()
         }
-        clickids([],200,1500)
+       
     },20000)
 }
 
@@ -288,7 +300,7 @@ var seead=function(){
             sleep(1000)
             return true
         }
-    },60000)
+    },40000)
     clickids([coinaltercloseid])
 }
 

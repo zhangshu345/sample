@@ -129,6 +129,12 @@ var seead=function(){
         if(close_ad_toutiao(apppkg,-1)){
             return true
         }
+        if(currentPackage()!=apppkg){
+            return true
+        }
+        if(currentActivity()==apphomeactivity){
+            return true
+        }
     },60000)
 }
 
@@ -156,7 +162,7 @@ function  app_go_home(index){
                     selectnavi(1)
                 }
             }else if(index==2){
-                if(idoneexist(["com.kuaiyin.player:id/video_like_value","com.kuaiyin.player:id/tv_title"]){
+                if(idoneexist(["com.kuaiyin.player:id/video_like_value","com.kuaiyin.player:id/tv_title"])){
                     return true
                 }else{
                     selectnavi(2)

@@ -70,12 +70,15 @@ var app_run=function(){
         }
            //这里是视频上滑操作
            if(textclick("看视频，金币再翻1倍！")){
-            if (app_seevideoad()){
-                sleep(1500)
+               sleep(1000)
+                seead()
                 idclick(视频广告结束弹窗关闭id)
-            }
         }
-  
+        if(clickoneids(["com.zheyun.bumblebee:id/tv_coin"])){
+            sleep(2000)
+            seead()
+        }
+        
         if(loopn<100){
             textclick("音乐")
             if(loopn%20==0){
@@ -92,6 +95,7 @@ var app_run=function(){
                     }
                 }else{
                     textclick("音乐")
+                    sleep(1000)
                     textclick("抖音")
                     sleep(1000)
                 }
@@ -126,7 +130,7 @@ var app_run=function(){
         
         doactionmaxtime(function(){
             if(textclick("看视频，金币再翻1倍！")){
-                if (app_seevideoad()){
+                if (seead()){
                     sleep(1500)
                     idclick(视频广告结束弹窗关闭id)
                 }
@@ -149,11 +153,47 @@ var app_checklogin=function(){
     doactionmaxtime(function(){
         show(appname+"检测登录状态")
         clicktexts(["允许","始终允许"])
+       if( idclick("com.zheyun.bumblebee:id/base_card_dialog_close")){
+           return true
+       } //立即设置的对话框的关闭按钮
 
     },60000)
 }
 
 
+var seead=function(){
+    n_seead=0
+    doactionmaxtime(function(){
+        show(appname+"广告循环:"+n_seead)
+       n_seead=n_seead+1
+
+        if(textclick("金币已到账")){
+            back()
+            sleep(1000)
+            return true
+        }
+      
+        if(close_ad_toutiao(apppkg)){
+            return true
+        }
+        if( close_ad_qq(apppkg)){
+            return true
+        }
+        if(close_ad_iclicash(apppkg)){
+           return true
+        }
+ 
+        if(currentPackage()!=apppkg){
+          return true
+        }
+        if(currentActivity()==apphomeactivity){
+            return true
+        }
+   
+        sleep(2500)
+    },60000)
+
+}
 
 //app 登录  
 var app_login=function(){
@@ -190,7 +230,6 @@ var app_login_weixin=function(){
                     return
                 }
             }
-  
         }
     }
 }
@@ -208,11 +247,12 @@ var app_login_phone=function(){
 var app_sign=function(){
     doactionmaxtime(function(){
         clicktexts(["任务"])
-        if(textclick("看视频，签到奖励翻倍！")){
+        if(clickonetexts(["看视频，签到奖励翻倍！","立即领取"])){
             seerewardvideo(apppkg,false)
             今日已签到(appname)
             return true
         }
+       
     },120000)
 
 }
@@ -250,6 +290,7 @@ var app_reward_rongyu=function(){
     doactionmaxtime(function(){
         if(text("勋章殿堂").exists()){
             if(textclick("可领取",500)){
+                sleep(2000)
                 seead()
             }
         }
@@ -257,13 +298,7 @@ var app_reward_rongyu=function(){
     },500000)
 }
 
-var app_seevideoad=function(){
-    if(seerewardvideo(apppkg,false)){
-        return  true
-    }else{
-        return false
-    }
-}
+
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
