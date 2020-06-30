@@ -82,7 +82,7 @@ var app_checklogin=function(){
         app_login_weixin()
     }
    //缺判断登录的标志
-   if(idoneexist(["com.jt.hanhan.video:id/ig"])){
+   if(idoneexist(["com.jt.hanhan.video:id/ig","com.jt.hanhan.video:id/iq"])){
     return true
     }
     if(textoneexist(["新手任务","已签到"])){
@@ -90,9 +90,7 @@ var app_checklogin=function(){
     }
 
    },60000)
-       
-      
-    
+
 }
 
 
@@ -104,67 +102,24 @@ var clickgold=function(){
         bd=node_gold.bounds()
         click(bd.centerX(),bd.top-30)
         sleep(2000)
+        if(maytextclick("看视频再送")){
+            sleep(3000)
+            seead()
+           小视频广告翻倍次数=小视频广告翻倍次数+1
+        }
         if(text("赚钱小技巧").exists()){
            back()
            sleep(1500)
            滑动(20,13,16,10,3,500,300)
-           sleep(6000)
-           clickgold()
+           sleep(2000)
        }
-       if(maytextclick("看视频再送")){
-           seead()
-               小视频广告翻倍次数=小视频广告翻倍次数+1
-       }
+      
     }else{
         show("没有找到金蛋大奖：")
     }
 
 }
 
-//  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
-function 滑动1(z,x1,y1,x2,y2,t,r) {
-    if(z>0){
-        var w = device.width/z;
-        var h = device.height/z;
-        startx=w * x1
-        endx=w*x2
-        starty=h*y1
-        endy=h*y2
-    }else{
-        startx=x1
-        endx=x2
-        starty=y1
-        endy=y2
-    }
-     if(enablegenius){
-        r=r||1000
-         log("滑动"+x1+","+y1+"->"+x2+","+y2)
-         randomSwipe(startx, starty , endx , endy)
-    }else{
-        if(startx>=endx){
-            left=endx
-            right=startx
-        }else{
-            left=startx
-            right=endx
-        }
-        if(starty>endy){
-            top=endy
-            bottom=starty
-        }else{
-            top=starty
-            bottom=endy
-        }
-        var w = boundsInside(left, top, right,bottom).scrollable().findOne(100);
-        if(w){
-            if(startx<endx){
-                w.scrollBackward()
-            }else{
-                w.scrollForward()
-            }
-        }
-    }
-}
 
 var app_small_video_swipe=function(){
     
@@ -239,7 +194,7 @@ function app_see_small_video(){
        app_small_video_swipe()
 }
 
-function app_run(){
+var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
@@ -577,38 +532,41 @@ var app_get_reward=function(){
 }
 
 var app_tomoney=function(){
-
+  
     doactionmaxtime(function(){
-      
         if(text("我的钱包").exists()){
-        
-            clicktexts(["立即提现"])
+       
+            node_tiaojian=textContains("每日获得1000以上金币即可获得一次提现机会").findOne(500)
+            if(node_tiaojian){
+               if( node_tiaojian.text().search("还需获得")>-1){
+                   console.log(appname+"不够提现条件");
+                    back()
+                    return true
+               }else{
+                   //这里应该是符合条件的
+                    if(textclick("立即提现")){
+                        sleep(2000)
+
+                        今日已提现(appname)
+                        return true
+                    }
+               }
+            }else{
+                滑动(20,10,10,10,8,500,100)
+            }
+
         }else{
             if(text("立即提现").exists()){
-                node_tiaojian=textContains("每日获得1000以上金币即可获得一次提现机会").findOne(500)
-                if(node_tiaojian){
-                   if( node_tiaojian.text().search("还需获得")>-1){
-                       console.log(appname+"不够提现条件");
-                       
-                        back()
-                        return true
-                   }else{
-    
-                   }
-                }else{
-                    滑动(20,10,10,10,8,500,100)
-                }
+           
 
                 if(textclick("立即提现")){
-                    
-    
                 }
             }else{
                 app_go_home(3)
             }
             
         }
-    },60000)
+    },30000)
 }
 
 var app_login=function(){

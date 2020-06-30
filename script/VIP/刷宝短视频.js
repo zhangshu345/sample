@@ -8,7 +8,7 @@ function httpget(url) {
         return ""
     }
 }
-滑动次数=0
+loopn=0
 
 var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
 //engines.stopOther()
@@ -263,22 +263,24 @@ var app_login_weixin=function(){
 
 
 function app_getcoinnumber(){
-     show(appname+"获取金币数")
+    let n_coin=0
      doactionmaxtime(function(){
+        show(appname+"获取金币数")
         app_go_home(5)
         sleep(2000)
             coin=id(刷宝金币id).findOne(1000)
             if(coin){
-                n=parseInt(coin.text())
-                今日记录(appname,"coin",n)
-               show("当前金币数:"+n)
-               return n
+              n_coin=parseInt(coin.text())
+                今日记录(appname,"coin",n_coin)
+                 show("当前金币数:"+n_coin)
+               return true
              }else{
                 滑动(20,10,3,10,17,500,300)
                 sleep(2000)
              }
         
      },60000)
+     return n_coin
  }
         
 
@@ -304,13 +306,13 @@ var app_getmoneyinfo=function(){
 //直接界面获取元素判断
 var cantomoney=function(){
     show("判断可提现")
-    t= textContains("今日已解锁").findOne()
+    t= textContains("今日已解锁").findOne(300)
     if(t){
         return true
     }
-    t= textContains("已解锁").findOne()
+    t= textContains("已解锁").findOne(300)
     if(t){
-        return false
+        return true
     }
     t= textContains("今日已使用").findOne()
     if(t){
@@ -333,11 +335,12 @@ var cantomoney=function(){
 
 var app_tomoney=function(){
     show(appname+"提现")
-
-    doactionmaxtime(function(){
-        f=app_getcoinnumber()
-        if(f>6800){
+    n_coin=app_getcoinnumber()
+    show("金币数："+n_coin)
+        if(app_getcoinnumber()>6700){
+            show("可以提现了")
             i=0
+            
            while(i<10){
               if(idclick(刷宝余额id)){
                 show("点击刷宝余额成功")
@@ -386,9 +389,10 @@ var app_tomoney=function(){
             return true
            }
         }else{
+            show(appname+"当前金币不够每日提现")
             return true
         }
-    },120000)
+
 
 }
 
@@ -451,18 +455,17 @@ var app_home_swipe=function(){
     },20000)
 }
 
+
+
 function app_run(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
     sleep(3000)
     app_login()
-    app_sign()
-    if(tomoney){
         if(!今日提现(appname)){
             app_tomoney()
         }
-    }
-    
+    app_sign()
     loopn=0
     while(true){
     show("循环次数:"+(loopn+1))
@@ -493,29 +496,26 @@ function app_run(){
         
         idclick("com.jm.video:id/imgClose")
    
-        滑动次数=滑动次数+1
         
         if(text("空空如也").exists()){
             // 脚本完成了
             app_go_likevideolist()
         }
-        if(滑动次数%50==0){
+        if(loopn%50==0){
             checkbattery(30)
         }
-        if(滑动次数%100==0){
-
-            if(tomoney){
+        if(loopn%100==0){
+     
                 if(!今日提现(appname)){
                     app_tomoney()
                 }
-            }
+          
         }
     
     }
     loopn=loopn+1
 }
 }
-
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
