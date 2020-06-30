@@ -2557,6 +2557,107 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         runurlscript(oneapp.app.name,oneapp.path)
 }
 
+
+
+//本地配置启用脚本
+var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invitecodeconfigurl){
+    device.wakeUpIfNeeded()
+    if(pushchannel){
+        addbmobchannel(pushchannel)
+    }
+    
+    configpath=configpath||rewardapplisturl
+    listapp(readerapps)
+    let nowtime=nowdate()
+    let xiaoshi=nowtime.getHours()
+    let fen=nowtime.getMinutes()+3
+   
+    var runapps=[]
+    var appconfig=httpget(configpath)
+    webapps=JSON.parse(appconfig)
+    if(webapps){
+        runapps=webapps
+    }else{
+        let localapps=数据库.get("runlist","")
+        if(!localapps){
+            log("本地运行配置为空，从云端获取默认配置")
+        
+        }else{
+           runapps=localapps
+        }
+    }
+    if(!runapps){
+        //10分钟重启
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        return true
+    }else{
+        数据库.put("runlist",runapps)
+    }
+
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    runapps.filter(function(){
+        if(!app.open){
+           return false
+        }
+        if(今日已提现(app.app.name)){
+            return false
+        }
+        if(今日时长(app.app.name)>app.runconfig.maxtime){
+            return false
+        }
+        return true
+    })
+    toastLog("runapp："+runapps.length)
+    if(runapps.length==0){
+        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+        return
+    }
+    //下载应用 并保持最新
+    runapps.forEach(app=>{
+        if(!getPackageName(app.app.name)){
+            downloadandinstallapp(app.app.name,app.app.pkg)
+        }else{
+            keepappisnewer(app.app.name,app.app.pkg)
+        }
+    })
+    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+        runapps= shuffleArray(runapps)
+        runapps.forEach(app => {
+                let runconfig=app.runconfig
+                if(runconfig&&app.path){
+                    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+                    while(fen>=60){
+                        fen=fen-60
+                        xiaoshi=xiaoshi+1
+                        if(xiaoshi==24){
+                            xiaoshi=0
+                        }
+                      }
+                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                     fen=fen+ Math.ceil(runconfig.onetime/60)
+                }
+        })
+        while(fen>=60){
+            xiaoshi=xiaoshi+1
+            fen=fen-60
+            if(xiaoshi==24){
+                xiaoshi=0
+            }
+          }
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+        closerecentapp()
+        closelastscriptapp()
+        spt.remove("lastscriptapp")
+        spt.remove("hongshuyuedu_run_app")
+        spt.put("hongshuyuedu_running",true)
+        threads.start(function(){
+            delectapkfile()
+        }
+        )
+        oneapp=runapps[0]
+        runurlscript(oneapp.app.name,oneapp.path)
+}
+
 var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)

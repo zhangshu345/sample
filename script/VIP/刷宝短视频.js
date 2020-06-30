@@ -418,6 +418,7 @@ function app_go_likevideolist(){
 }
 var app_home_swipe=function(){
     doactionmaxtime(function(){
+        show(appname+"滑动")
         滑动(20,13,16,10,4,500,700)
         sleep(2000)
         id_desc=  id("com.jm.video:id/desc").findOne(1000)
@@ -509,9 +510,7 @@ function app_run(){
             checkbattery(30)
         }
         if(滑动次数%100==0){
-            if(!今日已签到(appname)){
-                app_sign()
-            }
+
             if(tomoney){
                 if(!今日提现(appname)){
                     app_tomoney()
