@@ -434,7 +434,7 @@ var app_close_alter=function(){
 var app_sign=function(){
     show("快手签到")
     if(今日签到(appname)){return true}
-    app_home_activity(3)
+    app_go_home(3)
     doactionmaxtime(function(){
         log("快手签到内部")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
@@ -521,7 +521,7 @@ var app_getrewardnum=function(){
 var app_getreward=function(){
     show("快手查看视频广告")
     if(今日签到(appname)){return true}
-    app_home_activity(3)
+    app_go_home(3)
     doactionmaxtime(function(){
         log("快手签到内部")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
@@ -560,7 +560,7 @@ var selectnavi=function(index){
     }
 }
 
-var app_home_activity=function(index){
+var app_go_home=function(index){
     show(appname+"回到主页")
         index=index||-1
         doactionmaxtime(function(){
@@ -759,7 +759,7 @@ var app_get_coin_money=function(){
     if(   doactionmaxtime(function(){      
     if(currentActivity()!=appsignactivity){
         show("获取金币数和余额")
-        app_home_activity(3)
+        app_go_home(3)
         sleep(2000)
         node_reward=id(快手极速版视频页奖励id).findOne(200)
         if(node_reward){
@@ -815,11 +815,12 @@ function app_run(){
     todaysign=true
     loopn=0
     while(true){
+    
         app_close_alter()
         device.wakeUpIfNeeded()
         loopn=loopn+1
         log("循环："+loopn)
-        app_home_activity(3)
+        app_go_home(3)
         app_home_video()
         快手极速版视频滑动()
 

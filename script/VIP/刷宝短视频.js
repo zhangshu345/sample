@@ -12,7 +12,7 @@ function httpget(url) {
 
 var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
 //engines.stopOther()
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -41,7 +41,8 @@ var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
-
+var lastdesc=""
+var loopn=0
 //回到视频页
 var gotoappvideo=function(){
     show("回到视频页")
@@ -254,6 +255,7 @@ var app_login_phone=function(){
     }
 }
 
+
 var app_login_weixin=function(){
     i=0
     while (i<10){
@@ -417,7 +419,46 @@ function app_go_likevideolist(){
         }
     },60000)
 }
-
+var app_home_swipe=function(){
+    doactionmaxtime(function(){
+        滑动(20,13,16,10,4,500,700)
+        sleep(2000)
+        id_desc=  id("com.jm.video:id/desc").findOne(1000)
+       if(id_desc){
+           currentdesc=id_desc.text()
+           log("之前："+lastdesc+"--当前："+currentdesc)
+           if(currentdesc==lastdesc){
+              
+           }else{
+               like=id("com.jm.video:id/text_view").findOne(500)
+               if(like){
+                   tlike=like.text()
+                   if(tlike){
+                      if(tlike.includes("万")){
+                          log("喜欢过万")
+                       comment= id("com.jm.video:id/comment").findOne()
+                       if(comment){
+                         if(comment.text()!="评论"){
+                             if(comment.text().includes("万")||parseInt(comment.text())>1000){
+                                 log('评论过千了')
+                               id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));
+                               if(target){clicknode(target);}});
+                             }
+                         }else{
+                             log("没有人评论")
+                         }
+                       }
+                       sleepr(8000*ratio,10000*ratio)
+                      }else{
+                        sleepr(6000*ratio,8000*ratio)
+                      }
+                      return true
+                   }
+               }
+           }
+       }
+    },20000)
+}
 
 function app_run(){
     toastLog(appname+"---apprun")
@@ -431,9 +472,9 @@ function app_run(){
         }
     }
     
-    xhcs=0
+    loopn=0
     while(true){
-    show("循环次数:"+(xhcs+1))
+    show("循环次数:"+(loopn+1))
     closeappundostate()
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
         if(text("点击进入直播间").exists()){
@@ -454,54 +495,15 @@ function app_run(){
         if( textclick("等待")){
             sleep(1000)
         }
-        close_ad_toutiao(apppkg)
-        close_ad_qq(apppkg)
-        id_desc=  id("com.jm.video:id/desc").findOne(1000)
-        if(id_desc){
-            lastdesc=id_desc.text()
-            log("当前："+lastdesc)
-        }
+
+        app_home_swipe()
+
         textclick("继续看视频")
-        滑动(20,13,16,10,4,500,700)
-         sleep(2000)
-         id_desc=  id("com.jm.video:id/desc").findOne(1000)
-        if(id_desc){
-            currentdesc=id_desc.text()
-            log("之前："+lastdesc+"--当前："+currentdesc)
-            if(currentdesc==lastdesc){
-                滑动(20,13,16,10,4,500,700)
-                sleep(1000)
-            }else{
-                like=id("com.jm.video:id/text_view").findOne(500)
-                if(like){
-                    tlike=like.text()
-                    if(tlike){
-                       if (tlike.includes("万")){
-                           log("喜欢过万")
-                        comment= id("com.jm.video:id/comment").findOne()
-                        if(comment){
-                          if(comment.text()!="评论"){
-                              if(comment.text().includes("万")||parseInt(comment.text())>1000){
-                                  log('评论过千了')
-                                id("list").findOne().children().forEach(child => {var target = child.findOne(id("image_view"));
-                                if(target){clicknode(target);}});
-                              }
-                          }else{
-                              log("没有人评论")
-                          }
-                        }
-                       }
-                    }
-                }
-            }
-        }else{
-            滑动(20,13,16,10,4,500,700)
-            sleep(1000)
-        }
+        
         idclick("com.jm.video:id/imgClose")
-        clicktexts(["继续看视频领取"],100,1500)
+   
         滑动次数=滑动次数+1
-        sleepr(6000*ratio,10000*ratio)
+        
         if(text("空空如也").exists()){
             // 脚本完成了
             app_go_likevideolist()
@@ -521,7 +523,7 @@ function app_run(){
         }
     
     }
-    xhcs=xhcs+1
+    loopn=loopn+1
 }
 }
 
