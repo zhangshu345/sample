@@ -431,13 +431,20 @@ var sendforcestopIntent=function(apppkg){
 }
 
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
-var show=function(txt){ 
+var show=function(txt,txtcolor){ 
     try {
+   
        txt= scriptruntime()+"秒："+txt
         log(txt);
          if(!isshowfloaty){ toast(txt); return  };
         if(!gfw){ creatgfloatywindow(); }else{
-            ui.run(function(){ gfw.text.setText(txt);})
+            ui.run(function(){ 
+                gfw.text.setText(txt);
+                if(txtcolor){
+                gfw.text.setTextColor(txtcolor)
+                }
+            })
+          
         }
        
     } catch (error) {

@@ -536,6 +536,7 @@ if(runscriptapp==appname && isreaderunning){
     // checksystemsettings()
    floaty.closeAll()
    creatgfloatywindow()
+   show(appname+"开始","#ffffff")
   //  creatsetfloatywindow()  //创建设置悬浮窗
     gfw.setPosition(0,device.height-250)
     if(changesetting){
