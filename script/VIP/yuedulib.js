@@ -434,7 +434,7 @@ var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 var show=function(txt){ 
     try {
        txt= scriptruntime()+"秒："+txt
-        Log(txt);
+        log(txt);
          if(!isshowfloaty){ toast(txt); return  };
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ gfw.text.setText(txt);})
