@@ -463,7 +463,7 @@ var app_home_swipe=function(){
 
 
 
-function app_run(){
+var  app_run=function(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
     sleep(3000)

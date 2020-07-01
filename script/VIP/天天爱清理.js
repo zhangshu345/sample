@@ -66,11 +66,6 @@ var app_run=function(){
             app_clean()
         }
                   //应该做可以回到首页的操作
-            if(close_ad_qq(apppkg)){
-            
-            }
-             if(close_ad_toutiao(apppkg)){
-             }
       
             if(idclick("com.xiaoqiao.qclean:id/iv_end_close",200)){
              }
@@ -113,7 +108,6 @@ doactionmaxtime(function(){
 
 
 var app_checklogin=function(){
-    
     doactionmaxtime(function(){
         clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
         clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
@@ -190,6 +184,7 @@ var app_go_home=function(index){
         }else if(ca==applaunchactivity){
             sleep(3000)
         }else{
+
             idclick("com.xiaoqiao.qclean:id/iv_close")
             back()
         }
@@ -207,12 +202,11 @@ var app_go_home=function(index){
             app.launch(apppkg)
             sleep(3000)
         }
-        seead()
+         idclick("com.xiaoqiao.qclean:id/iv_close")
         sleep(1000)
     },60000)){
         return true
     }else{
-       
         app.launch(apppkg)
         sleep(3000)
        
@@ -367,7 +361,6 @@ var app_sign=function(){
         if(maytextclick("看视频再送")){
             seead()
         }
-
         //金币派对  天天乐
         if(textclick("轮播")){
             doactionmaxtime(function(){
@@ -393,6 +386,7 @@ var app_sign=function(){
         }
         if(textclick("瓜分金币",1000)){
             doactionmaxtime(function(){
+                show("瓜分金币")
                 if(textclick("领取专属勋章和金币")){
                     app_getreward()
                     return true
@@ -416,6 +410,7 @@ var app_sign=function(){
         }
         if(textclick("幸运转盘",1000)){
             doactionmaxtime(function(){
+                show("幸运转盘")
                 if(textclick("看视频抽大奖")){
                     seead()
                 }
@@ -437,6 +432,7 @@ var app_sign=function(){
         
         if(textclick("金币派对",1000)){
             doactionmaxtime(function(){
+                show("金币派对")
                 if(maytextclick("看视频")){
                     seead()
                 }
@@ -595,10 +591,10 @@ var seead=function(timeout){
             sleep(1000)
             return true
         }
-       if( close_ad_qq(apppkg)){
-           return true
-       }
-       if(close_ad_toutiao(apppkg)){
+    //    if( close_ad_qq(apppkg)){
+    //        return true
+    //    }
+       if(close_ad_iclicash(apppkg)){
             return true
        }
         if(text("奖励已到账").exists()){
@@ -607,12 +603,9 @@ var seead=function(timeout){
             return true
         }
         ca=currentActivity()
-        if(ca==apphomeactivity){
-            return  true
-        }else if(ca==appcleanactivity){
-            back()
-            app_go_home(2)
-        }
+      if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
+          return true
+      }
         if(idoneexist(视频页标记id集合)){
             return true
         }
@@ -627,7 +620,6 @@ var seead=function(timeout){
         }
     },60000)
 }
-
 
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
