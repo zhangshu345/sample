@@ -449,9 +449,9 @@ var app_home_swipe=function(){
                              log("没有人评论")
                          }
                        }
-                       sleepr(8000*ratio,10000*ratio)
+                       sleepr(5000*ratio,8000*ratio)
                       }else{
-                        sleepr(6000*ratio,8000*ratio)
+                        sleepr(3000*ratio,5000*ratio)
                       }
                       return true
                    }
@@ -511,7 +511,6 @@ var  app_run=function(){
             checkbattery(30)
         }
         if(loopn%100==0){
-     
                 if(!今日提现(appname)){
                     app_tomoney()
                 }
