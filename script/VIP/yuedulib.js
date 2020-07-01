@@ -1923,13 +1923,13 @@ var close_ad_kk=function(apppkg){
         doactionmaxtime(function(){
             show("关闭快手广告")
             if(getTextfromid(apppkg+":id/video_countdown")=="关闭广告"){
-                idclick(apppkg+":id/video_countdown")
-                return true
+                textclick("关闭广告")
             }
             
             if(textoneexist(["点击重播","免费下载","关闭广告"])){
                 back()
-                return true
+                sleep(1000)
+                
             }
             if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
                 return true
