@@ -9,6 +9,7 @@ importClass(android.content.Intent)
 importClass(android.provider.MediaStore)
 importClass(android.net.Uri)
 importClass(java.io.File)
+importClass(com.hongshu.utils.SPUtils)
 var admanager=AdviceManager.getInstance();
 
 showLoginUI();
@@ -17,6 +18,7 @@ w=device.width
 h=device.height
 imgw=""+w/2
 var dewm
+var  spt= SPUtils.getInstance("makecode")
 
 //显示登录界面
 function showLoginUI(){
@@ -66,22 +68,31 @@ function showLoginUI(){
     })
     ui.emitter.on("create",function(){
         log("oncreate")
-        
+        ui.content.setText(spt.getString("last","再次写入要生成的二维码内容"))
      })
     
     ui.emitter.on("resume",function(){
         log("onresume")
         
      })
-
+     ui.emitter.on("pause",function(){
+         log("执行pause")
+       spt.put("last",ui.content.getText())
+     })
      ui.rewardad.on("click",function(){
         //admanager.showRewardVideoAd(ui.ll.getContext(),null)
+      
         if(dewm){
-            saveimg2(dewm,"/sdcard/1.jpg")
+            rawInput("请输入图片保存名称", "1").then(savename =>{
+                saveimg2(dewm,"/sdcard/"+savename+".jpg");
+            });
+            
         //    if( ImageUtils.save(dewm,"/sdcard/1.jpg",Bitmap.CompressFormat.JPEG,false)){
         //        toastLog("保存成功")
              
         //    }
+        }else{
+            dialogs.alert("二维码图像丢失，请重新生成二维码")
         }
         
      })
@@ -101,10 +112,18 @@ log("imgurl:"+imguri)
 
 }
 
-function saveimg2(bitmap,imgpath){
-    if( ImageUtils.save(bitmap,imgpath,Bitmap.CompressFormat.JPEG,false)){
+function saveimg2(bitmap,imgpath,format){
+    imgformat=Bitmap.CompressFormat.JPEG
+    if(format==1){
+        imgformat=Bitmap.CompressFormat.JPEG
+    }else if(format==2){
+        imgformat=Bitmap.CompressFormat.PNG
+    }else if(format==3){
+        imgformat=Bitmap.CompressFormat.WEBP
+    }
+    if(ImageUtils.save(bitmap,imgpath,imgformat,false)){
         //        toastLog("保存成功")
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imgpath))));
-         }
+     }
     
 }

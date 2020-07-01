@@ -426,7 +426,7 @@ var app_close_alter=function(){
         sleep(1000)
     }
     if (textclick("立即重播",100)){
-        app_sweep()
+        app_swipe_up()
     }
     show(appname+"关闭弹窗完毕")
 }
@@ -442,7 +442,7 @@ var app_sign=function(){
         }
         滑块验证()
        if(app_get_coin_money()){
-            滑动(20,10,17,10,3,500,200)
+            滑动(20,10,18,10,3,500,200)
             sleep(1000)
             doactionmaxnumber(function(){
                 if(app_getrewardnum()>=10){
@@ -529,7 +529,7 @@ var app_getreward=function(){
         }
         滑块验证()
        if(app_get_coin_money()){
-            滑动(20,10,17,10,3,500,200)
+            滑动(20,10,18,10,3,500,300)
             sleep(1000)
        }
        
@@ -625,9 +625,9 @@ var app_invite=function(){
     }
    return false
 }
-var app_sweep=function(){
+var app_swipe_up=function(){
     if(enablegenius){
-        滑动(20,13,16,10,3,400,400)
+        滑动(20,10,18,10,3,500,300)
     }else{
          vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(200)
          if(vp){
@@ -652,11 +652,11 @@ var app_sweep=function(){
          return -1
      }
  }
- var 快手极速视频下滑=function(){
+ var app_swipe_down=function(){
     if(enablegenius){
-        滑动(20,13,3,10,17,400,400)
+        滑动(20,10,3,10,18,400,400)
     }else{
-            vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
+            vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(300)
             if(vp){
                 log("找到快手滑动vp")
                 vp.scrollBackward()
@@ -720,22 +720,28 @@ var app_tomoney=function(){
 }
 
 var 快手极速版视频滑动=function(){
-    if(random(0,20)<20-视频重复次数){
-        app_sweep()
-    }else{
-        快手极速视频下滑()
-    }
+    // if(random(0,20)<20-视频重复次数){
+       
+    // }else{
+    //     app_swipe_down()
+    // }
+
     doactionmaxtime(function(){
-        if(idoneexist(快手极速版视频页标志集合id))
-        if(textoneexist(["点击打开长图","点击打开图集"],200)){
-            app_sweep()
-         }
+         app_swipe_up()
          sleep(2000)
+        if(!idoneexist(快手极速版视频页标志集合id)){
+            app_go_home(3)
+        }
+        if(textoneexist(["点击打开长图","点击打开图集"],200)){
+            app_swipe_up()
+            sleep(2000)
+         }
+
+     
          nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
              if(nowdesc==lastdesc){
-                app_sweep()
-
+                app_swipe_up()
              }else{
                 n_like=快手极速版获取视频点赞数()
                 if(n_like >minlike){
@@ -746,11 +752,10 @@ var 快手极速版视频滑动=function(){
                 }else{
                     快手极速版视频滑动()
                 }
-
+                lastdesc=nowdesc
                  return true
+                 
              }
-         }else{
-            app_sweep()
          }
     },20000)
 }

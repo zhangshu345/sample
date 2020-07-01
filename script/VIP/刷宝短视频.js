@@ -41,6 +41,10 @@ var 刷宝视频广告关闭按钮1id="com.jm.video:id/tt_video_ad_close_layout"
 var 刷宝视频广告关闭按钮2id="com.jm.video:id/iv_close"
 var 刷宝余额id="com.jm.video:id/tv_mine_money"
 var 刷宝金币id="com.jm.video:id/tv_gold_num"
+var 刷宝首页奖励id="com.jm.video:id/imgUp"
+var 刷宝首页视频点赞人数id=""  
+var 刷宝首页视频点赞可点击id="com.jm.video:id/praise"
+var 刷宝首页标记id集合=[刷宝首页奖励id,刷宝首页视频点赞可点击id]
 var lastdesc=""
 var loopn=0
 //回到视频页
@@ -57,8 +61,9 @@ var  app_go_home=function(index){
         idclick("com.jm.video:id/imgClose")
         ca=currentActivity()
         if(ca=="com.jm.video.ui.main.MainActivity"){
+            sleep(300)
             if(index==1){
-                if(id("com.jm.video:id/iv_home_search").exists()){
+                if(idoneexist(刷宝首页标记id集合)){
                     return true
                 }else{
                     selectnavi(1)
@@ -95,7 +100,8 @@ var  app_go_home=function(index){
         }
     }
     textclick("取消")
-    },15000)){return true}else{
+    },20000)){return true
+    }else{
         forcestop(appname)
         app.launch(apppkg)
         sleep(3000)
@@ -144,9 +150,8 @@ var app_sign=function(){
                textclick("继续看视频领取")
            }
             textclick("立即签到",300)
-
                     if(textexists("继续赚元宝")){
-                        back()
+                        
                         return true
                     }
                     if(textclick("看视频签到",300)||descclick("看视频签到",500)){
@@ -285,21 +290,22 @@ function app_getcoinnumber(){
         
 
 var app_getmoneyinfo=function(){
+    f_money=0
     doactionmaxtime(function(){
         app_go_home(5)
             sleep(2000)
             money=id(刷宝余额id).findOne(1000)
             if(money){
-                f=parseFloat(money.text())
-                数据库.put("lastmoney",f)
-                return f
+                f_money=parseFloat(money.text())
+                数据库.put("lastmoney",f_money)
+                return f_money
             }else{
                 滑动(20,10,3,10,17,500,300)
                 sleep(2000)
             }
 
     },20000)
-
+    return f_money
 
 }
 

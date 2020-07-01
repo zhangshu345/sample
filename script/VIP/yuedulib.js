@@ -1000,6 +1000,8 @@ function control_click(button, vlause, left, top, right, bottom) {
 }
 //  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
 function 滑动(z,x1,y1,x2,y2,t,r) {
+    t=t||500
+    r=r||500
     if(z>0){
         var w = device.width/z;
         var h = device.height/z;
@@ -1019,14 +1021,15 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         // points=[]
         // zx=startx
         // zy=starty
+        // points.push([startx,starty])
         // for(let i=0;i<z;i++){
         //     points.push([zx+i*randomint(w/2,w*3/2),zy+randomint(h/2,h/2*3)])
         // }
         // points.push([endx,endy])
         // delay=t+random(0, r)
         // gestures(delay,delay/z,points)
-        // swipe(startx, starty , endx , endy, t+random(0, r))
-        randomSwipe(startx, starty , endx , endy)
+       // swipe(startx, starty , endx , endy, t+random(0, r))
+        randomSwipe(startx, starty , endx , endy,t,r)
     }else{
         if(startx>=endx){
             left=endx
@@ -1111,10 +1114,12 @@ function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
  * 传入值：起点终点坐标
  * 效果：模拟真人滑动
  */
-function randomSwipe(sx,sy,ex,ey){
+function randomSwipe(sx,sy,ex,ey,t,r){
+    log(sx+","+sy+","+ex+","+ey+","+t+","+r)
     //设置随机滑动时长范围
-    var timeMin=500
-    var timeMax=1500
+    var timeMin=t||500
+    var timeMax=timeMin+randomint(0,r)||1500
+    log(sx+","+sy+","+ex+","+ey+","+timeMin+","+timeMax)
     //设置控制点极限距离
     var leaveHeightLength=500
     //根据偏差距离，应用不同的随机方式
@@ -1139,10 +1144,11 @@ function randomSwipe(sx,sy,ex,ey){
     }
 
     //获取运行轨迹，及参数
-    var time=[0,random(timeMin,timeMax)]
+
+    var time=[0,random(timeMin,timeMax)] 
     var track=bezierCreate(sx,sy,x2,y2,x3,y3,ex,ey)
     
-    log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1])
+    log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1]+"最小:"+timeMin+"::最长:"+timeMax)
     //滑动
     gestures(time.concat(track))
     
@@ -1924,7 +1930,7 @@ var close_ad_kk=function(apppkg){
                 back()
                 return true
             }
-            if(currentActivity()!="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
+            if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
                 return true
             }
             sleep(1000)
@@ -2736,3 +2742,11 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 
+ 滑动(20,10,18,10,3,500,200)
+sleep(3000)
+// 滑动(20,10,17,10,3,500,200)
+// sleep(3000)
+// 滑动(20,10,18,10,3,500,200)
+// sleep(3000)
+
+randomSwipe(500,1800,500,300,2000,3000)
