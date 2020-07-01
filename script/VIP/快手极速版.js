@@ -336,6 +336,7 @@ var app_sign=function(){
                   return true
                 }
                 if(textclick("福利",500)){
+                    sleep(3000)
                     close_ad_kk(apppkg)
                     sleep(2000)
                 }
