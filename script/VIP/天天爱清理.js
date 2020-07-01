@@ -629,7 +629,7 @@ var seead=function(timeout){
 }
 
 
- app_tomoney()
+
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
 let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
