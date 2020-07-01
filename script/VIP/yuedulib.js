@@ -433,7 +433,6 @@ var sendforcestopIntent=function(apppkg){
 var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 var show=function(txt,txtcolor){ 
     try {
-   
        txt= scriptruntime()+"秒："+txt
         log(txt);
          if(!isshowfloaty){ toast(txt); return  };
@@ -441,6 +440,7 @@ var show=function(txt,txtcolor){
             ui.run(function(){ 
                 gfw.text.setText(txt);
                 if(txtcolor){
+                    toast("改变颜色:"+txtcolor)
                 gfw.text.setTextColor(txtcolor)
                 }
             })
@@ -2758,3 +2758,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // // sleep(3000)
 
 // randomSwipe(500,1800,500,300,2000,3000)
+
