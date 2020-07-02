@@ -1,3 +1,6 @@
+const e = require("express")
+const { text } = require("express")
+
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -98,26 +101,39 @@ var 微信扫一扫=function(){
 }
 var 微信浏览=function(url){
   let  weixinpkg=getPackageName("微信")
- if(wexinpkg){
+ if(weixinpkg){
      app.launch(weixinpkg)
      sleep(3000)
+     ca=currentActivity()
+     log("当前activity："+ca)
      if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
         log("微信欢迎页")
     }else if(ca=="com.tencent.mm.ui.LauncherUI" ){
         log("微信主页")
         if(textclick("微信")){
             sleep(1500)
-             node_weixin=textStartsWith("微信号：").className("android.widget.TextView").clickable(true).findOne(300)
-            if(node_weixin){
-            let weixin=node_weixin.text().substring(4)
-            spt.put("weixin",weixin)
-            log("微信号："+weixin)
-            }
-            node_weixinname=className("android.view.View").depth(17).drawingOrder(1).enabled(true).boundsInside(200,200,1080,450).findOne()
-            if(node_weixinname){
-                let weixinname=node_weixinname.text()
-                spt.put("weixinname",weixinname)
-                log("微信名："+weixinname)
+           node_img= className("android.widget.ImageView").visibleToUser().depth(14).findOne(300)
+            if(node_img){
+                clicknode(node_img)
+                sleep(2000)
+              node_edit= className("android.widget.EditText").visibleToUser().editable(true).depth(15).findOne(300)
+              if(node_edit){
+                  node_edit.setText(url)
+                  sleep(1000)
+                  textclick("发送")
+                  sleep(1000)
+                node_icons=  descContains("头像").visibleToUser().find()
+                  if(node_icons){
+                      node_icon=node_icons[node_icons.length-1]
+                      if(node_icon){
+                       bd= node_icon.bounds
+                       x=bd.centerX()-200
+                       y=bd.centerY()
+                       click(x,y)
+                      }
+                     
+                  }
+              }
             }
         
         }
@@ -152,9 +168,141 @@ var 微信浏览=function(url){
     }
   }
 }
+var 微信加好友=function(weixinhao,phone){
+    if(微信回到首页()){
+        if(textclick("通讯录")){
+            while(!textclick("新的朋友")){
+                滑动(20,10,5,10,15,500,500)
+            }
+            text("添加朋友").waitFor()
+            
+
+        }
+    }
+}
 
 var 微信打开链接=function(weburl){
+    微信发消息("")
+}
+var 微信聊天页发送消息=function(message,isclick){
+    className("android.widget.EditText").visibleToUser().editable(true).waitFor()
+    node_edit= className("android.widget.EditText").visibleToUser().editable(true).findOne(300)
+    if(node_edit){
+        node_edit.setText(message)
+        sleep(1000)
+        textclick("发送")
+        if(isclick){
+            sleep(1000)
+            node_icons=  descContains("头像").visibleToUser().find()
+              if(node_icons){
+                  node_icon=node_icons[node_icons.length-1]
+                  if(node_icon){
+                   bd= node_icon.bounds()
+                   x=bd.centerX()-200
+                   y=bd.centerY()
+                   click(x,y)
+                   return true
+                  }
+                 
+              }
+        }
+    }
+}
+
+var 微信到聊天界面=function(friend){
+  if(微信回到首页()){
+    if(textclick("通讯录")){
+        sleep(1500)
+        while(!textclick(friend)){
+         滑动(20,10,17,10,5,500,500)
+         }
+    text("发消息").waitFor()
+    textclick("发消息")
+    sleep(1500)
+     return true
+    }
+  }else{
+      return false
+  }
+}
+
+var 微信回到首页=function(){
+    let  weixinpkg=getPackageName("微信")
+    if(weixinpkg){
+       if(doactionmaxtime(function(){
+            if(currentPackage()!=weixinpkg){
+                app.launch(weixinpkg)
+                sleep(3000)
+            }
+        ca=currentActivity()
+        log("当前activity："+ca)
+        if(ca=="com.tencent.mm.plugin.account.ui.WelcomeActivity"){
+           log("微信欢迎页")
+           return true
+       }else if(ca=="com.tencent.mm.ui.LauncherUI" ){
+           log("微信主页")
+           return true
+       }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
+           log("微信登录页")
+           spt.put("weixinlogin",false)
+           spt.put("weixinshiming",false)
+            back()
+       }else if(ca=="com.tencent.mm.plugin.account.ui.RegByMobileRegAIOUI"){
+           log("微信注册页")
+           spt.put("weixinlogin",false)
+           spt.put("weixinshiming",false)
+           return false
+       }else if(ca=="com.tencent.mm.plugin.sns.ui.SnsTimeLineUI"){
+           log("微信朋友圈")
+            back()
+       }else if(ca=="com.tencent.mm.plugin.profile.ui.ContactInfoUI"){
+           log("微信个人名片")
+           spt.put("weixinlogin",true)
+           back()
+       }else if(ca=="com.tencent.mm.plugin.webview.ui.tools.WebViewUI"){
+           log("微信网页")
+           back()
+       }else{
+           back()
+           sleep(1000)
+       }
+    },30000)){
+        return  true
+    }else{
+        return false
+    }
     
+     }else{
+         return false
+     }
+}
+
+var 微信发消息=function(friend,message,isclick){
+    if(微信到聊天界面(friend)){
+           微信聊天页发送消息(message,isclick)
+    }
+}
+var 微信搜索打开链接=function(searchword){
+    if(微信回到首页()){
+        if(textclick("微信")){
+            sleep(1500)
+           node_img= className("android.widget.ImageView").visibleToUser().drawingOrder(1).depth(17).findOne(300)
+            if(node_img){
+                clicknode(node_img)
+                sleep(2000)
+              node_edit= className("android.widget.EditText").visibleToUser().editable(true).depth(11).findOne(300)
+              if(node_edit){
+                  node_edit.setText(searchword)
+                  sleep(1000)
+                  maytextclick("搜一")
+                  sleep(1000)
+                 textContains("访问网页").waitFor()
+                 maytextclick("访问网页")
+              }
+            }
+        
+        }
+    }
 }
 
 var 视频重复次数=2
@@ -2759,3 +2907,5 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 
 // randomSwipe(500,1800,500,300,2000,3000)
 
+
+微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")

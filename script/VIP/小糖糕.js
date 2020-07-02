@@ -20,7 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//微信链接邀请绑定 之后登陆  http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80
+//微信链接邀请绑定 之后登陆  http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80 
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
@@ -70,11 +70,21 @@ var app_run=function(){
     }
 }
 
+
 var app_home_sweep=function(){
-   
     doactionmaxtime(function(){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
             show(appname+"不在视频页 回到视频页")
+
+            if(maytextclick("看视频再")){
+                show(appname+"点击 看视频再领")
+                sleep(3000)
+                seead()
+                小视频广告翻倍次数=小视频广告翻倍次数+1
+            }else{
+                show("看视频再领 没有找到")
+            }
+
             app_go_home(1)
         }
         if(idclick("com.jifen.ponycamera:id/base_card_dialog_confirm")){
@@ -91,19 +101,8 @@ var app_home_sweep=function(){
         }else{
             show(appname+"点击看视频再领 id 没有找到")
         }
-        if(maytextclick("看视频再领")){
-            show(appname+"点击 看视频再领")
-            sleep(3000)
-            seead()
-            小视频广告翻倍次数=小视频广告翻倍次数+1
-        }else{
-            show("看视频再领 没有找到")
-        }
-        if(maytextclick("看视频再送")){
-            sleep(3000)
-            seead()
-            小视频广告翻倍次数=小视频广告翻倍次数+1
-        }
+      
+
         clickgold()
 
         滑动(20,10,17,10,1,500,300)
@@ -132,11 +131,13 @@ var app_login_check=function(){
     
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
-        app_go_home(4)
+        
         clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
         if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
             app_login()
         }
+        app_go_home(4)
+
     if(text("可提现").exists()){
         return true
     }else{
@@ -374,12 +375,7 @@ var clickgold=function(){
   if(idclick("com.jifen.ponycamera:id/image_complete",300)){
       show(appname+"金蛋点击成功")
      sleep(1500)
-    if(maytextclick("看视频再领")){
-        seead()
-        return true
-        小视频广告翻倍次数=小视频广告翻倍次数+1
-    }
-    if(maytextclick("看视频再送")){
+    if(maytextclick("看视频再")){
         seead()
         return true
         小视频广告翻倍次数=小视频广告翻倍次数+1
@@ -413,12 +409,15 @@ var seead=function(){
         if(text("勋章殿堂").exists()){
             clickonetexts(["去领取","待领取","可领取"])
         }
+
         if(maytextclick("看视频再领")){
             
         }
+
         if(maytextclick("看视频再送")){
             
         }
+
         if(clickoneids(["com.jifen.ponycamera:id/iv_close","com.jifen.ponycamera:id/tv_close"],150,1500)){
             back()
             return true
@@ -472,12 +471,12 @@ if(runscriptapp==appname && isreaderunning){
         engines.stopOther()
     }
     alltest()
-    // checkfloaty()
+     checkfloaty()
     // checksystemsettings()
     // floaty.closeAll()
-    // creatgfloatywindow()
+     creatgfloatywindow()
     // creatsetfloatywindow()  //创建设置悬浮窗
-    // gfw.setPosition(0,220)
+     gfw.setPosition(0,device.height-200)
     if(changesetting){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")

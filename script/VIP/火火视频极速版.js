@@ -373,6 +373,9 @@ var app_go_home=function(index){
            }else if(index==3){
             selectnavi(3)
             return true
+           }else if(index==4){
+            selectnavi(4)
+            return true
            }else{
                selectnavi(1)
             return true
@@ -477,7 +480,7 @@ var selectnavi=function(n){
 
 var app_get_reward=function(){
     show(appname+"获取奖励")
-    app_go_home(3)
+    app_go_home(4)
     doactionmaxtime(function(){
     show(appname+"获取奖励内部")
     idclick("com.jt.hanhan.video:id/k9")
@@ -557,12 +560,10 @@ var app_tomoney=function(){
 
         }else{
             if(text("立即提现").exists()){
-           
-
                 if(textclick("立即提现")){
                 }
             }else{
-                app_go_home(3)
+                app_go_home(4)
             }
             
         }
