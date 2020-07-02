@@ -613,10 +613,19 @@ var app_video_swipe=function(){
     // }else{
     //     app_swipe_down()
     // }
-
+let swipenumber=0
     doactionmaxtime(function(){
+        if(swipenumber>2){
+            vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
+            if(vp){
+                log("找到快手滑动vp")
+                vp.scrollForward()
+            }
+        }else{
+            app_swipe_up()
+        }
       
-         app_swipe_up()
+         swipenumber=swipenumber+1
          sleep(2000)
         if(!idoneexist(快手极速版视频页标志集合id)){
             app_go_home(3)
@@ -626,12 +635,10 @@ var app_video_swipe=function(){
             sleep(2000)
          }
          
-     
          nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
-             if(nowdesc==lastdesc){
-                app_swipe_up()
-             }else{
+             if(nowdesc!=lastdesc){
+           
                 n_like=快手极速版获取视频点赞数()
                 if(n_like >minlike){
                     idclick(快手极速版喜欢按钮id)
@@ -644,6 +651,8 @@ var app_video_swipe=function(){
                 lastdesc=nowdesc
                  return true
                  
+             }else{
+
              }
          }
     },20000)

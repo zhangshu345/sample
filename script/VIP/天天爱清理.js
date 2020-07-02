@@ -125,7 +125,7 @@ var app_checklogin=function(){
                show(appname+"已经登录")
                return true
            }
-    },40000)
+    },30000)
 }
 var app_go_home=function(index){
     index=index||2
@@ -193,12 +193,11 @@ var app_go_home=function(index){
 
         idclick("com.xiaoqiao.qclean:id/iv_close")
         sleep(1000)
-    },60000)){
+    },30000)){
         return true
     }else{
         app.launch(apppkg)
         sleep(3000)
-       
     }
 
 }
@@ -219,14 +218,12 @@ var selectnavi=function(index){
 // 
 var app_getreward=function(){
 
-
 }
 
 
 var app_clean=function(){
     show(appname+":清理 签到")
     doactionmaxtime(function(){
-     
         clicktexts(["首页","暂不领取","暂不领取"])
         if(maytextclick("一键清理")){
             sleep(5000)
@@ -272,7 +269,7 @@ var app_clean=function(){
         if(text("一键扫描").exists()){
             return true
         }
-    },10000)
+    },60000)
 }
 
 
@@ -414,7 +411,7 @@ var app_reward_luckpan=function(){
     app_go_home(3)
         doactionmaxtime(function(){
             if(textclick("幸运转盘",1000)){
-                
+
             }
             show("幸运转盘")
             if(textclick("看视频抽大奖")){
