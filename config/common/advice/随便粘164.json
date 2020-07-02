@@ -6,8 +6,8 @@
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",
     "sign":"",
-    "versioni":160,
-    "version":"1.6.0",
+    "versioni":164,
+    "version":"1.6.4",
     "ratiosplash":"tt—10",
     "ratiobanner":"tt—10",
     "ratiochaping":"tt—10",
@@ -58,8 +58,7 @@
     "drawvideo":"945124255",
     "nativevideo":"945124256"},
     "adview":
-    {
-        "open":false,
+    {   "open":false,
         "appid":"",
          "splash":"",
         "banner":"",
@@ -79,6 +78,5 @@
         "rewardvideo":"255842",
         "appwall":"283748",
         "appwallnative":"283749"
-       
     }
 }
