@@ -70,24 +70,28 @@ var app_run=function(){
 
              }
             if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",200)){
+                show("点击了双倍金币")
                 seead()
             }
             if(textoneexist(广告标志集合)){
                 show("找到广告标识")
                 seead()
             }
-            if(idclick(天天爱清理弹窗广告id,100)){
-                 show("点击广告id")
+      
+            if(maytextclick("看视频",200)){
+                show("maytextclick 看视频")
                  seead()
+            }else{
+                show("没有找到看视频")
             }
-            if(maytextclick("看视频",100)){
+            if(textclick("看视频最高翻5倍",200)){
+                show("点击 文本 看视频最高翻5倍")
                  seead()
-            }
-            if(textclick("看视频最高翻5倍",100)){
-                 seead()
+            }else{
+                show("没有找到看视频最高翻5倍")
             }
             if(idclick("com.xiaoqiao.qclean:id/rl_close")){
-               
+                show("点击关闭 rl_close")
             }
             app_home_video_sweep()
             loopn=loopn+1
@@ -176,16 +180,17 @@ var app_go_home=function(index){
             sleep(1000)
         }else if(ca==applaunchactivity){
             sleep(3000)
-        }else{
-            
+        }else if(ca="com.iclicash.advlib.ui.front.InciteADActivity"){
+            seead()
+        }
+        else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
             }else{
                 back()
             }
-        
-            
+          
         }
         if(maytextclick("看视频再领")){
             seead()
@@ -345,11 +350,18 @@ var app_sign=function(){
     show(appname+"：签到")
     app_go_home(3)
     doactionmaxtime(function(){
-        if(maytextclick("看视频再送")){
-            if( seead()){
-                return true
+        if(textContains("看视频再送").exists()){
+            sleep(1000)
+            if(maytextclick("看视频再送")){
+                log("点击 看视频再送")
+                if(seead()){
+                    return true
+                }
             }
+        }else{
+            show("没有找到 看视频再送")
         }
+     
     },15000)
 }
 
@@ -475,8 +487,17 @@ var app_reward_coin=function(){
 
 var  app_home_video_sweep=function(){
     doactionmaxtime(function(){
-        if(maytextclick("看视频再领")){
+        if(idclick(天天爱清理弹窗广告id,200)){
+            show("点击广告id")
             seead()
+       }else{
+           show("没有找到弹窗广告id")
+       }
+        if(maytextclick("看视频再领")){
+            show("看视频再领")
+            seead()
+        }else{
+            show("没有找到 看视频再领")
         }
         if(!idoneexist(视频页标记id集合)){
             app_go_home(2)
@@ -484,20 +505,23 @@ var  app_home_video_sweep=function(){
           滑动(20,15,17,7,3,500,300)
           sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
-            if(text_like!=lasttitle){
-                 n=parseInt(text_like)
-                show(appname+":喜欢人数"+text_like)
-                if(n>1000){
-                    sleepr(8000*ratio,12000*ratio)
-                }else if(n>500){
-                    sleepr(7000*ratio,9000*ratio)
-                }else if(n>100){
-                    sleepr(6000*ratio,8000*ratio)
-                }else{
-                    sleepr(5000*ratio,7000*ratio)
-                }
-                lasttitle=text_like
-                return true
+            show("视频喜欢人数:"+text_like)
+            if(text_like){
+                if(text_like!=lasttitle){
+                    n=parseInt(text_like)
+                   show(appname+":喜欢人数"+text_like)
+                   if(n>1000){
+                       sleepr(8000*ratio,12000*ratio)
+                   }else if(n>500){
+                       sleepr(7000*ratio,9000*ratio)
+                   }else if(n>100){
+                       sleepr(6000*ratio,8000*ratio)
+                   }else{
+                       sleepr(5000*ratio,7000*ratio)
+                   }
+                   lasttitle=text_like
+                   return true
+               }
             }
     },60000)
 }
@@ -526,12 +550,15 @@ var app_tomoney=function(){
                    if(f_money<minmoney){
                        toastLog("不够提现余额")
                        return true
+                   }else{
+                        textclick("去提现")
+                        sleep(3000)
                    }
                }
            }
         }else if(nca=="com.jifen.qu.open.QX5WebViewActivity"){
             clicktexts(["去提现","每天可提现","立即提现"],300,2000)
-           idclick("com.xiaoqiao.qclean:id/btn_back")
+             idclick("com.xiaoqiao.qclean:id/btn_back")
         }else{
             if(!idContains(apppkg).exists()){
                 app.launch(apppkg)
@@ -540,42 +567,7 @@ var app_tomoney=function(){
                 back()
             }
         }
-        if (textclick("我的")){
-            滑动(20,10,4,10,10,300,100)
-            text("去提现").waitFor()
-            sleep(2000)
-            node_ktomoney=text("可提现(元)").findOne(300)
-            if(node_ktomoney){
-                node_parent=node_ktomoney.parent()
-                if(node_parent){
-                    node_yue=node_parent.child(0)
-                    if(node_yue&&node_yue.text()){
-                        show("余额:"+node_yue.text())
-                        f_yue=parseFloat(node_yue.text())
-                        if(f_yue>=minmoney){
-                            if(textclick("去提现")){
-                                text("立即提现").waitFor()
-                                clicktexts(["每天可提","立即提现"],300,2000)
-                                sleep(2000)
-                                return true
-                            }
-                        }else{
-                            textclick("视频")
-                            
-                             return true
-                        }
-                    }else{
-                        show("余额控件没找到")
-                    }
-                }else{
-                    show("余额上级控件没找到")
-                }
-            }else{
-                show("没找到可提现")
-            }
-        }else{
-            show("点击我的 失败了")
-        }
+
         if(textContains("提现申请提交成功").exists()){
             今日已提现(appname)
             return true
@@ -583,12 +575,49 @@ var app_tomoney=function(){
     },60000)
 }
 
+var app_tomoney2=function(){
+    app_go_home(4)
+        滑动(20,10,4,10,10,300,100)
+        text("去提现").waitFor()
+        node_ktomoney=text("可提现(元)").findOne(300)
+        if(node_ktomoney){
+            node_parent=node_ktomoney.parent()
+            if(node_parent){
+                node_yue=node_parent.child(0)
+                if(node_yue&&node_yue.text()){
+                    show("余额:"+node_yue.text())
+                    f_yue=parseFloat(node_yue.text())
+                    if(f_yue>=minmoney){
+                        if(textclick("去提现")){
+                            text("立即提现").waitFor()
+                            clicktexts(["每天可提","立即提现"],300,2000)
+                            sleep(2000)
+                            return true
+                        }
+                    }else{
+                        textclick("视频")
+                        
+                         return true
+                    }
+                }else{
+                    show("余额控件没找到")
+                }
+            }else{
+                show("余额上级控件没找到")
+            }
+        }else{
+            show("没找到可提现")
+        }
+    
+}
+
 var seeadnum=0
 
 var seead=function(timeout){
     seeadnum=seeadnum+1
     show(appname+":看广告："+seeadnum)
-if(  doactionmaxtime(function(){
+if(doactionmaxtime(function(){
+    show(appname+":看广告："+seeadnum)
         if(text("点击重播").exists()){
             back()
             sleep(1000)

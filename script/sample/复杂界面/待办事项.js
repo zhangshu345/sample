@@ -1,7 +1,5 @@
 "ui";
-
 importClass(android.graphics.Paint);
-
 ui.layout(
     <frame>
         <vertical>
@@ -27,6 +25,7 @@ ui.layout(
             margin="16" layout_gravity="bottom|right" tint="#ffffff" />
     </frame>
 );
+
 
 var materialColors = ["#e91e63", "#ab47bc", "#5c6bc0", "#7e57c2", "##2196f3", "#00bcd4",
     "#26a69a", "#4caf50", "#8bc34a", "#ffeb3b", "#ffa726", "#78909c", "#8d6e63"];

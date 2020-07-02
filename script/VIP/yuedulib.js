@@ -439,10 +439,10 @@ var show=function(txt,txtcolor){
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ 
                 gfw.text.setText(txt);
-                if(txtcolor){
-                    toast("改变颜色:"+txtcolor)
-                gfw.text.setTextColor(txtcolor)
-                }
+                // if(txtcolor){
+                //     toast("改变颜色:"+txtcolor)
+                // // gfw.text.setTextColor(txtcolor)
+                // }
             })
           
         }
