@@ -69,7 +69,6 @@ var app_run=function(){
         sleep(2000)
         log("循环次数："+loopn)
         app_novel_read()
-
         close_ad_iclicash(apppkg)
         loopn=loopn+1
     }

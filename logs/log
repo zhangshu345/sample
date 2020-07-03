@@ -1,0 +1,7 @@
+[2020-07-03 19:00:06.416] [INFO] console - open
+[2020-07-03 19:00:06.423] [INFO] console - 开启线程执行
+[2020-07-03 19:00:06.425] [INFO] console - 注册请求
+[2020-07-03 19:00:06.428] [INFO] console - Server has started
+[2020-07-03 19:00:06.429] [INFO] console - stat error
+[2020-07-03 19:00:06.429] [INFO] console - rad dir error
+[2020-07-03 19:00:06.439] [INFO] console - { inspect: [Function: inspect] }

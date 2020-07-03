@@ -62,12 +62,6 @@ var app_run=function(){
             app.launch(apppkg)
             sleep(3000)
         }
-        ca=currentActivity()
-        if(ca!=apphomeactivity){
-            
-        }else{
-
-        }
            //这里是视频上滑操作
            if(textclick("看视频，金币再翻1倍！")){
                sleep(1000)

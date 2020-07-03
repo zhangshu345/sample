@@ -127,46 +127,29 @@ var app_checklogin=function(){
 }
 var app_go_home=function(index){
     index=index||2
-    
     if(doactionmaxtime(function(){
-        show("回到主页："+index)
+        
         closeappundostate()
         ca=currentActivity()
+        show("回到主页："+index+"--"+ca)
         if(ca==apphomeactivity){
-            sleep(1000)
+            sleep(500)
             if(index==1){
-                if(id("com.xiaoqiao.qclean:id/tv_how_to_make_money").exists()){
-             
-                    return true
-                }else{
-                    selectnavi(1)
-                }
+                selectnavi(1)
+                return true
             }else if(index==2){
-               
                 if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_task_status"])){
                     return true
                 }else{
                     selectnavi(2)
                 }
             }else if(index==3){
-                if(textoneexist(["我的金币","连续3天未登录，账户金币会被瓜分哦！"])){
-                    return true
-                }else{
                     selectnavi(3)
-                    sleep(1000)
-                }
-         
-            }else if(index==4){
-                if(textoneexist(["我的钱包","金币余额"])){
                     return true
-                }else{
-                    selectnavi(4)
-                    sleep(2000)
-                    if(text("立即登录").exists()){
-                        textclick("立即登录")
-                        app_login_weixin()
-                    }
-                }
+            }else if(index==4){
+                   selectnavi(4)
+                    return true
+        
             }else{
                 return true
             }
@@ -179,13 +162,15 @@ var app_go_home=function(index){
         }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
             seead()
         }else{
+            
+            if(isadviceactivity()){
+                seead()
+            }
+            back()
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
-            }else{
-                back()
             }
-          
         }   
         if(textStartsWith("看视频再").exists()){
             if(maytextclick("看视频再")){
@@ -206,6 +191,7 @@ var app_go_home=function(index){
     }else{
         app.launch(apppkg)
         sleep(3000)
+        app_go_home(index)
     }
 
 }
@@ -402,10 +388,13 @@ var app_reward_dayluck=function(){
 }
 
 var app_reward_coinpick=function(){
+    show("瓜分金币")
     if(获取今日记录(appname,"coinpick")>=7){
+        show("瓜分金币 已经完成了")
         return true
     }
-        
+    show("瓜分金币开始")
+    app_go_home(3)
         doactionmaxtime(function(){
             show("瓜分金币")
             ca=currentActivity()
@@ -414,12 +403,10 @@ var app_reward_coinpick=function(){
                if(node_guafen){
                  clicknode(node_guafen)
                }
-            }else if(ca==""){
-
-            }else if(ca==""){
-               
-            }else{
-                app_go_home(3)
+            }else if(ca=="com.jifen.qu.open.QX5WebViewActivity"){
+                //
+                show("在奖励页")
+           
             }
             
             if(textclick("领取专属勋章和金币")){
@@ -682,7 +669,7 @@ if(doactionmaxtime(function(){
      if(close_ad_qq(apppkg)){
             return true
       }
-       if( close_ad_toutiao(apppkg)){
+       if(close_ad_toutiao(apppkg)){
            return true
        }
        if(close_ad_iclicash(apppkg)){
@@ -717,7 +704,18 @@ if(doactionmaxtime(function(){
     return false
 }
 
-app_reward_coinpick()
+
+while(true){
+    app_go_home(1)
+    sleep(5000)
+    app_go_home(2)
+    sleep(5000)
+    app_go_home(3)
+    sleep(5000)
+    app_go_home(4)
+    sleep(5000)
+}
+
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)

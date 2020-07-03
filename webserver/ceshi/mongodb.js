@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://192.168.1.2:27017/";
+var url = "mongodb://zhangshuhong888.iask.in:27017/";
  
 MongoClient.connect(url, { useNewUrlParser: true ,useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
