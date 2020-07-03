@@ -2046,6 +2046,22 @@ function get_phone_code(app_name,reg,startwords,endwords){
     return code
 }
 
+var isadviceactivity=function(ca){
+    ca=ca||currentActivity()
+    
+ const   adviceActivitys=["com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
+    "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
+    "com.liquid.adx.sdk.ad.video.RewardVideoActivity",  
+    "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",//快手
+    "com.qq.e.ads.PortraitADActivity",
+    "com.qq.e.ads.ADActivity",
+    "com.iclicash.advlib.ui.front.ADBrowser","com.iclicash.advlib.ui.front.InciteADActivity" 
+    ]
+    return adviceActivitys.indexOf(ca)
+
+
+}
+
 //关闭穿山甲激励视频广告
 var close_ad_toutiao=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
@@ -2162,7 +2178,7 @@ var close_ad_qq=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-            let adappname=getTextfromid("com.dongdong.jiantie:raw/bsd2_full")
+           
         },60000)){
             return true
         }else{
@@ -2193,14 +2209,12 @@ var close_ad_iclicash=function(apppkg,clickgailv){
                     back()
                    return true
             }
-
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
             ca=currentActivity()
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
-              
-                back()
+                
             }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"){
                 
             }else{
@@ -2921,3 +2935,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 
 
 // 微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
+// log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
