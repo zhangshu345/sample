@@ -887,26 +887,26 @@ function descclick(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-function textclick(i,t,left,top,right,bottom){
+function textclick(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
     right = right|| device.width;
     bottom = bottom || device.height;
-    var f=text(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    var f=text(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
         log("text："+i+":没找到了")
-        f=desc(i).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+        f=desc(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
         if(!f){
             return false
         }
     }
-    log("text："+i+":找到了")
+    log("text："+txt+":找到了")
     return clicknode(f)
 }
 
 function maytextclick(maytext,t,left,top,right,bottom){
-    if(!maytext){  return  false;    }
+    if(!maytext){  return  false; }
     t=t || 200
     left = left || 0;
     top = top || 0;

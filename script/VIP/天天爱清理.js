@@ -55,7 +55,7 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
-    app_tomoney()
+    app_tomoney2()
     app_sign()
     loopn=0
     while(true){
@@ -71,25 +71,15 @@ var app_run=function(){
              }
             if(idclick("com.xiaoqiao.qclean:id/tv_gold_double",200)){
                 show("点击了双倍金币")
+                sleep(2000)
                 seead()
             }
             if(textoneexist(广告标志集合)){
                 show("找到广告标识")
                 seead()
             }
-      
-            if(maytextclick("看视频",200)){
-                show("maytextclick 看视频")
-                 seead()
-            }else{
-                show("没有找到看视频")
-            }
-            if(textclick("看视频最高翻5倍",200)){
-                show("点击 文本 看视频最高翻5倍")
-                 seead()
-            }else{
-                show("没有找到看视频最高翻5倍")
-            }
+           
+
             if(idclick("com.xiaoqiao.qclean:id/rl_close")){
                 show("点击关闭 rl_close")
             }
@@ -99,13 +89,29 @@ var app_run=function(){
 }
 
 //荣耀殿堂那个
-var app_getreward=function(){
-doactionmaxtime(function(){
-    n_gold=text("+100金币").visibleToUser().findOne(1000)
+var app_reward_xunzhangdiantang=function(){
+    let adn=0
+    doactionmaxtime(function(){
+        show(appname+"勋章殿堂")
+    n_gold=text("+\\d+金币").visibleToUser().findOne(1000)
     if(n_gold){
+        show("找到:"+n_gold.text())
         clicknode(n_gold)
+        sleep(4000)
+        seead()
+        adn=adn+1
+    }else{
+        滑动(20,10,17,10,5,500,200)
+        sleep(1000)
+        adn=adn+1
     }
-
+    if(idclick("com.xiaoqiao.qclean:id/rl_close")){
+        
+    }
+    if(adn>20){
+        return true
+    }
+    
 },600000)
     
 }
@@ -113,6 +119,7 @@ doactionmaxtime(function(){
 
 var app_checklogin=function(){
     doactionmaxtime(function(){
+        show(appname+"检测登录状态")
         clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
         clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
         idclick("com.xiaoqiao.qclean:id/iv_close")
@@ -133,8 +140,10 @@ var app_checklogin=function(){
 }
 var app_go_home=function(index){
     index=index||2
-    show("回到主页："+index)
+    
     if(doactionmaxtime(function(){
+        show("回到主页："+index)
+        closeappundostate()
         ca=currentActivity()
         if(ca==apphomeactivity){
             sleep(1000)
@@ -179,11 +188,10 @@ var app_go_home=function(index){
             back()
             sleep(1000)
         }else if(ca==applaunchactivity){
-            sleep(3000)
-        }else if(ca="com.iclicash.advlib.ui.front.InciteADActivity"){
+            sleep(1000)
+        }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
             seead()
-        }
-        else{
+        }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3000)
@@ -191,12 +199,20 @@ var app_go_home=function(index){
                 back()
             }
           
+        }   
+        if(textStartsWith("看视频").exists()){
+            if(maytextclick("看视频")){
+                show("点击了看视频")
+                seead()
+            }
         }
-        if(maytextclick("看视频再领")){
-            seead()
+      
+        if(idclick("com.xiaoqiao.qclean:id/btn_get_coin")){
+            //勋章殿堂
+            app_reward_xunzhangdiantang()
         }
-
         idclick("com.xiaoqiao.qclean:id/iv_close")
+        idclick("com.xiaoqiao.qclean:id/result_close")
         sleep(1000)
     },30000)){
         return true
@@ -220,10 +236,6 @@ var selectnavi=function(index){
     }
 }
 
-// 
-var app_getreward=function(){
-
-}
 
 
 var app_clean=function(){
@@ -320,6 +332,8 @@ doactionmaxtime(function(){
     clicktexts(["确定","微信","同意"],300,2000)
     if(text("恭喜你，解锁荣誉勋章").exists()){
         if(maytextclick("立即领取")){
+            show("点击了立即领取")
+            sleep(2000)
             seead()
         }
         return true
@@ -385,7 +399,7 @@ var app_reward_dayluck=function(){
                 seead()
             }
             if(textclick("领取专属勋章和金币")){
-                app_getreward()
+                app_reward_xunzhangdiantang()
                 return true
             }
         },500000)
@@ -397,7 +411,7 @@ var app_reward_coinpick=function(){
         doactionmaxtime(function(){
             show("瓜分金币")
             if(textclick("领取专属勋章和金币")){
-                app_getreward()
+                app_reward_xunzhangdiantang()
                 return true
             }
             if(textclick("瓜分ta")){
@@ -413,7 +427,7 @@ var app_reward_coinpick=function(){
                 return true
             }
             if(textclick("领取专属勋章和金币")){
-                app_getreward()
+                app_reward_xunzhangdiantang()
             }
         },300000)
     }
@@ -422,14 +436,17 @@ var app_reward_coinpick=function(){
 var app_reward_luckpan=function(){
     app_go_home(3)
         doactionmaxtime(function(){
-            if(textclick("幸运转盘",1000)){
+            show("幸运转盘")
+            if(textclick("幸运转盘",300)){
 
             }
-            show("幸运转盘")
+           
             if(textclick("看视频抽大奖")){
+                show("点击了看视频抽大奖")
                 seead()
             }
             if(textclick("看视频再试一次")){
+                show("点击了看视频抽大奖")
                 seead()
             }
             node_cishu=textMatches("今日还剩 \\d+ 次机会").findOne(1000)
@@ -438,7 +455,7 @@ var app_reward_luckpan=function(){
                 return true
             }
             if(textclick("领取专属勋章和金币")){
-                app_getreward()
+                app_reward_xunzhangdiantang()
                 return true
             }
 
@@ -452,13 +469,17 @@ var app_reward_coinparty=function(){
         doactionmaxtime(function(){
             show("金币派对")
             if(maytextclick("看视频")){
+                show("点击了  看视频")
+                sleep(2000)
                 seead()
             }
             if(textclick("免费再玩一次")){
+                show("点击了  免费再玩一次")
+                sleep(2000)
                 seead()
             }
             if(textclick("领取专属勋章和金币")){
-                app_getreward()
+                app_reward_xunzhangdiantang()
                 return true
             }
         },300000)
@@ -493,8 +514,9 @@ var  app_home_video_sweep=function(){
        }else{
            show("没有找到弹窗广告id")
        }
-        if(maytextclick("看视频再领")){
-            show("看视频再领")
+        if(maytextclick("看视频")){
+            show("看视频")
+            sleep(2000)
             seead()
         }else{
             show("没有找到 看视频再领")
@@ -576,7 +598,7 @@ var app_tomoney=function(){
 }
 
 var app_tomoney2=function(){
-    app_go_home(4)
+         app_go_home(4)
         滑动(20,10,4,10,10,300,100)
         text("去提现").waitFor()
         node_ktomoney=text("可提现(元)").findOne(300)
@@ -615,12 +637,22 @@ var seeadnum=0
 
 var seead=function(timeout){
     seeadnum=seeadnum+1
-    show(appname+":看广告："+seeadnum)
+ 
 if(doactionmaxtime(function(){
     show(appname+":看广告："+seeadnum)
+    if(idclick("com.xiaoqiao.qclean:id/tv_ad_button")){
+        sleep(3000)
+    }
+    if(maytextclick("看视频",300)){
+        show("看视频")
+        
+    }
         if(text("点击重播").exists()){
             back()
             sleep(1000)
+            return true
+        }
+        if(close_ad_qq(apppkg)){
             return true
         }
        if( close_ad_toutiao(apppkg)){
@@ -636,7 +668,9 @@ if(doactionmaxtime(function(){
         }
         ca=currentActivity()
       if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
-          return true
+          
+      }else{
+        return true
       }
         if(idoneexist(视频页标记id集合)){
             return true
@@ -644,9 +678,7 @@ if(doactionmaxtime(function(){
         if(!idContains(apppkg).exists()){
             return true
         }
-        if(idclick("com.xiaoqiao.qclean:id/tv_ad_button")){
-            sleep(3000)
-        }
+       
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }
@@ -656,7 +688,6 @@ if(doactionmaxtime(function(){
     }
     return false
 }
-
 
 let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
 log("正在集合运行的APP"+runscriptapp)
@@ -678,7 +709,7 @@ if(runscriptapp==appname && isreaderunning){
     creatgfloatywindow()
   //  creatsetfloatywindow()  //创建设置悬浮窗
     show(appname+"辅助滑动")
-    gfw.setPosition(0,220)
+    gfw.setPosition(0,device.height-220)
     if(!app.getPackageName(appname)){
         toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)
