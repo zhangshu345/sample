@@ -896,7 +896,7 @@ function textclick(txt,t,left,top,right,bottom){
     bottom = bottom || device.height;
     var f=text(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
-        log("text："+i+":没找到了")
+        log("text："+txt+":没找到了")
         f=desc(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
         if(!f){
             return false
