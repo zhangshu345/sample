@@ -694,7 +694,8 @@ if(doactionmaxtime(function(){
             return true
         }
  
-      if(isadviceactivity()){
+      if(isadviceactivity()>-1){
+          show("是广告页:")
           
       }else{
         return true
