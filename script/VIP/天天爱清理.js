@@ -118,6 +118,9 @@ var app_reward_xunzhangdiantang=function(){
 
 
 var app_checklogin=function(){
+    if(获取今日记录(appname,"checklogin")){
+        return true
+    }
     doactionmaxtime(function(){
         show(appname+"检测登录状态")
         clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
@@ -134,6 +137,7 @@ var app_checklogin=function(){
         
            if(textContains("邀请码").exists()){
                show(appname+"已经登录")
+               今日记录(appname,"checklogin",true)
                return true
            }
     },30000)
@@ -177,7 +181,7 @@ var app_go_home=function(index){
                     sleep(2000)
                     if(text("立即登录").exists()){
                         textclick("立即登录")
-                         app_login_weixin()
+                        app_login_weixin()
                     }
                 }
             }else{
@@ -200,8 +204,8 @@ var app_go_home=function(index){
             }
           
         }   
-        if(textStartsWith("看视频").exists()){
-            if(maytextclick("看视频")){
+        if(textStartsWith("看视频再").exists()){
+            if(maytextclick("看视频再")){
                 show("点击了看视频")
                 seead()
             }
@@ -375,6 +379,7 @@ var app_sign=function(){
         }else{
             show("没有找到 看视频再送")
         }
+        if(clickonetexts(["翻倍","看视频领金币","看视频再"]))
      
     },15000)
 }
@@ -468,8 +473,8 @@ var app_reward_coinparty=function(){
     if(textclick("金币派对",1000)){
         doactionmaxtime(function(){
             show("金币派对")
-            if(maytextclick("看视频")){
-                show("点击了  看视频")
+            if(maytextclick("看视频再")){
+                show("点击了  看视频再")
                 sleep(2000)
                 seead()
             }
@@ -514,12 +519,12 @@ var  app_home_video_sweep=function(){
        }else{
            show("没有找到弹窗广告id")
        }
-        if(maytextclick("看视频")){
+        if(maytextclick("看视频再")){
             show("看视频")
             sleep(2000)
             seead()
         }else{
-            show("没有找到 看视频再领")
+            show("没有找到 看视频再")
         }
         if(!idoneexist(视频页标记id集合)){
             app_go_home(2)
@@ -598,10 +603,13 @@ var app_tomoney=function(){
 }
 
 var app_tomoney2=function(){
+    if(今日提现(appname)){
+        return false
+    }
          app_go_home(4)
         滑动(20,10,4,10,10,300,100)
-        text("去提现").waitFor()
-        node_ktomoney=text("可提现(元)").findOne(300)
+        sleep(3000)
+        node_ktomoney=text("可提现(元)").findOne(3000)
         if(node_ktomoney){
             node_parent=node_ktomoney.parent()
             if(node_parent){
@@ -614,11 +622,11 @@ var app_tomoney2=function(){
                             text("立即提现").waitFor()
                             clicktexts(["每天可提","立即提现"],300,2000)
                             sleep(2000)
+                            今日已提现(appname)
                             return true
                         }
                     }else{
                         textclick("视频")
-                        
                          return true
                     }
                 }else{
@@ -630,7 +638,6 @@ var app_tomoney2=function(){
         }else{
             show("没找到可提现")
         }
-    
 }
 
 var seeadnum=0
@@ -643,18 +650,17 @@ if(doactionmaxtime(function(){
     if(idclick("com.xiaoqiao.qclean:id/tv_ad_button")){
         sleep(3000)
     }
-    if(maytextclick("看视频",300)){
-        show("看视频")
-        
+    if(maytextclick("看视频再",300)){
+        show("看视频再")
     }
-        if(text("点击重播").exists()){
+     if(text("点击重播").exists()){
             back()
             sleep(1000)
             return true
-        }
-        if(close_ad_qq(apppkg)){
+     }
+     if(close_ad_qq(apppkg)){
             return true
-        }
+      }
        if( close_ad_toutiao(apppkg)){
            return true
        }

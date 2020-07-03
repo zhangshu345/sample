@@ -634,6 +634,7 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
+
 var 应用登录=function(name){return getbooleanvalue(name+"_login",false)}
 var 应用已登录=function(name){spt.put(name+"_login",true)}
 var 今日签到=function(name){cs=数据库.get(name+"_sign_"+today(), false);toastLog(name+"今日签到:"+cs);  return cs;}
@@ -1077,6 +1078,20 @@ var clickonetexts=function(texts,t,st){
     }
     return false
 }
+
+var clickonemaytexts=function(texts,t,st){
+    log("开始点击文本集合:"+texts)
+      st=st || 500
+      t=t || 500
+      for(i=0;i<texts.length;i++){
+          if(maytextclick(texts[i],t)){
+              sleep(st)
+              return true
+          }
+      }
+      return false
+  }
+
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认一分钟无点击效果就退出 发现stop 文本出现就退出
 var whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
