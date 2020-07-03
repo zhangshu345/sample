@@ -2905,4 +2905,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // randomSwipe(500,1800,500,300,2000,3000)
 
 
-微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
+// 微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
