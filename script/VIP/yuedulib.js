@@ -1,6 +1,3 @@
-const e = require("express")
-const { text } = require("express")
-
 importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
