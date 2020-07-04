@@ -31,7 +31,6 @@ device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js"
-
 //addbmobchannel("yuedutimer5")
 readercheck()
 runapps=["快手极速版","刷宝短视频","天天爱清理","彩蛋视频","小糖糕","火火视频极速版","趣铃声","铃声秀","快音","快看点","酷狗音乐大字版","荔枝铃声","米读极速版"]
