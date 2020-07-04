@@ -93,6 +93,9 @@ var app_reward_xunzhang=function(){
     if(adn>20){
         return true
     }
+    if(isadviceactivity()){
+        seead()
+    }
     
 },600000)
     
@@ -362,8 +365,19 @@ var app_sign=function(){
 
 var app_reward_dayluck=function(){
      //金币派对  天天乐
-         app_go_home(3)
+      
         doactionmaxtime(function(){
+            if(currentActivity()!=""){
+                if(currentPackage()!=apppkg){
+                    app.launch(apppkg)
+                    sleep(3000)
+                }else{
+                    app_go_home(3)
+                    sleep(3000)
+                    滑动()
+                }
+               
+            }
             show("天天乐")
             if(text("本期剩余次数0").exists()){
                 return true
@@ -376,12 +390,15 @@ var app_reward_dayluck=function(){
            if(node_yyy){
             node_yyy.click()
            }
-            if(clickonetexts(["继续抽数字",""])){
+            if(clickonetexts(["继续抽数字","看视频领金币"])){
                 seead()
             }
             if(textclick("领取专属勋章和金币")){
                 app_reward_xunzhang()
                 return true
+            }
+            if(isadviceactivity()){
+                seead()
             }
         },500000)
 
@@ -436,6 +453,9 @@ var app_reward_coinpick=function(){
                 今日记录(appname,"coinpick",7)
                 app_reward_xunzhang()
             }
+            if(isadviceactivity()){
+                seead()
+            }
         },300000)
  
 }
@@ -464,6 +484,9 @@ var app_reward_luckpan=function(){
                 app_reward_xunzhang()
                 return true
             }
+            if(isadviceactivity()){
+                seead()
+            }
 
         },300000)
    
@@ -487,6 +510,9 @@ var app_reward_coinparty=function(){
             if(textclick("领取专属勋章和金币")){
                 app_reward_xunzhang()
                 return true
+            }
+            if(isadviceactivity()){
+                seead()
             }
         },300000)
     }
@@ -521,7 +547,6 @@ var  app_home_video_sweep=function(){
                     seead()
                 }
             }
-      
         }
  
         if(!idoneexist(视频页标记id集合)){

@@ -2796,13 +2796,13 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         return
     }
     //下载应用 并保持最新
-    runapps.forEach(app=>{
-        if(!getPackageName(app.app.name)){
-            downloadandinstallapp(app.app.name,app.app.pkg)
-        }else{
-            keepappisnewer(app.app.name,app.app.pkg)
-        }
-    })
+    // runapps.forEach(app=>{
+    //     if(!getPackageName(app.app.name)){
+    //         downloadandinstallapp(app.app.name,app.app.pkg)
+    //     }else{
+    //         keepappisnewer(app.app.name,app.app.pkg)
+    //     }
+    // })
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
