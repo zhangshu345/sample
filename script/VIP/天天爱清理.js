@@ -65,9 +65,8 @@ var app_run=function(){
         if(loopn%50==0){
             app_clean()
         }
-
-            app_home_video_sweep()
-            loopn=loopn+1
+        app_home_video_sweep()
+        loopn=loopn+1
        }
 }
 
@@ -128,7 +127,6 @@ var app_checklogin=function(){
 var app_go_home=function(index){
     index=index||2
     if(doactionmaxtime(function(){
-        
         closeappundostate()
         ca=currentActivity()
         show("回到主页："+index+"--"+ca)
@@ -260,7 +258,8 @@ var app_clean=function(){
             return true
         }
         if(text("继续扫描").exists()){
-            textclick("继续扫描'")
+            maytextclick("继续扫描")
+            sleep(3000)
         }
     },60000)
 }
@@ -338,6 +337,7 @@ doactionmaxtime(function(){
 // //app 签到
 var app_sign=function(){
     show(appname+"：签到")
+
     app_go_home(3)
     doactionmaxtime(function(){
         if(textContains("看视频再送").exists()){
@@ -511,14 +511,17 @@ var app_reward_coin=function(){
 
 var  app_home_video_sweep=function(){
     doactionmaxtime(function(){
-
+        show(appname+"视频页滑动")
         if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
             bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
-            if(btoa.text().search("看视频再")>-1){
-                clicknode(bt_ad)
-                sleep(3000)
-                seead()
+            if(bt_ad){
+                if(btoa.text().search("看视频再")>-1){
+                    clicknode(bt_ad)
+                    sleep(3000)
+                    seead()
+                }
             }
+      
         }
  
         if(!idoneexist(视频页标记id集合)){
@@ -631,6 +634,7 @@ var app_tomoney2=function(){
                             clicktexts(["每天可提","立即提现"],300,2000)
                             sleep(2000)
                             今日已提现(appname)
+                            seead()
                             return true
                         }
                     }else{
@@ -705,53 +709,5 @@ if(doactionmaxtime(function(){
 }
 
 
-while(true){
-    app_go_home(1)
-    sleep(5000)
-    app_go_home(2)
-    sleep(5000)
-    app_go_home(3)
-    sleep(5000)
-    app_go_home(4)
-    sleep(5000)
-}
 
-
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    engines.stopOther()
-    // 彩蛋邀请 通过 微信链接绑定上级用户 
-    toastLog("指定："+appname+"即将启动")
-    alltest()
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    floaty.closeAll()
-    creatgfloatywindow()
-  //  creatsetfloatywindow()  //创建设置悬浮窗
-    show(appname+"辅助滑动")
-    gfw.setPosition(0,device.height-220)
-    if(!app.getPackageName(appname)){
-        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        keepappisnewer(appname,apppkg)
-    }
-    closelastscriptapp()
-    toastLog(appname+"开始运行")
-    spt.put("lastscriptapp",appname)
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
-        
-    }
-}
-
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

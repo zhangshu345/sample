@@ -2842,7 +2842,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
 }
 
 
-var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
+var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
@@ -2856,7 +2856,7 @@ var startapp=function(appname,apppkg,isshowfloaty,isshowsettingfloaty,isdevicema
       if(isdevicemanager){
             checkdevicemanager()
         }
-        if(isshowfloaty){
+        if(floatyx!=0||floatyy!=0){
           checkfloaty()
           floaty.closeAll()
           creatgfloatywindow()

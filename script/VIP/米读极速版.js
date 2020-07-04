@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -20,7 +22,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//检测到提醒 有刷单软件 数据异常  这是为啥
+//
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
@@ -61,6 +63,7 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
+    app_sign()
     if(!isinvite){
         app_invite()
     }
@@ -112,10 +115,11 @@ var app_novel_read=function(){
 var app_login_check=function(){
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
+
         if(idoneexist([rewardbgid,videolikeid])){
             return true
         }
-        if(textoneexist(["小视频","铃声","任务"])){
+        if(textoneexist(["立即签到"])){
             return true
         }
         clicktexts(["知道了"],150,1500)
@@ -127,11 +131,23 @@ var app_login_check=function(){
         }
      }
       clicktexts(["允许","允许","始终允许","始终允许"],150,1500)
-         app_go_home(5)
          sleep(1000)
          if(textclick("登录即可提现")){
              app_login_weixin()
          }
+       node_kai=className("android.widget.ImageView").clickable(true).drawingOrder(3).depth(5).findOne(300)
+       if(node_kai){
+           clicknode(node_kai)
+           sleep(3000)
+       }
+       if(textclick("微信")){
+           sleep(3000)
+          
+       }
+       if( textclick("同意")){
+           sleep(3000)
+       }
+
     },60000)
 }
 
@@ -201,6 +217,13 @@ var app_login_phone=function(){
 //app 签到
 var app_sign=function(){
     show(appname+"签到")
+    app_go_home(3)
+    sleep(2000)
+    textclick("立即签到")
+    sleep(2000)
+    if(maytextclick("看视频")){
+        seead()
+    }
 }
 
 //app提现
@@ -237,6 +260,12 @@ var app_go_home=function(index){
         ca=currentActivity()
         if(ca==apphomeactivity){
             selectnavi(index)
+            if(index==3){
+                sleep(2000)
+                if(maytextclick("立即提现0.3")){
+                    
+                }
+            }
             return true
         }else {
             if(currentPackage()!=apppkg){

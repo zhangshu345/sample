@@ -59,15 +59,24 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
+  
     n_i=0
     while(true){
         log("循环次数："+n_i)
- 
-        app_go_home(5)
-
+         app_go_home(5)
         if(textclick("赚钱")){
-            滑动(20,10,16,10,5,500,200)
+            滑动(20,10,16,10,8,500,200)
             sleep(1000)
+        }
+        
+        if(maytextclick("去填写")){
+            let text_yqm=邀请码集合[randomint(0,邀请码集合.length)]
+        let text_yqmt=酷狗大字版邀请码格式.replace("yqm",text_yqm)
+        setClip(text_yqmt)
+        text("一键粘贴").waitFor()
+        textclick("一键粘贴")
+        sleep(10000)
+        back()
         }
         node_rewardvideo_title=textStartsWith("刷创意视频(").findOne(200)
         if(node_rewardvideo_title){
@@ -76,9 +85,11 @@ var app_run=function(){
             log("已经奖励的次数："+n)
             i_n=parseInt(n)
             if(i_n<20){
-                textclick("去赚钱")
+               if( textclick("去赚钱")){
+                seead()
+               }
+                
             }
-
         }
         
 
@@ -94,9 +105,10 @@ var app_run=function(){
 
 
 var app_login_check=function(){
-    show("检测"+appname+"登录状况")
-
+    
+    app_go_home(5)
     doactionmaxtime(function(){
+        show("检测"+appname+"登录状况")
         if(textclick("赚钱")){
             sleep(2000)
             if(text("未登录").exists()){
@@ -110,7 +122,7 @@ var app_login_check=function(){
         }
         clicktexts(["同意","确定","允许","我知道了","允许"])
         sleep(1000)
-        app_go_home()
+      
     },30000)
 }
 
@@ -118,6 +130,54 @@ var app_login_check=function(){
 var app_login=function(){
 
 }
+
+
+var seead=function(timeout){
+    seeadnum=seeadnum+1
+
+if(doactionmaxtime(function(){
+    show(appname+":看广告："+seeadnum)
+    if(maytextclick("看视频再",300)){
+        show("看视频再")
+    }
+     if(text("点击重播").exists()){
+            back()
+            sleep(1000)
+            return true
+     }
+     if(close_ad_qq(apppkg)){
+            return true
+      }
+       if(close_ad_toutiao(apppkg)){
+           return true
+       }
+       if(close_ad_iclicash(apppkg)){
+            return true
+       }
+        if(text("奖励已到账").exists()){
+            back()
+            sleep(1000)
+            return true
+        }
+ 
+      if(isadviceactivity()>-1){
+          show("是广告页:")
+          
+      }else{
+        return true
+      }
+        if(idoneexist(视频页标记id集合)){
+            return true
+        }
+        if(!idContains(apppkg).exists()){
+            return true
+        }
+    },60000)){
+        return true
+    }
+    return false
+}
+
 
 //
 var app_go_home=function(index){
@@ -157,6 +217,8 @@ var app_go_home=function(index){
                 }
                 selectnavi(5)
             }
+        }else if(ca="com.kugou.android.app.splash.GdtSplashActivity"){
+            sleep(5000)
         }else{
             if(currentPackage()==apppkg){
                 back()
@@ -233,7 +295,7 @@ function  app_home_video(){
 
 //app邀请
 var app_invite=function(){
-    app_go_home()
+    app_go_home(5)
     if(textclick("赚钱")){
         sleep(1000)
         滑动(20,10,17,11,3,500,300)
@@ -253,5 +315,5 @@ var app_invite=function(){
 }
 
 
-startapp(appname,apppkg,true,false,false,true,true)
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)
 
