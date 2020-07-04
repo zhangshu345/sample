@@ -383,6 +383,7 @@ var clickgold=function(){
   return false
 }
 
+//选择导航
 var selectnavi=function(index){
     node_bottom=id("com.jifen.ponycamera:id/main_bottom_layout").findOne(300)
     if(node_bottom){

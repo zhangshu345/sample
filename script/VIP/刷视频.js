@@ -34,8 +34,7 @@ var  button_arr = [
      ['id','__overlay_divide_line_countdown_close',1],// 签到关闭按钮？
      ['id','overlay_update_close',1],// 升级关闭按钮
      ['id','overlay_close',1],// 广告奖励
-
-     
+    
 ]
 
 function 初始化(){

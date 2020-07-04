@@ -422,7 +422,6 @@ function listapp(keepapps,delectapp){
     }else{
         delectapp=false
     }
-
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
