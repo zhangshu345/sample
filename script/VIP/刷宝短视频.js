@@ -339,6 +339,9 @@ var cantomoney=function(){
 }
 
 var app_tomoney=function(){
+    if(今日提现(appname)){
+        return true
+    }
     show(appname+"提现")
     n_coin=app_getcoinnumber()
     show("金币数："+n_coin)
