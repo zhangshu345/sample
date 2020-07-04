@@ -181,6 +181,7 @@ var 微信加好友=function(weixinhao,phone){
 var 微信打开链接=function(weburl){
     微信发消息("")
 }
+
 var 微信聊天页发送消息=function(message,isclick){
     className("android.widget.EditText").visibleToUser().editable(true).waitFor()
     node_edit= className("android.widget.EditText").visibleToUser().editable(true).findOne(300)
@@ -2635,7 +2636,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
-
     // addbmobchannel("hongshuyuedu")
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
@@ -2679,7 +2679,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     }
 
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    runapps.filter(function(){
+    runapps.filter(function(app){
         if(!app.open){
            return false
         }
@@ -2750,13 +2750,11 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
     if(pushchannel){
         addbmobchannel(pushchannel)
     }
-    
     configpath=configpath||rewardapplisturl
     listapp(readerapps)
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+3
-   
     var runapps=[]
     var appconfig=httpget(configpath)
     webapps=JSON.parse(appconfig)
@@ -2778,7 +2776,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         数据库.put("runlist",runapps)
     }
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    runapps.filter(function(){
+    runapps.filter(function(app){
         if(!app.open){
            return false
         }
