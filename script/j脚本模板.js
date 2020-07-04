@@ -105,8 +105,6 @@ var app_small_video_swipe=function(){
                 }
             }
         }
-      
-
     },30000)
 }
 

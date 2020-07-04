@@ -94,7 +94,6 @@ var run=function(){
                     }
                 }
             }
-            
         })
     }
     sleep(2000)
