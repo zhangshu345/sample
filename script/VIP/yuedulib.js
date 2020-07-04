@@ -2641,7 +2641,6 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+3
-   
     var runapps=[]
     let localapps=数据库.get("runlist","")
     if(!localapps){
