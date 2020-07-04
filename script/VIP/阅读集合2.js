@@ -30,9 +30,9 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js"
 
 // addbmobchannel("yuedutimer5")
 readercheck()
-localstartreaderapps("阅读集合",selfscriptpath,selfrewardlisturl)
+startreaderapps("阅读集合2",selfscriptpath,selfrewardlisturl)
 //js:runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js

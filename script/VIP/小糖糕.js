@@ -299,7 +299,6 @@ var app_tomoney=function(){
                    return true
                }
                seead()
-               
            }
            
        }else{
@@ -347,7 +346,6 @@ var app_go_home=function(index){
                 selectnavi(4)
                 return true
             }
-
         }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg);
@@ -355,21 +353,20 @@ var app_go_home=function(index){
             }else{
                 back()
             }
-           
         }
-      
         if(maytextclick("看视频再领")){
             seead()
         }
  
-     },30000)){return true
-    
+     },30000)){
+         return true
     }else{
          forcestop(appname)
          app.launch(apppkg)
          sleep(3000)
      }
 }
+
 
 var clickgold=function(){
   if(idclick("com.jifen.ponycamera:id/image_complete",300)){
@@ -409,15 +406,9 @@ var seead=function(){
         if(text("勋章殿堂").exists()){
             clickonetexts(["去领取","待领取","可领取"])
         }
-
-        if(maytextclick("看视频再领")){
+        if(maytextclick("看视频再")){
             
         }
-
-        if(maytextclick("看视频再送")){
-            
-        }
-
         if(clickoneids(["com.jifen.ponycamera:id/iv_close","com.jifen.ponycamera:id/tv_close"],150,1500)){
             back()
             return true
@@ -432,7 +423,6 @@ var seead=function(){
            return  true
        }
         if(text("邀请好友").findOne(500)){
-           
             return  true
         }
         if(textclick("金币已到账")){
@@ -449,9 +439,8 @@ var seead=function(){
          return true
       }
 
-      ca=currentActivity()
-      if(ca==apphomeactivity){
-          return true
+      if(!isadviceactivity()){
+        return true
       }
       sleep(1000)
     },60000)
@@ -481,8 +470,7 @@ if(runscriptapp==appname && isreaderunning){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
-    
-     
+
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)

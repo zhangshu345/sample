@@ -141,7 +141,7 @@ var app_sign=function(){
             sleep(5000)
             idclick("com.jm.video:id/imgClose")
 
-           if(textContains("恭喜您获得").findOne(300)){
+            if(textContains("恭喜您获得").findOne(300)){
                  back()
                  return true
             }
@@ -151,7 +151,6 @@ var app_sign=function(){
            }
             textclick("立即签到",300)
                     if(textexists("继续赚元宝")){
-                        
                         return true
                     }
                     if(textclick("看视频签到",300)||descclick("看视频签到",500)){
@@ -343,11 +342,10 @@ var app_tomoney=function(){
     show(appname+"提现")
     n_coin=app_getcoinnumber()
     show("金币数："+n_coin)
-        if(app_getcoinnumber()>6700){
+        if(app_getcoinnumber()>6800){
             show("可以提现了")
             i=0
-            
-           while(i<10){
+           doactionmaxnumber(function(){
               if(idclick(刷宝余额id)){
                 show("点击刷宝余额成功")
                    sleep(1000)
@@ -356,18 +354,18 @@ var app_tomoney=function(){
                 }
                 if(textclick("每日可提")){
                        show("点击每日")
-                       return false
+                       return true
                  }
                 if(textclick("仅当日有效")){
                        show("仅当日有效")
-                       break
+                       return true
                  }
                  if(textclick("已解锁")){
                        show("点击每日")
-                       break
+                       return true
                  }
-              i=i+1
-           }
+             
+           },10)
            if(cantomoney()){
               let i=0
                 while(i<5){
@@ -514,7 +512,8 @@ var  app_run=function(){
                 if(!今日提现(appname)){
                     app_tomoney()
                 }
-          
+                app_go_home(3)
+
         }
     
     }
@@ -543,7 +542,6 @@ if(runscriptapp==appname && isreaderunning){
         device.setMusicVolume(0)
         toastLog("自动设置音量为0")
     }
-  
     if(!app.getPackageName(appname)){
         show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
         downloadandinstallapp(appname,apppkg)

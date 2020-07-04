@@ -2377,14 +2377,12 @@ var delectalltmpfiles=function(){
     deleteAllFiles(files.getSdcardPath(),alltmphouzhui)
 }
 
-var textexists=function(t,isclickable){
-    if(!isclickable){
-        isclickable=false
-    }
-    if(text(t).visibleToUser().clickable(isclickable).exists()){
+var textexists=function(t){
+
+    if(text(t).visibleToUser().exists()){
         return true
     }else{
-        if(desc(t).visibleToUser().clickable(isclickable).exists()){
+        if(desc(t).visibleToUser().exists()){
             return true
         }
     }
