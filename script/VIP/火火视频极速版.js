@@ -355,6 +355,7 @@ var seead=function(){
 var app_go_home=function(index){
     show(appname+"回到主页"+index)
    if( doactionmaxtime(function(){
+       closeappundostate()
        ca=currentActivity()
        if(ca==apphomeactivity){
            if(index==1){
@@ -653,7 +654,6 @@ var app_reward_88=function(){
             if(text("今日免费: 0次").exists()){
                 return true
             }
-        
            node_yyy= text("看视频抽大奖").visibleToUser().depth(18).clickable().findOne(300)
             if(node_yyy){
                 show("找到看视频抽大奖")
