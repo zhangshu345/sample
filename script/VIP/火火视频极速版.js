@@ -66,7 +66,7 @@ var tomoney=true
 var app_checklogin=function(){
     n_islogin=0
    doactionmaxtime(function(){
-  show(appname+"检测登录状况")
+    show(appname+"检测登录状况")
     ca=currentActivity()
     if(ca==apphomeactivity){
         if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
@@ -74,8 +74,6 @@ var app_checklogin=function(){
         }
     }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
             textclick("取消")
-    }else{
-        app_go_home(4)
     }
     if(textclick("微信一键登录")){
         app_login_weixin()
@@ -93,6 +91,7 @@ var app_checklogin=function(){
     if(text("再接再厉，赚更多哦~").exists()){
         clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
     }
+    app_go_home(4)
    },60000)
    show(appname+"检测登录完毕")
 
@@ -629,14 +628,14 @@ var app_login_weixin=function(){
   },60000)
 }
 var app_reward_88=function(){
-    if(获取今日记录(apppkg+"_88")){
+    if(获取今日记录(appname,"88")=="true"){
         return true
     }
     doactionmaxtime(function(){
         show(appname+"88元扭蛋机")
         if(text("88元扭蛋机").exists()){
             if(text("今日免费: 0次").exists()){
-                今日记录(apppkg+"_88",true)
+                今日记录(appname,"88","true")
                 return true
             }
            node_yyy= text("看视频抽大奖").visibleToUser().depth(18).clickable(false).findOne(300)
@@ -671,14 +670,14 @@ var app_reward_88=function(){
 }
 
 var app_reward_zhuazhua=function(){
-    if(获取今日记录(apppkg+"_zhuazhua")){
+    if(获取今日记录(appname,"zhuazhua")=="true"){
         return true
     }
     doactionmaxtime(function(){
         show(appname+"天天抓好礼")
         if(text("天天抓好礼").exists()){
             if(text("今日免费: 0次").exists()){
-                今日记录(apppkg+"_zhuazhua",true)
+                今日记录(appname,"zhuazhua","true")
                 return true
             }
            node_yyy= textContains("今日免费").visibleToUser().findOne(300)
@@ -721,14 +720,14 @@ var app_reward_zhuazhua=function(){
 
 
 var app_reward_todaymoney=function(){
-    if(获取今日记录(apppkg+"_todaymoney")){
+    if(获取今日记录(appname,"todaymoney")=="true"){
         return true
     }
     doactionmaxtime(function(){
         show(appname+"今日有钱花")
         if(text("今日有钱花").exists()){
             if(text("今日免费: 0次").exists()){
-                今日记录(apppkg+"_todaymoney",true)
+                今日记录(appname,"todaymoney",true)
                 return true
             }
            node_yyy= textContains("今日免费").visibleToUser().findOne(300)
@@ -769,14 +768,14 @@ var app_reward_todaymoney=function(){
 }
 
 var app_reward_video=function(){
-    if(获取今日记录(apppkg+"_video")){
+    if(获取今日记录(appname,"video")=="true"){
         return true
     }
     doactionmaxtime(function(){
         show(appname+"看福利视频赚金币")
         if(text("看福利视频赚金币").exists()){
             if(text("今日免费: 0次").exists()){
-                今日记录(apppkg+"_zhuazhua",true)
+                今日记录(appname,"video","true")
                 return true
             }
            node_yyy= textContains("今日免费").visibleToUser().findOne(300)
@@ -815,6 +814,6 @@ var app_reward_video=function(){
     },500000)
     show(appname+"天天抓好礼 结束")
 }
+今日签到(appname)
 
-今日记录(apppkg,"_todaymoney","true")
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

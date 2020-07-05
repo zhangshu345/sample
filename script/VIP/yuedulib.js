@@ -592,7 +592,6 @@ var show=function(txt,txtcolor){
     } catch (error) {
         log(error)
     }
-
 }
 var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
 var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
@@ -631,50 +630,48 @@ var alter=sync(function(txt,t,left,top,width,height){
      })
 });
 
-
-var 应用登录=function(name){return storages.create(name).getBoolean("login",false)}
-var 应用已登录=function(name){storages.create(name).put("login",true)}
-
-var 今日签到=function(name){cs=storages.create(name).getBoolean("sign_"+today(), false);toastLog(name+"今日签到:"+cs);  return cs;}
-var 今日已签到=function(name){storages.create(name).put("sign_"+today(), true)}
-
-var 今日时长=function(name){s=storages.create(name).getNumber("time_"+today(), 0);toastLog(name+"今日时长:"+s);return s;}
-var 记录今日时长=function(name,t){    t=t || 0; storages.create(name).put("time_"+today(),今日时长(name)+t);}
-
-var 今日滑动次数=function(name){name= name||"glode";cs=storages.create(name).getNumber(today()+"_move", 0);toastLog(name+"：今日滑动次数:"+cs);return cs;}
-var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;storages.create(name).put(today()+"_move", i);toastLog(name+"：记录今日滑动次数:"+i); return cs;}
-
-var 今日提现=function(name){    name=name || "";    return storages.create(name).getNumber("cashout_"+today(),false);}
-var 今日已提现=function(name){    storages.create(name).put("cashout_"+today(),true);    toastLog(name+"今日已提现");}
-
-var 记录今日金币=function(name,i){    storages.create(name).put("lastcoin_"+today(),i);}
-var 上次今日金币=function(name){  s= storages.create(name).getNumber("lastcoin_"+today(), 0); toastLog(name+"上次今日金币："+s);return s; } 
-
-var 记录现在金币=function(name,i){log(name+":现在金币："+i);storages.create(name).put("lastcoin",i);}
-var 上次金币=function(name){   s= storages.create(name).getNumber("lastcoin", 0);  toastLog(name+"上次金币："+s);  return s; } 
-
- //可以通过上次的金币来判断是否 还可以获取金币
-var 记录现在余额=function(name,f){log(name+":现在余额："+f);  storages.create(name).put("lastmoney",f); } 
-var 上次余额=function(name){  s=   storages.create(name).getNumber("lastmoney", 0.0);toastLog(name+"上次余额："+s); return s; } 
-
-var  记录现在滑动次数=function(name,f){     storages.create(name).put("lastswipetime_"+today(),f);} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次滑动次数=function(name){ s=storages.create(name).getNumber("lastswipetime_"+today(), 0);toastLog(name+"上次滑动次数"+s);  return s;} 
-
-var lastscriptapp=function(){return spt.getString("lastscriptapp")}
-var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
-var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
-
-var 记录现在观看视频数=function(name,f){     storages.create(name).put("lastvideonumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看视频数=function(name){ s= storages.create(name).getNumber("lastvideonumber_"+today(), 0);    toastLog(name+"上次观看视频个数"+s);     return s;} 
-
-var 记录现在观看文章数=function(name,f){     storages.create(name).put("lastwenzhangnumber_"+today(),f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看文章数=function(name){ s= storages.create(name).getNumber("lastwenzhangnumber_"+today(), 0); toastLog(name+"上次观看视频个数"+s);     return s;} 
-
 var 记录=function(name,key,n){      storages.create(name).put(key,n)}
 var 获取记录=function(name,key){    storages.create(name).getString(key,"")}
 
 var 今日记录=function(name,key,n){   storages.create(name).put(key+"_"+today(),n)}
 var 获取今日记录=function(name,key){  storages.create(name).getString(key+"_"+today(),"")}
+
+var 应用登录=function(name){return 获取今日记录(name,"login")}
+var 应用已登录=function(name){今日记录(name,"login","true")}
+
+var 今日签到=function(name){cs=获取今日记录(name,"sign");toastLog(name+"今日签到:"+cs);  return cs;}
+var 今日已签到=function(name){今日记录(name,"sign","true")}
+
+var 今日时长=function(name){s=获取今日记录(name,"time");toastLog(name+"今日时长:"+s);return s;}
+var 记录今日时长=function(name,t){ 今日记录(name,"time",t)}
+
+var 今日滑动次数=function(name){name= name||"glode";cs=获取今日记录(name,"swipe");toastLog(name+"：今日滑动次数:"+cs);return cs;}
+var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;今日记录(name,"swipe",i);}
+
+var 今日提现=function(name){      return 获取今日记录(name,"cashout");}
+var 今日已提现=function(name){   今日记录(name,"cashout","true");    toastLog(name+"今日已提现");}
+
+var 记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
+var 上次今日金币=function(name){  s= 获取今日记录(name,"coin"); toastLog(name+"上次今日金币："+s);return s; } 
+
+
+ //可以通过上次的金币来判断是否 还可以获取金币
+var 记录现在余额=function(name,f){log(name+":现在余额："+f);  记录(name,"money",f); } 
+var 上次余额=function(name){  s=   获取记录(name,"money");toastLog(name+"上次余额："+s); return s; } 
+
+var  记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
+var 上次滑动次数=function(name){ s=获取今日记录(name,"swipe");toastLog(name+"上次滑动次数"+s);  return s;} 
+
+var lastscriptapp=function(){return spt.getString("lastscriptapp")}
+var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
+var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
+
+var 记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
+var 上次观看视频数=function(name){ s= 获取今日记录(name,"video");    toastLog(name+"上次观看视频个数"+s);     return s;} 
+
+var 记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
+var 上次观看文章数=function(name){ s= 获取今日记录(name,"article"); toastLog(name+"上次观看视频个数"+s);  return s;} 
+
 
 //
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
