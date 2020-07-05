@@ -289,8 +289,6 @@ var seead=function(){
     show(appname+"看广告")
     doactionmaxtime(function(){
         show("广告循环:"+n_seead)
-        
-       
         if(idclick("com.jt.hanhan.video:id/k9")){
             return true
         }
@@ -302,6 +300,10 @@ var seead=function(){
         if(textclick("金币已到账")){
             back()
             sleep(1000)
+        }
+        if(text("88元扭蛋机").exists()){
+           clicknode(className("android.view.View").depth(12).drawingOrder(0).clickable().findOne(300))
+           return true
         }
       
         if(close_ad_toutiao(apppkg)){
@@ -404,11 +406,8 @@ var app_go_home=function(index){
            }else{
             back()
            }
-           
        }
-    
-
-   },15000)){
+   },30000)){
        return true
    }else{
        forcestop(appname)
@@ -654,7 +653,7 @@ var app_reward_88=function(){
             if(text("今日免费: 0次").exists()){
                 return true
             }
-           node_yyy= text("看视频抽大奖").visibleToUser().depth(18).clickable().findOne(300)
+           node_yyy= text("看视频抽大奖").visibleToUser().depth(18).clickable(false).findOne(300)
             if(node_yyy){
                 show("找到看视频抽大奖")
                clicknode(node_yyy,0,50)
@@ -667,9 +666,9 @@ var app_reward_88=function(){
             app_go_home(4)
             sleep(3000)
             textclick("抢福利")
-            sleep(2000)
+            
         }
-   
+        sleep(2000)
     },500000)
 }
 
