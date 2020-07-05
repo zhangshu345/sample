@@ -631,10 +631,10 @@ var alter=sync(function(txt,t,left,top,width,height){
 });
 
 var 记录=function(name,key,n){      storages.create(name).put(key,n)}
-var 获取记录=function(name,key){    storages.create(name).getString(key,"")}
+var 获取记录=function(name,key){   return storages.create(name).getString(key,"")}
 
 var 今日记录=function(name,key,n){   storages.create(name).put(key+"_"+today(),n)}
-var 获取今日记录=function(name,key){  storages.create(name).getString(key+"_"+today(),"")}
+var 获取今日记录=function(name,key){ return storages.create(name).getString(key+"_"+today(),"")}
 
 var 应用登录=function(name){return 获取今日记录(name,"login")}
 var 应用已登录=function(name){今日记录(name,"login","true")}
