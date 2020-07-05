@@ -337,10 +337,9 @@ var seead=function(){
         if(text("勋章殿堂").visibleToUser().exists()){
             return true
         }
-        if(currentPackage()!=apppkg){
-            app.launch(apppkg)
-          sleep(3000)
-        }
+    if(!isadviceactivity()){
+        return true
+    }
         if(text("已签到").exists()){
             return true
         }
