@@ -92,7 +92,7 @@ var app_checklogin=function(){
         clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
     }
     app_go_home(4)
-   },60000)
+   },30000)
    show(appname+"检测登录完毕")
 
 }
@@ -156,7 +156,8 @@ function app_see_video(){
                     }
              },30000)
         }
-         滑动(20,10,17,11,7,500,300)
+        sleep(1000)
+         滑动(20,10,17,11,7,800,300)
     },50)
   
     
@@ -200,7 +201,7 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
-    if(!今日签到(appname)){
+    if(今日签到(appname)!="true"){
         app_sign()
     }
     app_reward_88()
@@ -727,7 +728,7 @@ var app_reward_todaymoney=function(){
         show(appname+"今日有钱花")
         if(text("今日有钱花").exists()){
             if(text("今日免费: 0次").exists()){
-                今日记录(appname,"todaymoney",true)
+                今日记录(appname,"todaymoney","true")
                 return true
             }
            node_yyy= textContains("今日免费").visibleToUser().findOne(300)
@@ -748,7 +749,7 @@ var app_reward_todaymoney=function(){
             app_go_home(4)
             sleep(3000)
             while(!textclick("幸运大抽奖")){
-                滑动(20,10,4,10,16,100,200)
+                滑动(20,10,16,10,4,100,200)
                 sleep(1000)
             }
             
@@ -771,36 +772,14 @@ var app_reward_video=function(){
     if(获取今日记录(appname,"video")=="true"){
         return true
     }
-    doactionmaxtime(function(){
-        show(appname+"看福利视频赚金币")
-        if(text("看福利视频赚金币").exists()){
-            if(text("今日免费: 0次").exists()){
-                今日记录(appname,"video","true")
-                return true
-            }
-           node_yyy= textContains("今日免费").visibleToUser().findOne(300)
-            if(node_yyy){
-                cx=node_yyy.bounds().centerX()
-                cy=node_yyy.bounds().centerY()-88
-                log(cx+","+cy)
-               press(cx,cy,50)
-               press(cx,cy,50)
-               sleep(1000)
-               show("找到今日免费")
-                sleep(2000)
-                seead()
-            }else{
-                show("没有今日免费")
-            }
-        }else{
+    doactionmaxnumber(function(){
             app_go_home(4)
-            sleep(3000)
-        
-            if(!textclick("领奖品")){
-                滑动(20,10,4,10,16,500,200)
+            sleep(2000)
+            while(!textclick("看福利视频赚金币")){
+                滑动(20,10,16,10,4,500,200)
             }
-            
-        }
+            sleep(3000)
+            seead()
         if(text("看视频即可打开").exists()){
             clicknode(text("看视频即可打开").findOne(300),0,-80)
             sleep(3000)
@@ -811,9 +790,9 @@ var app_reward_video=function(){
         }
 
         sleep(2000)
-    },500000)
+    },5)
     show(appname+"天天抓好礼 结束")
 }
-今日签到(appname)
+
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
