@@ -311,19 +311,17 @@ var app_getmoneyinfo=function(){
 //直接界面获取元素判断
 var cantomoney=function(){
     show("判断可提现")
-    t= textContains("今日已解锁").findOne(300)
-    if(t){
-        return true
-    }
     t= textContains("已解锁").findOne(300)
     if(t){
+        show("找到了已解锁")
         return true
     }
-    t= textContains("今日已使用").findOne()
+    t= textContains("今日已使用").findOne(300)
     if(t){
+        show("找到了今日已使用")
         return false
     }
-  t= textContains("已得").findOne()
+  t= textContains("已得").findOne(300)
   if(t){
       ss=t.text().split("已得")[1]
       log("已得："+ss)
@@ -355,46 +353,40 @@ var app_tomoney=function(){
                }
                if(textclick("立即提现")){
                 }
-                if(textclick("每日可提")){
-                       show("点击每日")
-                       return true
+                if(clickonetexts(["每日可提","已解锁","仅当日有效"])){
+                       show("点击每日可提")
+                       if(cantomoney()){
+                           show("今日可以提现")
+                        let i=0
+                          while(i<5){
+                             if(textclick("仅当日有效")){
+                                 show("点击仅当日有效")
+                             }
+                              sleep(1000)
+                              textclick("立即提现")
+                              if(textclick("同意")){
+                                  show("微信同意")
+                              }
+                              if(text("提现详情").exists()){
+                                   今日已提现(appname)
+                                  return true
+                              }
+                              if(text("去邀请好友").exists()){
+                                  back()
+                                  今日已提现(appname)
+                                  return true
+                              }
+                              i=i+1
+                          }
+                          return true
+                     }else{
+                         show("今日不可以提现")
+                      return true
+                     }
                  }
-                if(textclick("仅当日有效")){
-                       show("仅当日有效")
-                       return true
-                 }
-                 if(textclick("已解锁")){
-                       show("点击每日")
-                       return true
-                 }
-             
+
            },10)
-           if(cantomoney()){
-              let i=0
-                while(i<5){
-                   if(textclick("仅当日有效")){
-                       show("点击仅当日有效")
-                   }
-                    sleep(1000)
-                    textclick("立即提现")
-                    if(textclick("同意")){
-                        show("微信同意")
-                    }
-                    if(text("提现详情").exists()){
-                         今日已提现(appname)
-                        return true
-                    }
-                    if(text("去邀请好友").exists()){
-                        back()
-                        今日已提现(appname)
-                        return true
-                    }
-                    i=i+1
-                }
-                return true
-           }else{
-            return true
-           }
+         
         }else{
             show(appname+"当前金币不够每日提现")
             return true
