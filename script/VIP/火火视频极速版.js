@@ -816,5 +816,5 @@ var app_reward_video=function(){
     show(appname+"天天抓好礼 结束")
 }
 
-今日记录(apppkg+"_todaymoney",true)
+今日记录(apppkg+"_todaymoney","true")
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
