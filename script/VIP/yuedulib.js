@@ -132,7 +132,6 @@ var 微信浏览=function(url){
                   }
               }
             }
-        
         }
         
     }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
@@ -1719,13 +1718,10 @@ var startdeviceadmin=function(){
                         sleepr(500,1000)
                         滑动(20,10,17,10,5,500,300)
                     }
-                    
                 }
             }
         }
-
     },60000)
-
 }
 
 //检测权限
@@ -1869,7 +1865,6 @@ var alltest=function(){
 }
 
 var checkdevicemanager=function(){
-
     if( device.brand=="samsung"){startdeviceadmin()}
     else if(device.brand=="HONOR"){startdeviceadmin() }
     else if(device.brand=="DOCOMO"){startdeviceadmin()}
@@ -2068,8 +2063,6 @@ var isadviceactivity=function(ca){
     "com.iclicash.advlib.ui.front.ADBrowser","com.iclicash.advlib.ui.front.InciteADActivity" 
     ]
     return adviceActivitys.indexOf(ca)
-
-
 }
 
 //关闭穿山甲激励视频广告
@@ -2131,8 +2124,6 @@ var close_ad_kk=function(apppkg){
         },30000)
     }
 }
-
-
 
 var close_ad_liquid=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
@@ -2299,9 +2290,7 @@ var onerewardapp=function(appname,apppkg){
             sleep(random(3,4)*1000)
             滑动(20,10,16,11,6,500,1500)
             sleep(random(3,4)*1000)
-
         }
-         
          if(closeappundostate()){
             forcestop(appname,1500,true)
             sleep(1000)
