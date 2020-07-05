@@ -9,6 +9,7 @@ function httpget(url) {
         return ""
     }
 }
+
 滑动次数=0
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
@@ -467,15 +468,13 @@ var app_sign=function(){
     },60000)
 }
 var selectnavi=function(n){
- let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().indexInParent(n-1).findOne()
+ let node_navi=  packageName(apppkg).className("android.widget.RelativeLayout").depth(7).clickable().drawingOrder(n).findOne(300)
     if(node_navi){
-        
        clicknode(node_navi)
         return true
     }else{
 
     }
-
 }
 
 var app_get_reward=function(){
@@ -636,7 +635,6 @@ var app_login_phone=function(){
 }
 
 var app_login_weixin=function(){
- 
   doactionmaxtime(function(){
     textclick("微信账号登录")
     sleep(2000)
@@ -647,48 +645,34 @@ var app_login_weixin=function(){
         return true
     }
   },60000)
-       
-   
 }
-
-app_tomoney()
-
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    if(onlyscript){
-        engines.stopOther()
-    }
-
-    // 彩蛋邀请 通过 微信链接绑定上级用户 
-    alltest()
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    floaty.closeAll()
-    creatgfloatywindow()
-   // creatsetfloatywindow()  //创建设置悬浮窗
-    show("指定："+appname+"即将启动")
-    gfw.setPosition(0,220)
-    if(!app.getPackageName(appname)){
-        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        keepappisnewer(appname,apppkg)
-    }
-    closelastscriptapp()
-    spt.put("lastscriptapp",appname)
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
+var app_reward_88=function(){
+    doactionmaxtime(function(){
+        show(appname+"88元扭蛋机")
+        if(text("88元扭蛋机").exists()){
+            if(text("今日免费: 0次").exists()){
+                return true
+            }
         
-    }
+           node_yyy= text("看视频抽大奖").visibleToUser().depth(18).clickable().findOne(300)
+            if(node_yyy){
+                show("找到看视频抽大奖")
+               clicknode(node_yyy,0,50)
+                sleep(3000)
+                seead()
+            }else{
+                show("没有找到看视频抽大奖")
+            }
+        }else{
+            app_go_home(4)
+            sleep(3000)
+            textclick("抢福利")
+            sleep(2000)
+        }
+   
+    },500000)
 }
 
+app_reward_88()
+
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

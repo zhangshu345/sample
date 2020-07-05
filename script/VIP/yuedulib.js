@@ -925,25 +925,35 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-var clicknode=function(v,time){
+var clicknode=function(v,dx,dy,time){
+    dx=dx||0
+    dy=dy||0
     if(!v){return false; }
     time=time||200
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return click(b.centerX(),b.centerY())
+            return click(b.centerX()+dx,b.centerY()+dy)
         }else{
-           log("没有点击中心位置"+b.centerX()+"--"+b.centerY())
+            中
+           
+           if(b.top>0&&b.b.left>0){
+            log("点击控件左上角")
+              return click(b.left+dx,b.top+dy)
+           }
+           if(b.right<device.width,b.bottom<device.height){
+            log("点击控件右下角")
+            return click(b.right-1,b.bottom-1)
+           }
         }
      }else{
       //  toastLog("不可以手势点击")
      }
-      
          r=v.bounds()
           var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
           if(w&&w.click()){ return true;}
-          if(clickparents(v)){ return true  }
+          if(clickparents(v)){ return true }
           if(clickchilds(v)){  return true}
    
 }

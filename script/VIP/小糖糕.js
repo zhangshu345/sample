@@ -53,7 +53,6 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
-    app_tomoney()
     app_sign()
     loopn=0
     while(true){
@@ -65,8 +64,10 @@ var app_run=function(){
         // close_ad_qq(apppkg)
         // close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
-        sleep(5000)
         loopn=loopn+1
+        if(loopn>1&&loopn%50==0){
+            app_tomoney()
+        }
     }
 }
 
@@ -101,10 +102,7 @@ var app_home_sweep=function(){
         }else{
             show(appname+"点击看视频再领 id 没有找到")
         }
-      
-
         clickgold()
-
         滑动(20,10,17,10,1,500,300)
         sleep(1000)
         if(text("查看详情").exists()){
@@ -128,10 +126,8 @@ var app_home_sweep=function(){
 }
 
 var app_login_check=function(){
-    
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
-        
         clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
         if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
             app_login()
@@ -201,6 +197,7 @@ var app_login_phone=function(){
 var app_sign=function(){
     app_go_home(3)
     doactionmaxtime(function(){
+        show(appname+"签到")
         if(maytextclick("看视频再送")){
             seead()
         }
@@ -230,7 +227,7 @@ var app_reward_video=function(){
 }
 
 
-//小糖糕是12 
+
 var app_reward_luck=function(){
     doactionmaxtime(function(){
         if(text("幸运抽奖").exists()){
@@ -252,6 +249,7 @@ var app_reward_luck=function(){
    
     },500000)
 }
+
 
 //app提现
 // //app提现
@@ -448,48 +446,4 @@ var seead=function(){
 }
 
 
-
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    if(onlyscript){
-        engines.stopOther()
-    }
-    alltest()
-     checkfloaty()
-    // checksystemsettings()
-    // floaty.closeAll()
-     creatgfloatywindow()
-    // creatsetfloatywindow()  //创建设置悬浮窗
-     gfw.setPosition(0,device.height-200)
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-
-    if(!app.getPackageName(appname)){
-        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        if(keepappnewer){
-            keepappisnewer(appname,apppkg)
-        }
-        show(appname+"已经安装")
-    }
-
-    closelastscriptapp()
-    spt.put("lastscriptapp",appname)
-
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
-        
-    }
-}
-
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

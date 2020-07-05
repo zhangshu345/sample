@@ -17,7 +17,6 @@ eval(公共函数文本)
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-
 engines.stopOther()
 alltest()
 floaty.closeAll()
