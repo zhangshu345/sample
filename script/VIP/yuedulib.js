@@ -1769,7 +1769,7 @@ var doactionmaxtime=function(action,maxtime,intertime){
 var doactionmaxnumber=function(action,maxnumber){
     if(!action){return true}
     maxnumber=maxnumber||1; n_doaction=0;
-    while(n_doaction<maxnumber){ if (action()){return true }; n_doaction=n_doaction+1;}
+    while(n_doaction<maxnumber){ if (action(n_doaction)){return true }; n_doaction=n_doaction+1;}
     return false
 }
 
