@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -20,7 +22,8 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//微信链接邀请绑定 之后登陆
+//微信链接邀请绑定 之后登陆 需要绑定手机和 身份证号  放弃
+
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 
@@ -33,6 +36,8 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
+ 
+var appname="追看视频"
 var apppkg="com.yy.yylite"
 var apphomeactivity="com.yy.yylite.MainActivity"
 
@@ -40,40 +45,15 @@ var 奖励标识中心="com.yy.lite.plugin.liveextension:id/mIvRedBag"
 var 奖励进度id="com.yy.lite.plugin.liveextension:id/mCircleProgressBar" 
 var 奖励进度背景="com.yy.lite.plugin.liveextension:id/mRlRedBag"  //看直播随机30次金币 基本就是25 
  ["视频","直播","任务","我"] // 直播上滑之后变成刷新  
- 
-var appname="追看视频"
 
-alltest()
-// checkfloaty()
-// checksystemsettings()
-floaty.closeAll()
-creatgfloatywindow()
-creatsetfloatywindow()  //创建设置悬浮窗
-gfw.setPosition(0,220)
 
-if(changesetting){
-    device.setMusicVolume(0)
-    toastLog("自动设置音量为0")
-}
 
-if(!app.getPackageName(appname)){
-    show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-    downloadandinstallapp(appname,apppkg)
-}else{
-    show(appname+"已经安装")
-}
-if(onlyscript){
-    engines.stopOther()
-}
-
-//关闭最新的app
-closelastscriptapp()
-spt.put("lastscriptapp",appname)
 
 //app 运行
-var run=function(){
+var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
+    app_checklogin()
     n_i=0
     while(true){
         sleep(2000)
@@ -89,6 +69,25 @@ var run=function(){
         close_ad_iclicash(apppkg)
         n_i=n_i+1
     }
+}
+
+var app_checklogin=function(){
+    doactionmaxtime(function(){
+        clicktexts(["我知道了","立即提现"])
+        if(text("登录追看视频").exists()){
+           clicknode( className("android.widget.CheckBox").clickable().selected(false).findOne(300))
+           if(clicknode(className("android.widget.ImageView").clickable(true).drawingOrder(2).depth(6).findOne(300))){
+               sleep(1000)
+               textclick("同意并登录")
+               doactionmaxtime(function(){
+                  if(textclick("同意")){
+                      return 
+                  }
+               },20000)
+           }
+           
+        }
+    },6000)
 }
 
 //app 登录
@@ -128,4 +127,4 @@ var app_home_video=function(){
     }
 }
 
-run()
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

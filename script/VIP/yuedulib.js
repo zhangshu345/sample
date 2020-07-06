@@ -405,20 +405,21 @@ function listapp(keepapps,delectapp){
         appnames=keepapps
     }
 
-    if(device.brand=="samsung"){
-        delectapp=delectapp||true
-        if(delectapp){
-            var appconfig=httpget(allrewardappurl)
-            apps=JSON.parse(appconfig)
-            apps.forEach(app =>{
-             if(app.install){
-                appnames.push(app.app.name)
-             }
-            })
-        }
-    }else{
-        delectapp=false
-    }
+    // if(device.brand=="samsung"){
+    //     delectapp=delectapp||true
+    //     if(delectapp){
+    //         var appconfig=httpget(allrewardappurl)
+    //         apps=JSON.parse(appconfig)
+    //         apps.forEach(app =>{
+    //          if(app.install){
+    //             appnames.push(app.app.name)
+    //          }
+    //         })
+    //     }
+    // }else{
+    //     delectapp=false
+    // }
+    
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -642,7 +643,9 @@ var 应用已登录=function(name){今日记录(name,"login","true")}
 var 今日签到=function(name){cs=获取今日记录(name,"sign");toastLog(name+"今日签到:"+cs);  return cs;}
 var 今日已签到=function(name){今日记录(name,"sign","true")}
 
-var 今日时长=function(name){s=获取今日记录(name,"time");toastLog(name+"今日时长:"+s);return s;}
+var 今日时长=function(name){s=获取今日记录(name,"time");toastLog(name+"今日时长:"+s); if(s!=""){return parseInt(s)}else{
+    return 0;
+}}
 var 记录今日时长=function(name,t){ 今日记录(name,"time",t)}
 
 var 今日滑动次数=function(name){name= name||"glode";cs=获取今日记录(name,"swipe");toastLog(name+"：今日滑动次数:"+cs);return cs;}
@@ -2758,7 +2761,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         addbmobchannel(pushchannel)
     }
     configpath=configpath||rewardapplisturl
-    listapp(readerapps)
+    
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+3
@@ -2782,24 +2785,53 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
     }else{
         数据库.put("runlist",runapps)
     }
+    function filterapp(app){
+                if(!app.open){
+                    log("没有开启")
+                   return false
+                }
+                if(今日已提现(app.app.name)=="true"){
+                    return false
+                }
+                if(今日时长(app.app.name)>app.runconfig.maxtime){
+                    return false
+                }
+                return true
+    }
+
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
-    runapps.filter(function(app){
-        if(!app.open){
-           return false
-        }
-        if(今日已提现(app.app.name)){
-            return false
-        }
-        if(今日时长(app.app.name)>app.runconfig.maxtime){
-            return false
-        }
-        return true
+    toastLog("runapp：之前"+runapps.length)
+    // runapps.filter(function(app,index){
+    //     log(app.app.name+"--"+app.open)
+    //     if(!app.open){
+    //         log("没有开启")
+    //        return false
+    //     }
+    //     if(今日已提现(app.app.name)=="true"){
+    //         return false
+    //     }
+    //     if(今日时长(app.app.name)>app.runconfig.maxtime){
+    //         return false
+    //     }
+    //     return true
+    // })
+    let  tmpapps=[]
+    runapps.forEach(app=>{
+       if(filterapp(app)){
+           tmpapps.push(app)
+       }
     })
-    toastLog("runapp："+runapps.length)
+    runapps=tmpapps
+    toastLog("runapp：之后"+runapps.length)
     if(runapps.length==0){
         dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
         return
     }
+    let appwhiteapps=readerapps
+    runapps.forEach(app=>{
+        appwhiteapps.push(app.app.name)
+    })
+    listapp(appwhiteapps)
     //下载应用 并保持最新
     // runapps.forEach(app=>{
     //     if(!getPackageName(app.app.name)){
@@ -2936,3 +2968,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 
 // 微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
+startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json")

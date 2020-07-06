@@ -778,5 +778,5 @@ if(doactionmaxtime(function(){
 }
 
 
-app_reward_coinparty()
+
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
