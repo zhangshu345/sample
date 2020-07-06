@@ -126,12 +126,10 @@ var 微信浏览=function(url){
                        y=bd.centerY()
                        click(x,y)
                       }
-                     
                   }
               }
             }
         }
-        
     }else if(ca="com.tencent.mm.plugin.account.ui.MobileInputUI"){
         log("微信登录页")
         spt.put("weixinlogin",false)
@@ -169,8 +167,6 @@ var 微信加好友=function(weixinhao,phone){
                 滑动(20,10,5,10,15,500,500)
             }
             text("添加朋友").waitFor()
-            
-
         }
     }
 }
@@ -198,7 +194,6 @@ var 微信聊天页发送消息=function(message,isclick){
                    click(x,y)
                    return true
                   }
-                 
               }
         }
     }
@@ -260,13 +255,12 @@ var 微信回到首页=function(){
        }else{
            back()
            sleep(1000)
-       }
+        }
     },30000)){
         return  true
-    }else{
+         }else{
         return false
-    }
-    
+        }
      }else{
          return false
      }
@@ -323,6 +317,7 @@ var  creatgfloatywindow=function(){
     gfw.setPosition(0,80)
     isshowfloaty=true
  }
+ 
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false"  >
@@ -2966,7 +2961,6 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // // sleep(3000)
 
 // randomSwipe(500,1800,500,300,2000,3000)
-
 
 // 微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
