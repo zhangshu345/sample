@@ -37,16 +37,7 @@ var  lastlike=""
 // 第一次进入  我知道了 声明与政策
 // "恭喜您，获得彩蛋奖励！金币已自动发送至您的钱包"
 
-const 火火视频极速版录像id="com.jifen.dandan:id/iv_ugc_enter"
-const 火火视频极速版导航按钮id="com.jt.hanhan.video:id/a9f"
-const 火火视频极速版奖励布局id="com.jt.hanhan.video:id/ii"
-const 火火视频极速版领取红包id="com.jt.hanhan.video:id/a9l"
-const 火火视频金蛋大奖id="com.jt.hanhan.video:id/ga"
-var   火火视频极速版首页标识id =[火火视频极速版导航按钮id,火火视频极速版奖励布局id,火火视频极速版领取红包id]
-const 火火视频小视频喜欢id="com.jt.hanhan.video:id/s6"
-const 火火视频小视频点赞id="com.jt.hanhan.video:id/s7"
-const 火火视频小视频评论id="com.jt.hanhan.video:id/s8"
-var 火火视频极速版小视频页标识id =[火火视频小视频喜欢id,火火视频小视频点赞id,火火视频小视频评论id]
+
 var 进入小视频页面点击文本集合=["小视频"]
 var 广告点击按钮文本集合=["金币翻倍"]
 
@@ -55,9 +46,6 @@ var 登录成功后界面显示id集合=[]
 var 广告展示页面可关闭文本集合=["金币已到账","点击重播"]
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var 视频次数=0
-var 小视频简介id="com.jt.hanhan.video:id/sk"
-
-show(appname+"开始进入app操作")
 var action="小视频"
 var lastdesc=""
 var 小视频广告翻倍次数=0
@@ -208,7 +196,9 @@ var app_run=function(){
     app_reward_zhuazhua()
     app_reward_todaymoney()
     app_reward_video()
+    app_tomoney()
     app_see_video()
+    app_tomoney()
     app_see_small_video()
     app_reward_xunzhang()
     app_tomoney()
@@ -515,6 +505,10 @@ var app_get_reward=function(){
 }
 
 var app_tomoney=function(){
+    if(今日提现(appname)=="true"){
+        show(appname+"今日已经提现了")
+        return true
+    }
     doactionmaxtime(function(){
         show(appname+"提现")
         if(text("我的钱包").exists()){

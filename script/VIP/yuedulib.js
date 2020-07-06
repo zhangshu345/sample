@@ -317,7 +317,7 @@ var  creatgfloatywindow=function(){
     gfw.setPosition(0,80)
     isshowfloaty=true
  }
- 
+
 var  creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false"  >
@@ -931,27 +931,24 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-var clicknode=function(v,dx,dy,time){
+var clicknode=function(v,dx,dy,time,clicknumber){
     dx=dx||0
     dy=dy||0
+    clicknumber=clicknumber||1
     if(!v){return false; }
     time=time||200
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-             press(b.centerX()+dx,b.centerY()+dy,50)
             return press(b.centerX()+dx,b.centerY()+dy,50)
         }else{
-         
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
-            press(b.left+dx,b.top+dy,50)
               return press(b.left+dx,b.top+dy,50)
            }
            if(b.right<device.width,b.bottom<device.height){
             log("点击控件右下角")
-            press(b.right-1,b.bottom-1,50)
             return press(b.right-1,b.bottom-1,50)
            }
         }
@@ -963,7 +960,6 @@ var clicknode=function(v,dx,dy,time){
           if(w&&w.click()){ return true;}
           if(clickparents(v)){ return true }
           if(clickchilds(v)){  return true}
-   
 }
 
 //一直找到可以点击控件向上查找
