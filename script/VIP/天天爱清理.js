@@ -59,6 +59,7 @@ var app_run=function(){
     app_sign()
     app_reward()
     app_see_video()
+    app_reward_xunzhang()
     app_tomoney2()
 
 }
@@ -368,9 +369,10 @@ var app_reward_dayluck=function(){
             return true
         }
      //
-     app_go_home(3)
+     
      doactionmaxnumber(function(n){
         show(appname+"天天乐:"+n)
+            maytextclick("收下")
          if(text("免费抽千万金币").exists()){
             if(text("本期剩余次数0").exists()){
                 今日记录(appname,"dayluck","true")
@@ -473,24 +475,26 @@ var app_reward_luckpan=function(){
         doactionmaxnumber(function(n){
             show("幸运转盘")
             if(text("幸运大转盘").exists()){
-
+ 
+                if(textclick("看视频抽大奖")){
+                    show("点击了看视频抽大奖")
+                    sleep(3000)
+                    seead()
+                }
+                if(textclick("看视频再试一次")){
+                    show("点击了看视频抽大奖")
+                    sleep(3000)
+                    seead()
+                }
             }else{
                 app_go_home(3)
                 doactionmaxtime(function(){
                     if(textclick("幸运转盘",300)){
                         return true
                     }
-                },2000)
+                },20000)
             }
-          
-            if(textclick("看视频抽大奖")){
-                show("点击了看视频抽大奖")
-                seead()
-            }
-            if(textclick("看视频再试一次")){
-                show("点击了看视频抽大奖")
-                seead()
-            }
+         
             node_cishu=textStartsWith("今日还剩").findOne(1000)
             if(node_cishu.text()=="今日还剩 0 次机会"){
                 show("找到今日还剩")
@@ -513,9 +517,9 @@ var app_reward_luckpan=function(){
 
 
 var app_reward_coinparty=function(){
-    if(textclick("金币派对",1000)){
-        doactionmaxtime(function(){
-            show("金币派对")
+   
+        doactionmaxnumber(function(n){
+            show(appname+"金币派对")
             if(maytextclick("看视频再")){
                 show("点击了  看视频再")
                 sleep(2000)
@@ -530,33 +534,65 @@ var app_reward_coinparty=function(){
                 app_reward_xunzhang()
                 return true
             }
+
             if(isadviceactivity()){
                 seead()
             }
-        },300000)
-    }
+        },30)
+  
 }
 
+var app_reward_fuli=function(){
+    if(获取今日记录(appname,"fuli")=="true")
+    doactionmaxnumber(function(){
+        show(appname+"幸运领红包")
+        if(text("幸运领红包").exists()){
+            if(text("今日免费:0次").exists()){
+                今日记录(appname,"福利","true")
+                back()
+                return true
+            }
+            press(device.width/2,device.height-300)
+            sleep(3000)
+            clicknode(className("android.view.View").clickable().depth(13).drawingOrder(0).findOne(300))
+
+
+        }else{
+            app_go_home(3)
+            doactionmaxtime(function(){
+                if(textclick("拿福利")){
+                    return true
+                }
+            },10000)
+        }
+
+
+    },20)
+}
 
 var app_reward=function(){
     show(appname+"获取奖励")
+    app_reward_fuli()
         //金币派对
-      app_reward_coinparty()
+   
       //瓜分金币
       app_reward_coinpick()
       //天天乐
       app_reward_dayluck()
       //幸运转盘
       app_reward_luckpan()
-      //勋章殿堂
-      app_reward_xunzhang()
+
+      app_reward_coinparty()
+      
+    //   //勋章殿堂
+    //   app_reward_xunzhang()
+
 
 }
 
 
 var  app_see_video=function(){
     doactionmaxnumber(function(n){
-        
         show(appname+"视频页滑动")
         closeappundostate()
         if(!idoneexist(视频页标记id集合)){
@@ -698,6 +734,9 @@ if(doactionmaxtime(function(){
             back()
             sleep(1000)
             return true
+     }
+     if(textoneexist(["幸运领红包"])){
+         clicknode(className("android.view.View").clickable().depth(13).drawingOrder(0).findOne(300))
      }
      if(close_ad_qq(apppkg)){
             return true
