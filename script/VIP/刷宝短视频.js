@@ -344,13 +344,14 @@ var cantomoney=function(){
 }
 
 var app_tomoney=function(){
-    if(今日提现(appname)){
+    if(今日提现(appname)=="true"){
+        show(appname+"已经提现")
         return true
     }
     show(appname+"提现")
     n_coin=app_getcoinnumber()
     show("金币数："+n_coin)
-        if(app_getcoinnumber()>6800){
+        if(app_getcoinnumber()>7800){
             show("可以提现了")
             i=0
            doactionmaxnumber(function(){
@@ -358,6 +359,7 @@ var app_tomoney=function(){
                 show("点击刷宝余额成功")
                    sleep(1000)
                }
+               clicknode(className("android.view.View").clickable().depth(6).drawingOrder(0).findOne(300))
                if(textclick("立即提现")){
                 }
                 if(clickonetexts(["每日可提","已解锁","仅当日有效"])){
@@ -523,6 +525,7 @@ var  app_run=function(){
 }
 }
 
+app_tomoney()
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
 

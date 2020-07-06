@@ -199,7 +199,7 @@
         "version":""}
     
 },{  "name":"趣多多",
-    "desc":{"summary":"趣多多","script":"","html":""},
+    "desc":{"summary":"趣多多  提醒 数据异常 可能是会检测无障","script":"","html":""},
     "tags":["趣多多","短视频","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
     "open":false,

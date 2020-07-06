@@ -57,17 +57,10 @@ var app_run=function(){
     app_checklogin()
     app_tomoney2()
     app_sign()
-    loopn=0
-    while(true){
-        device.wakeUpIfNeeded()
-        closeappundostate()
-        log("循环次数:"+loopn)
-        if(loopn%50==0){
-            app_clean()
-        }
-        app_home_video_sweep()
-        loopn=loopn+1
-       }
+    app_reward_coin()
+    app_see_video()
+    app_tomoney2()
+
 }
 
 //荣耀殿堂那个
@@ -164,7 +157,7 @@ var app_go_home=function(index){
             seead()
         }else{
             
-            if(isadviceactivity()){
+            if(isadviceactivity()>-1){
                 seead()
             }
             back()
@@ -179,7 +172,7 @@ var app_go_home=function(index){
                 seead()
             }
         }
-      
+  
         if(idclick("com.xiaoqiao.qclean:id/btn_get_coin")){
             //勋章殿堂
             app_reward_xunzhang()
@@ -340,7 +333,6 @@ doactionmaxtime(function(){
 // //app 签到
 var app_sign=function(){
     show(appname+"：签到")
-
     app_go_home(3)
     doactionmaxtime(function(){
         if(textContains("看视频再送").exists()){
@@ -406,13 +398,13 @@ var app_reward_dayluck=function(){
 
 var app_reward_coinpick=function(){
     show("瓜分金币")
-    if(获取今日记录(appname,"coinpick")>=7){
+    if(获取今日记录(appname,"coinpick")=="true"){
         show("瓜分金币 已经完成了")
         return true
     }
     show("瓜分金币开始")
     app_go_home(3)
-        doactionmaxtime(function(){
+        doactionmaxnumber(function(n){
             show("瓜分金币")
             ca=currentActivity()
             if(ca==apphomeactivity){
@@ -423,12 +415,10 @@ var app_reward_coinpick=function(){
             }else if(ca=="com.jifen.qu.open.QX5WebViewActivity"){
                 //
                 show("在奖励页")
-           
             }
             
             if(textclick("领取专属勋章和金币")){
-                今日记录(appname,"coinpick",7)
-                app_reward_xunzhang()
+                今日记录(appname,"coinpick","true")
                 return true
             }
             if(textclick("瓜分ta")){
@@ -444,19 +434,14 @@ var app_reward_coinpick=function(){
             }else{
                 show("找不到 还有 次机会")
             }
-          
             if(text("今日瓜分机会已用完").exists()){
                 今日记录(appname,"coinpick",7)
                 return true
             }
-            if(textclick("领取专属勋章和金币")){
-                今日记录(appname,"coinpick",7)
-                app_reward_xunzhang()
-            }
             if(isadviceactivity()){
                 seead()
             }
-        },300000)
+        },50)
  
 }
 
@@ -535,9 +520,14 @@ var app_reward_coin=function(){
 }
 
 
-var  app_home_video_sweep=function(){
-    doactionmaxtime(function(){
+var  app_see_video=function(){
+    doactionmaxnumber(function(n){
+        
         show(appname+"视频页滑动")
+        closeappundostate()
+        if(!idoneexist(视频页标记id集合)){
+            app_go_home(2)
+        }
         if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
             bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
             if(bt_ad){
@@ -548,23 +538,6 @@ var  app_home_video_sweep=function(){
                 }
             }
         }
- 
-        if(!idoneexist(视频页标记id集合)){
-            app_go_home(2)
-        }else{
-            if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
-                bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
-                if(btoa.text().search("看视频再")>-1){
-                    clicknode(bt_ad)
-                    sleep(3000)
-                    seead()
-                }
-            }else{
-                if(!id("").exists()){
-                    app_reward_coin()
-                }
-            }
-          }
           滑动(20,15,17,7,3,500,300)
           sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
@@ -583,10 +556,9 @@ var  app_home_video_sweep=function(){
                        sleepr(5000*ratio,7000*ratio)
                    }
                    lasttitle=text_like
-                   return true
                }
             }
-    },60000)
+    },100)
 }
 
 
@@ -639,8 +611,8 @@ var app_tomoney=function(){
 }
 
 var app_tomoney2=function(){
-    if(今日提现(appname)){
-        return false
+    if(今日提现(appname)=="true"){
+        return true
     }
          app_go_home(4)
         滑动(20,10,4,10,10,300,100)
@@ -681,7 +653,6 @@ var seeadnum=0
 
 var seead=function(timeout){
     seeadnum=seeadnum+1
- 
 if(doactionmaxtime(function(){
     show(appname+":看广告："+seeadnum)
     if(idclick("com.xiaoqiao.qclean:id/tv_ad_button")){
@@ -712,8 +683,8 @@ if(doactionmaxtime(function(){
  
       if(isadviceactivity()>-1){
           show("是广告页:")
-          
       }else{
+          show("不是广告页 退出看广告")
         return true
       }
         if(idoneexist(视频页标记id集合)){
@@ -722,7 +693,6 @@ if(doactionmaxtime(function(){
         if(!idContains(apppkg).exists()){
             return true
         }
-       
         if(idclick("com.xiaoqiao.qclean:id/rl_close")){
             return true
         }

@@ -2127,7 +2127,6 @@ var close_ad_kk=function(apppkg){
             if(textoneexist(["点击重播","免费下载","关闭广告"])){
                 back()
                 sleep(1000)
-                
             }
             if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
                 return true
@@ -2856,10 +2855,8 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     if(runscriptapp==appname && isreaderunning){
 
     }else{
-        if(isonlyscript){
-            engines.stopOther()
-       }
-       checksystemsettings()
+      engines.stopOther()
+      checksystemsettings()
       if(isdevicemanager){
             checkdevicemanager()
         }

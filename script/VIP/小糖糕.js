@@ -54,29 +54,18 @@ var app_run=function(){
     sleep(3000)
     app_login_check()
     app_sign()
-    loopn=0
-    while(true){
-        device.wakeUpIfNeeded()
-        sleep(2000)
-        log("循环次数："+loopn)
-            //这里是视频上滑操作
-        app_home_sweep()
-        // close_ad_qq(apppkg)
-        // close_ad_toutiao(apppkg)
-        close_ad_iclicash(apppkg)
-        loopn=loopn+1
-        if(loopn>1&&loopn%50==0){
-            app_tomoney()
-        }
-    }
+    app_reward()
+    app_reward_video()
+    app_see_video()
+    app_tomoney()
+
 }
 
 
-var app_home_sweep=function(){
-    doactionmaxtime(function(){
+var app_see_video=function(){
+    doactionmaxnumber(function(n){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
             show(appname+"不在视频页 回到视频页")
-
             if(maytextclick("看视频再")){
                 show(appname+"点击 看视频再领")
                 sleep(3000)
@@ -85,7 +74,6 @@ var app_home_sweep=function(){
             }else{
                 show("看视频再领 没有找到")
             }
-
             app_go_home(1)
         }
         if(idclick("com.jifen.ponycamera:id/base_card_dialog_confirm")){
@@ -104,7 +92,7 @@ var app_home_sweep=function(){
         }
         clickgold()
         滑动(20,10,17,10,1,500,300)
-        sleep(1000)
+        sleep(2000)
         if(text("查看详情").exists()){
             滑动(20,10,14,10,1,300,100)
         }
@@ -112,18 +100,24 @@ var app_home_sweep=function(){
         if(txt_like){
             if(txt_like.search("w")>-1){
                // idclick("com.jifen.ponycamera:id/tv_like")
+               sleep(8000)
             }else{
                 n_like=parseInt(txt_like)
-                
+                if(n_like>1000){
+                    sleep(7000)
+                }else if(n_like>500){
+                    sleep(6000)
+                }else{
+                    sleep(5000)
+                }
             }
             if(lastlike!=txt_like){
                 lastlike=txt_like
-                return true
             }
         }
-    },30000)
-
+    },100)
 }
+
 
 var app_login_check=function(){
     doactionmaxtime(function(){
@@ -132,14 +126,13 @@ var app_login_check=function(){
         if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
             app_login()
         }
-        app_go_home(4)
+        app_go_home(5)
 
     if(text("可提现").exists()){
         return true
     }else{
        show(appname+" 没有找到可提现")
     }
-
     if(textContains("邀请码").exists()){
         return true
     }else{
@@ -150,15 +143,14 @@ var app_login_check=function(){
     }else{
        show(appname+" 没有找到可提现")
     }
-
     if(descContains("邀请码").exists()){
         return true
     }else{
         show(appname+" 没有找到邀请码")
     }
-
     },60000)
 }
+
 
 
 
@@ -196,58 +188,296 @@ var app_login_phone=function(){
 //app 签到
 var app_sign=function(){
     app_go_home(3)
-    doactionmaxtime(function(){
+    doactionmaxnumber(function(n){
         show(appname+"签到")
         if(maytextclick("看视频再送")){
             seead()
         }
         if(textclick("天天分现金")){
-            app_reward_luck()
+           
         }
-
-        if(text("看福利视频").exists()){
-            app_reward_video()
-        }else{
-            滑动(20,10,17,10,3,500,300)
+        if(isadviceactivity()>-1){
+            seead()
         }
-    },20000)
+    },10)
 }
 
+
+var app_reward=function(){
+    app_reward_haoli()
+    app_reward_coinparty()
+    app_reward_luckdan()
+    app_reward_dayluck()
+ }
 var app_reward_video=function(){
+    app_go_home(3)
+    sleep(1000)
     doactionmaxnumber(function(){
+        while(!textclick("看福利视频")){
+            滑动(20,10,17,10,3,500,300)
+        }
         if(textclick("去观看")){
-          
+          sleep(3000)
         }
-        if(descclick("去观看")){
- 
+        if(isadviceactivity()){
+            seead()
         }
-        seead()
-      sleep(1000)
+        sleep(1000)
     },5)
 }
 
+//勋章
+var app_reward_xunzhang=function(){
+app_go_home(3)
+doactionmaxnumber(function(){
 
+},20)
+}
 
-var app_reward_luck=function(){
+////豪礼派送
+var app_reward_haoli=function(){
+    if(获取今日记录(appname,"haoli")=="true"){
+        return true
+    }
+    app_go_home(3)
     doactionmaxtime(function(){
-        if(text("幸运抽奖").exists()){
-            if(text("本期剩余次数0").exists()){
+        if(clicknode(text("豪礼派送").findOne(300),0,-30)){
+            return true
+        }
+    },10000)
+    doactionmaxtime(function(){
+        show(appname+"豪礼派送")
+        if(text("豪礼嘉年华").exists()){
+            if(text("今日免费: 0次").exists()){
+                今日记录(appname,"haoli","true")
                 return true
             }
-            textclick("返回",200)
-           node_yyy= className("android.widget.Button").visibleToUser().depth(12).clickable().findOne(300)
+           node_yyy= textStartsWith("今日免费").visibleToUser().findOne(300)
             if(node_yyy){
-                show("找到摇一摇")
-                bd=node_yyy.bounds()
-                log("摇一摇位置:"+bd.centerX()+","+bd.centerY())
-                click(bd.centerX(),bd.centerY())
+                show("今日免费")
+                clicknode(node_yyy,0,-50)
+                sleep(3000)
                 seead()
+            }else{
+                show("没有找到今日免费")
+            }
+        }
+
+        if(text("看视频即可打开").exists()){
+            clicknode(text("看视频即可打开").findOne(300),0,-80)
+            sleep(3000)
+            seead()
+        }
+
+        if(text("再接再厉，赚更多哦~").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+        }
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        sleep(2000)
+    },500000)
+    show(appname+"豪礼派送结束")
+}
+
+
+
+////金币派对
+var app_reward_coinparty=function(){
+    if(获取今日记录(appname,"coinparty")=="true"){
+        show("金币派对今日已完成")
+        return true
+    }
+    app_go_home(3)
+    doactionmaxtime(function(){
+        if(clicknode(text("金币派对").findOne(300),0,-30)){
+            return true
+        }
+    },10000)
+    doactionmaxtime(function(){
+        show(appname+"金币派对")
+        if(text("疯狂2020，夏日狂欢派对").exists()){
+            if(textContains("游戏次数已达上限").exists()){
+                今日记录(appname,"coinparty","true")
+                back()
+                return true
+            }
+            if(textEndsWith("开始游戏0/10").exists()){
+                今日记录(appname,"coinparty","true")
+                back()
+                return true
+            }
+           node_yyy= textStartsWith("免费").visibleToUser().depth(13).clickable(true).findOne(300)
+            if(node_yyy){
+                show("今日免费")
+                clicknode(node_yyy,0,-50)
+                
+                sleep(2000)
+               if(textclick("免费再玩一次")){
+                    sleep(2000)
+               }
+                seead()
+            }else{
+                show("没有找到今日免费")
+            }
+            node_yyy= textStartsWith("看视频").visibleToUser().depth(13).clickable(true).findOne(300)
+            if(node_yyy){
+                show("看视频")
+                clicknode(node_yyy,0,-50)
+                sleep(3000)
+                if(textclick("免费再玩一次")){
+                    sleep(2000)
+               }
+                seead()
+            }else{
+                show("没有找到看视频")
+            }
+        }
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        sleep(2000)
+    },200000)
+    show(appname+"豪礼派送结束")
+}
+
+
+
+//幸运扭蛋
+var app_reward_luckdan=function(){
+    if(获取今日记录(appname,"luckdan")=="true"){
+        return true
+    }
+    app_go_home(3)
+    doactionmaxtime(function(){
+        if(clicknode(text("幸运扭蛋").findOne(300),0,-30)){
+            return true
+        }
+    },10000)
+    doactionmaxtime(function(){
+        show(appname+"幸运扭蛋开始")
+        if(text("幸运扭蛋").exists()){
+            if(text("今日免费: 0次").exists()){
+                今日记录(appname,"luckdan","true")
+                return true
+            }
+           node_yyy= text("看视频抽大奖").visibleToUser().depth(16).clickable(false).findOne(300)
+            if(node_yyy){
+                show("找到看视频抽大奖")
+                clicknode(node_yyy,0,50)
+                sleep(3000)
+                seead()
+            }else{
+                show("没有找到看视频抽大奖")
+            }
+        }
+
+        if(text("看视频即可打开").exists()){
+            clicknode(text("看视频即可打开").findOne(300),0,-80)
+            sleep(3000)
+            seead()
+        }
+
+        if(text("再接再厉，赚更多哦~").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+        }
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        sleep(2000)
+    },200000)
+    show(appname+"幸运扭蛋结束")
+}
+
+
+
+//天天抽大奖
+var app_reward_dayluck=function(){
+    if(获取今日记录(appname,"dayluck")=="true"){
+        return true
+    }
+    app_go_home(3)
+    doactionmaxtime(function(){
+        if(clicknode(text("天天抽奖").findOne(300),0,-30)){
+            return true
+        }
+    },10000)
+    doactionmaxtime(function(){
+        show(appname+"天天抽奖")
+        if(text("天天抽大奖").exists()){
+            if(text("今日免费: 0次").exists()){
+                今日记录(appname,"dayluck","true")
+                return true
+            }
+           node_yyy= text("看视频中大奖").visibleToUser().depth(17).clickable(false).findOne(300)
+            if(node_yyy){
+                show("找到看视频中大奖")
+                clicknode(node_yyy,0,50)
+                sleep(3000)
+                seead()
+            }else{
+                show("没有找到看视频抽大奖")
+            }
+        }
+
+        if(text("看视频即可打开").exists()){
+            clicknode(text("看视频即可打开").findOne(300),0,-80)
+            sleep(3000)
+            seead()
+        }
+
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        sleep(2000)
+    },200000)
+    show(appname+"天天抽奖结束")
+}
+
+//挖红包
+var app_reward_waihongbao=function(){
+    if(获取今日记录(appname,"wahongbao")=="true"){
+        return true
+    }
+
+    doactionmaxnumber(function(n){
+        show(appname+"挖红包")
+        if(text("赢大奖").exists()){
+            press(device.width/2,device.height-100,50)
+            sleep(2000)
+            if(text("今日免费: 0次").exists()){
+                今日记录(appname,"wahongbao","true")
+                return true
+            }
+           node_yyy= text("看视频立即领取").visibleToUser().findOne(300)
+            if(node_yyy){
+                show("找到看视频立即领取")
+                clicknode(node_yyy,0,50)
+                sleep(3000)
+                seead()
+            }else{
+                show("没有找到看视频立即领取")
             }
         }else{
-
+            app_go_home(3)
+            doactionmaxtime(function(){
+                if(clicknode(text("挖红包").findOne(300),0,-30)){
+                    return true
+                }
+            },10000)
         }
-   
-    },500000)
+        clicknode(className("android.view.View").depth(12).drawingOrder(0).clickable().findOne(300))
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        sleep(2000)
+    },20)
+    show(appname+"挖红包结束")
 }
 
 
@@ -259,9 +489,9 @@ var app_tomoney=function(){
         show(appname+":今日已经提现了")
         return true
     }
-    app_go_home(4)
-  return doactionmaxtime(function(){
-    show(appname+"开始提现")
+    app_go_home(5)
+    return doactionmaxtime(function(){
+      show(appname+"开始提现")
        sleep(1000)
        nca=currentActivity()
        show("当前activity:"+nca)
@@ -298,14 +528,12 @@ var app_tomoney=function(){
                }
                seead()
            }
-           
        }else{
            if(!idContains(apppkg).exists()){
                app.launch(apppkg)
                sleep(4000)
            }
        }
-    
        if(textContains("提现申请提交成功").exists()){
            今日已提现(appname)
            return true
@@ -325,6 +553,7 @@ var app_invite=function(){
 
 var app_go_home=function(index){
     if(doactionmaxtime(function(){
+        show(appname+"回到主页:"+index)
         closeappundostate()
         ca=currentActivity()
         if(ca==apphomeactivity){
@@ -344,6 +573,10 @@ var app_go_home=function(index){
                 selectnavi(4)
                 return true
             }
+            else if(index==5){
+                selectnavi(5)
+                return true
+            }
         }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg);
@@ -355,7 +588,9 @@ var app_go_home=function(index){
         if(maytextclick("看视频再领")){
             seead()
         }
- 
+        if(isadviceactivity()>-1){
+            seead()
+        }
      },30000)){
          return true
     }else{
@@ -408,6 +643,11 @@ var seead=function(){
         if(maytextclick("看视频再")){
             
         }
+        if(textoneexist(["豪礼嘉年华","幸运扭蛋","疯狂2020，夏日狂欢派对","天天抽大奖","赢大奖"])){
+            clicknode(className("android.view.View").depth(12).drawingOrder(0).clickable().findOne(300))
+            
+            return true
+        }
         if(clickoneids(["com.jifen.ponycamera:id/iv_close","com.jifen.ponycamera:id/tv_close"],150,1500)){
             back()
             return true
@@ -424,7 +664,7 @@ var seead=function(){
         if(text("邀请好友").findOne(500)){
             return  true
         }
-        if(textclick("金币已到账")){
+        if(clickonetexts(["金币已到账","奖励已发放"])){
             back()
             return true
         }
@@ -438,12 +678,12 @@ var seead=function(){
          return true
       }
 
-      if(!isadviceactivity()){
+      if(isadviceactivity()<0){
         return true
       }
       sleep(1000)
     },60000)
 }
 
-
+app_reward_waihongbao()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

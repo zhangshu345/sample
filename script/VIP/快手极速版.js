@@ -33,7 +33,7 @@ var invite=true
 var tomoney=false
 var onlyscript=true
 var todaysign=今日签到(appname)
-var coin=上次金币(appname)
+var coin=上次今日金币(appname)
 var money=上次余额(appname)
 var like=true
 var minlike=500000  //仅点赞百万喜欢的视频
@@ -684,13 +684,13 @@ var app_get_coin_money=function(){
              //  log(node_coin_money_layout)
                node_coin=node_coin_money_layout.child(0).child(0)
                if(node_coin){
-                    coin=parseInt(node_coin.text())
+                    coin=node_coin.text()
                    log("金币数："+coin)
-                   记录现在金币(appname,coin)
+                   记录今日金币(appname,coin)
                }
                node_money=node_coin_money_layout.child(1).child(0)
                if(node_money){
-                   money=parseFloat(node_money.text())
+                   money=node_money.text()
                    log("余额数："+money)
                    记录现在余额(appname,money)
                }
@@ -748,43 +748,4 @@ function app_run(){
     }
 }
 
-
-
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    engines.stopOther()
-    // 彩蛋邀请 通过 微信链接绑定上级用户 
-    toastLog("指定："+appname+"即将启动")
-    alltest()
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    floaty.closeAll()
-    creatgfloatywindow()
-    // creatsetfloatywindow()  //创建设置悬浮窗
-    show(appname+"辅助滑动")
-    gfw.setPosition(0,device.height-250)
-    if(!app.getPackageName(appname)){
-        toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        keepappisnewer(appname,apppkg)
-    }
-    closelastscriptapp()
-    toastLog(appname+"开始运行")
-    spt.put("lastscriptapp",appname)
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
-        
-    }
-}
-
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

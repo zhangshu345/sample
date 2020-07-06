@@ -189,7 +189,9 @@ function  app_go_home(index){
          }else{
              back()
          }
- 
+         if(isadviceactivity()>-1){
+             seead()
+         }
  
      },30000)
  }
@@ -202,51 +204,4 @@ var app_invite=function(){
 
 }
 
-
-
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
-
-}else{
-    if(onlyscript){
-        engines.stopOther()
-    }
-    alltest()
-    // checkfloaty()
-    // checksystemsettings()
-//     floaty.closeAll()
-//     creatgfloatywindow()
-//    creatsetfloatywindow()  //创建设置悬浮窗
-//     gfw.setPosition(0,220)
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    
-  
-    
-    if(!app.getPackageName(appname)){
-        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        if(keepappnewer){
-            keepappisnewer(appname,apppkg)
-        }
-        show(appname+"已经安装")
-    }
-
-    closelastscriptapp()
-    spt.put("lastscriptapp",appname)
-
-    spt.put("hongshuyuedu_running",false)
-    try {
-        app_run()
-    } catch (error) {
-        
-    }
-}
-
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

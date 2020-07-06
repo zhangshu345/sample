@@ -132,6 +132,7 @@ var app_small_video_swipe=function(){
  
 }
 function app_see_video(){
+    closeappundostate()
     app_go_home(1)
     doactionmaxnumber(function(ln){
         show(appname+"看视频:"+ln)
@@ -197,7 +198,7 @@ function app_see_small_video(){
 
 
 var app_run=function(){
-    app.launch(apppkg)
+    app_see_video.launch(apppkg)
     sleep(3000)
     app_checklogin()
     if(今日签到(appname)!="true"){
@@ -377,7 +378,7 @@ var app_go_home=function(index){
            sleep(1000)
        }else{
            if(currentPackage()!=apppkg){
-               app.launch(apppkg)
+               app_see_video.launch(apppkg)
                sleep(3000)
            }else{
             back()
@@ -387,7 +388,7 @@ var app_go_home=function(index){
        return true
    }else{
        forcestop(appname)
-       app.launch(apppkg)
+       app_see_video.launch(apppkg)
        sleep(3000)
        
    }
