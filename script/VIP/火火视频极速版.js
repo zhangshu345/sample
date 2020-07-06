@@ -94,7 +94,6 @@ var app_checklogin=function(){
     app_go_home(4)
    },30000)
    show(appname+"检测登录完毕")
-
 }
 
 

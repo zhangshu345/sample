@@ -52,13 +52,15 @@ var loopn=0
 var  app_go_home=function(index){
     show(appname+"回到首页"+index)
     index=index||1
-   if( doactionmaxtime(function(){
+   if(doactionmaxtime(function(){
        closeappundostate()
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
+            textclick("取消")
         }else{
         idclick("com.jm.video:id/imgClose")
+        textclick("取消")
         ca=currentActivity()
         if(ca=="com.jm.video.ui.main.MainActivity"){
             sleep(300)
@@ -100,7 +102,7 @@ var  app_go_home=function(index){
         }
     }
     textclick("取消")
-    },20000)){return true
+    },30000)){return true
     }else{
         forcestop(appname)
         app.launch(apppkg)
@@ -135,9 +137,9 @@ var selectnavi=function(index){
 
 var app_sign=function(){
        doactionmaxtime(function(){
+        show(appname+":签到")
         selectnavi(4)
         滑动(20,10,3,10,17,500,100)
-         show(appname+":签到")
             sleep(5000)
             idclick("com.jm.video:id/imgClose")
 
@@ -149,13 +151,17 @@ var app_sign=function(){
                sleep(1000)
                textclick("继续看视频领取")
            }
-            textclick("立即签到",300)
-                    if(textexists("继续赚元宝")){
-                        return true
-                    }
-                    if(textclick("看视频签到",300)||descclick("看视频签到",500)){
+           if(text("继续看视频领取"))
+           if(text("立即签到").exists()){
+               textclick("立即签到")
+               sleep(2000)
+           }
+           if(textexists("继续赚元宝")){
+               return true
+            }
+            if(textclick("看视频签到",300)){
                         let  i=0
-                          while(i<20){
+                   doactionmaxnumber(function(i){
                               show("等待视频广告3秒")
                               sleep(3000)
                               t= idclick(刷宝视频广告关闭按钮1id)
@@ -173,8 +179,8 @@ var app_sign=function(){
                                return true
                               }
                       
-                          }
-                      }      
+                },20)
+            }      
     },45000)
 }
 
@@ -202,6 +208,7 @@ var app_checklogin=function(){
               return true
              }
          }
+         
     },60000)
 }
 

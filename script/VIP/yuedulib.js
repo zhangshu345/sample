@@ -911,7 +911,7 @@ function textclick(txt,t,left,top,right,bottom){
             return false
         }
     }
-    log("text："+txt+":找到了")
+   
     return clicknode(f)
 }
 
@@ -943,17 +943,19 @@ var clicknode=function(v,dx,dy,time){
         b=v.bounds()
         if(b.centerX()>=0&&b.centerY()>=0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return click(b.centerX()+dx,b.centerY()+dy)
+             press(b.centerX()+dx,b.centerY()+dy,50)
+            return press(b.centerX()+dx,b.centerY()+dy,50)
         }else{
-            中
-           
+         
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
-              return click(b.left+dx,b.top+dy)
+            press(b.left+dx,b.top+dy,50)
+              return press(b.left+dx,b.top+dy,50)
            }
            if(b.right<device.width,b.bottom<device.height){
             log("点击控件右下角")
-            return click(b.right-1,b.bottom-1)
+            press(b.right-1,b.bottom-1,50)
+            return press(b.right-1,b.bottom-1,50)
            }
         }
      }else{
