@@ -782,10 +782,12 @@ var app_reward_video=function(){
         if(text("再接再厉，赚更多哦~").exists()){
             clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
         }
-
+        if(isadviceactivity()>-1){
+            seead()
+        }
         sleep(2000)
     },5)
-    show(appname+"天天抓好礼 结束")
+    show(appname+"福利视频结束")
 }
 
 
