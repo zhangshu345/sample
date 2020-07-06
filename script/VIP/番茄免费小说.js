@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()

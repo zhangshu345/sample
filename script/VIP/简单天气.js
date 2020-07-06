@@ -70,7 +70,6 @@ var app_run=function(){
 }
 
 var app_home_sweep=function(){
-   
     doactionmaxtime(function(){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
             show(appname+"不在视频页 回到视频页")
@@ -104,7 +103,6 @@ var app_home_sweep=function(){
             小视频广告翻倍次数=小视频广告翻倍次数+1
         }
         clickgold()
-
         滑动(20,10,17,10,3,500,300)
         sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")
@@ -113,7 +111,6 @@ var app_home_sweep=function(){
                // idclick("com.jifen.ponycamera:id/tv_like")
             }else{
                 n_like=parseInt(txt_like)
-                
             }
             if(lastlike!=txt_like){
                 lastlike=txt_like
@@ -125,7 +122,6 @@ var app_home_sweep=function(){
 }
 
 var app_login_check=function(){
-    
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
         app_go_home(4)
@@ -138,7 +134,6 @@ var app_login_check=function(){
     }else{
        show(appname+" 没有找到可提现")
     }
-
     if(textContains("邀请码").exists()){
         return true
     }else{
@@ -149,13 +144,11 @@ var app_login_check=function(){
     }else{
        show(appname+" 没有找到可提现")
     }
-
     if(descContains("邀请码").exists()){
         return true
     }else{
         show(appname+" 没有找到邀请码")
     }
-
     },60000)
 }
 
