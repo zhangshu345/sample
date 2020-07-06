@@ -2123,8 +2123,7 @@ var close_ad_kk=function(apppkg){
             if(getTextfromid(apppkg+":id/video_countdown")=="关闭广告"){
                 textclick("关闭广告")
             }
-            
-            if(textoneexist(["点击重播","免费下载","关闭广告"])){
+            if(textoneexist(["点击重播","关闭广告"])){
                 back()
                 sleep(1000)
             }

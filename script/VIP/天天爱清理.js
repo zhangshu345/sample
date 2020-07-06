@@ -373,6 +373,7 @@ var app_reward_dayluck=function(){
         show(appname+"天天乐:"+n)
          if(text("免费抽千万金币").exists()){
             if(text("本期剩余次数0").exists()){
+                今日记录(appname,"dayluck","true")
                 return true
             }
             node_yyy= className("android.widget.Button").text("摇一摇").clickable(true).findOne(1000)
@@ -387,7 +388,7 @@ var app_reward_dayluck=function(){
                  seead()
              }
              if(textclick("领取专属勋章和金币")){
-                 
+                今日记录(appname,"dayluck","true")
                  return true
              }
              if(isadviceactivity()){
@@ -409,7 +410,7 @@ var app_reward_dayluck=function(){
              seead()
          }
          sleep(2000)
-     },15)
+     },20)
        
 
 }
@@ -465,12 +466,23 @@ var app_reward_coinpick=function(){
 }
 
 var app_reward_luckpan=function(){
-    app_go_home(3)
-        doactionmaxtime(function(){
+    if(获取今日记录(appname,"luckpan")=="true"){
+        show(appname+"幸运转盘完毕")
+        return true
+    }
+        doactionmaxnumber(function(n){
             show("幸运转盘")
-            if(textclick("幸运转盘",300)){
+            if(text("幸运大转盘").exists()){
 
+            }else{
+                app_go_home(3)
+                doactionmaxtime(function(){
+                    if(textclick("幸运转盘",300)){
+                        return true
+                    }
+                },2000)
             }
+          
             if(textclick("看视频抽大奖")){
                 show("点击了看视频抽大奖")
                 seead()
@@ -479,20 +491,22 @@ var app_reward_luckpan=function(){
                 show("点击了看视频抽大奖")
                 seead()
             }
-            node_cishu=textMatches("今日还剩 \\d+ 次机会").findOne(1000)
+            node_cishu=textStartsWith("今日还剩").findOne(1000)
             if(node_cishu.text()=="今日还剩 0 次机会"){
+                show("找到今日还剩")
+                今日记录(appname,"luckpan","true")
                 back()
                 return true
             }
             if(textclick("领取专属勋章和金币")){
-                app_reward_xunzhang()
+                今日记录(appname,"luckpan","true")
                 return true
             }
             if(isadviceactivity()){
                 seead()
             }
 
-        },300000)
+        },30)
         show(appname+"幸运转盘结束")
    
 }
@@ -718,10 +732,12 @@ if(doactionmaxtime(function(){
 
     },60000)){
         return true
+    }else{
+        forcestop(appaname)
     }
     return false
 }
 
-app_reward_dayluck()
 
+app_reward_coinparty()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

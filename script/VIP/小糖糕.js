@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -91,6 +93,9 @@ var app_see_video=function(){
             show(appname+"点击看视频再领 id 没有找到")
         }
         clickgold()
+        if(textStartsWith("恭喜获得").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable(true).depth(5).drawingOrder(2).findOne(300))
+        }
         滑动(20,10,17,10,1,500,300)
         sleep(2000)
         if(text("查看详情").exists()){
