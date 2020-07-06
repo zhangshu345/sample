@@ -404,7 +404,6 @@ function listapp(keepapps,delectapp){
     if(keepapps){
         appnames=keepapps
     }
-
     // if(device.brand=="samsung"){
     //     delectapp=delectapp||true
     //     if(delectapp){
@@ -419,7 +418,7 @@ function listapp(keepapps,delectapp){
     // }else{
     //     delectapp=false
     // }
-    
+
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -2761,10 +2760,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
         addbmobchannel(pushchannel)
     }
     configpath=configpath||rewardapplisturl
-    
-    let nowtime=nowdate()
-    let xiaoshi=nowtime.getHours()
-    let fen=nowtime.getMinutes()+3
+  
     var runapps=[]
     var appconfig=httpget(configpath)
     webapps=JSON.parse(appconfig)
@@ -2831,7 +2827,13 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
     runapps.forEach(app=>{
         appwhiteapps.push(app.app.name)
     })
-    listapp(appwhiteapps)
+    //清空非阅读 app
+    listapp(appwhiteapps,true)
+
+    let nowtime=nowdate()
+    let xiaoshi=nowtime.getHours()
+    let fen=nowtime.getMinutes()+3
+
     //下载应用 并保持最新
     // runapps.forEach(app=>{
     //     if(!getPackageName(app.app.name)){
