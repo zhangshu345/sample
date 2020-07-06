@@ -2066,7 +2066,7 @@ function get_phone_code(app_name,reg,startwords,endwords){
 var isadviceactivity=function(ca){
     ca=ca||currentActivity()
     
- const   adviceActivitys=["com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
+ const   adviceActivitys=["com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity","com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.liquid.adx.sdk.ad.video.RewardVideoActivity",  
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",//快手
@@ -2082,7 +2082,7 @@ var close_ad_toutiao=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     let ca=currentActivity()
   //  show("关闭穿山甲:activity:"+ca)
-    if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){
+    if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"||ca=="com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity"){
         doactionmaxtime(function(){
             ca=currentActivity()
             if(ca=="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"){

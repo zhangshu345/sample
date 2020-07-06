@@ -57,7 +57,7 @@ var app_run=function(){
     app_checklogin()
     app_tomoney2()
     app_sign()
-    app_reward_coin()
+    app_reward()
     app_see_video()
     app_tomoney2()
 
@@ -124,9 +124,12 @@ var app_go_home=function(index){
     index=index||2
     if(doactionmaxtime(function(){
         closeappundostate()
+        if(isadviceactivity()>-1){
+            seead()
+        }
         ca=currentActivity()
         show("回到主页："+index+"--"+ca)
-        if(ca==apphomeactivity){
+        if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
             sleep(500)
             if(index==1){
                 selectnavi(1)
@@ -152,11 +155,12 @@ var app_go_home=function(index){
             back()
             sleep(1000)
         }else if(ca==applaunchactivity){
-            sleep(1000)
+            sleep(3000)
         }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
             seead()
+        
+
         }else{
-            
             if(isadviceactivity()>-1){
                 seead()
             }
@@ -300,6 +304,7 @@ var app_login=function(){
 // //app 微信登录
 var app_login_weixin=function(){
 doactionmaxtime(function(){
+    textclick("取消")
     clicktexts(["确定","微信","同意"],300,2000)
     if(text("恭喜你，解锁荣誉勋章").exists()){
         if(maytextclick("立即领取")){
@@ -332,9 +337,10 @@ doactionmaxtime(function(){
 // }
 // //app 签到
 var app_sign=function(){
-    show(appname+"：签到")
+  
     app_go_home(3)
     doactionmaxtime(function(){
+        show(appname+"：签到")
         if(textContains("看视频再送").exists()){
             sleep(1000)
             if(maytextclick("看视频再送")){
@@ -346,53 +352,65 @@ var app_sign=function(){
         }else{
             show("没有找到 看视频再送")
         }
-        if(clickonemaytexts(["翻倍","看视频领金币","看视频再"])){
+        if(clickonemaytexts(["翻倍","看视频领金币","看视频"])){
             show("视频广告启动")
             sleep(2000)
             seead()
         }
      
     },15000)
+    show(appname+"签到结束")
 }
 
 var app_reward_dayluck=function(){
-     //金币派对  天天乐
-      
-        doactionmaxtime(function(){
-            if(currentActivity()!=""){
-                if(currentPackage()!=apppkg){
-                    app.launch(apppkg)
-                    sleep(3000)
-                }else{
-                    app_go_home(3)
-                    sleep(3000)
-                    滑动()
-                }
-               
-            }
-            show("天天乐")
+        if(获取今日记录(appname,"dayluck")=="true"){
+            show(appname+"天天乐已经完成")
+            return true
+        }
+     //
+     app_go_home(3)
+     doactionmaxnumber(function(n){
+        show(appname+"天天乐:"+n)
+         if(text("免费抽千万金币").exists()){
             if(text("本期剩余次数0").exists()){
                 return true
             }
-           node_yyy= className("android.widget.Button").text("摇一摇").findOne(1000)
-           if(node_yyy){
-            node_yyy.click()
-           }
-           node_yyy= className("android.widget.Button").text("免费抽华为5G手机").findOne(1000)
-           if(node_yyy){
-            node_yyy.click()
-           }
-            if(clickonetexts(["继续抽数字","看视频领金币"])){
-                seead()
+            node_yyy= className("android.widget.Button").text("摇一摇").clickable(true).findOne(1000)
+            if(node_yyy){
+             node_yyy.click()
             }
-            if(textclick("领取专属勋章和金币")){
-                app_reward_xunzhang()
-                return true
+            node_yyy= className("android.widget.Button").text("免费抽华为5G手机").findOne(1000)
+            if(node_yyy){
+             node_yyy.click()
             }
-            if(isadviceactivity()){
-                seead()
-            }
-        },500000)
+             if(clickonetexts(["继续抽数字","看视频领金币"])){
+                 seead()
+             }
+             if(textclick("领取专属勋章和金币")){
+                 
+                 return true
+             }
+             if(isadviceactivity()){
+                 seead()
+             }
+
+         }else{
+             app_go_home(3)
+             doactionmaxtime(function(){
+                if(textclick("天天乐")){
+                    return true
+                }
+                if(text("免费抽千万金币").exists()){
+                    return true
+                }
+             },20000)
+         }
+         if(isadviceactivity()){
+             seead()
+         }
+         sleep(2000)
+     },15)
+       
 
 }
 
@@ -442,6 +460,7 @@ var app_reward_coinpick=function(){
                 seead()
             }
         },50)
+        show("瓜分金币结束")
  
 }
 
@@ -474,6 +493,7 @@ var app_reward_luckpan=function(){
             }
 
         },300000)
+        show(appname+"幸运转盘结束")
    
 }
 
@@ -504,8 +524,8 @@ var app_reward_coinparty=function(){
 }
 
 
-var app_reward_coin=function(){
-  
+var app_reward=function(){
+    show(appname+"获取奖励")
         //金币派对
       app_reward_coinparty()
       //瓜分金币
@@ -602,7 +622,6 @@ var app_tomoney=function(){
                 back()
             }
         }
-
         if(textContains("提现申请提交成功").exists()){
             今日已提现(appname)
             return true
@@ -703,6 +722,6 @@ if(doactionmaxtime(function(){
     return false
 }
 
-
+app_reward_dayluck()
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
