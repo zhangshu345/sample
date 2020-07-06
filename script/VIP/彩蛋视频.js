@@ -585,5 +585,4 @@ var app_tomoney=function(){
 // }
 
 
-app_see_video()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

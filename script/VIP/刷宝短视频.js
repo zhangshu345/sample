@@ -9,7 +9,6 @@ function httpget(url) {
     }
 }
 loopn=0
-
 var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
 //engines.stopOther()
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
@@ -104,7 +103,6 @@ var  app_go_home=function(index){
     textclick("取消")
     },30000)){return true
     }else{
-        forcestop(appname)
         app.launch(apppkg)
         sleep(3000)
         return false
@@ -136,27 +134,23 @@ var selectnavi=function(index){
 
 
 var app_sign=function(){
+    app_go_home(4)
        doactionmaxtime(function(){
         show(appname+":签到")
-        selectnavi(4)
-        滑动(20,10,3,10,17,500,100)
-            sleep(5000)
+        // 滑动(20,10,3,10,17,500,100)
             idclick("com.jm.video:id/imgClose")
-
             if(textContains("恭喜您获得").findOne(300)){
                  back()
                  return true
             }
-           if(textclick("点击领取",200)){
-               sleep(1000)
-               textclick("继续看视频领取")
-           }
-           if(text("继续看视频领取"))
-           if(text("立即签到").exists()){
-               textclick("立即签到")
+            
+           if(textclick("立即签到",300)){
                sleep(2000)
            }
            if(textexists("继续赚元宝")){
+                 if(textclick("点击领取",300)){
+                  sleep(1000)
+                 }
                return true
             }
             if(textclick("看视频签到",300)){
@@ -180,7 +174,12 @@ var app_sign=function(){
                               }
                       
                 },20)
-            }      
+            }   
+            
+            if(textclick("点击领取",300)){
+                sleep(1000)
+             }
+     
     },45000)
 }
 
@@ -192,7 +191,7 @@ var app_checklogin=function(){
          滑动(20,10,3,10,17,500,400)
          sleep(2000)
          idclick("com.jm.video:id/imgClose")
-         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
+        
          if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
              show("我界面找到昵称和设置")
              spt.put(appname+"_login",true)
@@ -209,6 +208,7 @@ var app_checklogin=function(){
              }
          }
          
+         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
     },60000)
 }
 
@@ -523,44 +523,7 @@ var  app_run=function(){
 }
 }
 
-let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
-log("正在集合运行的APP"+runscriptapp)
-let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
-log("是否是集合运行："+isreaderunning)
-// 集合运行
-if(runscriptapp==appname && isreaderunning){
 
-}else{
-    engines.stopOther()
-    alltest()
-    // checkfloaty()
-    // checksystemsettings()
-   floaty.closeAll()
-   creatgfloatywindow()
-   show(appname+"开始","#220000")
-  //  creatsetfloatywindow()  //创建设置悬浮窗
-    gfw.setPosition(0,device.height-250)
-    if(changesetting){
-        device.setMusicVolume(0)
-        toastLog("自动设置音量为0")
-    }
-    if(!app.getPackageName(appname)){
-        show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-        downloadandinstallapp(appname,apppkg)
-    }else{
-        keepappisnewer(appname,apppkg)
-        show(appname+"已经安装")
-    }
-    closelastscriptapp()
-    spt.put("lastscriptapp",appname)
-    spt.put("hongshuyuedu_running",false)
-    try {
-        show("开始运行:"+appname)
-        app_run()
-    } catch (error) {
-        
-    }
-}
-
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)
 
 
