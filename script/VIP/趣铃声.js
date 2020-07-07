@@ -39,7 +39,7 @@ var appname="趣铃声"
 var apploginactivity="com.jifen.open.biz.login.ui.activity.JFLoginActivity"
 
 var 首次开图片id="com.zheyun.bumblebee:id/iv_open_red_packet"
-var 首次点击文本集合=["允许","允许","始终允许","始终允许","立即提现","点这里设置铃声","立即登录"]
+var 首次点击文本集合=["允许","允许","始终允许","始终允许","立即提现","点这里设置铃声","立即登录","微信登录"]
 var 设置第一个来电铃声赚钱的关闭id="com.zheyun.bumblebee:id/base_card_dialog_close"  //设置第一个来电铃声   赚
 var 设置第一个来电铃声赚钱的立即设置按钮id="com.zheyun.bumblebee:id/tv_confirm"  // 立即设置    之后弹出暂不领取
 var 视频广告结束弹窗关闭id="com.zheyun.bumblebee:id/iv_close"
@@ -142,14 +142,18 @@ var app_run=function(){
 }
 
 var app_checklogin=function(){
-
     doactionmaxtime(function(){
         show(appname+"检测登录状态")
         clicktexts(["允许","始终允许"])
        if( idclick("com.zheyun.bumblebee:id/base_card_dialog_close")){
            return true
        } //立即设置的对话框的关闭按钮
-
+       if(idclick("com.zheyun.bumblebee:id/iv_open_red_packet")){
+           app_login()
+       }
+       if(clickonetexts(["微信登录","立即登录"])){
+           app_login()
+       }
     },60000)
 }
 
@@ -159,13 +163,11 @@ var seead=function(){
     doactionmaxtime(function(){
         show(appname+"广告循环:"+n_seead)
        n_seead=n_seead+1
-
         if(textclick("金币已到账")){
             back()
             sleep(1000)
             return true
         }
-      
         if(close_ad_toutiao(apppkg)){
             return true
         }
@@ -175,14 +177,9 @@ var seead=function(){
         if(close_ad_iclicash(apppkg)){
            return true
         }
- 
-        if(currentPackage()!=apppkg){
-          return true
-        }
-        if(currentActivity()==apphomeactivity){
+        if(isadviceactivity()<0){
             return true
         }
-   
         sleep(2500)
     },60000)
 
@@ -196,8 +193,8 @@ var app_login=function(){
 
 //app 微信登录
 var app_login_weixin=function(){
-    if(currentActivity()==apploginactivity){
-        clicktexts(["微信","同意"],100,2000)
+    // if(currentActivity()==apploginactivity){
+        clicktexts(["微信登录","微信","同意"],100,2000)
         //之后进入提现页 com.jifen.qu.open.QX5WebViewActivity
         while(true){
             node_title=id("com.zheyun.bumblebee:id/tv_title").findOne(100)
@@ -223,8 +220,11 @@ var app_login_weixin=function(){
                     return
                 }
             }
+            if(text("新手提现大礼包").exists()){
+                clicktexts([])
+            }
         }
-    }
+    //}
 }
 
 //app_手机号登录
@@ -255,41 +255,93 @@ var app_tomoney=function(){
 
 }
 
-var app_go_home=function(index){
-    doactionmaxnumber(function(){
-        ca=currentActivity()
-        if(ca==apphomeactivity){
-
-            
-            return true
-        }
-       if(!idContains(apppkg).findOne(1000)){
-           app.launch(apppkg)
-           sleep(3888)
-       }else{
-           back()
-           sleep(500)
-       }
-    },10)
-    if(currentActivity()!=apphomeactivity){
-        forcestop(appname)
-        app.launch(apppkg)
-           sleep(3888)
+var selectnavi=function(index){
+    show(appname+"选择导航:"+index)
+    if(clicknode(className("android.widget.FrameLayout").drawingOrder(index).depth(7).clickable().findOne(300))){
         return true
     }
+    if(index==1){
+       textclick("小视频")
+    }else if(index==2){
+        textclick("看剧")
+    }else if(index==3){
+        textclick("任务")
+    }else if(index==4){
+        textclick("拍摄")
+    }else if(index==5){
+        textclick("我的")
+    }
+
 }
 
-var app_reward_rongyu=function(){
+
+var app_go_home=function(index){
+    doactionmaxtime(function(){
+        ca=currentActivity()
+        show(appname+"回到首页:"+index+"|"+ca)
+       
+        if(ca==apphomeactivity){
+            if(index==1){
+                selectnavi(1)
+            }else if(index==2){
+                selectnavi(2)
+            }else if(index==3){
+                selectnavi(3)
+            }else if(index==4){
+                selectnavi(4)
+            }else if(index==5){
+                selectnavi(5)
+            }else{
+               
+            }
+            return true
+        }else{
+            if(currentPackage()!=apppkg){
+                app.launch(apppkg)
+                sleep(3888)
+            }else{
+                back()
+                sleep(500)
+            }
+        }
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        idclick("com.zheyun.bumblebee:id/base_card_dialog_close")
+       idclick("com.zheyun.bumblebee:id/iv_close")
+   
+    },30000)
+
+}
+
+var app_reward_xunzhang=function(){
     doactionmaxtime(function(){
         if(text("勋章殿堂").exists()){
             if(textclick("可领取",500)){
                 sleep(2000)
                 seead()
             }
+            if(textclick("快速领取下一个勋章奖励")){
+                sleep(3000)
+                seead()
+            }
+        }else{
+
         }
 
     },500000)
 }
 
-
+while(true){
+    sleep(3000)
+    app_go_home(1)
+    sleep(3000)
+    app_go_home(2)
+    sleep(3000)
+    app_go_home(3)
+    sleep(3000)
+    app_go_home(4)
+    sleep(3000)
+    app_go_home(5)
+}
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

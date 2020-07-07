@@ -159,8 +159,9 @@ var app_go_home=function(index){
             sleep(3000)
         }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
             seead()
-        
-
+        }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+            back()
+            sleep(1000)
         }else{
             if(isadviceactivity()>-1){
                 seead()
@@ -368,8 +369,7 @@ var app_reward_dayluck=function(){
             show(appname+"天天乐已经完成")
             return true
         }
-     //
-     
+
      doactionmaxnumber(function(n){
         show(appname+"天天乐:"+n)
             maytextclick("收下")
@@ -401,7 +401,14 @@ var app_reward_dayluck=function(){
              app_go_home(3)
              doactionmaxtime(function(){
                 if(textclick("天天乐")){
-                    return true
+                    sleep(2000)
+                    if(currentActivity()=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+                        back()
+                        sleep(1000)
+                    }else {
+                        return true
+                    }
+                    
                 }
                 if(text("免费抽千万金币").exists()){
                     return true
@@ -436,6 +443,9 @@ var app_reward_coinpick=function(){
             }else if(ca=="com.jifen.qu.open.QX5WebViewActivity"){
                 //
                 show("在奖励页")
+            }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+                back()
+                sleep(1000)
             }
             
             if(textclick("领取专属勋章和金币")){
@@ -475,7 +485,6 @@ var app_reward_luckpan=function(){
         doactionmaxnumber(function(n){
             show("幸运转盘")
             if(text("幸运大转盘").exists()){
- 
                 if(textclick("看视频抽大奖")){
                     show("点击了看视频抽大奖")
                     sleep(3000)
@@ -490,11 +499,17 @@ var app_reward_luckpan=function(){
                 app_go_home(3)
                 doactionmaxtime(function(){
                     if(textclick("幸运转盘",300)){
-                        return true
+                        sleep(2000)
+                        if(currentActivity()=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+                            back()
+                            sleep(1000)
+                        }else {
+                            return true
+                        }
+                        
                     }
                 },20000)
             }
-         
             node_cishu=textStartsWith("今日还剩").findOne(1000)
             if(node_cishu.text()=="今日还剩 0 次机会"){
                 show("找到今日还剩")
@@ -509,10 +524,8 @@ var app_reward_luckpan=function(){
             if(isadviceactivity()){
                 seead()
             }
-
         },30)
         show(appname+"幸运转盘结束")
-   
 }
 
 
@@ -561,6 +574,7 @@ var app_reward_fuli=function(){
             app_go_home(3)
             doactionmaxtime(function(){
                 if(textclick("拿福利")){
+                    
                     return true
                 }
             },10000)
@@ -776,7 +790,7 @@ if(doactionmaxtime(function(){
     }
     return false
 }
+app_reward_luckpan()
 
 
-
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+// startapp(appname,apppkg,0,device.height-200,false,false,true,true)

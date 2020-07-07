@@ -2216,9 +2216,10 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
+           
             ca=currentActivity()
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
-                
+                textclick("关闭")
             }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"){
                 
             }else{

@@ -323,6 +323,7 @@ var app_sign=function(){
     if(今日签到(appname)){return true}
     app_go_home(3)
     doactionmaxtime(function(){
+        textclick("我知道了")
         log("快手签到内部")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
             sleep(1500)
@@ -358,23 +359,18 @@ var app_sign=function(){
             }
         }
        if(textclick("立即签到")){
+         今日已签到(appname)
            sleep(1000)
            back()
-           今日签到(appname)
            return true
        }
-       if(descclick("立即签到")){
-        sleep(1000)
-        back()
-        今日签到(appname)
-        return true
-        }
+
        if(text("去补签").exists()){
+            今日已签到(appname)
            back()
            sleep(300)
            back()
            sleep(1000)
-           今日签到(appname)
            return true
        }
         if(text("签到领金币").exists()){
@@ -515,7 +511,7 @@ var app_invite=function(){
 }
 var app_swipe_up=function(){
     if(enablegenius){
-        滑动(20,10,18,10,3,500,300)
+        滑动(20,10,18,10,3,800,300)
     }else{
          vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(200)
          if(vp){
@@ -608,58 +604,57 @@ var app_tomoney=function(){
 }
 
 var app_video_swipe=function(){
-    // if(random(0,20)<20-视频重复次数){
-       
-    // }else{
-    //     app_swipe_down()
-    // }
 let swipenumber=0
-    doactionmaxtime(function(){
-        if(swipenumber>2){
-            vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
-            if(vp){
-                log("找到快手滑动vp")
-                vp.scrollForward()
-            }
-        }else{
+    doactionmaxnumber(function(n){
+        // if(swipenumber>2){
+        //     vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(300)
+        //     if(vp){
+        //         log("找到快手滑动vp")
+        //         vp.scrollForward()
+        //     }
+        // }else{
+
             app_swipe_up()
-        }
-      
-         swipenumber=swipenumber+1
-         sleep(2000)
+        // }
         if(!idoneexist(快手极速版视频页标志集合id)){
             app_go_home(3)
         }
+         swipenumber=swipenumber+1
+         sleep(2000)
         if(textoneexist(["点击打开长图","点击打开图集"],200)){
             app_swipe_up()
             sleep(2000)
          }
-         
          nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
              if(nowdesc!=lastdesc){
-           
                 n_like=快手极速版获取视频点赞数()
                 if(n_like >minlike){
                     idclick(快手极速版喜欢按钮id)
                     sleep(10000)
-                }else if(n_like>100){
-                   sleep(5000)
-                }else{
+                }else if(n_like>500000){
+                   sleep(9000)
+                }else if(n_like>300000){
+                    sleep(9000)
+                 }else if(n_like>10000){
+                    sleep(8000)
+                 }else if(n_like>1000){
+                    sleep(7000)
+                 }else{
                     app_video_swipe()
                 }
+                swipenumber=0
                 lastdesc=nowdesc
-                 return true
-                 
+                 sleep(10000)
              }else{
 
              }
-         }
-    },20000)
+           }
+    },100)
 }
 
 var app_get_coin_money=function(){
-    if(   doactionmaxtime(function(){      
+    if( doactionmaxtime(function(){      
     if(currentActivity()!=appsignactivity){
         show("获取金币数和余额")
         app_go_home(3)
@@ -714,25 +709,24 @@ function app_run(){
     show("快手极速版开始")
     app.launch(apppkg)
     sleep(3000)
-    app_sign()
+    if(今日签到(appname)!="true"){
+        app_sign()
+    }
     todaysign=true
     loopn=0
     while(true){
-    
         app_close_alter()
         device.wakeUpIfNeeded()
         loopn=loopn+1
         log("循环："+loopn)
-        app_go_home(3)
+      
 
         app_video_swipe()
+        
+        app_video_city()
 
        idclick("com.kuaishou.nebula:id/close")
-       if(closeappundostate()){
-        sleep(1000)
-        app.launch(apppkg)
-        sleep(3000)
-       }
+    
        if(loopn%25==0){
         checkbattery(30,1200000,1800000)
         }
@@ -746,6 +740,19 @@ function app_run(){
             }
         }
     }
+}
+
+var app_video_city=function(){
+    app_go_home(1)
+    
+    doactionmaxnumber(function(n){
+        show(appname+"看同城视频")
+        
+    },100)
+}
+
+var app_see_live=function(){
+
 }
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

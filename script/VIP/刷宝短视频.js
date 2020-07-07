@@ -92,6 +92,9 @@ var  app_go_home=function(index){
         else if(ca==appvideolistactivity){
             back()
             sleep(1000)
+        }else if(ca=="com.jm.video.ui.live.PublishActivity"){
+            back()
+            sleep(1000)
         }
         else if(ca==appwebactivity){
             back()
