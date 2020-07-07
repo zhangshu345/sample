@@ -175,7 +175,6 @@ var app_sign=function(){
                                今日已签到(appname)
                                return true
                               }
-                      
                 },20)
             }   
             
@@ -427,7 +426,7 @@ function app_go_likevideolist(){
 var app_home_swipe=function(){
     doactionmaxtime(function(){
         show(appname+"滑动")
-        滑动(20,13,16,10,4,500,700)
+        滑动(20,15,16,10,4,500,700)
         sleep(2000)
         id_desc=  id("com.jm.video:id/desc").findOne(1000)
        if(id_desc){
@@ -456,7 +455,7 @@ var app_home_swipe=function(){
                        }
                        sleepr(5000*ratio,8000*ratio)
                       }else{
-                        sleepr(3000*ratio,5000*ratio)
+                        sleep(3000)
                       }
                       return true
                    }
