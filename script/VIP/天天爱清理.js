@@ -614,16 +614,7 @@ var  app_see_video=function(){
         if(!idoneexist(视频页标记id集合)){
             app_go_home(2)
         }
-        if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
-            bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
-            if(bt_ad){
-                if(btoa.text().search("看视频再")>-1){
-                    clicknode(bt_ad)
-                    sleep(3000)
-                    seead()
-                }
-            }
-        }
+ 
           滑动(20,15,17,7,3,500,300)
           sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
@@ -632,16 +623,33 @@ var  app_see_video=function(){
                 if(text_like!=lasttitle){
                     n=parseInt(text_like)
                    show(appname+":喜欢人数"+text_like)
-                   if(n>1000){
-                       sleepr(8000*ratio,12000*ratio)
-                   }else if(n>500){
-                       sleepr(7000*ratio,9000*ratio)
-                   }else if(n>100){
-                       sleepr(6000*ratio,8000*ratio)
-                   }else{
-                       sleepr(5000*ratio,7000*ratio)
-                   }
                    lasttitle=text_like
+                 let  sleeptime=10
+                   if(n>1000){
+                       sleeptime=10
+                   }else if(n>500){
+                        sleeptime=9
+                   }else if(n>100){
+                        sleeptime=8
+                   }else{
+                        sleeptime=8
+                   }
+                   doactionmaxtime(function(){
+                    if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
+                        bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
+                        if(bt_ad){
+                            if(btoa.text().search("看视频再")>-1){
+                                clicknode(bt_ad)
+                                sleep(3000)
+                                seead()
+                                return true
+                            }
+                        }
+                    }
+                    if(isadviceactivity()){
+                        seead()
+                    }
+                   },sleeptime*1000)
                }
             }
     },100)

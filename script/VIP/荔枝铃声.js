@@ -61,7 +61,7 @@ var app_run=function(){
         sleep(2000)
         log("循环次数："+loopn)
                    //这里是视频上滑操作
-       app_home_swipe()
+        app_home_swipe()
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)
         close_ad_iclicash(apppkg)
@@ -85,8 +85,9 @@ var app_home_swipe=function(){
 }
 
 var app_login_check=function(){
-    show("检测"+appname+"登录状况")
+  
     doactionmaxtime(function(){
+        show("检测"+appname+"登录状况")
         clicktexts(["同意","允许","允许","允许","始终允许","始终允许","始终允许"])
         if(idclick("com.preface.megatron:id/iv_open_red_bag")){
 

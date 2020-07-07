@@ -28,6 +28,8 @@ var apphomeactivity="com.jifen.dandan.sub.home.activity.HomeActivity"
 var appname="彩蛋视频"
 var  apprewardactivity="com.jifen.dandan.webview.WebViewActivity"
 var appliveactivity="com.uqu.live.liveroom.pages.LiveActivity"
+var apploginactivity="com.jifen.open.biz.login.ui.activity.JFLoginActivity"
+var appwebactivity="com.jifen.dandan.webview.WebViewActivity"
 var tomoney=false  
 var logintype="phone"  //weixin 是微信登录 phone 是手机号登录
 var onetime=30 // 一次的时间
@@ -122,18 +124,24 @@ var app_checklogin=function(){
     if(clicktexts(["同意","声明与政策","我知道了","允许","允许","允许","始终允许","始终允许","始终允许"],200,1288)){
          
     }
+
     if(idclick("com.jifen.dandan:id/iv_open")){
         app_login()
     }
-    if(textclick("微信一键登录")){
+
+    if(clickonetexts(["微信一键登录","注册/登录"])){
         app_login_weixin()
     }
+
+    app_go_home(5)
    //缺判断登录的标志
    if(idoneexist(["com.jifen.dandan:id/image_bg","com.jifen.dandan:id/tv_like_num"])){
     return true
     }
-
-    app_go_home(4)
+    if(getTextfromid("com.jifen.dandan:id/login_person_name")!=""){
+        return true
+    }
+   
    },30000)
    show(appname+"检测登录完毕")
 }
@@ -208,6 +216,14 @@ var seead=function(){
         if(maytextclick("看视频再送")){
             
         }
+        if(textclick("红包免费领")){
+            sleep(1000)
+        }
+        if(textoneexist(["挖宝赢大奖","高温补贴来了"])){
+            clicknode(className("android.view.View").clickable(true).drawingOrder(0).depth(12).findOne(300))
+        }
+
+        clicknode(className("android.view.View").clickable().depth(11).drawingOrder(0).findOne(300))
         if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],150,1500)){
             back()
             return true
@@ -233,13 +249,15 @@ var seead=function(){
      if(isadviceactivity()<0){
             return true
      }
+     
      sleep(2000)
     },60000)
 }
 
 var app_go_home=function(index){
-    show(appname+"回到主页:"+index)
+    
     doactionmaxtime(function(){
+        show(appname+"回到主页:"+index)
         ca=currentActivity()
         if(ca==apphomeactivity){
             if(index==1){
@@ -272,11 +290,16 @@ var app_go_home=function(index){
                     return true
                 }else{
                     selectnavi(5)
+                    sleep(1000)
                 }
             }
         }else if(ca==appliveactivity){
             back()
             sleep(300)
+        }else if(ca==apploginactivity){
+            app_login()
+        }else if(ca==appwebactivity){
+            back()
         }else {
             if(textclick("立即翻倍")){
                 seead()
@@ -284,7 +307,6 @@ var app_go_home=function(index){
              if(textclick("点击领取")){
                  app_getreward()
              }
-          
             sleep(1000)
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
@@ -437,7 +459,7 @@ var app_getreward=function(){
 var app_getreward1=function(){
     app_go_home(3)
     sleep(3)
-    doactionmaxtime(function(){
+    doactionmaxnumber(function(n){
                 if(text("每日签到").exists()){
                     textclick("抢红包")
                     sleep(1000)
@@ -471,7 +493,7 @@ var app_getreward1=function(){
             
         }
         clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
-    },300000)
+    },20)
 }
 
 var app_login=function(){
@@ -487,13 +509,10 @@ var app_login_phone=function(){
 
 }
 
-
 var app_login_weixin=function(){
-   
-    doactionmaxtime(function(){
+    doactionmaxnumber(function(){
         clicktexts(["立即提现","微信一键登录","同意"],200,2000)
-        
-    },10000)
+    },10)
 }
 
 var app_tomoney=function(){
@@ -583,6 +602,5 @@ var app_tomoney=function(){
 //     sleep(3000)
 
 // }
-
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

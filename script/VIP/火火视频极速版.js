@@ -767,11 +767,15 @@ var app_reward_video=function(){
         return true
     }
     doactionmaxnumber(function(){
-            app_go_home(4)
+            
             sleep(2000)
-            while(!textclick("看福利视频赚金币")){
+            doactionmaxtime(function(){
+                if(textclick("看福利视频赚金币")){
+                    return true
+                }
+                app_go_home(4)
                 滑动(20,10,16,10,4,500,200)
-            }
+            },10000)
             sleep(3000)
             seead()
         if(text("看视频即可打开").exists()){
