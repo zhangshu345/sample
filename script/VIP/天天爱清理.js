@@ -56,9 +56,12 @@ var app_run=function(){
     sleep(3000)
     app_checklogin()
     app_tomoney2()
+    app_clean()
+    
     app_sign()
-    app_reward()
     app_see_video()
+    app_tomoney2()
+    app_reward()
     app_reward_xunzhang()
     app_tomoney2()
 
@@ -588,7 +591,6 @@ var app_reward=function(){
     show(appname+"获取奖励")
     app_reward_fuli()
         //金币派对
-   
       //瓜分金币
       app_reward_coinpick()
       //天天乐
@@ -790,7 +792,7 @@ if(doactionmaxtime(function(){
     }
     return false
 }
-app_reward_luckpan()
 
 
-// startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)
