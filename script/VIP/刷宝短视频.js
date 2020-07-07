@@ -117,7 +117,7 @@ var selectnavi=function(index){
     if(node_ll){
         bd=node_ll.bounds()
         show("点击导航位置"+bd.centerX()+","+bd.centerY())
-        click(bd.centerX(),bd.centerY())
+        press(bd.centerX(),bd.centerY(),50)
         return true
     }else{
         show("没有找到导航")

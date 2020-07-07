@@ -509,6 +509,7 @@ var app_invite=function(){
     }
    return false
 }
+
 var app_swipe_up=function(){
     if(enablegenius){
         滑动(20,10,18,10,3,800,300)
@@ -613,12 +614,13 @@ let swipenumber=0
         //         vp.scrollForward()
         //     }
         // }else{
+    
 
-            app_swipe_up()
         // }
         if(!idoneexist(快手极速版视频页标志集合id)){
             app_go_home(3)
         }
+        app_swipe_up()
          swipenumber=swipenumber+1
          sleep(2000)
         if(textoneexist(["点击打开长图","点击打开图集"],200)){
@@ -727,18 +729,9 @@ function app_run(){
 
        idclick("com.kuaishou.nebula:id/close")
     
-       if(loopn%25==0){
-        checkbattery(30,1200000,1800000)
-        }
-        if(loopn%100==0){
-            设置今日滑动次数(appname,loopn)
-        }
-        if(loopn%1000==0){
-            if(tomoney){
-                log("提现")
+   
                 app_tomoney()
-            }
-        }
+
     }
 }
 

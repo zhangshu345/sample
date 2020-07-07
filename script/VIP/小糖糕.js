@@ -52,7 +52,10 @@ var 小视频广告翻倍次数=0
 var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
+
     app_login_check()
+    app_see_video()
+    app_tomoney()
     app_sign()
     app_reward()
     app_reward_video()
@@ -213,12 +216,18 @@ var app_reward=function(){
     app_reward_dayluck()
  }
 var app_reward_video=function(){
-    app_go_home(3)
-    sleep(1000)
+
     doactionmaxnumber(function(){
-        while(!textclick("看福利视频")){
+        show(appname+"看福利视频")
+        doactionmaxtime(function(){
+            if(textclick("看福利视频")){
+                return true
+            }
+            app_go_home(3)
             滑动(20,10,17,10,3,500,300)
-        }
+            sleep(2000)
+        },10000)
+      
         if(textclick("去观看")){
           sleep(3000)
         }
@@ -432,11 +441,12 @@ var app_reward_dayluck=function(){
             seead()
         }
 
-
         if(isadviceactivity()>-1){
             seead()
         }
+
         sleep(2000)
+
     },200000)
     show(appname+"天天抽奖结束")
 }
