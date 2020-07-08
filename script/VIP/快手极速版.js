@@ -476,6 +476,8 @@ var app_go_home=function(index){
                     selectnavi(3)
                     return true
                 }
+            }else if(ca==appliveactivity){
+                textclick("退出")
             }else{
                 app_close_alter()
                 back()
@@ -752,38 +754,47 @@ var app_video_city=function(){
 }
 
 var app_go_live=function(){
-let ca=currentActivity()
-if(ca==appliveactivity){
-        return true
-}else if(ca=="androidx.slidingpanelayout.widget.SlidingPaneLayout"){
+  
     doactionmaxtime(function(){
-        if(textclick("直播广场")){
-            sleep(2000)
-            if(currentActivity()==appliveactivity){
-                return true
-            }
-        }
-        滑动(20,7,13,7,6,500,300)
-    },20000)
-}
-doactionmaxnumber(function(n){
-app_go_home(3)
-idclick("com.kuaishou.nebula:id/left_btn")
-sleep(1000)
-return doactionmaxtime(function(){
-    if(textclick("直播广场")){
-        sleep(2000)
-        if(currentActivity()==appliveactivity){
+        log(appname+"回到直播间")
+        if(isappliveactivity()){
             return true
         }
-    }
-    滑动(20,7,13,7,6,500,300)
-},20000)
-},5)
+        ca=currentActivity()
+        if(ca==apphomeactivity){
+            idclick("com.kuaishou.nebula:id/left_btn")
+            sleep(2000)
+            if( doactionmaxtime(function(){
+                if(textclick("直播广场")){
+                    sleep(2000)
+                  return true
+                }
+                if(isappliveactivity()){
+                    return true
+                }
+                滑动(20,7,13,7,6,500,300)
+            },20000)){
+                return true
+            }
+        }else if(ca==appliveactivity){
+            return true
+        }else{
+            app_close_alter()
+            back()
+            sleep(500)
+        }
+        if(currentPackage()!=apppkg){
+            app.launch(apppkg)
+            sleep(3000)
+        }
+    },60000)
+
+
 
 
 }
 var canqianghongbao=function(coin,livenum,waittime){
+    log(appname+"判断抢红包："+coin+"--直播人数--"+livenum+"--等待时间--"+waittime)
     if(coin<20){
         return false
     }
@@ -796,8 +807,8 @@ var canqianghongbao=function(coin,livenum,waittime){
         if(livenum<1000){
             return true
         }
-    }else{
-        if(coin>livenum){
+    }else if(coin>100){
+        if(coin>livenum&&waittime<coin){
             return true
         }
         return false
@@ -805,13 +816,13 @@ var canqianghongbao=function(coin,livenum,waittime){
 }
 var clickhongbao=function(sleeptime,cx,cy){
     try {
-        toastLog("等待时间"+sleeptime)
-        if(sleeptime>=60){
-                while(app_hongbao_daojishi()>10){
-                    toastLog(appname+"抢红包等待中"+app_hongbao_daojishi())
-                    sleep(2000)
-                }
-        }
+        // toastLog("等待时间"+sleeptime)
+        // if(sleeptime>=60){
+        //         while(app_hongbao_daojishi()>10){
+        //             toastLog(appname+"抢红包等待中"+app_hongbao_daojishi())
+        //             sleep(2000)
+        //         }
+        // }
        
         while(true){
                 sleeptime=app_hongbao_daojishi()
@@ -819,24 +830,25 @@ var clickhongbao=function(sleeptime,cx,cy){
                 if(sleeptime<=3){
                     doactionmaxtime(function(){
                         press(cx,cy,10)
-                    },4000,20)
+                    },3000,20)
                     return true
                 }
-                sleep(3000)
+                sleep(1500)
             }
     } catch (error) {
-        log(appname+"出错:点击红包出错")
+        log(appname+"出错:点击红包")
     }
-   
-
 }
 
 
 var app_hongbao_daojishi=function(){
+    log("查找倒计时")
+    node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
     if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
         txt_time=node_count.text();
         coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
         if(txt_time!=""){
+            log("找到的文本"+txt_time)
             if(txt_time.search("分钟")>-1){
                 return parseInt(txt_time.replace("分钟后",""))*60
             }else{
@@ -850,6 +862,7 @@ var app_hongbao_daojishi=function(){
 
 //  直播页红包id =com.kuaishou.nebula:id/live_normal_red_pack_image_view   
 //               com.kuaishou.nebula:id/live_normal_red_pack_image_view
+var livename=""
 var app_live_hongbao=function(){
     try {
         let livenum=0
@@ -857,24 +870,52 @@ var app_live_hongbao=function(){
     let dtime=0
     let cx=device.width/2
     let cy=device.height*59/96
-    doactionmaxtime(function(n){
+    doactionmaxtime(function(){
+        show("直播间查找红包")
+        if(text("直播已结束").exists()){
+            return true
+        }
+        let cname=getTextfromid("com.kuaishou.nebula:id/live_name_text","",500)
+        if(cname!=""&&cname==livename){
+            //
+           log("主播名:"+cname)
+            livename=cname
+            return true
+        }
         //获取直播人数
         txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
         if(txt_livenum!=""){
-           livenum=parseInt(txt_livenum)
+            show(appname+"直播间人数:"+txt_livenum)
+            if(txt_livenum.search("w")>-1){
+                livenum=parseInt(txt_livenum.replace("w",""))*10000
+            }else{
+                livenum=parseInt(txt_livenum)
+            }
+           
         }
     
         if(text("看看大家手气").exists()){
             idclick("com.kuaishou.nebula:id/close_view")
-            sleep(1000)
-            press(device.width/2,device.height,50)
             return true
+        }
+        if(idclick("com.kuaishou.nebula:id/live_arrow_red_packet_pendant_icon_view")){
+            //
+            show("点击倒计时红包")
+            sleep(2000)
+        }
+
+        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
+            clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
+            //普通红包
+            sleep(2000)
         }
         node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
         if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
+            show(appname+"找到红包弹窗")
             txt_time=node_count.text();
             coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
             toastLog("时间:"+txt_time+"--金币数:"+coin)
+          
             if(txt_time!=""){
                 if(txt_time.search("分钟")>-1){
                     dtime=parseInt(txt_time.replace("分钟后",""))*60
@@ -886,17 +927,18 @@ var app_live_hongbao=function(){
                     return true
                 }
             }
+            if(canqianghongbao(coin,livenum,dtime)){
+                textclick("i 关注")
+                log("可以抢红包")
+                clickhongbao(dtime,cx,cy)
+                return true
+            }else{
+                idclick("com.kuaishou.nebula:id/live_red_packet_close_view")
+                return true
+            }
         }
         
-        if(canqianghongbao(coin,livenum,dtime)){
-            clickhongbao(dtime,cx,cy)
-            return true
-        }
-
-        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
-            clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
-            sleep(1200)
-        }
+      //倒计时的红包
         if(text("手慢了，红包派完了").exists()){
             idclick("com.kuaishou.nebula:id/live_red_packet_close_view")
             sleep(1000)
@@ -913,15 +955,16 @@ var app_live_hongbao=function(){
     } catch (error) {
         log(appname+"出错:直播间抢红包"+error)
     }
-    
 }
 
+var isappliveactivity=function(){
+    return currentActivity()==appliveactivity||id("com.kuaishou.nebula:id/live_name_text").findOne(500)||id("com.kuaishou.nebula:id/count_down_view").findOne(500)
+}
 
 var app_see_live=function(){
-    app_go_live()
-    
     doactionmaxnumber(function(n){
-        if(currentActivity!=appliveactivity){
+        if(!isappliveactivity()){
+            show(appname+"不在直播间")
             app_go_live()
         }
         app_live_hongbao()
@@ -929,11 +972,9 @@ var app_see_live=function(){
 
     },1000)
 
-
-
 }
 
-app_see_live()
+// app_see_live()
 
 
 
@@ -947,4 +988,4 @@ app_see_live()
 //     sleep(3000)
  
 // }
-//startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)
