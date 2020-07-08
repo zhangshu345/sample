@@ -642,8 +642,8 @@ var 今日时长=function(name){s=获取今日记录(name,"time");toastLog(name+
 }}
 var 记录今日时长=function(name,t){ 今日记录(name,"time",t)}
 
-var 今日滑动次数=function(name){name= name||"glode";cs=获取今日记录(name,"swipe");toastLog(name+"：今日滑动次数:"+cs);return cs;}
-var 设置今日滑动次数=function(name,i){name=name||"glode";i=i||0;今日记录(name,"swipe",i);}
+var 今日滑动次数=function(name){name= name||"glode";cs=获取今日记录(name,"swipe");toastLog(name+"：今日滑动次数:"+cs);if(cs==""){return 0;}else{return parseInt(cs);}
+var 记录今日滑动次数=function(name,i){name=name||"glode";i=i||0;今日记录(name,"swipe",""+i);}
 
 var 今日提现=function(name){      return 获取今日记录(name,"cashout");}
 var 今日已提现=function(name){   今日记录(name,"cashout","true");    toastLog(name+"今日已提现");}
