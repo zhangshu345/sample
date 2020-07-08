@@ -74,17 +74,36 @@ var app_login_check=function(){
         if(textclick("立即提现到微信")){
             app_login_weixin()
         }
+        if(clicknode(text("立即提现至微信").findOne(1000),0,-100)){
 
-
+        }
+        if(textclick("微信登录")){
+            sleep(2000)
+        }
+        if(textclick("同意")){
+            sleep(2000)
+        }
+        if(textclick("立即提现")){
+            sleep(2000)
+        }
+     if(textclick("去填写")){
+         app_invite()
+     }
+     app_go_home(4)
     },60000)
 }
 
 
 var selectnavi=function(index){
-
+show(appname+"选中导航:"+index)
   node_navi=  className("android.widget.RelativeLayout").drawingOrder(index).clickable().packageName(apppkg).depth(10).findOne(200)
     if(node_navi){
-        node_navi.click()
+        if(!node_navi.selected()){
+            node_navi.click()
+        }else{
+
+        }
+        
     }else{
 
     }
@@ -146,9 +165,10 @@ var app_tomoney=function(){
 
 //app 回到操作的主页
 
-function  app_go_home(index){
+var app_go_home=function(index){
 
    doactionmaxtime(function(){
+       show(appname+"回到首页:"+index)
        if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
@@ -156,33 +176,37 @@ function  app_go_home(index){
          ca=currentActivity()
          if(ca==apphomeactivity){
             if(index==1){
-                if(id("com.kuaiyin.player:id/searchIcon").exist()){
-                    return true
-                }else{
+                // if(id("com.kuaiyin.player:id/searchIcon").exists()){
+                   
+                // }else{
                     selectnavi(1)
-                }
+                    return true
+                // }
             }else if(index==2){
-                if(idoneexist(["com.kuaiyin.player:id/video_like_value","com.kuaiyin.player:id/tv_title"])){
-                    return true
-                }else{
+                // if(idoneexist(["com.kuaiyin.player:id/video_like_value","com.kuaiyin.player:id/tv_title"])){
+                //     return true
+                // }else{
                     selectnavi(2)
-                }
-            }else if(index==3){
-                if(id("com.kuaiyin.player:id/searchIcon").exist()){
                     return true
-                }else{
+                // }
+            }else if(index==3){
+                // if(id("com.kuaiyin.player:id/searchIcon").exists()){
+                //     return true
+                // }else{
                     selectnavi(3)
-                }
+                    return true
+                // }
             }else if(index==4){
                     selectnavi(4)
                 return true
           
             }else if(index==5){
-                if(idoneexist(["com.kuaiyin.player:id/userName","com.kuaiyin.player:id/tv_title"]).exist()){
-                    return true
-                }else{
+                // if(idoneexist(["com.kuaiyin.player:id/userName","com.kuaiyin.player:id/tv_title"])){
+                //     return true
+                // }else{
                     selectnavi(5)
-                }
+                    return true
+                // }
             }
          }else if(ca=="com.kuaiyin.player.web.WebActivity"){
             back()
@@ -204,4 +228,17 @@ var app_invite=function(){
 
 }
 
+
+while(true){
+    app_go_home(1)
+    sleep(3000)
+    app_go_home(2)
+    sleep(3000)   
+    app_go_home(3)
+    sleep(3000)
+    app_go_home(4)
+    sleep(3000)
+    app_go_home(5)
+    sleep(3000)
+}
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

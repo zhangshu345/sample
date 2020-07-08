@@ -232,7 +232,7 @@ var app_clean=function(){
                     if(node_coins){
                         node_coins.forEach(n_c => {
                             if(clicknode(n_c)){
-                                sleep(1000)
+                                sleep(2000)
                                 if(textclick("看视频兑换")){
                                     seead()
                                 }
@@ -604,52 +604,57 @@ var app_reward=function(){
 
 
 var  app_see_video=function(){
-    doactionmaxnumber(function(n){
-        show(appname+"视频页滑动")
-        closeappundostate()
-        if(!idoneexist(视频页标记id集合)){
-            app_go_home(2)
-        }
-          滑动(20,15,17,7,3,500,300)
-          sleep(2000)
-            text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
-            show("视频喜欢人数:"+text_like)
-            if(text_like){
-                if(text_like!=lasttitle){
-                    n=parseInt(text_like)
-                   show(appname+":喜欢人数"+text_like)
-                   lasttitle=text_like
-                 let  sleeptime=10
-                   if(n>1000){
-                       sleeptime=10
-                   }else if(n>500){
-                        sleeptime=9
-                   }else if(n>100){
-                        sleeptime=8
-                   }else{
-                        sleeptime=8
-                   }
-                   doactionmaxtime(function(){
-                       show(appname+"看视频等待")
-                    if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
-                        bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(300)
-                        if(bt_ad){
-                            if(btoa.text().search("看视频再")>-1){
-                                clicknode(bt_ad)
-                                sleep(3000)
-                                seead()
-                              return true
+    try {
+        doactionmaxnumber(function(n){
+            show(appname+"视频页滑动"+n)
+            closeappundostate()
+            if(!idoneexist(视频页标记id集合)){
+                app_go_home(2)
+            }
+              滑动(20,15,17,7,3,500,300)
+              sleep(2000)
+                text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
+                show("视频喜欢人数:"+text_like)
+                if(text_like){
+                    if(text_like!=lasttitle){
+                        n=parseInt(text_like)
+                       show(appname+":喜欢人数"+text_like)
+                       lasttitle=text_like
+                     let  sleeptime=10
+                       if(n>1000){
+                           sleeptime=10
+                       }else if(n>500){
+                            sleeptime=9
+                       }else if(n>100){
+                            sleeptime=8
+                       }else{
+                            sleeptime=8
+                       }
+                       doactionmaxtime(function(){
+                           show(appname+"看视频等待")
+                        if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
+                            bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(300)
+                            if(bt_ad){
+                                if(bt_ad.text().search("看视频再")>-1){
+                                    clicknode(bt_ad)
+                                    sleep(3000)
+                                    seead()
+                                 return true
+                                }
                             }
                         }
-                    }
-                    if(isadviceactivity()>-1){
-                        seead()
-                    }
-                    sleep(1000)
-                   },sleeptime*1000)
-               }
-            }
-    },100)
+                        if(isadviceactivity()>-1){
+                            seead()
+                        }
+                        sleep(1000)
+                       },sleeptime*1000)
+                   }
+                }
+        },100)
+    } catch (error) {
+        log(appname+"出错:看视频")
+    }
+   
 }
 
 

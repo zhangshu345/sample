@@ -491,9 +491,21 @@ var app_getreward1=function(){
             }
         }else if(title=="幸运扭蛋"){
             
+        }else if(title=="高温补贴来了〜〜"){
+            clicknode(text("看视频抽大奖").depth(18).drawingOrder(0).findOne(500),0,100)
+
         }
         clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
+
+        if(isadviceactivity()>-1){
+            seead()
+        }
     },20)
+}
+
+
+var app_reward_88=function(){
+    
 }
 
 var app_login=function(){

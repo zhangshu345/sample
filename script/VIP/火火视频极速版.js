@@ -85,7 +85,6 @@ var app_checklogin=function(){
 }
 
 
-
 var clickgold=function(){
     show(appname+"点击金蛋")
     node_gold=text("金蛋大奖").visibleToUser().findOne(200)
