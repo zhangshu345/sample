@@ -804,7 +804,7 @@ var app_see_live=function(){
 
 
 
-app_see_live()
+//app_see_live()
 
 
 // while(true){
