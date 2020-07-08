@@ -512,7 +512,7 @@ var app_invite=function(){
 
 var app_swipe_up=function(){
     if(enablegenius){
-        滑动(20,10,15+randomint(0,3),10,randomint(0,2)+3,800,300)
+        滑动(20,10,15+randomint(2,3),10,randomint(0,1)+3,666,300)
     }else{
          vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(200)
          if(vp){
