@@ -279,7 +279,6 @@ var app_go_home=function(index){
     doactionmaxtime(function(){
         ca=currentActivity()
         show(appname+"回到首页:"+index+"|"+ca)
-       
         if(ca==apphomeactivity){
             if(index==1){
                 selectnavi(1)

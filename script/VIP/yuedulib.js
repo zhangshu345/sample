@@ -1210,8 +1210,8 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         // points.push([endx,endy])
         // delay=t+random(0, r)
         // gestures(delay,delay/z,points)
-       // swipe(startx, starty , endx , endy, t+random(0, r))
-        randomSwipe(startx, starty , endx , endy,t,r)
+        swipe(startx, starty , endx , endy, t+randomint(0, r))
+        // randomSwipe(startx, starty , endx , endy,t,r)
     }else{
         if(startx>=endx){
             left=endx
@@ -2216,7 +2216,7 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-           
+          
             ca=currentActivity()
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                 textclick("关闭")
@@ -2225,9 +2225,11 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             }else{
                 return true
             }
-          
+            if(isadviceactivity()<0){
+                return true
+            }
         
-        },60000)
+        },60000,2000)
     }
     return false 
 }

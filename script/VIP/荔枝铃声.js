@@ -55,7 +55,7 @@ var loopn=今日滑动次数(appname)
 var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
-    app_login_check()
+    app_checklogin()
     loopn=0
     while(true){
         sleep(2000)
@@ -81,10 +81,9 @@ var app_home_swipe=function(){
             app_go_home(3)
         }
     },15000)
-
 }
 
-var app_login_check=function(){
+var app_checklogin=function(){
   
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
@@ -95,16 +94,15 @@ var app_login_check=function(){
         if(textclick("立即提现")){
 
         }
-        app_go_home(5)
-
+        
         if(textclick("立即登录")){
            app_login_weixin()
         }
         if(text("邀请码:").exists()){
             return true
         }
-
-    },60000)
+        app_go_home(5)
+    },38000)
 }
 
 //app 登录
@@ -179,6 +177,9 @@ var app_go_home=function(index){
                  back()
              }
          }
+        if(clickonetexts(["同意","允许","允许","允许","始终允许","始终允许","始终允许"])){
+            app_checklogin()
+        }
 
     },60000)){return true}else{
         forcestop(appname)

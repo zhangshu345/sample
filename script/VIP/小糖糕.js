@@ -52,15 +52,15 @@ var 小视频广告翻倍次数=0
 var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
-
     app_login_check()
     app_see_video()
     app_tomoney()
     app_sign()
-    app_reward()
     app_reward_video()
     app_see_video()
+    app_reward()
     app_tomoney()
+
 
 }
 

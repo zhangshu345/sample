@@ -52,19 +52,17 @@ var 广告标志集合=["点击重播","奖励已到账","查看详情","关闭"
 var loopn=0
 var lasttitle=""
 var app_run=function(){
-    app.launch(apppkg)
-    sleep(3000)
-    app_checklogin()
-    app_tomoney2()
-    app_clean()
-    
-    app_sign()
-    app_see_video()
-    app_tomoney2()
-    app_reward()
-    app_reward_xunzhang()
-    app_tomoney2()
-
+        app.launch(apppkg)
+        sleep(3000)
+        app_checklogin()
+        app_tomoney2()
+        app_clean()
+        app_sign()
+        app_see_video()
+        app_tomoney2()
+        app_reward()
+        app_reward_xunzhang()
+        app_tomoney2()
 }
 
 //荣耀殿堂那个
@@ -250,11 +248,13 @@ var app_clean=function(){
             return true
         }
         if(maytextclick("看视频再领")){
+            sleep(3000)
             seead()
             back()
             return true
         }
         if(idclick(天天爱清理看视频翻倍id)){
+            sleep()
             seead()
             back()
             return true
@@ -342,7 +342,6 @@ doactionmaxtime(function(){
 // }
 // //app 签到
 var app_sign=function(){
-  
     app_go_home(3)
     doactionmaxtime(function(){
         show(appname+"：签到")
@@ -372,7 +371,6 @@ var app_reward_dayluck=function(){
             show(appname+"天天乐已经完成")
             return true
         }
-
      doactionmaxnumber(function(n){
         show(appname+"天天乐:"+n)
             maytextclick("收下")
@@ -418,7 +416,7 @@ var app_reward_dayluck=function(){
                 }
              },20000)
          }
-         if(isadviceactivity()){
+         if(isadviceactivity()>-1){
              seead()
          }
          sleep(2000)
@@ -472,7 +470,7 @@ var app_reward_coinpick=function(){
                 今日记录(appname,"coinpick",7)
                 return true
             }
-            if(isadviceactivity()){
+            if(isadviceactivity()>-1){
                 seead()
             }
         },50)
@@ -524,7 +522,7 @@ var app_reward_luckpan=function(){
                 今日记录(appname,"luckpan","true")
                 return true
             }
-            if(isadviceactivity()){
+            if(isadviceactivity()>-1){
                 seead()
             }
         },30)
@@ -533,7 +531,6 @@ var app_reward_luckpan=function(){
 
 
 var app_reward_coinparty=function(){
-   
         doactionmaxnumber(function(n){
             show(appname+"金币派对")
             if(maytextclick("看视频再")){
@@ -571,8 +568,6 @@ var app_reward_fuli=function(){
             press(device.width/2,device.height-300)
             sleep(3000)
             clicknode(className("android.view.View").clickable().depth(13).drawingOrder(0).findOne(300))
-
-
         }else{
             app_go_home(3)
             doactionmaxtime(function(){
@@ -582,8 +577,9 @@ var app_reward_fuli=function(){
                 }
             },10000)
         }
-
-
+        if(isadviceactivity()>-1){
+            seead()
+        }
     },20)
 }
 
@@ -614,7 +610,6 @@ var  app_see_video=function(){
         if(!idoneexist(视频页标记id集合)){
             app_go_home(2)
         }
- 
           滑动(20,15,17,7,3,500,300)
           sleep(2000)
             text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
@@ -635,20 +630,22 @@ var  app_see_video=function(){
                         sleeptime=8
                    }
                    doactionmaxtime(function(){
+                       show(appname+"看视频等待")
                     if(id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().exists()){
-                        bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(3000)
+                        bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(300)
                         if(bt_ad){
                             if(btoa.text().search("看视频再")>-1){
                                 clicknode(bt_ad)
                                 sleep(3000)
                                 seead()
-                                return true
+                              return true
                             }
                         }
                     }
-                    if(isadviceactivity()){
+                    if(isadviceactivity()>-1){
                         seead()
                     }
+                    sleep(1000)
                    },sleeptime*1000)
                }
             }
