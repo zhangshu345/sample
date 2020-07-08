@@ -948,10 +948,11 @@ var clicknode=function(v,dx,dy,time,clicknumber){
             log("点击控件左上角")
               return press(b.left+dx,b.top+dy,50)
            }
-           if(b.right<device.width,b.bottom<device.height){
-            log("点击控件右下角")
-            return press(b.right-1,b.bottom-1,50)
+           if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
+            log("点击控件右下角"+(b.right)+","+(b.bottom))
+            return press(b.right+dx,b.bottom+dy,50)
            }
+           return false
         }
      }else{
       //  toastLog("不可以手势点击")

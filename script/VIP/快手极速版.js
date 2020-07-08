@@ -774,6 +774,9 @@ return doactionmaxtime(function(){
 
 }
 var canqianghongbao=function(coin,livenum,waittime){
+    if(coin<20){
+        return false
+    }
     if(waittime<20){
         return true
     }
@@ -790,7 +793,7 @@ var canqianghongbao=function(coin,livenum,waittime){
         return false
     }
 }
-var clickhongbao=function(sleeptime){
+var clickhongbao=function(sleeptime,cx,cy){
     if(sleeptime<2){
        
     }else{
@@ -816,36 +819,36 @@ var app_live_hongbao=function(){
         if(txt_livenum!=""){
            livenum=parseInt(txt_livenum)
         }
-        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
-            clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
-            sleep(1200)
-        }
+    
         if(text("看看大家手气").exists()){
             idclick("com.kuaishou.nebula:id/close_view")
             sleep(1000)
             press(device.width/2,device.height)
             return true
         }
-        if(id("com.kuaishou.nebula:id/count_down_view").exists()){
-            txt_time=getTextfromid("com.kuaishou.nebula:id/count_down_view","0",1000)
-            if(txt_time!="0"){
+        let node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
+        if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
+            txt_time=node_count.text();
+            coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
+            if(txt_time!=""){
                 if(txt_time.search("分钟")>-1){
                     dtime=parseInt(txt_time.replace("分钟后",""))*60
                 }else{
                     dtime=parseInt(txt_time.replace("秒后",""))
                 }
                 if(dtime<15){
-                    clickhongbao(dtime)
+                    clickhongbao(dtime,cx,cy)
                 }
             }
         }
-
-        if(id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
-            coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view"))
-        }
         
         if(canqianghongbao(coin,livenum,dtime)){
-            clickhongbao(dtime)
+            clickhongbao(dtime,cx,cy)
+        }
+
+        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
+            clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
+            sleep(1200)
         }
         // com.kuaishou.nebula:id/live_red_packet_close_view  关闭
         //com.kuaishou.nebula:id/live_red_packet_coin_num_view  快币数量  1440
