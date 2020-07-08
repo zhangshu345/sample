@@ -752,9 +752,19 @@ var app_video_city=function(){
 }
 
 var app_go_live=function(){
-
-if(currentActivity()!=appliveactivity){
+let ca=currentActivity()
+if(ca==appliveactivity){
         return true
+}else if(ca=="androidx.slidingpanelayout.widget.SlidingPaneLayout"){
+    doactionmaxtime(function(){
+        if(textclick("直播广场")){
+            sleep(2000)
+            if(currentActivity()==appliveactivity){
+                return true
+            }
+        }
+        滑动(20,7,13,7,6,500,300)
+    },20000)
 }
 doactionmaxnumber(function(n){
 app_go_home(3)
@@ -794,21 +804,55 @@ var canqianghongbao=function(coin,livenum,waittime){
     }
 }
 var clickhongbao=function(sleeptime,cx,cy){
-    if(sleeptime<2){
+    try {
+        toastLog("等待时间"+sleeptime)
+        if(sleeptime>=60){
+                while(app_hongbao_daojishi()>10){
+                    toastLog(appname+"抢红包等待中"+app_hongbao_daojishi())
+                    sleep(2000)
+                }
+        }
        
-    }else{
-        sleep((sleeptime-1)*1000)
+        while(true){
+                sleeptime=app_hongbao_daojishi()
+                toastLog("等待："+sleeptime)
+                if(sleeptime<=3){
+                    doactionmaxtime(function(){
+                        press(cx,cy,10)
+                    },4000,20)
+                    return true
+                }
+                sleep(3000)
+            }
+    } catch (error) {
+        log(appname+"出错:点击红包出错")
     }
-    
-    doactionmaxtime(function(){
-        press(cx,cy,10)
-    },4000,20)
+   
+
+}
+
+
+var app_hongbao_daojishi=function(){
+    if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
+        txt_time=node_count.text();
+        coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
+        if(txt_time!=""){
+            if(txt_time.search("分钟")>-1){
+                return parseInt(txt_time.replace("分钟后",""))*60
+            }else{
+                return parseInt(txt_time.replace("秒后",""))
+            }
+       }
+    }else{
+        return 10000
+    }
 }
 
 //  直播页红包id =com.kuaishou.nebula:id/live_normal_red_pack_image_view   
 //               com.kuaishou.nebula:id/live_normal_red_pack_image_view
 var app_live_hongbao=function(){
-    let livenum=0
+    try {
+        let livenum=0
     let coin=0
     let dtime=0
     let cx=device.width/2
@@ -823,13 +867,14 @@ var app_live_hongbao=function(){
         if(text("看看大家手气").exists()){
             idclick("com.kuaishou.nebula:id/close_view")
             sleep(1000)
-            press(device.width/2,device.height)
+            press(device.width/2,device.height,50)
             return true
         }
-        let node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
+        node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
         if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
             txt_time=node_count.text();
             coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
+            toastLog("时间:"+txt_time+"--金币数:"+coin)
             if(txt_time!=""){
                 if(txt_time.search("分钟")>-1){
                     dtime=parseInt(txt_time.replace("分钟后",""))*60
@@ -838,17 +883,24 @@ var app_live_hongbao=function(){
                 }
                 if(dtime<15){
                     clickhongbao(dtime,cx,cy)
+                    return true
                 }
             }
         }
         
         if(canqianghongbao(coin,livenum,dtime)){
             clickhongbao(dtime,cx,cy)
+            return true
         }
 
         if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
             clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
             sleep(1200)
+        }
+        if(text("手慢了，红包派完了").exists()){
+            idclick("com.kuaishou.nebula:id/live_red_packet_close_view")
+            sleep(1000)
+            return true
         }
         // com.kuaishou.nebula:id/live_red_packet_close_view  关闭
         //com.kuaishou.nebula:id/live_red_packet_coin_num_view  快币数量  1440
@@ -857,7 +909,11 @@ var app_live_hongbao=function(){
         // com.kuaishou.nebula:id/live_red_packet_pre_snatch_state_view  开
         // com.kuaishou.nebula:id/live_red_packet_message_view  // 没有抢到的结果   text = 手慢了，红包派完了
 
-    },10000)
+    },10000,1000)
+    } catch (error) {
+        log(appname+"出错:直播间抢红包"+error)
+    }
+    
 }
 
 
@@ -869,6 +925,7 @@ var app_see_live=function(){
             app_go_live()
         }
         app_live_hongbao()
+        app_swipe_up()
 
     },1000)
 
@@ -876,9 +933,9 @@ var app_see_live=function(){
 
 }
 
-app_live_hongbao()
+app_see_live()
 
-//app_see_live()
+
 
 
 // while(true){
