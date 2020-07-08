@@ -863,7 +863,7 @@ var getTextfromid=function(idstr,defaulttext,findtime){
     defaulttext=defaulttext||""
     findtime=findtime||500
     node_id=id(idstr).visibleToUser().findOne(findtime)
-    if(node_id){ return node_id.text(); }else{ return "";}
+    if(node_id){ return node_id.text(); }else{ return defaulttext;}
 }
 
 function idclick(idstr,t,left,top,right,bottom){

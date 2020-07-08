@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -778,10 +780,37 @@ return doactionmaxtime(function(){
 //  直播页红包id =com.kuaishou.nebula:id/live_normal_red_pack_image_view   
 //               com.kuaishou.nebula:id/live_normal_red_pack_image_view
 var app_live_hongbao=function(){
+    let livenum=0
+    let coin=0
+    let time=0
     doactionmaxtime(function(n){
-        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
-             txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text")
+        //获取直播人数
+        txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
+        if(txt_livenum!=""){
+           livenum=parseInt(txt_livenum)
         }
+        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
+            clicknode(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").findOne(2000))
+            sleep(1200)
+        }
+        if(text("看看大家手气").exists()){
+            idclick("com.kuaishou.nebula:id/close_view")
+            sleep(1000)
+            press(device.width/2,device.height)
+            return true
+        }
+        if(id("com.kuaishou.nebula:id/count_down_view").exists()){
+            txt_time=getTextfromid("com.kuaishou.nebula:id/count_down_view","0",1000)
+            if(txt_time)
+        }
+
+        if(id("com.kuaishou.nebula:id/live_red_packet_coin_num_view"))
+        // com.kuaishou.nebula:id/live_red_packet_close_view  关闭
+        //com.kuaishou.nebula:id/live_red_packet_coin_num_view  快币数量  1440
+        //com.kuaishou.nebula:id/count_down_view 倒计时 5秒后 3分钟后
+        // com.kuaishou.nebula:id/message_view  开抢
+        // com.kuaishou.nebula:id/live_red_packet_pre_snatch_state_view  开
+        // com.kuaishou.nebula:id/live_red_packet_message_view  // 没有抢到的结果   text = 手慢了，红包派完了
 
     },10000)
 }
