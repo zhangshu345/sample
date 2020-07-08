@@ -858,10 +858,11 @@ var sleepr=function(short,long){
     sleep(rt)
 }
 
-var getTextfromid=function(idstr,defaulttext){
+var getTextfromid=function(idstr,defaulttext,findtime){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
-    node_id=id(idstr).visibleToUser().findOne(200)
+    findtime=findtime||500
+    node_id=id(idstr).visibleToUser().findOne(findtime)
     if(node_id){ return node_id.text(); }else{ return "";}
 }
 

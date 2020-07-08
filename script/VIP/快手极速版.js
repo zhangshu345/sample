@@ -29,6 +29,7 @@ var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
 var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
+var appliveactivity="com.yxcorp.gifshow.detail.PhotoDetailActivity"  //直播页
 var invite=true
 var tomoney=false
 var onlyscript=true
@@ -435,17 +436,28 @@ var app_getreward=function(){
 
 
 var selectnavi=function(index){
-    node_tabs=id("com.kuaishou.nebula:id/tabs").depth(7).findOne(200)
-    if(node_tabs){
-        if( node_tabs.child(0).child(index-1)){
-            node_tabs.child(0).child(index-1).click()
+   node_tab= className("android.view.View").depth(9).drawingOrder(index).clickable().findOne(300)
+    if(node_tab){
+        if(!node_tab.selected()){
+            show(appname+"点击导航："+index)
+           clicknode(node_tab)
+        }else{
+            show(appname+"导航已经选中："+index)
         }
-        
+    }else{
+        show(appname+"没有找到导航"+index)
     }
+    // node_tabs=id("com.kuaishou.nebula:id/tabs").depth(7).findOne(200)
+    // if(node_tabs){
+    //     if( node_tabs.child(0).child(index-1)){
+    //         node_tabs.child(0).child(index-1).click()
+    //     }
+        
+    // }
 }
 
 var app_go_home=function(index){
-    show(appname+"回到主页")
+    show(appname+"回到主页:"+index)
         index=index||-1
         doactionmaxtime(function(){
             ca=currentActivity()
@@ -458,13 +470,8 @@ var app_go_home=function(index){
                     selectnavi(2)
                     return true
                 }else if(index==3){
-                
-                    if(idoneexist(快手极速版视频页标志集合id)){
-                        return true
-                    }else{
                         selectnavi(3)
-                    }
-
+                        return true
                 }else{
                     selectnavi(3)
                     return true
@@ -744,8 +751,69 @@ var app_video_city=function(){
     },100)
 }
 
-var app_see_live=function(){
+var app_go_live=function(){
+
+if(currentActivity()!=appliveactivity){
+        return true
+}
+doactionmaxnumber(function(n){
+app_go_home(3)
+idclick("com.kuaishou.nebula:id/left_btn")
+sleep(1000)
+return doactionmaxtime(function(){
+    if(textclick("直播广场")){
+        sleep(2000)
+        if(currentActivity()==appliveactivity){
+            return true
+        }
+    }
+    滑动(20,7,13,7,6,500,300)
+},20000)
+},5)
+
 
 }
 
+
+//  直播页红包id =com.kuaishou.nebula:id/live_normal_red_pack_image_view   
+//               com.kuaishou.nebula:id/live_normal_red_pack_image_view
+var app_live_hongbao=function(){
+    doactionmaxtime(function(n){
+        if(id("com.kuaishou.nebula:id/live_normal_red_pack_image_view").exists()){
+             txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text")
+        }
+
+    },10000)
+}
+
+
+var app_see_live=function(){
+    app_go_live()
+    
+    doactionmaxnumber(function(n){
+        if(currentActivity!=appliveactivity){
+            app_go_live()
+        }
+        app_live_hongbao()
+
+    },1000)
+
+
+
+}
+
+
+
+app_see_live()
+
+
+// while(true){
+//     app_go_home(1)
+//     sleep(3000)
+//     app_go_home(2)
+//     sleep(3000)
+//     app_go_home(3)
+//     sleep(3000)
+ 
+// }
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
