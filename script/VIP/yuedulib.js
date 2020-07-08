@@ -940,7 +940,7 @@ var clicknode=function(v,dx,dy,time,clicknumber){
     time=time||200
     if(enablegenius){
         b=v.bounds()
-        if(b.centerX()>=0&&b.centerY()>=0){
+        if(b.centerX()>0&&b.centerY()>0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
             return press(b.centerX()+dx,b.centerY()+dy,50)
         }else{

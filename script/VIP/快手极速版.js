@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -775,14 +773,43 @@ return doactionmaxtime(function(){
 
 
 }
-
+var canqianghongbao=function(coin,livenum,waittime){
+    if(waittime<20){
+        return true
+    }
+    if(coin>10000){
+        return true
+    }else  if(coin>=1000){
+        if(livenum<1000){
+            return true
+        }
+    }else{
+        if(coin>livenum){
+            return true
+        }
+        return false
+    }
+}
+var clickhongbao=function(sleeptime){
+    if(sleeptime<2){
+       
+    }else{
+        sleep((sleeptime-1)*1000)
+    }
+    
+    doactionmaxtime(function(){
+        press(cx,cy,10)
+    },4000,20)
+}
 
 //  直播页红包id =com.kuaishou.nebula:id/live_normal_red_pack_image_view   
 //               com.kuaishou.nebula:id/live_normal_red_pack_image_view
 var app_live_hongbao=function(){
     let livenum=0
     let coin=0
-    let time=0
+    let dtime=0
+    let cx=device.width/2
+    let cy=device.height*59/96
     doactionmaxtime(function(n){
         //获取直播人数
         txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
@@ -801,10 +828,25 @@ var app_live_hongbao=function(){
         }
         if(id("com.kuaishou.nebula:id/count_down_view").exists()){
             txt_time=getTextfromid("com.kuaishou.nebula:id/count_down_view","0",1000)
-            if(txt_time)
+            if(txt_time!="0"){
+                if(txt_time.search("分钟")>-1){
+                    dtime=parseInt(txt_time.replace("分钟后",""))*60
+                }else{
+                    dtime=parseInt(txt_time.replace("秒后",""))
+                }
+                if(dtime<15){
+                    clickhongbao(dtime)
+                }
+            }
         }
 
-        if(id("com.kuaishou.nebula:id/live_red_packet_coin_num_view"))
+        if(id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
+            coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view"))
+        }
+        
+        if(canqianghongbao(coin,livenum,dtime)){
+            clickhongbao(dtime)
+        }
         // com.kuaishou.nebula:id/live_red_packet_close_view  关闭
         //com.kuaishou.nebula:id/live_red_packet_coin_num_view  快币数量  1440
         //com.kuaishou.nebula:id/count_down_view 倒计时 5秒后 3分钟后
@@ -831,7 +873,7 @@ var app_see_live=function(){
 
 }
 
-
+app_live_hongbao()
 
 //app_see_live()
 
@@ -845,4 +887,4 @@ var app_see_live=function(){
 //     sleep(3000)
  
 // }
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+//startapp(appname,apppkg,0,device.height-200,false,false,true,true)
