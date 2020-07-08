@@ -871,17 +871,17 @@ var app_live_hongbao=function(){
     let cx=device.width/2
     let cy=device.height*59/96
     doactionmaxtime(function(){
-        log("直播间查找红包")
+        show("直播间查找红包")
         if(text("直播已结束").exists()){
             return true
         }
-        // let cname=getTextfromid("com.kuaishou.nebula:id/live_name_text","",500)
-        // if(cname!=""&&cname==livename){
-        //     //
-        //    log("主播名:"+cname)
-        //     livename=cname
-        //     return true
-        // }
+        let cname=getTextfromid("com.kuaishou.nebula:id/live_name_text","",500)
+        if(cname!=""&&cname==livename){
+            //
+           log("主播名:"+cname)
+            livename=cname
+            return true
+        }
         //获取直播人数
         txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
         if(txt_livenum!=""){
@@ -891,6 +891,7 @@ var app_live_hongbao=function(){
             }else{
                 livenum=parseInt(txt_livenum)
             }
+           
         }
     
         if(text("看看大家手气").exists()){
@@ -913,7 +914,7 @@ var app_live_hongbao=function(){
             show(appname+"找到红包弹窗")
             txt_time=node_count.text();
             coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
-            log("时间:"+txt_time+"--金币数:"+coin)
+            toastLog("时间:"+txt_time+"--金币数:"+coin)
           
             if(txt_time!=""){
                 if(txt_time.search("分钟")>-1){
@@ -973,16 +974,8 @@ var app_see_live=function(){
 
 }
 
-var app_hongbao_help=function(){
-    doactionmaxnumber(function(n){
+app_see_live()
 
-        app_live_hongbao()
-
-    },10000000,3000)
-
-}
-
-app_hongbao_help()
 
 
 
