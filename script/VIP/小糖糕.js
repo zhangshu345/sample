@@ -55,6 +55,7 @@ var app_run=function(){
     app_login_check()
     app_see_video()
     app_reward()
+    app_reward_xunzhang()
     app_tomoney()
     app_sign()
     app_reward_video()
@@ -373,7 +374,7 @@ var app_reward_coinparty=function(){
                     return true
                 }
                 if(textEndsWith("开始游戏0/10").exists()){
-                    今日记录(appname,"coinparty","true")
+                    今日记录(appname,"coinparty",true)
                     back()
                     return true
                 }

@@ -54,6 +54,7 @@ var app_run=function(){
     app_sign()
     app_see_music()
     app_reward_xunzhang()
+    app_tomoney()
     app_see_video()
     app_see_lingsheng()
     app_tomoney()
@@ -173,9 +174,9 @@ var app_see_music=function(){
             if(isadviceactivity()>-1){
                 seead()
             }
-        },30000,3000)
+        },28000,3000)
     
-    },1000)
+    },50)
 }
 
 

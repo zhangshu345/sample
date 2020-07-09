@@ -48,8 +48,65 @@ var lastdesc=""
 var loopn=0
 //回到视频页
 
-var  app_go_home=function(index){
+
+var  app_run=function(){
+    toastLog(appname+"---apprun")
+    app.launchApp(appname)
+    sleep(3000)
+    app_login()
+        if(!今日提现(appname)){
+            app_tomoney()
+        }
+    app_sign()
+    loopn=0
+    while(true){
+    show("循环次数:"+(loopn+1))
+    closeappundostate()
+    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
+        if(text("点击进入直播间").exists()){
+            滑动(20,10,16,10,3,500,300)
+            sleep(1000)
+        }
+          show("不是视频页")
+          app_go_home(1)
+          clickonetexts(["推荐","等待"],300,1500)
    
+     }else{
+        show("视频页关闭弹窗")
+        idclick(刷宝视频广告关闭按钮1id)
+        if(id(刷宝视频恭喜获取关闭按钮id).exists()){
+            back()
+            sleep(1500)
+         }
+        if( textclick("等待")){
+            sleep(1000)
+        }
+
+        app_home_swipe()
+
+        textclick("继续看视频")
+        
+        idclick("com.jm.video:id/imgClose")
+     
+        if(text("空空如也").exists()){
+            // 脚本完成了
+            app_go_likevideolist()
+        }
+        if(loopn%50==0){
+            checkbattery(30)
+        }
+        if(loopn%100==0){
+                if(!今日提现(appname)){
+                    app_tomoney()
+                }
+                app_go_home(3)
+        }
+    
+    }
+    loopn=loopn+1
+    }
+}
+var  app_go_home=function(index){
     index=index||1
    if(doactionmaxtime(function(){
     show(appname+"回到首页"+index)
@@ -482,66 +539,6 @@ var app_home_swipe=function(){
 }
 
 
-
-var  app_run=function(){
-    toastLog(appname+"---apprun")
-    app.launchApp(appname)
-    sleep(3000)
-    app_login()
-        if(!今日提现(appname)){
-            app_tomoney()
-        }
-    app_sign()
-    loopn=0
-    while(true){
-    show("循环次数:"+(loopn+1))
-    closeappundostate()
-    if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
-        if(text("点击进入直播间").exists()){
-            滑动(20,10,16,10,3,500,300)
-            sleep(1000)
-        }
-          show("不是视频页")
-          app_go_home(1)
-          clickonetexts(["推荐","等待"],300,1500)
-   
-     }else{
-        show("视频页关闭弹窗")
-        idclick(刷宝视频广告关闭按钮1id)
-        if(id(刷宝视频恭喜获取关闭按钮id).exists()){
-            back()
-            sleep(1500)
-         }
-        if( textclick("等待")){
-            sleep(1000)
-        }
-
-        app_home_swipe()
-
-        textclick("继续看视频")
-        
-        idclick("com.jm.video:id/imgClose")
-   
-        
-        if(text("空空如也").exists()){
-            // 脚本完成了
-            app_go_likevideolist()
-        }
-        if(loopn%50==0){
-            checkbattery(30)
-        }
-        if(loopn%100==0){
-                if(!今日提现(appname)){
-                    app_tomoney()
-                }
-                app_go_home(3)
-
-        }
-    
-    }
-    loopn=loopn+1
-}
-}
 
 app_tomoney()
 

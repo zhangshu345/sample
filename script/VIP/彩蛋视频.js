@@ -70,11 +70,8 @@ function app_run(){
     sleep(3000)
     loopn=0
     app_checklogin()
-
-
         app_sign()
-  
-    app_tomoney()
+      app_tomoney()
     app_getreward1()
     app_see_video()
     app_tomoney()
@@ -83,9 +80,7 @@ function app_run(){
 
 
 var app_checklogin=function(){
-    n_islogin=0
    doactionmaxnumber(function(n){
-    
     show(appname+"检测登录状况:"+n)
     if(clicktexts(["同意","声明与政策","我知道了","允许","允许","允许","始终允许","始终允许","始终允许"],200,1288)){
     }
@@ -105,234 +100,253 @@ var app_checklogin=function(){
     }
     app_go_home(5)
    
-   },5)
+   },3)
    show(appname+"检测登录完毕")
 }
 
 var app_sign=function(){
-    if(今日签到(appname)){
-        return true
-    }
-    doactionmaxtnumber(function(n){
-        show(appname+"签到"+n)
-        if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
-            if(text("我的金币").exists()){
-              log("找到金币")
+    try {
+        show(appname+"签到")
+        if(今日签到(appname)){
+            show(appname+"今日已经签到")
+            return true
+        }
+        doactionmaxnumber(function(n){
+            show(appname+"签到"+n)
+            if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
+                if(text("我的金币").exists()){
+                  log("找到金币")
+                }
+            }else{
+               app_go_home(3)
             }
-        }else{
-           app_go_home(3)
-        }
-        if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
-            sleep(4000)
-        }
-     
-        if(idContains("coins-number").findOne(100)){
-            txt_coin=idContains("coins-number").findOne(100).text()
-            if(txt_coin){
-                记录现在金币(appname,parseInt(txt_coin))
+            if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
+                sleep(4000)
             }
-        }
-
-        if(maytextclick("看视频再送")){
-            seead()
-            今日已签到(appname)
-          
-        }
-       if(maytextclick("翻倍")){
-           seead()
-           今日已签到(appname)
          
-       }
-       if(text("点击重播").exists()){
-           show("点击重播")
-        今日已签到(appname)
-        back()
-        sleep(2500)
-        back()
+            if(idContains("coins-number").findOne(100)){
+                txt_coin=idContains("coins-number").findOne(100).text()
+                if(txt_coin){
+                    记录现在金币(appname,parseInt(txt_coin))
+                }
+            }
+    
+            if(maytextclick("看视频再送")){
+                seead()
+                今日已签到(appname)
+              
+            }
+           if(maytextclick("翻倍")){
+               seead()
+               今日已签到(appname)
+             
+           }
+           if(text("点击重播").exists()){
+               show("点击重播")
+            今日已签到(appname)
+            back()
+            sleep(2500)
+            back()
+        }
+        if(text("邀请好友").findOne(500)){
+            back()
+        }
+    },20)
+    
+    } catch (error) {
+        log(appname+"出错:"+error)
     }
-    if(text("邀请好友").findOne(500)){
-        back()
-    }
-},20)
-
+   
 }
 
 
 var app_see_video=function(){
-    doactionmaxnumber(function(n){
-        show(appname+"首页看视频:"+n)
-        if(!idoneexist(彩蛋视频首页标识id)){
-            app_go_home(1)
-        }
-        if(isadviceactivity()){
-            seead()
-        }
-        if(maytextclick("翻倍")){
-            seead()
-         }
-         滑动(20,10,15,10,3,688,200)
-         sleep(2388)
-         jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")
-         if(jl=="立即领取"){
-             show("立即领取 看广告30秒")
-             doactionmaxtime(function(){
-               if(!id("com.jifen.dandan:id/tv_ad_red_pack_count_down").exists()){
-                   return true
-               }else{
-                   sleepr(3000)
-               }
-             },30000)
-            idclick("com.jifen.dandan:id/tv_ad_red_pack_status")
-            sleep(1000)
-         }else if(jl.search("上限")>-1){
-            return true 
-         }
-        lick=  id("com.jifen.dandan:id/tv_like_num").findOne(300)
-        if(lick){
-            currentdesc= lick.text()
-            show("之前："+lastdesc+"--当前："+currentdesc)
-            if(currentdesc==lastdesc){
-                if(textclick("立即翻倍")){
-                    seead()
-                 }
-                sleep(1000)
-            }else{
-                lastdesc=currentdesc
-               txt_like= getTextfromid("com.jifen.dandan:id/tv_like_num")
-               if(txt_like){
-                   show("喜欢人数："+txt_like)
-                   n=parseInt(txt_like)
-                   if(n>5000){
-                       idclick("com.jifen.dandan:id/tv_like_num")
-                       sleepr(7000*ratio,9000*ratio)
-                   }else if(n>2000){
-                    sleepr(7000*ratio,8000*ratio)
-                   }else if(n>1000){
-                    sleepr(6000*ratio,7000*ratio)
-                   }else{
-                    sleepr(3000*ratio,5000*ratio) 
-                   }
-               }
+    try {
+        doactionmaxnumber(function(n){
+            show(appname+"首页看视频:"+n)
+            if(!idoneexist(彩蛋视频首页标识id)){
+                app_go_home(1)
             }
-        }
-    },100)
+            if(isadviceactivity()){
+                seead()
+            }
+            if(maytextclick("翻倍")){
+                seead()
+             }
+             滑动(20,10,15,10,3,688,200)
+             sleep(2388)
+             jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")
+             if(jl=="立即领取"){
+                 show("立即领取 看广告30秒")
+                 doactionmaxtime(function(){
+                   if(!id("com.jifen.dandan:id/tv_ad_red_pack_count_down").exists()){
+                       return true
+                   }else{
+                       sleepr(3000)
+                   }
+                 },30000)
+                idclick("com.jifen.dandan:id/tv_ad_red_pack_status")
+                sleep(1000)
+             }else if(jl.search("上限")>-1){
+                return true 
+             }
+            lick=  id("com.jifen.dandan:id/tv_like_num").findOne(300)
+            if(lick){
+                currentdesc= lick.text()
+                show("之前："+lastdesc+"--当前："+currentdesc)
+                if(currentdesc==lastdesc){
+                    if(textclick("立即翻倍")){
+                        seead()
+                     }
+                    sleep(1000)
+                }else{
+                    lastdesc=currentdesc
+                   txt_like= getTextfromid("com.jifen.dandan:id/tv_like_num")
+                   if(txt_like){
+                       show("喜欢人数："+txt_like)
+                       n=parseInt(txt_like)
+                       if(n>5000){
+                           idclick("com.jifen.dandan:id/tv_like_num")
+                           sleepr(7000*ratio,9000*ratio)
+                       }else if(n>2000){
+                        sleepr(7000*ratio,8000*ratio)
+                       }else if(n>1000){
+                        sleepr(6000*ratio,7000*ratio)
+                       }else{
+                        sleepr(3000*ratio,5000*ratio) 
+                       }
+                   }
+                }
+            }
+        },100)
+    } catch (error) {
+        log(appname+"出错：看视频")
+    }
+  
 }
 
 var seead=function(){
-    log("seead")
-    doactionmaxtime(function(){
-        show(appname+"看广告")
-        if(text("勋章殿堂").exists()){
-            clickonetexts(["去领取","待领取","可领取"])
-        }
-        if(maytextclick("看视频再送")){
-            
-        }
-        if(textclick("红包免费领")){
-            sleep(1000)
-        }
-        if(textoneexist(["挖宝赢大奖","高温补贴来了"])){
-            clicknode(className("android.view.View").clickable(true).drawingOrder(0).depth(12).findOne(300))
-        }
-
-        clicknode(className("android.view.View").clickable().depth(11).drawingOrder(0).findOne(300))
-        if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],150,1500)){
-            back()
-            return true
-        }
-        if(text("点击重播").exists()){
-            back()
-            sleep(2500)
-            back()
-            return  true
-        }
-       if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
-           return  true
-       }
-        if(close_ad_iclicash(apppkg)){
-            return true
-        }
-       if(close_ad_toutiao(apppkg)){
-            return true
-       }
-      if(close_ad_qq(apppkg)){
-         return true
-      }
-     if(isadviceactivity()<0){
-            return true
-     }
-     
-     sleep(2000)
-    },60000)
+    try {
+        doactionmaxtime(function(){
+            show(appname+"看广告")
+            if(text("勋章殿堂").exists()){
+                clickonetexts(["去领取","待领取","可领取"])
+            }
+            if(maytextclick("看视频再送")){
+                
+            }
+            if(textclick("红包免费领")){
+                sleep(1000)
+            }
+            if(textoneexist(["挖宝赢大奖","高温补贴来了"])){
+                clicknode(className("android.view.View").clickable(true).drawingOrder(0).depth(12).findOne(300))
+            }
+    
+            clicknode(className("android.view.View").clickable().depth(11).drawingOrder(0).findOne(300))
+            if(clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],150,1500)){
+                back()
+                return true
+            }
+            if(text("点击重播").exists()){
+                back()
+                sleep(2500)
+                back()
+                return  true
+            }
+           if(idclick("com.jifen.dandan:id/tt_video_ad_close")){
+               return  true
+           }
+            if(close_ad_iclicash(apppkg)){
+                return true
+            }
+           if(close_ad_toutiao(apppkg)){
+                return true
+           }
+          if(close_ad_qq(apppkg)){
+             return true
+          }
+         if(isadviceactivity()<0){
+                return true
+         }
+         sleep(2000)
+        },60000)
+    } catch (error) {
+        log(appname+"出错:看广告")
+    }
+    
 }
 
 var app_go_home=function(index){
-    
-    doactionmaxtime(function(){
-        show(appname+"回到主页:"+index)
-        ca=currentActivity()
-        if(ca==apphomeactivity){
-            if(index==1){
-                if(idoneexist(["com.jifen.dandan:id/tv_task_status","com.jifen.dandan:id/tv_like_num","com.jifen.dandan:id/view_ad_timer"])){
+    try {
+        doactionmaxtime(function(){
+            show(appname+"回到主页:"+index)
+            ca=currentActivity()
+            if(ca==apphomeactivity){
+                if(index==1){
+                    if(idoneexist(["com.jifen.dandan:id/tv_task_status","com.jifen.dandan:id/tv_like_num","com.jifen.dandan:id/view_ad_timer"])){
+                        return true
+                    }else{
+                        selectnavi(1)
+                        sleep(1000)
+                        textclick("推荐",300)
+                    }
+                }else if(index==2){
+                    selectnavi(2)
                     return true
-                }else{
-                    selectnavi(1)
-                    sleep(1000)
-                    textclick("推荐",300)
-                }
-            }else if(index==2){
-                selectnavi(2)
-                return true
-            }else if(index==3){
-                selectnavi(3)
-                doactionmaxtime(function(){
-                   if( text("我的金币").exists()){
-                       return true
-                   }
-                },10000)
-                return true
-            }else if(index==4){
-                if(getTextfromid("com.jifen.dandan:id/tv_title")=="消息"){
+                }else if(index==3){
+                    selectnavi(3)
+                    doactionmaxtime(function(){
+                       if( text("我的金币").exists()){
+                           return true
+                       }
+                    },10000)
                     return true
-                }else{
-                    selectnavi(4)
+                }else if(index==4){
+                    if(getTextfromid("com.jifen.dandan:id/tv_title")=="消息"){
+                        return true
+                    }else{
+                        selectnavi(4)
+                    }
+                }else if(index==5){
+                    if(getTextfromid("com.jifen.dandan:id/tv_title")=="个人中心"){
+                        return true
+                    }else{
+                        selectnavi(5)
+                        sleep(1000)
+                    }
                 }
-            }else if(index==5){
-                if(getTextfromid("com.jifen.dandan:id/tv_title")=="个人中心"){
-                    return true
-                }else{
-                    selectnavi(5)
-                    sleep(1000)
-                }
-            }
-        }else if(ca==appliveactivity){
-            back()
-            sleep(300)
-        }else if(ca==apploginactivity){
-            app_login()
-        }else if(ca==appwebactivity){
-            back()
-        }else {
-            if(textclick("立即翻倍")){
-                seead()
-             }
-             if(textclick("点击领取")){
-                 app_getreward()
-             }
-            sleep(1000)
-            if(currentPackage()!=apppkg){
-                app.launch(apppkg)
-                sleep(3000)
-            }else{
+            }else if(ca==appliveactivity){
                 back()
                 sleep(300)
+            }else if(ca==apploginactivity){
+                app_login()
+            }else if(ca==appwebactivity){
+                back()
+            }else {
+                if(textclick("立即翻倍")){
+                    seead()
+                 }
+                 if(textclick("点击领取")){
+                     app_getreward()
+                 }
+                sleep(1000)
+                if(currentPackage()!=apppkg){
+                    app.launch(apppkg)
+                    sleep(3000)
+                }else{
+                    back()
+                    sleep(300)
+                }
             }
-        }
-        if(clickonetexts(["微信一键登录","注册/登录","立即领取"])){
-            app_login()
-        }
-
-    },30000)
+            if(clickonetexts(["微信一键登录","注册/登录","立即领取"])){
+                app_login()
+            }
+    
+        },30000)
+    } catch (error) {
+        log(appname+"出错:回到首页"+error)
+    }
+    
 }
 
 
@@ -468,13 +482,15 @@ var app_login_phone=function(){
 }
 
 var app_login_weixin=function(){
-    doactionmaxnumber(function(){
+    doactionmaxnumber(function(n){
+        show(appname+"微信登录:"+n)
         clicktexts(["立即提现","微信一键登录","同意"],200,2000)
-    },10)
+    },5)
 }
 
 var app_tomoney=function(){
     doactionmaxtime(function(){
+        show(appname+"提现")
          app_go_home(5)
         text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
             if(text_coin){
@@ -561,5 +577,10 @@ var app_tomoney=function(){
 //     sleep(3000)
 
 // }
-
+if(今日签到(appname)){
+    show(appname+"今日已经签到")
+}else{
+    show(appname+"今日未签到")
+}
+//app_sign()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
