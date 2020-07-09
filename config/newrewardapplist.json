@@ -406,7 +406,7 @@
     "desc":{"summary":"趣铃声 听音乐就ok ","script":"","html":""},
     "tags":["小说","赚钱"],
     "devices":["xiaomi","samsung","HONOR","Meizu","OPPO"],
-    "open":false,
+    "open":true,
     "install":true,
     "pay":{"coin":-1000,"daycoin":-10000,"monthcoin":-200000,"yearcoin":-1000000,"money":0.001,"daymoney":0.0001,"monthmoney":0.001,"yearmoney":0.0001},
     "runconfig":{"accepttime":0,"starttime":"0:0","runtime":0,"seenews":0,"seevideo":0,"seeshortvideo":0,"sign":true,
