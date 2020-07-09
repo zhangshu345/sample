@@ -46,9 +46,9 @@ var loopn=0
 var keepappnewer=true
 //app 运行
 var app_run=function(){
-    if(!获取记录(appname,"login",false)){
-        app_invite()
-    }
+
+    app_invite()
+
     app.launch(apppkg)
     sleep(3000)
     
@@ -64,11 +64,15 @@ var app_run=function(){
 }
 
 var app_invite=function(){
+    if(!获取记录(appname,"login",false)){
+        return true
+    }
     微信发消息("微信团队","http://ling.kdeye.cn/imfh/asyb.html?pid=62ce793f&app_id=39",true)
     doactionmaxtime(function(){
             clicknode(className("android.view.View").clickable().depth(22).findOne(1000))
             textclick("同意")
-    },10000)
+    },30000)
+
 }
 
 
@@ -95,9 +99,9 @@ var app_checklogin=function(){
            sleep(3000)
            seead()
        }
-       
        app_go_home(5)
-    },60000)
+    },38000)
+    记录(appname,"login",true)
 }
 //app 签到
 var app_sign=function(){
@@ -130,7 +134,11 @@ doactionmaxnumber(function(n){
     滑动(20,10,17,10,3,500,300)
     doactionmaxtime(function(){
         closeappundostate()
-        if(maytextclick("看视频再")){
+        if(maytextclick("看视频")){
+            sleep(3000)
+            seead()
+        }
+        if(clickonetexts(["看视频，签到奖励翻倍！","领取","立即领取"])){
             sleep(3000)
             seead()
         }
@@ -156,10 +164,13 @@ var app_see_music=function(){
         idclick("com.zheyun.bumblebee:id/iv_player_next")
         doactionmaxtime(function(){
             closeappundostate()
-            if(maytextclick("看视频再")){
+            if(maytextclick("看视频")){
                 sleep(3000)
                 seead()
-                
+            }
+            if(clickonetexts(["看视频，签到奖励翻倍！","领取","立即领取"])){
+                sleep(3000)
+                seead()
             }
             idclick("com.zheyun.bumblebee:id/iv_close")
             if(isadviceactivity()>-1){
@@ -186,7 +197,11 @@ var  app_see_video=function(){
         滑动(20,10,16,10,3,500,300)
         doactionmaxtime(function(){
             closeappundostate()
-            if(maytextclick("看视频再")){
+            if(maytextclick("看视频")){
+                sleep(3000)
+                seead()
+            }
+            if(clickonetexts(["看视频，签到奖励翻倍！","领取","立即领取"])){
                 sleep(3000)
                 seead()
             }
@@ -322,13 +337,18 @@ var selectnavi=function(index){
 
 var app_go_home=function(index){
     doactionmaxtime(function(){
+        show(appname+"回到首页:"+index)
         if(maytextclick("看视频再")){
+            sleep(3000)
+            seead()
+        }
+        if(clickonetexts(["看视频，签到奖励翻倍！","领取","立即领取"])){
             sleep(3000)
             seead()
         }
         ca=currentActivity()
         show(appname+"回到首页:"+index+"|"+ca)
-        if(ca==apphomeactivity){
+        if(ca==apphomeactivity||ca=="com.zheyun.bumblebee.loginguide.d"){
             if(index==1){
                 selectnavi(1)
             }else if(index==2){
@@ -339,12 +359,16 @@ var app_go_home=function(index){
                 selectnavi(4)
             }else if(index==5){
                 selectnavi(5)
-            }else{
-               
             }
             return true
         }else if(ca=="com.jm.video.services.StartNotificationActivity"){
-                back()
+            if(maytextclick("看视频再")){
+                sleep(3000)
+                seead()
+                sleep(2000)
+            }
+            idclick("com.zheyun.bumblebee:id/iv_close")
+            selectnavi(index)
         }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
@@ -358,7 +382,8 @@ var app_go_home=function(index){
             seead()
         }
         idclick("com.zheyun.bumblebee:id/base_card_dialog_close")
-         idclick("com.zheyun.bumblebee:id/iv_close")
+        idclick("com.zheyun.bumblebee:id/iv_close")
+     sleep(1000)
    
     },30000)
 
