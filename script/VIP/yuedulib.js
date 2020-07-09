@@ -2893,14 +2893,16 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
 }
 
 
-var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript){
+var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
     if(runscriptapp==appname && isreaderunning){
 
     }else{
-      engines.stopOther()
+        if(isonlyscript){
+            engines.stopOther()
+        }
       checksystemsettings()
       if(isdevicemanager){
             checkdevicemanager()
@@ -2909,17 +2911,22 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
           checkfloaty()
           floaty.closeAll()
           creatgfloatywindow()
+          gfw.setPosition(floatyx,floatyy)
          }
         if(isshowsettingfloaty){
              creatsetfloatywindow()  //创建设置悬浮窗
         }
          if(!app.getPackageName(appname)){
               show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-             downloadandinstallapp(appname,apppkg)
+              if(appdownloadurl){
+                downloadApk(appname,appdownloadurl,true)
+              }else{
+                downloadandinstallapp(appname,apppkg)
+              }
             }else{
          if(iskeepappnewer){
                keepappisnewer(appname,apppkg)
-            }
+         }
          show(appname+"已经安装")
         }
     closelastscriptapp()

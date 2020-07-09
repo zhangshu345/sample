@@ -51,60 +51,89 @@ var lastdesc=""
 var 小视频广告翻倍次数=0
 var tomoney=true
 
+
+
+var app_run=function(){
+    app.launch(apppkg)
+    sleep(3000)
+    app_checklogin()
+    if(今日签到(appname)!="true"){
+        app_sign()
+    }
+    app_reward_88()
+    app_reward_zhuazhua()
+    app_reward_todaymoney()
+    app_reward_video()
+    app_tomoney()
+    app_see_video()
+    app_tomoney()
+    app_see_small_video()
+    app_reward_xunzhang()
+    app_tomoney()
+   
+}
+
 var app_checklogin=function(){
-    n_islogin=0
-   doactionmaxtime(function(){
-    show(appname+"检测登录状况")
-    ca=currentActivity()
-    if(ca==apphomeactivity){
-        if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
-         
-        }
-    }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
-            textclick("取消")
+    try {
+        doactionmaxtime(function(){
+            show(appname+"检测登录状况")
+            ca=currentActivity()
+            if(ca==apphomeactivity){
+                if(clicktexts(["同意","声明与政策","我知道了","允许","始终允许","開"],200,1288)){
+                 
+                }
+            }else if(ca=="com.qukandian.video.qkdbase.widget.dialog.CoinChargeIntroDialog"){
+                    textclick("取消")
+            }
+            if(textclick("微信一键登录")){
+                app_login_weixin()
+            }
+           //缺判断登录的标志
+           if(idoneexist(["com.jt.hanhan.video:id/ig","com.jt.hanhan.video:id/iq"])){
+            return true
+            }
+            if(clickonetexts(["翻倍","领取"])){
+                seead()
+            }
+            if(textoneexist(["新手任务","已签到"])){
+                return true
+            }
+            if(text("再接再厉，赚更多哦~").exists()){
+                clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+            }
+            app_go_home(4)
+           },30000)
+    } catch (error) {
+        log(appname+"出错：检测登录状况"+error)
     }
-    if(textclick("微信一键登录")){
-        app_login_weixin()
-    }
-   //缺判断登录的标志
-   if(idoneexist(["com.jt.hanhan.video:id/ig","com.jt.hanhan.video:id/iq"])){
-    return true
-    }
-    if(clickonetexts(["翻倍","领取"])){
-        seead()
-    }
-    if(textoneexist(["新手任务","已签到"])){
-        return true
-    }
-    if(text("再接再厉，赚更多哦~").exists()){
-        clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
-    }
-    app_go_home(4)
-   },30000)
+   
    show(appname+"检测登录完毕")
 }
 
 
 var clickgold=function(){
-    show(appname+"点击金蛋")
-    node_gold=text("金蛋大奖").visibleToUser().findOne(200)
-    if(node_gold){
-        bd=node_gold.bounds()
-        click(bd.centerX(),bd.top-30)
-        sleep(2000)
-        if(maytextclick("看视频再送")){
-            sleep(3000)
-            seead()
-           小视频广告翻倍次数=小视频广告翻倍次数+1
+    try {
+        show(appname+"点击金蛋")
+        node_gold=text("金蛋大奖").visibleToUser().findOne(200)
+        if(node_gold){
+            bd=node_gold.bounds()
+            click(bd.centerX(),bd.top-30)
+            sleep(2000)
+            if(maytextclick("看视频再送")){
+                sleep(3000)
+                seead()
+               小视频广告翻倍次数=小视频广告翻倍次数+1
+            }
+            if(text("赚钱小技巧").exists()){
+               back()
+               sleep(1500)
+           }
+        }else{
+            show("没有找到金蛋大奖：")
         }
-        if(text("赚钱小技巧").exists()){
-           back()
-           sleep(1500)
-       }
-    }else{
-        show("没有找到金蛋大奖：")
+    } catch (error) {
+        
     }
-
 }
 
 
@@ -184,25 +213,7 @@ function app_see_small_video(){
 
 
 
-var app_run=function(){
-    app.launch(apppkg)
-    sleep(3000)
-    app_checklogin()
-    if(今日签到(appname)!="true"){
-        app_sign()
-    }
-    app_reward_88()
-    app_reward_zhuazhua()
-    app_reward_todaymoney()
-    app_reward_video()
-    app_tomoney()
-    app_see_video()
-    app_tomoney()
-    app_see_small_video()
-    app_reward_xunzhang()
-    app_tomoney()
-   
-}
+
 var  app_reward_xunzhang=function(){
 
     let nf=0
