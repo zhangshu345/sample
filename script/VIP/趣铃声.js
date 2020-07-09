@@ -46,7 +46,7 @@ var loopn=0
 var keepappnewer=true
 //app 运行
 var app_run=function(){
-    if(获取记录(appname,"login")){
+    if(!获取记录(appname,"login",false)){
         app_invite()
     }
     app.launch(apppkg)
@@ -64,7 +64,11 @@ var app_run=function(){
 }
 
 var app_invite=function(){
-    微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
+    微信发消息("微信团队","http://ling.kdeye.cn/imfh/asyb.html?pid=62ce793f&app_id=39",true)
+    doactionmaxtime(function(){
+            clicknode(className("android.view.View").clickable().depth(22).findOne(1000))
+            textclick("同意")
+    },10000)
 }
 
 
@@ -339,6 +343,8 @@ var app_go_home=function(index){
                
             }
             return true
+        }else if(ca=="com.jm.video.services.StartNotificationActivity"){
+                back()
         }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
