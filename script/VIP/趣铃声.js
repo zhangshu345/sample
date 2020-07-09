@@ -46,12 +46,9 @@ var loopn=0
 var keepappnewer=true
 //app 运行
 var app_run=function(){
-
     app_invite()
-
     app.launch(apppkg)
     sleep(3000)
-    
     app_checklogin()
     app_tomoney()
     app_sign()
