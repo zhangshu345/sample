@@ -46,8 +46,12 @@ var loopn=0
 var keepappnewer=true
 //app 运行
 var app_run=function(){
+    if(获取记录(appname,"login")){
+        app_invite()
+    }
     app.launch(apppkg)
     sleep(3000)
+    
     app_checklogin()
 
     app_sign()
@@ -59,10 +63,13 @@ var app_run=function(){
     app_reward()
 }
 
-
+var app_invite=function(){
+    微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
+}
 
 
 var app_checklogin=function(){
+ 
     doactionmaxtime(function(){
         show(appname+"检测登录状态")
         clicktexts(["允许","始终允许"])

@@ -225,8 +225,18 @@ var 微信打开链接=function(weburl){
     微信发消息("")
 }
 
-var 微信聊天页发送消息=function(message,isclick){
-    className("android.widget.EditText").visibleToUser().editable(true).waitFor()
+var 微信聊天页发送消息=function(friend,message,isclick){
+    if(friend=="微信团队"){
+        doactionmaxtime(function(){
+            clicknode(desc("消息").findOne(500))
+            if(className("android.widget.EditText").visibleToUser().editable(true).findOne(1000)){
+                return true
+            }
+        },10000)
+    }else{
+        className("android.widget.EditText").visibleToUser().editable(true).waitFor()
+    }
+    
     node_edit= className("android.widget.EditText").visibleToUser().editable(true).findOne(300)
     if(node_edit){
         node_edit.setText(message)
@@ -318,7 +328,7 @@ var 微信回到首页=function(){
 
 var 微信发消息=function(friend,message,isclick){
     if(微信到聊天界面(friend)){
-           微信聊天页发送消息(message,isclick)
+           微信聊天页发送消息(friend,message,isclick)
     }
 }
 var 微信搜索打开链接=function(searchword){
@@ -2968,6 +2978,6 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 
 // randomSwipe(500,1800,500,300,2000,3000)
 
-// 微信发消息("舍予宏","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
+// 微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json")
