@@ -420,6 +420,7 @@ var app_getreward1=function(){
     sleep(3)
     doactionmaxnumber(function(n){
         show(appname+"获取奖励")
+        
                 if(text("每日签到").exists()){
                     textclick("抢红包")
                     sleep(1000)
@@ -455,7 +456,7 @@ var app_getreward1=function(){
             clicknode(text("看视频抽大奖").depth(18).drawingOrder(0).findOne(500),0,100)
 
         }
-        clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],100,1500)
+        clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],200,1500)
 
         if(isadviceactivity()>-1){
             seead()
@@ -468,6 +469,7 @@ var app_reward_88=function(){
     
 }
 
+
 var app_login=function(){
   doactionmaxtime(function(){
       clicktexts(["立即领取","登录/注册","微信一键登录","微信","同意"],200,2000)
@@ -476,6 +478,7 @@ var app_login=function(){
       }
   },10000)
 }
+
 
 var app_login_phone=function(){
 
