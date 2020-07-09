@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -397,6 +395,8 @@ var app_go_home=function(index){
                 selectnavi(5)
             }
             return true
+        }else if(ca=="com.zheyun.bumblebee.video.user.VideoUserActivity"){
+            back()
         }else if(ca=="com.jm.video.services.StartNotificationActivity"){
             if(maytextclick("看视频再")){
                 sleep(3000)
@@ -424,18 +424,24 @@ var app_go_home=function(index){
 }
 
 var app_reward_xunzhang=function(){
-    doactionmaxtime(function(){
+    doactionmaxnumber(function(n){
+        show(appname+"勋章奖励:"+n)
         if(currentActivity()!="com.jifen.qu.open.QX5WebViewActivity"){
-            app_go_home(4)
+            app_go_home(5)
             sleep(2000)
             doactionmaxtime(function(){
                 if(text("勋章殿堂").exists()){
-                        node_xz=text("勋章殿堂").findOne(500)
-                        press(device.width-150,node_xz.bounds().centerY(),50)
-                    return true
+                      
+                        if(clicknode( node_xz=text("勋章殿堂").visibleToUser().findOne(500),0,-35)){
+                            return true
+                        }
+
                 }
-                滑动(20,10,15,10,5,500,200)
+               
             },10000,1000)
+        }else{
+            滑动(20,10,14,10,8,500,300)
+            sleep(200)
         }
         if(text("勋章殿堂").exists()){
             if(textclick("可领取",500)){
@@ -447,8 +453,10 @@ var app_reward_xunzhang=function(){
                 seead()
             }
         }
-
-    },500000)
+        if(clicknode(className("android.widget.Image").clickable().drawingOrder(0).depth(17).findOne(500))){
+            
+        }
+    },20)
 }
 
 // while(true){
@@ -465,5 +473,5 @@ var app_reward_xunzhang=function(){
 // }
 // app_see_video()
 // app_see_music()
-app_reward_xunzhang()
+// app_reward_xunzhang()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
