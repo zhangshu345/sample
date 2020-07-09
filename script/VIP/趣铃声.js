@@ -77,7 +77,11 @@ var app_checklogin=function(){
        if(clickonetexts(["微信登录","立即登录"])){
            app_login()
        }
-       app_go_home(3)
+       if(clickonemaytexts(["看视频再"])){
+           sleep(3000)
+           seead()
+       }
+       app_go_home(5)
     },60000)
 }
 //app 签到
