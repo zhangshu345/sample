@@ -20,7 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//微信链接邀请绑定 之后登陆
+//微信链接邀请绑定 之后登陆 广告有qq 
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 
@@ -54,92 +54,15 @@ var app_run=function(){
     if(!今日签到(appname)){
         app_sign()
     }
-    while(true){
-        sleep(2000)
-        closeappundostate()
-        log("循环次数："+loopn)
-        if(!idContains(apppkg).exists()){
-            app.launch(apppkg)
-            sleep(3000)
-        }
-           //这里是视频上滑操作
-           if(textclick("看视频，金币再翻1倍！")){
-               sleep(1000)
-                seead()
-                idclick(视频广告结束弹窗关闭id)
-        }
-        if(clickoneids(["com.zheyun.bumblebee:id/tv_coin"])){
-            sleep(2000)
-            seead()
-        }
-        
-        if(loopn<100){
-            textclick("音乐")
-            if(loopn%20==0){
-                textclick("音乐")
-                sleep(1000)
-                node_tablay=id("com.zheyun.bumblebee:id/tab_layout").className("android.widget.HorizontalScrollView").findOne(100)
-                if(node_tablay){
-                  node_tabs=  node_tablay.child(0)
-                    if(node_tabs){
-                       let rn=randomint(0,node_tabs.childCount()-1)
-                       clicknode(node_tabs.child(rn))
-                       sleep(1000)
-                       
-                    }
-                }else{
-                    textclick("音乐")
-                    sleep(1000)
-                    textclick("抖音")
-                    sleep(1000)
-                }
-
-            }
-            滑动(20,10,16,10,14,400,100)
-            sleep(1000)
-            idclick("com.zheyun.bumblebee:id/iv_music_play")
-            
-            
-        }else{
-            if(loopn%150){
-                app_tomoney()
-            }
-            if(loopn%20==0){
-                textclick("小视频")
-            }
-
-            滑动(20,10,16,10,4,400,300)
-            sleep(1500)
-            text_like=getTextfromid("com.zheyun.bumblebee:id/tv_like")
-            if(text_like){
-                if(text_like.search("w")){
-                    idclick("com.zheyun.bumblebee:id/tv_like")
-                }else{
-                    
-                }
-            }else{
-                textclick("小视频")
-            }
-        }
-        
-        doactionmaxtime(function(){
-            if(textclick("看视频，金币再翻1倍！")){
-                if (seead()){
-                    sleep(1500)
-                    idclick(视频广告结束弹窗关闭id)
-                }
-            }
-            idclick(设置第一个来电铃声赚钱的关闭id)
-            idclick(视频广告结束弹窗关闭id)
-        },6000,1000)
-        idclick(设置第一个来电铃声赚钱的关闭id)
-        idclick(视频广告结束弹窗关闭id)
-        close_ad_qq(apppkg)
-        close_ad_toutiao(apppkg)
-        close_ad_iclicash(apppkg)
-        loopn=loopn+1
-    }
+    app_see_lingsheng()
+    app_see_music()
+    app_see_video()
+    app_reward()
+    app_tomoney()
 }
+
+
+
 
 var app_checklogin=function(){
     doactionmaxtime(function(){
@@ -154,9 +77,35 @@ var app_checklogin=function(){
        if(clickonetexts(["微信登录","立即登录"])){
            app_login()
        }
+       app_go_home(3)
     },60000)
 }
+//app 签到
+var app_sign=function(){
+    doactionmaxtime(function(){
+        clicktexts(["任务"])
+        if(clickonetexts(["看视频，签到奖励翻倍！","立即领取"])){
+            seerewardvideo(apppkg,false)
+            今日已签到(appname)
+            return true
+        }
+       
+    },30000)
 
+}
+
+
+var app_see_lingsheng=function(){
+
+
+
+}
+
+
+
+var app_see_music=function(){
+
+}
 
 var seead=function(){
     n_seead=0
@@ -236,19 +185,6 @@ var app_login_phone=function(){
     }
 }
 
-//app 签到
-var app_sign=function(){
-    doactionmaxtime(function(){
-        clicktexts(["任务"])
-        if(clickonetexts(["看视频，签到奖励翻倍！","立即领取"])){
-            seerewardvideo(apppkg,false)
-            今日已签到(appname)
-            return true
-        }
-       
-    },120000)
-
-}
 
 //app提现
 var app_tomoney=function(){
@@ -257,7 +193,7 @@ var app_tomoney=function(){
 
 var selectnavi=function(index){
     show(appname+"选择导航:"+index)
-    if(clicknode(className("android.widget.FrameLayout").drawingOrder(index).depth(7).clickable().findOne(300))){
+    if(clicknode(className("android.widget.FrameLayout").drawingOrder(index).depth(8).clickable().findOne(300))){
         return true
     }
     if(index==1){
@@ -307,7 +243,7 @@ var app_go_home=function(index){
             seead()
         }
         idclick("com.zheyun.bumblebee:id/base_card_dialog_close")
-       idclick("com.zheyun.bumblebee:id/iv_close")
+         idclick("com.zheyun.bumblebee:id/iv_close")
    
     },30000)
 
@@ -331,16 +267,16 @@ var app_reward_xunzhang=function(){
     },500000)
 }
 
-while(true){
-    sleep(3000)
-    app_go_home(1)
-    sleep(3000)
-    app_go_home(2)
-    sleep(3000)
-    app_go_home(3)
-    sleep(3000)
-    app_go_home(4)
-    sleep(3000)
-    app_go_home(5)
-}
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+// while(true){
+//     sleep(3000)
+//     app_go_home(1)
+//     sleep(3000)
+//     app_go_home(2)
+//     sleep(3000)
+//     app_go_home(3)
+//     sleep(3000)
+//     app_go_home(4)
+//     sleep(3000)
+//     app_go_home(5)
+// }
+ startapp(appname,apppkg,0,device.height-200,false,false,true,true)
