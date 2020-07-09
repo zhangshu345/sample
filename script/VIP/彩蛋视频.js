@@ -70,81 +70,93 @@ function app_run(){
     sleep(3000)
     loopn=0
     app_checklogin()
-    if(今日签到(appname)!="true"){
+
+
         app_sign()
-    }
+  
+    app_tomoney()
     app_getreward1()
     app_see_video()
-    while(true){
-        loopn=loopn+1
-        toastLog("循环 "+loopn)
-        device.wakeUpIfNeeded()
-        if(id("com.jifen.dandan:id/view_status_reach_limit").visibleToUser().findOne(300)){
-            show("看视频奖励达到最高")
-            app_tomoney()
-            return true
-        }
-        n_tj=text("推荐").clickable().boundsInside(0,0,device.width,device.height/5).findOne(100)
-        if(n_tj){
-            n_tj.click()
-        }
-        if(idclick("com.jifen.dandan:id/iv_close")){
-        }
-        closeappundostate()
-        if(textclick("立即翻倍")){
-            seead()
-        }
-
-        app_home_sweep()
-        if(text("注册/登录").clickable().boundsInside(0,0,300,300).exists()){
-           if (textclick("注册/登录")){
-               app_login()
-
-           }
-        }
-        if(text("点击重播").exists()){
-            back()
-            sleep(2500)
-        }
-       
-        if(loopn%200==0){
-           show(appname+":循环:"+loopn)
-           app_tomoney()
-           app_getreward()
-        }
-    }
+    app_tomoney()
 }
 
 
 
 var app_checklogin=function(){
     n_islogin=0
-   doactionmaxtime(function(){
-    show(appname+"检测登录状况")
+   doactionmaxnumber(function(n){
+    
+    show(appname+"检测登录状况:"+n)
     if(clicktexts(["同意","声明与政策","我知道了","允许","允许","允许","始终允许","始终允许","始终允许"],200,1288)){
-         
     }
 
     if(idclick("com.jifen.dandan:id/iv_open")){
         app_login()
     }
-
     if(clickonetexts(["微信一键登录","注册/登录"])){
         app_login_weixin()
     }
-
-    app_go_home(5)
-   //缺判断登录的标志
+      //缺判断登录的标志
    if(idoneexist(["com.jifen.dandan:id/image_bg","com.jifen.dandan:id/tv_like_num"])){
     return true
     }
     if(getTextfromid("com.jifen.dandan:id/login_person_name")!=""){
         return true
     }
+    app_go_home(5)
    
-   },30000)
+   },5)
    show(appname+"检测登录完毕")
 }
+
+var app_sign=function(){
+    if(今日签到(appname)){
+        return true
+    }
+    doactionmaxtnumber(function(n){
+        show(appname+"签到"+n)
+        if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
+            if(text("我的金币").exists()){
+              log("找到金币")
+            }
+        }else{
+           app_go_home(3)
+        }
+        if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
+            sleep(4000)
+        }
+     
+        if(idContains("coins-number").findOne(100)){
+            txt_coin=idContains("coins-number").findOne(100).text()
+            if(txt_coin){
+                记录现在金币(appname,parseInt(txt_coin))
+            }
+        }
+
+        if(maytextclick("看视频再送")){
+            seead()
+            今日已签到(appname)
+          
+        }
+       if(maytextclick("翻倍")){
+           seead()
+           今日已签到(appname)
+         
+       }
+       if(text("点击重播").exists()){
+           show("点击重播")
+        今日已签到(appname)
+        back()
+        sleep(2500)
+        back()
+    }
+    if(text("邀请好友").findOne(500)){
+        back()
+    }
+},20)
+
+}
+
 
 var app_see_video=function(){
     doactionmaxnumber(function(n){
@@ -155,7 +167,7 @@ var app_see_video=function(){
         if(isadviceactivity()){
             seead()
         }
-        if(textclick("立即翻倍")){
+        if(maytextclick("翻倍")){
             seead()
          }
          滑动(20,10,15,10,3,688,200)
@@ -339,73 +351,6 @@ var selectnavi=function(index){
 }
 
 
-var app_sign=function(){
-    app_go_home(3)
-    doactionmaxtime(function(){
-    if(idclick("com.jifen.dandan:id/bt_tab_welfare_task")){
-        sleep(4000)
-    }
-        if(currentActivity()=="com.jifen.dandan.webview.WebViewActivity"){
-             if(text("我的金币").exists()){
-               log("找到金币")
-             }
-         }
-        if(idContains("coins-number").findOne(100)){
-            txt_coin=idContains("coins-number").findOne(100).text()
-            if(txt_coin){
-                记录现在金币(appname,parseInt(txt_coin))
-            }
-        }
-
-        if(maytextclick("看视频再送")){
-            seead()
-            今日已签到(appname)
-            return true
-        }
-
-       if(textclick("看视频再送100金币")){
-           seead()
-           今日已签到(appname)
-           return true
-       }
-       if(textclick("翻倍")){
-           seead()
-           今日已签到(appname)
-           return true
-       }
-       if(text("点击重播").exists()){
-           show("点击重播")
-        今日已签到(appname)
-        back()
-        sleep(2500)
-        back()
-        return  true
-    }
-    if(text("邀请好友").findOne(500)){
-        back()
-        return  
-    }
-    doactionmaxtime(function(){
-        if(text("日常福利").exists()){
-            if(textclick("去赚钱")){
-                seead()
-            }
-            if(textclick("去抢红包")){
-                seead()
-            }
-            sleep(1000)
-            back()
-           return true
-        }else{
-            滑动(20,10,18,10,3,500,500)
-            sleep(1000)
-         
-        }
-    },60000)
-
-},300000)
-
-}
 
 var app_getreward=function(){
     app_go_home(3)
@@ -460,6 +405,7 @@ var app_getreward1=function(){
     app_go_home(3)
     sleep(3)
     doactionmaxnumber(function(n){
+        show(appname+"获取奖励")
                 if(text("每日签到").exists()){
                     textclick("抢红包")
                     sleep(1000)
@@ -540,8 +486,9 @@ var app_tomoney=function(){
             text_todaycoin=getTextfromid("com.jifen.dandan:id/tv_person_today_gold_title");
             n_todaycoin=parseInt(text_todaycoin.replace("今日金币","").trim())
             if(n_todaycoin>=mintodaycoin){
-                if(idclick("com.jifen.dandan:id/tv_person_total_gold_title")){
-                    while(true){
+                    doactionmaxtime(function(){
+                        idclick("com.jifen.dandan:id/tv_person_total_gold_title")
+                        sleep(2000)
                         if(text("金币提现").exists()){
                             n_int_coin=parseInt(n_coin/10000)
                         
@@ -590,8 +537,8 @@ var app_tomoney=function(){
                               }
                             // }
                         }
-                    }
-                }
+                    },60000)
+               
             }else{
                 show("今日金币数:"+n_todaycoin)
                 return false

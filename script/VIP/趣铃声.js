@@ -1,3 +1,5 @@
+const { text } = require("body-parser");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -53,12 +55,12 @@ var app_run=function(){
     sleep(3000)
     
     app_checklogin()
-
+    app_tomoney()
     app_sign()
-    app_see_lingsheng()
     app_see_music()
+    app_reward_xunzhang()
     app_see_video()
-   
+    app_see_lingsheng()
     app_tomoney()
     app_reward()
 }
@@ -178,7 +180,7 @@ var app_see_music=function(){
             }
         },30000,3000)
     
-    },50)
+    },1000)
 }
 
 
@@ -190,7 +192,7 @@ var  app_see_video=function(){
        state= getTextfromid("com.zheyun.bumblebee:id/tv_task_status")
        if(state){
            log("奖励状态:"+state.text())
-           if(state.text().search("10")>-1){
+           if(state.text().search("10|30")>-1){
                return true
            }
        }
@@ -309,10 +311,42 @@ var app_login_phone=function(){
 
 //app提现
 var app_tomoney=function(){
-    app_go_home(5)
-    doactionmaxtime(function(){
-        clicktexts(["提现","天天可提","0.3元","立即提现"],500,2000)
-    },30000)
+    
+    doactionmaxnumber(function(n){
+        show(appname+"提现"+n)
+        if(!text("我的钱包").exists()){
+            app_go_home(5)
+            滑动(20,10,4,15,500,100)
+            sleep(3000)
+            text("提现").findOne(5000)
+            node_coinp=text("今日金币").findOne(500)
+            if(node_coinp){
+               p= node_coinp.parent()
+                if(p){
+                  todaycoin=  parseInt(p.child(0).text())
+                  show(appname+"今日金币")
+                  if(todaycoin<3000){
+                        return true
+                  }else{
+                      textclick("提现")
+                  }
+                }
+            }
+        }else{
+            clicktexts(["提现","天天可提","0.3元"],500,2000)
+            if(textclick("立即提现")){
+                sleep(3000)
+                seead()
+                sleep(1000)
+            }
+        }
+        if(text("提现成功").exists()){
+            clicknode(className("android.widget.Image").clickable().depth(13).drawingOrder(0).findOne(500))
+            back()
+            return true
+        }
+        
+    },10)
 }
 
 var selectnavi=function(index){
@@ -346,6 +380,8 @@ var app_go_home=function(index){
             sleep(3000)
             seead()
         }
+        idclick("com.zheyun.bumblebee:id/base_card_dialog_close")
+        idclick("com.zheyun.bumblebee:id/iv_close")
         ca=currentActivity()
         show(appname+"回到首页:"+index+"|"+ca)
         if(ca==apphomeactivity||ca=="com.zheyun.bumblebee.loginguide.d"){
@@ -369,20 +405,18 @@ var app_go_home=function(index){
             }
             idclick("com.zheyun.bumblebee:id/iv_close")
             selectnavi(index)
+        }else if(ca=="com.jifen.qu.open.QX5WebViewActivity"){
+            back()
         }else{
             if(currentPackage()!=apppkg){
                 app.launch(apppkg)
                 sleep(3888)
-            }else{
-                back()
-                sleep(500)
             }
         }
         if(isadviceactivity()>-1){
             seead()
         }
-        idclick("com.zheyun.bumblebee:id/base_card_dialog_close")
-        idclick("com.zheyun.bumblebee:id/iv_close")
+     
      sleep(1000)
    
     },30000)
@@ -391,6 +425,18 @@ var app_go_home=function(index){
 
 var app_reward_xunzhang=function(){
     doactionmaxtime(function(){
+        if(currentActivity()!="com.jifen.qu.open.QX5WebViewActivity"){
+            app_go_home(4)
+            sleep(2000)
+            doactionmaxtime(function(){
+                if(text("勋章殿堂").exists()){
+                        node_xz=text("勋章殿堂").findOne(500)
+                        press(device.width-150,node_xz.bounds().centerY(),50)
+                    return true
+                }
+                滑动(20,10,15,10,5,500,200)
+            },10000,1000)
+        }
         if(text("勋章殿堂").exists()){
             if(textclick("可领取",500)){
                 sleep(2000)
@@ -400,9 +446,6 @@ var app_reward_xunzhang=function(){
                 sleep(3000)
                 seead()
             }
-        }else{
-            app_go_home(4)
-            sleep(20002)
         }
 
     },500000)
@@ -422,4 +465,5 @@ var app_reward_xunzhang=function(){
 // }
 // app_see_video()
 // app_see_music()
- startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+app_reward_xunzhang()
+startapp(appname,apppkg,0,device.height-200,false,false,true,true)

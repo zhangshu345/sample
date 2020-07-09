@@ -49,9 +49,10 @@ var loopn=0
 //回到视频页
 
 var  app_go_home=function(index){
-    show(appname+"回到首页"+index)
+   
     index=index||1
    if(doactionmaxtime(function(){
+    show(appname+"回到首页"+index)
        closeappundostate()
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
@@ -60,6 +61,9 @@ var  app_go_home=function(index){
         }else{
         idclick("com.jm.video:id/imgClose")
         textclick("取消")
+        if(textclick("立即观看")){
+            seead()
+        }
         ca=currentActivity()
         if(ca=="com.jm.video.ui.main.MainActivity"){
             sleep(300)
@@ -135,7 +139,19 @@ var selectnavi=function(index){
     }
 }
 
-
+var seead=function(){
+    doactionmaxtime(function(){
+        if(close_ad_qq(apppkg,-1)){
+            return true
+        }
+        if(close_ad_toutiao(apppkg,-1)){
+            return true
+        }
+       if(isadviceactivity()<0){
+           return true
+       }
+    },40000,1000)
+}
 var app_sign=function(){
     app_go_home(4)
        doactionmaxtime(function(){
