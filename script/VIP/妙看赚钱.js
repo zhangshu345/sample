@@ -20,14 +20,14 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//检测到提醒 有刷单软件 数据异常  这是为啥
+//检测到提醒 在oppo应用商店上架的 没有邀请
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
 var appname="妙看赚钱"
 var apppkg="com.taige.mygold"
 
-var invitecodes=["89797906"]
+ var invitecodes=["89797906"]
 
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
@@ -64,69 +64,90 @@ var app_run=function(){
     if(!isinvite){
         app_invite()
     }
- app_sign()
- app_
+    app_sign()
+    app_see_video()
+    app_tomoney()
 }
 
 
 var app_login_check=function(){
-    doactionmaxtime(function(){
-        show("检测"+appname+"登录状况")
-        if(idoneexist([rewardbgid,videolikeid])){
-            return true
-        }
-        if(textoneexist(["小视频","铃声","任务"])){
-            return true
-        }
-        clicktexts(["同意","允许","允许","始终允许","始终允许"],150,1500)
-        if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
-            text("立即提现").waitFor()
-            textclick("立即提现")
-           if( app_login_weixin()){
-               return true
+    try {
+        doactionmaxtime(function(){
+            show("检测"+appname+"登录状况")
+            if(idoneexist([rewardbgid,videolikeid])){
+                return true
             }
-        }
-        if(idoneexist([rewardbgid,videolikeid])){
-            return true
-        }
-         app_go_home(1)
-    },60000)
+            if(textoneexist(["小视频","铃声","任务"])){
+                return true
+            }
+            clicktexts(["同意","允许","允许","始终允许","始终允许"],150,1500)
+            if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
+                text("立即提现").waitFor()
+                textclick("立即提现")
+               if( app_login_weixin()){
+                   return true
+                }
+            }
+            if(idoneexist([rewardbgid,videolikeid])){
+                return true
+            }
+             app_go_home(1)
+        },60000)
+    } catch (error) {
+        
+    }
+
 }
 
 
 
 //app 登录
 var app_login=function(){
-    show(appname+"登录")
+    try {
+        show(appname+"登录")
+    } catch (error) {
+        
+    }
+   
 }
 
 //app 微信登录
 var app_login_weixin=function(){
-    show(appname+"微信登录")
-   if( doactionmaxtime(function(){
-        clicktexts(["微信登录"],200,2000)
-        if(textclick("同意")){
-            sleep(5000)
-        }
-        if(textoneexist(["看视频，金币再翻1倍"])){
-            return true
-        }
-        if(idoneexist(["com.zheyun.bumblebee.lsx:id/tv_confirm"])){
-            return true
-        }
-        if(idclick(coinaltercloseid)){
-            return true
-        }
-    },60000)){
-        return true
+    try {
+        show(appname+"微信登录")
+        if( doactionmaxtime(function(){
+             clicktexts(["微信登录"],200,2000)
+             if(textclick("同意")){
+                 sleep(5000)
+             }
+             if(textoneexist(["看视频，金币再翻1倍"])){
+                 return true
+             }
+             if(idoneexist(["com.zheyun.bumblebee.lsx:id/tv_confirm"])){
+                 return true
+             }
+             if(idclick(coinaltercloseid)){
+                 return true
+             }
+         },60000)){
+             return true
+         }
+             return false
+    } catch (error) {
+        
     }
-        return false
+
     
 }
 
 //app_手机号登录
 var app_login_phone=function(){
-    show(appname+"手机登录登录")
+    try {
+        show(appname+"手机登录登录")
+    } catch (error) {
+        
+    }
+   
 }
 
 //app 签到
@@ -143,6 +164,15 @@ var app_sign=function(){
 var app_tomoney=function(){
     try {
         show(appname+"签到")
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
+        }
+        if(今日提现(appname)){
+            return true
+        }
+
+
     } catch (error) {
         
     }
@@ -254,4 +284,4 @@ var seead=function(){
 
 }
 
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+startapp(appname,apppkg,0,device.height-200,false,false,true,true,"http://zhangshuhong888.iask.in:8989/com.taige.mygold.apk")

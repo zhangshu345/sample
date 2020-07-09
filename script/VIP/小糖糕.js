@@ -584,10 +584,16 @@ try {
 // //app提现
 var app_tomoney=function(){
     try {
-        if(今日提现(appname)){
-            show(appname+":今日已经提现了")
-            return true
-        }
+     
+            show(appname+"提现")
+            if(!获取记录("all","switch_tomoney",false)){
+                show("全局设置不允许提现")
+                return false
+            }
+            if(今日提现(appname)){
+                return true
+            }
+
         app_go_home(5)
         return doactionmaxtime(function(){
           show(appname+"开始提现")

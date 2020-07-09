@@ -660,11 +660,16 @@ var  app_see_video=function(){
 
 // //app提现
 var app_tomoney=function(){
-     show("开始提现")
-     if(今日提现(appname)){
-         show(appname+":今日已经提现了")
-         return true
-     }
+    try {
+        show(appname+"开始提现")
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
+        }
+        if(今日提现(appname)){
+            return true
+        }
+
     doactionmaxtime(function(){
         app_go_home(4)
         sleep(1000)
@@ -703,13 +708,24 @@ var app_tomoney=function(){
             return true
         }
     },60000)
+    } catch (error) {
+        
+    }
+       
 }
 
 var app_tomoney2=function(){
-    if(今日提现(appname)=="true"){
-        return true
-    }
-         app_go_home(4)
+    try {
+        show(appname+"签到")
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
+        }
+        if(今日提现(appname)){
+            return true
+        }
+
+        app_go_home(4)
         滑动(20,10,4,10,10,300,100)
         sleep(3000)
         node_ktomoney=text("可提现(元)").findOne(3000)
@@ -742,6 +758,13 @@ var app_tomoney2=function(){
         }else{
             show("没找到可提现")
         }
+
+
+    } catch (error) {
+        
+    }
+
+       
 }
 
 var seeadnum=0

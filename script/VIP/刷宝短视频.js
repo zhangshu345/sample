@@ -419,63 +419,73 @@ var cantomoney=function(){
 }
 
 var app_tomoney=function(){
-    if(今日提现(appname)=="true"){
-        show(appname+"已经提现")
-        return true
-    }
-    show(appname+"提现")
-    n_coin=app_getcoinnumber()
-    show("金币数："+n_coin)
-        if(app_getcoinnumber()>7800){
-            show("可以提现了")
-            i=0
-           doactionmaxnumber(function(){
-              if(idclick(刷宝余额id)){
-                show("点击刷宝余额成功")
-                   sleep(1000)
-               }
-               clicknode(className("android.view.View").clickable().depth(6).drawingOrder(0).findOne(300))
-               if(textclick("立即提现")){
-                }
-                if(clickonetexts(["每日可提","已解锁","仅当日有效"])){
-                       show("点击每日可提")
-                       if(cantomoney()){
-                           show("今日可以提现")
-                        let i=0
-                          while(i<5){
-                             if(textclick("仅当日有效")){
-                                 show("点击仅当日有效")
-                             }
-                              sleep(1000)
-                              textclick("立即提现")
-                              if(textclick("同意")){
-                                  show("微信同意")
-                              }
-                              if(text("提现详情").exists()){
-                                   今日已提现(appname)
-                                  return true
-                              }
-                              if(text("去邀请好友").exists()){
-                                  back()
-                                  今日已提现(appname)
-                                  return true
-                              }
-                              i=i+1
-                          }
-                          return true
-                     }else{
-                         show("今日不可以提现")
-                      return true
-                     }
-                 }
-
-           },10)
-         
-        }else{
-            show(appname+"当前金币不够每日提现")
+    try {
+        show(appname+"签到")
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
+        }
+        if(今日提现(appname)){
             return true
         }
+        n_coin=app_getcoinnumber()
+        show("金币数："+n_coin)
+            if(app_getcoinnumber()>7800){
+                show("可以提现了")
+                i=0
+               doactionmaxnumber(function(){
+                  if(idclick(刷宝余额id)){
+                    show("点击刷宝余额成功")
+                       sleep(1000)
+                   }
+                   clicknode(className("android.view.View").clickable().depth(6).drawingOrder(0).findOne(300))
+                   if(textclick("立即提现")){
+                    }
+                    if(clickonetexts(["每日可提","已解锁","仅当日有效"])){
+                           show("点击每日可提")
+                           if(cantomoney()){
+                               show("今日可以提现")
+                            let i=0
+                              while(i<5){
+                                 if(textclick("仅当日有效")){
+                                     show("点击仅当日有效")
+                                 }
+                                  sleep(1000)
+                                  textclick("立即提现")
+                                  if(textclick("同意")){
+                                      show("微信同意")
+                                  }
+                                  if(text("提现详情").exists()){
+                                       今日已提现(appname)
+                                      return true
+                                  }
+                                  if(text("去邀请好友").exists()){
+                                      back()
+                                      今日已提现(appname)
+                                      return true
+                                  }
+                                  i=i+1
+                              }
+                              return true
+                         }else{
+                             show("今日不可以提现")
+                          return true
+                         }
+                     }
+    
+               },10)
+             
+            }else{
+                show(appname+"当前金币不够每日提现")
+                return true
+            }
+    
 
+    } catch (error) {
+        
+    }
+
+   
 
 }
 

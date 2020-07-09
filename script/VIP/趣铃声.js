@@ -307,42 +307,55 @@ var app_login_phone=function(){
 
 //app提现
 var app_tomoney=function(){
-    
-    doactionmaxnumber(function(n){
-        show(appname+"提现"+n)
-        if(!text("我的钱包").exists()){
-            app_go_home(5)
-            滑动(20,10,4,15,500,100)
-            sleep(3000)
-            text("提现").findOne(5000)
-            node_coinp=text("今日金币").findOne(500)
-            if(node_coinp){
-               p= node_coinp.parent()
-                if(p){
-                  todaycoin=  parseInt(p.child(0).text())
-                  show(appname+"今日金币")
-                  if(todaycoin<3000){
-                        return true
-                  }else{
-                      textclick("提现")
-                  }
-                }
-            }
-        }else{
-            clicktexts(["提现","天天可提","0.3元"],500,2000)
-            if(textclick("立即提现")){
-                sleep(3000)
-                seead()
-                sleep(1000)
-            }
+    try {
+        show(appname+"开始提现")
+  
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
         }
-        if(text("提现成功").exists()){
-            clicknode(className("android.widget.Image").clickable().depth(13).drawingOrder(0).findOne(500))
-            back()
+        if(今日提现(appname)){
             return true
         }
+        doactionmaxnumber(function(n){
+            show(appname+"提现"+n)
+            if(!text("我的钱包").exists()){
+                app_go_home(5)
+                滑动(20,10,4,15,500,100)
+                sleep(3000)
+                text("提现").findOne(5000)
+                node_coinp=text("今日金币").findOne(500)
+                if(node_coinp){
+                   p= node_coinp.parent()
+                    if(p){
+                      todaycoin=  parseInt(p.child(0).text())
+                      show(appname+"今日金币")
+                      if(todaycoin<3000){
+                            return true
+                      }else{
+                          textclick("提现")
+                      }
+                    }
+                }
+            }else{
+                clicktexts(["提现","天天可提","0.3元"],500,2000)
+                if(textclick("立即提现")){
+                    sleep(3000)
+                    seead()
+                    sleep(1000)
+                }
+            }
+            if(text("提现成功").exists()){
+                clicknode(className("android.widget.Image").clickable().depth(13).drawingOrder(0).findOne(500))
+                back()
+                return true
+            }
+            
+        },10)
+    } catch (error) {
         
-    },10)
+    }
+  
 }
 
 var selectnavi=function(index){

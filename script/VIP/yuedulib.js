@@ -2766,7 +2766,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 
 
 //本地配置启用脚本
-var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invitecodeconfigurl){
+var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -2793,6 +2793,10 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,invi
     }else{
         数据库.put("runlist",runapps)
     }
+    if(enabletomoney){
+        记录("all","switch_tomoney",true)
+    }
+    
     function filterapp(app){
                 if(!app.open){
                     log("没有开启")
@@ -2903,8 +2907,8 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
         if(isonlyscript){
             engines.stopOther()
         }
-      checksystemsettings()
-      if(isdevicemanager){
+        checksystemsettings()
+        if(isdevicemanager){
             checkdevicemanager()
         }
         if(floatyx!=0||floatyy!=0){

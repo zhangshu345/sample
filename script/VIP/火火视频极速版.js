@@ -515,6 +515,12 @@ var app_get_reward=function(){
 }
 
 var app_tomoney=function(){
+    try {
+        show(appname+"提现")
+    if(!获取记录("all","switch_tomoney",false)){
+        show("全局设置不允许提现")
+        return false
+    }
     if(今日提现(appname)=="true"){
         show(appname+"今日已经提现了")
         return true
@@ -553,6 +559,10 @@ var app_tomoney=function(){
             
         }
     },30000)
+    } catch (error) {
+        
+    }
+    
 }
 
 var app_login=function(){

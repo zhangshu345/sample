@@ -267,7 +267,10 @@ var app_sign=function(){
 
 //app提现
 var app_tomoney=function(){
-
+    if(!获取记录("all","switch_tomoney",false)){
+        show("全局设置不允许提现")
+        return false
+    }
 }
 
 //app 回到操作的主页

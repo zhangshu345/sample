@@ -489,78 +489,91 @@ var app_login_weixin=function(){
 }
 
 var app_tomoney=function(){
-    doactionmaxtime(function(){
+    try {
         show(appname+"提现")
-         app_go_home(5)
-        text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
-            if(text_coin){
-               n_coin=parseInt(text_coin.replace("我的金币","").trim())
-               if(n_coin){
-                记录现在金币(appname,n_coin)
-               }
-            }
-            text_todaycoin=getTextfromid("com.jifen.dandan:id/tv_person_today_gold_title");
-            n_todaycoin=parseInt(text_todaycoin.replace("今日金币","").trim())
-            if(n_todaycoin>=mintodaycoin){
-                    doactionmaxtime(function(){
-                        idclick("com.jifen.dandan:id/tv_person_total_gold_title")
-                        sleep(2000)
-                        if(text("金币提现").exists()){
-                            n_int_coin=parseInt(n_coin/10000)
-                        
-                            // if(n_int_coin>=5){
-                            //     textclick("5 元")
-                            //     sleep(1000)
-                            //     n_can=textStartsWith("5元提现说明").findOne(200)
-                            //     if(n_can.text.search("未满足")==-1){
-                            //         if  (textclick("立即提现")){
-                            //             seead()
-                            //             back()
-                            //             return true
-                            //         }
-                            //     }
-                               
-                            // }
-                            // else if(n_int_coin>=3){
-                            //     textclick("3 元")
-                            //     sleep(1000)
-                            //     n_can=textStartsWith("3元提现说明").findOne(200)
-                            //     if(n_can.text.search("未满足")==-1){
-                            //         if  (textclick("立即提现")){
-                            //             seead()
-                            //             back()
-                            //             return true
-                            //         }
-                            //     }
-                            // }else if(n_int_coin>=1){
-                            //     textclick("1 元")
-                            //     sleep(1000)
-                            //     n_can=textStartsWith("1元提现说明").findOne(200)
-                            //     if(n_can.text.search("未满足")==-1){
-                            //         if  (textclick("立即提现")){
-                            //             seead()
-                            //             back()
-                            //             return true
-                            //         }
-                            //     }
-                            // }else {
-                                textclick("0.3 元")
-                                sleep(1000)
-                              if  (textclick("立即提现")){
-                                  seead()
-                                  back()
-                                  return true
-                              }
-                            // }
-                        }
-                    },60000)
-               
-            }else{
-                show("今日金币数:"+n_todaycoin)
-                return false
-            }
-       
-    },20000)
+        if(!获取记录("all","switch_tomoney",false)){
+            show("全局设置不允许提现")
+            return false
+        }
+        if(今日提现(appname)){
+            return true
+        }
+        doactionmaxtime(function(){
+            show(appname+"提现")
+             app_go_home(5)
+            text_coin=getTextfromid("com.jifen.dandan:id/tv_person_total_gold_title")
+                if(text_coin){
+                   n_coin=parseInt(text_coin.replace("我的金币","").trim())
+                   if(n_coin){
+                    记录现在金币(appname,n_coin)
+                   }
+                }
+                text_todaycoin=getTextfromid("com.jifen.dandan:id/tv_person_today_gold_title");
+                n_todaycoin=parseInt(text_todaycoin.replace("今日金币","").trim())
+                if(n_todaycoin>=mintodaycoin){
+                        doactionmaxtime(function(){
+                            idclick("com.jifen.dandan:id/tv_person_total_gold_title")
+                            sleep(2000)
+                            if(text("金币提现").exists()){
+                                n_int_coin=parseInt(n_coin/10000)
+                            
+                                // if(n_int_coin>=5){
+                                //     textclick("5 元")
+                                //     sleep(1000)
+                                //     n_can=textStartsWith("5元提现说明").findOne(200)
+                                //     if(n_can.text.search("未满足")==-1){
+                                //         if  (textclick("立即提现")){
+                                //             seead()
+                                //             back()
+                                //             return true
+                                //         }
+                                //     }
+                                   
+                                // }
+                                // else if(n_int_coin>=3){
+                                //     textclick("3 元")
+                                //     sleep(1000)
+                                //     n_can=textStartsWith("3元提现说明").findOne(200)
+                                //     if(n_can.text.search("未满足")==-1){
+                                //         if  (textclick("立即提现")){
+                                //             seead()
+                                //             back()
+                                //             return true
+                                //         }
+                                //     }
+                                // }else if(n_int_coin>=1){
+                                //     textclick("1 元")
+                                //     sleep(1000)
+                                //     n_can=textStartsWith("1元提现说明").findOne(200)
+                                //     if(n_can.text.search("未满足")==-1){
+                                //         if  (textclick("立即提现")){
+                                //             seead()
+                                //             back()
+                                //             return true
+                                //         }
+                                //     }
+                                // }else {
+                                    textclick("0.3 元")
+                                    sleep(1000)
+                                  if  (textclick("立即提现")){
+                                      seead()
+                                      back()
+                                      return true
+                                  }
+                                // }
+                            }
+                        },60000)
+                   
+                }else{
+                    show("今日金币数:"+n_todaycoin)
+                    return false
+                }
+           
+        },20000)
+    } catch (error) {
+        
+    }
+  
 }
 
 
