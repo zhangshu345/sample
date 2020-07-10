@@ -2234,7 +2234,7 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-          
+            clicknode(className("android.view.View").clickable().depth(8).drawingOrder(1).findOne(1000))
             ca=currentActivity()
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                 textclick("关闭")

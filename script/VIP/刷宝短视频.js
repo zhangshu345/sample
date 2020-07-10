@@ -20,6 +20,8 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 
+
+//奖励消失
 var tomoney=true
 var apppkg= "com.jm.video"  //app.getPackageName(appname)
 var apphomeactivity="com.jm.video.ui.main.MainActivity"
@@ -109,7 +111,7 @@ var  app_run=function(){
 var  app_go_home=function(index){
     index=index||1
    if(doactionmaxtime(function(){
-    show(appname+"回到首页"+index)
+    
        closeappundostate()
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
@@ -122,13 +124,14 @@ var  app_go_home=function(index){
             seead()
         }
         ca=currentActivity()
+        show(appname+"回到首页"+index+"|"+ca)
         if(ca=="com.jm.video.ui.main.MainActivity"){
             sleep(300)
             if(index==1){
+                selectnavi(1)
+                sleep(1000)
                 if(idoneexist(刷宝首页标记id集合)){
                     return true
-                }else{
-                    selectnavi(1)
                 }
             }else if(index==2){
                 selectnavi(2)
