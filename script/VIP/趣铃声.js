@@ -46,7 +46,7 @@ var loopn=0
 var keepappnewer=true
 //app 运行
 var app_run=function(){
-    app_invite()
+  //  app_invite()
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
@@ -62,14 +62,19 @@ var app_run=function(){
 }
 
 var app_invite=function(){
-    if(!获取记录(appname,"login",false)){
-        return true
+    try {
+        if(!获取记录(appname,"invite",false)){
+            return true
+        }
+        微信发消息("微信团队","http://ling.kdeye.cn/imfh/asyb.html?pid=62ce793f&app_id=39",true)
+        doactionmaxtime(function(){
+                clicknode(className("android.view.View").clickable().depth(22).findOne(1000))
+                textclick("同意")
+        },30000)
+    } catch (error) {
+        
     }
-    微信发消息("微信团队","http://ling.kdeye.cn/imfh/asyb.html?pid=62ce793f&app_id=39",true)
-    doactionmaxtime(function(){
-            clicknode(className("android.view.View").clickable().depth(22).findOne(1000))
-            textclick("同意")
-    },30000)
+
 
 }
 

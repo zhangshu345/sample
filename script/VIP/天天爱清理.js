@@ -607,6 +607,11 @@ var  app_see_video=function(){
     try {
         doactionmaxnumber(function(n){
             show(appname+"视频页滑动"+n)
+            if(n%5==0){
+                selectnavi(3)
+                sleep(1000)
+                selectnavi(2)
+            }
             closeappundostate()
             if(!idoneexist(视频页标记id集合)){
                 app_go_home(2)
