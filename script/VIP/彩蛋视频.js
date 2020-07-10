@@ -70,11 +70,13 @@ function app_run(){
     sleep(3000)
     loopn=0
     app_checklogin()
-        app_sign()
-      app_tomoney()
-    app_getreward1()
+     app_sign()
+     app_tomoney()
     app_see_video()
     app_tomoney()
+    app_getreward1()
+    app_tomoney()
+ 
 }
 
 
@@ -173,6 +175,7 @@ var app_see_video=function(){
             if(maytextclick("翻倍")){
                 seead()
              }
+             textclick("点击重试")
              滑动(20,10,15,10,3,688,200)
              sleep(2388)
              jl=getTextfromid("com.jifen.dandan:id/tv_ad_red_pack_status")
@@ -420,17 +423,16 @@ var app_getreward1=function(){
     sleep(3)
     doactionmaxnumber(function(n){
         show(appname+"获取奖励")
-        
-                if(text("每日签到").exists()){
+            if(text("每日签到").exists()){
                     textclick("抢红包")
                     sleep(1000)
-                }else{
+            }else{
                     滑动(20,10,18,10,3,500,500)
                     sleep(1000)
-                }
-                if(textclick("iPhone免费抽")){
+            }
+            if(textclick("iPhone免费抽")){
 
-                }
+            }
        if(textclick("收金币")){
             seead()
         }
@@ -454,10 +456,8 @@ var app_getreward1=function(){
             
         }else if(title=="高温补贴来了〜〜"){
             clicknode(text("看视频抽大奖").depth(18).drawingOrder(0).findOne(500),0,100)
-
         }
         clickoneids(["com.jifen.dandan:id/iv_close","com.jifen.dandan:id/tv_close"],200,1500)
-
         if(isadviceactivity()>-1){
             seead()
         }

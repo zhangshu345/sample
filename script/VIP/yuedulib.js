@@ -2654,7 +2654,7 @@ var checkweixin=function(){
 }
 
 //本地配置启用脚本
-var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebconfig){
+var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
@@ -2722,9 +2722,23 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
         if(!getPackageName(app.app.name)){
             downloadandinstallapp(app.app.name,app.app.pkg)
         }else{
-            keepappisnewer(app.app.name,app.app.pkg)
+            if(enableappnew){
+                keepappisnewer(app.app.name,app.app.pkg)
+            }
+            
         }
     })
+    if(enabletomoney){
+        记录("all","switch_tomoney",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    if(enableappnew){
+        记录("all","switch_appnew",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
@@ -2766,7 +2780,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
 
 
 //本地配置启用脚本
-var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,invitecodeconfigurl){
+var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -2795,6 +2809,13 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
     }
     if(enabletomoney){
         记录("all","switch_tomoney",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    if(enableappnew){
+        记录("all","switch_appnew",true)
+    }else{
+        记录("all","switch_tomoney",false)
     }
     
     function filterapp(app){
@@ -2928,7 +2949,7 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
                 downloadandinstallapp(appname,apppkg)
               }
             }else{
-         if(iskeepappnewer){
+         if(iskeepappnewer&&获取记录("all","switch_appnew",false)){
                keepappisnewer(appname,apppkg)
          }
          show(appname+"已经安装")
