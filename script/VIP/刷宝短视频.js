@@ -111,8 +111,11 @@ var  app_run=function(){
 var  app_go_home=function(index){
     index=index||1
    if(doactionmaxtime(function(){
-    
+
        closeappundostate()
+      if( selectnavi(index)){
+          return true
+      }
         if(currentPackage()!=apppkg){
             app.launch(apppkg)
             sleep(3000)
@@ -197,6 +200,7 @@ var selectnavi=function(index){
     }else if(index==5){
         textclick("我")
     }
+    return false
 }
 
 var seead=function(){
