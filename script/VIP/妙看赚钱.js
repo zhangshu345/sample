@@ -20,7 +20,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-//检测到提醒 在oppo应用商店上架的 没有邀请
+//检测到提醒 在oppo应用商店上架的 没有邀请  10分钟一次的广告奖励1000金币 10分钟看视频奖励2980 金币
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 //应用名
@@ -61,9 +61,9 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
-    if(!isinvite){
-        app_invite()
-    }
+    // if(!isinvite){
+    //     app_invite()
+    // }
     app_sign()
     app_see_video()
     app_tomoney()
@@ -74,24 +74,38 @@ var app_login_check=function(){
     try {
         doactionmaxtime(function(){
             show("检测"+appname+"登录状况")
-            if(idoneexist([rewardbgid,videolikeid])){
-                return true
+
+            if(textclick("开始赚钱")){
+                app_login_weixin()
             }
+
             if(textoneexist(["小视频","铃声","任务"])){
                 return true
             }
-            clicktexts(["同意","允许","允许","始终允许","始终允许"],150,1500)
-            if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
-                text("立即提现").waitFor()
-                textclick("立即提现")
-               if( app_login_weixin()){
-                   return true
-                }
-            }
+            clicktexts(["同意并继续","去授权","允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
+     
             if(idoneexist([rewardbgid,videolikeid])){
                 return true
             }
-             app_go_home(1)
+             app_go_home(3)
+             sleep(2000)
+             if(textclick("签到")){
+                 sleep(1500)
+                 if(maytextclick("金币翻倍")){
+                     seead()
+                     sleep(2000)
+                     textclick("收入囊中")
+                     return true
+                 }
+             }
+             mycoin=getTextfromid("com.taige.mygold:id/my_gold")
+             if(mycoin){
+                 coin=parseInt(mycoin.text())
+                 if(coin>3000){
+                     textclick("去提现")   
+                     app_tomoney()
+                 }
+             }
         },60000)
     } catch (error) {
         
@@ -120,13 +134,14 @@ var app_login_weixin=function(){
              if(textclick("同意")){
                  sleep(5000)
              }
-             if(textoneexist(["看视频，金币再翻1倍"])){
-                 return true
-             }
+
              if(idoneexist(["com.zheyun.bumblebee.lsx:id/tv_confirm"])){
                  return true
              }
              if(idclick(coinaltercloseid)){
+                 return true
+             }
+             if(textoneexist(["继续赚钱"])){
                  return true
              }
          },60000)){
@@ -145,25 +160,28 @@ var app_login_phone=function(){
     try {
         show(appname+"手机登录登录")
     } catch (error) {
-        
+ 
     }
-   
 }
 
 //app 签到
 var app_sign=function(){
     try {
         show(appname+"签到")
+        app_go_home(3)
+        doactionmaxnumber(function(n){
+            
+        },5)
     } catch (error) {
         
     }
-   
 }
+
 
 //app提现
 var app_tomoney=function(){
     try {
-        show(appname+"签到")
+        show(appname+"提现")
         if(!获取记录("all","switch_tomoney",false)){
             show("全局设置不允许提现")
             return false
@@ -172,6 +190,21 @@ var app_tomoney=function(){
             return true
         }
 
+        doactionmaxnumber(function(n){
+            if(text("余额不足").exists()){
+                return true
+            }
+            if(text("提现").exists()){
+                clicktexts(["0.3元","天天提现","立即提现"])
+            }else{
+                app_go_home(3)
+                doactionmaxtime(function(){
+                    if(textclick("去提现")){
+                        return true
+                    }
+                },10000)
+            }
+        },5)
 
     } catch (error) {
         

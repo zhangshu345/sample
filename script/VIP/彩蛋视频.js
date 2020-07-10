@@ -134,11 +134,13 @@ var app_sign=function(){
             }
     
             if(maytextclick("看视频再送")){
+                sleep(3000)
                 seead()
                 今日已签到(appname)
               
             }
            if(maytextclick("翻倍")){
+               sleep(3000)
                seead()
                今日已签到(appname)
              
@@ -230,8 +232,8 @@ var app_see_video=function(){
 
 var seead=function(){
     try {
-        doactionmaxtime(function(){
-            show(appname+"看广告")
+        doactionmaxtnumber(function(n){
+            show(appname+"看广告:"+n)
             if(text("勋章殿堂").exists()){
                 clickonetexts(["去领取","待领取","可领取"])
             }
@@ -265,14 +267,14 @@ var seead=function(){
            if(close_ad_toutiao(apppkg)){
                 return true
            }
-          if(close_ad_qq(apppkg)){
-             return true
-          }
+             if(close_ad_qq(apppkg)){
+              return true
+             }
          if(isadviceactivity()<0){
                 return true
          }
          sleep(2000)
-        },60000)
+        },3)
     } catch (error) {
         log(appname+"出错:看广告")
     }

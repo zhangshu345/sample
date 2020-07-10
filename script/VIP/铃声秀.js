@@ -57,19 +57,22 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_login_check()
+    app_see_video()
+    app_see_music()
+    app_reward()
+    app_tomoney()
     loopn=0
-    while(true){
-        sleep(2000)
-        log("循环次数："+loopn)
-        app_small_video_swipe()
-        close_ad_iclicash(apppkg)
-        loopn=loopn+1
-    }
+
 }
 
-var app_small_video_swipe=function(){
-    doactionmaxtime(function(){
+var app_see_video=function(){
+    doactionmaxnumber(function(n){
         if(clickoneids([coinalterconfirmid])){
+            sleep(3000)
+            seead()
+        }
+        if(maytextclick("看视频")){
+            sleep(3000)
             seead()
         }
         if(idoneexist([videolikeid,rewardbgid])){
@@ -82,22 +85,20 @@ var app_small_video_swipe=function(){
         text_like=getTextfromid(videolikeid)
         if(text_like){
             log(appname+"视频喜欢:"+text_like)
-            if(text_like==lastlike){
-                
-            }else{
+            if(text_like!=lastlike){
                 lastlike=text_like
                 if(text_like.search("w")>-1){
                     sleep(5000)
                     idclick(videolikeid)
-                    sleep(2000)
-                    return true
+                    sleep(4000)
+                  
                 }else{
                    sleep(6000)
-                   return true
                 }
             }
         }
-    },30000)
+
+    },100)
 }
 
 
@@ -109,6 +110,13 @@ var app_login_check=function(){
         }
         if(textoneexist(["小视频","铃声","任务"])){
             return true
+        }
+        if(textclick("点这里，就可以把当前视频设为来电铃声哦！首次设置赚2000金币")){
+            return true
+        }
+        if(maytextclick("看视频")){
+            sleep(3000)
+            seead()
         }
         clicktexts(["同意","允许","允许","允许","允许","始终允许","始终允许","始终允许","始终允许"],150,1500)
         if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
@@ -215,6 +223,13 @@ var app_invite=function(){
 var app_go_home=function(index){
     show(appname+"回到主页:"+index)
     doactionmaxtime(function(){
+         if(maytextclick("看视频")){
+             sleep(3000)
+             seead()
+         }
+         if(selectnavi(index)){
+             return true
+         }
         ca=currentActivity()
         if(ca==apphomeactivity){
             selectnavi(index)
@@ -224,13 +239,18 @@ var app_go_home=function(index){
                 app.launch(apppkg)
                 sleep(30000)
             }else{
-                back()
+               
             }
         }
         if(clickoneids([coinalterconfirmid])){
+            sleep(3000)
             seead()
         }
         clickids([coinaltercloseid,"com.zheyun.bumblebee.lsx:id/base_card_dialog_close"])
+        if(isadviceactivity()<0){
+            sleep(3000)
+            seead()
+        }
     },20000)
 }
 
@@ -239,16 +259,18 @@ var selectnavi=function(index){
     show(appname+"选择导航:"+index)
     node_bottom=id("com.zheyun.bumblebee.lsx:id/amain_view_bottom").visibleToUser().findOne(300)
     if(node_bottom){
-        show("找到底部")
         if(node_bottom.childCount()>=index){
-
            node_target= node_bottom.child(index-1)
            log(node_target+"---selected:"+node_target.selected())
            if(!node_target.selected()){
                node_target.click()
            }
+           return true
+        }else{
+            return false
         }
     }
+    return false
 }
 
 var seead=function(){
@@ -267,10 +289,13 @@ var seead=function(){
             sleep(1000)
             return true
         }
+
+        if(isadviceactivity()<0){
+            return true
+        }
+        idclick("com.zheyun.bumblebee.lsx:id/iv_close")
     },60000)
     clickids([coinaltercloseid])
 }
-
-
 // app_reward_luck()
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
