@@ -25,7 +25,7 @@ var apprewardactivity="com.jifen.qu.open.QWebViewActivity"
 var appcoinalteractivity="com.qukandian.video.qkdbase.ad.coin.CoinAdDialog"
 var changesetting=false
 var onlyscript=true
-var  lastlike=""
+var lastlike=""
 
 //邀请 
 // 看小视频和视频的 每圈获取金币数 越来越低  最后还是要荣耀殿堂 来     9次看视频广告  720
