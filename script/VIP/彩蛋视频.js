@@ -166,12 +166,10 @@ var app_sign=function(){
 
 var app_see_video=function(){
     try {
-        app_go_home(1)
+
         doactionmaxnumber(function(n){
             show(appname+"首页看视频:"+n)
-            if(!idoneexist(彩蛋视频首页标识id)){
                 app_go_home(1)
-            }
             if(isadviceactivity()>-1){
                 seead()
             }
