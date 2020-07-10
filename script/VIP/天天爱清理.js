@@ -137,11 +137,10 @@ var app_go_home=function(index){
                 selectnavi(1)
                 return true
             }else if(index==2){
-                if(idoneexist(["com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_like","com.xiaoqiao.qclean:id/image_red_bg_icon","com.xiaoqiao.qclean:id/tv_task_status"])){
-                    return true
-                }else{
+           
                     selectnavi(2)
-                }
+                    return true
+               
             }else if(index==3){
                     selectnavi(3)
                     return true
@@ -254,7 +253,7 @@ var app_clean=function(){
             return true
         }
         if(idclick(天天爱清理看视频翻倍id)){
-            sleep()
+            sleep(3000)
             seead()
             back()
             return true
@@ -366,6 +365,27 @@ var app_sign=function(){
     show(appname+"签到结束")
 }
 
+
+var app_reward=function(){
+    show(appname+"获取奖励")
+    app_reward_fuli()
+        //金币派对
+      //瓜分金币
+      app_reward_coinpick()
+      //天天乐
+      app_reward_dayluck()
+      //幸运转盘
+      app_reward_luckpan()
+
+      app_reward_coinparty()
+      
+    //   //勋章殿堂
+    //   app_reward_xunzhang()
+
+
+}
+
+
 var app_reward_dayluck=function(){
         if(获取今日记录(appname,"dayluck")=="true"){
             show(appname+"天天乐已经完成")
@@ -427,7 +447,7 @@ var app_reward_dayluck=function(){
 
 var app_reward_coinpick=function(){
     show("瓜分金币")
-    if(获取今日记录(appname,"coinpick")=="true"){
+    if(获取今日记录(appname,"coinpick")){
         show("瓜分金币 已经完成了")
         return true
     }
@@ -450,7 +470,7 @@ var app_reward_coinpick=function(){
             }
             
             if(textclick("领取专属勋章和金币")){
-                今日记录(appname,"coinpick","true")
+                今日记录(appname,"coinpick",true)
                 return true
             }
             if(textclick("瓜分ta")){
@@ -479,7 +499,7 @@ var app_reward_coinpick=function(){
 }
 
 var app_reward_luckpan=function(){
-    if(获取今日记录(appname,"luckpan")=="true"){
+    if(获取今日记录(appname,"luckpan")){
         show(appname+"幸运转盘完毕")
         return true
     }
@@ -514,12 +534,12 @@ var app_reward_luckpan=function(){
             node_cishu=textStartsWith("今日还剩").findOne(1000)
             if(node_cishu.text()=="今日还剩 0 次机会"){
                 show("找到今日还剩")
-                今日记录(appname,"luckpan","true")
+                今日记录(appname,"luckpan",true)
                 back()
                 return true
             }
             if(textclick("领取专属勋章和金币")){
-                今日记录(appname,"luckpan","true")
+                今日记录(appname,"luckpan",true)
                 return true
             }
             if(isadviceactivity()>-1){
@@ -556,12 +576,12 @@ var app_reward_coinparty=function(){
 }
 
 var app_reward_fuli=function(){
-    if(获取今日记录(appname,"fuli")=="true")
+    if(获取今日记录(appname,"fuli"))
     doactionmaxnumber(function(){
         show(appname+"幸运领红包")
         if(text("幸运领红包").exists()){
             if(text("今日免费:0次").exists()){
-                今日记录(appname,"福利","true")
+                今日记录(appname,"福利",true)
                 back()
                 return true
             }
@@ -572,7 +592,6 @@ var app_reward_fuli=function(){
             app_go_home(3)
             doactionmaxtime(function(){
                 if(textclick("拿福利")){
-                    
                     return true
                 }
             },10000)
@@ -580,41 +599,28 @@ var app_reward_fuli=function(){
         if(isadviceactivity()>-1){
             seead()
         }
-    },20)
+    },10)
 }
 
-var app_reward=function(){
-    show(appname+"获取奖励")
-    app_reward_fuli()
-        //金币派对
-      //瓜分金币
-      app_reward_coinpick()
-      //天天乐
-      app_reward_dayluck()
-      //幸运转盘
-      app_reward_luckpan()
-
-      app_reward_coinparty()
-      
-    //   //勋章殿堂
-    //   app_reward_xunzhang()
-
-
-}
 
 
 var  app_see_video=function(){
     try {
         doactionmaxnumber(function(n){
             show(appname+"视频页滑动"+n)
-            if(n%5==0){
-                selectnavi(3)
-                sleep(1000)
-                selectnavi(2)
-            }
+            // if(n%5==0){
+            //     selectnavi(3)
+            //     sleep(1000)
+            //     selectnavi(2)
+            // }
             closeappundostate()
             if(!idoneexist(视频页标记id集合)){
                 app_go_home(2)
+            }
+            if(!id(天天爱清理红包奖励id).exists()){
+                forcestop(appname)
+                app_run()
+                return true
             }
               滑动(20,15,17,7,3,500,300)
               sleep(2000)
