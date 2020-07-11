@@ -72,6 +72,7 @@ var app_run=function(){
 
 var app_login_check=function(){
     try {
+
         doactionmaxtime(function(){
             show("检测"+appname+"登录状况")
 
@@ -87,7 +88,7 @@ var app_login_check=function(){
             if(idoneexist([rewardbgid,videolikeid])){
                 return true
             }
-             app_go_home(3)
+            
              sleep(2000)
              if(textclick("签到")){
                  sleep(1500)
@@ -105,6 +106,10 @@ var app_login_check=function(){
                      textclick("去提现")   
                      app_tomoney()
                  }
+             }
+             if(currentPackage()!=apppkg){
+                 app.launch(apppkg)
+                 sleep(3000)
              }
         },60000)
     } catch (error) {
@@ -144,7 +149,7 @@ var app_login_weixin=function(){
              if(textoneexist(["继续赚钱"])){
                  return true
              }
-         },60000)){
+         },20000)){
              return true
          }
              return false
@@ -170,7 +175,7 @@ var app_sign=function(){
         show(appname+"签到")
         app_go_home(3)
         doactionmaxnumber(function(n){
-            
+            show(appname+"签到"+n)
         },5)
     } catch (error) {
         
@@ -244,6 +249,9 @@ var app_go_home=function(index){
 
         doactionmaxtime(function(){
             show(appname+"回到主页:"+index)
+            if(selectnavi(index)){
+                return true
+            }
             ca=currentActivity()
             if(ca==apphomeactivity){
                 selectnavi(index)

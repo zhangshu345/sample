@@ -91,8 +91,6 @@ var app_run=function(){
                 
             }
         }
-        
-
         idclick("com.kugou.android.elder:id/ezq")
         close_ad_qq(apppkg)
         close_ad_toutiao(apppkg)

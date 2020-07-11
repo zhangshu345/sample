@@ -26,6 +26,8 @@ toastLog("公共函数实例化失败,程序返回")
 //应用名
 var appname="波波视频"
 var apppkg="tv.yixia.bobo"
+var apphomeactivity="com.kg.v1.MainActivity"
+var baidunewsactivity="com.baidu.mobads.AppActivity"
 //应用登录
 var applogin=getbooleanvalue(appname+"_login",false)
 //应用登录状态
@@ -41,7 +43,7 @@ var minmoney=0.3 // 最小提现余额
 var mintodaycoin=3000  //最小今天的赚的金币
 var onlyscript=true  //仅允许当前一个脚本运行 
 var changesetting=false
-var apphomeactivity="com.jifen.ponycamera.commonbusiness.MainActivity"
+var apphomeactivity=""
 var keepappnewer=true
 var  lastlike=""
 var loopn=0
@@ -55,21 +57,62 @@ var app_run=function(){
     app_login_check()
     app_tomoney()
     app_sign()
-    loopn=0
-    while(true){
-        sleep(2000)
-        log("循环次数："+loopn)
-            //这里是视频上滑操作
-        app_home_sweep()
-        // close_ad_qq(apppkg)
-        // close_ad_toutiao(apppkg)
-        close_ad_iclicash(apppkg)
-        sleep(5000)
-        loopn=loopn+1
-    }
+    app_see_video()
 }
 
-var app_home_sweep=function(){
+
+var app_login_check=function(){
+    
+    doactionmaxtime(function(){
+        show("检测"+appname+"登录状况")
+        clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
+        if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
+            app_login()
+        }
+    if(text("可提现").exists()){
+        return true
+    }else{
+       show(appname+" 没有找到可提现")
+    }
+
+    if(textContains("邀请码").exists()){
+        return true
+    }else{
+        show(appname+" 没有找到邀请码")
+    }
+    if(desc("可提现").exists()){
+        return true
+    }else{
+       show(appname+" 没有找到可提现")
+    }
+    if(descContains("邀请码").exists()){
+        return true
+    }else{
+        show(appname+" 没有找到邀请码")
+    }
+    },20000)
+}
+
+//app 签到
+var app_sign=function(){
+    app_go_home(3)
+    doactionmaxtime(function(){
+        if(maytextclick("看视频再送")){
+            seead()
+        }
+        if(textclick("天天分现金")){
+            app_reward_luck()
+        }
+
+        if(text("看福利视频").exists()){
+            app_reward_video()
+        }else{
+            滑动(20,10,17,10,3,500,300)
+        }
+    },20000)
+}
+
+var app_see_video=function(){
    
     doactionmaxtime(function(){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
@@ -124,43 +167,6 @@ var app_home_sweep=function(){
 
 }
 
-var app_login_check=function(){
-    
-    doactionmaxtime(function(){
-        show("检测"+appname+"登录状况")
-        app_go_home(4)
-        clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
-        if(idclick("com.jifen.ponycamera:id/iv_open_btn")){
-            app_login()
-        }
-    if(text("可提现").exists()){
-        return true
-    }else{
-       show(appname+" 没有找到可提现")
-    }
-
-    if(textContains("邀请码").exists()){
-        return true
-    }else{
-        show(appname+" 没有找到邀请码")
-    }
-    if(desc("可提现").exists()){
-        return true
-    }else{
-       show(appname+" 没有找到可提现")
-    }
-
-    if(descContains("邀请码").exists()){
-        return true
-    }else{
-        show(appname+" 没有找到邀请码")
-    }
-
-    },60000)
-}
-
-
-
 var app_close_alter=function(){
 
 }
@@ -192,24 +198,6 @@ var app_login_phone=function(){
 
 }
 
-//app 签到
-var app_sign=function(){
-    app_go_home(3)
-    doactionmaxtime(function(){
-        if(maytextclick("看视频再送")){
-            seead()
-        }
-        if(textclick("天天分现金")){
-            app_reward_luck()
-        }
-
-        if(text("看福利视频").exists()){
-            app_reward_video()
-        }else{
-            滑动(20,10,17,10,3,500,300)
-        }
-    },20000)
-}
 
 var app_reward_video=function(){
     doactionmaxnumber(function(){
@@ -323,6 +311,7 @@ var app_invite=function(){
 
 var app_go_home=function(index){
     if(doactionmaxtime(function(){
+        show(appname+"回到首页:"+index)
         closeappundostate()
         ca=currentActivity()
         if(ca==apphomeactivity){
@@ -362,7 +351,7 @@ var app_go_home=function(index){
     }else{
          forcestop(appname)
          app.launch(apppkg)
-         sleep(3000)
+         sleep(30000)
      }
 }
 
