@@ -79,8 +79,6 @@ function app_run(){
  
 }
 
-
-
 var app_checklogin=function(){
    doactionmaxnumber(function(n){
     show(appname+"检测登录状况:"+n)
@@ -105,6 +103,7 @@ var app_checklogin=function(){
    },3)
    show(appname+"检测登录完毕")
 }
+
 
 var app_sign=function(){
     try {
