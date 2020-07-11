@@ -11,7 +11,7 @@ ui.layout(
             </appbar>
             <viewpager id="viewpager">
                 <frame>
-                    <text text="第一页内容" textColor="black" textSize="16sp"/>
+                    <text id ="content1" text="第一页内容" textColor="black" textSize="16sp"/>
                 </frame>
                 <frame>
                     <text text="第二页内容" textColor="red" textSize="16sp"/>
@@ -33,7 +33,28 @@ ui.layout(
     </drawer>
 );
 
+function httpget(url) {
+    var r = http.get(url);
+       if (r.statusCode == 200) {
+        return r.body.string()
+    } else {
+        toastLog("五秒后重试")
+        sleep(5000)
+        return httpget(url)
+    }
+}
+ui.content1.on("click",function(v){
+    threads.start(function(){
+        toastLog("执行ui脚本")
+        //在新线程执行的代码
+        scriptcontent=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/sample/复杂界面/界面模板一.js")
+        engines.execScript("新界面", scriptcontent);
+    });
+})
+ui.emitter.on("create",function(){
+    toastLog("开始create")
 
+})
 //创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("设置");
