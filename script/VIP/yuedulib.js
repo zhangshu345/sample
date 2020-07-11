@@ -2785,7 +2785,6 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
         addbmobchannel(pushchannel)
     }
     configpath=configpath||rewardapplisturl
-  
     var runapps=[]
     var appconfig=httpget(configpath)
     webapps=JSON.parse(appconfig)
