@@ -106,7 +106,7 @@ var app_checklogin=function(){
         clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
         clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
         idclick("com.xiaoqiao.qclean:id/iv_close")
-        app_go_home(4)
+        
            if(text("立即登录").exists()){
                 if(textclick("立即登录")){
                     sleep(1000)
@@ -120,6 +120,44 @@ var app_checklogin=function(){
                今日记录(appname,"checklogin",true)
                return true
            }
+
+
+           closeappundostate()
+           if(isadviceactivity()>-1){
+               seead()
+           }
+           ca=currentActivity()
+           show("回到主页："+index+"--"+ca)
+           if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
+               sleep(500)
+               selectnavi(4)
+           }else if(ca==appcleanactivity){
+               back()
+               sleep(1000)
+           }else if(ca==applaunchactivity){
+               sleep(3000)
+           }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
+               seead()
+           }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+               back()
+               sleep(1000)
+           }else{
+               if(isadviceactivity()>-1){
+                   seead()
+               }
+               back()
+               if(currentPackage()!=apppkg){
+                   app.launch(apppkg)
+                   sleep(3000)
+               }
+           }   
+           if(textStartsWith("看视频再").exists()){
+               if(maytextclick("看视频再")){
+                   show("点击了看视频")
+                   seead()
+               }
+           }
+
     },30000)
 }
 var app_go_home=function(index){
