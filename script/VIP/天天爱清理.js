@@ -657,9 +657,7 @@ var  app_see_video=function(){
                        },sleeptime*1000)
                    }
                 }
-           
-
-        },100)
+         },100)
     } catch (error) {
         log(appname+"出错:看视频")
     }
