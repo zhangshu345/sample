@@ -3041,6 +3041,19 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     // 集合运行
     if(runscriptapp==appname && isreaderunning){
         toastLog("总调度运行："+appname)
+        if(!app.getPackageName(appname)){
+            show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+            if(appdownloadurl){
+              downloadApk(appname,appdownloadurl,true)
+            }else{
+              downloadandinstallapp(appname,apppkg)
+            }
+          }else{
+             if(iskeepappnewer&&获取记录("all","switch_appnew",false)){
+                   keepappisnewer(appname,apppkg)
+              }
+                 show(appname+"已经安装")
+      }
         app_run()
     }else{
         if(isonlyscript){
