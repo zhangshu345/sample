@@ -3038,7 +3038,7 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
     if(runscriptapp==appname && isreaderunning){
-
+        toastLog("总调度运行："+appname)
     }else{
         if(isonlyscript){
             engines.stopOther()
