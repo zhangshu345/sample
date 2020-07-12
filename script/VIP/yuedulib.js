@@ -3040,6 +3040,7 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     // 集合运行
     if(runscriptapp==appname && isreaderunning){
         toastLog("总调度运行："+appname)
+        app_run()
     }else{
         if(isonlyscript){
             engines.stopOther()

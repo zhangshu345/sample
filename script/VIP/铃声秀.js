@@ -61,7 +61,7 @@ var app_run=function(){
     app_see_music()
     app_reward()
     app_tomoney()
-  
+
 }
 
 
@@ -277,7 +277,6 @@ var app_tomoney=function(){
                             sleep(2000)
                             if(text("金币提现").exists()){
                                 n_int_coin=parseInt(n_coin/10000)
-                            
                                 // if(n_int_coin>=5){
                                 //     textclick("5 元")
                                 //     sleep(1000)
