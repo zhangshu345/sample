@@ -1631,7 +1631,22 @@ var runurlscript=function(name,url){
             engines.execScript(name,content, {"useFeatures":["continuation"]});    
         }
     } catch (error) {
-        
+        log("run脚本出错:"+name+"--"+url)
+    }
+ 
+}
+
+
+var evalscript=function(name,url){
+    try {
+        show("运行:"+name+"--"+url)
+        content=httpget(url)
+        if(content){
+            toastLog("内容不为空")
+            eval(content);    
+        }
+    } catch (error) {
+        log("eval脚本出错:"+name+"--"+url)
     }
  
 }
@@ -2778,7 +2793,7 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
 
 
 
-//本地配置启用脚本
+//云端配置启用脚本
 var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
@@ -2915,6 +2930,89 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
         runurlscript(oneapp.app.name,oneapp.path)
 }
 
+//云端配置启用脚本
+var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
+    device.wakeUpIfNeeded()
+    if(pushchannel){
+        addbmobchannel(pushchannel)
+    }
+    configpath=configpath||rewardapplisturl
+    var runapps=[]
+    var appconfig=httpget(configpath)
+    webapps=JSON.parse(appconfig)
+    if(webapps){
+        runapps=webapps
+    }else{
+        let localapps=数据库.get("runlist","")
+        if(!localapps){
+            log("本地运行配置为空，从云端获取默认配置")
+        }else{
+           runapps=localapps
+        }
+    }
+    if(!runapps){
+        //10分钟重启
+        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        return true
+    }else{
+        数据库.put("runlist",runapps)
+    }
+    if(enabletomoney){
+        记录("all","switch_tomoney",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    if(enableappnew){
+        记录("all","switch_appnew",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    
+    function filterapp(app){
+                if(!app.open){
+                    log("没有开启")
+                   return false
+                }
+                if(今日已提现(app.app.name)=="true"){
+                    return false
+                }
+                if(今日时长(app.app.name)>app.runconfig.maxtime){
+                    return false
+                }
+                return true
+    }
+
+    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    toastLog("runapp：之前"+runapps.length)
+
+    let  tmpapps=[]
+    runapps.forEach(app=>{
+       if(filterapp(app)){
+           tmpapps.push(app)
+       }
+    })
+    runapps=tmpapps
+    toastLog("runapp：之后"+runapps.length)
+    if(runapps.length==0){
+        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+        return
+    }
+    let appwhiteapps=readerapps
+    listapp(appwhiteapps,true)
+    runapps.forEach(app=>{
+        closerecentapp()
+        closelastscriptapp()
+        spt.remove("lastscriptapp")
+        spt.remove("hongshuyuedu_run_app")
+        spt.put("hongshuyuedu_running",true)
+        evalscript(app.app.name,app.path)
+        app_run()
+    })
+    //清空非阅读 app
+    runurlscript(scriptname,scriptpath)
+}
+
+
 
 var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
@@ -3011,3 +3109,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // 微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json")
+
