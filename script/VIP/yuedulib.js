@@ -3018,7 +3018,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
             closerecentapp()
             closelastscriptapp()
             spt.remove("lastscriptapp")
-            spt.remove("hongshuyuedu_run_app")
+            spt.put("hongshuyuedu_run_app",app.app.name)
             spt.put("hongshuyuedu_running",true)
             evalscript(app.app.name,app.path)
             app_run()
