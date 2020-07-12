@@ -165,7 +165,6 @@ var app_sign=function(){
 
 var app_see_video=function(){
     try {
-
         doactionmaxnumber(function(n){
             show(appname+"首页看视频:"+n)
                 app_go_home(1)
@@ -230,8 +229,8 @@ var app_see_video=function(){
 
 var seead=function(){
     try {
-        doactionmaxtnumber(function(n){
-            show(appname+"看广告:"+n)
+        doactionmaxtime(function(){
+            show(appname+"看广告:")
             if(text("勋章殿堂").exists()){
                 clickonetexts(["去领取","待领取","可领取"])
             }
@@ -271,8 +270,8 @@ var seead=function(){
          if(isadviceactivity()<0){
                 return true
          }
-         sleep(2000)
-        },3)
+
+        },58000,2000)
     } catch (error) {
         log(appname+"出错:看广告")
     }
@@ -343,6 +342,9 @@ var app_go_home=function(index){
             }
             if(clickonetexts(["微信一键登录","注册/登录","立即领取"])){
                 app_login()
+            }
+            if(isadviceactivity()>-1){
+                seead()
             }
     
         },30000)

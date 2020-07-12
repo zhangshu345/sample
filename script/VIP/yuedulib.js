@@ -2998,6 +2998,9 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
         return
     }
     let appwhiteapps=readerapps
+    runapps.forEach(app=>{
+        appwhiteapps.push(app.app.name)
+    })
     listapp(appwhiteapps,true)
     runapps.forEach(app=>{
         closerecentapp()
