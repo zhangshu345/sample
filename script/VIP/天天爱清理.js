@@ -617,11 +617,7 @@ var  app_see_video=function(){
             if(!idoneexist(视频页标记id集合)){
                 app_go_home(2)
             }
-            if(!id(天天爱清理红包奖励id).exists()){
-                forcestop(appname)
-                app_run()
-                return true
-            }
+        
               滑动(20,15,17,7,3,500,300)
               sleep(2000)
                 text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
@@ -661,6 +657,8 @@ var  app_see_video=function(){
                        },sleeptime*1000)
                    }
                 }
+           
+
         },100)
     } catch (error) {
         log(appname+"出错:看视频")
