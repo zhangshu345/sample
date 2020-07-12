@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -142,6 +140,9 @@ function app_see_video(){
     app_go_home(1)
     doactionmaxnumber(function(ln){
         show(appname+"看视频:"+ln)
+        if(app_hongbao_get()){
+            app_go_home(1)
+        }
         if(text("赚钱小技巧").exists()){
             back()
         }
@@ -151,7 +152,7 @@ function app_see_video(){
         }
         if(clicknode(className("android.widget.ImageView").clickable().drawingOrder(11).depth(14).visibleToUser().findOne(500))){
             sleep(2000)
-                doactionmaxtime(function(){
+            doactionmaxtime(function(){
                     if(!className("com.qukan.media.player.renderview.TextureRenderView").visibleToUser().clickable().exists()){
                         return true
                     }
@@ -163,7 +164,9 @@ function app_see_video(){
                     if(isadviceactivity()>-1){
                         seead()
                     }
-             },30000)
+            },30000)
+        }else{
+            app_go_home(2)
         }
         sleep(1000)
          滑动(20,10,17,11,7,800,300)
@@ -180,6 +183,9 @@ function app_see_small_video(){
     doactionmaxnumber(function(ln){
         show(appname+"看小视频:"+ln)
         sleep(2000)
+        if(app_hongbao_get()){
+            app_go_home(2)
+        }
         tv_like=className("android.widget.TextView").clickable().drawingOrder(1).visibleToUser().findOne(300)
                 //点赞多的视频
                 if(tv_like){
@@ -199,6 +205,8 @@ function app_see_small_video(){
                             sleep(2000)
                       },10000)
                     }
+                }else{
+                    app_go_home(2)
                 }
             滑动(20,10,16,10,3,500,200)
     },100)
@@ -206,6 +214,19 @@ function app_see_small_video(){
 
 
 
+var app_hongbao_get=function(){
+    if(clicknode(text("领取红包").findOne(300))){
+        sleep(2000)
+        if(clicknode(text("看视频即可打开").findOne(500,0,-100))){
+            seead()
+        }
+
+        return true
+    }
+    else{
+        return false
+    }
+}
 
 var  app_reward_xunzhang=function(){
     let nf=0
@@ -433,9 +454,11 @@ var app_sign=function(){
       }
       if(textoneexist(["新手任务","已签到"])){
         return true
-    }
-      seead()
-   
+        }
+        if(isadviceactivity()>-1){
+            seead()
+        }
+
     },60000)
 }
 var selectnavi=function(n){
