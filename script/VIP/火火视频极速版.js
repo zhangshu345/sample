@@ -58,6 +58,7 @@ var app_run=function(){
     sleep(3000)
     app_checklogin()
     app_sign()
+    app_tomoney()
     app_see_video()
     app_see_small_video()
     app_tomoney()
@@ -547,11 +548,8 @@ var app_tomoney=function(){
         if(text("我的钱包").exists()){
             node_tiaojian=textContains("每日获得1000以上金币即可获得一次提现机会").findOne(500)
             if(node_tiaojian){
-               if( node_tiaojian.text().search("还需获得")>-1){
-                   console.log(appname+"不够提现条件");
-                    back()
-                    return true
-               }else{
+               if( node_tiaojian.text().search("还需获得0金币")>-1){
+         
                    //这里应该是符合条件的
                     if(textclick("立即提现")){
                         sleep(2000)
@@ -561,6 +559,11 @@ var app_tomoney=function(){
                         textclick("继续做任务赚钱")
                         return true
                     }
+                 }else{
+                    console.log(appname+"不够提现条件");
+                    back()
+                    return true
+               
                }
             }else{
                 滑动(20,10,10,10,8,500,100)
