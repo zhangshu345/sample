@@ -3049,11 +3049,11 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
               downloadandinstallapp(appname,apppkg)
             }
           }else{
-             if(iskeepappnewer&&获取记录("all","switch_appnew",false)){
-                   keepappisnewer(appname,apppkg)
-              }
-                 show(appname+"已经安装")
-      }
+            if(iskeepappnewer&&获取记录("all","switch_appnew",false)){
+                keepappisnewer(appname,apppkg)
+            }
+             show(appname+"已经安装")
+         }
         app_run()
     }else{
         if(isonlyscript){
