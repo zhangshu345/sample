@@ -3021,8 +3021,9 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
             spt.remove("lastscriptapp")
             spt.put("hongshuyuedu_run_app",app.app.name)
             spt.put("hongshuyuedu_running",true)
+            app.launch(app.app.pkg)
             evalscript(app.app.name,app.path)
-            app_run()
+ 
         } catch (error) {
             console.log(error);
         }
