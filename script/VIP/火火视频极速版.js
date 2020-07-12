@@ -1,3 +1,5 @@
+const { text } = require("express");
+
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -57,17 +59,16 @@ var app_run=function(){
     app.launch(apppkg)
     sleep(3000)
     app_checklogin()
-    if(今日签到(appname)!="true"){
-        app_sign()
-    }
+    app_sign()
+    app_see_video()
+    app_see_small_video()
+    app_tomoney()
     app_reward_88()
     app_reward_zhuazhua()
     app_reward_todaymoney()
-    app_reward_video()
+    //app_reward_video()
     app_tomoney()
-    app_see_video()
-    app_tomoney()
-    app_see_small_video()
+
     app_reward_xunzhang()
     app_tomoney()
    
@@ -132,7 +133,7 @@ var clickgold=function(){
             show("没有找到金蛋大奖：")
         }
     } catch (error) {
-        
+        log(appname+"出错:"+error)
     }
 }
 
@@ -152,6 +153,9 @@ function app_see_video(){
     app_go_home(1)
     doactionmaxnumber(function(ln){
         show(appname+"看视频:"+ln)
+        if(text("赚钱小技巧").exists()){
+            back()
+        }
         sleep(1000)
         if(text("再接再厉，赚更多哦~").exists()){
             clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
@@ -167,7 +171,7 @@ function app_see_video(){
                     }
                     clickgold()
                     sleep(5000)
-                    if(isadviceactivity()){
+                    if(isadviceactivity()>-1){
                         seead()
                     }
              },30000)
@@ -200,7 +204,7 @@ function app_see_small_video(){
                           if(clickgold()){
                               seead()
                           }
-                          if(clickonetexts(广告点击按钮文本集合,500,1500)){
+                          if(clickonetexts(广告点击按钮文本集合,300,1500)){
                             seead()
                             }
                             sleep(2000)
@@ -208,14 +212,13 @@ function app_see_small_video(){
                     }
                 }
             滑动(20,10,16,10,3,500,200)
-    },50)
+    },100)
 }
 
 
 
 
 var  app_reward_xunzhang=function(){
-
     let nf=0
 doactionmaxnumber(function(){
     show(appname+"勋章殿堂")
@@ -395,7 +398,9 @@ var app_go_home=function(index){
 }
 
 var app_sign=function(){
-    n_sign=0
+    if(今日签到(appname)){
+        return true
+    }
     doactionmaxtime(function(){
         show(appname+"签到")
         hi=id("com.jt.hanhan.video:id/hi").findOne(300)
@@ -441,7 +446,7 @@ var app_sign=function(){
         return true
     }
       seead()
-      n_sign=n_sign+1
+   
     },60000)
 }
 var selectnavi=function(n){
@@ -783,12 +788,10 @@ var app_reward_todaymoney=function(){
 }
 
 var app_reward_video=function(){
-    if(获取今日记录(appname,"video")=="true"){
+    if(获取今日记录(appname,"video")){
         return true
     }
     doactionmaxnumber(function(){
-            
-            sleep(2000)
             doactionmaxtime(function(){
                 if(textclick("看福利视频赚金币")){
                     return true
