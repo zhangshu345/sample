@@ -3014,16 +3014,15 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
     })
     listapp(appwhiteapps,true)
     runapps= shuffleArray(runapps)
-    runapps.forEach(app=>{
+    runapps.forEach(ap=>{
         try {
             closerecentapp()
             closelastscriptapp()
             spt.remove("lastscriptapp")
-            spt.put("hongshuyuedu_run_app",app.app.name)
+            spt.put("hongshuyuedu_run_app",ap.app.name)
             spt.put("hongshuyuedu_running",true)
-            app.launch(app.app.pkg)
-            evalscript(app.app.name,app.path)
- 
+            
+            evalscript(ap.app.name,ap.path)
         } catch (error) {
             console.log(error);
         }
