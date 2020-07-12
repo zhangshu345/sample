@@ -64,6 +64,37 @@ var app_run=function(){
   
 }
 
+
+var app_login_check=function(){
+    doactionmaxtime(function(){
+        show("检测"+appname+"登录状况")
+        if(idoneexist([rewardbgid,videolikeid])){
+            return true
+        }
+        if(textoneexist(["小视频","铃声","任务"])){
+            return true
+        }
+        if(textclick("点这里，就可以把当前视频设为来电铃声哦！首次设置赚2000金币")){
+            return true
+        }
+        if(maytextclick("看视频")){
+            sleep(3000)
+            seead()
+        }
+        clicktexts(["同意","允许","允许","允许","允许","始终允许","始终允许","始终允许","始终允许"],150,1500)
+        if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
+            text("立即提现").waitFor()
+            textclick("立即提现")
+        }
+
+        clicktexts(["立即提现","确定","微信","同意"],200,2000)
+        if(textclick("同意")){
+            sleep(5000)
+        }
+         app_go_home(2)
+    },30000)
+}
+
 var app_see_video=function(){
     doactionmaxnumber(function(n){
         show(appname+"看视频："+n)
@@ -101,41 +132,48 @@ var app_see_video=function(){
                 }
             }
         }
-    },100)
+    },300)
 }
 
-
-var app_login_check=function(){
-    doactionmaxtime(function(){
-        show("检测"+appname+"登录状况")
-        if(idoneexist([rewardbgid,videolikeid])){
-            return true
-        }
-        if(textoneexist(["小视频","铃声","任务"])){
-            return true
-        }
-        if(textclick("点这里，就可以把当前视频设为来电铃声哦！首次设置赚2000金币")){
-            return true
+var app_see_music=function(){
+    doactionmaxnumber(function(n){
+        show(appname+"铃声："+n)
+        if(clickoneids([coinalterconfirmid])){
+            sleep(3000)
+            seead()
         }
         if(maytextclick("看视频")){
             sleep(3000)
             seead()
+            sleep(2000)
         }
-        clicktexts(["同意","允许","允许","允许","允许","始终允许","始终允许","始终允许","始终允许"],150,1500)
-        if(idclick("com.zheyun.bumblebee.lsx:id/iv_open_red_packet")){
-            text("立即提现").waitFor()
-            textclick("立即提现")
-           if( app_login_weixin()){
-               return true
+        if(maytextclick("开心收下")){
+
+        }
+        if(idoneexist([videolikeid,rewardbgid])){
+
+        }else{
+            app_go_home(1)
+        }
+        滑动(20,10,17,11,4,500,300)
+        sleep(2000)
+        text_like=getTextfromid(videolikeid)
+        if(text_like){
+            log(appname+"视频喜欢:"+text_like)
+            if(text_like!=lastlike){
+                lastlike=text_like
+                if(text_like.search("w")>-1){
+                    sleep(5000)
+                    idclick(videolikeid)
+                    sleep(4000)
+                  
+                }else{
+                   sleep(6000)
+                }
             }
         }
-        if(idoneexist([rewardbgid,videolikeid])){
-            return true
-        }
-         app_go_home(2)
-    },60000)
+    },300)
 }
-
 
 var app_reward_luck=function(){
     doactionmaxtime(function(){
