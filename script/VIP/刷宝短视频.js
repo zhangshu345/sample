@@ -96,10 +96,8 @@ var app_see_video=function(){
             // 脚本完成了
             app_go_likevideolist()
         }
-        if(loopn%50==0){
-            checkbattery(30)
-        }
-        if(loopn%100==0){
+
+        if(n%100==0){
            app_tomoney()
        
         }
@@ -481,8 +479,7 @@ var app_tomoney=function(){
                        sleep(1000)
                    }
                    clicknode(className("android.view.View").clickable().depth(6).drawingOrder(0).findOne(300))
-                   if(textclick("立即提现")){
-                    }
+                   if(textclick("立即提现")){}
                     if(clickonetexts(["每日可提","已解锁","仅当日有效"])){
                            show("点击每日可提")
                            if(cantomoney()){
@@ -514,15 +511,11 @@ var app_tomoney=function(){
                           return true
                          }
                      }
-    
                },10)
-             
             }else{
                 show(appname+"当前金币不够每日提现")
                 return true
             }
-    
-
     } catch (error) {
         log(appname+"出错:提现"+error)
     }
