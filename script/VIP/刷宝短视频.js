@@ -55,14 +55,16 @@ var  app_run=function(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
     sleep(3000)
-    app_login()
-        if(!今日提现(appname)){
-            app_tomoney()
-        }
+    app_checklogin()
+    app_tomoney()
     app_sign()
-    loopn=0
-    while(true){
-    show("循环次数:"+(loopn+1))
+  app_see_video()
+}
+
+var app_see_video=function(){
+   
+    doactionmaxnumber(function(n){
+    show("循环次数:"+(n))
     closeappundostate()
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
         if(text("点击进入直播间").exists()){
@@ -98,15 +100,13 @@ var  app_run=function(){
             checkbattery(30)
         }
         if(loopn%100==0){
-                if(!今日提现(appname)){
+               
                     app_tomoney()
-                }
+            
                 app_go_home(3)
         }
-    
-    }
-    loopn=loopn+1
-    }
+     }
+    },300)
 }
 var  app_go_home=function(index){
     index=index||1
@@ -266,42 +266,73 @@ var app_sign=function(){
 }
 
 
+
+
 var app_checklogin=function(){
-    doactionmaxtime(function(){
-        show(appname+"检测登录")
-         app_go_home(5)
-         滑动(20,10,3,10,17,500,400)
-         sleep(2000)
-         idclick("com.jm.video:id/imgClose")
-        
-         if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
-             show("我界面找到昵称和设置")
-             spt.put(appname+"_login",true)
-             return true
-         }
-         if(id("login_tip").exists()||text("微信账号登录")){
-             show("登录页面")
-             if(logintype=="weixin"){
-              app_login_weixin()
-              return true
-             }else{
-              app_login_phone()
-              return true
+    try {
+        doactionmaxtime(function(){
+            show(appname+"登录")
+      
+             sleep(2000)
+             idclick("com.jm.video:id/imgClose")
+             clicktexts(["确认","跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
+             if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
+                 show("我界面找到昵称和设置")
+                 spt.put(appname+"_login",true)
+                 return true
              }
-         }
-         
-         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
-    },60000)
+             clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+             closeappundostate()
+               if(currentPackage()!=apppkg){
+                   app.launch(apppkg)
+                   sleep(3000)
+                   textclick("取消")
+               }else{
+               idclick("com.jm.video:id/imgClose")
+               textclick("取消")
+               if(textclick("立即观看")){
+                   seead()
+               }
+               ca=currentActivity()
+               show(appname+"回到首页"+index+"|"+ca)
+               if(ca=="com.jm.video.ui.main.MainActivity"){
+                   sleep(300)
+                   selectnavi(5)
+                                
+               }else if(ca==appminelikeactivity){
+                   back()
+                   sleep(1000)
+               }
+               else if(ca==appvideolistactivity){
+                   back()
+                   sleep(1000)
+               }else if(ca=="com.jm.video.ui.live.PublishActivity"){
+                   back()
+                   sleep(1000)
+               }
+               else if(ca==appwebactivity){
+                   back()
+                   sleep(1000)
+               }else if(ca=="android.widget.FrameLayout"){
+                   
+               }
+           }
+           textclick("取消")
+        },60000)
+    } catch (error) {
+        
+    }
+
+      // 
 }
 
 var app_login=function(){
       doactionmaxtime(function(){
         show(appname+"登录")
-         app_go_home(5)
-         滑动(20,10,3,10,17,500,400)
+  
          sleep(2000)
          idclick("com.jm.video:id/imgClose")
-         clicktexts(["跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
+         clicktexts(["确认","跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
          if(idallexist(["com.jm.video:id/tv_name","com.jm.video:id/iv_setting"])){
              show("我界面找到昵称和设置")
              spt.put(appname+"_login",true)
@@ -317,6 +348,8 @@ var app_login=function(){
               return true
              }
          }
+         滑动(20,10,3,10,17,500,400)
+         app_go_home(5)
     },60000)
         // 
 }
@@ -426,8 +459,12 @@ var cantomoney=function(){
 }
 
 var app_tomoney=function(){
+  
     try {
-        show(appname+"签到")
+        if(今日提现(appname)){
+            return true
+        }
+        show(appname+"提现")
         if(!获取记录("all","switch_tomoney",false)){
             show("全局设置不允许提现")
             return false
@@ -489,11 +526,8 @@ var app_tomoney=function(){
     
 
     } catch (error) {
-        
+        log(appname+"出错:提现"+error)
     }
-
-   
-
 }
 
 

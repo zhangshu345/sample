@@ -143,6 +143,16 @@ var 微信扫一扫=function(){
     context.startActivity(intent);
 }
 
+var 微信打开链接=function(weburl){
+    //.plugin.webview.ui.tools.WebViewUI
+    var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
+    intent.putExtra("data", "weixin://"+weburl);
+    intent.setFlags(335544320);
+    intent.setAction("android.intent.action.VIEW");
+    context.startActivity(intent);
+}
+
+
 var 微信浏览=function(url){
   let  weixinpkg=getPackageName("微信")
  if(weixinpkg){
@@ -221,9 +231,6 @@ var 微信加好友=function(weixinhao,phone){
     }
 }
 
-var 微信打开链接=function(weburl){
-    微信发消息("")
-}
 
 var 微信聊天页发送消息=function(friend,message,isclick){
     if(friend=="微信团队"){
@@ -779,6 +786,10 @@ var  todevelopersetting=function(){
 var toPkgandClass=function(pkg,classname){
         let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"]});
          context.startActivity(i);
+}
+var toPkgandClassWithData=function(pkg,classname,putdate){
+    let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"],data:putdate});
+     context.startActivity(i);
 }
 
 var todeviceadmin=function(){
@@ -3003,13 +3014,18 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
     })
     listapp(appwhiteapps,true)
     runapps.forEach(app=>{
-        closerecentapp()
-        closelastscriptapp()
-        spt.remove("lastscriptapp")
-        spt.remove("hongshuyuedu_run_app")
-        spt.put("hongshuyuedu_running",true)
-        evalscript(app.app.name,app.path)
-        app_run()
+        try {
+            closerecentapp()
+            closelastscriptapp()
+            spt.remove("lastscriptapp")
+            spt.remove("hongshuyuedu_run_app")
+            spt.put("hongshuyuedu_running",true)
+            evalscript(app.app.name,app.path)
+            app_run()
+        } catch (error) {
+            
+        }
+     
     })
     //清空非阅读 app
     runurlscript(scriptname,scriptpath)
@@ -3113,3 +3129,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json")
 
+// 微信打开链接("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
