@@ -137,17 +137,6 @@ var clickgold=function(){
     }
 }
 
-
-var app_small_video_swipe=function(){
-    doactionmaxtime(function(){
-      
-
-    
-    
-    },20000)
-
- 
-}
 function app_see_video(){
     closeappundostate()
     app_go_home(1)
