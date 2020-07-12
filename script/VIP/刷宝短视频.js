@@ -100,10 +100,8 @@ var app_see_video=function(){
             checkbattery(30)
         }
         if(loopn%100==0){
-               
-                    app_tomoney()
-            
-                app_go_home(3)
+           app_tomoney()
+       
         }
      }
     },300)
