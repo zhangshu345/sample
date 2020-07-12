@@ -3013,6 +3013,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
         appwhiteapps.push(app.app.name)
     })
     listapp(appwhiteapps,true)
+    runapps= shuffleArray(runapps)
     runapps.forEach(app=>{
         try {
             closerecentapp()
@@ -3023,7 +3024,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
             evalscript(app.app.name,app.path)
             app_run()
         } catch (error) {
-            
+            console.log(error);
         }
      
     })
