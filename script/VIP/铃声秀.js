@@ -61,13 +61,12 @@ var app_run=function(){
     app_see_music()
     app_reward()
     app_tomoney()
-    loopn=0
-
+  
 }
 
 var app_see_video=function(){
     doactionmaxnumber(function(n){
-        show(appname+"看视频："+)
+        show(appname+"看视频："+n)
         if(clickoneids([coinalterconfirmid])){
             sleep(3000)
             seead()
