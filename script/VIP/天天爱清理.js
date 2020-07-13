@@ -68,8 +68,8 @@ var app_run=function(){
 //荣耀殿堂那个
 var app_reward_xunzhang=function(){
     let adn=0
-    doactionmaxtime(function(){
-        show(appname+"勋章殿堂")
+    doactionmaxnumber(function(n){
+        show(appname+"勋章殿堂"+n)
     n_gold=textEndsWith("0金币").visibleToUser().findOne(1000)
     if(n_gold){
         show("找到:"+n_gold.text())
@@ -88,77 +88,88 @@ var app_reward_xunzhang=function(){
     if(adn>20){
         return true
     }
-    if(isadviceactivity()){
+    if(isadviceactivity()>-1){
         seead()
     }
     
-},600000)
+},20)
     
 }
 
 
 var app_checklogin=function(){
-    if(获取今日记录(appname,"checklogin")){
-        return true
-    }
-    doactionmaxtime(function(){
-        show(appname+"检测登录状态")
-        clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
-        clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
-        idclick("com.xiaoqiao.qclean:id/iv_close")
-        
-           if(text("立即登录").exists()){
-                if(textclick("立即登录")){
-                    sleep(1000)
-                    app_login_weixin()
-                    return  true
-                 }
-           }
-        
-           if(textContains("邀请码").exists()){
-               show(appname+"已经登录")
-               今日记录(appname,"checklogin",true)
-               return true
-           }
 
-
-           closeappundostate()
-           if(isadviceactivity()>-1){
-               seead()
-           }
-           ca=currentActivity()
-           show("回到主页："+index+"--"+ca)
-           if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
-               sleep(500)
-               selectnavi(4)
-           }else if(ca==appcleanactivity){
-               back()
-               sleep(1000)
-           }else if(ca==applaunchactivity){
-               sleep(3000)
-           }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
-               seead()
-           }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
-               back()
-               sleep(1000)
-           }else{
-               if(isadviceactivity()>-1){
-                   seead()
+    try {
+        if(获取今日记录(appname,"checklogin")){
+            return true
+        }
+        doactionmaxtime(function(){
+            show(appname+"检测登录状态")
+            clicktexts(["允许","允许","允许","始终允许","始终允许","始终允许"],150,1500)
+            clickids(["com.xiaoqiao.qclean:id/btn_redpack_open","com.xiaoqiao.qclean:id/btn_withdraw"],200,1500)
+            idclick("com.xiaoqiao.qclean:id/iv_close")
+               if(text("立即登录").exists()){
+                    if(textclick("立即登录")){
+                        sleep(1000)
+                        app_login_weixin()
+                        return  true
+                     }
+               }     
+               if(textContains("邀请码").exists()){
+                   show(appname+"已经登录")
+                   今日记录(appname,"checklogin",true)
+                   return true
                }
-               back()
-               if(currentPackage()!=apppkg){
-                   app.launch(apppkg)
+               if(maytextclick("获得")){
+                   show("找到获得")
                    sleep(3000)
+                   app_reward_xunzhang()
                }
-           }   
-           if(textStartsWith("看视频再").exists()){
-               if(maytextclick("看视频再")){
-                   show("点击了看视频")
+               closeappundostate()
+               log("close 之后")
+               if(isadviceactivity()>-1){
+                   log("在视频页:")
                    seead()
                }
-           }
+               ca=currentActivity()
+               show("回到主页："+index+"--"+ca)
+               if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
+                   sleep(500)
+                   selectnavi(4)
+               }else if(ca==appcleanactivity){
+                   back()
+                   sleep(1000)
+               }else if(ca==applaunchactivity){
+                   sleep(3000)
+               }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity")
+               {
+                   clicktexts(["允许","始终允许"])
+               }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
+                   seead()
+               }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+                   back()
+                   sleep(1000)
+               }else{
+                   if(isadviceactivity()>-1){
+                       seead()
+                   }
+                   if(currentPackage()!=apppkg){
+                       app.launch(apppkg)
+                       sleep(3000)
+                   }
+               }   
+               if(textStartsWith("看视频再").exists()){
+                   if(maytextclick("看视频再")){
+                       show("点击了看视频")
+                       seead()
+                   }
+               }
+        },30000)
 
-    },30000)
+    } catch (error) {
+        log(error)
+    }
+  
 }
 var app_go_home=function(index){
     index=index||2
@@ -193,7 +204,14 @@ var app_go_home=function(index){
         }else if(ca==appcleanactivity){
             back()
             sleep(1000)
-        }else if(ca==applaunchactivity){
+        }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity")
+        {
+            clicktexts(["允许","始终允许"])
+        }else if(ca=="com.xiaoqiao.qclean.base.newuser.index.RedPackOpenActivity"){
+            idclick("com.xiaoqiao.qclean:id/btn_redpack_open")
+            app_login_weixin()
+        }
+        else if(ca==applaunchactivity){
             sleep(3000)
         }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
             seead()
@@ -646,17 +664,11 @@ var  app_see_video=function(){
     try {
         doactionmaxnumber(function(n){
             show(appname+"视频页滑动"+n)
-            // if(n%5==0){
-            //     selectnavi(3)
-            //     sleep(1000)
-            //     selectnavi(2)
-            // }
             closeappundostate()
             if(!idoneexist(视频页标记id集合)){
                 app_go_home(2)
             }
-        
-              滑动(20,15,17,7,3,500,300)
+              滑动(20,15,16,11,3,500,300)
               sleep(2000)
                 text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
                 show("视频喜欢人数:"+text_like)

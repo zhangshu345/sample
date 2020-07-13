@@ -2101,14 +2101,16 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
 var isadviceactivity=function(ca){
     ca=ca||currentActivity()
-    
- const   adviceActivitys=["com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity","com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
+ const   adviceActivitys=[
+    "com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
+    "com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.liquid.adx.sdk.ad.video.RewardVideoActivity",  
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",//快手
     "com.qq.e.ads.PortraitADActivity",
     "com.qq.e.ads.ADActivity",
-    "com.iclicash.advlib.ui.front.ADBrowser","com.iclicash.advlib.ui.front.InciteADActivity" 
+    "com.iclicash.advlib.ui.front.ADBrowser",
+    "com.iclicash.advlib.ui.front.InciteADActivity" 
     ]
     return adviceActivitys.indexOf(ca)
 }
@@ -2289,7 +2291,6 @@ var runrewardapp=function(appname,apppkg,showadtime){
 
 var closeappundostate=function(){
   return  clickonemaytexts(["关闭","关闭应用","重新打开"],200,1500)
-
 }
 
 var onerewardapp=function(appname,apppkg){
