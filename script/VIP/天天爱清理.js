@@ -132,7 +132,7 @@ var app_checklogin=function(){
                    seead()
                }
                ca=currentActivity()
-               show("回到主页："+index+"--"+ca)
+               show("回到主页：4--"+ca)
                if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
                    sleep(500)
                    selectnavi(4)
@@ -141,8 +141,7 @@ var app_checklogin=function(){
                    sleep(1000)
                }else if(ca==applaunchactivity){
                    sleep(3000)
-               }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity")
-               {
+               }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity"){
                    clicktexts(["允许","始终允许"])
                }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                    seead()
@@ -172,7 +171,7 @@ var app_checklogin=function(){
   
 }
 var app_go_home=function(index){
-    index=index||2
+  let  index=index||2
     if(doactionmaxtime(function(){
         closeappundostate()
         if(isadviceactivity()>-1){

@@ -2112,7 +2112,6 @@ var isadviceactivity=function(ca){
     "com.qq.e.ads.ADActivity",
     "com.iclicash.advlib.ui.front.ADBrowser",
     "com.iclicash.advlib.ui.front.InciteADActivity"
-    
     ]
     return adviceActivitys.indexOf(ca)
 }
