@@ -92,7 +92,8 @@ var app_checklogin=function(){
            if(idoneexist(["com.jt.hanhan.video:id/ig","com.jt.hanhan.video:id/iq"])){
             return true
             }
-            if(clickonetexts(["翻倍","领取"])){
+            if(clickonemaytexts(["翻倍","领取"])){
+                sleep(200)
                 seead()
             }
             if(textoneexist(["新手任务","已签到"])){
@@ -106,8 +107,7 @@ var app_checklogin=function(){
     } catch (error) {
         log(appname+"出错：检测登录状况"+error)
     }
-   
-   show(appname+"检测登录完毕")
+ 
 }
 
 
@@ -341,7 +341,11 @@ var seead=function(){
         if(text("已签到").exists()){
             return true
         }
-        sleep(2500)
+        if(text("再接再厉，赚更多哦~").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+            return true
+        }
+        sleep(2000)
     },60000)
     if(idclick("com.jt.hanhan.video:id/jw")){
         sleep(1000)
@@ -402,6 +406,13 @@ var app_go_home=function(index){
             back()
            }
        }
+
+
+       if(text("看视频即可打开").exists()){
+        clicknode(text("看视频即可打开").findOne(300),0,-80)
+        sleep(3000)
+        seead()
+        }
    },30000)){
        return true
    }else{
@@ -465,6 +476,9 @@ var app_sign=function(){
         }
         if(isadviceactivity()>-1){
             seead()
+        }
+        if(text("再接再厉，赚更多哦~").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
         }
 
     },60000)
@@ -584,6 +598,10 @@ var app_tomoney=function(){
                 app_go_home(4)
             }
             
+        }
+
+        if(text("再接再厉，赚更多哦~").exists()){
+            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
         }
     },30000)
     } catch (error) {

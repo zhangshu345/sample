@@ -1,5 +1,3 @@
-const { text } = require("body-parser");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -64,10 +62,9 @@ var app_run=function(){
     sleep(3000)
     app_login_check()
     app_sign()
-    if(!isinvite){
+    
         app_invite()
-    }
-    loopn=0
+
     while(true){
         sleep(2000)
         log("循环次数："+loopn)
@@ -237,21 +234,24 @@ var app_tomoney=function(){
 
 //app邀请
 var app_invite=function(){
-    doactionmaxtime(function(){
-        show(appname+"邀请")
-        app_go_home(5)
-        if(textclick("填写邀请码")){
-            sleep(1500)
-           node_yym= text("输入邀请码").editable().findOne(500)
-           node_yym.setText(getrandforstrs(invitecodes))
-           sleep(1000)
-           if(textclick("确认")){
-               spt.put(appname+"_invite",true)
-               return true
-           }
-        }
-    },60000)
-
+    try {
+        doactionmaxnumber(function(n){
+            show(appname+"邀请:"+n)
+            app_go_home(5)
+            if(textclick("填写邀请码")){
+                sleep(1500)
+               node_yym= text("输入邀请码").editable().findOne(500)
+               node_yym.setText(getrandforstrs(invitecodes))
+               sleep(1000)
+               if(textclick("确认")){
+                   spt.put(appname+"_invite",true)
+                   return true
+               }
+            }
+        },3)
+    } catch (error) {
+        log(appname+"出错:邀请："+error)
+    }
 }
 
 var app_go_home=function(index){

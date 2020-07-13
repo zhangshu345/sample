@@ -345,8 +345,11 @@ var app_sign=function(){
                 if(text("明日再来").exists()){
                     return true
                 }
+                if(isadviceactivity()>-1){
+                    close_ad_kk(apppkg)
+                }
                 sleep(1000)
-            },10)
+            },12)
        }
         if(invite){
             if(text("填写邀请码").exists()){
@@ -891,7 +894,6 @@ var app_live_hongbao=function(){
             }else{
                 livenum=parseInt(txt_livenum)
             }
-           
         }
     
         if(text("看看大家手气").exists()){
@@ -976,9 +978,6 @@ var app_see_live=function(){
 
 // app_see_live()
 
-
-
-
 // while(true){
 //     app_go_home(1)
 //     sleep(3000)
@@ -988,4 +987,5 @@ var app_see_live=function(){
 //     sleep(3000)
  
 // }
+
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
