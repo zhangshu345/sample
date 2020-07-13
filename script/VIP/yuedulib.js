@@ -2104,13 +2104,15 @@ var isadviceactivity=function(ca){
  var   adviceActivitys=[
     "com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
     "com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
+    "com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity",
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.liquid.adx.sdk.ad.video.RewardVideoActivity",  
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.qq.e.ads.PortraitADActivity",
     "com.qq.e.ads.ADActivity",
     "com.iclicash.advlib.ui.front.ADBrowser",
-    "com.iclicash.advlib.ui.front.InciteADActivity" 
+    "com.iclicash.advlib.ui.front.InciteADActivity"
+    
     ]
     return adviceActivitys.indexOf(ca)
 }
@@ -2251,7 +2253,7 @@ var close_ad_qq=function(apppkg,clickgailv){
 var close_ad_iclicash=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     ca=currentActivity()
-    if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
+    if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"||ca=="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"){
       return  doactionmaxtime(function()
         {   
             if(text("点击重播").exists()){
@@ -2266,6 +2268,9 @@ var close_ad_iclicash=function(apppkg,clickgailv){
             if(ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                 textclick("关闭")
             }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"){
+                
+            }else if(ca="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"){
+                back()
                 
             }else{
                 return true
@@ -3146,3 +3151,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json")
 
 // 微信打开链接("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
+log("位置:"+isadviceactivity())
