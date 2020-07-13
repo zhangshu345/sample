@@ -68,7 +68,6 @@ var app_run=function(){
 
 
 var app_see_video=function(){
-    
     try {
         doactionmaxnumber(function(n){
             show(appname+"看视频:"+n)
@@ -367,7 +366,8 @@ var app_reward_coinparty=function(){
    
         doactionmaxtime(function(){
             show(appname+"金币派对")
-            if(text("疯狂2020，夏日狂欢派对").exists()){
+            txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
+            if(txt_title=="疯狂2020，夏日狂欢派对"){
                 if(textContains("游戏次数已达上限").exists()){
                     今日记录(appname,"coinparty",true)
                     back()
@@ -409,6 +409,7 @@ var app_reward_coinparty=function(){
                     if(clicknode(text("金币派对").findOne(300),0,-30)){
                         return true
                     }
+                    滑动(20,10,4,10,10,500,300)
                 },10000)
             }
     
@@ -433,10 +434,10 @@ var app_reward_luckdan=function(){
         if(获取今日记录(appname,"luckdan",false)){
             return true
         }
-
         doactionmaxtime(function(){
             show(appname+"幸运扭蛋开始")
-            if(text("幸运扭蛋").exists()){
+                txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
+            if(txt_title=="幸运扭蛋"){
                 if(text("今日免费: 0次").exists()){
                     今日记录(appname,"luckdan",true)
                     return true
@@ -456,7 +457,8 @@ var app_reward_luckdan=function(){
                     if(clicknode(text("幸运扭蛋").findOne(300),0,-30)){
                         return true
                     }
-                },10000)
+                    滑动(20,10,4,10,10,500,300)
+                },10000,2000)
             }
     
             if(text("看视频即可打开").exists()){
@@ -491,7 +493,8 @@ var app_reward_dayluck=function(){
 
     doactionmaxtime(function(){
         show(appname+"天天抽奖")
-        if(text("天天抽大奖").exists()){
+        txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
+        if(txt_title=="天天抽大奖"){
             if(text("今日免费: 0次").exists()){
                 今日记录(appname,"dayluck",true)
                 return true
@@ -511,6 +514,7 @@ var app_reward_dayluck=function(){
                 if(clicknode(text("天天抽奖").findOne(300),0,-30)){
                     return true
                 }
+                滑动(20,10,4,10,10,500,300)
             },10000)
         }
 
@@ -541,7 +545,8 @@ try {
     }
     doactionmaxnumber(function(n){
         show(appname+"挖红包")
-        if(text("赢大奖").exists()){
+        txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
+        if(txt_title=="赢大奖"){
             press(device.width/2,device.height-100,50)
             sleep(2000)
             if(text("今日免费: 0次").exists()){
@@ -563,6 +568,7 @@ try {
                 if(clicknode(text("挖红包").findOne(300),0,-30)){
                     return true
                 }
+                滑动(20,10,4,10,11,500,300)
             },10000)
         }
         clicknode(className("android.view.View").depth(12).drawingOrder(0).clickable().findOne(300))
@@ -593,7 +599,6 @@ var app_tomoney=function(){
             if(今日提现(appname)){
                 return true
             }
-
         app_go_home(5)
         return doactionmaxtime(function(){
           show(appname+"开始提现")

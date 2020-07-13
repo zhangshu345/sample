@@ -167,11 +167,15 @@ function app_see_video(){
                     }
             },30000)
         }else{
-            app_go_home(2)
+            app_go_home(1)
         }
+        
+        if(isadviceactivity()>-1){
+            seead()
+        }
+        滑动(20,10,17,11,7,500,300)
         sleep(1000)
-         滑动(20,10,17,11,7,800,300)
-    },50)
+    },66)
   
     
    
@@ -210,10 +214,9 @@ function app_see_small_video(){
                     app_go_home(2)
                 }
             滑动(20,10,16,10,3,500,200)
+            sleep(100)
     },100)
 }
-
-
 
 var app_hongbao_get=function(){
     if(clicknode(text("领取红包").findOne(300))){
@@ -453,6 +456,9 @@ var app_sign=function(){
               }
           }
       }
+      if(textclick("微信一键登录")){
+            app_login_weixin()
+      }
       if(textoneexist(["新手任务","已签到"])){
         return true
         }
@@ -651,7 +657,8 @@ var app_login_phone=function(){
 }
 
 var app_login_weixin=function(){
-  doactionmaxtime(function(){
+  doactionmaxnumber(function(n){
+      show(appname+":微信登录")
     textclick("微信账号登录")
     sleep(2000)
     clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
@@ -660,13 +667,13 @@ var app_login_weixin=function(){
         spt.put(apppkg+"login",true)
         return true
     }
-  },60000)
+  },5)
 }
 var app_reward_88=function(){
     if(获取今日记录(appname,"88")=="true"){
         return true
     }
-    doactionmaxtime(function(){
+    doactionmaxnumber(function(n){
         show(appname+"88元扭蛋机")
         if(text("88元扭蛋机").exists()){
             if(text("今日免费: 0次").exists()){
@@ -685,7 +692,6 @@ var app_reward_88=function(){
         }else{
             app_go_home(4)
             sleep(3000)
-    
             if(!textclick("抢福利")){
                 滑动(20,10,4,10,16,500,200)
             }
@@ -700,7 +706,7 @@ var app_reward_88=function(){
             clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
         }
         sleep(2000)
-    },500000)
+    },20)
     show(appname+"88元扭蛋机结束")
 }
 

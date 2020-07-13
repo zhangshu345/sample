@@ -10,7 +10,7 @@
     "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
     "jpushkey":"39ec1b5977dba399606a45e6",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
-    "isbmobpush":true,
+    "isbmobpush":false,
     "isjpush":true,
     "showad":true,
     "reward":true,
