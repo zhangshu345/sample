@@ -218,6 +218,7 @@ function app_see_small_video(){
     },100)
 }
 
+
 var app_hongbao_get=function(){
     if(clicknode(text("领取红包").findOne(300))){
         sleep(2000)
