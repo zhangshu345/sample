@@ -2101,12 +2101,12 @@ function get_phone_code(app_name,reg,startwords,endwords){
 
 var isadviceactivity=function(ca){
     ca=ca||currentActivity()
- const   adviceActivitys=[
+ var   adviceActivitys=[
     "com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
     "com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
     "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.liquid.adx.sdk.ad.video.RewardVideoActivity",  
-    "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",//快手
+    "com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity",
     "com.qq.e.ads.PortraitADActivity",
     "com.qq.e.ads.ADActivity",
     "com.iclicash.advlib.ui.front.ADBrowser",
