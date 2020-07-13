@@ -171,83 +171,88 @@ var app_checklogin=function(){
   
 }
 var app_go_home=function(index){
-  let  index=index||2
-    if(doactionmaxtime(function(){
-        closeappundostate()
-        if(isadviceactivity()>-1){
-            seead()
-        }
-        ca=currentActivity()
-        show("回到主页："+index+"--"+ca)
-        if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
-            sleep(500)
-            if(index==1){
-                selectnavi(1)
-                return true
-            }else if(index==2){
-           
-                    selectnavi(2)
-                    return true
-               
-            }else if(index==3){
-                    selectnavi(3)
-                    return true
-            }else if(index==4){
-                   selectnavi(4)
-                    return true
-        
-            }else{
-                return true
-            }
-           
-        }else if(ca==appcleanactivity){
-            back()
-            sleep(1000)
-        }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity")
-        {
-            clicktexts(["允许","始终允许"])
-        }else if(ca=="com.xiaoqiao.qclean.base.newuser.index.RedPackOpenActivity"){
-            idclick("com.xiaoqiao.qclean:id/btn_redpack_open")
-            app_login_weixin()
-        }
-        else if(ca==applaunchactivity){
-            sleep(3000)
-        }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
-            seead()
-        }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
-            back()
-            sleep(1000)
-        }else{
+    try {
+        index=index||2
+        if(doactionmaxtime(function(){
+            closeappundostate()
             if(isadviceactivity()>-1){
                 seead()
             }
-            back()
-            if(currentPackage()!=apppkg){
-                app.launch(apppkg)
+            ca=currentActivity()
+            show("回到主页："+index+"--"+ca)
+            if(ca==apphomeactivity||ca=="android.widget.RelativeLayout"){
+                sleep(500)
+                if(index==1){
+                    selectnavi(1)
+                    return true
+                }else if(index==2){
+               
+                        selectnavi(2)
+                        return true
+                   
+                }else if(index==3){
+                        selectnavi(3)
+                        return true
+                }else if(index==4){
+                       selectnavi(4)
+                        return true
+            
+                }else{
+                    return true
+                }
+               
+            }else if(ca==appcleanactivity){
+                back()
+                sleep(1000)
+            }else if(ca=="com.android.packageinstaller.permission.ui.GrantPermissionsActivity")
+            {
+                clicktexts(["允许","始终允许"])
+            }else if(ca=="com.xiaoqiao.qclean.base.newuser.index.RedPackOpenActivity"){
+                idclick("com.xiaoqiao.qclean:id/btn_redpack_open")
+                app_login_weixin()
+            }
+            else if(ca==applaunchactivity){
                 sleep(3000)
-            }
-        }   
-        if(textStartsWith("看视频再").exists()){
-            if(maytextclick("看视频再")){
-                show("点击了看视频")
+            }else if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"){
                 seead()
+            }else if(ca=="com.jifen.open.biz.login.ui.activity.JFBindTelActivity"){
+                back()
+                sleep(1000)
+            }else{
+                if(isadviceactivity()>-1){
+                    seead()
+                }
+                back()
+                if(currentPackage()!=apppkg){
+                    app.launch(apppkg)
+                    sleep(3000)
+                }
+            }   
+            if(textStartsWith("看视频再").exists()){
+                if(maytextclick("看视频再")){
+                    show("点击了看视频")
+                    seead()
+                }
             }
+      
+            if(idclick("com.xiaoqiao.qclean:id/btn_get_coin")){
+                //勋章殿堂
+                app_reward_xunzhang()
+            }
+            idclick("com.xiaoqiao.qclean:id/iv_close")
+            idclick("com.xiaoqiao.qclean:id/result_close")
+            sleep(1000)
+        },30000)){
+            return true
+        }else{
+            app.launch(apppkg)
+            sleep(3000)
+            app_go_home(index)
         }
-  
-        if(idclick("com.xiaoqiao.qclean:id/btn_get_coin")){
-            //勋章殿堂
-            app_reward_xunzhang()
-        }
-        idclick("com.xiaoqiao.qclean:id/iv_close")
-        idclick("com.xiaoqiao.qclean:id/result_close")
-        sleep(1000)
-    },30000)){
-        return true
-    }else{
-        app.launch(apppkg)
-        sleep(3000)
-        app_go_home(index)
+    } catch (error) {
+        log(appname+"回到主页出错："+index+error)
     }
+
 
 }
 
@@ -667,6 +672,15 @@ var  app_see_video=function(){
             if(!idoneexist(视频页标记id集合)){
                 app_go_home(2)
             }
+            bt_ad=id("com.xiaoqiao.qclean:id/tv_ad_button").visibleToUser().clickable().findOne(300)
+            if(bt_ad){
+                if(bt_ad.text().search("看视频再")>-1){
+                    clicknode(bt_ad)
+                    sleep(3000)
+                    seead()
+                }
+            }
+                      
               滑动(20,15,16,11,3,500,300)
               sleep(2000)
                 text_like=getTextfromid("com.xiaoqiao.qclean:id/tv_like")
@@ -702,7 +716,7 @@ var  app_see_video=function(){
                         if(isadviceactivity()>-1){
                             seead()
                         }
-                        sleep(1000)
+                     
                        },sleeptime*1000)
                    }
                 }
