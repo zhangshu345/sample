@@ -985,7 +985,6 @@ var app_see_live=function(){
 //     sleep(3000)
 //     app_go_home(3)
 //     sleep(3000)
- 
 // }
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

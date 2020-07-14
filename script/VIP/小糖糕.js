@@ -363,11 +363,10 @@ var app_reward_coinparty=function(){
             show("金币派对今日已完成")
             return true
         }
-   
-        doactionmaxtime(function(){
-            show(appname+"金币派对")
-            txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
-            if(txt_title=="疯狂2020，夏日狂欢派对"){
+        doactionmaxnumber(function(n){
+            show(appname+"金币派对："+n)
+            // txt_title=getTextfromid("com.jifen.ponycamera:id/tv_title","",300)
+            if(text("疯狂2020，夏日狂欢派对").exists(1000)){
                 if(textContains("游戏次数已达上限").exists()){
                     今日记录(appname,"coinparty",true)
                     back()
@@ -417,7 +416,7 @@ var app_reward_coinparty=function(){
                 seead()
             }
             sleep(2000)
-        },200000)
+        },12)
 
       
     } catch (error) {
@@ -590,7 +589,6 @@ try {
 // //app提现
 var app_tomoney=function(){
     try {
-     
             show(appname+"提现")
             if(!获取记录("all","switch_tomoney",false)){
                 show("全局设置不允许提现")
