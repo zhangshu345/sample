@@ -66,6 +66,7 @@ var app_see_video=function(){
     doactionmaxnumber(function(n){
     show("循环次数:"+(n))
     closeappundostate()
+
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
         if(text("点击进入直播间").exists()){
             滑动(20,10,16,10,3,500,300)
@@ -78,6 +79,7 @@ var app_see_video=function(){
      }else{
         show("视频页关闭弹窗")
         idclick(刷宝视频广告关闭按钮1id)
+        idclick("com.jm.video:id/btn_close")
         if(id(刷宝视频恭喜获取关闭按钮id).exists()){
             back()
             sleep(1500)
@@ -118,6 +120,7 @@ var  app_go_home=function(index){
             textclick("取消")
         }else{
         idclick("com.jm.video:id/imgClose")
+        idclick("com.jm.video:id/btn_close")
         textclick("取消")
         if(textclick("立即观看")){
             seead()
@@ -165,6 +168,7 @@ var  app_go_home=function(index){
         }else if(ca=="android.widget.FrameLayout"){
             textclick("取消")
         }
+       
     }
     textclick("取消")
     },30000)){return true
@@ -543,7 +547,7 @@ var app_home_swipe=function(){
         show(appname+"滑动")
         滑动(20,15,16,10,4,500,700)
         sleep(2000)
-        id_desc=  id("com.jm.video:id/desc").findOne(1000)
+        id_desc= id("com.jm.video:id/desc").findOne(1000)
        if(id_desc){
            currentdesc=id_desc.text()
            log("之前："+lastdesc+"--当前："+currentdesc)
@@ -577,6 +581,7 @@ var app_home_swipe=function(){
                }
            }
        }
+       idclick("com.jm.video:id/btn_close")
     },20000)
 }
 
