@@ -1,1 +1,17 @@
-[{"title":"",}]
+[{"title":"新手必读","icon":"","textsize":"16","textcolor":"#ff0000ff",
+    "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+
+},
+{"title":"快速入门","icon":"","textsize":"16","textcolor":"#ff0000ff",
+    "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+
+},
+{"title":"常见问题","icon":"","textsize":"16","textcolor":"#ff0000ff",
+    "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+
+},
+{"title":"特色功能","icon":"","textsize":"16","textcolor":"#ff0000ff",
+    "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+
+}
+]
