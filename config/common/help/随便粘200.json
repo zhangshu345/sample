@@ -1,12 +1,12 @@
-[{"title":"新手必读","icon":"","textsize":"16","textcolor":"#ff0000ff",
+[{"title":"新手必读","icon":"https://gitee.com/zhangshu345012/sample/raw/v1/img/新手必读.png","textsize":"16","textcolor":"#ff0000ff",
     "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
 
 },
-{"title":"快速入门","icon":"","textsize":"16","textcolor":"#ff0000ff",
+{"title":"快速入门","icon":"https://gitee.com/zhangshu345012/sample/raw/v1/img/快速入门.png","textsize":"16","textcolor":"#ff0000ff",
     "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
 
 },
-{"title":"常见问题","icon":"","textsize":"16","textcolor":"#ff0000ff",
+{"title":"常见问题","icon":"https://gitee.com/zhangshu345012/sample/raw/v1/img/常见问题.png","textsize":"16","textcolor":"#ff0000ff",
     "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
 
 },
