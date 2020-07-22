@@ -10,7 +10,7 @@
     "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
 
 },
-{"title":"特色功能","icon":"","textsize":"16","textcolor":"#ff0000ff",
+{"title":"特色功能","icon":"https://gitee.com/zhangshu345012/sample/raw/v1/img/特色功能.png","textsize":"16","textcolor":"#ff0000ff",
     "articles": [{"title":"权限使用说明","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
 
 }
