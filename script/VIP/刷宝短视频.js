@@ -90,18 +90,15 @@ var app_see_video=function(){
 
         app_home_swipe()
 
-        textclick("继续看视频")
-        
+        maytextclick("继续看视频")
         idclick("com.jm.video:id/imgClose")
      
         if(text("空空如也").exists()){
             // 脚本完成了
             app_go_likevideolist()
         }
-
         if(n%100==0){
            app_tomoney()
-       
         }
      }
     },300)

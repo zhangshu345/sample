@@ -138,48 +138,52 @@ var clickgold=function(){
 }
 
 function app_see_video(){
-    closeappundostate()
-    app_go_home(1)
-    doactionmaxnumber(function(ln){
-        show(appname+"看视频:"+ln)
-        if(app_hongbao_get()){
-            app_go_home(1)
-        }
-        if(text("赚钱小技巧").exists()){
-            back()
-        }
-        sleep(1000)
-        if(text("再接再厉，赚更多哦~").exists()){
-            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
-        }
-        if(clicknode(className("android.widget.ImageView").clickable().drawingOrder(11).visibleToUser().findOne(500))){
-            sleep(2000)
-            doactionmaxtime(function(){
-                    if(!className("com.qukan.media.player.renderview.TextureRenderView").visibleToUser().clickable().exists()){
-                        return true
-                    }
-                    if(text("再接再厉，赚更多哦~").exists()){
-                        clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
-                    }
-                    clickgold()
-                    sleep(5000)
-                    if(isadviceactivity()>-1){
-                        seead()
-                    }
-            },30000)
-        }else{
-            app_go_home(1)
-        }
+    try {
+        closeappundostate()
+        app_go_home(1)
+        doactionmaxnumber(function(ln){
+            show(appname+"看视频:"+ln)
+            if(app_hongbao_get()){
+                app_go_home(1)
+            }
+            if(text("赚钱小技巧").exists()){
+                back()
+            }
+            sleep(1000)
+            if(text("再接再厉，赚更多哦~").exists()){
+                clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+            }
+            if(clicknode(className("android.widget.ImageView").clickable().drawingOrder(11).visibleToUser().findOne(500))){
+                sleep(2000)
+                doactionmaxtime(function(){
+                        if(!className("com.qukan.media.player.renderview.TextureRenderView").visibleToUser().clickable().exists()){
+                            return true
+                        }
+                        if(text("再接再厉，赚更多哦~").exists()){
+                            clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
+                        }
+                        clickgold()
+                        sleep(5000)
+                        if(isadviceactivity()>-1){
+                            seead()
+                        }
+                },30000)
+            }else{
+                app_go_home(1)
+            }
+            
+            if(isadviceactivity()>-1){
+                seead()
+            }
+            滑动(20,10,17,11,7,500,300)
+            sleep(1000)
+        },66)
+      
         
-        if(isadviceactivity()>-1){
-            seead()
-        }
-        滑动(20,10,17,11,7,500,300)
-        sleep(1000)
-    },66)
-  
-    
-   
+    } catch (error) {
+        log(error)
+    }
+
 }
 
 

@@ -247,7 +247,7 @@ var app_sign=function(){
 
 
 var app_reward=function(){
-    app_reward_haoli()
+   // app_reward_haoli()
     app_reward_coinparty()
     app_reward_luckdan()
     app_reward_dayluck()

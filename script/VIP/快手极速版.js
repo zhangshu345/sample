@@ -377,6 +377,7 @@ var app_sign=function(){
            sleep(1000)
            return true
        }
+
         if(text("签到领金币").exists()){
             if(textclick("去签到")){
                 log("去签到 ")
@@ -405,7 +406,6 @@ var app_getrewardnum=function(){
     return 0;
 }
 
-
 var app_getreward=function(){
     show("快手查看视频广告")
     if(今日签到(appname)){return true}
@@ -420,7 +420,6 @@ var app_getreward=function(){
             滑动(20,10,18,10,3,500,300)
             sleep(1000)
        }
-       
         if(text("签到领金币").exists()){
             if(textclick("去签到")){
                 log("去签到 ")
@@ -431,7 +430,6 @@ var app_getreward=function(){
                 return true
             }
         }
-       
         app_close_alter()
     },60000)
 }
@@ -733,16 +731,10 @@ function app_run(){
         device.wakeUpIfNeeded()
         loopn=loopn+1
         log("循环："+loopn)
-      
-
         app_video_swipe()
-        
         app_video_city()
-
-       idclick("com.kuaishou.nebula:id/close")
-    
-   
-                app_tomoney()
+        idclick("com.kuaishou.nebula:id/close")
+        app_tomoney()
 
     }
 }
