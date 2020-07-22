@@ -1811,9 +1811,20 @@ var doactionmaxtime=function(action,maxtime,intertime){
 }
 //执行函数 几次  
 var doactionmaxnumber=function(action,maxnumber){
-    if(!action){return true}
+    if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
-    while(n_doaction<maxnumber){ if (action(n_doaction)){return true }; n_doaction=n_doaction+1;}
+    while(n_doaction<maxnumber){ if (action(n_doaction)){return true }; n_doaction=n_doaction+1; }
+    return false
+}
+
+//执行函数 
+var doactionnumberontime=function(action,maxnumber,maxtime,intertime){
+    if(!action){return false}
+    maxnumber=maxnumber||1; n_doaction=0;
+    maxtime=maxtime||10000
+    intertime=intertime||1000
+    stime=nowdate().getTime()
+    while(n_doaction<maxnumber){ if(action(n_doaction)){return true }; n_doaction=n_doaction+1;if(nowdate().getTime()-stime>maxtime){return true}; sleep(intertime);}
     return false
 }
 
@@ -2165,6 +2176,9 @@ var close_ad_kk=function(apppkg){
             if(textoneexist(["点击重播","关闭广告"])){
                 back()
                 sleep(1000)
+            }
+            if(maytextclick("网络异常")){
+                log(apppkg+":运行时 网络异常")
             }
             if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
                 return true

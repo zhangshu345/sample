@@ -473,8 +473,8 @@ var app_go_home=function(index){
                     selectnavi(2)
                     return true
                 }else if(index==3){
-                        selectnavi(3)
-                        return true
+                    selectnavi(3)
+                   return true
                 }else{
                     selectnavi(3)
                     return true
@@ -747,9 +747,9 @@ function app_run(){
     }
 }
 
+//同城看视频
 var app_video_city=function(){
     app_go_home(1)
-    
     doactionmaxnumber(function(n){
         show(appname+"看同城视频")
         
@@ -757,7 +757,6 @@ var app_video_city=function(){
 }
 
 var app_go_live=function(){
-  
     doactionmaxtime(function(){
         log(appname+"回到直播间")
         if(isappliveactivity()){
@@ -791,11 +790,8 @@ var app_go_live=function(){
             sleep(3000)
         }
     },60000)
-
-
-
-
 }
+
 var canqianghongbao=function(coin,livenum,waittime){
     log(appname+"判断抢红包："+coin+"--直播人数--"+livenum+"--等待时间--"+waittime)
     if(coin<20){
@@ -973,7 +969,6 @@ var app_see_live=function(){
         app_swipe_up()
 
     },1000)
-
 }
 
 // app_see_live()

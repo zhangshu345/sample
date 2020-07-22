@@ -61,6 +61,7 @@ var app_run=function(){
     app_tomoney()
     app_see_video()
     app_see_small_video()
+  
     app_tomoney()
     app_reward_88()
     app_reward_zhuazhua()
@@ -151,7 +152,7 @@ function app_see_video(){
         if(text("再接再厉，赚更多哦~").exists()){
             clicknode(className("android.widget.FrameLayout").clickable().depth(5).drawingOrder(2).findOne(300))
         }
-        if(clicknode(className("android.widget.ImageView").clickable().drawingOrder(11).depth(14).visibleToUser().findOne(500))){
+        if(clicknode(className("android.widget.ImageView").clickable().drawingOrder(11).visibleToUser().findOne(500))){
             sleep(2000)
             doactionmaxtime(function(){
                     if(!className("com.qukan.media.player.renderview.TextureRenderView").visibleToUser().clickable().exists()){
