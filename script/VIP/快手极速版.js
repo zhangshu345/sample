@@ -632,7 +632,7 @@ let swipenumber=0
         node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
         if(node_tab){
             if(!node_tab.selected()){
-               clicknode(node_tab)
+               clicknode(node_tab,0,0,100,2,300)
             }
         }else{
             app_go_home(3)
