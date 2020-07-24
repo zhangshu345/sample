@@ -958,25 +958,42 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-var clicknode=function(v,dx,dy,time,clicknumber){
+var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
     dx=dx||0
     dy=dy||0
     clicknumber=clicknumber||1
+    intervaltime=intervaltime||300
     if(!v){return false; }
     time=time||200
     if(enablegenius){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return press(b.centerX()+dx,b.centerY()+dy,time)
+            for(let n=0;n<clicknumber;n++){
+                press(b.centerX()+dx,b.centerY()+dy,time)
+                sleep(intervaltime)
+            }
+            return true
+          
         }else{
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
-              return click(b.left+dx,b.top+dy)
+            for(let n=0;n<clicknumber;n++){
+                press(b.left+dx,b.top+dy+dy,time)
+                sleep(intervaltime)
+            }
+            return true
+              
            }
            if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
             log("点击控件右下角"+(b.right)+","+(b.bottom))
-            return click(b.right+dx,b.bottom+dy)
+            for(let n=0;n<clicknumber;n++){
+                press(b.right+dx,b.bottom+dy,time)
+                sleep(intervaltime)
+            }
+            return true
+
+            
            }
            return false
         }
