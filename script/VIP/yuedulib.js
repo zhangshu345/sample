@@ -968,7 +968,7 @@ var clicknode=function(v,dx,dy,time,clicknumber){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return click(b.centerX()+dx,b.centerY()+dy)
+            return press(b.centerX()+dx,b.centerY()+dy,time)
         }else{
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
