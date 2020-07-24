@@ -154,7 +154,7 @@ var app_sign=function(){
         if(text("邀请好友").findOne(500)){
             back()
         }
-    },20)
+    },3)
     
     } catch (error) {
         log(appname+"出错:"+error)

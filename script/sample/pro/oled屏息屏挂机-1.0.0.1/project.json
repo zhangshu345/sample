@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "mainScriptFile": "息屏挂机.js",
+  "name": "oled屏息屏挂机",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.what.songindreammoon",
+  "publish": {
+    "category": "游戏辅助",
+    "details": "可在游戏内使用进入息屏挂机模式，但是并不能锁定屏幕！！！可按下音量上键停止辅助。通知栏会正常显示（oled屏才有效，原理是利用amoled屏幕在显示黑色时会让像素点直接不工作，从而降低功耗。)",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 7009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 7000000,
+    "minSdkVersion": 0,
+    "permissions": [],
+    "summary": "oled屏息屏挂机",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

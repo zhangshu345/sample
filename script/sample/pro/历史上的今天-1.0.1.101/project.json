@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "历史上的今天",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "muling.todayonHistory",
+  "publish": {
+    "category": "学习教育",
+    "details": "爬取www.todayonhistory.com网站数据，过滤新闻详情的广告，并作为复杂ui的实例",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 70004,
+    "minAutoJsVersion": -1,
+    "minProVersion": 0,
+    "minSdkVersion": 0,
+    "permissions": [],
+    "summary": " 有很好看ui的 历史上的今天",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 101,
+  "versionName": "1.0.1"
+}

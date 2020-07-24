@@ -1,0 +1,54 @@
+module.exports = {
+  导入类() {
+    importClass(android.animation.Animator);
+    importClass(android.content.Context);
+    importClass(android.content.Intent);
+    importClass(android.graphics.Color);
+    importClass(android.graphics.PixelFormat);
+    importClass(android.graphics.Point);
+    importClass(android.graphics.drawable.BitmapDrawable);
+    importClass(android.graphics.drawable.Drawable);
+    importClass(android.os.Build);
+    importClass(android.os.Handler);
+    importClass(android.os.Looper);
+    importClass(android.os.Message);
+    importClass(android.os.Vibrator);
+    importClass(android.provider.Settings);
+    importClass(android.util.DisplayMetrics);
+    importClass(android.view.Gravity);
+    importClass(android.view.MotionEvent);
+    importClass(android.view.Surface);
+    importClass(android.view.View);
+    importClass(android.view.ViewGroup);
+    importClass(android.view.WindowManager);
+    importClass(android.view.animation.AnticipateOvershootInterpolator);
+    importClass(android.widget.FrameLayout);
+    importClass(android.widget.ImageView);
+    importClass(android.widget.LinearLayout);
+    importClass(android.widget.RelativeLayout);
+    importClass(java.io.File);
+    importClass(java.util.ArrayList);
+    importClass(java.util.List);
+    importClass(java.lang.Runnable);
+    importClass(android.animation.ObjectAnimator);
+    importClass(android.animation.PropertyValuesHolder);
+    importClass(android.animation.ValueAnimator);
+    importClass(android.animation.AnimatorSet);
+    importClass(android.view.animation.AccelerateInterpolator);
+    importClass(android.view.animation.TranslateAnimation);
+    importClass(android.animation.TimeInterpolator);
+    importClass(android.os.Bundle);
+    importClass(android.view.Window);
+    importClass(android.view.animation.AccelerateDecelerateInterpolator);
+    importClass(android.view.animation.AnticipateInterpolator);
+    importClass(android.view.animation.BounceInterpolator);
+    importClass(android.view.animation.CycleInterpolator);
+    importClass(android.view.animation.DecelerateInterpolator);
+    importClass(android.view.animation.LinearInterpolator);
+    importClass(android.view.animation.OvershootInterpolator);
+    importClass(android.view.animation.PathInterpolator);
+    importClass(android.widget.Button);
+    importClass(android.widget.TextView);
+  },
+  
+};

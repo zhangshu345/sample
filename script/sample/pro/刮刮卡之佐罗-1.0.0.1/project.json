@@ -1,0 +1,46 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "034478DB-1",
+    "build_number": 1,
+    "build_time": 1593437278032,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/icon.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashIcon": "res/splashIcon.png",
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "刮刮卡之佐罗",
+  "optimization": {
+    "removeOpenCv": true,
+    "unusedResources": true
+  },
+  "packageName": "com.zuo.luo",
+  "publish": {
+    "category": "其他",
+    "details": "DST OUT模式",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 7009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 7000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "模拟刮刮卡效果",
+    "tags": []
+  },
+  "scripts": {},
+  "signingConfig": {
+    "alias": "zhangshuhong",
+    "keystore": "/storage/emulated/0/脚本/.keystore/autojspro.jks",
+    "uuid": "43ec247a-b071-45ea-bd11-2f1ccf59708c"
+  },
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

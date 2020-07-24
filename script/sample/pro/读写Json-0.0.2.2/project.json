@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": true
+  },
+  "main": "main.js",
+  "name": "读写Json",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.jingyuexing2",
+  "publish": {
+    "category": "模块",
+    "details": "如有bug，可在QQ群提出",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 0,
+    "permissions": [],
+    "summary": "适配nodejs的json文件读写",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 2,
+  "versionName": "0.0.2"
+}
