@@ -627,15 +627,26 @@ let swipenumber=0
     
 
         // }
-        if(!idoneexist(快手极速版视频页标志集合id)){
+
+
+        node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
+        if(node_tab){
+            if(!node_tab.selected()){
+               clicknode(node_tab)
+            }
+        }else{
             app_go_home(3)
         }
+
+        // if(!idoneexist(快手极速版视频页标志集合id)){
+        //     app_go_home(3)
+        // }
         app_swipe_up()
          swipenumber=swipenumber+1
          sleep(2000)
         if(textoneexist(["点击打开长图","点击打开图集"],200)){
             app_swipe_up()
-            sleep(2000)
+            sleep(1000)
          }
          nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
@@ -658,8 +669,6 @@ let swipenumber=0
                 swipenumber=0
                 lastdesc=nowdesc
                  sleep(10000)
-             }else{
-
              }
            }
     },100)
@@ -973,5 +982,7 @@ var app_see_live=function(){
 //     app_go_home(3)
 //     sleep(3000)
 // }
+
+app_video_swipe()
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)

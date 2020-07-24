@@ -968,15 +968,15 @@ var clicknode=function(v,dx,dy,time,clicknumber){
         b=v.bounds()
         if(b.centerX()>0&&b.centerY()>0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
-            return press(b.centerX()+dx,b.centerY()+dy,50)
+            return click(b.centerX()+dx,b.centerY()+dy)
         }else{
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
-              return press(b.left+dx,b.top+dy,50)
+              return click(b.left+dx,b.top+dy)
            }
            if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
             log("点击控件右下角"+(b.right)+","+(b.bottom))
-            return press(b.right+dx,b.bottom+dy,50)
+            return click(b.right+dx,b.bottom+dy)
            }
            return false
         }
