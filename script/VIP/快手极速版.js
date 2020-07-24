@@ -983,6 +983,6 @@ var app_see_live=function(){
 //     sleep(3000)
 // }
 
-app_video_swipe()
+
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true)
