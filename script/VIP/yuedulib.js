@@ -125,11 +125,13 @@ var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最�
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 
 
+//开启调试
 var startdebug=function(ip){
   ip=ip||debugip
     DevPluginService.getInstance().debugtoip(debugip);
 }
 
+//判断是否是设备管理者
 var isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
     dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);

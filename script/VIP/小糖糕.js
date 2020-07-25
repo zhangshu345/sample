@@ -158,7 +158,11 @@ var app_login_check=function(){
                 app_login()
             }
             app_go_home(5)
-    
+        
+        if(maytextclick("看视频")){
+            sleep(3000)
+            seead()
+        }
         if(text("可提现").exists()){
             return true
         }else{
@@ -229,16 +233,17 @@ var app_sign=function(){
             app_go_home(3)
             sleep(3000)
             show(appname+"签到")
-            if(maytextclick("看视频再送")){
+            if(maytextclick("看视频")){
+                sleep(3000)
                 seead()
-                return true
+               
             }
 
             if(isadviceactivity()>-1){
                 seead()
                 return true
             }
-        },10)
+        },3)
     } catch (error) {
         log(appname+"签到:"+error)
     }
