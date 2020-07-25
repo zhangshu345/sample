@@ -181,7 +181,7 @@ var 微信浏览=function(url){
                   if(node_icons){
                       node_icon=node_icons[node_icons.length-1]
                       if(node_icon){
-                       bd= node_icon.bounds
+                       bd= node_icon.bounds()
                        x=bd.centerX()-200
                        y=bd.centerY()
                        click(x,y)
