@@ -23,7 +23,37 @@ else {
 show("公共函数实例化失败,程序返回")
 }
 
-
+const pddpkg="com.xunmeng.pinduoduo"
 const pddurl="https://w.url.cn/s/AmkaJOt"
 微信浏览(pddurl)
+sleep(5000)
+click(device.width/2,device.height/2)
+sleep(2000)
+doactionmaxtime(function(){
+    textclick("安全更新")
+    log("循环点击安装")
+    clicknode(text("下载").clickable(true).findOne(300))
+
+    if(maytextclick("设置")){
+        sleep(2000)
+        textclick("关")
+
+    }
+   clicknode( desc("向上导航").clickable(true).findOne(300))
+    if(textclick("安装")){
+        text("打开").waitFor()
+       if( textclick("打开")){
+
+       }
+    }
+
+    textclick("我知道了")
+    textclick("允许")
+    textclick("開")
+    // if(currentPackage()==pddpkg){
+    //     log("当前包名为拼多多")
+    //     return true
+    // }
+},60000)
+
 
