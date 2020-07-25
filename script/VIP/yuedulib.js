@@ -1,21 +1,20 @@
-importClass(com.hongshu.utils.PermissionUtils)
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(com.hongshu.utils.IntentUtils)
 importClass(android.net.Uri)
-importClass(com.hongshu.utils.SPUtils)
 importClass(android.graphics.Bitmap)
-importClass(com.hongshu.utils.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.GsonUtils)
+importClass(com.hongshu.utils.SPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
+
 importClass(com.hongshu.androidjs.core.debug.DevPluginService)
+importClass(com.hongshu.utils.PermissionUtils)
 // 
 log(device)
 device.wakeUpIfNeeded()
@@ -34,6 +33,7 @@ log("内存总大小:"+sdtotalsize)
 var sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
+
 log("可用:"+sdavailablesize())
 log("比例:"+sdavailablesize()/sdtotalsize)
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
@@ -78,7 +78,6 @@ var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
 const debugip="zhangshuhong888.iask.in"
-
 
 
 var 记录=function(name,key,n){      storages.create(name).put(key,n)}
@@ -567,7 +566,7 @@ function keepappclear(url){
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
                 uninstallapp(app.name)
-                log("第三方应用"+GsonUtils.toJson(app))
+              //  log("第三方应用"+GsonUtils.toJson(app))
           }else{
             toastLog(app.name+"是白名单app")
           }
