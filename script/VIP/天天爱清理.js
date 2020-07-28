@@ -70,6 +70,7 @@ var app_reward_xunzhang=function(){
     let adn=0
     doactionmaxnumber(function(n){
         show(appname+"勋章殿堂"+n)
+        maytextclick("获得")
     n_gold=textEndsWith("0金币").visibleToUser().findOne(1000)
     if(n_gold){
         show("找到:"+n_gold.text())

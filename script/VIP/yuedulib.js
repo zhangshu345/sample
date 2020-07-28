@@ -10,10 +10,7 @@ importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
 importClass(com.hongshu.utils.SPUtils)
 importClass(com.hongshu.utils.AppUtils)
-importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
-
-importClass(com.hongshu.androidjs.core.debug.DevPluginService)
 importClass(com.hongshu.utils.PermissionUtils)
 // 
 log(device)
@@ -34,8 +31,8 @@ var sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
 
-log("可用:"+sdavailablesize())
-log("比例:"+sdavailablesize()/sdtotalsize)
+
+log("可用:"+sdavailablesize()+"\n比例:"+sdavailablesize()/sdtotalsize)
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
@@ -2755,13 +2752,13 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
     }
     if(!runapps){
         //10分钟重启
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
         return true
     }else{
         数据库.put("runlist",runapps)
     }
 
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    Scripts.INSTANCE.delectAllTask()
     runapps.filter(function(app){
         if(!app.open){
            return false
@@ -2814,7 +2811,7 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
                             xiaoshi=0
                         }
                       }
-                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                    Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
                      fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
@@ -2825,7 +2822,7 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
                 xiaoshi=0
             }
           }
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
         closerecentapp()
         closelastscriptapp()
         spt.remove("lastscriptapp")
@@ -2863,7 +2860,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
     }
     if(!runapps){
         //10分钟重启
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
         return true
     }else{
         数据库.put("runlist",runapps)
@@ -2893,7 +2890,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
                 return true
     }
 
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    Scripts.INSTANCE.delectAllTask()
     toastLog("runapp：之前"+runapps.length)
     // runapps.filter(function(app,index){
     //     log(app.app.name+"--"+app.open)
@@ -2953,7 +2950,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
                             xiaoshi=0
                         }
                       }
-                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                    Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
                      fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
@@ -2964,7 +2961,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
                 xiaoshi=0
             }
           }
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
         closerecentapp()
         closelastscriptapp()
         spt.remove("lastscriptapp")
@@ -3000,7 +2997,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
     }
     if(!runapps){
         //10分钟重启
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
         return true
     }else{
         数据库.put("runlist",runapps)
@@ -3030,7 +3027,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
                 return true
     }
 
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    Scripts.INSTANCE.delectAllTask()
     toastLog("runapp：之前"+runapps.length)
 
     let  tmpapps=[]
