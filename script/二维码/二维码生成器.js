@@ -1,10 +1,9 @@
 "ui";
 importClass(android.graphics.Bitmap)
 importClass(com.king.zxing.util.CodeUtils)
-importClass(com.hongshu.utils.ImageUtils)
-importClass(com.hongshu.utils.KeyboardUtils)
+importClass(com.blankj.utilcode.util.ImageUtils)
+importClass(com.blankj.utilcode.util.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
-importClass(com.hongshu.utils.ActivityUtils)
 importClass(android.content.Intent)
 importClass(android.provider.MediaStore)
 importClass(android.net.Uri)
@@ -59,7 +58,7 @@ function showLoginUI(){
         ui.content.setText("")
     });
     ui.ll.on("click",()=>{
-        com.hongshu.utils.KeyboardUtils.hideSoftInput(ui.content)
+      KeyboardUtils.hideSoftInput(ui.content)
     })
 
     ui.exit.on("click",()=>{
@@ -96,7 +95,7 @@ function showLoginUI(){
         }
         
      })
-     admanager.showBanner(ui.ll.getContext(),ui.advice)
+    // admanager.showBanner(ui.ll.getContext(),ui.advice)
     // ui.imsize.setOnSeekBarChangeListener( {
     
     // )

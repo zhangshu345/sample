@@ -2,7 +2,7 @@ auto.waitFor()
 auto.setMode("normal")
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.GsonUtils)
+
 importClass(com.hongshu.utils.AppUtils)
 function httpget(url) {
     var r = http.get(url);
@@ -78,7 +78,7 @@ function listapp(){
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
                 uninstallapp(app.name)
-                log("第三方应用"+GsonUtils.toJson(app))
+                log("第三方应用"+JSON.toString(app))
           }else{
             toastLog(app.name+"是白名单app")
           }

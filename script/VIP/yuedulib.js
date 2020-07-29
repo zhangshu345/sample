@@ -12,7 +12,7 @@ importClass(com.hongshu.utils.SPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
-// 
+
 log(device)
 device.wakeUpIfNeeded()
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
@@ -1489,7 +1489,6 @@ var firstrunapp=function(appname){
 
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
-
      try {
         log('要下载的APP的：' + name+":"+downloadurl);
         isinstall=isinstall || false
@@ -1555,7 +1554,7 @@ function downloadApk(name,downloadurl,isinstall) {
      delect=delect||true
      ////--------------安装--------------////
      if(filePath){
-        installapp(filePath)
+        app.installapp(filePath)
      }
      clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]
      if( device.brand=="samsung"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]       }
@@ -1639,7 +1638,9 @@ function downloadApk(name,downloadurl,isinstall) {
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
    let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
-    if(appinfo){log("应用详情：获取成功");downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);    }
+    if(appinfo){log("应用详情：获取成功");
+    downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
+ }
 }
 //关闭其他应用
 var stopOtherScript=function(){

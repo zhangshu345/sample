@@ -1,4 +1,5 @@
 "ui";
+importClass(com.blankj.utilcode.util.KeyboardUtils)
 ui.layout(
     <frame id="root">
       <vertical h="auto" align="center" margin="0 50">
@@ -18,7 +19,16 @@ ui.layout(
         <linear gravity="center">
            <button id="jisuan" text="计算"/>
         </linear>
+        
+        <ScrollView  layout_width="match_parent" layout_height="match_parent">
+        <vertical>
+            
         <text id="log" w="*" gravity="center"  size="14"></text>
+        </vertical>
+
+        </ScrollView>
+
+
       </vertical>
     </frame>
   );
@@ -31,7 +41,7 @@ ui.jisuan.on("click",function(){
 })
 
 ui.root.on("click",function(){
-    importClass(com.hongshu.utils.KeyboardUtils)
+    
     KeyboardUtils.hideSoftInput(ui.root)
 })
 var 复利计算=function(n,money,ll,showtoast){

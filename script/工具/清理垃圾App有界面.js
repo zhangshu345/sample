@@ -5,6 +5,9 @@ importClass(android.util.Base64);
 importClass(java.io.File);
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
+try {
+    
+
 var color = "#009688";
 var apps=[]
 ui.layout(
@@ -123,8 +126,7 @@ ui.applist.on("item_bind",function(itemView,itemHolder){
 threads.start(function(){
     listapp()
     ui.run(()=> {
-        ui.progressbar.setVisility(8);
-        ui.applist.getAdapter().notifyDataSetChanged()
+           ui.applist.getAdapter().notifyDataSetChanged()
     });
 })
 
@@ -137,7 +139,7 @@ function listapp(){
         if (packageInfo.applicationInfo.loadIcon(packageManager) == null) {
             continue;
         }
-        var bitmap = packageInfo.applicationInfo.loadIcon(packageManager).getBitmap();
+        var bitmap = com.blankj.utilcode.util.ConvertUtils.drawable2Bitmap(packageInfo.applicationInfo.loadIcon(packageManager));
         var baos = new ByteArrayOutputStream();
         //todo 压缩只对保存有效果bitmap还是原来的大小
         bitmap.compress(Bitmap.CompressFormat.JPEG, 30, baos);
@@ -161,5 +163,9 @@ function listapp(){
             
         });
     }
-    toastLog("当前apps的数量:"+apps.size())
+    toastLog("当前apps的数量:"+apps.length)
+}
+
+} catch (error) {
+    
 }

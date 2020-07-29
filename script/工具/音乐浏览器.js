@@ -1,4 +1,5 @@
 "ui";
+importClass(android.view.View)
 //音乐文件的后缀名
 var musicExts = [".mp3", ".wma", ".rm", ".wav", ".mid", ".ape", ".flac"];
 //扫描路径
@@ -32,7 +33,7 @@ ui.files.on("item_click", function(item, pos){
 threads.start(function () {
     listMuiscFiles(path, musicFiles);
     ui.run(()=> {
-        ui.progressbar.setVisility(8);
+        ui.progressbar.setVisility(View.GONE);
     });
 });
 

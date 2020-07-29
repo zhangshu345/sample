@@ -102,7 +102,6 @@ var clickchilds=function(v){
 }
 
 
-importClass(com.hongshu.androidjs.core.debug.DevPluginService)
 DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
 
 checkscreencapture()

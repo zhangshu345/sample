@@ -7,15 +7,15 @@ importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(android.net.Uri)
 importClass(com.hongshu.utils.SPUtils)
 importClass(android.graphics.Bitmap)
-importClass(com.hongshu.utils.KeyboardUtils)
+importClass(com.blankj.utilcode.util.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.GsonUtils)
+importClass(com.blankj.utilcode.util.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
-importClass(com.hongshu.androidjs.core.script.Scripts)
+importClass(com.hongshu.autojs.core.script.Scripts)
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝",
