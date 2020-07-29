@@ -25,7 +25,7 @@ function httpget(url) {
     }
 }
 
-// var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+// var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/base/allfunction2.js"
 // var mainfunction
 // const mainemitter=events.emitter()
 // threads.start(function(){

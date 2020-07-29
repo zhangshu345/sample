@@ -13,7 +13,7 @@ function httpget(url) {
     }
 }
 
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -26,7 +26,7 @@ creatgfloatywindow()
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 device.wakeUpIfNeeded()
-allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/viprewardapplist.json"
+allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/viprewardapplist.json"
 
 function listapp(){
     var appconfig=httpget(allrewardappurl)

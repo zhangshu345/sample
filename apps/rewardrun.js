@@ -13,7 +13,7 @@ function httpget(url) {
             return ""
         }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/allfunction.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/%E5%9F%BA%E7%A1%80/allfunction.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
     eval(公共函数文本)

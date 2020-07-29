@@ -31,7 +31,7 @@ function textclick(i,t,left,top,right,bottom){
 
 var checkscreencapture=function(){
     //    captureScreen("/sdcard/screencapture" + i + ".png");
-  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
+  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v2/base/requestscreencapture.js"),{})
   threads.start(function() {
     n_t=0
       while(n_t<5){

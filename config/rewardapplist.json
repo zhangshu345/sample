@@ -81,7 +81,7 @@
 		"desc": "脚本描述",
 		"pkg": "com.jm.video",
 		"bmobid": "",
-		"scripturl": "https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/刷宝微信登录自动签到.js",
+		"scripturl": "https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/刷宝微信登录自动签到.js",
 		"money": 1.0,
 		"onetime": 1800,
 		"maxtime": 10800,

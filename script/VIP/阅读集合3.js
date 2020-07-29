@@ -10,7 +10,7 @@ function httpget(url) {
         return httpget(url)
     }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -29,10 +29,10 @@ if(!gfw){
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合3.js"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合3.js"
 //addbmobchannel("yuedutimer5")
 readercheck()
 runapps=["快手极速版","刷宝短视频","天天爱清理","彩蛋视频","小糖糕","火火视频极速版","趣铃声","铃声秀","快音","快看点","酷狗音乐大字版","荔枝铃声","米读极速版"]
 startreaderapps("阅读集合版本手动提现最新版本",selfscriptpath,selfrewardlisturl,false,true,null)  //不会自动提现
-//js:runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合3.js
+//js:runurl:https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合3.js

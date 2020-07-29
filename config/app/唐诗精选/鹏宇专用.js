@@ -14,7 +14,7 @@ function httpget(url) {
 }
 滑动次数=0
 engines.stopOther()
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/base/allfunction2.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/base/allfunction2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -31,7 +31,7 @@ show("开始鹏宇专用")
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/唐诗精选/pengyu.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/唐诗精选/pengyu.json"
 var run=function(){
     keepappclear(selfrewardlisturl)
     var appconfig=httpget(selfrewardlisturl)

@@ -10,7 +10,7 @@ function httpget(url) {
         return httpget(url)
     }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -29,10 +29,10 @@ if(!gfw){
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js"
 
 // addbmobchannel("yuedutimer5")
 
 localstartreaderapps("阅读集合自动提现版本不更新",selfscriptpath,true,false,selfrewardlisturl)
-//js:runurl:https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/阅读集合1.js
+//js:runurl:https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js

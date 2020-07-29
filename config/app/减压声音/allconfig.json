@@ -4,7 +4,7 @@
     "versioni":138,
     "channel":"androidjs",
     "baseurl":"http://www.imengququ.com/api/androidjs/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/rewardapplist.json",
     "runurl":"http://yuedu.xiequbo.cn/run.js",
     "mtaappkey":"AGZ93Y4P4LIQ",
     "bmobappid":"cde8d15b9a32de51837f8eb469851328",
@@ -21,7 +21,7 @@
     "notificationsurl":"",
     "lineme":"",
     "messagesurl":"",
-    "historys":"https://gitee.com/zhangshu345012/sample/raw/v1/config/app/减压声音/apphistory.json",
+    "historys":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/减压声音/apphistory.json",
 "advice":{   
     "jgchaping":60,
     "jgbanner":30,
@@ -106,10 +106,10 @@
  
 }
 ,
-"tag":[ {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/热门.json"},
-    {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/推荐.json"},
-    {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/快捷方式.json"},
-    {"name":"VIP","level":5,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v1/config/scripts/VIP.json"}
+"tag":[ {"name":"推荐","level":0,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/热门.json"},
+    {"name":"工具","level":0,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
+    {"name":"快捷方式","level":0,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
+    {"name":"VIP","level":5,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/VIP.json"}
 ],
 "activity":[{"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":true,"coin":10000,"money":0,"event":7,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_login","script":""},
     {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":true,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},

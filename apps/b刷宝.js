@@ -701,7 +701,7 @@ function 启动线程(){
 // var f=刷宝获取当前余额()
 // log("刷宝金币",f)
 var downloadandinstallapp=function(name){
-    var configurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
+    var configurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/%E9%98%85%E8%AF%BB%E9%9B%86%E5%90%88%E9%85%8D%E7%BD%AE.json"
     var appconfig=httpget(configurl)
     alter(appconfig)
     var apps=JSON.parse(appconfig)

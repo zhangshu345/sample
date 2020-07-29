@@ -15,8 +15,8 @@ importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.androidjs.core.script.Scripts)
 device.wakeUpIfNeeded()
-var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js"
+var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
+var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法",
 "唐诗精选","一个就够","随便粘","东东随便","KeepHealth","东览","唐诗宋词集合","动物的叫声","小白闹钟天气","手机营业厅",
@@ -36,7 +36,7 @@ var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var scriptruntime=function(){return(nowdate().getTime()-scriptstarttime)/1000}
-var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
+var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/rewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
 var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
@@ -46,17 +46,17 @@ log("脚本app名："+scriptappname)
 var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3"]  //我的 9X4T2X
 var 快手极速版邀请码=["xps8bz","8ca66w","2gz5jwv","2bu24wu","26b2w7z","2bn23jb","26bmyff"]
 var 趣多多邀请码=["89797906"]
-var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/invitecode.txt"
-var 刷宝短视频邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/invitecode.txt"
-var 火山极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/invitecode.txt"
-var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/baba.txt"
-var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/mm.txt"
-var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/1081.txt"
-var hong2shuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/3841.txt"
-var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/bb.txt"
-var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/火山极速版/yang.txt"
-var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/刷宝/yang.txt"
-var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v1/base/邀请码/快手极速版/bb.txt"
+var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/快手极速版/invitecode.txt"
+var 刷宝短视频邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/invitecode.txt"
+var 火山极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/invitecode.txt"
+var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/baba.txt"
+var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/mm.txt"
+var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/1081.txt"
+var hong2shuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/3841.txt"
+var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/bb.txt"
+var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/yang.txt"
+var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/yang.txt"
+var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/快手极速版/bb.txt"
 var 刷宝邀请链接=[bbshuabao,mmshuabao,yangshuabao,hongshuabao,hong2shuabao]
 var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
 var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
@@ -1228,7 +1228,7 @@ var clickscreencapture=function(){
 }
 var checkscreencapture=function(){
     //    captureScreen("/sdcard/screencapture" + i + ".png");
-  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v1/base/requestscreencapture.js"),{})
+  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v2/base/requestscreencapture.js"),{})
   threads.start(function() {
     n_t=0
       while(n_t<5){
@@ -1263,7 +1263,7 @@ var startdeviceadmin=function(){
         app.launch(context.getPackageName())
         sleep(5000)
     }
-    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v1/script/快捷方式/系统快捷设置.js");
+    ui函数=httpget("https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js");
     var eeee= engines.execScript("uiname",ui函数,{})
     sleep(2000)
     let ss=true
@@ -1853,7 +1853,7 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
 }
 
 var runtimerscript=function(){
-    runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js")
+    runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/定时套餐.js")
 }
 
 var checkstoragestate=function(){

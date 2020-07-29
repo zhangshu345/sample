@@ -10,7 +10,7 @@ function httpget(url) {
         return httpget(url)
     }
 }
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -30,8 +30,8 @@ if(!gfw){
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/newrewardapplist.json"
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/定时套餐.js"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/定时套餐.js"
 var run=function(){
     listapp(readerapps)
     com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()

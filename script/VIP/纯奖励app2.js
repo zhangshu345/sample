@@ -2,7 +2,7 @@ auto.waitFor()
 auto.setMode("normal")
 importClass(com.hongshu.utils.AppUtils)
 device.wakeUpIfNeeded()
-selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/纯奖励app2.js"
+selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/纯奖励app2.js"
 function httpget(url) {
     var r = http.get(url);
        if (r.statusCode == 200) {
@@ -14,7 +14,7 @@ function httpget(url) {
     }
 }
 滑动次数=0
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
     toastLog("公共函数实例化前,程序返回")
@@ -35,7 +35,7 @@ gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
 debug=true
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v1/config/adapplist.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/adapplist.json"
 var run=function(){
     stopOtherScript()
     listapp()

@@ -209,7 +209,7 @@ function 验证滑块(){
   }
 }
 /*
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v1/%E5%9F%BA%E7%A1%80/%E9%98%85%E8%AF%BB%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/%E5%9F%BA%E7%A1%80/%E9%98%85%E8%AF%BB%E5%85%AC%E5%85%B1%E5%87%BD%E6%95%B0%E9%9B%86%E5%90%88.js"
 var  公共函数文本=httpget(公共函数url)
 log(公共函数文本)
 

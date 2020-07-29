@@ -8,7 +8,7 @@ h = device.height;
 
 function instantiation(varrurl) {
     yun = 1
-    var  yunurl = "https://gitee.com/zhangshu345012/sample/raw/v1/apps/jiajia/fucation_lib1.js"
+    var  yunurl = "https://gitee.com/zhangshu345012/sample/raw/v2/apps/jiajia/fucation_lib1.js"
    
     if (yun == 1) {
         var r = http.get(yunurl);
