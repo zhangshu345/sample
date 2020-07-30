@@ -1,6 +1,6 @@
 "ui";
 importClass(com.hongshu.advice.AdviceManager)
-importClass(com.hongshu.utils.ActivityUtils)
+
 importClass(android.content.ComponentName)
 ui.layout(
     <vertical>

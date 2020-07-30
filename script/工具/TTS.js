@@ -12,7 +12,6 @@ var str ="这是一个语音合成事例"//要读的
 var pitch = 1.0//语音尖度，有一个限制
 var speechRate = 1.0//语速，同上
 
-
 var obj = {
     onInit: function(status) {
         //根据群里大佬说的，这里冒号前应该填接口的方法名，参数名应该填接口方法得参数名(大概？)

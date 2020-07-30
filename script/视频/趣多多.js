@@ -48,7 +48,7 @@ var appname="趣多多"
 
 var coin=上次金币(appname)
 var money=上次余额(appname)
-var todaycoin=上次金币(appname)
+var todaycoin=上次今日金币(appname)
 
 
 alltest()

@@ -101,6 +101,9 @@ var 今日已提现=function(name){   今日记录(name,"cashout",true); }
 var 记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
 var 上次今日金币=function(name){ return 获取今日记录(name,"coin",0); } 
 
+var 记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
+var 上次金币=function(name){ return 获取记录(name,"coin",0); } 
+
 
  //可以通过上次的金币来判断是否 还可以获取金币
 var 记录现在余额=function(name,f){记录(name,"money",f);} 
@@ -1567,7 +1570,7 @@ function downloadApk(name,downloadurl,isinstall) {
     doactionmaxtime(function(){
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
-            if(textclick("允许此来源")){ back(); sleep(1000) ; }
+            if(textclick("允许此来源")){ back(); sleep(300) ; }
             clicktexts(["设置","允许"],100,1500)
            clicktexts(clickarray,100,1200,0,device.height*2/3)
            if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){control_click(3,"向上导航"); }
