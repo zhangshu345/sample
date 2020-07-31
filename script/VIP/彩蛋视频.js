@@ -168,6 +168,9 @@ var app_see_video=function(){
         doactionmaxnumber(function(n){
             show(appname+"首页看视频:"+n)
                 app_go_home(1)
+                if(getTextfromid("com.jifen.dandan:id/view_status_reach_limit")=="点击赚钱"){
+                    return true
+                }
             if(isadviceactivity()>-1){
                 seead()
             }
@@ -435,6 +438,7 @@ var app_getreward1=function(){
             if(textclick("iPhone免费抽")){
 
             }
+            idclick("com.jifen.dandan:id/tv_close")
        if(textclick("收金币")){
             seead()
         }
@@ -471,6 +475,15 @@ var app_reward_88=function(){
     
 }
 
+
+
+var app_reward_airplane=function(){
+    try {
+        
+    } catch (error) {
+        
+    }
+}
 
 var app_login=function(){
   doactionmaxtime(function(){
