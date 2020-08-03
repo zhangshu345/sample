@@ -123,6 +123,15 @@ var lastscriptapp=function(){return spt.getString("lastscriptapp")}
 var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 
+var agourl=function(url){
+    app.startActivity({
+        extras: {
+            "url": url
+          },
+          packageName: context.packageName,
+            className: "com.hongshu.ui.scheme.SchemeFilterActivity"
+    });
+}
 
 //开启调试
 var startdebug=function(ip){
