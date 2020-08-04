@@ -1,5 +1,5 @@
 // 需要Pro 7.0.3-4以上
-requiresAutojsVersion(7000304);
+// requiresAutojsVersion(7000304);
 //by:无名小姐 
 //qq:1352183717
 //代码不是很严紧啊  将就一下
