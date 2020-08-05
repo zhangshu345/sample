@@ -1,1 +1,1 @@
-shell("am force-stop com.kuaishou.nebula",{root:true,adb:true})
+shell("am force-stop com.kuaishou.nebula",true)
