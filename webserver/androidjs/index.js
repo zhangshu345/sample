@@ -111,7 +111,7 @@ app.get('/yuedu/api/getshare',urlencodedParser, function (req, res) {
 
 //获取任务
 app.post('/yuedu/api/gettask',urlencodedParser,function(req,res){
-   appdata.gettask(res,req.body.)
+   // appdata.gettask(res,req.body.)
 }
 )
 

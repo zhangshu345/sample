@@ -231,7 +231,7 @@ function Appdata(){
             respon.end(JSON.stringify(arr))
     }
 
-    this.addtask=async function(respon,dbname,collectname,username,taskname,app,rewardcoin,summary,){
+    this.addtask=async function(respon,dbname,collectname,username,taskname,app,rewardcoin,summary){
         
      }
     
