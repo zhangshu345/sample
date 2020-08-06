@@ -231,6 +231,13 @@ function Appdata(){
             respon.end(JSON.stringify(arr))
     }
 
+    this.addtask=async function(respon,dbname,collectname,username,taskname,app,rewardcoin,summary,){
+        
+     }
+    
+    this.gettask=async function(respon,dbname,collectname,taskwhere){
+       find(respon,dbname,collectname,taskwhere)
+    }
 }
 
 

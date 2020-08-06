@@ -9,6 +9,10 @@ var appdata=new Appdata();
 
 var yuedudb="hongshuyuedu"
 var yueducollection="yuedu"
+app.get('/',function(req,res){
+   console.log("访问空路径")
+   res.end("红薯阅读api系统")
+})
 
 app.post('/yuedu/api/insertone',urlencodedParser, function (req, res) {
    // 输出 JSON 格式
@@ -84,7 +88,7 @@ app.post('/yuedu/api/getusershare',urlencodedParser, function (req, res) {
 
 app.post('/yuedu/api/seeurl',urlencodedParser, function (req, res) {
    // 输出 JSON 格式
-  appdata.seeurl(res,yuedudb,yueducollection,req.body.url)
+  appdata.seeurl(res,req.body.db,req.body.collect,req.body.url)
 
 })
 
@@ -102,11 +106,33 @@ app.get('/yuedu/api/getshare',urlencodedParser, function (req, res) {
 })
 
 
-app.post('/yuedu/api/insert',urlencodedParser, function (req, res) {
-   // 输出 JSON 格式
-  appdata.insert(res,yuedudb,yueducollection,req.body.user,req.body.ip,req.body.app,req.body.type)
 
-})
+
+
+//获取任务
+app.post('/yuedu/api/gettask',urlencodedParser,function(req,res){
+   appdata.gettask(res,req.body.)
+}
+)
+
+//添加任务
+app.post('/yuedu/api/addtask',urlencodedParser,function(req,res){
+
+}
+)
+
+//移除任务
+app.post('/yuedu/api/removetask',urlencodedParser,function(req,res){
+
+}
+)
+
+//上报任务完成度 
+app.post('/yuedu/api/reporttask',urlencodedParser,function(req,res){
+
+}
+)
+
 
 
 
@@ -114,6 +140,7 @@ app.get('/androidjs/api/login', function (req, res) {
    res.send('androidjs login -get');
    res.end()
 })
+
  //  POST 请求
 app.post('/androidjs/api/login', function (req, res) {
     console.log("主页 POST 登录");
