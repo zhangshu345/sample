@@ -1,0 +1,39 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": true
+  },
+  "main": "main.js",
+  "name": "webview",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.webviewtest",
+  "publish": {
+    "category": "其他",
+    "details": "webview打开本地网页并注入本地脚本",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8019999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8010000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "ui打开本地网页",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

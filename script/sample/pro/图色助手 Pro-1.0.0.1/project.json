@@ -1,0 +1,41 @@
+{
+  "assets": [],
+  "build": {
+    "build_id": "924C87FF-49",
+    "build_number": 49,
+    "build_time": 1596302335689,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": true,
+    "splashIcon": "res/splashIcon.png",
+    "splashText": "图色助手Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "图色助手 Pro",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.cgfz.tszs",
+  "publish": {
+    "category": "实用工具",
+    "details": "还在为找不到合适的图色工具而烦恼吗？快来试试这个吧！",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8199999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8010000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "让你更快捷的开发图色类脚本",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

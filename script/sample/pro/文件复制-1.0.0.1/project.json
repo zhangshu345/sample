@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": true
+  },
+  "main": "main.js",
+  "name": "文件复制",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.scgm.copy",
+  "publish": {
+    "category": "其他",
+    "details": "根据网上java代码改的，因为aj的文件操作只能复制文件，不能复制文件夹。",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "可复制文件夹及其子内容。",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

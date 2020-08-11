@@ -1,0 +1,39 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "MaterialDesign",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.material.design",
+  "publish": {
+    "category": "实用工具",
+    "details": "MaterialDesignDemo",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 4,
+    "permissions": [],
+    "summary": "学习MaterialDesign",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

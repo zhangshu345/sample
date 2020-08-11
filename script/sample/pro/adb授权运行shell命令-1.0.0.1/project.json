@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "adb授权运行shell命令",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.example.shizuku",
+  "publish": {
+    "category": "官方示例",
+    "details": "连接电脑激活后可以执行adb权限的命令",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 7000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "连接电脑激活后可以执行adb权限的命令",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

@@ -1,0 +1,1 @@
+参考git仓库 https://github.com/lepon/websocket-heartbeat-js

@@ -1,0 +1,39 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "icon": "res/logo.png",
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "mainScriptFile": "main.js",
+  "name": "计算器",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "com.calculator.rayiooo",
+  "publish": {
+    "category": "实用工具",
+    "details": "可进行带括号的加减乘除计算",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 7009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 7000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "带图形界面的计算器",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

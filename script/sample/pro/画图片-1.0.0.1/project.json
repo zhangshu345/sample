@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "画图片",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "draw.image.auto.js.com",
+  "publish": {
+    "category": "其他",
+    "details": "当示例看吧",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "使用drawImage画一个图片",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

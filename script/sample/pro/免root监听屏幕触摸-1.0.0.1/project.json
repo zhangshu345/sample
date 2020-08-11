@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "免root监听屏幕触摸",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "ds.touch.unroot",
+  "publish": {
+    "category": "实用工具",
+    "details": "悬浮窗铺满屏幕，通过监听悬浮窗的触摸事件来获取触摸坐标，触摸时间。然后设置悬浮窗不可触摸，模拟操作，再设置悬浮窗可触摸。",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8000005,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 4,
+    "permissions": [],
+    "summary": "利用悬浮窗",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

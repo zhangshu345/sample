@@ -1,0 +1,38 @@
+{
+  "assets": [],
+  "build": {
+    "build_number": 0,
+    "build_time": 0,
+    "release": false
+  },
+  "encryptLevel": 0,
+  "useFeatures": [],
+  "launchConfig": {
+    "displaySplash": true,
+    "hideLogs": false,
+    "splashText": "Powered by Auto.js Pro",
+    "stableMode": false
+  },
+  "main": "main.js",
+  "name": "调用系统下载器",
+  "optimization": {
+    "removeOpenCv": false,
+    "unusedResources": false
+  },
+  "packageName": "qq1061602764.com",
+  "publish": {
+    "category": "其他",
+    "details": "调用安卓系统自带的下载管理器进行下载",
+    "maxAutoJsVersion": -1,
+    "maxProVersion": 8009999,
+    "minAutoJsVersion": -1,
+    "minProVersion": 8000000,
+    "minSdkVersion": 2,
+    "permissions": [],
+    "summary": "调用系统下载器",
+    "tags": []
+  },
+  "scripts": {},
+  "versionCode": 1,
+  "versionName": "1.0.0"
+}

@@ -175,7 +175,7 @@
         "exchange":"交换页",
         "cash":"提现页",
         "content":"内容页"},
-    "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":false,"waittime":3,"permission":["STORAGE","PHONE"],
+    "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":false,"waittime":3,"permission":["STORAGE"],
         "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595822446422&di=0724b00cdab29a1325a82d61f8359b32&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D55535a93a544ad342ebf878fe0a30c08%2Fc701b451f8198618f20a17fa4eed2e738bd4e61e.jpg",
         "nextactivityurl":"/script/usermain","runningscript":"",
         "nextscript":"https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js","desc":"随便粘200的开屏页配置"},
