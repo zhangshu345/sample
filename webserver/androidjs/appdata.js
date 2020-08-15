@@ -201,7 +201,6 @@ function Appdata(){
         });
     }
     
-
     this.getusershare= function(respon,dbname,collectname,username){
         console.log("阅读用户分享数据")
         console.log("db:"+dbname)
@@ -239,6 +238,5 @@ function Appdata(){
        find(respon,dbname,collectname,taskwhere)
     }
 }
-
 
 module.exports = Appdata;
