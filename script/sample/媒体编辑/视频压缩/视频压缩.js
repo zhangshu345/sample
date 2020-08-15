@@ -29,7 +29,6 @@ function 视频压缩(视频路径,保存路径){
     })
 }
 
-
 function 视频变速(视频路径,保存路径,速度){
     if(视频路径==null){
         return ;
@@ -56,4 +55,4 @@ function 视频变速(视频路径,保存路径,速度){
 
 // 视频变速(rootpath+"/刷宝.mp4",rootpath+"/新刷宝.mp4",0.5)
 
-execMediaEditCommands("变速",["ffmpeg -y -ss 0 -t 7 -i /storage/emulated/0/快手.mp4 -r 5 -s 280x606 -preset superfast /storage/emulated/0/快手.gif"])
+execMediaEditCommands("截屏",["ffmpeg -y -i /storage/emulated/0/快手.mp4 -f image2 -ss 00:00:03 -vframes 1 -preset superfast /storage/emulated/0/result.jpg"])
