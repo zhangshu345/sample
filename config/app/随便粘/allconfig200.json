@@ -9,7 +9,7 @@
     "umengappsecretkey":"",
     "jpushkey":"39ec1b5977dba399606a45e6",
     "userlogin":false,
-    "bmobpush":false,
+    "bmobpush":true,
     "jpush":true,
     "showad":true,
     "channeladvice":"",
