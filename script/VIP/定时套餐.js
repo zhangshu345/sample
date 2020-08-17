@@ -128,7 +128,5 @@ var  shuffleArray=function(array) {
 //     }
 // });
 //停止线程执行
-
-
 readercheck()
 run()

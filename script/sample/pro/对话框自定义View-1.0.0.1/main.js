@@ -1,5 +1,5 @@
 // 需要Pro 7.0.3-4以上
-requiresAutojsVersion(7000304);
+// requiresAutojsVersion(7000304);
 
 // 将xml渲染为view，这个view将显示在对话框中
 let view = ui.inflate(
