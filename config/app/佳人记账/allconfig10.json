@@ -17,7 +17,8 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
-    "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"}],
+    "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"},
+        { "name":"helpdoc","value":"https://support.qq.com/products/179319" }],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
@@ -83,13 +84,13 @@
         "jgbanner":30,
         "jgnative":3,
         "sign":"",
-        "ratio":"tt-10",
-        "ratiosplash":"tt—10",
-        "ratiobanner":"tt—10",
-        "ratiochaping":"tt—10",
-        "rationative":"tt—10",
-        "ratiorewardvideo":"tt—10",
-        "ratiofullvideo":"tt—10",
+        "ratio":"bd-10",
+        "ratiosplash":"bd—10",
+        "ratiobanner":"bd—10",
+        "ratiochaping":"bd—10",
+        "rationative":"bd—10",
+        "ratiorewardvideo":"bd—10",
+        "ratiofullvideo":"bd—10",
         "gdt":{
         "open":false,
         "appid":"",
@@ -112,7 +113,7 @@
         "rewardvideo":""
         },
         "toutiao":{
-        "open":true,
+        "open":false,
         "appid":"5054838",
         "nativeid":"945090050",
         "banner600300":"945090051",
@@ -145,7 +146,7 @@
             "hudong":"" 
         },
         "mintegral":{
-            "open":true,
+            "open":false,
             "appid":"d62bd37b8de85bf80b176dc68fcbf05f",
             "apppky":"134627",
             "splash":"",
@@ -160,13 +161,16 @@
             "open":true,
             "appid":"d70695f9",
             "splash":"7193509",
-            "banner":"7193508",
+            "banner203":"7193508",
+            "banner32":"7194430",
+            "banner73":"7194431",
+            "banner21":"7194432",
             "chaping":"7193510",
             "fullchaping":"7193511",
             "prevideo":"7193512",
             "rewardvideo":"7193513",
-            "rewardvideo2":"7193514"
-
+            "rewardvideo2":"7193514",
+            "cpuurl":"https://cpu.baidu.com/1022/d70695f9/i?pu=1&promotion_media_channel=67393"
         }
     },
     "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
