@@ -156,6 +156,21 @@
             "rewardvideo":"255842",
             "appwall":"283748",
             "appwallnative":"283749"
+        }, 
+        "baidu":{
+            "open":true,
+            "appid":"aaca1dd1",
+            "splash":"7195617",
+            "banner203":"7195616",
+            "banner32":"7195619",
+            "banner73":"7195620",
+            "banner21":"7195621",
+            "chaping":"7195618",
+            "fullchaping":"7195622",
+            "prevideo":"7195623",
+            "rewardvideo":"7195624",
+            "rewardvideo2":"7195625",
+            "cpuurl":"https://cpu.baidu.com/1022/aaca1dd1/i?pu=1&promotion_media_channel=67442"
         }
     },
     "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
