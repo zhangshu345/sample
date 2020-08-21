@@ -1,5 +1,5 @@
 importClass(com.blankj.utilcode.util.EncryptUtils)
-
+importClass(com.blankj.utilcode.util.ConvertUtils)
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 //字符串转字节序列
 function stringToByte(str) {  
@@ -62,6 +62,13 @@ function stringToByte(str) {
 
 // var ess=EncryptUtils.encryptAES2HexString(ss)
  var ss='http://zhangshuhong888.iask.in:8989/lib3.js'
-ess=stringToByte(ss)
+ var key="3499jiajia"
+ var iv="5e8y6w45ju8w9jq8"
+ ctbt=ConvertUtils.string2Bytes(ss)
+ log(ctbt)
+psbt=ConvertUtils.string2Bytes(key)
+log(psbt)
+var dss=EncryptUtils.decryptAES(ctbt,psbt,"DES",ConvertUtils.string2Bytes(iv))
+log("dss:"+dss)
+ess=ConvertUtils.bytes2String(dss);
 log(ess)
-log(byteToString(ess))
