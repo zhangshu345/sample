@@ -1,6 +1,6 @@
 "ui";
 
-var url = "https://www.autojs.org/assets/uploads/files/1540386817060-918021-20160416200702191-185324559.jpg";
+var url = "http://zhangshuhong888.iask.in:8989/img_hjj/kanguanggao.png";
 var logo = null;
 var currentImg = null;
 
