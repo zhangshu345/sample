@@ -658,13 +658,13 @@ var show=function(txt,txtcolor){
                 // // gfw.text.setTextColor(txtcolor)
                 // }
             })
-          
         }
-       
     } catch (error) {
         log(error)
     }
 }
+
+
 var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
 var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
 var alter=sync(function(txt,t,left,top,width,height){
@@ -777,7 +777,6 @@ var  clearappcache=function(appname,apppkg,fromforcestop){
     back();
     sleep(300); 
     back()
- 
 }
 
 var  tofloatysetting=function(){
