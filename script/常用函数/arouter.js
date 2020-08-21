@@ -16,4 +16,4 @@ var agourl=function(url){
 // log("pa")
 // pa.navigation();
 
-aroutergourl("\/script\/develop")
+aroutergourl("\/script\/videoedit")

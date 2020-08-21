@@ -8,7 +8,7 @@ importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.SPUtils)
+importClass(com.hongshu.utils.FastSPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
@@ -375,7 +375,7 @@ var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var isshowfloaty=false  //是否显示提醒
-var spt=SPUtils.getInstance()  //保证和APP交互 使用同一个
+var spt=FastSPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
 var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
 var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
@@ -945,7 +945,6 @@ function textclick(txt,t,left,top,right,bottom){
             return false
         }
     }
-   
     return clicknode(f)
 }
 
@@ -2586,7 +2585,6 @@ var keepappisnewer=function(name,pkg){
     } catch (error) {
         log("keepappisnewer"+"--"+name+":"+error)
     }
-     
 }
 
 var checkscriptversion=function(){
