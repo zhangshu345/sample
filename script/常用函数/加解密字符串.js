@@ -1,6 +1,9 @@
 importClass(com.blankj.utilcode.util.EncryptUtils)
 importClass(com.blankj.utilcode.util.ConvertUtils)
+importClass(com.hongshu.utils.AdvancedEncryptionStandard)
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
+
+
 //字符串转字节序列
 function stringToByte(str) {  
     var bytes = new Array();  
@@ -25,8 +28,6 @@ function stringToByte(str) {
         }  
     }  
     return bytes;  
-
-
 }  
 
 //字节序列转ASCII码
@@ -59,16 +60,53 @@ function stringToByte(str) {
 //  var ss=httpget('http://zhangshuhong888.iask.in:8989/lib3.js')
 //  log("原生："+ss)
 
-
 // var ess=EncryptUtils.encryptAES2HexString(ss)
- var ss='http://zhangshuhong888.iask.in:8989/lib3.js'
- var key="3499jiajia"
- var iv="5e8y6w45ju8w9jq8"
- ctbt=ConvertUtils.string2Bytes(ss)
- log(ctbt)
-psbt=ConvertUtils.string2Bytes(key)
-log(psbt)
-var dss=EncryptUtils.decryptAES(ctbt,psbt,"DES",ConvertUtils.string2Bytes(iv))
-log("dss:"+dss)
-ess=ConvertUtils.bytes2String(dss);
-log(ess)
+ var ss='http://zhangshuhong888.iask.in:8989/0集好视频.js'
+ var key="123456781234567812345678"
+ var iv="12345678876543ad"
+ctbt=ConvertUtils.string2Bytes(ss)
+
+// psbt=ConvertUtils.string2Bytes(key)
+ //ivbt=ConvertUtils.string2Bytes(iv)
+//  var dss=EncryptUtils.decryptAES(ctbt,psbt,"AES/CBC/PKCS5Padding",ConvertUtils.string2Bytes(iv))
+//  ess=ConvertUtils.bytes2String(dss);
+
+function encrypt(data,key,iv){
+    var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(key),iv)
+    mw=ad.encrypt(ConvertUtils.string2Bytes(data));
+    emw=ConvertUtils.bytes2String(mw);
+    return mw
+
+}
+
+function encrypthttpfile(url,savepath,key,iv){
+    var httpcontent=httpget(url)
+    if(httpcontent!=""){
+        var emw=encrypt(httpcontent,key,iv)
+        files.writeBytes("/sdcard/"+savepath, emw);
+    }
+}
+
+function decrypt(data,key,iv){
+    var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(key),iv)
+    var databyte=ConvertUtils.string2Bytes(data)
+    mw=ad.decrypt(databyte,0,databyte.size);
+    emw=ConvertUtils.bytes2String(mw);
+    return emw;
+}
+
+
+function decryptfile(path,key,iv){
+  var  databyte= files.readBytes("/sdcard/"+path)
+    var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(key),iv)
+     mw=ad.decrypt(databyte);
+    emw=ConvertUtils.bytes2String(mw);
+    files.write("/sdcard/"+path+".txt",emw)
+    return emw;
+}
+
+  
+
+encrypthttpfile(ss,"加密集好视频.js",key,iv)
+decryptfile("加密集好视频.js",key,iv)
+ 
