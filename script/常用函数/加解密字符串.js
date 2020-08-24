@@ -27,7 +27,6 @@ function stringToByte(str) {
     }  
     return bytes;  
 }  
-
 //字节序列转ASCII码
 //[0x24, 0x26, 0x28, 0x2A] ==> "$&C*"
  function byteToString(arr) {  
@@ -53,7 +52,6 @@ function stringToByte(str) {
     }  
     return str;  
 }  
-
 
 //  var ss=httpget('http://zhangshuhong888.iask.in:8989/lib3.js')
 //  log("原生："+ss)
