@@ -2,6 +2,8 @@ importClass(com.blankj.utilcode.util.EncryptUtils)
 importClass(com.blankj.utilcode.util.ConvertUtils)
 importClass(com.hongshu.utils.AdvancedEncryptionStandard)
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
+
+
 //字符串转字节序列
 function stringToByte(str) {  
     var bytes = new Array();  
@@ -72,7 +74,6 @@ ctbt=ConvertUtils.string2Bytes(ss)
 function encrypt(datastr,keystr,ivstr){
     var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(keystr),ivstr)
     mw=ad.encrypt(ConvertUtils.string2Bytes(datastr));
-    log(ConvertUtils.bytes2String(ad.decrypt(mw)))
     return mw
 }
 
@@ -90,7 +91,7 @@ function encrypthttpfile(url,savepath,key,iv){
     if(httpcontent!=""){
         log(httpcontent.substring(0,100))
         var emw=encrypt(httpcontent,key,iv)
-        files.writeBytes("/sdcard/"+savepath, emw);
+        files.write("/sdcard/"+savepath, ConvertUtils.bytes2String(emw));
     }
 }
 
@@ -108,21 +109,19 @@ function decryptstring(datastr,keystr,ivstr){
 }
 
 function decryptfile(path,key,iv){
-  var  databyte= files.readBytes("/sdcard/"+path)
+  var  databyte= files.read("/sdcard/"+path)
     var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(key),iv)
-     mw=ad.decrypt(databyte);
+     mw=ad.decrypt(ConvertUtils.string2Bytes(databyte));
     emw=ConvertUtils.bytes2String(mw);
     files.write("/sdcard/解密"+path,emw)
     log(emw)
     return emw;
 }
-// ss="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件.js"
+// ss="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件"
 // path="新加密文件"
 
 // // files.write("/sdcard/"+path,httpget(ss))
 // // log(decryptfile(path,key,iv))
 // log(decryptstring(httpget(ss),key,iv))
-//  encrypthttpfile(ss,"加密集好视频.txt",key,iv)
-// log(files.readBytes("/sdcard/加密集好视频.js"))
-var  jiamifile="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件"
-log(httpget(jiamifile))
+encrypthttpfile(ss,"加密2集好视频.js",key,iv)
+decryptfile("加密2集好视频.js",key,iv)

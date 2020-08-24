@@ -24,8 +24,8 @@ var  creatgfloatywindow=function(){
 }
  creatgfloatywindow()
  sleep(3000)
-  url="https://gitee.com/zhangshu345012/sample/raw/v2/script/%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F/%E7%B3%BB%E7%BB%9F%E5%BF%AB%E6%8D%B7%E8%AE%BE%E7%BD%AE.js"
-  engines.execScript("快捷键", httpget(url) , )
+  url="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
+  engines.execScript("快捷键", httpget(url) )
 i=0
   while(true){
       cysp=text("创意视频").findOne();
