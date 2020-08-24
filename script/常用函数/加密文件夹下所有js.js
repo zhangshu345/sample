@@ -70,17 +70,15 @@ ctbt=ConvertUtils.string2Bytes(ss)
 function encrypt(datastr,keystr,ivstr){
     var ad=new AdvancedEncryptionStandard(ConvertUtils.string2Bytes(keystr),ivstr)
     mw=ad.encrypt(ConvertUtils.string2Bytes(datastr));
-    log(ConvertUtils.bytes2String(ad.decrypt(mw)))
+  //  log(ConvertUtils.bytes2String(ad.decrypt(mw)))
     return mw
 }
-
 
 function encryptstring(datastr,keystr,ivstr){
     var ad=new AdvancedEncryptionStandard(stringToByte(keystr),ivstr)
     mw=ad.encryptstring(datastr);
     return mw
 }
-
 
 //获取网络文件字符串内容 加密 写入到指定目标文件
 function encrypthttpfile(url,savepath,key,iv){
@@ -115,7 +113,30 @@ function decryptfile(path,key,iv){
     return emw;
 }
 
-encrypthttpfile("https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环上滑.js","加密推荐上滑.js",key,iv)
+function encryfile(filename,dir,savedir,key,iv){
+    files.create(dir+savedir)
+    if(files.exists(files.join(dir, filename))){
+        var cy=files.read(files.join(dir, filename))
+        var emw=encrypt(cy,key,iv)
+        files.writeBytes(dir+savedir+filename, emw);
+    }  
+}
+
+function encrydir(dir,houzhui,key,iv){
+
+    var jsFiles = files.listDir(dir, function(name){
+        return name.endsWith(houzhui) && files.isFile(files.join(dir, name));
+    });
+    jsFiles.forEach(filename => {
+        encryfile(filename,dir,"/加密/",key,iv)
+    });
+
+}
+encrydir("/sdcard/apps",".js",key,iv)
+
+
+
+// encrypthttpfile("https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环上滑.js","加密推荐上滑.js",key,iv)
 // ss="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件.js"
 // path="新加密文件"
 
