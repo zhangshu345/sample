@@ -59,7 +59,7 @@ function stringToByte(str) {
 // var ess=EncryptUtils.encryptAES2HexString(ss)
  var ss='http://zhangshuhong888.iask.in:8989/0集好视频.js'
  var key="123456781234567812345678"
- var iv="12345678876543ad"
+ var iv="1234567887654321"
 ctbt=ConvertUtils.string2Bytes(ss)
 
 // psbt=ConvertUtils.string2Bytes(key)
@@ -86,7 +86,7 @@ function encryptstring(datastr,keystr,ivstr){
 function encrypthttpfile(url,savepath,key,iv){
     var httpcontent=httpget(url)
     if(httpcontent!=""){
-        log(httpcontent.substring(0,100))
+        log(httpcontent.sub(0,100))
         var emw=encrypt(httpcontent,key,iv)
         files.writeBytes("/sdcard/"+savepath, emw);
     }
@@ -114,6 +114,8 @@ function decryptfile(path,key,iv){
     log(emw)
     return emw;
 }
+
+encrypthttpfile("https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环上滑.js","加密推荐上滑",key,iv)
 // ss="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件.js"
 // path="新加密文件"
 
@@ -122,5 +124,5 @@ function decryptfile(path,key,iv){
 // log(decryptstring(httpget(ss),key,iv))
 //  encrypthttpfile(ss,"加密集好视频.txt",key,iv)
 // log(files.readBytes("/sdcard/加密集好视频.js"))
-var  jiamifile="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件"
-log(httpget(jiamifile))
+// var  jiamifile="http://zhangshuhong888.iask.in:8989/加密脚本/加密文件"
+// log(httpget(jiamifile))
