@@ -179,7 +179,9 @@
             "prevideo":"7193512",
             "rewardvideo":"7193513",
             "rewardvideo2":"7193514",
-            "cpuurl":"https://cpu.baidu.com/1022/d70695f9/i?pu=1&promotion_media_channel=67393"
+            "cpuurl":"https://cpu.baidu.com/1022/d70695f9/i?pu=1&promotion_media_channel=67393",
+            "cpuallurl":"https://cpu.baidu.com/1032/d70695f9?scid=67396"
+        
         }
     },
     "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",

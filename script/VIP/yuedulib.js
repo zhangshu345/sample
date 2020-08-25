@@ -1551,12 +1551,13 @@ function downloadApk(name,downloadurl,isinstall) {
         }
         threadId && threadId.isAlive() && threadId.interrupt();
         show(name+'下载完成');
-        if(isinstall){
-           install_app(filePath,name)
-        }    
+          
      } catch (error) {
          log("下载失败:"+error)
      }
+     if(isinstall){
+        install_app(filePath,name)
+     } 
     
  }
  
