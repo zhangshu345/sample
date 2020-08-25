@@ -83,10 +83,10 @@ function makescriptfiles(){
         scripts.push(newscript)
     })
    // console.log(JSON.stringify(scripts))
-    fs.writeFileSync(path.resolve("./阅读.json"),JSON.stringify(scripts),{encoding:"utf8",mode:777})
+    fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
-makescriptfiles()
+// makescriptfiles()
 
 function createconfigjsonfile(filedir,filename,data){
     console.log("dir:"+filedir)
@@ -95,7 +95,8 @@ function createconfigjsonfile(filedir,filename,data){
     var filepath=path.resolve(filedir+filename)
     console.log("filepath:"+JSON.stringify(data))
     fs.writeFileSync(filepath,JSON.stringify(data))
-console.log("结束")
+    console.log("结束")
 }
+
 
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})
