@@ -1,0 +1,15 @@
+{
+    "school": "shantou university",
+    "teacher": "Martin",
+    "classNum": 10,
+    "class": [
+        {
+            "name": "XiaoMing",
+            "score": 98
+        },
+        {
+            "name": "XiaoYao",
+            "score": 100
+        }
+    ]
+}
