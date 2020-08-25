@@ -67,13 +67,24 @@ requestapi:10,
 icon:"",
 app:{name:"",pkg:"",icon:"",downloadurl:"", version:""}
 }
-
+function createconfigjsonfile(filedir,filename,data){
+    console.log("dir:"+filedir)
+    console.log("filename:"+filename)
+    console.log(data)
+    var filepath=path.resolve(filedir+filename)
+    console.log("filepath:"+JSON.stringify(data))
+    fs.writeFileSync(filepath,JSON.stringify(data))
+    console.log("结束")
+}
 
 function makescriptfiles(){
-    var scriptnames=["爱走路","波波视频"]
+    var dir="./script/App"
+
+    var scriptnames=fs.readdirSync(path.resolve(dir))
     var scripts=[]
     var scriptpath="App"
     scriptnames.forEach(name=>{
+        name=name.replace('.js','')
         let newscript=JSON.parse(JSON.stringify(scriptobj))
         newscript.name=name;
         newscript.desc.summary="网友共享："+name
@@ -86,17 +97,8 @@ function makescriptfiles(){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
-// makescriptfiles()
+makescriptfiles()
 
-function createconfigjsonfile(filedir,filename,data){
-    console.log("dir:"+filedir)
-    console.log("filename:"+filename)
-    console.log(data)
-    var filepath=path.resolve(filedir+filename)
-    console.log("filepath:"+JSON.stringify(data))
-    fs.writeFileSync(filepath,JSON.stringify(data))
-    console.log("结束")
-}
 
 
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})
