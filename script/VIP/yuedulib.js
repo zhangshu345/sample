@@ -237,6 +237,21 @@ var 微信加好友=function(weixinhao,phone){
                 滑动(20,10,5,10,15,500,500)
             }
             text("添加朋友").waitFor()
+            textclick("微信号/手机号")
+            sleep(1500)
+            setText(weixinhao)
+            sleep(1000)
+            maytextclick("搜索")
+            doactionmaxtime(function(){
+                if(textclick("添加到通讯录")){
+                    return true
+                }
+                if(text("发消息").exists()){
+                    return true
+                }
+            },20000,1000)
+           
+            
         }
     }
 }
@@ -3192,3 +3207,4 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json")
 
 // 微信打开链接("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
+// 微信加好友("zhangshuhong345")
