@@ -97,7 +97,29 @@ function makescriptfiles(){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
-makescriptfiles()
+function makepasswordscriptfiles(){
+    var dir="./script/App"
+
+    var scriptnames=fs.readdirSync(path.resolve(dir))
+    var scripts=[]
+    var scriptpath="App"
+    scriptnames.forEach(name=>{
+        name=name.replace('.js','')
+        let newscript=JSON.parse(JSON.stringify(scriptobj))
+        newscript.name=name;
+        newscript.desc.summary="网友共享："+name
+        newscript.password="123456781234567812345678"
+        newscript.key="1234567887654321"
+        newscript.source=7
+        newscript.path="https://gitee.com/zhangshu345012/sample/raw/v2/script/"+scriptpath+"/"+name+".js"
+        scripts.push(newscript)
+    })
+   // console.log(JSON.stringify(scripts))
+    fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
+}
+
+
+makepasswordscriptfiles()
 
 
 
