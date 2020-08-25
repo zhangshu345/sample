@@ -141,7 +141,6 @@ func.execApp = function(packname,package,millsec,condition){
     while(execTrys-- > 0){
         try{
             this.home();
-
             var ttls = ',';
             var isrepeat = false;
             var appicon = null;
@@ -460,7 +459,7 @@ function install_app(filePath, name,maxtime,isopen,delect) {
            toastLog("检测"+name+"安装中....")
            if(textclick("允许此来源")){ back(); sleep(300) ; }
            clicktexts(["设置","允许"],100,1500)
-          clicktexts(clickarray,100,1200,0,device.height*2/3)
+            clicktexts(clickarray,100,1200,0,device.height*2/3)
           if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){descclick("向上导航"); }
            }
            if(textclick("允许来自此来源的应用")){ back();sleepr(1200);  }
@@ -633,7 +632,7 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
         if(b.centerX()>0&&b.centerY()>0){
             log("点击中心位置"+b.centerX()+"--"+b.centerY())
             for(let n=0;n<clicknumber;n++){
-                press(b.centerX()+dx,b.centerY()+dy,time)
+                click(b.centerX()+dx,b.centerY()+dy)
                 sleep(intervaltime)
             }
             return true
@@ -642,7 +641,7 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
             for(let n=0;n<clicknumber;n++){
-                press(b.left+dx,b.top+dy+dy,time)
+               click(b.left+dx,b.top+dy+dy)
                 sleep(intervaltime)
             }
             return true
@@ -651,7 +650,7 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
            if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
             log("点击控件右下角"+(b.right)+","+(b.bottom))
             for(let n=0;n<clicknumber;n++){
-                press(b.right+dx,b.bottom+dy,time)
+                click(b.right+dx,b.bottom+dy)
                 sleep(intervaltime)
             }
             return true

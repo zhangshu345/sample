@@ -97,6 +97,7 @@ function makescriptfiles(){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
+//生成加密脚本列表
 function makepasswordscriptfiles(){
     var dir="./script/App"
 
