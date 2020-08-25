@@ -1,0 +1,1 @@
+aroutergourl("\/script\/videoedit") 
