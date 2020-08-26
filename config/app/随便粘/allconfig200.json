@@ -40,6 +40,8 @@
         {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":false,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},
         {"title":"每日签到","summary":"每日签到，连续签到更有大礼","level":0,"open":true,"coin":100,"money":0,"event":7,"time":1,"interval":0,"finishname":"领取奖励","nofinishname":"签到","icon":"","rewardtype":1,"key":"key_action_day_sign","script":""},
         {"title":"看福利视频","summary":"每日看福利视频，既有机会获取100金币，每日奖励20次","level":0,"open":false,"coin":100,"money":0,"event":125,"time":20,"interval":150,"finishname":"看福利视频","nofinishname":"看福利视频","icon":"","rewardtype":1,"key":"key_action_full_advice_video","script":""},
+        {"title":"刷小视频","summary":"每日看小视频，既有机会获取10000金币","level":0,"open":true,"coin":100,"money":0,"event":222,"time":20,"interval":150,"finishname":"看小视频","nofinishname":"看小视频","icon":"","rewardtype":1,"key":"key_action_small_video","script":""},
+        {"title":"看资讯","summary":"每日看资讯，既有机会获取10000金币","level":0,"open":true,"coin":100,"money":0,"event":223,"time":20,"interval":150,"finishname":"看资讯","nofinishname":"看资讯","icon":"","rewardtype":1,"key":"key_action_small_video","script":""},
         {"title":"看视频广告获取海量金币","summary":"每日看广告视频，每次可获取100金币，每日不限次数","level":0,"open":true,"coin":100,"money":0,"event":150,"time":100,"interval":90,"finishname":"看激励视频","nofinishname":"看激励视频","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
         {"title":"幸运转盘抽奖","summary":"每日转盘抽奖，轻轻松松中大奖","level":0,"open":false,"coin":100,"money":0,"event":202,"time":100,"interval":600,"finishname":"领取奖励","nofinishname":"去抽奖","icon":"","rewardtype":1,"key":"key_action_reward_luck","script":""},
         {"title":"每日分享","summary":"每日分享App给好友，分享到朋友圈，独乐乐不如众乐乐","level":0,"open":true,"coin":100,"money":0,"event":203,"time":5,"interval":1800,"finishname":"领取奖励","nofinishname":"去分享","icon":"","rewardtype":1,"key":"key_action_reward_share","script":""}
@@ -75,6 +77,7 @@
         {"name":"VIP","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
         {"name":"推荐","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
         {"name":"快捷方式","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
+       
         {"name":"工具","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/工具.json"},
         {"name":"签到","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/签到.json"},
         {"name":"二维码","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/二维码.json"}
@@ -156,6 +159,7 @@
             "rewardvideo":"255842",
             "appwall":"283748",
             "appwallnative":"283749"
+            
         }, 
         "baidu":{
             "open":true,
@@ -170,7 +174,8 @@
             "prevideo":"7195623",
             "rewardvideo":"7195624",
             "rewardvideo2":"7195625",
-            "cpuurl":"https://cpu.baidu.com/1022/aaca1dd1/i?pu=1&promotion_media_channel=67442"
+            "cpuurl":"https://cpu.baidu.com/1022/aaca1dd1/i?pu=1&promotion_media_channel=67442",
+            "cpuallurl":"https://cpu.baidu.com/1032/d70695f9?scid=67396"
         }
     },
     "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
@@ -192,9 +197,9 @@
         "exchange":"交换页",
         "cash":"提现页",
         "content":"内容页"},
-    "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":true,"waittime":3,"permission":["STORAGE"],
+        "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":true,"waittime":3,"permission":["STORAGE"],
         "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595822446422&di=0724b00cdab29a1325a82d61f8359b32&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D55535a93a544ad342ebf878fe0a30c08%2Fc701b451f8198618f20a17fa4eed2e738bd4e61e.jpg",
         "nextactivityurl":"/script/usermain","runningscript":"",
         "nextscript":"https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js","desc":"随便粘200的开屏页配置"},
-    "scriptconfig":"运行脚本的配置"
+        "scriptconfig":"运行脚本的配置"
 }
