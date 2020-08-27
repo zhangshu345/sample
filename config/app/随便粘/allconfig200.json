@@ -30,7 +30,7 @@
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "userloginpath":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
     "rewardcoinscript":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_164.apk",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/suibianzhan_200.apk",
     "scripts":[
         { "name":"userguide","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
         { "name": "settingdescription","path":"设置描述的脚本"},
