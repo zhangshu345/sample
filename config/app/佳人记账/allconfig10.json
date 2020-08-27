@@ -22,7 +22,8 @@
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
     "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"},
-        { "name":"helpdoc","value":"https://support.qq.com/products/179319" }],
+        { "name":"helpdoc","value":"https://support.qq.com/products/179319" }
+        {"name":"showcharge","value":"true"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
