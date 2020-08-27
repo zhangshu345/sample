@@ -3,7 +3,6 @@
     "version":"2.0.0",
     "versioni":200,
     "channel":"androidjs",
- 
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
     "umengappkey":"",
@@ -19,6 +18,10 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
+    "pages":[{"name":"用户主页","url":"/script/usermain"}
+        ,{"name":"用户主页","url":"/script/usermain"}
+        ,{"name":"视频编辑","url":"/script/videoedit"}
+       ],
     "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
     ,   {"name":"company","value":"https://support.qq.com/products/179319"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",

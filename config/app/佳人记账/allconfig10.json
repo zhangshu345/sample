@@ -17,6 +17,10 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
+    "pages":[{"name":"用户主页","url":"/script/usermain"}
+        ,{"name":"用户主页","url":"/script/usermain"}
+        ,{"name":"视频编辑","url":"/script/videoedit"}
+       ],
     "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"},
         { "name":"helpdoc","value":"https://support.qq.com/products/179319" }],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
