@@ -2920,20 +2920,6 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
 
     Scripts.INSTANCE.delectAllTask()
     toastLog("runapp：之前"+runapps.length)
-    // runapps.filter(function(app,index){
-    //     log(app.app.name+"--"+app.open)
-    //     if(!app.open){
-    //         log("没有开启")
-    //        return false
-    //     }
-    //     if(今日已提现(app.app.name)=="true"){
-    //         return false
-    //     }
-    //     if(今日时长(app.app.name)>app.runconfig.maxtime){
-    //         return false
-    //     }
-    //     return true
-    // })
     let  tmpapps=[]
     runapps.forEach(app=>{
        if(filterapp(app)){

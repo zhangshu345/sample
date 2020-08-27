@@ -3,6 +3,7 @@
     "version":"2.0.0",
     "versioni":200,
     "channel":"androidjs",
+ 
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
     "umengappkey":"",
@@ -18,7 +19,8 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
-    "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"}],
+    "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
+    ,   {"name":"company","value":"https://support.qq.com/products/179319"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
@@ -77,7 +79,7 @@
         {"name":"VIP","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
         {"name":"推荐","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
         {"name":"快捷方式","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
-       
+        {"name":"阅读","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json"},
         {"name":"工具","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/工具.json"},
         {"name":"签到","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/签到.json"},
         {"name":"二维码","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/二维码.json"}
