@@ -1,7 +1,7 @@
 "ui";
 //#region UI和系统变量
 var rootUrl = "http://114.115.220.1:91";//各位大神小弟自己的服务器别黑谢谢
-var storageSign = "HaoYangMaoPro0412326@163.com";
+var storageSign = "hongshuyuedu@163.com";
 var woolStorage = storages.create(storageSign);//创建本地存储
 var videoArray = new Array(
     "抖音极速版", "微视", "快手极速版", "火山极速版", "火火视频极速版", "刷宝短视频",
@@ -32,18 +32,10 @@ ui.layout(
     <drawer id="drawer">
         <relative id="mainWindows">
             <viewpager id="viewpager">
-                <relative id="welecome">
-                    <vertical w="*" h="*" id="firstPage" gravity="center">
-                        <text text="欢迎使用薅羊毛专业版" textSize="32sp" textColor="#FFFFFF" gravity="center" />
-                        <text text="滑动屏幕来了解更多信息" marginTop="10" textSize="25sp" textColor="#A0FFFFFF" gravity="center" id="txtTimeTip" />
-                    </vertical>
-                    <text id="skip" text="单击此处以跳过" marginBottom="100" textSize="13sp" textColor="#30FFFFFF" gravity="center" layout_alignParentBottom="true" layout_centerHorizontal="true" />
-                </relative>
-    
                 <vertical id="startpage" >
                     <vertical>
                         <appbar>
-                            <toolbar bg="#FF5c50e6" id="toolbar" title="薅羊毛专业版v0.0.6" paddingTop="2dp" h="auto" >
+                            <toolbar bg="#FF5c50e6" id="toolbar" title="红薯阅读v1.0.0" paddingTop="2dp" h="auto" >
                             </toolbar>
                             <tabs id="drawerTabs" />
                         </appbar>
@@ -181,8 +173,7 @@ ui.layout(
                                             <vertical padding="8 8 8 8">
                                                 <img src="http://114.115.220.1:91/app/Resources/Images/zhifubao.jpg" />
                                             </vertical>
-                                 
-                                        </vertical>
+                                         </vertical>
                                         <horizontal>
                                             <button style="Widget.AppCompat.Button.Colored" id="btnSaveWoolConfig" text="保存配置" padding="12dp" w="*" />
                                         </horizontal>
@@ -220,18 +211,14 @@ initializeEvent();
  * 初始化UI
  */
 function initializeUI() {
-    ui.woolView.setTitles(["自动刷", "任务", "系统配置"]);//设置滑动页面的标题
+    ui.woolView.setTitles(["自动刷",  "系统配置"]);//设置滑动页面的标题
     ui.drawerTabs.setupWithViewPager(ui.woolView);//让滑动页面和标签栏联动
     activity.setSupportActionBar(ui.toolbar);
     activity.window.addFlags(android.view.WindowManager.LayoutParams.FLAG_FULLSCREEN);//设置全屏
     ui.viewpager.overScrollMode = android.view.View.OVER_SCROLL_NEVER;//删除滑动到底时的边缘阴影
     //为页面设置渐变色背景
-    ui.firstPage.backgroundDrawable = GradientDrawable("TL_BR", ["#81C784", "#2E7D32", "#2E7D32"]);
-     ui.skip.click(() => ui.viewpager.currentItem = ui.viewpager.childCount - 1);//点击跳过则跳转到最后一页
     permissionpage = ui.viewpager.childCount - 1 - 1;//授权页下标（启动页前一页）（启动页固定最后一页）
-    ui.txtTimeTip.setText("今天是：" + getDate());
     initializeFirstFrame();
-    initializeSecondFrame();
     initializeThreeFrame();
     initializeRightMenu();
     initializeHeaderMenu();
@@ -338,37 +325,7 @@ function initializeFirstFrame() {
         itemView.done.checked = !itemView.done.checked;
     });
 }
-function initializeSecondFrame() {
-    var taskItems = []
-    for (let i = 0; i < taskArray.length; i++) {
-        let signMessage = "未执行";
-        let signValue = getSignTime(taskArray[i]);
-        let signColor = "#FF0000";
-        if (getDate() == signValue) {
-            signMessage = "已执行";
-            signColor = "#228B22";
-        }
-        let row = { SignColor: signColor, AppName: taskArray[i], AppIndex: (i + 1), IsSign: signMessage, done: false };
-        taskItems.push(row);
-    }
-    ui.taskList.setDataSource(taskItems);
-    //综合类check事件
-    ui.taskList.on("item_bind", function (itemView, itemHolder) {
-        itemView.done.on("check", function (checked) {
-            let item = itemHolder.item;
-            item.done = checked;
 
-            let appName = item.AppName;
-            let appIndex = itemView.appIndex.getText();
-            item.AppIndex = appIndex;
-            if (checked) {
-                havedTaskChecked.put(appName, appIndex);
-            } else {
-                havedTaskChecked.remove(appName);
-            }
-        });
-    });
-}
 /**
  * 初始化第三个frame页
  */
@@ -3152,84 +3109,13 @@ function 步多多(appName, IsAutoSign, IsShowToast) {
         }
     }
 }
-function 猫扑运动(appName, IsAutoSign, IsShowToast) {
-    if (className("android.widget.TextView").text("领取金币").exists()) {
-        let b = className("android.widget.TextView").text("领取金币").findOnce().bounds();
-        click(b.centerX(), b.centerY());
-        sleep("10000");
-        if (className("android.view.View").id("close_view").exists()) {
-            console.info("点击close_view");
-            id("close_view").findOnce().click();
-        }
-    }
-    if (className("android.view.View").id("close_view").exists()) {
-        console.info("点击close_view");
-        id("close_view").findOnce().click();
-    }
-    if (className("android.widget.TextView").id("tv_tab_task").exists()) {
-        console.info("点击赚赚");
-        let b = className("android.widget.TextView").id("tv_tab_task").findOnce().bounds();
-        click(b.centerX(), b.centerY());
-        sleep("10000");
-        if (className("android.view.View").desc("放弃奖励").exists()) {
-            className("android.view.View").desc("放弃奖励").findOnce().click();
-        }
-    }
-    if (className("android.view.View").desc("放弃奖励").exists()) {
-        className("android.view.View").desc("放弃奖励").findOnce().click();
-    }
-    recordSignTime(appName);//记录时间
-}
+
+
 function 示例(appName, executeCount, execTimes, timesInterval, IsAutoSign, IsAutoComment, IsClearCache, IsCashOut, probability) {
 
 }
 
-// 有颜短视频   快音 长豆短视频
-//#endregion
 
-//#region 窗体方法
-/**
- * 火火小视频点击视频菜单
- */
-function huoHuoClickVideo() {
-    try {
-        let boundVideo = null;
-        let bottomMenu = className("android.widget.RelativeLayout").find();
-        console.show(); //开启日志（悬浮窗权限）
-        for (let i = 0; i < bottomMenu.length; i++) {
-            let video = bottomMenu[i].children().findOne(text("小视频"));
-            if (video != null) {
-                boundVideo = bottomMenu[i].bounds();
-            }
-        }
-        click(boundVideo.centerX(), boundVideo.centerY());
-        sleep(5000);
-    } catch (e) { toastError(e) }
-}
-function huoHuoClickGoldEgg() {
-    try {
-        let widgetViews = className("android.widget.FrameLayout").find();
-        toastLog("FrameLayout" + widgetViews.length);
-        if (widgetViews.length >= 2) {
-            widgetViews[1].click();
-        }
-        if (text("金蛋大奖").exists()) {
-            let b = text("金蛋大奖").findOne().parent().bounds();
-            click(b.centerX(), b.centerY());
-            sleep(1000);
-            let closeButtons = className("android.widget.Button").find();
-            if (closeButtons.length == 1) {
-                closeButtons[0].click();
-            }
-            sleep(4000);
-            let widgetViews = className("android.widget.FrameLayout").find();
-            toastLog(widgetViews.length);
-            if (widgetViews.length >= 2) {
-                widgetViews[1].click();
-            }
-        }
-    } catch (e) { }
-}
 /**
  * 火山极速版关注
  * @param {概率} probability 
@@ -3268,110 +3154,8 @@ function kuaiShouCloseIsLike() {
 }
 //#endregion
 
-//#region 公共方法
-function autoSignZhouKouKeJi(appName) {
-    let signValue = getSignTime(appName);
-    if (getDate() == signValue) {
-        toastWarn("已签到本次签到跳过...");
-        return;
-    }
-    try {
-        try {
-            if (className("android.widget.ImageView").id("img_close").exists()) {
-                className("android.widget.ImageView").id("img_close").findOnce().click();
-            }
-            let bottomMenus = className("android.widget.RelativeLayout").find();
-            if (bottomMenus.length > 2) {
-                bottomMenus[bottomMenus.length - 2].click();
-                sleep(3000);
-                let hongBaoList = className("android.widget.RelativeLayout").id("item_content").find();
-                if (hongBaoList.length > 1) {
-                    toastLog("有红包")
-                    swipe(device.width / 2, device.height - device.height * 0.2, device.width / 2, device.height * 0.1, 300);
-                    toastLog("滑动屏幕")
-                    sleep(3000);
-                }
-            }
-            sleep(3000);
-            if (className("android.widget.TextView").text("立即签到").exists()) {
-                toastLog("立即签到");
-                className("android.widget.TextView").text("立即签到").findOnce().click();
-                sleep(60000);
-                recordSignTime(appName);//记录时间
-                if (className("android.widget.TextView").text("关闭广告").exists()) {
-                    className("android.widget.TextView").text("关闭广告").findOnce().click();
-                }
-                if (id("tt_video_ad_close_layout").exists()) {
-                    id("tt_video_ad_close_layout").findOnce().click();
-                }
-            }
-            if (className("android.widget.TextView").text("已签到").exists()) {
-                toastLog("已签到");//手动签到做个记录就好
-                recordSignTime(appName);//记录时间
-            }
-            if (className("android.widget.ImageView").id("tt_video_ad_close_layout").exists()) {
-                className("android.widget.ImageView").id("tt_video_ad_close_layout").findOnce().click();
-            }
-            if (className("android.widget.RelativeLayout").id("tt_video_ad_close_layout").exists()) {
-                className("android.widget.RelativeLayout").id("tt_video_ad_close_layout").findOnce().click();
-            }
-            sleep(3000);
-            if (className("android.widget.TextView").text("首页").exists()) {
-                toastLog("返回首页");
-                let b = className("android.widget.TextView").text("首页").findOnce().bounds();
-                click(b.centerX(), b.centerY());
-            }
-            toastLog("结束");
 
-        } catch (e) { }
-    } catch (error) {
-        console.error(error);
-    }
-}
-function autoCashOutZhouKouKeJi() {
-    if (className("android.widget.TextView").text("我").exists()) {
-        let b = className("android.widget.TextView").text("我").findOne().parent().bounds();
-        click(b.centerX(), b.centerY());
-    }
-    if (className("android.widget.TextView").text("现金账户(元)").exists()) {
-        let b = className("android.widget.TextView").text("现金账户(元)").findOne().bounds();
-        let clickResult = click(b.centerX(), b.centerY());
 
-        className("android.widget.TextView").text("去提现").waitFor();
-        if (className("android.widget.TextView").text("去提现").exists()) {
-            className("android.widget.TextView").text("去提现").findOne().click();
-            text("立即提现").waitFor();
-            if (className("android.widget.TextView").text("立即提现").exists()) {
-                let b = className("android.widget.TextView").text("立即提现").findOne().bounds();
-                let clickResult = click(b.centerX(), b.centerY());
-                if (clickResult) {
-                    console.show(); //开启日志（悬浮窗权限）
-                    toastLog("点击提现按钮成功");
-                }
-            }
-        }
-    }
-}
-/**
- * 周口科技短视频统一方法
- * 快逗视频 小吃货 趣宠短视频
- */
-function zhouKouKeJiCloseRedFloatTip() {
-    try {
-        if (className("android.widget.ImageView").id("img_close").exists()) {
-            className("android.widget.ImageView").id("img_close").findOnce().click();
-        }
-        if (className("android.widget.ImageView").id("tt_video_ad_close_layout").exists()) {
-            className("android.widget.ImageView").id("tt_video_ad_close_layout").findOnce().click();
-        }
-        if (className("android.widget.RelativeLayout").id("tt_video_ad_close_layout").exists()) {
-            className("android.widget.RelativeLayout").id("tt_video_ad_close_layout").findOnce().click();
-        }
-        if (className("android.widget.TextView").text("关闭广告").exists()) {
-            className("android.widget.TextView").text("关闭广告").findOnce().click();
-        }
-    } catch (e) { }
-}
 /**
  * 统一看广告得金币方法
  */
@@ -3604,6 +3388,7 @@ function computerTime(appCount, foreachCount, slideTimes, timesInterval, isExist
     let maxHour = maxSecond / 3600;
     return Math.round(maxHour);
 }
+
 /**
  * 获取当前时间格式yyyyMMdd
  */
@@ -3644,6 +3429,7 @@ function getTime() {
     };
     return year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + "0";
 };
+
 /**
  * JS构建Map
  */

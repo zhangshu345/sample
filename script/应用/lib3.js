@@ -79,30 +79,6 @@ func.execApp = function(packname,package,millsec,condition){
       }
       engines.stopOther()
       spt.put("lastscriptapp",packname)
-    //   else{
-    //       、、  keepappisnewer(appname,apppkg)
-    //  }
-    /*
-    var pk1 = currentPackage();
-    try{
-        launchApp(packname);
-        this.sleep(3000);
-
-        var o1 = text('允许').findOnce();
-        var o2 = text('拒绝').findOnce();
-        if(o1 && o2)
-            func.clickObject(o1);
-    }
-    catch(e){
-        this.log(packname,'使用launchApp运行app',e.message + '\n\r' + e.stack);
-    }
-    var pk2 = currentPackage();
-    if (pk1 != pk2){    //有启动成功
-        log('launch启动成功')
-        this.sleep(13000);    //再等13秒
-        return true;
-    }
-    else{*/
         var execTrys2 = 3 ;
 
         while(true){
@@ -457,9 +433,9 @@ function install_app(filePath, name,maxtime,isopen,delect) {
    doactionmaxtime(function(){
         // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
            toastLog("检测"+name+"安装中....")
-           if(textclick("允许此来源")){ back(); sleep(300) ; }
+           if(textclick("允许此来源")){ back(); sleep(1000) ; }
            clicktexts(["设置","允许"],100,1500)
-            clicktexts(clickarray,100,1200,0,device.height*2/3)
+            clicktexts(clickarray,200,1500,0,device.height*2/3)
           if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){descclick("向上导航"); }
            }
            if(textclick("允许来自此来源的应用")){ back();sleepr(1200);  }

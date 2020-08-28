@@ -129,7 +129,6 @@ function 总调度(调度APP, 类型, 时长) {
     storage.put(调度APP, tempapp)
     var url = "apps/" + 调度APP
     try {
-
         var subapp = instantiation(url)
         if (subapp != "") {
             eval(subapp)
@@ -149,7 +148,6 @@ function 总调度(调度APP, 类型, 时长) {
             log("公共函数实例化失败,程序返回")
             return
         }
-
         是否启动成功 = start_app(调度APP)
         if (!是否启动成功) {
             log("启动失败退出")
