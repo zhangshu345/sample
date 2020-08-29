@@ -28,6 +28,7 @@ var applaunchactivity="com.alibaba.android.rimet.biz.SplashActivity"
 var apploginactivity="com.alibaba.android.user.login.SignUpWithPwdActivity"
 var apprewardactivity="com.alibaba.lightapp.runtime.activity.CommonWebViewActivity"
 var apparticleactivity="com.alibaba.android.uc.base.navi.window2.Window2Activity"
+var appvideoactivity="com.alibaba.android.uc.base.navi.window2.Window2Activity"
 var tomoney=false  
 var invite=false // 邀请
 var logintype="weixin"  //登录使用微信
@@ -41,9 +42,13 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var loopn=0
 var lasttitle=""
 var today_coin=上次今日金币(appname)
+var today_order=getbooleanvalue(appname+"_order",false)
+
 var 登录应用=function(name){
     app.launchApp(name)
 }
+
+
 
 //测试修改文件覆盖
 
@@ -64,28 +69,58 @@ doactionmaxtime(function(){
 }
 
 var app_video=function(){
-
+    app_go_home(4)
+    doactionmaxnumber(function(){
+        上滑()
+        let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
+        if(no_title){
+            toastLog(no_title.text())
+            clicknode(no_title)
+            sleep(3000)
+            doactionmaxtime(function(){
+                sleepr(2000,4000)
+                if(text("点赞").visibleToUser().exists()){
+                    textclick("点赞")
+                    sleep(1000)
+                    back()
+                }
+            },15000)
+        }else{
+            sleep(1000)
+        }
+    },6)
 }
 
 var app_article=function(){
     app_go_home(3)
     doactionmaxnumber(function(){
         上滑()
-        let no_title=id("cn.xuexi.android:id/general_card_title_id").findOne()
-        toastLog(no_title.text())
-        clicknode(no_title)
-        sleep(3000)
-        doactionmaxtime(function(){
-            上滑()
-            sleepr(2000,4000)
-            if(text("点赞").exists()){
-                textclick("点赞")
-                sleep(1000)
-                back()
-            }
-        },15000)
-    },6)
-
+        let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
+        if(no_title){
+            toastLog(no_title.text())
+            clicknode(no_title)
+            sleep(3000)
+            let radio=false
+          
+            doactionmaxtime(function(){
+                if(!today_order){
+                    if(textclick("订阅")){
+                        today_order=true
+                        spt.put(appname+"_order",true)
+                    }
+                }
+                上滑()
+                sleepr(2000,4000)
+                if(text("点赞").visibleToUser().exists()){
+                    textclick("点赞")
+                    sleep(1000)
+                    back()
+                }
+            },15000)
+        }else{
+            sleep(1000)
+        }
+     },6)
 }
 
 
@@ -111,7 +146,6 @@ var 点击主页积分=function(){
 
 var dati_today=function(){
     textclick("查看提示")
-
 
 }
 
@@ -182,8 +216,7 @@ var app_login=function(){
             return true
         }
     },300000)
-
 }
-app_article()
+
 app_run()
 // startapp(appname,apppkg,0,0,false,false,false,true)

@@ -1,0 +1,37 @@
+[{
+    "name":"自动化工具箱",
+    "pkg":"com.hongdong.autotools.qq",
+    "version":"1.0.0",
+    "versioni":1,
+    "channel":"tencent",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/autotools_1.apk",
+    "updatedescription":"",
+    "icon":"",
+    "back":"",
+    "isforce":false
+},
+{
+    "name":"自动化工具箱",
+    "pkg":"com.hongdong.autotools.xiaomi",
+    "version":"1.0.0",
+    "versioni":1,
+    "channel":"xiaomi",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/autotools_1.apk",
+    "updatedescription":"",
+    "icon":"",
+    "back":"",
+    "isforce":false
+},
+{
+    "name":"自动化工具箱",
+    "pkg":"com.hongdong.autotools.huawei",
+    "version":"1.0.0",
+    "versioni":1,
+    "channel":"hauwei",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/autotools_1.apk",
+    "updatedescription":"",
+    "icon":"",
+    "back":"",
+    "isforce":false
+}
+]
