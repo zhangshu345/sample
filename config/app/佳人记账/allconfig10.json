@@ -22,7 +22,7 @@
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
     "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"},
-        {"name":"usermainfragment","value":"首页-赚钱-工具-管理-任务-我"},
+        {"name":"usermainfragment","value":"赚钱-工具-任务-管理-我"},
         { "name":"helpdoc","value":"https://support.qq.com/products/179319" },
         {"name":"showcharge","value":"true"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
