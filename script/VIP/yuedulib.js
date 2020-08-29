@@ -668,10 +668,6 @@ var show=function(txt,txtcolor){
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ 
                 gfw.text.setText(txt);
-                // if(txtcolor){
-                //     toast("改变颜色:"+txtcolor)
-                // // gfw.text.setTextColor(txtcolor)
-                // }
             })
         }
     } catch (error) {
@@ -680,8 +676,8 @@ var show=function(txt,txtcolor){
 }
 
 
-var 上滑=function(){    滑动(20,13,17,10,4,500,500);}
-var 下滑=function(){    滑动(20,10,3,13,17,500,500);}
+var 上滑=function(){滑动(20,13,17,10,4,500,500);}
+var 下滑=function(){滑动(20,10,3,13,17,500,500);}
 var alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
@@ -720,7 +716,6 @@ var alter=sync(function(txt,t,left,top,width,height){
 //
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 
-
 var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
@@ -732,7 +727,6 @@ var forcestop=function(appname,st,isclearcache){
         forcestoppkg(apppkg,st,isclearcache,false)
       }
 }
-
 
 var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     show("强制停止："+apppkg)
@@ -1001,7 +995,7 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
             return true
           
         }else{
-           if(b.top>0&&b.b.left>0){
+           if(b.top>0&& b.left>0){
             log("点击控件左上角")
             for(let n=0;n<clicknumber;n++){
                 press(b.left+dx,b.top+dy+dy,time)
@@ -1591,7 +1585,7 @@ function downloadApk(name,downloadurl,isinstall) {
     else if(device.brand=="Meizu"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
-    else{        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else{  clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"] }
     doactionmaxtime(function(){
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
             toastLog("检测中....")
