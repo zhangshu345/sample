@@ -149,7 +149,6 @@ var dati_today=function(){
 
 }
 
-
 var app_go_home=function(index){
     try {
         index=index||3
