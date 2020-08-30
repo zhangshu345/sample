@@ -132,6 +132,5 @@ while(true){
     } catch (error) {
         toastLog(error)
     }
-    
 }
 
