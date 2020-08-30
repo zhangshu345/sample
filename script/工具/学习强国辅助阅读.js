@@ -51,8 +51,9 @@ var 登录应用=function(name){
 
 
 //测试修改文件覆盖
-
+toastLog("开始")
 var app_run=function(){
+    toastLog("开始运行")
 登录应用(appname)
 doactionmaxtime(function(){
     toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
@@ -110,13 +111,13 @@ var app_article=function(){
                     }
                 }
                 上滑()
-                sleepr(2000,4000)
+                sleepr(10000,15000)
                 if(text("点赞").visibleToUser().exists()){
                     textclick("点赞")
                     sleep(1000)
                     back()
                 }
-            },15000)
+            },20000)
         }else{
             sleep(1000)
         }
@@ -178,8 +179,10 @@ var app_go_home=function(index){
                 }
             }else if(ca==apprewardactivity){
                 back()
+                sleep(1000)
             }else if(ca==apparticleactivity){
                 back()
+                sleep(1000)
             }
         },30000)){
             return true
@@ -216,6 +219,6 @@ var app_login=function(){
         }
     },300000)
 }
+app_run()
 
-
-startapp(appname,apppkg,0,0,false,false,false,true)
+// startapp(appname,apppkg,0,0,false,false,false,true)
