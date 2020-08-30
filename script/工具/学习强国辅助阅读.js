@@ -18,7 +18,7 @@ toastLog("公共函数实例化成功")
 }else {
 toastLog("公共函数实例化失败,程序返回")
 }
-
+var scriptname="学习强国辅助阅读"
 // /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var appname="学习强国"
 var apppkg="cn.xuexi.android"
@@ -42,7 +42,7 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var loopn=0
 var lasttitle=""
 var today_coin=上次今日金币(appname)
-var today_order=getbooleanvalue(appname+"_order",false)
+var today_order=getintvalue(appname+"_ordern",0)
 var today_share=getbooleanvalue(appname+"_share",false)
 var articlenumber=10
 var videonumber=10
@@ -54,39 +54,6 @@ if(readedarticle!=""){
     let as=JSON.parse(readedarticle)
     log(JSON.stringify(as))
 }
-
-events.observeKey();
-
-var keyNames = {
-    "KEYCODE_VOLUME_UP": "音量上键",
-    "KEYCODE_VOLUME_DOWN": "音量下键",
-    "KEYCODE_HOME": "Home键",
-    "KEYCODE_BACK": "返回键",
-    "KEYCODE_MENU": "菜单键",
-    "KEYCODE_POWER": "电源键",
-};
-
-
-
-
-function getKeyName(code, event){
-    var keyCodeStr = event.keyCodeToString(code);
-    var keyName = keyNames[keyCodeStr];
-    if(!keyName){
-        return keyCodeStr;
-    }
-    return keyName;
-}
-
-events.on("key", function(code, event){
-    var keyName = getKeyName(code, event);
-    if(event.getAction() == event.ACTION_DOWN){
-        toast(keyName + "被按下");
-        exit();
-    }else if(event.getAction() == event.ACTION_UP){
-        toast(keyName + "弹起");
-    }
-});
 
 
 var  showstopfloaty=function(){
@@ -110,27 +77,26 @@ var 登录应用=function(name){
 log("开始")
 showstopfloaty()
 var app_run=function(){
-登录应用(appname)
-let i=0
-doactionmaxtime(function(){
-    app_go_home(4)
-    toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
-    ca=currentActivity()
-    if(ca==apploginactivity){
-        app_login()
-    } else if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
-        toastLog("进入主页了")
-        return true
-    }
-    i=i+1
-    log("等待"+i)
+    登录应用(appname)
+    let i=0
+    doactionmaxtime(function(){
+      app_go_home(4)
+        toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
+        ca=currentActivity()
+        if(ca==apploginactivity){
+            app_login()
+        } else if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
+              toastLog("进入主页了")
+            return true
+        }
+        i=i+1
+         log("等待"+i)
 },10000,2000)
 //
     点击主页积分()
     app_radio()
     app_article()
     app_video()
- 
 }
 
 
@@ -183,8 +149,6 @@ var  app_radio=function(){
         }
 
     }
-    
-
 }
 var app_radio_stop=function(){
     doactionmaxtime(function(){
@@ -251,47 +215,55 @@ var app_video=function(){
 }
 
 
-
 var app_article=function(){
    let readnum=0;
     app_go_home(3)
     doactionmaxnumber(function(){
-        上滑()
+        滑动(20,13,17,10,10,600,500);
         let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
         if(no_title){
             toastLog(no_title.text())
-            toastLog(JSON.stringify(article_titles))
+            log(JSON.stringify(article_titles))
             if(article_titles.indexOf(no_title.text())>-1){
-                上滑()
+                log("已经阅读过了")
+                滑动(20,13,17,10,10,600,500);
                 sleep(1000)
             }else{
                 clicknode(no_title)
                 sleep(3000)
                 let radio=false
                 article_titles.push(no_title.text())
+                let hdcs=0
                 doactionmaxtime(function(){
-                    if(!today_order){
+                    if(today_order<5){
                         if(textclick("订阅")){
-                            today_order=true
-                            spt.put(appname+"_order",true)
+                            today_order=today_order+1
+                            spt.put(appname+"_ordern",today_order)
                         }
                     }
                     滑动(20,13,17,10,4,600,500);
+                    hdcs=hdcs+1
                     sleepr(1500,3000)
-                    if(text("点赞").visibleToUser().exists()){
-                        log("存在 点赞")
-                        if(textclick("点赞",500)){
-                            log("点赞成功")
-                            sleep(1000)
-                            back()
-                            return true
+                    if(hdcs>8){
+                        if(text("点赞").visibleToUser(true).exists()){
+                            log("存在 点赞")
+                            if(textclick("点赞",500)){
+                                log("点赞成功")
+                                sleep(1000)
+                                back()
+                                return true
+                            }
+                        }else{
+                            log("不存在 点赞")
+                        }
+                        if(text("暂无观点 快来发表观点").visibleToUser().exists()){
+                               log("存在 暂无观点")
+                               back()
+                               return true
+                        }else{
+                               log("不存在 暂无观点")
                         }
                     }
-                       if(text("暂无观点 快来发表观点").visibleToUser().exists()){
-                           log("存在 暂无观点")
-                           back()
-                           return true
-                       }
                 },30000)
             }
         }else{
@@ -310,12 +282,14 @@ var 点击主页积分=function(){
         textContains("今日已累积").waitFor()
         let node=textContains("今日已累积").findOne();
         let txt=node.text()
-        toastLog(txt)
+        log(txt)
         txt=txt.replace("今日已累积","").replace("积分","")
         let reward=parseInt(txt)
         log("今日积分:"+reward)
         if(reward>=30){
-
+            log("积分大于30："+reward)
+        }else{
+            log("积分小于30："+reward)
         }
         if(reward>=0){
             记录今日金币(appname,reward)
@@ -400,7 +374,7 @@ var app_login=function(){
     },300000)
 }
 
-        toastLog("总调度运行："+appname)
+        toastLog("运行："+scriptname)
         if(!app.getPackageName(appname)){
             show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
 
