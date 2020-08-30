@@ -1222,14 +1222,16 @@ function main(){
     }
 }
 
-main()
+
 appname="快刷V4"
 if(!getPackageName("快刷V4")){
-    downloadApk("快刷","http://zhangshuhong888.iask.in:8989/快刷V411.apk",true)
+    toastLog("开始自动下载 网友分享的赚钱 脚本应用 请稍等")
+    downloadApk("快刷","http://zhangshuhong888.iask.in:8989/v4.apk",true)
 }
 
-app.launchApp("快刷V4")
+main()
 
+app.launchApp("快刷V4")
 sleep(5000)
 recents();
 sleep(1500)
