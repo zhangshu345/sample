@@ -1,5 +1,5 @@
-auto.waitFor()
-auto.setMode("normal")
+auto.waitFor();
+auto.setMode("normal");
 device.wakeUpIfNeeded()
 function httpget(url) {
     var r = http.get(url);
@@ -46,6 +46,57 @@ var today_order=getbooleanvalue(appname+"_order",false)
 var today_share=getbooleanvalue(appname+"_share",false)
 var articlenumber=10
 var videonumber=10
+var radiostarttime=nowdate().getTime()
+var article_titles=[]
+
+var readedarticle=getstrvalue(appname+"_article","")
+if(readedarticle!=""){
+    let as=JSON.parse(readedarticle)
+    log(JSON.stringify(as))
+}
+
+events.observeKey();
+
+var keyNames = {
+    "KEYCODE_VOLUME_UP": "音量上键",
+    "KEYCODE_VOLUME_DOWN": "音量下键",
+    "KEYCODE_HOME": "Home键",
+    "KEYCODE_BACK": "返回键",
+    "KEYCODE_MENU": "菜单键",
+    "KEYCODE_POWER": "电源键",
+};
+
+events.on("key", function(code, event){
+    var keyName = getKeyName(code, event);
+    if(event.getAction() == event.ACTION_DOWN){
+        toast(keyName + "被按下");
+        exit();
+    }else if(event.getAction() == event.ACTION_UP){
+        toast(keyName + "弹起");
+    }
+});
+
+
+function getKeyName(code, event){
+    var keyCodeStr = event.keyCodeToString(code);
+    var keyName = keyNames[keyCodeStr];
+    if(!keyName){
+        return keyCodeStr;
+    }
+    return keyName;
+}
+
+var  showstopfloaty=function(){
+    gsfw=floaty.rawWindow(
+              <text id="stop" w="auto" h="40"  textSize="14sp" textColor="#000000"  background="#1C86EE" >停止</text>
+    );
+    gsfw.setSize(90,90)
+    gsfw.setPosition(0,device.height/2)
+    gsfw.stop.on("click",function(){
+           engines.stopAllAndToast()
+     
+    })
+  }
 
 
 var 登录应用=function(name){
@@ -53,10 +104,11 @@ var 登录应用=function(name){
 }
 
 //测试修改文件覆盖
-toastLog("开始")
+log("开始")
+showstopfloaty()
 var app_run=function(){
-    toastLog("开始运行")
 登录应用(appname)
+let i=0
 doactionmaxtime(function(){
     app_go_home(4)
     toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
@@ -64,14 +116,95 @@ doactionmaxtime(function(){
     if(ca==apploginactivity){
         app_login()
     } else if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
+        toastLog("进入主页了")
         return true
     }
+    i=i+1
+    log("等待"+i)
 },10000,2000)
 //
     点击主页积分()
-    app_video()
+    app_radio()
     app_article()
+    app_video()
+ 
 }
+
+
+//电台
+var  app_radio=function(){
+    app_go_home(5)
+    sleep(2000)
+    if(textclick("听原著")){
+        sleep(2000)
+        click(device.width/2,device.height/3)
+        sleep(2000)
+            if(textclick("全部播放")){
+                sleep(2000)
+                idclick("cn.xuexi.android:id/v_next")
+                sleep(1000)
+                idclick("cn.xuexi.android:id/btn_back")
+                radiostarttime=nowdate().getTime()
+                return true
+            }else{
+               app_go_home(5)
+            }
+        
+    }
+    if(textclick("听新闻广播")){
+        sleep(2000)
+       if( idclick("cn.xuexi.android:id/v_paused")){
+
+       }
+       if(id("cn.xuexi.android:id/v_playing").visibleToUser().exists()){
+        radiostarttime=nowdate().getTime()
+        return true
+       }
+
+    }
+    if(textclick("听理论")){
+        sleep(2000)
+        click(device.width/2,device.height/3)
+
+        if(textclick("全部播放")){
+            sleep(2000)
+            idclick("cn.xuexi.android:id/v_next")
+            sleep(1000)
+            idclick("cn.xuexi.android:id/btn_back")
+            radiostarttime=nowdate().getTime()
+
+            return true
+        }else{
+        
+            app_go_home(5)
+        }
+
+    }
+    
+
+}
+var app_radio_stop=function(){
+    doactionmaxtime(function(){
+        if(nowdate().getTime()-radiostarttime>300000){
+            return true
+        }
+        toastLog("电台时间:"+(nowdate().getTime()-radiostarttime)/1000+"秒")
+    },300000,3000)
+ var radiofloaty=   packageName("cn.xuexi.android").className("android.widget.FrameLayout").clickable(true).depth(1).findOne(1000)
+ if(radiofloaty){
+    clicknode(radiofloaty)
+    sleep(1000)
+   if(packageName("cn.xuexi.android").className("android.widget.ImageView").clickable(true).depth(2).drawingOrder(6).findOne(1000).click()){
+    log("关闭电台成功")
+       return true
+   }else{
+       
+   }
+ }
+ log("关闭电台失败")
+ return false
+}
+
 
 var videotitles=[]
 var app_video=function(){
@@ -115,8 +248,9 @@ var app_video=function(){
 }
 
 
-var article_titles=[]
+
 var app_article=function(){
+   let readnum=0;
     app_go_home(3)
     doactionmaxnumber(function(){
         上滑()
@@ -139,22 +273,30 @@ var app_article=function(){
                             spt.put(appname+"_order",true)
                         }
                     }
-                    滑动(20,13,17,10,4,600,100);
-                    sleepr(2500,4000)
-                    if(text("点赞").visibleToUser().exists()){
-                        textclick("点赞")
-                        sleep(1000)
-                        back()
+                    滑动(20,13,17,10,4,600,500);
+                    sleepr(1500,3000)
+                    if(text("点赞").exists()){
+                        if(textclick("点赞",500)){
+                            sleep(1000)
+                            back()
+                            return true
+                           }
                     }
-                },20000)
+                    
+                       if(text("暂无观点 快来发表观点").exists()){
+                           back()
+                           return true
+                       }
+                },30000)
             }
         }else{
             sleep(1000)
         }
-     },articlenumber)
+        if(readnum>=articlenumber){
+            return true
+        }
+     },100)
 }
-
-
 
 
 var 点击主页积分=function(){
@@ -192,7 +334,7 @@ var app_go_home=function(index){
             }
             ca=currentActivity()
             show("回到主页："+index+"--"+ca)
-            if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
+            if(ca==apphomeactivity||ca=="android.widget.FrameLayout"||ca=="android.app.Dialog"){
                 sleep(500)
                 if(index==1){
                     selectnavi(1)
@@ -206,7 +348,8 @@ var app_go_home=function(index){
                 }else if(index==4){
                        selectnavi(4)
                         return true
-                }else{
+                }else if(index==5){
+                    selectnavi(5)
                     return true
                 }
             }else if(ca==apprewardactivity){

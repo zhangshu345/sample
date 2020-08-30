@@ -23,7 +23,6 @@ events.on("key", function(code, event){
 loop();
 
 
-
 function getKeyName(code, event){
     var keyCodeStr = event.keyCodeToString(code);
     var keyName = keyNames[keyCodeStr];

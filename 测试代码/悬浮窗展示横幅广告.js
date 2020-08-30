@@ -22,7 +22,7 @@ var  creatgfloatywindow=function(){
         return ""
     }
 }
- creatgfloatywindow()
+
  sleep(3000)
   url="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
   engines.execScript("快捷键", httpget(url) )
