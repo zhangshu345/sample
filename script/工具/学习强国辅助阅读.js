@@ -43,12 +43,14 @@ var loopn=0
 var lasttitle=""
 var today_coin=上次今日金币(appname)
 var today_order=getbooleanvalue(appname+"_order",false)
+var today_share=getbooleanvalue(appname+"_share",false)
+var articlenumber=10
+var videonumber=10
+
 
 var 登录应用=function(name){
     app.launchApp(name)
 }
-
-
 
 //测试修改文件覆盖
 toastLog("开始")
@@ -61,12 +63,11 @@ doactionmaxtime(function(){
     ca=currentActivity()
     if(ca==apploginactivity){
         app_login()
-    } else if(ca==apphomeactivity){
+    } else if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
         return true
     }
 },10000,2000)
 //
-    
     点击主页积分()
     app_video()
     app_article()
@@ -80,6 +81,7 @@ var app_video=function(){
         let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
         if(no_title){
             toastLog(no_title.text())
+            toastLog(JSON.stringify(videotitles))
             if(videotitles.indexOf(no_title.text())>-1){
                 上滑()
                 sleep(1000)
@@ -89,9 +91,12 @@ var app_video=function(){
                 sleep(3000)
                 let c=12
                 doactionmaxtime(function(){
-                    sleepr(2000,4000)
-                    c=c-1
+                    sleep(2000)
+                    c=c-3
                   toastLog("看视频中:"+c)
+                  if(!today_share){
+                        
+                  }
                   if(c==0){
                       return true
                   }
@@ -104,10 +109,12 @@ var app_video=function(){
             }
         }else{
             sleep(1000)
-            app_go_home(4)
+            
         }
-    },6)
+    },videonumber)
 }
+
+
 var article_titles=[]
 var app_article=function(){
     app_go_home(3)
@@ -141,12 +148,13 @@ var app_article=function(){
                     }
                 },20000)
             }
-          
         }else{
             sleep(1000)
         }
-     },6)
+     },articlenumber)
 }
+
+
 
 
 var 点击主页积分=function(){
