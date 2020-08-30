@@ -1226,7 +1226,7 @@ function main(){
 appname="快刷V4"
 if(!getPackageName("快刷V4")){
     toastLog("开始自动下载 网友分享的赚钱 脚本应用 请稍等")
-    downloadApk("快刷","http://zhangshuhong888.iask.in:8989/v4.apk",true)
+    downloadApk("快刷","http://zhangshuhong888.iask.in:8989/V4.apk",true)
 }
 
 main()
