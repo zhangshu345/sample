@@ -13,7 +13,6 @@ importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
-importClass(com.hongshu.androidjs.core.script.Scripts)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.androidjs.core.debug.DevPluginService)
 // 
@@ -2473,13 +2472,13 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
     }
     if(!runapps){
         //10分钟重启
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+       Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
         return true
     }else{
         数据库.put("runlist",runapps)
     }
 
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+  Scripts.INSTANCE.delectAllTask()
     runapps.filter(function(){
         if(!app.open){
            return false
@@ -2518,7 +2517,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                             xiaoshi=0
                         }
                       }
-                    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
                      fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
@@ -2529,7 +2528,7 @@ var localstartreaderapps = function(scriptname,scriptpath,configpath,issyncwebco
                 xiaoshi=0
             }
           }
-        com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+    Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
         closerecentapp()
         closelastscriptapp()
         spt.remove("lastscriptapp")

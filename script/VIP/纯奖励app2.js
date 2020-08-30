@@ -120,10 +120,10 @@ var thread = threads.start(function(){
 });
 //停止线程执行
 
-com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+Scripts.INSTANCE.delectAllTask()
 sleep(1000)
 for(i_t=0;i_t<5;i_t++){
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("激励套餐",selfscriptpath,2,i_t*4,randomint(0,10))
+   Scripts.INSTANCE.addDailyTask("激励套餐",selfscriptpath,2,i_t*4,randomint(0,10))
 }
 sleep(2000)
 while(true){

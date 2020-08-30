@@ -34,12 +34,12 @@ selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewa
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/定时套餐.js"
 var run=function(){
     listapp(readerapps)
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.delectAllTask()
+    Scripts.INSTANCE.delectAllTask()
     sleep(1000)
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()
-    com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask("定时套餐4",selfscriptpath,2,xiaoshi,fen)
+   Scripts.INSTANCE.addDailyTask("定时套餐4",selfscriptpath,2,xiaoshi,fen)
     var appconfig=httpget(selfrewardlisturl)
     let  apps=JSON.parse(appconfig)
     let runapps=[]
@@ -76,7 +76,7 @@ var run=function(){
                                 xiaoshi=0
                             }
                           }
-                             com.hongshu.androidjs.core.script.Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
+                          Scripts.INSTANCE.addDailyTask(app.name,app.path,2,xiaoshi,fen)
                              show("设置"+app.name+"运行"+runconfig.onetime+"秒")
                              appruntime[app.name]=appruntime[app.name]+runconfig.onetime
                              sumeruntime=sumeruntime+runconfig.onetime

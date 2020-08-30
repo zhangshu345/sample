@@ -13,7 +13,7 @@ importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
 importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
-importClass(com.hongshu.androidjs.core.script.Scripts)
+
 var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/viprewardapplist.json"
 var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
 var admanager=AdviceManager.getInstance();

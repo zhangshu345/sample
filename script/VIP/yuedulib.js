@@ -12,7 +12,7 @@ importClass(com.hongshu.utils.FastSPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
-importClass(com.hongshu.androidjs.core.script.Scripts)
+
 
 log(device)
 device.wakeUpIfNeeded()

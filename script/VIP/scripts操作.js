@@ -1,3 +1,3 @@
-importClass(com.hongshu.androidjs.core.script.Scripts)
-var scriptinstance=com.hongshu.androidjs.core.script.Scripts.INSTANCE
-scriptinstance.stopAllandToast();
+
+   importClass(com.hongshu.autojs.core.script.Scripts);
+   com.hongshu.autojs.core.script.Scripts.INSTANCE.stopAllandToast();
