@@ -18,7 +18,7 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
-    "barbuttons":{"ui":{"type":1,"orientation":0,"size":0,"reverselayout":false},
+    "barbuttons":{"ui":{"type":5,"orientation":0,"size":0,"reverselayout":false},
         "data":[{"name":"新手指南","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_blue","event":-1,"script":""},
         {"name":"设置说明","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_blue","event":-1,"script":""},
         {"name":"联系我们","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_blue","event":-1,"script":""}]},
