@@ -1213,12 +1213,6 @@ function main(){
             console.error("不支持自动登录:" + app_name)
         }
         fun_lofin.clear()
-
-
-        // one_install_longin_info.push(app_name)
-        // one_install_longin_info.push(install_code)
-        // one_install_longin_info.push(login_code)
-        // install_longin_info.push(one_install_longin_info)
     }
 }
 
@@ -1250,8 +1244,7 @@ if(cb){
 }
 
 doactionmaxtime(function(){
-  
-    clicktexts(["允许","允许"],100,1500)
+      clicktexts(["允许","允许"],100,1500)
     if(textclick("全局设置")){
         sleep(1500)
         textContains("无障碍服务（必选").waitFor()
@@ -1299,27 +1292,4 @@ doactionmaxtime(function(){
     }
     
 },60000)
-// console.clear()
-// console.log(install_longin_info);
 
-// for(aa=0;aa<install_longin_info.length;aa++){
-//     console.log("**********************"+aa)
-//     if(install_longin_info[aa][1] == "成功"){
-//             console.info("安装成功>>:"+install_longin_info[aa][0])
-//     }else if(install_longin_info[aa][1] == "跳过"){
-//         console.verbose("安装跳过>>:"+install_longin_info[aa][0])
-//     }else{
-//           console.error("安装失败>>:"+install_longin_info[aa][0])
-//     }
-
-//     if(install_longin_info[aa][2] == "成功"){
-//         console.info("登录成功==:"+install_longin_info[aa][0])
-//     }else if(install_longin_info[aa][2] == "跳过"){
-//         console.verbose("安装跳过==>:"+install_longin_info[aa][0])
-//     }else{
-//           console.error("登录失败==:"+install_longin_info[aa][0])
-//     }
-// }
-// console.show()
-// console.setPosition(0, 0);
-// console.setSize(device.width , device.height*0.9);

@@ -9,16 +9,15 @@ function httpget(url) {
         return ""
     }
 }
-
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
-toastLog("公共函数实例化成功")
+log("公共函数实例化成功")
 }else {
-toastLog("公共函数实例化失败,程序返回")
+log("公共函数实例化失败,程序返回")
 }
-
+var scriptname="学习强国辅助文章阅读"
 // /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 var appname="学习强国"
 var apppkg="cn.xuexi.android"
@@ -55,38 +54,7 @@ if(readedarticle!=""){
     log(JSON.stringify(as))
 }
 
-events.observeKey();
 
-var keyNames = {
-    "KEYCODE_VOLUME_UP": "音量上键",
-    "KEYCODE_VOLUME_DOWN": "音量下键",
-    "KEYCODE_HOME": "Home键",
-    "KEYCODE_BACK": "返回键",
-    "KEYCODE_MENU": "菜单键",
-    "KEYCODE_POWER": "电源键",
-};
-
-
-
-
-function getKeyName(code, event){
-    var keyCodeStr = event.keyCodeToString(code);
-    var keyName = keyNames[keyCodeStr];
-    if(!keyName){
-        return keyCodeStr;
-    }
-    return keyName;
-}
-
-events.on("key", function(code, event){
-    var keyName = getKeyName(code, event);
-    if(event.getAction() == event.ACTION_DOWN){
-        toast(keyName + "被按下");
-        exit();
-    }else if(event.getAction() == event.ACTION_UP){
-        toast(keyName + "弹起");
-    }
-});
 
 
 var  showstopfloaty=function(){
@@ -111,25 +79,9 @@ log("开始")
 showstopfloaty()
 var app_run=function(){
 登录应用(appname)
-let i=0
-doactionmaxtime(function(){
-    app_go_home(4)
-    toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
-    ca=currentActivity()
-    if(ca==apploginactivity){
-        app_login()
-    } else if(ca==apphomeactivity||ca=="android.widget.FrameLayout"){
-        toastLog("进入主页了")
-        return true
-    }
-    i=i+1
-    log("等待"+i)
-},10000,2000)
-//
-    点击主页积分()
-    app_radio()
+
     app_article()
-    app_video()
+
  
 }
 
@@ -259,8 +211,8 @@ var app_article=function(){
         上滑()
         let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
         if(no_title){
-            toastLog(no_title.text())
-            toastLog(JSON.stringify(article_titles))
+            log(no_title.text())
+            log(JSON.stringify(article_titles))
             if(article_titles.indexOf(no_title.text())>-1){
                 上滑()
                 sleep(1000)
@@ -270,6 +222,9 @@ var app_article=function(){
                 let radio=false
                 article_titles.push(no_title.text())
                 doactionmaxtime(function(){
+                    if(currentActivity()!=apparticleactivity){00
+                        return true
+                    }
                     if(!today_order){
                         if(textclick("订阅")){
                             today_order=true
@@ -279,18 +234,21 @@ var app_article=function(){
                     滑动(20,13,17,10,4,600,500);
                     sleepr(1500,3000)
                     if(text("点赞").visibleToUser().exists()){
-                        log("存在 点赞")
+                        log("存在 点赞存在")
                         if(textclick("点赞",500)){
                             log("点赞成功")
-                            sleep(1000)
                             back()
                             return true
+                        }else{
+                            log("点赞失败")
                         }
                     }
-                       if(text("暂无观点 快来发表观点").visibleToUser().exists()){
-                           log("存在 暂无观点")
+                     if(text("暂无观点 快来发表观点").visibleToUser().exists()){
+                           log("存在 ：暂无观点")
                            back()
                            return true
+                       }else{
+                           log("不存在 ：暂无观点")
                        }
                 },30000)
             }
@@ -399,13 +357,13 @@ var app_login=function(){
         }
     },300000)
 }
-
-        toastLog("总调度运行："+appname)
+        toastLog("运行："+scriptname)
         if(!app.getPackageName(appname)){
             show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
-
               downloadandinstallapp(appname,apppkg)
-      
           }
+
+          
+
         app_run()
    
