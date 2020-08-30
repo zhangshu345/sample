@@ -217,5 +217,5 @@ var app_login=function(){
     },300000)
 }
 
-app_run()
-// startapp(appname,apppkg,0,0,false,false,false,true)
+
+startapp(appname,apppkg,0,0,false,false,false,true)
