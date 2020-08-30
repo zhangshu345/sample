@@ -56,19 +56,23 @@ var app_run=function(){
     toastLog("开始运行")
 登录应用(appname)
 doactionmaxtime(function(){
+    app_go_home(4)
     toastLog("等待进入学习强国主页,学习强国，学习富民，先富脑袋后福钱袋")
-    if(currentActivity()==apploginactivity){
+    ca=currentActivity()
+    if(ca==apploginactivity){
         app_login()
+    } else if(ca==apphomeactivity){
+        return true
     }
 },10000,2000)
 //
-    app_go_home(4)
+    
     点击主页积分()
     app_video()
     app_article()
-
 }
 
+var videotitles=[]
 var app_video=function(){
     app_go_home(4)
     doactionmaxnumber(function(){
@@ -76,22 +80,35 @@ var app_video=function(){
         let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
         if(no_title){
             toastLog(no_title.text())
-            clicknode(no_title)
-            sleep(3000)
-            doactionmaxtime(function(){
-                sleepr(2000,4000)
+            if(videotitles.indexOf(no_title.text())>-1){
+                上滑()
+                sleep(1000)
+            }else{
+                videotitles.push(no_title.text())
+                clicknode(no_title)
+                sleep(3000)
+                let c=12
+                doactionmaxtime(function(){
+                    sleepr(2000,4000)
+                    c=c-1
+                  toastLog("看视频中:"+c)
+                  if(c==0){
+                      return true
+                  }
+                },12000)
                 if(text("点赞").visibleToUser().exists()){
                     textclick("点赞")
                     sleep(1000)
                     back()
                 }
-            },15000)
+            }
         }else{
             sleep(1000)
+            app_go_home(4)
         }
     },6)
 }
-
+var article_titles=[]
 var app_article=function(){
     app_go_home(3)
     doactionmaxnumber(function(){
@@ -99,25 +116,32 @@ var app_article=function(){
         let no_title=id("cn.xuexi.android:id/general_card_title_id").visibleToUser().findOne(300)
         if(no_title){
             toastLog(no_title.text())
-            clicknode(no_title)
-            sleep(3000)
-            let radio=false
-          
-            doactionmaxtime(function(){
-                if(!today_order){
-                    if(textclick("订阅")){
-                        today_order=true
-                        spt.put(appname+"_order",true)
-                    }
-                }
+            toastLog(JSON.stringify(article_titles))
+            if(article_titles.indexOf(no_title.text())>-1){
                 上滑()
-                sleepr(10000,15000)
-                if(text("点赞").visibleToUser().exists()){
-                    textclick("点赞")
-                    sleep(1000)
-                    back()
-                }
-            },20000)
+                sleep(1000)
+            }else{
+                clicknode(no_title)
+                sleep(3000)
+                let radio=false
+                article_titles.push(no_title.text())
+                doactionmaxtime(function(){
+                    if(!today_order){
+                        if(textclick("订阅")){
+                            today_order=true
+                            spt.put(appname+"_order",true)
+                        }
+                    }
+                    滑动(20,13,17,10,4,600,100);
+                    sleepr(2500,4000)
+                    if(text("点赞").visibleToUser().exists()){
+                        textclick("点赞")
+                        sleep(1000)
+                        back()
+                    }
+                },20000)
+            }
+          
         }else{
             sleep(1000)
         }
@@ -219,6 +243,13 @@ var app_login=function(){
         }
     },300000)
 }
-app_run()
 
-// startapp(appname,apppkg,0,0,false,false,false,true)
+        toastLog("总调度运行："+appname)
+        if(!app.getPackageName(appname)){
+            show("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+
+              downloadandinstallapp(appname,apppkg)
+      
+          }
+        app_run()
+   

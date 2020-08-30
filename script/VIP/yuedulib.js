@@ -1584,7 +1584,7 @@ function downloadApk(name,downloadurl,isinstall) {
     else if(device.brand=="DOCOMO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="Meizu"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else if(device.brand=="xiaomi"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
-    else if(device.brand=="OPPO"){        clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"]    }
+    else if(device.brand=="OPPO"){        clickarray=["继续","以后都允许","始终允许","允许","安装","继续安装","下一步","设置"]    }
     else{  clickarray=["继续","始终允许","允许","安装","继续安装","下一步","设置"] }
     doactionmaxtime(function(){
          // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
