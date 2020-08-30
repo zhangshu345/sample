@@ -17,8 +17,7 @@ function loadjson(filepath)
  
     return data;
 }
- 
- 
+  
 function savejson(filepath, data)
 {
     var datastr = JSON.stringify(data, null, 4);
@@ -44,13 +43,14 @@ for(var i=0; i<data.class.length; i++)
         data.class[i].score = 100;
     }
 }
- 
 //写，把XiaoYao同学的分数改为100
 savejson('test.json', data)
 }
 var scriptobj={name:"脚本模板",
 desc:{summary:"脚本模板简介",html:""},
 tags:["推荐"],
+keys:[{name:"测试",value:"值"},{name:"测试2",value:"值2"}],
+ui:{type:1,width:0,height,background:"@color/red"},
 pay:{coin:0,money:0,daymoney:0,monthmoney:0,yearmoney:0},
 runconfig:{starttime:"5:24",time:3600,perhormoney:0.65,daymaxmoney:2,onetime:1800
 ,logintype:"phone",daycashcondition:0.3,daymoneyinterval:7},
