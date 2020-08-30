@@ -1222,7 +1222,6 @@ function main(){
     }
 }
 
-
 appname="快刷V4"
 if(!getPackageName("快刷V4")){
     toastLog("开始自动下载 网友分享的赚钱 脚本应用 请稍等")
@@ -1249,7 +1248,6 @@ if(cb){
         
     }
 }
-
 
 doactionmaxtime(function(){
   
