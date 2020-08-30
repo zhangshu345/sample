@@ -54,9 +54,6 @@ if(readedarticle!=""){
     log(JSON.stringify(as))
 }
 
-
-
-
 var  showstopfloaty=function(){
     gsfw=floaty.rawWindow(
               <text id="stop" w="auto" h="40"  textSize="14sp" textColor="#000000"  background="#1C86EE" >停止</text>
