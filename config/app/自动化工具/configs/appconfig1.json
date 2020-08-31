@@ -1,8 +1,8 @@
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"2.0.0",
-    "versioni":200,
-    "channel":"androidjs",
+{"name":"自动化工具",
+    "pkg":"com.hongdong.autotools",
+    "version":"1.0.0",
+    "versioni":1,
+    "channel":"hongdong",
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
     "umengappkey":"",
@@ -18,21 +18,28 @@
     "bugly":true,
     "cardcharge":false,
     "cardexchange":false,
+    "barbuttons":{"ui":{"type":1,"orientation":0,"size":3,"reverselayout":false},
+        "data":[{"name":"新手指南","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_blue","event":-1,"uipath":"","script":"scriptname:userguide"},
+        {"name":"设置说明","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"","script":"scriptname:settingdescription"},
+        {"name":"自动化编辑","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"/script/develop","script":""},
+        {"name":"视频剪辑","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
+        {"name":"联系我们","icon":"@drawable/ic_home_center_setting","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
     "pages":[{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
-    "keys":[{"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
+    "keys":[{"name":"usermainfragment","value":"赚钱-工具-任务-管理-我"},
+        {"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
     ,   {"name":"company","value":"https://support.qq.com/products/179319"}
     ,   {"name":"showcharge","value":"false"}
     ,   {"name":"developer","value":"红薯"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "userloginpath":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
     "rewardcoinscript":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/suibianzhan_200.apk",
+    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_200.apk",
     "scripts":[
         { "name":"userguide","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
         { "name": "settingdescription","path":"设置描述的脚本"},
@@ -80,14 +87,14 @@
         ,{"name":"视频展示","eventid":14,"coin":10,"money":0,"extra":""}
         ,{"name":"视频点击","eventid":14,"coin":10,"money":0,"extra":""}
     ],
-    "tag":[{"name":"帮助","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/帮助.json","img":""},
-        {"name":"VIP","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
-        {"name":"推荐","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
-        {"name":"快捷方式","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
-        {"name":"阅读","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json"},
-        {"name":"工具","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/工具.json"},
-        {"name":"签到","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/签到.json"},
-        {"name":"二维码","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/二维码.json"}
+    "tag":[{"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/帮助.json","img":""},
+        {"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
+        {"name":"推荐","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
+        {"name":"快捷方式","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
+        {"name":"阅读","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json"},
+        {"name":"工具","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/工具.json"},
+        {"name":"签到","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/签到.json"},
+        {"name":"二维码","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/二维码.json"}
     ],
     "advice":{
         "jgchaping":60,
@@ -209,9 +216,10 @@
         "cash":"提现页",
         "content":"内容页"
     },
-        "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":true,"waittime":3,"permission":["STORAGE"],
-        "img":"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1595822446422&di=0724b00cdab29a1325a82d61f8359b32&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3D55535a93a544ad342ebf878fe0a30c08%2Fc701b451f8198618f20a17fa4eed2e738bd4e61e.jpg",
+      "splash":{"title":"自动化 生活 工作","logo":"","background":"","welcomeword":"化繁为简","showlogo":true,"runscript":false,"showsplashad":true,"waittime":3,"permission":["STORAGE"],
+        "img":"http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
         "nextactivityurl":"/script/usermain","runningscript":"",
-        "nextscript":"https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js","desc":"随便粘200的开屏页配置"},
-        "scriptconfig":"运行脚本的配置"
+        "nextscript":"https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js",
+        "desc":"自动化工具的开屏页配置"},
+        "scriptconfig":"自动化工具运行脚本的配置"
 }
