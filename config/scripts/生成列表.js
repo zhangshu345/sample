@@ -14,8 +14,7 @@ function loadjson(filepath)
     {
         console.log(err);
     }
- 
-    return data;
+     return data;
 }
   
 function savejson(filepath, data)
@@ -49,17 +48,19 @@ savejson('test.json', data)
 var scriptobj={name:"脚本模板",
 desc:{summary:"脚本模板简介",html:""},
 tags:["推荐"],
+features:[],
 keys:[{name:"测试",value:"值"},{name:"测试2",value:"值2"}],
-ui:{type:1,width:0,height,background:"@color/red"},
+layout:{type:1,orientation:1,width:0,height:0,back:"@color/red",fore:"",reverselayout:false,size:0,textsize:6,buttons:[{name:"下载",eventid:-1,script:"",uipath:"",icon:"",key:""}]},
 pay:{coin:0,money:0,daymoney:0,monthmoney:0,yearmoney:0},
+download:false,
 runconfig:{starttime:"5:24",time:3600,perhormoney:0.65,daymaxmoney:2,onetime:1800
 ,logintype:"phone",daycashcondition:0.3,daymoneyinterval:7},
-root:false,password:"123456781234567812345678",key:"1234567887654321",
+root:false,password:"123456781234567812345678",key:"1234567887654321",code:"666666",
 reward:{coin:0,"money":0,experience:10,achievement:"成就"},
 money:{perdaymoney:0.38,permonthmoney:60.1,peryearmoney:360.0},
 path:"http://zhangshuhong888.iask.in:8989/加密脚本/加密推荐上滑.js",
 source:1,
-author:{name:"作者",id:"",icon:""},
+author:{name:"作者",id:"",icon:"",qq:"11226677",weixin:"jiajiajia",phone:"1871768888"},
 level:0,
 version:0,
 appversioni:10,
@@ -67,6 +68,7 @@ requestapi:10,
 icon:"",
 app:{name:"",pkg:"",icon:"",downloadurl:"", version:""}
 }
+
 function createconfigjsonfile(filedir,filename,data){
     console.log("dir:"+filedir)
     console.log("filename:"+filename)
@@ -77,9 +79,8 @@ function createconfigjsonfile(filedir,filename,data){
     console.log("结束")
 }
 
-function makescriptfiles(){
-    var dir="./script/App"
-
+function makescriptfiles(dir){
+    var dir=dir||"./script/App"
     var scriptnames=fs.readdirSync(path.resolve(dir))
     var scripts=[]
     var scriptpath="App"
@@ -87,7 +88,7 @@ function makescriptfiles(){
         name=name.replace('.js','')
         let newscript=JSON.parse(JSON.stringify(scriptobj))
         newscript.name=name;
-        newscript.desc.summary="网友共享："+name
+        newscript.desc.summary="网友共享："+name+"阅读自动赚金币"
         newscript.password="123456781234567812345678"
         newscript.key="1234567887654321"
         newscript.path="https://gitee.com/zhangshu345012/sample/raw/v2/script/"+scriptpath+"/"+name+".js"
@@ -96,6 +97,8 @@ function makescriptfiles(){
    // console.log(JSON.stringify(scripts))
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
+
+
 
 //生成加密脚本列表
 function makepasswordscriptfiles(){
@@ -119,8 +122,46 @@ function makepasswordscriptfiles(){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
+function oldscriptconfig2new(oldfile,newfile){
+   let oldcontent= fs.readFileSync(path.resolve(oldfile),'utf8')
+ //  console.log(oldcontent)
+    let oldobjs=JSON.parse(oldcontent)
+    var newscripts=[]
+    var scriptpath="App"
+    oldobjs.forEach(old=>{
+        let newscript=JSON.parse(JSON.stringify(scriptobj))
+        newscript.name=old.name;
+        newscript.desc=old.desc
+        newscript.tags=old.tags
+        newscript.source=old.source
+        newscript.path=old.path
+        newscript.app=old.app
+        newscripts.push(newscript)
+    })
+    console.log(JSON.stringify(newscripts))
+    if(newfile){
+        fs.writeFileSync(path.resolve(newfile),JSON.stringify(newscripts),{encoding:"utf8"})
+    }
+}
 
-makepasswordscriptfiles()
+function updateoldscriptconfig2newfromdir(dir){
+
+    var scriptnames=fs.readdirSync(path.resolve(dir))
+    scriptnames.forEach(name=>{
+        // name=name.replace('.js','')
+        console.log(name)
+        if(!name.startsWith("新")){
+            oldscriptconfig2new(dir+name,dir+"新"+name)
+        }
+    })
+   // console.log(JSON.stringify(scripts))
+}
+
+
+updateoldscriptconfig2newfromdir("./config/scripts/")
+
+// oldscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
+// makepasswordscriptfiles()
 
 
 

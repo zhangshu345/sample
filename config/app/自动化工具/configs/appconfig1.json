@@ -2,7 +2,7 @@
     "pkg":"com.hongdong.autotools",
     "version":"1.0.0",
     "versioni":1,
-    "channel":"hongdong",
+    "channel":"tencent",
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
     "umengappkey":"",
@@ -88,7 +88,7 @@
         ,{"name":"视频点击","eventid":14,"coin":10,"money":0,"extra":""}
     ],
     "tag":[{"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/帮助.json","img":""},
-        {"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
+        {"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"会员专享脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"},
         {"name":"推荐","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
         {"name":"快捷方式","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
         {"name":"阅读","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json"},
@@ -130,7 +130,7 @@
         "rewardvideo":"1081105757283360"
         },
         "toutiao":{
-        "open":true,
+        "open":false,
         "appid":"5058937",
         "nativeid":"945124236",
         "banner600300":"945124237",
@@ -163,7 +163,7 @@
             "hudong":"" 
         },
         "mintegral":{
-            "open":true,
+            "open":false,
             "appid":"129079",
             "appkey":"d62bd37b8de85bf80b176dc68fcbf05f",
             "splash":"306662",
@@ -180,7 +180,7 @@
             "appwallplace":"237196"
         }, 
         "baidu":{
-            "open":true,
+            "open":false,
             "appid":"aaca1dd1",
             "splash":"7195617",
             "banner203":"7195616",
