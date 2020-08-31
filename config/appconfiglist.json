@@ -1,13 +1,12 @@
-[    {"name":"自动化工具",
+[ {"name":"自动化工具",
         "pkg":"com.hongdong.autotools",
         "channel":"tencent",
         "versioni":220,
         "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
         "version":"2.2.0",
         "downloadurl":"",
-        "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/allconfig220.json"
+        "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/appconfig1.json"
     },
-    
 {"name":"宝宝常识",
     "pkg":"com.zpy.android.earlychildhood",
     "channel":"androidjs",
@@ -17,7 +16,6 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/宝宝常识/allconfig220.json"
 },
-
 {"name":"东东随便",
     "pkg":"com.dongdong.suibian",
     "channel":"androidjs",
@@ -27,7 +25,6 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/东东随便/allconfig220.json"
 },
-
 {"name":"佳人记账",
     "pkg":"com.houjiajia.jiebill",
     "channel":"autojs",

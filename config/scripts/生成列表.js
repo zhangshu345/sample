@@ -145,7 +145,6 @@ function oldscriptconfig2new(oldfile,newfile){
 }
 
 function updateoldscriptconfig2newfromdir(dir){
-
     var scriptnames=fs.readdirSync(path.resolve(dir))
     scriptnames.forEach(name=>{
         // name=name.replace('.js','')
@@ -157,13 +156,8 @@ function updateoldscriptconfig2newfromdir(dir){
    // console.log(JSON.stringify(scripts))
 }
 
-
-
 updateoldscriptconfig2newfromdir("./config/scripts/")
 
 // oldscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
 // makepasswordscriptfiles()
-
-
-
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})
