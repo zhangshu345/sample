@@ -150,12 +150,13 @@ function updateoldscriptconfig2newfromdir(dir){
     scriptnames.forEach(name=>{
         // name=name.replace('.js','')
         console.log(name)
-        if(!name.startsWith("新")){
+        if(!name.startsWith("新")&&name.endsWith(".json")){
             oldscriptconfig2new(dir+name,dir+"新"+name)
         }
     })
    // console.log(JSON.stringify(scripts))
 }
+
 
 
 updateoldscriptconfig2newfromdir("./config/scripts/")
