@@ -19,11 +19,11 @@
     "cardcharge":false,
     "cardexchange":false,
     "barbuttons":{"ui":{"type":1,"orientation":0,"size":5,"reverselayout":false},
-        "data":[{"name":"新手指南","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_blue","event":-1,"uipath":"","script":"scriptname:userguide"},
-        {"name":"设置说明","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"","script":"scriptname:settingdescription"},
-        {"name":"自动化编辑","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"/script/develop","script":""},
-        {"name":"视频剪辑","icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
-        {"name":"联系我们","icon":"@drawable/ic_home_center_setting","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
+        "data":[{"name":"新手指南","icon":"@drawable/ic_home_center_book","back":"@drawable/im_roun_red","event":-1,"uipath":"","script":"scriptname:userguide"},
+        {"name":"设置说明","icon":"@drawable/ic_home_center_setting","back":"@drawable/im_round_greeb","event":-1,"uipath":"","script":"scriptname:settingdescription"},
+        {"name":"自动化编辑","icon":"@drawable/ic_home_center_code","back":"@drawable/im_round_blue","event":-1,"uipath":"/script/develop","script":""},
+        {"name":"视频剪辑","icon":"@drawable/ic_home_center_videoedit","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
+        {"name":"联系我们","icon":"@drawable/ic_home_center_aboutme","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
     "pages":[{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"视频编辑","url":"/script/videoedit"}
