@@ -29,8 +29,8 @@
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
     "keys":[{"name":"usermainfragment","value":"首页-工具-管理-我"},
-        {"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
-    ,   {"name":"company","value":"https://support.qq.com/products/179319"}
+        {"name":"qqproducturl","value":"https://support.qq.com/products/275582"}
+    ,   {"name":"company","value":"https://support.qq.com/products/275582"}
     ,   {"name":"showcharge","value":"false"}
     ,   {"name":"developer","value":"红薯"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
