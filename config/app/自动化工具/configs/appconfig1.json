@@ -28,7 +28,7 @@
         ,{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
-    "keys":[{"name":"usermainfragment","value":"赚钱-工具-任务-管理-我"},
+    "keys":[{"name":"usermainfragment","value":"首页-工具-任务-管理-我"},
         {"name":"qqproducturl","value":"https://support.qq.com/products/179319"}
     ,   {"name":"company","value":"https://support.qq.com/products/179319"}
     ,   {"name":"showcharge","value":"false"}
