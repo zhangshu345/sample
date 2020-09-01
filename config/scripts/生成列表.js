@@ -192,6 +192,6 @@ function updateoldscriptconfig2newfromdir(dir){
 
 //updateoldscriptconfig2newfromdir("./config/scripts/")
 
-oldpasswordscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
+oldpasswordscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json","123456781234567812345678","1234567887654321")
 // makepasswordscriptfiles()
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})
