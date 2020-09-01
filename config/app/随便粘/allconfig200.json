@@ -35,7 +35,7 @@
     ,   {"name":"showcharge","value":"false"}
     ,   {"name":"developer","value":"红薯"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json",
+    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
     "shareword":"赚钱停不下来 ,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "userloginpath":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
