@@ -16,6 +16,7 @@ importClass("javax.crypto.SecretKey");
 importClass("javax.crypto.spec.SecretKeySpec");
 importClass("javax.crypto.KeyGenerator");
 importClass("javax.crypto.spec.IvParameterSpec");
+log(device)
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var isshowfloaty=false  //是否显示提醒
