@@ -170,7 +170,7 @@ function oldpasswordscriptconfig2new(oldfile,newfile,pwd,key){
          newscript.app=old.app
          newscripts.push(newscript)
      })
-    // console.log(JSON.stringify(newscripts))
+     console.log(JSON.stringify(newscripts))
      if(newfile){
          fs.writeFileSync(path.resolve(newfile),JSON.stringify(newscripts),{encoding:"utf8"})
      }
