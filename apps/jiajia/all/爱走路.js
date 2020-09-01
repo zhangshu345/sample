@@ -120,7 +120,7 @@ classModule.start = function () {
 }
 
 function closeDialog() {
-
+    
     var o = text('关闭广告|我知道了|关闭').visibleToUser().findOnce();
     if (o) {
         func.clickObject(o);
@@ -133,15 +133,10 @@ function closeDialog() {
         func.sleep(1000);
     }
 
-
     if (packageName(package).textMatches(keys).filter(function (w) { if (w.text() == '点击下载' && w.bounds().bottom > device.height * 0.8) { return false } else { return true } }).visibleToUser().exists()) {
         func.back();
         func.sleep(3000);
     }
-
-
-
-
 
 }
 

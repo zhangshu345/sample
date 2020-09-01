@@ -1,5 +1,4 @@
 importClass(android.widget.Toast);  //以下两行Toast使用
-//importClass(android.view.Gravity);
 importClass(java.io.File);  //以下五行下载更新使用
 importClass(java.io.IOException);
 importClass(java.io.InputStream);
@@ -17,10 +16,14 @@ importClass("javax.crypto.SecretKey");
 importClass("javax.crypto.spec.SecretKeySpec");
 importClass("javax.crypto.KeyGenerator");
 importClass("javax.crypto.spec.IvParameterSpec");
-
+var nowdate=function(){return new Date()};
+var scriptstarttime=nowdate().getTime()
+var isshowfloaty=false  //是否显示提醒
+var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
 var spt=FastSPUtils.getInstance()
 var enablegenius=device.sdkInt>=24
 var func = {};
+var gfw,gsfw
 var rl = parseInt(device.release.split('.')[0]);
 func.DOMAIN = "dev.xiequbo.cn"
 func.release = rl
@@ -353,6 +356,33 @@ function httpget(url) {var r = http.get(url);
     sleep(5000);  return "";}  
 }
 
+var  creatgfloatywindow=function(){
+    log("createdfloaty")
+    gfw=floaty.rawWindow(
+        <horizontal>
+            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#22ffff00">提醒</text>
+        </horizontal>
+    );
+    gfw.setSize(device.width, 120)
+    gfw.setTouchable(false)
+    gfw.setPosition(0,80)
+    isshowfloaty=true
+ }
+
+var  floatyshow=function(txt,txtcolor){ 
+    try {
+       txt= scriptruntime()+"秒："+txt
+        log(txt);
+         if(!isshowfloaty){ toast(txt); return  };
+        if(!gfw){ creatgfloatywindow(); }else{
+            ui.run(function(){ 
+                gfw.text.setText(txt);
+            })
+        }
+    } catch (error) {
+        log(error)
+    }
+}
 
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
@@ -383,11 +413,8 @@ function downloadApk(name,downloadurl,isinstall) {
                var progress = (当前写入的文件大小 / connLength) * 100;
                if (progress > 0.1) {
                    var progress = parseInt(progress).toString() + '%';
-             
-                      toastLog(name.substr(0,6) + ":下载进度-"+progress);
-                      // toast(name + "下载进度" + progress)
-                       // w.progressNum.setText(progress);
-                 
+                      floatyshow(name.substr(0,6) + ":下载进度-"+progress);
+                              // w.progressNum.setText(progress);
                    if (当前写入的文件大小 >= connLength) {
                        break;
                    }
@@ -403,14 +430,14 @@ function downloadApk(name,downloadurl,isinstall) {
        }
        threadId && threadId.isAlive() && threadId.interrupt();
        toastLog(name+'下载完成');
-         
+       if(isinstall){
+        install_app(filePath,name)
+        }
     } catch (error) {
         log("下载失败:"+error)
     }
 
-    if(isinstall){
-        install_app(filePath,name)
-     }
+ 
 }
 
 
@@ -433,10 +460,10 @@ function install_app(filePath, name,maxtime,isopen,delect) {
    doactionmaxtime(function(){
         // is_first = textMatches(/(始.*|.*终.*|.*允.*|.*许)/).findOne(1000);
            toastLog("检测"+name+"安装中....")
-           if(textclick("允许此来源")){ back(); sleep(1000) ; }
-           clicktexts(["设置","允许"],100,1500)
-            clicktexts(clickarray,200,1500,0,device.height*2/3)
-          if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){descclick("向上导航"); }
+           if(textclick("允许此来源")){ back(); sleep(2000) ; }
+           clicktexts(["设置","允许"],300,1500)
+            clicktexts(clickarray,300,1200,0,device.height*2/3)
+            if(text("允许此来源").exists()){ if(idclick("android:id/switch_widget")){descclick("向上导航"); }
            }
            if(textclick("允许来自此来源的应用")){ back();sleepr(1200);  }
            //夏普手机的禁止安装
@@ -816,6 +843,7 @@ function myToast(msg) {
         toast(msg);
     }
 }
+
 func.toast = function(text,type){
     try{
         switch(type){
@@ -1492,4 +1520,5 @@ function isRoot() {
 // const appname = '集好视频';
 // const package = 'com.ztzj.jhsp';
 // func.execApp(appname,package)
-module.exports = func;
+floatyshow("你好")
+floatyshow("你好")

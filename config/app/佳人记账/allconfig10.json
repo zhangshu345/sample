@@ -43,6 +43,7 @@
         { "name":"lineme","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}
     ],
     "privacy":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/privacy.md",
+    "permission":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/permission.md",
     "announce":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
     "notificationsurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
     "messagesurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
