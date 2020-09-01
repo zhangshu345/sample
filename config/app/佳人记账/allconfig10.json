@@ -30,7 +30,12 @@
         {"name":"usermainfragment","value":"赚钱-工具-任务-管理-我"},
         {"name":"developfragment","value":"本地脚本-教程-管理-市场"},
         { "name":"helpdoc","value":"https://support.qq.com/products/179319" },
-        {"name":"showcharge","value":"true"}],
+        {"name":"showcharge","value":"true"}
+     ,   {"name":"qq","value":"3450559631"}
+    ,   {"name":"email","value":"zhangshuhong888@gmail.com"}
+    ,   {"name":"github","value":"https://github.com/zhangshu345"}
+    ,   {"name":"repositories","value":"https://github.com/zhangshu345/autotools"}
+    ,   {"name":"developer","value":"hongshu"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",

@@ -33,6 +33,10 @@
         {"name":"qqproducturl","value":"https://support.qq.com/products/275582"}
     ,   {"name":"company","value":"https://support.qq.com/products/275582"}
     ,   {"name":"showcharge","value":"false"}
+    ,   {"name":"qq","value":"1683190884"}
+    ,   {"name":"email","value":"1683190884@qq.com"}
+    ,   {"name":"github","value":"https://github.com/zhangshu345"}
+    ,   {"name":"repositories","value":"https://github.com/zhangshu345/autotools"}
     ,   {"name":"developer","value":"文水县鸿栋信息技术咨询有限公司"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
