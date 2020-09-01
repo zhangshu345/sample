@@ -49,7 +49,7 @@
     "permission":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
     "announce":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
     "notificationsurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
-    "messagesurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
+    "messagesurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/message.json",
     "historys":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/apphistory.json",
     "activity":[{"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":false,"coin":10000,"money":0,"event":7,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_login","script":""},
         {"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":false,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},
