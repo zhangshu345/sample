@@ -62,7 +62,7 @@ floatyposition:"0,120,400,220",showfloaty:true,checkbattery:30,onlyscript:false,
 onetime:3600,maxtime:10000,logintype:"phone",tomoney:"weixin",tomoneyaccount:"zfb|姓名|提现账号",
 daycashcondition:0.3,daycashcondition:0.3,daycoincondition:3000,bigmoneytomoneyday:7,bigmoney:5.1
 },
-root:false,password:"123456781234567812345678",key:"1234567887654321",code:"666666",
+root:false,password:"123456781234567812345678",key:"1234567887654321",code:"",
 reward:{coin:0,"money":0,experience:10,achievement:"成就"},
 money:{perhourmoney:0.3,perdaymoney:0.38,permonthmoney:60.1,peryearmoney:360.0},
 path:"http://zhangshuhong888.iask.in:8989/加密脚本/加密推荐上滑.js",
