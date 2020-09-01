@@ -152,7 +152,30 @@ function oldscriptconfig2new(oldfile,newfile){
 }
 
 
-
+function oldpasswordscriptconfig2new(oldfile,newfile,pwd,key){
+    let oldcontent= fs.readFileSync(path.resolve(oldfile),'utf8')
+  //  console.log(oldcontent)
+     let oldobjs=JSON.parse(oldcontent)
+     var newscripts=[]
+     var scriptpath="App"
+     oldobjs.forEach(old=>{
+         let newscript=JSON.parse(JSON.stringify(scriptobj))
+         newscript.name=old.name;
+         newscript.desc=old.desc
+         newscript.tags=old.tags
+         newscript.password=pwd,
+         newscript.key=key,
+         newscript.source=7
+         newscript.path=old.path
+         newscript.app=old.app
+         newscripts.push(newscript)
+     })
+    // console.log(JSON.stringify(newscripts))
+     if(newfile){
+         fs.writeFileSync(path.resolve(newfile),JSON.stringify(newscripts),{encoding:"utf8"})
+     }
+ }
+ 
  
 
 function updateoldscriptconfig2newfromdir(dir){
@@ -169,6 +192,6 @@ function updateoldscriptconfig2newfromdir(dir){
 
 //updateoldscriptconfig2newfromdir("./config/scripts/")
 
-// oldscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
+oldpasswordscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
 // makepasswordscriptfiles()
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})
