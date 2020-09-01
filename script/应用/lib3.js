@@ -1521,5 +1521,4 @@ function isRoot() {
 // const appname = '集好视频';
 // const package = 'com.ztzj.jhsp';
 // func.execApp(appname,package)
-floatyshow("你好")
-floatyshow("你好")
+module.exports = func;
