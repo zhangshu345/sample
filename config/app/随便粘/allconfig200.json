@@ -87,14 +87,14 @@
         ,{"name":"视频展示","eventid":14,"coin":10,"money":0,"extra":""}
         ,{"name":"视频点击","eventid":14,"coin":10,"money":0,"extra":""}
     ],
-    "tag":[{"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/帮助.json","img":""},
-        {"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/会员.json"},
-        {"name":"推荐","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/推荐.json"},
-        {"name":"快捷方式","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/快捷方式.json"},
-        {"name":"阅读","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/阅读.json"},
-        {"name":"工具","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/工具.json"},
-        {"name":"签到","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/签到.json"},
-        {"name":"二维码","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/二维码.json"}
+    "tag":[{"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json","img":""},
+        {"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"},
+        {"name":"推荐","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新推荐.json"},
+        {"name":"快捷方式","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新快捷方式.json"},
+        {"name":"阅读","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json"},
+        {"name":"工具","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新工具.json"},
+        {"name":"签到","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新签到.json"},
+        {"name":"二维码","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"}
     ],
     "advice":{
         "jgchaping":60,
