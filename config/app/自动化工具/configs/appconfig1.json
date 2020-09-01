@@ -33,7 +33,7 @@
         {"name":"qqproducturl","value":"https://support.qq.com/products/275582"}
     ,   {"name":"company","value":"https://support.qq.com/products/275582"}
     ,   {"name":"showcharge","value":"false"}
-    ,   {"name":"developer","value":"红薯"}],
+    ,   {"name":"developer","value":"文水县鸿栋信息技术咨询有限公司"}],
     "baseurl":"http://zhangshuhong888.iask.in:1337/",
     "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
     "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
