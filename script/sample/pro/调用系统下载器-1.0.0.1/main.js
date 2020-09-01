@@ -48,4 +48,3 @@ let st = setInterval(() => {
         }
 }, 1500);
 
-
