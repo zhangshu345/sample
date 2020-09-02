@@ -1,8 +1,8 @@
 [{
     "name":"自动化工具",
     "pkg":"com.hongdong.autotools",
-    "version":"1.0.0",
-    "versioni":1,
+    "version":"1.1.0",
+    "versioni":10,
     "channel":"tencent",
     "downloadurl":"http://zhangshuhong888.iask.in:8989/自动化工具_1.apk",
     "updatedescription":"",
