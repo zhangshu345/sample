@@ -2832,7 +2832,12 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
                             xiaoshi=0
                         }
                       }
-                    Scripts.INSTANCE.addDailyTask(app.name,app.path,app.source,xiaoshi,fen)
+                      if(app.source==7){
+                        Scripts.INSTANCE.addDailyTask(app.name,JSON.stringify(app),app.source,xiaoshi,fen)
+                      }else{
+                        Scripts.INSTANCE.addDailyTask(app.name,app.path,app.source,xiaoshi,fen)
+                      }
+                    
                      fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
