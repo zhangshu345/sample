@@ -29,7 +29,7 @@ if(!gfw){
 gfw.setPosition(0,220)
 device.setMusicVolume(0)
 toastLog("自动设置音量为0")
-selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
+selfrewardlisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json"
 selfscriptpath="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js"
 
 // addbmobchannel("yuedutimer5")

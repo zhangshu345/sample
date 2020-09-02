@@ -2807,7 +2807,6 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
             if(enableappnew){
                 keepappisnewer(app.app.name,app.app.pkg)
             }
-            
         }
     })
     if(enabletomoney){
