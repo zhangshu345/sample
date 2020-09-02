@@ -29,7 +29,7 @@
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
     "keys":[{"name":"usermainfragment","value":"首页-工具-管理-我"},
-        {"name":"developfragment","value":"本地脚本-教程-管理-赚钱-市场"},
+        {"name":"developfragment","value":"本地脚本-教程-管理-市场"},
         {"name":"qqproducturl","value":"https://support.qq.com/products/275582"}
     ,   {"name":"company","value":"https://support.qq.com/products/275582"}
     ,   {"name":"showcharge","value":"false"}
