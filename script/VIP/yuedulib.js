@@ -2819,7 +2819,6 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
     }else{
         记录("all","switch_tomoney",false)
     }
-
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
@@ -2833,7 +2832,7 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
                             xiaoshi=0
                         }
                       }
-                    Scripts.INSTANCE.addDailyTask(app.app.name,app.path,2,xiaoshi,fen)
+                    Scripts.INSTANCE.addDailyTask(app.name,app.path,app.source,xiaoshi,fen)
                      fen=fen+ Math.ceil(runconfig.onetime/60)
                 }
         })
