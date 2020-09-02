@@ -1,3 +1,0 @@
-importClass(com.faendir.rhino_android.Test)
-Test.test("测试")
-Test.test(Test.获取数组())

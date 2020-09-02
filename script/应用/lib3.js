@@ -24,7 +24,7 @@ var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttim
 var spt=FastSPUtils.getInstance()
 var enablegenius=device.sdkInt>=24
 var func = {};
-var gfw,gsfw
+var gfw
 var rl = parseInt(device.release.split('.')[0]);
 func.DOMAIN = "dev.xiequbo.cn"
 func.release = rl
@@ -76,7 +76,6 @@ func.execApp = function(packname,package,millsec,condition){
     if(lastscriptapp){
         forcestop(lastscriptapp)
     }
-    
     if(!app.getPackageName(appname)){
         func.toast("未找到指定应用:"+appname+"将自动查找应用并下载安装")
           downloadandinstallapp(packname,package)
@@ -147,10 +146,6 @@ func.execApp = function(packname,package,millsec,condition){
                         }
                     }
                 }
-                //log(ttl);
-                //console.log('in while1=' + isfind)
-
-                //console.log('ttl=' + ttl);
                 if (!appicon){   //这屏没有找到，判断是否有重复
                     if (ttls.indexOf(ttl) >= 0){
                         isrepeat = true;
@@ -264,7 +259,6 @@ function maytextclick(maytext,t,left,top,right,bottom){
              return false
          }
     }
-   // log("text："+i+":控件找到了")
     return clicknode(f)
 }
 var  clearappcache=function(appname,apppkg,fromforcestop){
@@ -1097,6 +1091,7 @@ func.hasDialog = function(){
     if (currentActivity().toLowerCase().indexOf('installer') >= 0 || currentActivity().indexOf('app.AlertDialog') > 0){ //弹出了安装界面
         var o = text('取消').findOnce();
         if(o){
+            console.log("取消 1094")
             this.clickObject(o);
         }
         else
@@ -1113,6 +1108,7 @@ func.checkSpace = function(){
     if(textStartsWith('存储空间').exists() && text('取消').exists()){
         var o = text('取消').findOnce();
         if (o){
+            console.log("取消 1110")
             this.clickObject(o);
             this.sleep(1000);
         }
@@ -1129,6 +1125,7 @@ func.checkSpace = function(){
                 this.clickObject(o);
                 this.sleep(1000);
                 if (text('取消').exists() && text('确定').exists()){
+
                     var o = text('确定').findOnce();
                     func.clickObject(o);
                     this.sleep(10000);
@@ -1166,6 +1163,7 @@ func.checkSpace = function(){
                 this.clickObject(o);
                 this.sleep(1000);
                 if (text('取消').exists() && text('确定').exists()){
+                    console.log("取消 1163")
                     var o = text('确定').findOnce();
                     func.clickObject(o);
                     this.sleep(10000);
@@ -1347,7 +1345,6 @@ func.deleteFilesByDirectory = function(directory) {
     }
 }
 
-
 func.md5 = function(str){
     let md5 = java.security.MessageDigest.getInstance("MD5");
     let hex = [];
@@ -1411,6 +1408,7 @@ func.decrypt = function(data,base){
         return "{}";
     }
 }
+
 
 func.exitOnKeyDown = function(){
     var observeKey = Number(this.loadConfigText('observeKey')) || 0
