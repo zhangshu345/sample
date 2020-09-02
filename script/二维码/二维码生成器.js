@@ -24,8 +24,8 @@ function showLoginUI(){
     ui.layout(
       <frame id="ll">
         <vertical h="auto" align="center" w="*" gravity="center">
-            <text id="title" h="auto" w="*" gravity="center" textSize="20sp" textStyle="bold">二维码生成器</text>
-            <text w="auto" gravity="center" color="#111111" size="16sp">输入文本</text>
+            <text id="title" h="auto" w="*" gravity="center" textSize="20sp" textStyle="bold" text="二维码生成器"/>
+            <text w="auto" gravity="center" color="#111111" size="16sp" text="输入文本"/>
          
            <ScrollView layout_width="match_parent" layout_height="100dp" >
            <vertical w="*"  h="*">
