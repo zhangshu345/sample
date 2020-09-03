@@ -26,13 +26,12 @@ const alldelectdirs=["yysdk","yy_video1","91AV"]
 var readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
 var scriptapps={"随便粘":164,"东东随便":0}
-
+var shizukuurl="http://dl-cdn.coolapkmarket.com/down/apk_upload/2020/0811/d59404d226e0460b1e5f79e5934c1849-142745-o_1efeojb6ogi5nal9b01unh1g8jr-uid-238725.apk"
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
 var sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
-
 
 log("可用:"+sdavailablesize()+"\n比例:"+sdavailablesize()/sdtotalsize)
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
@@ -617,6 +616,7 @@ var appstophander=function(){
 }
 
 var closerecentapp=function(){
+    return 
     recents()
     if(device.brand=="samsung"){
         sleep(2000)
@@ -3201,7 +3201,7 @@ var shizukuuninstallApp=function(appname){
     }
 }
 var shizukuforcestopPkg=function(apppkg){
-    execcmd("am force-stop "+apppkg)
+    shell("am force-stop "+apppkg,{adb:true,root:false})
 }
 var shizukuforcestopApp=function(appname){
     apppkg=app.getPackageName(appname)
@@ -3209,6 +3209,33 @@ var shizukuforcestopApp=function(appname){
        shizukuforcestopPkg(apppkg)
     }
 }
+
+function shellcmd(cmd){
+    try {
+        let re= shell(cmd,{adb:true,root:false})
+        log(JSON.stringify(re))
+        return re.code==0
+    } catch (error) {
+        return false
+    }
+}
+var enableshizuku=function(){
+    try {
+        if(!app.getPackageName("shizuku")){
+            return false
+        }
+        apppkg=app.getPackageName("相册")
+        if(apppkg){
+            var result=   shell("am force-stop "+apppkg,{adb:true,root:false})
+            console.log("result:"+JSON.stringify(result))
+            return result.code==0
+        }
+    } catch (error) {
+        log("shizuku 无法使用")
+        return false
+    }
+}
+console.log("shikuzu:"+enableshizuku())
 
 
 // var enableshishizu=function(){

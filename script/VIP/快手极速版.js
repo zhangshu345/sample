@@ -733,7 +733,7 @@ var app_get_coin_money=function(){
 
 
 function app_run(){
-    if(invite&&应用登录(appname)){
+    if(invite && !应用登录(appname)){
         快手极速版邀请()
     }
     show("快手极速版开始")
@@ -980,7 +980,14 @@ var app_see_live=function(){
 }
 
 
+var floatyx=0
+var floatyy=device.height-200
+var isshowsettingfloaty=false
+var isdevicemanager=false
+var iskeepappnewer=false
+var isonlayscript=false
+var appdownloadurl=null
 
-
-
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+startapp(appname,apppkg,floatyx,floatyy,
+    isshowsettingfloaty,isdevicemanager,
+    iskeepappnewer,isonlayscript,appdownloadurl)

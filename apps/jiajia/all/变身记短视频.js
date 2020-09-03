@@ -268,6 +268,7 @@ function autoRedraw(){
                             if (o){
                                 func.clickObject(o);
                                 func.sleep(2000);
+                                Scripts.INSTANCE.runnextScript()
                             }
                         }
                     }
