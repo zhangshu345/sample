@@ -37,7 +37,7 @@ var todaysign=今日签到(appname)
 var coin=上次今日金币(appname)
 var money=上次余额(appname)
 var like=true
-var minlike=1000000  //仅点赞百万喜欢的视频
+var minlike=3000000  //仅点赞百万喜欢的视频
 var maxlike=10000000  //千万 超级热门 视频
 var keepappnewer=true
 var lastdesc=""
@@ -332,7 +332,7 @@ var app_sign=function(){
         }
         if(textclick("立即签到")){
             今日已签到(appname)
-          }
+        }
           if(text("去补签").exists()){
                今日已签到(appname)
           }
@@ -341,6 +341,12 @@ var app_sign=function(){
             滑动(20,10,18,10,3,500,200)
             sleep(1000)
             doactionmaxnumber(function(){
+                if(textclick("立即签到")){
+                    
+                  }
+                //   packageName("com.kuaishou.nebula").className("android.view.View").clickable().depth(11).drawingOrder(0).findOne(300).click()
+                //   packageName("com.kuaishou.nebula").className("android.view.View").clickable().depth(12).drawingOrder(0).findOne(300).click()
+               
                 if(app_getrewardnum()>=10){
                   return true
                 }
@@ -356,6 +362,7 @@ var app_sign=function(){
                     close_ad_kk(apppkg)
                 }
                 sleep(1000)
+                今日已签到(appname)
             },12)
        }
         if(invite){
@@ -735,10 +742,18 @@ var app_get_coin_money=function(){
 function app_run(){
     if(invite && !应用登录(appname)){
         快手极速版邀请()
+        show("快手极速版开始")
+        app.launch(apppkg)
+        sleep(3000)
+        doactionmaxtime(function(){
+            textclick("继续")
+        },10000)
+    }else{
+        show("快手极速版开始")
+        app.launch(apppkg)
+        sleep(3000)
     }
-    show("快手极速版开始")
-    app.launch(apppkg)
-    sleep(3000)
+
     if(今日签到(appname)!="true"){
         app_sign()
     }
@@ -981,11 +996,11 @@ var app_see_live=function(){
 
 
 var floatyx=0
-var floatyy=device.height-200
+var floatyy=0
 var isshowsettingfloaty=false
 var isdevicemanager=false
 var iskeepappnewer=false
-var isonlayscript=false
+var isonlayscript=true
 var appdownloadurl=null
 
 startapp(appname,apppkg,floatyx,floatyy,
