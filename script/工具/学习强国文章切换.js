@@ -112,7 +112,6 @@ var  app_radio=function(){
         radiostarttime=nowdate().getTime()
         return true
        }
-
     }
     if(textclick("听理论")){
         sleep(2000)
@@ -130,10 +129,7 @@ var  app_radio=function(){
         
             app_go_home(5)
         }
-
     }
-    
-
 }
 var app_radio_stop=function(){
     doactionmaxtime(function(){

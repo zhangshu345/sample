@@ -536,7 +536,7 @@ function listapp(keepapps,isforcestop,delectapp){
         log(app.name+":"+app.packageName)
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
-                toastLog(app.name+"不是白名单app")
+                show(app.name+"不是白名单app")
                 if(isforcestop){
                     forcestop(app.name)
                 }
@@ -545,7 +545,7 @@ function listapp(keepapps,isforcestop,delectapp){
                 }
                 // log("第三方应用"+GsonUtils.toJson(app))
           }else{
-                toastLog(app.name+"是白名单app")
+                show(app.name+"是白名单app")
           }
             m=m+1
       }
@@ -2670,8 +2670,6 @@ function findwebImgPoint(imgurl,trytime,isclick){
     }
 }
 
-
-
 var checkweixin=function(){
     let weixinpkg=getPackageName("微信")
     if(!weixinpkg){
@@ -2774,7 +2772,6 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
                         webappnames.push(app.app.name)
                     })
                 }
-
                 localapps.forEach(app=>{
                     if(webappnames.indexOf(app.app.name)!=-1){
                         runapps.push(app)
@@ -2789,7 +2786,6 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
     }else{
         数据库.put("runlist",runapps)
     }
-
     Scripts.INSTANCE.delectAllTask()
     runapps.filter(function(app){
         if(!app.open){
@@ -2870,6 +2866,132 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
         oneapp=runapps[0]
         runurlscript(oneapp.app.name,oneapp.path)
 }
+
+
+//佳佳的脚本
+var startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
+    device.wakeUpIfNeeded()
+    issyncwebconfig=issyncwebconfig||true
+    sleep(1000)
+    configpath=configpath||rewardapplisturl
+    listapp(readerapps)
+    let nowtime=nowdate()
+    let xiaoshi=nowtime.getHours()
+    let fen=nowtime.getMinutes()+3
+    var runapps=[]
+    let localapps=数据库.get("runlist","")
+    if(!localapps){
+        log("本地运行配置为空，从云端获取默认配置")
+        var appconfig=httpget(configpath)
+        webapps=JSON.parse(appconfig)
+        if(webapps){
+            runapps=webapps
+        }
+    }else{
+        if(issyncwebconfig){
+            var appconfig=httpget(configpath)
+            webapps=JSON.parse(appconfig)
+                 webappnames=[]
+                if(webapps){
+                    webapps.forEach(app=>{
+                        webappnames.push(app.app.name)
+                    })
+                }
+                localapps.forEach(app=>{
+                    if(webappnames.indexOf(app.app.name)!=-1){
+                        runapps.push(app)
+                    }
+                })
+        }
+    }
+    if(!runapps){
+        //10分钟重启
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen+10)
+        return true
+    }else{
+        数据库.put("runlist",runapps)
+    }
+    Scripts.INSTANCE.delectAllTask()
+    runapps.filter(function(app){
+        if(!app.open){
+           return false
+        }
+        if(今日已提现(app.name)){
+            return false
+        }
+        if(今日时长(app.name)>app.runconfig.maxtime){
+            return false
+        }
+        return true
+    })
+    toastLog("runapp："+runapps.length)
+    if(runapps.length==0){
+        dialogs.confirm("运行提醒","今日没有可以运行的应用，如需继续运行点击确定，无" )
+        return
+    }
+    //下载应用 并保持最新
+    runapps.forEach(app=>{
+        if(!getPackageName(app.name)){
+            downloadandinstallapp(app.name,app.app.pkg)
+        }else{
+            if(enableappnew){
+                keepappisnewer(app.name,app.app.pkg)
+            }
+        }
+    })
+    if(enabletomoney){
+        记录("all","switch_tomoney",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    if(enableappnew){
+        记录("all","switch_appnew",true)
+    }else{
+        记录("all","switch_tomoney",false)
+    }
+    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+        runapps= shuffleArray(runapps)
+        runapps.forEach(app => {
+                let runconfig=app.runconfig
+                if(runconfig&&app.path){
+                    log("xiaoshi:"+xiaoshi+"--fen:"+fen)
+                    while(fen>=60){
+                        fen=fen-60
+                        xiaoshi=xiaoshi+1
+                        if(xiaoshi==24){
+                            xiaoshi=0
+                        }
+                      }
+                      if(app.source==7){
+                        Scripts.INSTANCE.addDailyTask(app.name,JSON.stringify(app),app.source,xiaoshi,fen)
+                      }else{
+                        Scripts.INSTANCE.addDailyTask(app.name,app.path,app.source,xiaoshi,fen)
+                      }
+                    
+                     fen=fen+ Math.ceil(runconfig.onetime/60)
+                }
+        })
+        while(fen>=60){
+            xiaoshi=xiaoshi+1
+            fen=fen-60
+            if(xiaoshi==24){
+                xiaoshi=0
+            }
+          }
+        Scripts.INSTANCE.addDailyTask(scriptname,scriptpath,2,xiaoshi,fen)
+        closerecentapp()
+        closelastscriptapp()
+        spt.remove("lastscriptapp")
+        spt.remove("hongshuyuedu_run_app")
+        spt.put("hongshuyuedu_running",true)
+        threads.start(function(){
+            delectapkfile()
+        }
+        )
+        oneapp=runapps[0]
+        runurlscript(oneapp.app.name,oneapp.path)
+}
+
 
 
 

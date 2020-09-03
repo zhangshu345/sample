@@ -6,7 +6,7 @@ var form = {
 ui.layout(
     <vertical>
         <appbar>
-            <toolbar id="toolbar" title="强国助手 V1.0.5"/>
+            <toolbar id="toolbar" title="阅读脚本配置 V1.0.5"/>
         </appbar>
         <Switch id="autoService" text="无障碍服务" checked="{{auto.service != null}}" padding="8 8 8 8" textSize="15sp"/>
         <ScrollView>
@@ -19,7 +19,7 @@ ui.layout(
             <ScrollView>
             <vertical padding="18 8" h="auto">
                 <text text="项目说明文档: (请留意新版本的发布)" textColor="#222222" textSize="14sp"/>
-                <text autoLink="web" text="https://github.com/XiangyuTang/LearnChinaHelper "/>
+                {/* <text autoLink="web" text="https://github.com/XiangyuTang/LearnChinaHelper "/> */}
             </vertical>
             </ScrollView>
             <View bg="#f44336" h="*" w="10"/>
@@ -40,34 +40,14 @@ ui.layout(
             cardElevation="1dp" gravity="center_vertical">
             <ScrollView>
             <vertical padding="18 8" h="auto">
-                <text text="当前版本强国助手支持的功能包括：(以下任务预计花费7分钟)" textColor="#222222" textSize="14sp"/>
-                <text text="阅读文章、视听学习、收藏、分享、订阅、评论、本地频道" textColor="#999999" textSize="14sp"/>
+                <text text="当前版本阅读脚本仅支持自动阅读和提现" textColor="#222222" textSize="14sp"/>
             </vertical>
             </ScrollView>
             <View bg="#4caf50" h="*" w="10"/>
         </card>
-        <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
-            cardElevation="1dp" gravity="center_vertical">
-            <ScrollView>
-            <vertical padding="18 8" h="auto">
-                <text text="坚持把学习贯彻习近平总书记系列重要讲话精神作为重大政治任务，认真学习党的先进理论与指导思想，请勿利用本软件投机取巧." textColor="#222222"/>
-            </vertical>
-            </ScrollView>
-            <View bg="#4caf50" h="*" w="10"/>
-        </card>
-        <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
-            cardElevation="1dp" gravity="center_vertical">
-            <ScrollView>
-            <vertical padding="18 8" h="auto">
-                <text text="是否执行文章学习时长任务：(预计最多花费12分钟)" textColor="#222222"/>
-                <radiogroup id="long_read">
-                        <radio id="yes_read"  text="是"></radio>
-                        <radio  id="no_read" text="否" checked = "true"></radio>
-                </radiogroup>
-            </vertical>
-            </ScrollView>
-            <View bg="#2196f3" h="*" w="10"/>
-        </card>
+        <com.hongshu.autojs.core.widget.RewardAppListView 
+            w="*" h="auto"/>
+  
         <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
             cardElevation="1dp" gravity="center_vertical">
             <ScrollView>
@@ -121,26 +101,13 @@ ui.emitter.on("options_item_selected", (e, item)=>{
 });
 activity.setSupportActionBar(ui.toolbar);
 
-ui.yes_read.on("check",function(check){
-    if(check){
-        form.isLongRead= true;
-    }
-});
-ui.no_read.on("check",function(check){
-    if(check){
-        form.isLongRead= false;
-    }
-});
-ui.yes_watch.on("check",function(check){
-    if(check){
-        form.isLongWatch= true;
-    }
-});
-ui.no_watch.on("check",function(check){
-    if(check){
-        form.isLongWatch= false;
-    }
-});
+
+
+// ui.no_watch.on("check",function(check){
+//     if(check){
+//         form.isLongWatch= false;
+//     }
+// });
 ui.autoService.on("check", function(checked) {
     // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
     if(checked && auto.service == null) {
