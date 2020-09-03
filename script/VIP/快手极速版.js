@@ -37,7 +37,8 @@ var todaysign=今日签到(appname)
 var coin=上次今日金币(appname)
 var money=上次余额(appname)
 var like=true
-var minlike=500000  //仅点赞百万喜欢的视频
+var minlike=1000000  //仅点赞百万喜欢的视频
+var maxlike=10000000  //千万 超级热门 视频
 var keepappnewer=true
 var lastdesc=""
 var loopn=今日滑动次数(appname)
@@ -329,6 +330,12 @@ var app_sign=function(){
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
             sleep(1500)
         }
+        if(textclick("立即签到")){
+            今日已签到(appname)
+          }
+          if(text("去补签").exists()){
+               今日已签到(appname)
+          }
         滑块验证()
        if(app_get_coin_money()){
             滑动(20,10,18,10,3,500,200)
@@ -337,7 +344,7 @@ var app_sign=function(){
                 if(app_getrewardnum()>=10){
                   return true
                 }
-                if(textclick("福利",500)){
+                if(maytextclick("福利",500)){
                     sleep(3000)
                     close_ad_kk(apppkg)
                     sleep(2000)
@@ -362,21 +369,21 @@ var app_sign=function(){
                 }
             }
         }
-       if(textclick("立即签到")){
-         今日已签到(appname)
-           sleep(1000)
-           back()
-           return true
-       }
-
-       if(text("去补签").exists()){
+        if(textclick("立即签到")){
             今日已签到(appname)
-           back()
-           sleep(300)
-           back()
-           sleep(1000)
-           return true
-       }
+              sleep(1000)
+              back()
+              return true
+          }
+   
+          if(text("去补签").exists()){
+               今日已签到(appname)
+              back()
+              sleep(300)
+              back()
+              sleep(1000)
+          return true
+          }
 
         if(text("签到领金币").exists()){
             if(textclick("去签到")){
@@ -453,7 +460,6 @@ var selectnavi=function(index){
     //     if( node_tabs.child(0).child(index-1)){
     //         node_tabs.child(0).child(index-1).click()
     //     }
-        
     // }
 }
 
@@ -627,8 +633,6 @@ let swipenumber=0
     
 
         // }
-
-
         node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
         if(node_tab){
             if(!node_tab.selected()){
@@ -652,8 +656,13 @@ let swipenumber=0
          if(nowdesc){
              if(nowdesc!=lastdesc){
                 n_like=快手极速版获取视频点赞数()
-                if(n_like >minlike){
+                if(n_like >maxlike){
                     idclick(快手极速版喜欢按钮id)
+                    //@快手千万喜欢视频
+                    sleep(10000)
+                }else if(n_like >minlike){
+                    idclick(快手极速版喜欢按钮id)
+                     //@快手百万百万喜欢视频
                     sleep(10000)
                 }else if(n_like>500000){
                    sleep(9000)
@@ -744,7 +753,6 @@ function app_run(){
         app_video_city()
         idclick("com.kuaishou.nebula:id/close")
         app_tomoney()
-
     }
 }
 
@@ -936,7 +944,6 @@ var app_live_hongbao=function(){
                 return true
             }
         }
-        
       //倒计时的红包
         if(text("手慢了，红包派完了").exists()){
             idclick("com.kuaishou.nebula:id/live_red_packet_close_view")
@@ -972,16 +979,7 @@ var app_see_live=function(){
     },1000)
 }
 
-// app_see_live()
 
-// while(true){
-//     app_go_home(1)
-//     sleep(3000)
-//     app_go_home(2)
-//     sleep(3000)
-//     app_go_home(3)
-//     sleep(3000)
-// }
 
 
 

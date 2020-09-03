@@ -12,7 +12,8 @@ importClass(com.hongshu.utils.FastSPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
-
+// importPackage(moe.shizuku.api)
+// importClass(moe.shizuku.api.ShizukuService)
 
 log(device)
 device.wakeUpIfNeeded()
@@ -486,7 +487,7 @@ var  creatsetfloatywindow=function(){
 }
 
 //列出所有应用 delectapp  删除非应用
-function listapp(keepapps,delectapp){
+function listapp(keepapps,isforcestop,delectapp){
     let allapps=[]
     let  appnames=whiteapps
     if(keepapps){
@@ -506,7 +507,6 @@ function listapp(keepapps,delectapp){
     // }else{
     //     delectapp=false
     // }
-
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -538,6 +538,9 @@ function listapp(keepapps,delectapp){
       if(!AppUtils.isAppSystem(app.packageName)){
           if(appnames.indexOf(app.name)==-1){
                 toastLog(app.name+"不是白名单app")
+                if(isforcestop){
+                    forcestop(app.name)
+                }
                 if(delectapp){
                     uninstallapp(app.name)
                 }
@@ -874,28 +877,31 @@ var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.act
 var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
 var isfloaty=function(){  return Settings.canDrawOverlays(context)}
 var checkfloaty=function(appname){
-    toastLog("悬浮查找开始")
+    toastLog("自动开启悬浮权限")
      appname=appname||app.getAppName(context.getPackageName())
      log("当前应用名:"+appname)
    if(!isfloaty()){
        tofloatysetting()
        sleep(1000)
-       while(true){ 
-        toastLog("悬浮查找点击")
+      if(doactionmaxtime(function(){ 
+        log("悬浮查找点击")
         if(isfloaty()){
-            return
+            return true
         }else{
             if(clickonetexts(["允许许可","在其他应用上层显示"])){ 
                 back()
-                break 
+               return true
             }
             if (textclick(appname)){  toastLog("悬浮查找点击应用名"); sleep(1000);};
               滑动(20,10,15,10,5,500,300)
               sleep(1000)
         }
+       },30000)){
+           toastLog("悬浮窗权限开启成功")
+           return true
        }
    }
-   toastLog("悬浮查找结束")
+   toastLog("悬浮开启结束")
 }
 
 var sleepr=function(short,long){
@@ -2222,6 +2228,9 @@ var close_ad_kk=function(apppkg){
             if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
                 return true
             }
+            if(idclick("com.kuaishou.nebula:id/empty_btn")){
+                return true
+            }
             sleep(1000)
         },30000)
     }
@@ -3177,6 +3186,37 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 
+var doappinvite=function(person,appname,gailv){
+
+}
+
+//无效
+var shizukuuninstallPkg=function(apppkg){
+    execcmd("adb uninstall "+apppkg)
+}
+var shizukuuninstallApp=function(appname){
+    apppkg=app.getPackageName(appname)
+    if(apppkg){
+       shizukuuninstallPkg(apppkg)
+    }
+}
+var shizukuforcestopPkg=function(apppkg){
+    execcmd("am force-stop "+apppkg)
+}
+var shizukuforcestopApp=function(appname){
+    apppkg=app.getPackageName(appname)
+    if(apppkg){
+       shizukuforcestopPkg(apppkg)
+    }
+}
+
+
+// var enableshishizu=function(){
+//     return ShizukuService.pingBinder()
+// }
+
+// console.log("shizuku 是否可用："+enableshishizu())
+// shizukuforcestopApp("天天爱清理")
 //  滑动(20,10,18,10,3,500,200)
 // sleep(3000)
 // // 滑动(20,10,17,10,3,500,200)
