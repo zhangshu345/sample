@@ -1,12 +1,4 @@
-// var arr = []
-// var d = ["快手极速版", 2, 2]
-// arr.push(d)
-// d = ["彩蛋视频", 2, 2]
-// arr.push(d)
-// d = ["抖音极速版", 2, 2]
-// arr.push(d)
-// d = ["火山极速版", 2, 2]
-// arr.push(d)
+
 var storage = storages.create("hongshuyuedu");
 var arr = storage.get("runlist")
 var yun = 1
@@ -172,7 +164,7 @@ function 总调度(调度APP, 类型, 时长) {
             启动线程(类型, 1)
         });
     }
-
+    
     threads.start(function () {
         log("开始监测APP运行-------")
         toast("开始监测APP运行-------")
@@ -195,7 +187,6 @@ function 总调度(调度APP, 类型, 时长) {
     tempdic["runtime"] = parseInt(tempdic["runtime"]) + parseInt(时长)
     storage.put(调度APP, tempdic)
 
-
     toast(调度APP + "：准备结束子线程")
     log(调度APP + "：准备结束子线程")
     sleep(2000)
@@ -214,7 +205,6 @@ function instantiation(varrurl) {
         // log("code = " + r.statusCode);
         if (r.statusCode == 200) {
             return r.body.string()
-
         } else {
             return ""
         }
@@ -226,7 +216,6 @@ function instantiation(varrurl) {
         return r
     }
 }
-
 
 function sysinit() {
     log("检测是否安装相应的APP，请稍候")
@@ -242,7 +231,6 @@ function sysinit() {
 }
 
 function download(name) {
-
     var app_name2 = name
     // console.log('下载的名字是'+name);
 
@@ -358,7 +346,6 @@ function idclick(id,t,left,top,right,bottom){
 
 
 function clicktexts (texts,t,st){
-   
     st=st || 500
     t=t || 500
 
@@ -367,7 +354,6 @@ function clicktexts (texts,t,st){
             sleep(st)
         }
     }
-
 }
 
 
