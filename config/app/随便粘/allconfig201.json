@@ -32,7 +32,7 @@
         {"name":"developfragment","value":"本地脚本-教程-任务-管理-市场","summary":"说明"},
         {"name":"qqproducturl","value":"https://support.qq.com/products/179319","summary":"说明"}
     ,   {"name":"company","value":"https://support.qq.com/products/179319","summary":"说明"}
-    ,   {"name":"showcharge","value":"false","summary":"说明"}
+    ,   {"name":"showcharge","value":"true","summary":"说明"}
     ,   {"name":"qq","value":"3450559631","summary":"说明"}
     ,   {"name":"email","value":"zhangshuhong888@gmail.com","summary":"说明"}
     ,   {"name":"github","value":"https://github.com/zhangshu345","summary":"说明"}
