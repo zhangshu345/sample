@@ -6,18 +6,24 @@ var form = {
 }
 ui.layout(
     <vertical>
-        <appbar>
-            <toolbar id="toolbar" title="阅读脚本配置 V1.0.5"/>
-        </appbar>
-        <Switch id="autoService" text="无障碍服务" checked="{{auto.service != null}}" padding="8 8 8 8" textSize="15sp"/>
-        <ScrollView>
-        <vertical>
-        <frame height="40" gravity="center">
-            <text text="*注意*" gravity="center" textSize="18sp" textColor="red" textStyle="bold"/>
-        </frame>
+        <androidx.coordinatorlayout.widget.CoordinatorLayout w="*" h="*">
+    
+        <appbar >
+        <toolbar id="toolbar" title="阅读脚本配置 V1.0.5"
+                    layout_collapseMode="pin"
+                    />
+             <com.google.android.material.appbar.CollapsingToolbarLayout
+                app_layout_scrollFlags="scroll|enterAlwaysCollapsed"
+             >
+                 <vertical app_layout_collapseMode="parallax"  >
+                 <Switch id="autoService" text="无障碍服务" checked="{{auto.service != null}}" padding="8 8 8 8" textSize="15sp"/>
+                 <frame height="40" gravity="center">
+                      <text text="*注意*" gravity="center" textSize="18sp" textColor="red" textStyle="bold"/>
+                </frame>
+                
         <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
             cardElevation="1dp" gravity="center_vertical">
-            <ScrollView>
+            <ScrollView h="auto">
             <vertical padding="18 8" h="auto">
                 <text text="项目说明文档: (请留意新版本的发布)" textColor="#222222" textSize="14sp"/>
                 {/* <text autoLink="web" text="https://github.com/XiangyuTang/LearnChinaHelper "/> */}
@@ -46,10 +52,7 @@ ui.layout(
             </ScrollView>
             <View bg="#4caf50" h="*" w="10"/>
         </card>
-        <com.hongshu.autojs.core.widget.RewardAppListView 
-        id="rewardview"
-            w="*" h="auto"/>
-  
+          
         <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
             cardElevation="1dp" gravity="center_vertical">
             <ScrollView>
@@ -63,6 +66,19 @@ ui.layout(
             </ScrollView>
             <View bg="#2196f3" h="*" w="10"/>
         </card>
+                 </vertical>
+                
+             </com.google.android.material.appbar.CollapsingToolbarLayout>
+         
+        </appbar>
+
+        <com.hongshu.autojs.core.widget.RewardAppListView 
+        layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        id="rewardview"
+            w="*" h="auto"/>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <vertical>
+    
         <linear gravity="center">
             <button id="start" text="开始运行" style="Widget.AppCompat.Button.Colored" w="auto"/>
             <button id="stop" text="停止运行"  w="auto"/>
@@ -74,7 +90,7 @@ ui.layout(
             <text text="Copyright©2020 by 红薯" gravity="center"/>
         </frame>
         </vertical>
-        </ScrollView>
+ 
     </vertical>
 );
 
