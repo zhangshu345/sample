@@ -78,12 +78,14 @@ ui.layout(
     </vertical>
 );
 
+
 //创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("启动悬浮窗");
     menu.add("运行日志");
     menu.add("关于");
 });
+
 //监听选项菜单点击
 ui.emitter.on("options_item_selected", (e, item)=>{
     switch(item.getTitle()){
