@@ -1,4 +1,5 @@
 "ui";
+//启动ui脚本配置页
 var form = {
     isLongRead: false,
     isLongWatch: false
