@@ -46,6 +46,7 @@ ui.layout(
             <View bg="#4caf50" h="*" w="10"/>
         </card>
         <com.hongshu.autojs.core.widget.RewardAppListView 
+        id="rewardview"
             w="*" h="auto"/>
   
         <card w="*" h="*" margin="10 5" cardCornerRadius="2dp"
@@ -101,7 +102,7 @@ ui.emitter.on("options_item_selected", (e, item)=>{
 });
 activity.setSupportActionBar(ui.toolbar);
 
-
+ui.rewardview.setScriptUrl("https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读脚本配置页.js")
 
 // ui.no_watch.on("check",function(check){
 //     if(check){
