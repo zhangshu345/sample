@@ -104,7 +104,6 @@ ui.emitter.on("options_item_selected", (e, item)=>{
     e.consumed = true;
 });
 activity.setSupportActionBar(ui.toolbar);
-
 ui.rewardview.setScriptUrl("https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读脚本配置页.js")
 
 // ui.no_watch.on("check",function(check){
