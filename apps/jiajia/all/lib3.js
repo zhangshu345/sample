@@ -55,7 +55,6 @@ func.clickObject = function(obj,xoffset,yoffset){
                 log(e.stack);
                 o = false;
             }
-    
             if (o)
                 break;
         }
@@ -158,7 +157,6 @@ func.execApp = function(packname,package,millsec,condition){
                         let txt = child.text();
                         if (txt == '' && child.desc())
                         txt = child.desc().toString().split(' ')[0].trim();
-
                         if (txt == packname){
                             appicon = child;
                             break;
@@ -212,6 +210,7 @@ func.execApp = function(packname,package,millsec,condition){
                 }
             }
         }
+
         catch(e){
            log(e.message + e.stack)
             if (execTrys <= 0){    //重试了三次
@@ -224,7 +223,6 @@ func.execApp = function(packname,package,millsec,condition){
             }
         }
     }
-    //}
 }
 
 var forcestop=function(appname,st,isclearcache){
