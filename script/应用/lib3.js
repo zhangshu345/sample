@@ -611,7 +611,6 @@ function install_app(filePath, name,maxtime,isopen,delect) {
 }
 
 
-
 function descclick(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
