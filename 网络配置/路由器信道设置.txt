@@ -1,7 +1,0 @@
-jd 2_
-
-ow_5  -信道42 17dbm
-ow_2  信道 11 2462mhz 40
-yangyang 2  信道 6
-yangyang 5  信道自动
-
