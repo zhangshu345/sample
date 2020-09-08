@@ -1,15 +1,13 @@
 const appname = '东方头条';
 const package = 'com.songheng.eastnews'; 
-
-var classModule = {};
-classModule.minMinutes = 20;
+classModule.maxMinutes =20
 classModule.maxMinutes = 30;
 classModule.minSwipe = 8;
 classModule.maxSwipe = 12;
+classModule.maxVideoSec = 12;
+classModule.minVideoSec = 8;
 classModule.minTextSec = 3;
 classModule.maxTextSec = 8;
-classModule.minVideoSec = 8;
-classModule.maxVideoSec = 12;
 classModule.func = null;
 
 classModule.start = function(){
@@ -19,7 +17,7 @@ classModule.start = function(){
     func.log(appname,'启动，预计运行：' + minutes ,"**********************************************************");
     func.toast(appname + '预计运行时间：' + minutes + '分',2)
     var startDate = new Date(); //启动时间
-    var thread = threads.start(hasDialog);  //启动新的线程来检测是否有弹出窗口
+ 
 
     if (currentPackage() != package){
         var o = func.execApp(appname,package,15000,"textMatches('头条|任务').visibleToUser().exists()")
@@ -30,7 +28,8 @@ classModule.start = function(){
             return; //退出函数
         }
     }
-
+    
+    var thread = threads.start(hasDialog);  //启动新的线程来检测是否有弹出窗口
     //在这里读取配置文件
     var cfg = func.loadConfig(appname);
     var lastdate = cfg.lastdate || '';
@@ -377,6 +376,7 @@ function loadMyClassFile(){
     files.write(n, resutl)
     return n
 }
+
 n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;

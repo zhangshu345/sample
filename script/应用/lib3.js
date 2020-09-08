@@ -21,7 +21,7 @@ var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var isshowfloaty=false  //是否显示提醒
 var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
-var spt=FastSPUtils.getInstance()
+var glodespt=FastSPUtils.getInstance()
 var enablegenius=device.sdkInt>=24
 var func = {};
 var gfw
@@ -30,6 +30,51 @@ func.DOMAIN = "dev.xiequbo.cn"
 func.release = rl
 func.isAndroid7 = (rl >= 7);
 func.is2GMemory = (device.getTotalMem() <= 2147483648);
+isinstalling=false
+
+var spt=com.hongshu.utils.FastSPUtils.getInstance(appname)
+
+spt.getBoolean("automoney")
+log(spt.getBoolean("autoupdate"))
+log(spt.getBoolean("showfloaty"))
+var classModule = {};
+var minstr=spt.getString("timemin")
+if(minstr!=null){
+    classModule.minMinutes = parseInt(minstr);
+}else{
+    classModule.maxMinutes =20
+}
+var maxstr=spt.getString("timemax")
+if(maxstr!=null){
+    classModule.maxMinutes = parseInt(maxstr);
+}else{
+    classModule.maxMinutes = 30;
+}
+var minswstr=spt.getString("swipemin")
+if(minswstr!=null){
+    classModule.minSwipe = parseInt(minswstr)
+}else{
+    classModule.minSwipe = 8;
+}
+var maxswstr=spt.getString("swipemax")
+if(maxswstr!=null){
+    classModule.maxSwipe = parseInt(maxswstr);
+}else{
+    classModule.maxSwipe = 12;
+}
+var minvideo=spt.getString("videomin");
+if(minvideo!=null){
+    classModule.minVideoSec  = parseInt(minvideo)
+}else{
+    classModule.minVideoSec = 8;
+}
+var maxvideo=spt.getString("videomax");
+if(maxvideo!=null){
+    classModule.maxVideoSec = parseInt(maxvideo)
+}else{
+    classModule.maxVideoSec = 12;
+}
+
 
 func.isLog = function(){
     var l = Number(func.loadConfigText("islog")) || 0;
@@ -72,7 +117,8 @@ func.clickObject = function(obj,xoffset,yoffset){
 
 func.execApp = function(packname,package,millsec,condition){
     func.toast('开始执行' + packname,2)
-    let lastscriptapp=spt.getString("lastscriptapp")
+
+    let lastscriptapp=glodespt.getString("lastscriptapp")
     if(lastscriptapp){
         forcestop(lastscriptapp)
     }
@@ -81,7 +127,7 @@ func.execApp = function(packname,package,millsec,condition){
           downloadandinstallapp(packname,package)
       }
       engines.stopOther()
-      spt.put("lastscriptapp",packname)
+      glodespt.put("lastscriptapp",packname)
         var execTrys2 = 3 ;
 
         while(true){
@@ -379,6 +425,56 @@ var  floatyshow=function(txt,txtcolor){
     }
 }
 
+function systemdownload(filename,fileuri,isinstall){
+    isinstall=isinstall || false
+    importClass(android.os.Environment);
+    importClass(android.net.Uri);
+    importClass(android.app.DownloadManager);
+let uri = fileuri;
+let request = new DownloadManager.Request(Uri.parse(uri));
+//指定下载目录与文件名
+request.setDestinationInExternalPublicDir("/download/", filename);
+//指定在WIFI状态下，执行下载操作。
+//request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+//指定在MOBILE状态下，执行下载操作
+//request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE);
+//是否允许漫游状态下，执行下载操作
+request.setAllowedOverRoaming(false);
+//是否允许“计量式的网络连接”执行下载操作
+request.setAllowedOverMetered(true); //默认是允许的。
+//设置Notification的标题和描述
+request.setTitle(filename);  
+request.setDescription(filename+"正在下载"); 
+//设置Notification的显示，和隐藏。
+request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//设置下载文件类型
+request.setMimeType("application/vnd.android.package-archive");//apk类型
+//设置网络请求头
+//request.addRequestHeader(header, value)；
+let downloadManager = context.getSystemService(context.DOWNLOAD_SERVICE);
+let id = downloadManager.enqueue(request);
+let query = new DownloadManager.Query();
+//删除下载任务，会同时删除文件
+//downloadManager.remove(id);
+let st = setInterval(() => {
+    let cursor = downloadManager.query(query.setFilterById(id));
+    if (!(cursor != null && cursor.moveToFirst())) return toastLog("下载任务不存在");
+    let bytes_downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));//已下载字节
+    let totalSize = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+    log("下载进度:"+Math.ceil(bytes_downloaded/totalSize*100)+"%");
+    //下载状态
+    let status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+    if (status == DownloadManager.STATUS_SUCCESSFUL){
+        toastLog("下载已完成");
+        clearInterval(st);//取消定时器
+        if(isinstall){
+            install_app(files.getSdcardPath()+"/download/"+filename,filename)
+        }
+     }
+}, 1500);
+
+}
+
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
     try {
@@ -426,17 +522,16 @@ function downloadApk(name,downloadurl,isinstall) {
        threadId && threadId.isAlive() && threadId.interrupt();
        toastLog(name+'下载完成');
        if(isinstall){
-        install_app(filePath,name)
+            install_app(filePath,name)
         }
     } catch (error) {
         log("下载失败:"+error)
     }
-
- 
 }
 
 
 function install_app(filePath, name,maxtime,isopen,delect) {
+    isinstalling=true
     maxtime=maxtime||180000
     isopen=isopen||false
     delect=delect||true
@@ -492,6 +587,7 @@ function install_app(filePath, name,maxtime,isopen,delect) {
                sleep(5000)
                true
             }else{
+                isinstalling=false;
                return true  
             }
            
@@ -501,6 +597,7 @@ function install_app(filePath, name,maxtime,isopen,delect) {
            if(app.getPackageName(name)){  
                log("系统可以获取到:"+name)
                sleep(1000); 
+               isinstalling=false;
             return true
             }
        }
@@ -509,6 +606,7 @@ function install_app(filePath, name,maxtime,isopen,delect) {
     back()
     sleep(300)
     back()
+    isinstalling=false;
     return false
 }
 
@@ -634,7 +732,6 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
                 sleep(intervaltime)
             }
             return true
-          
         }else{
            if(b.top>0&&b.b.left>0){
             log("点击控件左上角")
@@ -643,7 +740,6 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
                 sleep(intervaltime)
             }
             return true
-              
            }
            if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
             log("点击控件右下角"+(b.right)+","+(b.bottom))
@@ -652,8 +748,6 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
                 sleep(intervaltime)
             }
             return true
-
-            
            }
            return false
         }
@@ -701,14 +795,12 @@ var clickchilds=function(v){
               }
             }
            }
-        
        }
    }else{
        return false
    }
    return false 
 }
-
 
 //直接从应用宝获取应用信息
 var getAppInfobyAppNameAndPkg=function(appname,apppkg){
@@ -763,6 +855,7 @@ func.checkapp = function(appname,package){
     }
 }
 
+
 func.restart = function(appname,package){
     try{
         if (!this.isAndroid7){
@@ -776,8 +869,8 @@ func.restart = function(appname,package){
     catch(e){
         this.log("函数",'重启APP',e.message + '\n\r' + e.stack);
     }
-
 }
+
 
 func.openWaiting = function(activities){
     var activities = activities || ['.FrameLayout','.SplashActivity'];
@@ -913,7 +1006,6 @@ func.sleepWithTip = function(txt,waitsec,brk){
         }
         this.sleep(1000);
         waitsec--;
-
         if (brk != ''){
             if (eval(brk)){
                 break;
@@ -921,6 +1013,7 @@ func.sleepWithTip = function(txt,waitsec,brk){
         }
     }
 }
+
 func.videoSleep = function(waitsec){
     while(waitsec > 0){
         if (this.isAndroid7){
@@ -994,7 +1087,9 @@ func.clear = function(){
     }
 }
 
+
 func.sleep = function(ms,txt,brk){
+
     txt = txt || '';
     if (txt){
         this.sleepWithTip(txt,parseInt(ms / 1000),brk);
@@ -1012,12 +1107,14 @@ func.sleep = function(ms,txt,brk){
         }
     }
 }
+
 func.back = function(){
     if (this.isAndroid7)
         back(); //Back
     else
         Back();
 }
+
 func.home = function(){
     for(var i = 0; i < 5; i++){
         if (this.isAndroid7)
@@ -1026,8 +1123,8 @@ func.home = function(){
             Home()
         this.sleep(500);
     }
-
 }
+
 
 func.swipe = function(x1,y1,x2,y2,duration){
     //通用上拉代码
@@ -1088,6 +1185,9 @@ func.log = function(appname,type,text){
 }
 
 func.hasDialog = function(){
+    if(isinstalling){
+        return
+    }
     if (currentActivity().toLowerCase().indexOf('installer') >= 0 || currentActivity().indexOf('app.AlertDialog') > 0){ //弹出了安装界面
         var o = text('取消').findOnce();
         if(o){
@@ -1097,12 +1197,12 @@ func.hasDialog = function(){
         else
             this.back();
     }
-
     if (text('等待').exists() && text('确定').exists()){
         var o = text('确定').findOnce();
         this.clickObject(o);
     }
 }
+
 
 func.checkSpace = function(){
     if(textStartsWith('存储空间').exists() && text('取消').exists()){
@@ -1118,8 +1218,7 @@ func.checkSpace = function(){
             intent.setAction("android.settings.INTERNAL_STORAGE_SETTINGS"); //MEMORY_CARD_SETTINGS
             app.startActivity(intent);
             this.sleep(3000);
-
-            
+           
             var o = text('缓存数据').findOnce();    //小米
             if(o){
                 this.clickObject(o);
@@ -1157,7 +1256,6 @@ func.checkSpace = function(){
                 root:true
             });
             this.sleep(8000);
-            
             var o = text('缓存数据').findOnce();    //小米
             if(o){
                 this.clickObject(o);
@@ -1170,7 +1268,6 @@ func.checkSpace = function(){
                 }
             }               
         }
-
         this.back();
     }
 }
