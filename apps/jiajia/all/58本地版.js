@@ -15,7 +15,7 @@ classModule.minVideoSec = 8;
 classModule.maxVideoSec = 12;
 classModule.func = null;
 classModule.autoR = 0;	//默认自动提现
-classModule.key_word_58 = 0
+classModule.key_word_58="平川"
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
 
 
@@ -30,7 +30,7 @@ classModule.start = function () {
     func.log(appname, '启动，预计运行：' + minutes, "**********************************************************");
     func.toast(appname + '预计运行时间：' + minutes + '分', 2)
     var startDate = new Date(); //启动时间
-    key_word_58="美女"
+    
     // 首先判断是否有关键字
     if(key_word_58 == 0 || !key_word_58){
         log("58没有设置关键字，设置关键字以后再跑")

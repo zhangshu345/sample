@@ -372,7 +372,7 @@ var keepappisnewer=function(name,pkg){
             log(name+":"+appversioncode+"--最新:"+appinfo.appDetail.versionCode)
             if(appversioncode!=-1){
                 if(appversioncode<appinfo.appDetail.versionCode){
-                    downloadApk(name+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
+                    systemdownload(name+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);  
                 }
             }
         }
@@ -385,7 +385,7 @@ var keepappisnewer=function(name,pkg){
 var downloadandinstallapp=function(appname,apppkg){
     let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
      if(appinfo){log("应用详情：获取成功");
-     downloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
+     systemdownload(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
   }
  }
 
