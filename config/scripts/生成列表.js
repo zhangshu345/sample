@@ -105,7 +105,7 @@ function makescriptfiles(dir){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
-makepasswordscriptfiles()
+
 
 //生成加密脚本列表
 function makepasswordscriptfiles(){
@@ -125,8 +125,10 @@ function makepasswordscriptfiles(){
         scripts.push(newscript)
     })
    // console.log(JSON.stringify(scripts))
-    fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
+    fs.writeFileSync(path.resolve("./config/scripts/新阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
+
+makepasswordscriptfiles()
 
 function oldscriptconfig2new(oldfile,newfile){
    let oldcontent= fs.readFileSync(path.resolve(oldfile),'utf8')
