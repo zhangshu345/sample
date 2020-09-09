@@ -33,15 +33,19 @@ var window2 = floaty.rawWindow(
 window.exit.on("click", function() {
     exit();
 });
+
 window.sdt.on("click", function() {
     config.setk();
 });
+
 window.ok.on("click", function() {
     selp.run();
 });
+
 window.dp.on("click", function() {
     xd.run();
 });
+
 window.db.setOnTouchListener(function(view, event) {
     switch (event.getAction()) {
         case event.ACTION_DOWN:
@@ -112,8 +116,8 @@ var kol = new function() {
 
     this.setxy(zb.x, zb.y);
     this.setwh(zb.w, zb.h);
-
 }
+
 //详细
 var xd = new function() {
     var img, sb, yw;
@@ -168,10 +172,10 @@ var xd = new function() {
         })
     }
 }
+
 //开始识别
 var selp = new function() {
     var ts, fy;
-
     function getzb() {
         var zb = {
             x: window2.getX(),
@@ -210,9 +214,9 @@ var selp = new function() {
             }
             xd.set(img, str, str2);
         });
-
     }
 }
+
 //设置配置
 var config = new function() {
     var shibie, fanyi, fy;

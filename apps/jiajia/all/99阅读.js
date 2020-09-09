@@ -804,7 +804,7 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()
 
 
 
@@ -994,3 +994,28 @@ function hasDialog(){
         catch(e){log(e.message + e.stack)}
     },3000);
 }
+
+
+//添加可以独立运行
+function loadMyClassFile(){
+    n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
+    try {
+        yunurl = 'https://gitee.com/zhangshu345012/sample/raw/v2/script/应用/lib3.js'
+        r = http.get(yunurl);
+        if (r.statusCode == 200) {
+            resutl = r.body.string()
+        } else {
+            resutl = ''
+        }
+    }catch (e) {
+        resutl = ''
+    }
+    // log(resutl)
+    files.write(n, resutl)
+    return n
+}
+n = loadMyClassFile()
+var func = require(n);
+classModule.func = func;
+files.remove(n)
+classModule.start();Scripts.INSTANCE.runnextScript()

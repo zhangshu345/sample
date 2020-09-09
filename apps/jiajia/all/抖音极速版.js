@@ -416,4 +416,4 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()

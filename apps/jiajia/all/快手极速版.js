@@ -1,11 +1,3 @@
-
-/**
- * 适配1.10.1.100
- * 2019.11.25适配1.10.2.105
- * 2019.11.27适配1.10.3.115
- * 2019.12.3适配1.11.0.121
- * 2020.01.xx适配2.0.1.167
- */
  
 var appname = '快手极速版';
 var pkg = 'com.kuaishou.nebula';
@@ -930,4 +922,4 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()

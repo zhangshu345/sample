@@ -399,7 +399,7 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()
 
 
 
@@ -480,7 +480,7 @@ function sign2(){
 
 
 
-// classModule.start()
+// classModule.start();Scripts.INSTANCE.runnextScript()
 
 
 
@@ -509,7 +509,7 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()
 
 
 

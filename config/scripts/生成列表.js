@@ -105,12 +105,11 @@ function makescriptfiles(dir){
     fs.writeFileSync(path.resolve("./config/scripts/阅读.json"),JSON.stringify(scripts),{encoding:"utf8"})
 }
 
-
+makepasswordscriptfiles()
 
 //生成加密脚本列表
 function makepasswordscriptfiles(){
     var dir="./script/App"
-
     var scriptnames=fs.readdirSync(path.resolve(dir))
     var scripts=[]
     var scriptpath="App"
@@ -191,7 +190,8 @@ function updateoldscriptconfig2newfromdir(dir){
 }
 
 //updateoldscriptconfig2newfromdir("./config/scripts/")
-oldscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
+
+// oldscriptconfig2new("./config/scripts/会员.json","./config/scripts/新会员.json")
 //oldpasswordscriptconfig2new("./config/scripts/阅读.json","./config/scripts/新阅读.json","123456781234567812345678","1234567887654321")
 // makepasswordscriptfiles()
  //createconfigjsonfile("./","测试生成json.json",{name:"你好",ls:["1","2"],ns:"字符串2",zs:2})

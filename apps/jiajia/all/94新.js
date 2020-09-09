@@ -56,17 +56,10 @@ classModule.start = function () {
         }
     }
 
-
-
-
     func.openWaiting();
-
 
     var x = device.width / 2;
     var y = device.height / 2;
-
-
-
 
     try {
         result = sign()
@@ -93,7 +86,6 @@ classModule.start = function () {
             }
             // if (this.autoR == 0) autoRedraw();
         }
-
     }
     catch (e) {
         func.log(appname, '循环执行', e.message + '\n\r' + e.stack);
@@ -123,17 +115,11 @@ function closeDialog() {
         func.sleep(1000);
     }
 
-
     if (packageName(package).textMatches(keys).filter(function (w) { if (w.text() == '点击下载' && w.bounds().bottom > device.height * 0.8) { return false } else { return true } }).visibleToUser().exists()) {
         // log(3)
         func.back();
         func.sleep(3000);
     }
-
-
-
-
-
 }
 
 function autoRedraw() {
@@ -156,8 +142,7 @@ function autoRedraw() {
                     func.clickObject(o)
                     func.sleep(10000, '等待中', "textMatches('立即提现').visibleToUser().exists() || descMatches('立即提现').visibleToUser().exists()");
                     sleep(3000)
-    
-    
+       
                     if (have_moey >= 5) {
                         have_moey = "5元"
                     } else if (have_moey >= 1) {
@@ -270,8 +255,6 @@ function up_app(){
     }else{
         return false
     }
-    
-
 }
 
 function refresh(){
@@ -288,8 +271,6 @@ function refresh(){
                 func.restart(appname, package)
             }
         }
-
-
         if (currentPackage().toLowerCase() != package.toLowerCase()) {
             // log("开始返回")
             func.back();
@@ -308,14 +289,11 @@ function refresh(){
         }
     }
 
-
     o = textMatches('下次再说').visibleToUser().findOnce() || descMatches('下次再说').visibleToUser().findOnce()
     if(o){
         func.clickObject(o);
         func.sleep(3200);
     }
-
-
     o = textMatches('自动').visibleToUser().findOnce() || descMatches('自动').visibleToUser().findOnce()
     if(o){
         if(!o.selected()){
@@ -323,7 +301,6 @@ function refresh(){
             sleep(3000)
         }
     }
-
 }
 
 function sign() {
@@ -469,7 +446,6 @@ function sign() {
         }
     } 
 
-
     o = textMatches('运行 .*音量.*').visibleToUser().findOnce() || descMatches('运行 .*音量.*').visibleToUser().findOnce()
     if(o){
         func.clickObject(o);
@@ -601,5 +577,5 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()
 

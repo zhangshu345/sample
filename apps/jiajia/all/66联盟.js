@@ -398,7 +398,7 @@ classModule.start = function(){
     clearCache();
     func.quit(package);
 }
-// classModule.start()
+// classModule.start();Scripts.INSTANCE.runnextScript()
 
 function giveUp(){
     var o = textMatches('提交|提交任务|提交截图').visibleToUser().exists() || descMatches('提交|提交任务|提交截图').visibleToUser().exists();
@@ -824,6 +824,6 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start();Scripts.INSTANCE.runnextScript()
 
 
