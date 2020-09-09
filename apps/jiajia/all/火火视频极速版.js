@@ -38,10 +38,11 @@ log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + 
             return; //退出函数
         }
     }
-    sign();
+
     // log("调试信息 签到完毕")
     func.openWaiting(['.FrameLayout', '.SplashActivity'])
     try {
+        sign();
         var idx = 1;
         var bol = true;
         var trys = 0;
@@ -118,8 +119,12 @@ log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + 
             func.sleep(c, '视频观看中....')
             w = device.width;
             h = device.height;
-            swipe(w * 0.6 - random(10, 30), h * 0.6 + random(10, 20), w * 0.6 + random(50, 80), h * 0.4 + random(10, 30), random(220, 235))
-            
+            o = packageName(package).textMatches('立即查看').visibleToUser().findOnce()
+            if (!o) {
+                swipe(w * 0.6 - random(10, 30), h * 0.6 + random(10, 20), w * 0.6 + random(50, 80), h * 0.4 + random(10, 30), random(220, 235))
+            }
+
+
             var datediff = new Date().getTime() - startDate.getTime();
             if (datediff > minutes * 60 * 1000) {
                 bol = false;
@@ -143,7 +148,6 @@ log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + 
     func.log(appname, '结束时间', "**********************************************************");
     func.quit(package);
 }
-
 function autoRedraw() {
     var ii = 5;
     while (ii-- > 0 && !textMatches('首页|刷新').visibleToUser().exists()) {
@@ -562,7 +566,6 @@ function hasDialog(){
 
         o = packageName(package).textMatches('.*恭喜获得.*|.*您又赚了.*').visibleToUser().findOnce()
         if (o) {
-            toast("关闭11")
             sleep(3000)
             o = packageName(package).textMatches('.*恭喜获得.*|.*您又赚了.*').visibleToUser().findOnce()
             if(o){
@@ -650,6 +653,7 @@ function hasDialog(){
 }
 
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

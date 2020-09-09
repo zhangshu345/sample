@@ -15,6 +15,7 @@ classModule.autoR = 0;	//默认自动提现
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
 
 
+
 classModule.start = function () {
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
@@ -35,6 +36,23 @@ classModule.start = function () {
     }
 
     func.openWaiting();
+
+    var cfg = func.loadConfig(appname);
+    var lastdate = cfg.lastdate || '';
+    var nowdate = new Date().toLocaleDateString();
+    var have_cope = cfg.have_cope || 0;    // 已经保存的
+    var have_share= cfg.have_share || 0; 
+    if (lastdate != nowdate) {    //是新的一天
+        log("新的一天清空数据")
+        have_cope = 0;   //已读的为空;
+        have_share = 0; 
+        lastdate = nowdate;
+        cfg.lastdate = lastdate
+        cfg.have_cope = have_cope
+        cfg.have_share = have_share
+        func.saveConfig(appname, JSON.stringify(cfg));
+    }
+    
 
 
     var x = device.width / 2;
@@ -63,25 +81,68 @@ classModule.start = function () {
         if(o){
             func.clickObject(o);
             sleep(5000)
-            o = textMatches('来赚钱').visibleToUser().findOnce() || descMatches('来赚钱').visibleToUser().findOnce()
-            if(o){
-                func.clickObject(o);
-                sleep(3000)
+            // o = textMatches('来赚钱').visibleToUser().findOnce() || descMatches('来赚钱').visibleToUser().findOnce()
+            // if(o){
+            //     func.clickObject(o);
+            //     sleep(3000)
+            // }
+            
+            if(have_share==0){
+                var ii = 3;
+                while(ii-- > 0 && ! textMatches('分享映客极速版').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce()){
+                    var w = device.width;
+                    var h = device.height;
+                    swipe(w * 0.6 - random(10, 30), h * 0.8 + random(10, 20), w * 0.6 + random(50, 80), h * 0.3 + random(10, 30), random(220, 235))
+                    func.sleep(2300);
+                    o = textMatches('分享映客极速版').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce();
+                    if(o){
+                        break
+                    }
+                }
+                
+                var ii = 5;
+                while(ii-- > 0){
+                    o = textMatches('今日奖励已经领取完毕').visibleToUser().findOnce();
+                    if (o) {
+                        have_share = 1
+                        cfg.have_share = have_share
+                        func.saveConfig(appname, JSON.stringify(cfg));
+                        break
+                    }
+                    o = textMatches('分享映客极速版').visibleToUser().findOnce();
+                    if (o) {
+                        click(device.width*0.85, o.bounds().centerY()+50);
+                        sleep(3000)
+                    }
+                    sleep(2000)
+                    o = textMatches('微信').visibleToUser().findOnce() || descMatches('微信').visibleToUser().findOnce()
+                    if (o) {
+                        func.clickObject(o);
+                        func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
+                        sleep(1000)
+                        back()
+                        sleep(3500)
+                    }
+                }
+
+
             }
+
+
         }
         
         o = textMatches('去赚钱').visibleToUser().findOnce()
         if(o){
             func.clickObject(o);
             sleep(3000)
-            func.sleep(10000, '等待中', "textMatches('看直播赚金币|任务').visibleToUser().exists() || descMatches('看直播赚金币|任务').visibleToUser().exists()");     
+            func.sleep(10000, '等待中', "textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists() || descMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()");     
         }
         
-        o = textMatches('看直播赚金币|任务').visibleToUser().exists()
+        o = textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()
         if(!o){
             to_video()
         }
-        o = textMatches('看直播赚金币|任务').visibleToUser().exists()
+        o = textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()
         if(o){
             var bol = true;
         }else{
@@ -97,7 +158,7 @@ classModule.start = function () {
         while (bol) {
             if (num == 10) {
 
-                o = textMatches('看直播赚金币|任务').visibleToUser().findOnce();
+                o = textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().findOnce();
                 if (o) {
                     xx = o.bounds().centerX()+20
                     yy = o.bounds().centerY()-100
@@ -121,15 +182,41 @@ classModule.start = function () {
             }
             num += 1
             if (num > 10) {
+                if(have_cope<15){
+                    o = textMatches('来聊聊天…').visibleToUser().findOnce();
+                    if (o) {
+                        func.clickObject(o);
+                        sleep(3000)
+                        var address_all_key = ["好漂亮","爱你❤️","主播好","喜欢主播","好有缘份啊","666"];
+                        var address_once_key = address_all_key[Math.round(Math.random()*(address_all_key.length-1))];
+                        o = textMatches(address_once_key).visibleToUser().findOnce();
+                        if(o){
+                            func.clickObject(o);
+                        }
+                        sleep(1000)
+                        back()
+                        sleep(2000)
+                        have_cope += 1
+                        cfg.have_cope = have_cope
+                        func.saveConfig(appname, JSON.stringify(cfg));
+    
+                    }
+                }
+
+
+
                 num = 0
             }
 
             func.checkSpace();  //检测一次存储空间
-            if (!textMatches('看直播赚金币|任务').visibleToUser().exists()) { //没有关注，重启刷宝
+            if (!textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()) { //没有关注，重启刷宝
                 to_video()
             }
 
             func.sleep(10000, '直播观看中.....');
+
+
+
 
             var datediff = new Date().getTime() - startDate.getTime();
             if (datediff > minutes * 60 * 1000) {
@@ -156,7 +243,7 @@ classModule.start = function () {
 function to_video(){
     refresh()
     var ii = 10;
-    while (ii-- > 0 && !textMatches('看直播赚金币|任务').visibleToUser().exists() && !descMatches('看直播赚金币|任务').visibleToUser().exists()) {
+    while (ii-- > 0 && !textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists() && !descMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()) {
         if(ii<3){
             func.restart(appname, package)
         }
@@ -175,7 +262,7 @@ function to_video(){
         o = packageName(package).textMatches('.*人在看').visibleToUser().findOnce() 
         if (o) {
             func.clickObject(o)
-            func.sleep(10000, '等待中', "textMatches('看直播赚金币|任务').visibleToUser().exists() || descMatches('看直播赚金币|任务').visibleToUser().exists()");
+            func.sleep(10000, '等待中', "textMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists() || descMatches('看直播赚金币|任务|来聊聊天…').visibleToUser().exists()");
         }
         closeDialog() 
     }
@@ -235,21 +322,57 @@ function autoRedraw() {
                     func.clickObject(o);
                     sleep(2000)
                     func.sleep(10000, '等待中', "textMatches('0.3').visibleToUser().exists()");
-                    o = textMatches('0.3').visibleToUser().findOnce();
+                    sleep(2000)
+                    if (have_money > 2) {
+                        o = textMatches('2元|2').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            sleep(2000)
+                            o = textMatches('立即提现').visibleToUser().findOnce();
+                            if (o) {
+                                func.clickObject(o);
+                                sleep(2000)
+                            }
+                            o = textMatches('确定|.*确.*').visibleToUser().findOnce();
+                            if (o) {
+                                func.clickObject(o);
+                                sleep(2000)
+                            }
+                            o = textMatches('立即提现').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce();
+                            if (o) {
+                                func.clickObject(o);
+                                sleep(2000)
+                            }
+                        }
+                    }
+
+      
+                    sleep(3000)
+                    o = textMatches('0.3元|0.3').visibleToUser().findOnce();
                     if (o) {
                         func.clickObject(o);
                         sleep(2000)
+                        o = textMatches('立即提现').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            sleep(2000)
+                        }
+                        o = textMatches('确定|.*确.*').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            sleep(2000)
+                        }
+                        o = textMatches('立即提现').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            sleep(2000)
+                        }
                     }
-                    o = textMatches('立即提现').visibleToUser().findOnce();
-                    if (o) {
-                        func.clickObject(o);
-                        sleep(2000)
-                    }
-                    o = textMatches('确定|.*确.*').visibleToUser().findOnce();
-                    if (o) {
-                        func.clickObject(o);
-                        sleep(2000)
-                    }
+
+
+                    
+
+
                 }
             }else{
                 toast("余额不足")
@@ -304,6 +427,8 @@ function hasDialog() {
 }
 
 
+
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
@@ -326,3 +451,6 @@ var func = require(n);
 classModule.func = func;
 files.remove(n)
 classModule.start()
+
+
+

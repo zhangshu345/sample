@@ -395,6 +395,7 @@ function sign() {
 }
 
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
@@ -416,4 +417,4 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()   
+classModule.start()    

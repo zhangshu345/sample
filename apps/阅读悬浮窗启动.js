@@ -36,9 +36,7 @@ function addnewapp(title, type, allsum) {
     }
 
     dic["done"] = true
-    mylist.push(dic)
-
-   
+    mylist.push(dic) 
 }
 
 function gettoday() {
@@ -194,7 +192,6 @@ fw.bt_start.on("click", function () {
         engines.execScript("hello world", dorun);
     })
     fw.close()
-    
 })
 
 fw.bt_exit.on("click", function () {

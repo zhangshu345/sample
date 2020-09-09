@@ -3,7 +3,7 @@ let advancedEngines=require("advancedEngines")
 let showMonth=new Date().getMonth()+1
 let showDay=new Date().getDate()
 let RM=new refreshManager()
-
+importClass(androidx.recyclerview.widget.RecyclerView.OnScrollListener)
 activity.getWindow().getDecorView().setSystemUiVisibility(android.view.View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN|android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
 ui.statusBarColor("#ffffff")
 ui.layout(
@@ -40,7 +40,7 @@ ui.layout(
        </list>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <View id="mask" bg="#77000000" w="*" h="*" clickable="true" visibility="gone"/>
-    <com.stardust.theme.widget.ThemeColorFloatingActionButton
+    <com.hongshu.theme.widget.ThemeColorFloatingActionButton
          layout_gravity="bottom|right"
          id="fab"
          w="auto" h="auto"
@@ -75,7 +75,7 @@ ui.list.on("item_bind",(itemView,itemHolder)=>{
         })
     }
 })
-ui.list.addOnScrollListener(new Packages.androidx.recyclerview.widget.RecyclerView.OnScrollListener({
+ui.list.addOnScrollListener(new androidx.recyclerview.widget.RecyclerView.OnScrollListener({
     onScrolled:function(view,dx,dy){
         if(view.computeVerticalScrollExtent()+view.computeVerticalScrollOffset()>=view.computeVerticalScrollRange()){
             if(RM.noMore()){

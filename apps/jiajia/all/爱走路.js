@@ -12,7 +12,6 @@ classModule.maxVideoSec = 12;
 classModule.func = null;
 classModule.autoR = 0;	//默认自动提现
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
-
 classModule.start = function () {
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
@@ -120,7 +119,7 @@ classModule.start = function () {
 }
 
 function closeDialog() {
-    
+
     var o = text('关闭广告|我知道了|关闭').visibleToUser().findOnce();
     if (o) {
         func.clickObject(o);
@@ -133,10 +132,15 @@ function closeDialog() {
         func.sleep(1000);
     }
 
+
     if (packageName(package).textMatches(keys).filter(function (w) { if (w.text() == '点击下载' && w.bounds().bottom > device.height * 0.8) { return false } else { return true } }).visibleToUser().exists()) {
         func.back();
         func.sleep(3000);
     }
+
+
+
+
 
 }
 
@@ -372,6 +376,7 @@ function hasDialog() {
         }
     }, 3000);
 }
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

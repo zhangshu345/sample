@@ -252,12 +252,12 @@ function autoRedraw() {
     // }
     finds = idMatches('.*item_activity_detail_contentIv').visibleToUser().find()
     if (finds) {
-        let child = finds[1];
+        let child = finds[2];
         if(child){
             func.clickObject(child)
             func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
         }else{
-            click(device.width*0.5,device.height*0.5)
+            click(device.width*0.5,device.height*0.7)
             func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
         }
     }
@@ -335,75 +335,95 @@ function hasDialog() {
 }
 
 function get_num() {
-    num = 0
-    refresh()
+    num = -1
     var ii = 5;
-    while (ii-- > 0 && !textMatches('活动|商城').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()) {
-        o = packageName(package).textMatches('个人').visibleToUser().findOnce();
+    while (ii-- > 0 && num == -1) {
+        refresh()
+        var ii = 5;
+        while (ii-- > 0 && !textMatches('活动|商城').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()) {
+            o = packageName(package).textMatches('个人').visibleToUser().findOnce();
+            if (o) {
+                func.clickObject(o)
+                func.sleep(10000, '等待中', "textMatches('活动|商城').visibleToUser().exists() || descMatches('活动|商城').visibleToUser().exists()");
+            }
+            o = textMatches('活动|商城').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()
+            if (o) {
+                break
+            }
+            closeDialog()
+        }
+
+
+        var ii = 5;
+        while (ii-- > 0 && !textMatches('活动').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.7; }).exists()) {
+            func.swipeUp()
+            sleep(2000)
+        }
+
+        o = textMatches('活动').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce()
         if (o) {
+            // click(o.bounds().centerX(), o.bounds().centerY() + 150);
             func.clickObject(o)
-            func.sleep(10000, '等待中', "textMatches('活动|商城').visibleToUser().exists() || descMatches('活动|商城').visibleToUser().exists()");
+            func.sleep(10000, '列表等待中', "idMatches('.*item_activity_detail_contentIv').visibleToUser().exists() ");
         }
-        o = textMatches('活动|商城').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()
+
+        // o = idMatches('.*item_activity_detail_contentIv').visibleToUser().findOnce()
+        // if (o) {
+        //     func.clickObject(o)
+        //     func.sleep(10000, '等待中', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
+        // }
+        finds = idMatches('.*item_activity_detail_contentIv').visibleToUser().find()
+        if (finds) {
+            let child = finds[2];
+            if (child) {
+                func.clickObject(child)
+                func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
+            } else {
+                click(device.width * 0.5, device.height * 0.7)
+                func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
+            }
+        }
+        sleep(1000)
+        o = textMatches('今日评审币').visibleToUser().findOnce();
         if (o) {
-            break
+            var list = o.parent();
+            xy_info = list.bounds()
+            bottom_info = xy_info.bottom
+            var o = packageName(package).className('android.view.View').visibleToUser().filter(function (w) { return w.bounds().bottom > bottom_info && w.bounds().left > 5; }).findOnce();
+            if (o) {
+                func.clickObject(o)
+                sleep(3000)
+                o = packageName(package).className('android.widget.Image').filter(function (w) { return w.bounds().bottom > device.height * 0.5 && w.bounds().left > device.width * 0.3; }).visibleToUser().findOnce();
+                if (o) {
+                    func.clickObject(o)
+                }
+
+            }
         }
-        closeDialog()
-    }
 
 
-    var ii = 5;
-    while (ii-- > 0 && !textMatches('活动').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.7; }).exists()) {
-        func.swipeUp()  
-        sleep(2000)
-    }
-
-    o = textMatches('活动').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).findOnce()
-    if (o) {
-        // click(o.bounds().centerX(), o.bounds().centerY() + 150);
-        func.clickObject(o)
-        func.sleep(10000, '列表等待中', "idMatches('.*item_activity_detail_contentIv').visibleToUser().exists() ");
-    }
-
-    // o = idMatches('.*item_activity_detail_contentIv').visibleToUser().findOnce()
-    // if (o) {
-    //     func.clickObject(o)
-    //     func.sleep(10000, '等待中', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
-    // }
-    finds = idMatches('.*item_activity_detail_contentIv').visibleToUser().find()
-    if (finds) {
-        let child = finds[1];
-        if(child){
-            func.clickObject(child)
-            func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
-        }else{
-            click(device.width*0.5,device.height*0.5)
-            func.sleep(10000, '等待2', "textMatches('去提现').visibleToUser().exists() || descMatches('去提现').visibleToUser().exists()");
+        var ii = 5;
+        while (ii-- > 0 && !textMatches('邀请好友').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()) {
+            sleep(500)
+            var w = device.width;
+            var h = device.height;
+            swipe(w * 0.6 - random(10, 30), h * 0.8 + random(10, 20), w * 0.6 + random(50, 80), h * 0.3 + random(10, 30), random(220, 235))
         }
-    }
+        o = packageName(package).textMatches('.*/10.*').visibleToUser().findOnce();
+        if (o) {
+            reult_str = o.text()
+            var numArr = reult_str.match(/\d+/g)
+            num = numArr[numArr.length - 1] - numArr[numArr.length - 2]
+        }
 
+        back()
+        sleep(3200)
+        back()
 
-
-    var ii = 5;
-    while (ii-- > 0 && !textMatches('邀请好友').visibleToUser().visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.85; }).exists()) {
-        sleep(500)
-        var w = device.width;
-        var h = device.height;
-        swipe(w * 0.6 - random(10, 30), h * 0.8 + random(10, 20), w * 0.6 + random(50, 80), h * 0.3 + random(10, 30), random(220, 235))
     }
-    o = packageName(package).textMatches('.*/10.*').visibleToUser().findOnce();
-    if (o) {
-        reult_str = o.text()
-        var numArr = reult_str.match(/\d+/g)
-        num = numArr[numArr.length - 1] - numArr[numArr.length - 2]
-    }
-    back()
-    sleep(3200)
-    back()
     return num
-
 }
-
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
@@ -425,6 +445,6 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()   
+classModule.start()    
 
 

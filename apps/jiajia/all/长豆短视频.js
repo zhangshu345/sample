@@ -279,6 +279,7 @@ function hasDialog2(){
             func.clickObject(o);
     }
 }
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

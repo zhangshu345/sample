@@ -1,5 +1,7 @@
 const appname = '趣来电';
 const package = 'com.maiya.qulaidian';
+
+
 var classModule = {};
 classModule.minMinutes = 15;
 classModule.maxMinutes = 25;
@@ -13,7 +15,6 @@ classModule.autoR = 0;	//默认自动提现
 classModule.func = null;
 
 var keys = '点击重播|点击下载|点击打开';
-
 
 classModule.start = function () {
     s_tt = new Date()
@@ -45,6 +46,7 @@ log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + 
         var idx = 1;
         var bol = true;
         sign()
+        return
         while (bol) {
 
             o = textMatches('.*金币翻倍.*').visibleToUser().findOnce()
@@ -209,7 +211,7 @@ function autoRedraw(){
                 if (btn){
                     func.clickObject(btn);
                     sleep(4000)
-                    var btn = packageName(package).text('确定|确认|确.*').visibleToUser().findOne(8000) || packageName(package).desc('确定|确认|确.*').visibleToUser().findOnce();
+                    var btn = packageName(package).textMatches('确定').visibleToUser().findOnce() || packageName(package).descMatches('确定').visibleToUser().findOnce();
                     if (btn){
                         func.clickObject(btn);
                         sleep(4000)
@@ -277,7 +279,8 @@ function hasDialog() {
 
 function sign() {
         sleep(3000)
-        o = textMatches('.*金币翻倍.*').visibleToUser().findOnce()
+        func.sleep(15000, '等待中11', "textMatches('金币翻倍.*|我的金币|日常任务').visibleToUser().exists() || descMatches('金币翻倍.*|我的金币|日常任务').visibleToUser().exists()");
+        o = textMatches('.*金币翻倍.*').visibleToUser().findOnce() || descMatches('.*金币翻倍.*').visibleToUser().findOnce()
         if (o) {
             func.clickObject(o);
             func.sleep(60000,'看视频领金币中',"idMatches('.*:id/.*close.*').visibleToUser().exists() || textMatches('" + keys + "').filter(function(w){if (w.text()=='点击下载' && w.bounds().bottom > device.height*0.8){return false}else{return true}}).visibleToUser().exists()"); 
@@ -365,6 +368,7 @@ function sign() {
 
 }
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
@@ -386,6 +390,6 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()   
+classModule.start()    
 
 

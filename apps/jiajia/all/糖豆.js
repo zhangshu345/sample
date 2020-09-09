@@ -16,6 +16,7 @@ classModule.func = null;
 
 var keys = '点击重播|点击下载|点击打开|关闭广告';
 
+
 classModule.start = function () {
     s_tt = new Date()
 log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + s_tt.getSeconds());
@@ -190,6 +191,7 @@ function closeDialog() {
         func.clickObject(o);
         func.sleep(3000);
     }
+    
 }
 
 function refresh(){
@@ -341,10 +343,15 @@ function sign() {
                     sleep(2000)
                 }
                 break
+
             }
         }
+
     }
+
+
     //  /// 励志视频 
+
     o = textMatches('看激励视频广告').visibleToUser().findOnce();
     if (o) {
         var list = o.parent();
@@ -405,6 +412,9 @@ function sign() {
             }
         }
     }
+
+
+
 
 }
 
@@ -491,6 +501,7 @@ function hasDialog() {
     }, 3000);
 }
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

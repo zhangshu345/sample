@@ -268,7 +268,6 @@ function autoRedraw(){
                             if (o){
                                 func.clickObject(o);
                                 func.sleep(2000);
-                                Scripts.INSTANCE.runnextScript()
                             }
                         }
                     }
@@ -376,6 +375,7 @@ function hasDialog(){
     },4000);
 }
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
@@ -397,4 +397,4 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start()
+classModule.start() 

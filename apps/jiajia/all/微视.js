@@ -79,8 +79,8 @@ classModule.start = function(){
             }
         }
         
-        //if (this.autoR == 0) autoRedraw(); 
-
+        if (this.autoR == 0) autoRedraw(); 
+        refresh()
         o = packageName(package).className('android.widget.FrameLayout').filter(function (w) { return w.bounds().bottom<device.height*0.3 && w.bounds().left>device.width*0.7}).visibleToUser().findOnce()
         if(o){
             func.clickObject(o);
@@ -91,8 +91,6 @@ classModule.start = function(){
                 this.func.sleep(2000);
             }
         }
-        
-
     }
     catch(e){
         func.log(appname,'循环执行',e.message + '\n\r' + e.stack)
@@ -103,68 +101,69 @@ classModule.start = function(){
     func.log(appname,'结束时间' ,"**********************************************************");
     func.quit(package);
 }
-
-
-function autoRedraw(){
-    var ii = 5;
-    while(!packageName(package).text('我的').visibleToUser().exists() && ii-- > 0){
-        func.back();
-        func.sleep(2200);
-    }
-
-    var o = packageName(package).text('我的').visibleToUser().findOne(5000)
+function closeDialog(){
+    var o = textMatches('我知道了|知道了').visibleToUser().findOnce() || descMatches('我知道了|知道了').visibleToUser().findOnce();
     if (o){
         func.clickObject(o);
-        func.sleep(4000);
+    }
 
-        o = id(package + ':id/tv_cash_count').visibleToUser().findOne(10000);
-        if (o){
-            var money = Number(o.text().replace('¥','')) || 0;
-            if (money >= 0.38){
-                var o = id(package + ':id/ll_my_cash').visibleToUser().findOnce();  //立即提现
-                if (o){
-                    func.clickObject(o);
-                    func.sleep(2000);
+    var o = text('立即更新').visibleToUser().findOnce()
+    if (o){
+        func.clickObject(o[0])
+    }
+}
 
-                    var btn = id(package + ':id/tvWithdraw').visibleToUser().findOne(5000);    //提现按钮
-                    if (btn){
-                        var redrawTo = Number(classModule.redrawToAlipay) || 0;
-                        if (redrawTo == 1)
-                            o = id(package + ':id/ivAlipay').visibleToUser().findOnce();
-                        else
-                            o = id(package + ':id/ivWechat').visibleToUser().findOnce();
-                        func.clickObject(o);
-                        func.sleep(2000);
+function refresh(){
+    var ii = 7;
+    while(ii-- > 0 && !packageName(package).textMatches('推荐').visibleToUser().exists()){
+        closeDialog()
+        if (currentPackage().toLowerCase() != package.toLowerCase()) {
+            func.restart(appname, package)
+        }
+        if(ii<5){
+            func.sleep(3200);
+            func.back();
+        }
+        if(ii<2){
+            func.sleep(3200);
+            func.restart(appname, package)
+        }
 
-                        var btns = textMatches('[0-9.]+元').visibleToUser().filter(function(w){return (Number(w.text().replace('元','').trim()) || 0) <= money;}).find();
-                        if (btns.length == 0)
-                            btns = descMatches('[0-9.]+元').visibleToUser().filter(function(w){return (Number(w.desc().replace('元','').trim()) || 0) <= money;}).find();
-                        for(var i = btns.length - 1; i >= 0; i--){
-                            func.clickObject(btns[i]);
-                            func.sleep(1000);
-                            
-                            func.clickObject(btn);
-                            func.sleep(2000);
-                            o = text('是').visibleToUser().findOnce()
-                            if (o){
-                                func.clickObject(o);
-                                func.sleep(2000);
-                            }
-                            if (id(package + ':id/tv_fail_message').visibleToUser().exists()){  //失败
-                                func.back();    
-                                func.sleep(1000);
-                            }
-                            else{
-                                break;
-                            }
+    }
+}
+
+function autoRedraw(){
+    refresh()
+    var o = packageName(package).text('推荐').visibleToUser().findOne(5000)
+    if (o){
+        click(o.bounds().right + (device.width - o.bounds().right) / 2,o.bounds().centerY())
+        func.sleep(3000);
+        func.sleep(20000, '等待中', "textMatches('签到领红包|领取红包.*|明日再来|看视频领.*').visibleToUser().exists() ");
+        o = textMatches('将于.*元').visibleToUser().findOnce();
+        if (o) {
+            var list = o.parent();
+            if(list.childCount()>2){
+                var child = list.child(1);
+                let txt = child.text();
+                if(txt>0.3){
+                    o = textMatches('提现').visibleToUser().findOnce();
+                    if (o) {
+                        func.clickObject(o)
+                        sleep(2000)
+                        func.sleep(20000, '等待中', "textMatches('去提现|.*可提现').visibleToUser().exists() ");
+                        o = textMatches('去提现').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o)
+                            sleep(5000)
                         }
                     }
+                    
+                }else{
+                    toast("余额不足")
                 }
             }
-            else{
-                func.toast('余额不足，不能提现！',1)
-            }
         }
+
     }
 }
 
@@ -220,6 +219,7 @@ function hasDialog(){
     },3000);
 }
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

@@ -1,6 +1,7 @@
 const appname = '刷宝短视频';
 const package = 'com.jm.video';
 
+
 var classModule = {};
 classModule.minMinutes = 30;
 classModule.maxMinutes = 40;
@@ -15,9 +16,10 @@ classModule.autoR = 0;	//默认自动提现
 keys = '点击重播|点击下载|点击打开'
 
 
+
 classModule.start = function () {
     s_tt = new Date()
-    log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + s_tt.getSeconds());
+log('刷宝短视频微博版'+'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + s_tt.getSeconds());
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
     var minutes = random(this.minMinutes, this.maxMinutes);   //生成运行时间
@@ -40,96 +42,101 @@ classModule.start = function () {
     func.openWaiting(['.FrameLayout', '.AdsActivity']);
     //如果有签到，要在这里完成  刷宝的签到需要先看广告
     // autoRedraw()
-// 
+
 
     var x = device.width / 2;
     var y = device.height / 2;
     try {
-        sign();
-        var idx = 1;
-        var bol = true;
-        can_end = 30
-        while (bol) {
-            func.checkSpace();  //检测一次存储空间
-            if (!id(package + ':id/share').visibleToUser().exists()) { //没有分享，重启刷宝
-                o = packageName(package).text('首页').visibleToUser().findOnce();
-                if (o) {
-                    func.clickObject(o);
-                    func.sleep(2000);
-                }
-                else {
-                    if (currentPackage().toLowerCase() != package.toLowerCase()) {
-                        func.restart(appname, package)
-                    }
-                    else {
-                        func.back();    //尝试一次返回
-                        func.sleep(2000);
-                    }
-                }
-            }
-            if (can_end == 30) {
-                toast("开始检测...")
-                var ii = 5;
-                while (!packageName(package).text('我').visibleToUser().exists() && ii-- > 0) {
-                    func.back();
-                    func.sleep(2300);
-                }
-                var o = packageName(package).text('我').visibleToUser().findOnce();
-                if (o) {
-                    func.clickObject(o)
-                    func.sleep(10000, '等待中', "textMatches('我的视频').visibleToUser().exists() || descMatches('我的视频').visibleToUser().exists()");
-                    var goldnum = id(package + ':id/tv_gold_num').visibleToUser().findOne(15000);
-                    var money = id(package + ':id/tv_mine_money').visibleToUser().findOnce();
-                    func.sleep(2000);
-                    if (goldnum && money) {
-                        if (goldnum.text() > 27300) {
-                            toast("今日金币已到上限")
-                            log("今日金币已到上限")
-                            bol == false
-                            break
-                        }
-                    }
+        choese = 'wb'
+        login_result = switch_user(choese)
+        if(login_result){
+            sign();
+            var idx = 1;
+            var bol = true;
+            can_end = 30
+            while (bol) {
+                func.checkSpace();  //检测一次存储空间
+                if (!id(package + ':id/share').visibleToUser().exists()) { //没有分享，重启刷宝
                     o = packageName(package).text('首页').visibleToUser().findOnce();
                     if (o) {
                         func.clickObject(o);
                         func.sleep(2000);
                     }
+                    else {
+                        if (currentPackage().toLowerCase() != package.toLowerCase()) {
+                            func.restart(appname, package)
+                        }
+                        else {
+                            func.back();    //尝试一次返回
+                            func.sleep(2000);
+                        }
+                    }
+                }
+                if (can_end == 30) {
+                    toast("开始检测...")
+                    var ii = 5;
+                    while (!packageName(package).text('我').visibleToUser().exists() && ii-- > 0) {
+                        func.back();
+                        func.sleep(2300);
+                    }
+                    var o = packageName(package).text('我').visibleToUser().findOnce();
+                    if (o) {
+                        func.clickObject(o)
+                        func.sleep(10000, '等待中', "textMatches('我的视频').visibleToUser().exists() || descMatches('我的视频').visibleToUser().exists()");
+                        var goldnum = id(package + ':id/tv_gold_num').visibleToUser().findOne(15000);
+                        var money = id(package + ':id/tv_mine_money').visibleToUser().findOnce();
+                        func.sleep(2000);
+                        if (goldnum && money) {
+                            if (goldnum.text() > 27300) {
+                                toast("今日金币已到上限")
+                                log("今日金币已到上限")
+                                bol == false
+                                break
+                            }
+                        }
+                        o = packageName(package).text('首页').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            func.sleep(2000);
+                        }
+                    }
+                }
+    
+                can_end -= 1
+                if(can_end == 0){
+                    can_end = 30
+                }
+                idx++;
+                var sec = random(me.minVideoSec, me.maxVideoSec);
+                func.videoSleep(sec);
+                swipe(random(x - 100, x - 50), random(y + 300, y + 400), random(x - 100, x - 50), random(y - 300, y - 400), 10);
+    
+                var datediff = new Date().getTime() - startDate.getTime();
+                if (datediff > minutes * 60 * 1000) {
+                    bol = false;
+                    func.toast(appname + '运行完成', 2)
+                }
+                else {
+                    if (idx % 10 == 0)
+                        func.toast(appname + '已运行' + parseInt(datediff / 1000 / 60) + '分钟', 2)
                 }
             }
-
-            can_end -= 1
-            if(can_end == 0){
-                can_end = 30
-            }
-            idx++;
-            var sec = random(me.minVideoSec, me.maxVideoSec);
-            func.videoSleep(sec);
-            swipe(random(x - 100, x - 50), random(y + 300, y + 400), random(x - 100, x - 50), random(y - 300, y - 400), 10);
-
-            var datediff = new Date().getTime() - startDate.getTime();
-            if (datediff > minutes * 60 * 1000) {
-                bol = false;
-                func.toast(appname + '运行完成', 2)
-            }
-            else {
-                if (idx % 10 == 0)
-                    func.toast(appname + '已运行' + parseInt(datediff / 1000 / 60) + '分钟', 2)
-            }
+            if (this.autoR == 0) autoRedraw();
         }
-        if (this.autoR == 0) autoRedraw();
+
     }
     catch (e) {
         func.log(appname, '循环执行', e.message + '\n\r' + e.stack);
-        log(e)
     }
     finally {
+        choese = 'wx'
+        login_result = switch_user(choese)
         thread.interrupt(); //结束弹出窗口的线程检测
+
     }
     func.log(appname, '结束时间', "**********************************************************");
     func.quit(package);
 }
-
-
 
 function refresh(){
     var ii = 7;
@@ -145,8 +152,16 @@ function refresh(){
             func.sleep(3200);
             func.restart(appname, package)
         }
-
     }
+    o = textMatches('推荐').visibleToUser().findOnce() || descMatches('推荐').visibleToUser().findOnce()
+    if(!o){
+        o = textMatches('首页').visibleToUser().findOnce() || descMatches('首页').visibleToUser().findOnce()
+        if(o){
+            func.clickObject(o)
+        }
+    }
+
+
 }
 
 function autoRedraw() {
@@ -455,11 +470,6 @@ function sign() {
 
 }
 
-
-// closeDialog()
-
-
-
 function hasDialog() {
     var func = classModule.func;
     setInterval(() => {
@@ -481,8 +491,6 @@ function hasDialog() {
         var o = idMatches(package + ':id/(.*Close.*|.*close.*)').visibleToUser().findOnce() || textMatches('继续看视频领取').visibleToUser().findOnce();
         if (o) {
             func.clickObject(o);
-            // log(2)
-            // log(o)
         }
 
         if (id(package + ':id/tt_reward_ad_download').visibleToUser().exists()) {
@@ -503,6 +511,7 @@ function hasDialog() {
             if(o){
                 back()
             }
+
         }
 
         if (text('去邀请').visibleToUser().exists()) {
@@ -517,7 +526,98 @@ function hasDialog() {
         }
     }, 3000);
 }
- 
+
+function switch_user(choese){
+    // 确定退出按钮
+    refresh()
+    var ii = 5;
+    o = textMatches('登录领元宝').visibleToUser().findOnce() || descMatches('登录领元宝').visibleToUser().findOnce()
+    while(ii-- > 0 && !o){
+        o = textMatches('我').visibleToUser().findOnce() || descMatches('我').visibleToUser().findOnce()
+        if(o){
+            func.clickObject(o)
+            func.sleep(10000, '进入个人中心....', "textMatches('我的钱包|切换其他登录方式|请输入手机号').visibleToUser().exists() || descMatches('我的钱包|切换其他登录方式请输入手机号').visibleToUser().exists()");
+        }
+        o = textMatches('切换其他登录方式|请输入手机号').visibleToUser().findOnce() || descMatches('切换其他登录方式|请输入手机号').visibleToUser().findOnce()
+        if(o){
+            back()
+            sleep(3000)
+            back()
+            sleep(5000)
+            continue
+        }
+        var o = idMatches(package + ':id/.*iv_setting.*').visibleToUser().findOnce();
+        if (o) {
+            func.clickObject(o);
+            func.sleep(10000, '进入设置....', "textMatches('退出登录').visibleToUser().exists() || descMatches('退出登录').visibleToUser().exists()");
+            sleep(2000)
+        }
+        o = textMatches('退出登录').visibleToUser().findOnce() || descMatches('退出登录').visibleToUser().findOnce()
+        if (o) {
+            func.clickObject(o);
+            sleep(2000)
+            o = textMatches('确认').visibleToUser().findOnce() || descMatches('确认').visibleToUser().findOnce()
+            if (o) {
+                func.clickObject(o);
+                sleep(5000)
+            }
+        }
+    }
+    login_result = login(choese)
+    return login_result
+
+}
+
+function login(choese){
+
+    refresh()
+    var ii = 5;
+    o = textMatches('登录领元宝').visibleToUser().findOnce() || descMatches('登录领元宝').visibleToUser().findOnce()
+    while(ii-- > 0 && o){
+        refresh()
+        o = textMatches('登录领元宝').visibleToUser().findOnce() || descMatches('登录领元宝').visibleToUser().findOnce()
+        if(o){
+            func.clickObject(o)
+            func.sleep(10000, '进入登录界面....', "textMatches('我的钱包|切换其他登录方式|请输入手机号').visibleToUser().exists() || descMatches('我的钱包|切换其他登录方式请输入手机号').visibleToUser().exists()");
+            sleep(1000)
+        }
+        o = textMatches('切换其他登录方式').visibleToUser().findOnce() || descMatches('切换其他登录方式').visibleToUser().findOnce()
+        if(o){
+            func.clickObject(o)
+            func.sleep(10000, '进入登录界面....', "textMatches('微信账号登录|微博账号登录').visibleToUser().exists() || descMatches('微信账号登录|微博账号登录').visibleToUser().exists()");
+            sleep(1000)
+        }
+        if(choese == 'wb'){
+            o = textMatches('微博账号登录').visibleToUser().findOnce() || descMatches('微博账号登录').visibleToUser().findOnce()
+            if(o){
+                func.clickObject(o)
+                func.sleep(15000, '进入登录界面....', "textMatches('确定|登录|首页').visibleToUser().exists() || descMatches('确定|登录|首页').visibleToUser().exists()");
+                o = textMatches('登录').visibleToUser().findOnce() || descMatches('登录').visibleToUser().findOnce()
+                if(o){
+                    return false
+                }
+                o = textMatches('确定').visibleToUser().findOnce() || descMatches('确定').visibleToUser().findOnce()
+                if(o){
+                    func.clickObject(o)
+                    sleep(3000)
+                }
+    
+    
+            }
+        }else{
+            o = textMatches('微信账号登录').visibleToUser().findOnce() || descMatches('微信账号登录').visibleToUser().findOnce()
+            if(o){
+                func.clickObject(o)
+                func.sleep(15000, '进入登录界面....', "textMatches('首页').visibleToUser().exists() || descMatches('首页').visibleToUser().exists()");
+            }
+        }
+        sleep(5000)
+    }
+
+    return true
+
+}
+
 //添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"

@@ -16,8 +16,8 @@ keys = '点击重播|点击下载|点击打开'
 classModule.start = function(){
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
-    // var minutes = random(this.minMinutes,this.maxMinutes);   //生成运行时间
-    var minutes =1
+    var minutes = random(this.minMinutes,this.maxMinutes);   //生成运行时间
+    // var minutes =1
     func.log(appname,'启动，预计运行：' + minutes ,"**********************************************************");
     func.toast(appname + '预计运行时间：' + minutes + '分',2)
     var startDate = new Date(); //启动时间
@@ -49,7 +49,7 @@ classModule.start = function(){
             if (ii < 4) {
                 back()
             }
-            o = packageName(package).textMatches('看点').visibleToUser().findOnce();
+            o = packageName(package).textMatches('看点|视频').visibleToUser().findOnce();
             if (o) {
                 func.clickObject(o);
                 sleep(2000)
@@ -66,7 +66,8 @@ classModule.start = function(){
             sleep(3000)
             o = textMatches(/\d+:\d+/).visibleToUser().findOnce();
             if (o){
-                func.clickObject(o);
+                // func.clickObject(o);
+                click(device.width*0.5,o.bounds().centerY())
             }
             var datediff = new Date().getTime() - startDate.getTime();
             if (datediff > minutes * 60 * 1000){
@@ -90,9 +91,11 @@ classModule.start = function(){
     func.quit(package);
 }
 
-
 function sign(){
+
     try{
+        sleep(3000)
+        closeDialog()
         var o = packageName(package).textMatches('点击赚钱|赚钱').visibleToUser().findOnce() || packageName(package).descMatches('点击赚钱|赚钱').visibleToUser().findOnce();
         if (o){
             func.clickObject(o);
@@ -136,9 +139,9 @@ function sign(){
                     break;
                 }
             }
-            var ii = 5;
+            var ii = 3;
             while(ii-- > 0 ){
-                o = text('去分享').visibleToUser().filter(function(w){return w.bounds().bottom < device.height * 0.85;}).findOnce();
+                o = text('去分享').visibleToUser().filter(function(w){return w.bounds().bottom < device.height;}).findOnce();
                 if (!o){
                     func.swipeUp(0,0,random(301,330));
                     func.sleep(2000);
@@ -146,60 +149,89 @@ function sign(){
                     break
                 }
             }
-            finds = text('去分享').visibleToUser().filter(function(w){return w.bounds().bottom < device.height * 0.85;}).find();
-            for(var kk = 0; kk < finds.length; kk++){
+            func.swipeUp(0,0,random(301,330));
 
-                    let child = finds[kk];
-                    func.clickObject(child);
+            var jj = 3;
+            while(jj-- > 0){
+                o = text('去分享').visibleToUser().filter(function(w){return w.bounds().bottom < device.height;}).findOnce();
+                if (o) {
+                    func.clickObject(o);
                     sleep(3000)
-                    o = id('ewh').visibleToUser().findOnce();
-                    if (o){
-                        func.clickObject(o);
+                    o = descMatches('返回').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.3; }).findOnce()
+                    // o = id('ewh').visibleToUser().findOnce();
+                    if(o){
+                        y_info = o.bounds().centerY()
+                        click(device.width*0.9,y_info)
                         func.sleep(3000);
                         o = text('微信').visibleToUser().findOnce();
-                        if (o){
+                        if (o) {
                             func.clickObject(o);
-                            func.sleep(5000);
+                            func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
+                            sleep(1000)
                             back()
-                            sleep(2000)
-                            if (textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()){
+                            // func.sleep(5000);
+                            // back()
+                            // sleep(2000)
+                            func.sleep(10000, '等待中', "textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()");
+                            if (textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()) {
                                 func.back();
                             }
-                            
                             o = id('ezy').visibleToUser().findOnce();
-                            if (o){
+                            if (o) {
                                 func.clickObject(o);
                             }
-
                             back()
                             sleep(2000)
-                        }else{
+                        } else {
                             back()
                         }
                     }
-
-                    o = id('gk1').visibleToUser().findOnce();
-                    if (o){
-                        func.clickObject(o);
+                
+                    // o = id('gk1').visibleToUser().findOnce();
+                    o = descMatches('更多').visibleToUser().filter(function (w) { return w.bounds().bottom > device.height * 0.3; }).findOnce()
+                    if(o){
+                        y_info = o.bounds().centerY()
+                        click(device.width*0.9,y_info)
                         func.sleep(3000);
                         o = text('微信').visibleToUser().findOnce();
-                        if (o){
+                        if (o) {
                             func.clickObject(o);
-                            func.sleep(5000);
+                            func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
+                            sleep(1000)
                             back()
-                            sleep(5000)
-                            if (textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()){
+                            // func.sleep(5000);
+                            // back()
+                            // sleep(5000)
+                            func.sleep(10000, '等待中', "textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()");
+                            if (textMatches('赚更多金币|邀好友一起听歌赚钱|参与集卡活动').visibleToUser().exists() || descMatches('赚更多金币|邀好友一起听歌赚钱').visibleToUser().exists()) {
                                 func.back();
                             }
-                            
+                
                             o = id('ezy').visibleToUser().findOnce();
-                            if (o){
+                            if (o) {
                                 func.clickObject(o);
                             }
                         }
                     }
-
-
+            
+                }
+                sleep(1000)
+                var ii = 5;
+                while(ii-- > 0){
+            
+                    var o = packageName(package).textMatches('赚钱').visibleToUser().findOnce() || packageName(package).descMatches('点击赚钱|赚钱').visibleToUser().findOnce();
+                    if (o){
+                        o = text('赚钱').visibleToUser().findOne() || desc('赚钱').visibleToUser().findOnce();
+                        if(o){
+                            func.clickObject(o);
+                            sleep(1000)
+                            break
+                        }
+                    }
+                    closeDialog()
+                    back()
+                    sleep(3000)
+                }
             }
         
 
@@ -216,7 +248,6 @@ function sign(){
     }
 }
 
-
 function closeDialog() {
     if (packageName(package).textMatches(keys).filter(function(w){if (w.text()=='点击下载' && w.bounds().bottom > device.height*0.8){return false}else{return true}}).visibleToUser().exists()){
         func.back();
@@ -232,8 +263,6 @@ function closeDialog() {
         func.sleep(3000);
     }
 }
-
-
 
 function autoRedraw(){
     var ii = 5;
@@ -321,6 +350,8 @@ function hasDialog(){
     },3000);
 }
 
+
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

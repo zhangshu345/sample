@@ -265,6 +265,11 @@ log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + 
         func.log(appname, '循环执行', e.message + '\n\r' + e.stack)
     }
     finally {
+        var ii = 6;
+        while(ii-- > 0){
+            back()
+            sleep(500)
+        }
         thread.interrupt(); //结束弹出窗口的线程检测
     }
     func.log(appname, '结束时间', "**********************************************************");
@@ -426,6 +431,7 @@ function hasDialog() {
 }
 
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

@@ -688,7 +688,6 @@ function sign(){
 
 function vide(){
 
-
     var  check_num = 0 
 
     var ii = 3;
@@ -699,6 +698,14 @@ function vide(){
     closeDialog()
     var ii = 5;
     while(ii-- > 0 && !textMatches('金币收益').visibleToUser().exists()){
+        sleep(15000)
+        var o = textMatches('去签到|立即签到').visibleToUser().findOnce() || descMatches('去签到|立即签到').visibleToUser().findOnce();
+        if (o){
+            func.clickObject(o)
+            sleep(3000)
+            closeDialog()
+        }
+
         closeDialog()
         var o = idMatches('.*:id/(redFloat|red_packet|gold_egg_packet)').visibleToUser().findOne(5000)
         if (o){
@@ -719,8 +726,9 @@ function vide(){
 
 
     
-    var ii = 30;
-    while(ii-- > 0){
+    var jj = 30;
+    while(jj-- > 0){
+        toast("剩余检测次数"+jj)
         o = packageName(pkg).textMatches('明日再来').visibleToUser().findOnce();
         if(o){
             break
@@ -900,6 +908,7 @@ function hasDialog(){
     },3000);
 }
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

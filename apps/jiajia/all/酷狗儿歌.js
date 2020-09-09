@@ -13,7 +13,7 @@ classModule.minVideoSec = 8;
 classModule.maxVideoSec = 12;
 classModule.autoR = 0;	//默认自动提现
 classModule.func = null;
-
+classModule.noFenxiang = 0
 
 
 var keys = '点击重播|点击下载|点击打开';
@@ -170,110 +170,114 @@ function sign() {
         func.sleep(10000, '等待中', "textMatches('当前金币').visibleToUser().exists() ");
         sleep(1000)
     }
-
-    var ii = 3;
-    while (ii-- > 0) {
-        o = textMatches('首次分享儿歌|分享儿歌').visibleToUser().findOnce();
-        if (o) {
-            var list = o.parent();
-            for (var i = 0; i < list.childCount(); i++) {
-                var child = list.child(i);
-                let txt = child.text();
-                let idd = child.id();
-                if (txt == "+100金币" || txt == "+450金币") {
-                    toast("开始首次分享儿歌")
-                    func.clickObject(child);
-                    sleep(3000)
-                    o = packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().bottom < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).visibleToUser().findOnce();
-                    if (o) {
-                        func.clickObject(o);
-                        func.sleep(10000, '等待中', "textMatches('微信|微信好友').visibleToUser().exists() || descMatches('微信|微信好友').visibleToUser().exists() ");
-                        sleep(2000)
-                        // o = textMatches('微信').visibleToUser().findOnce();
-
-                        o = textMatches('微信|微信好友').visibleToUser().findOnce() || descMatches('微信|微信好友').visibleToUser().findOnce()
-
+    if(classModule.noFenxiang != 1){
+        var ii = 3;
+        while (ii-- > 0) {
+            o = textMatches('首次分享儿歌|分享儿歌').visibleToUser().findOnce();
+            if (o) {
+                var list = o.parent();
+                for (var i = 0; i < list.childCount(); i++) {
+                    var child = list.child(i);
+                    let txt = child.text();
+                    let idd = child.id();
+                    if (txt == "+100金币" || txt == "+450金币") {
+                        toast("开始首次分享儿歌")
+                        func.clickObject(child);
+                        sleep(3000)
+                        o = packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().bottom < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).visibleToUser().findOnce();
                         if (o) {
                             func.clickObject(o);
-                            func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
-                            sleep(1000)
-                            back()
-                            sleep(1000)
-                            closeDialog()
-                        }
-                    }
-                    refresh()
-                    var o = text('赚钱').visibleToUser().findOnce();
-                    if (o) {
-                        func.clickObject(o);
-                        func.sleep(10000, '等待中', "textMatches('当前金币').visibleToUser().exists() ");
-                        sleep(1000)
-                    }
-                }
-
-
-            }
-        }
-        o = textMatches('首次分享动画|分享动画').visibleToUser().findOnce();
-        if (o) {
-            var list = o.parent();
-            for (var i = 0; i < list.childCount(); i++) {
-                var child = list.child(i);
-                // log(child.className());
-                let txt = child.text();
-                let idd = child.id();
-                if (txt == "+100金币" || txt == "+450金币") {
-
-                    toast("开始首次分享动画")
-                    func.clickObject(child);
-                    sleep(6000)
-                    // o = className('android.widget.ListView').visibleToUser().findOnce();
-                    o = className('android.widget.ListView').visibleToUser().filter(function (w) { return w.bounds().top < device.height * 0.3; }).findOnce();
-                    if (o) {
-                        // var list = o.parent();
-                        var list = o
-                        for (var i = 0; i < list.childCount(); i++) {
-                            var child = list.child(i);
-                            func.clickObject(child);
-                            sleep(5000)
-
-                            var ii = 5;
-                            while (ii-- > 0 && !packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().top < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).exists()) {
-                                click(300, 300);
-                                func.sleep(1000);
-                            }
-                            var o = packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().top < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).findOnce();
+                            func.sleep(10000, '等待中', "textMatches('微信|微信好友').visibleToUser().exists() || descMatches('微信|微信好友').visibleToUser().exists() ");
+                            sleep(2000)
+                            // o = textMatches('微信').visibleToUser().findOnce();
+    
+                            o = textMatches('微信|微信好友').visibleToUser().findOnce() || descMatches('微信|微信好友').visibleToUser().findOnce()
+    
                             if (o) {
                                 func.clickObject(o);
-                                func.sleep(10000, '等待中', "textMatches('微信|微信好友').visibleToUser().exists() || descMatches('微信|微信好友').visibleToUser().exists() ");
-
-                                o = textMatches('微信|微信好友').visibleToUser().findOnce() || descMatches('微信|微信好友').visibleToUser().findOnce()
-                                if (o) {
-                                    func.clickObject(o);
-                                    func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
-                                    sleep(1000)
-                                    back()
-                                    sleep(1000)
-                                    closeDialog()
-                                }
+                                func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
+                                sleep(1000)
+                                back()
+                                sleep(1000)
+                                closeDialog()
                             }
-                            break
+                        }
+                        refresh()
+                        var o = text('赚钱').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            func.sleep(10000, '等待中', "textMatches('当前金币').visibleToUser().exists() ");
+                            sleep(1000)
                         }
                     }
-                    refresh()
-                    var o = text('赚钱').visibleToUser().findOnce();
-                    if (o) {
-                        func.clickObject(o);
-                        func.sleep(10000, '等待中', "textMatches('当前金币').visibleToUser().exists() ");
-                        sleep(1000)
-                    }
-                    break
+    
+    
                 }
-
             }
+            o = textMatches('首次分享动画|分享动画').visibleToUser().findOnce();
+            if (o) {
+                var list = o.parent();
+                for (var i = 0; i < list.childCount(); i++) {
+                    var child = list.child(i);
+                    // log(child.className());
+                    let txt = child.text();
+                    let idd = child.id();
+                    if (txt == "+100金币" || txt == "+450金币") {
+    
+                        toast("开始首次分享动画")
+                        func.clickObject(child);
+                        sleep(6000)
+                        // o = className('android.widget.ListView').visibleToUser().findOnce();
+                        o = className('android.widget.ListView').visibleToUser().filter(function (w) { return w.bounds().top < device.height * 0.3; }).findOnce();
+                        if (o) {
+                            // var list = o.parent();
+                            var list = o
+                            for (var i = 0; i < list.childCount(); i++) {
+                                var child = list.child(i);
+                                func.clickObject(child);
+                                sleep(5000)
+    
+                                var ii = 5;
+                                while (ii-- > 0 && !packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().top < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).exists()) {
+                                    click(300, 300);
+                                    func.sleep(1000);
+                                }
+                                var o = packageName(package).className('android.widget.ImageButton').filter(function (w) { return w.bounds().top < device.height * 0.3 && w.bounds().left > device.width * 0.8 }).findOnce();
+                                if (o) {
+                                    func.clickObject(o);
+                                    func.sleep(10000, '等待中', "textMatches('微信|微信好友').visibleToUser().exists() || descMatches('微信|微信好友').visibleToUser().exists() ");
+    
+                                    o = textMatches('微信|微信好友').visibleToUser().findOnce() || descMatches('微信|微信好友').visibleToUser().findOnce()
+                                    if (o) {
+                                        func.clickObject(o);
+                                        func.sleep(10000, '等待中', "textMatches('选择|多选').visibleToUser().exists() ");
+                                        sleep(1000)
+                                        back()
+                                        sleep(1000)
+                                        closeDialog()
+                                    }
+                                }
+                                break
+                            }
+                        }
+                        refresh()
+                        var o = text('赚钱').visibleToUser().findOnce();
+                        if (o) {
+                            func.clickObject(o);
+                            func.sleep(10000, '等待中', "textMatches('当前金币').visibleToUser().exists() ");
+                            sleep(1000)
+                        }
+                        break
+                    }
+    
+                }
+            }
+            func.swipeUp()
         }
-        func.swipeUp()
+    }else{
+        toast("设置为不分享！")
     }
+
 }
 
 function autoRedraw(){
@@ -370,6 +374,7 @@ function hasDialog() {
 
     }, 3000);
 }
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

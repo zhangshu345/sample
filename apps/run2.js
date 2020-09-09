@@ -1,15 +1,4 @@
-// var arr = []
-// var d = ["快手极速版", 2, 2]
-// arr.push(d)
-// d = ["彩蛋视频", 2, 2]
-// arr.push(d)
-// d = ["抖音极速版", 2, 2]
-// arr.push(d)
-// d = ["火山极速版", 2, 2]
-// arr.push(d)
-
-
-var storage = storages.create("applist@20200212");
+var storage = storages.create("hongshuyuedu");
 var arr = storage.get("runlist")
 
 var yun = 1
@@ -400,8 +389,7 @@ function install_app(filePath, name) {
          is_button = text("安全保护").findOne(500)
          if (is_button) {
              toast("安全保护安全保护安全保护")
- 
-             var 坐标 = is_button.bounds()
+              var 坐标 = is_button.bounds()
              click(坐标.left + 5, 坐标.bottom - 2)
              sleep(500)
              toast("安全保护安全保护安全保护2222")
@@ -414,8 +402,7 @@ function install_app(filePath, name) {
                  }
                  sleep(500)
                  is_first = id("security_install_protection_switch").findOne(500)
- 
-                 if (!is_first.checked()) {
+                  if (!is_first.checked()) {
                      console.log("已取消保护");
                      toast("已取消保护")
                      sleep(1000)
@@ -424,9 +411,6 @@ function install_app(filePath, name) {
              }
              back()
          }
-
-
-
         if (textclick("完成")){
             log("888")
             return

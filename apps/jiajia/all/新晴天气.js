@@ -701,6 +701,7 @@ function hasDialog() {
 
     }, 3000);
 }
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

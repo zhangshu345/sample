@@ -350,6 +350,30 @@ function getCode(username,password,img) {
 }
 
 function refresh(){
+    sleep(3000)
+    o = textMatches('请完成完全.*').visibleToUser().findOnce()
+    if(o){
+        var ii = 50;
+        while(ii-- > 0){
+            p = textMatches('向右拖动.*').visibleToUser().findOnce()
+            if(p){
+                var sliderX = p.bounds().left+10  //滑块的x坐标
+                var sliderY = p.bounds().top+20    //滑块的y坐标
+                swipe(sliderX, sliderY,device.width*0.5, sliderY, 1500)
+                sleep(1000)
+            }
+            q = textMatches('失败过多，点此重试.*').visibleToUser().findOnce()
+            if(q){
+                func.clickObject(q)
+                sleep(2000)
+            }
+
+            w =  textMatches('请完成完全.*|向右拖动.*|失败过多，点此重试.*').visibleToUser().findOnce()
+            if(!w){
+                break
+            }
+        }
+    }
     var ii = 6;
     while(ii-- > 0 && !text('我的').visibleToUser().exists()){
         closeDialog()
@@ -577,6 +601,7 @@ function watch_video(){
 }
 
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {

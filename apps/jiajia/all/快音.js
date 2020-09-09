@@ -183,7 +183,7 @@ function sign2() {
     refresh()
     var ii = 5;
 
-    while (ii-- > 0 && !textMatches('金币收益|.*看视频领取.*|看完视频再领.*').visibleToUser().exists()) {
+    while (ii-- > 0 && !textMatches('金币收益|.*看视频再领.*|看完视频再领.*').visibleToUser().exists()) {
         if(ii<3){
             o = packageName(package).textMatches('主页').visibleToUser().findOnce();
             if (o) {
@@ -194,7 +194,8 @@ function sign2() {
         o = packageName(package).textMatches('福利').visibleToUser().findOnce();
         if (o) {
             func.clickObject(o)
-            func.sleep(10000, '等待中', "textMatches('金币收益|.*看视频领取.*|看完视频再领.*').visibleToUser().exists() || descMatches('金币收益|.*看视频领取.*|看完视频再领.*').visibleToUser().exists()");
+            func.sleep(10000, '等待中', "textMatches('金币收益|看视频再领.*|看完视频再领.*').visibleToUser().exists() || descMatches('金币收益|.*看视频领取.*|看完视频再领.*').visibleToUser().exists()");
+        
         }
         closeDialog() 
     }
@@ -205,7 +206,8 @@ function sign2() {
     func.sleep(5000);
     // closeDialog()
     toast("任务一:签到")
-    o = packageName(package).textMatches('.*看视频领取.*|.*视频再领.*').visibleToUser().findOnce() || packageName(package).descMatches('.*看视频领取.*|看完视频再领.*').visibleToUser().findOnce()
+
+    o = packageName(package).textMatches('.*看视频再领.*|.*视频再领.*').visibleToUser().findOnce() || packageName(package).descMatches('.*看视频领取.*|看完视频再领.*').visibleToUser().findOnce()
     if (o) {
         // log(o)
         func.clickObject(o);
@@ -215,6 +217,12 @@ function sign2() {
     }
     closeDialog();
     refresh()
+    o = textMatches('福利任务').visibleToUser().findOnce() || descMatches('福利任务').visibleToUser().findOnce()
+    if (o) {
+        // log(o)
+        func.clickObject(o);
+        this.func.sleep(2000);
+    }
 
     toast("任务二:看视频领2000币")
     //看视频
@@ -532,6 +540,7 @@ function hasDialog2() {
 
 
 
+//添加可以独立运行
 function loadMyClassFile(){
     n = context.getCacheDir() + "/" + String((new Date).getTime()) + ".js"
     try {
