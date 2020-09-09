@@ -152,7 +152,7 @@ function find64ImgPoint(imgurl,trytime,isclick){
         while(i<trytime){
             i=i+1;
             pp=images.findImage(captureScreen(),urlimg)
-           
+
             if(pp){
                 log("pp:"+pp.x+","+pp.y)
                 if(isclick){

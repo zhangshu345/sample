@@ -232,7 +232,6 @@ function 控制台() {
     });
 
 
-
     ui.run(() => {
         //初始化对象
         悬浮窗.全局.attr("visibility", "invisible");
@@ -685,9 +684,10 @@ function 找图测试() {
     try {
         let t = new Date().getTime();
         let img = 图形渲染.图像.图片;
-        let p = findImage(img, 数据存储.图片, {
-            threshold: [0.9],
-        });
+        // let p = images.findImage(img, 数据存储.图片, {
+        //     threshold: [0.9],
+        // });
+        let p = images.findImage(img, 数据存储.图片);
         if (p) {
             系统提示("找到图片:" + p + " 耗时:" + (new Date().getTime() - t) + "毫秒");
             图片定位(p);
@@ -711,7 +711,6 @@ function 多点找色编码() {
     let 编码 = []
 
     let 基准点 = 数据存储.颜色列表[0]["颜色数据"];
-
     for (var 元素 of 数据存储.颜色列表) {
         元素 = 元素["颜色数据"];
         let X = 元素[0] - 基准点[0];
@@ -731,7 +730,6 @@ function 找色测试() {
         var p = images.findMultiColors(img, 数据存储.找色编码[0], 数据存储.找色编码[1], {
             threshold: [4],
         });
-
         if (p) {
             系统提示("找到点阵:" + p + " 耗时:" + (new Date().getTime() - t) + "毫秒");
             点阵定位(p);
