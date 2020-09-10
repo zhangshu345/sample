@@ -26,7 +26,7 @@ bitmap02 = bitmap01.copy(Bitmap.Config.ARGB_8888, true);
 loadUI()
 
 function getBitmap() {
-  var secondImgId = context.getResources().getIdentifier('ic_android_eat_js', "drawable", context.getPackageName());
+  var secondImgId = context.getResources().getIdentifier('ic_project', "drawable", context.getPackageName());
   var myDrawableBitmap = context.getResources().getDrawable(secondImgId).bitmap // Drawable
   // var mSrcRect = new Rect(0, 0, bitmapWidth, bitmapHeight);
   // var mDestRect = new Rect(0, 0, bitmapWidth, bitmapHeight);

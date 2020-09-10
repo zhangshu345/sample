@@ -1,0 +1,8 @@
+log("getAppDataPathExternalFirst:"+com.blankj.utilcode.util.PathUtils.getAppDataPathExternalFirst())
+log("getFilesPathExternalFirst:"+com.blankj.utilcode.util.PathUtils.getFilesPathExternalFirst())
+log("getCachePathExternalFirst:"+com.blankj.utilcode.util.PathUtils.getCachePathExternalFirst())
+log("getExternalAppObbPath:"+com.blankj.utilcode.util.PathUtils.getExternalAppObbPath())
+log("getAppDataPathExternalFirst:"+com.blankj.utilcode.util.PathUtils.getAppDataPathExternalFirst())
+log("getAppDataPathExternalFirst:"+com.blankj.utilcode.util.PathUtils.getAppDataPathExternalFirst())
+log("存在:"+files.exists("/data/user/0/com.dongdong.jiantie/files/sample/高级脚本/打手那个枪-1.0.0.1/project.json"))
+log(files.read("/data/user/0/com.dongdong.jiantie/files/sample/高级脚本/打手那个枪-1.0.0.1/project.json"))

@@ -92,7 +92,6 @@ var user={
 }
 
 
-
 var usertask={
     id:1,// 用户的任务数的递增
     username:"zhangshu",  //指向用户名

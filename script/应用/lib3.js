@@ -5,7 +5,6 @@ importClass(java.io.InputStream);
 importClass(java.io.FileOutputStream);
 importClass(java.security.MessageDigest);
 importClass(com.hongshu.utils.FastSPUtils)
-
 importClass("java.security.SecureRandom");
 importClass("javax.crypto.spec.DESKeySpec");
 importClass("javax.crypto.SecretKeyFactory");
