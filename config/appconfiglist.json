@@ -34,5 +34,14 @@
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig201.json"
 }
-
+,
+{"name":"随便粘",
+    "pkg":"com.dongdong.jiantie",
+    "channel":"androidjs",
+    "versioni":202,
+    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
+    "version":"2.0.2",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig202.json"
+}
 ]
