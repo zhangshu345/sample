@@ -75,6 +75,33 @@ if(maxvideo!=null){
     classModule.maxVideoSec = 12;
 }
 
+//是否允许shizuke
+var enableshizuku=function(){
+    try {
+        if(!app.getPackageName("shizuku")){
+            return false
+        }
+        apppkg=app.getPackageName("相册")
+        if(apppkg){
+            var result=   shell("am force-stop "+apppkg,{adb:true,root:false})
+            console.log("result:"+JSON.stringify(result))
+            return result.code==0
+        }
+    } catch (error) {
+        log("shizuku 无法使用")
+        return false
+    }
+}
+
+var shizukuforcestopPkg=function(apppkg){
+    shell("am force-stop "+apppkg,{adb:true,root:false})
+}
+var shizukuforcestopApp=function(appname){
+    apppkg=app.getPackageName(appname)
+    if(apppkg){
+       shizukuforcestopPkg(apppkg)
+    }
+}
 
 func.isLog = function(){
     var l = Number(func.loadConfigText("islog")) || 0;
@@ -113,7 +140,6 @@ func.clickObject = function(obj,xoffset,yoffset){
         o = false;
     return o;
 }
-
 
 func.execApp = function(packname,package,millsec,condition){
     func.toast('开始执行' + packname,2)
@@ -259,9 +285,11 @@ var forcestop=function(appname,st,isclearcache){
       }
 }
 
-
 var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     toastLog("强制停止："+apppkg)
+    if(enableshizuku()){
+        return shizukuforcestopPkg(apppkg)
+    }
     isnewtask=isnewtask||true
     if(isnewtask){
         app.openAppSetting(apppkg);

@@ -733,6 +733,9 @@ var forcestop=function(appname,st,isclearcache){
 }
 
 var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
+    if(enableshizuku()){
+        return shizukuforcestopPkg(apppkg)
+    }
     show("强制停止："+apppkg)
     isnewtask=isnewtask||true
     if(isnewtask){
@@ -3322,6 +3325,7 @@ var shizukuuninstallApp=function(appname){
        shizukuuninstallPkg(apppkg)
     }
 }
+
 var shizukuforcestopPkg=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
 }
@@ -3341,6 +3345,7 @@ function shellcmd(cmd){
         return false
     }
 }
+
 var enableshizuku=function(){
     try {
         if(!app.getPackageName("shizuku")){
