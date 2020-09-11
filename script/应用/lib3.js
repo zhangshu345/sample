@@ -274,6 +274,7 @@ func.execApp = function(packname,package,millsec,condition){
 
 var forcestop=function(appname,st,isclearcache){
    toastLog("强制关闭应用:"+appname); 
+   isinstalling=true
     if(!appname){ return false}
     if(!getPackageName(appname)){ toastLog(appname+"：没有安装");return false};   
      let st=st||1800;  
@@ -282,6 +283,7 @@ var forcestop=function(appname,st,isclearcache){
       if(apppkg){
         forcestoppkg(apppkg,st,isclearcache,false)
       }
+      isinstalling=false
 }
 
 var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
