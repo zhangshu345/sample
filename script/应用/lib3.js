@@ -176,13 +176,13 @@ func.execApp = function(packname,package,millsec,condition){
             }
 
             var pk1 = currentPackage();
-            var pk2 = getPackageName(packname);
-            if (pk1 == pk2){    //有启动成功
+         
+            if (pk1 == package){    //有启动成功
                 func.toast('请等待',2);
                 this.sleep(13000);    //再等13秒
                 return true;
             }
-            if(idContains(pk2).exists()){
+            if(idContains(package).exists()){
                 return true;
             }
         }
@@ -453,7 +453,7 @@ var  floatyshow=function(txt,txtcolor){
 }
 
 function systemdownload(filename,fileuri,isinstall){
-    isinstall=isinstall || false
+    let isinstall = isinstall || true
     importClass(android.os.Environment);
     importClass(android.net.Uri);
     importClass(android.app.DownloadManager);
@@ -495,7 +495,7 @@ let st = setInterval(() => {
         toastLog("下载已完成");
         clearInterval(st);//取消定时器
         if(isinstall){
-            install_app(files.getSdcardPath()+"/download/"+filename,filename)
+            install_app(files.getSdcardPath()+"/download/",filename)
         }
      }
 }, 1500);
