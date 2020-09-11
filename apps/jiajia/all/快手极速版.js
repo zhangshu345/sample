@@ -1,4 +1,3 @@
- 
 var appname = '快手极速版';
 var pkg = 'com.kuaishou.nebula';
 var classModule = {};
@@ -9,16 +8,13 @@ classModule.minSwipe = 8;
 classModule.maxSwipe = 12;
 classModule.minTextSec = 3;
 classModule.maxTextSec = 8;
-// classModule.minVideoSec = 8;
-// classModule.maxVideoSec = 12;
-
 classModule.minVideoSec = 6;
 classModule.maxVideoSec = 9;
-
 classModule.longVideoLink = '';
 classModule.noAutoLogin = 0;    //为1则不掉线重登（适用于多开）
 var lk;
 var keys = '点击重播|点击下载|点击打开|领取福利|下载.*得.*|关闭广告'
+
 classModule.start = function(){
     s_tt = new Date()
 log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + s_tt.getSeconds());

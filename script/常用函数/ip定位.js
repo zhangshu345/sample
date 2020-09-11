@@ -18,6 +18,7 @@ function gaodegetcity(){
     }
     return "中国"
 }
+
 function gaodegetprovince(){
     let gaodeipurl="https://restapi.amap.com/v3/ip?key=19804f68e02ebef552b5046d4cc9e01f"
     let res= httpget(gaodeipurl) //{"status":"1","info":"OK","infocode":"10000","province":"山西省","city":"吕梁市","adcode":"141100","rectangle":"111.0129941,37.44078331;111.2348449,37.60177975"}
@@ -29,6 +30,7 @@ function gaodegetprovince(){
     }
     return "中国"
 }
+
 function baidugetlocation(ak,ip){
     let ak=ak||"ZdZGsywm0fyZTKyBpNWm7s85Y6yNYdtR"
     let ip=ip||""
@@ -49,6 +51,7 @@ function baidugetcity(ak,ip){
  }
  return "中国";
 }
+
 function baiduprovince(ak){
     let location=baidugetlocation(ak,ip)
     if(location!=null){
