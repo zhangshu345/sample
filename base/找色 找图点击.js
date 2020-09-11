@@ -69,17 +69,15 @@ function textclick(i,t,left,top,right,bottom){
     return false
 }
 
-
 //在图片消失之后点击图标位置
 function afterpicturedismissclick(img){
 threads.start(function(){
     while(true){
         if(textclick("立即开始")){
             return 
+         }
         }
-    }
-})
-
+    })
 //请求截图
 if(!requestScreenCapture()){
     toast("请求截图失败");

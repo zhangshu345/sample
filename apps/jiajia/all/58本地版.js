@@ -1,8 +1,9 @@
+auto.waitFor()
+auto.setMode("normal")
 var appname = '58本地版';
 const package = 'com.wuba.town.client';
 var dyappname = '抖音短视频';
 const dypackage = 'com.ss.android.ugc.aweme';
-
 
 var classModule = {};
 classModule.minMinutes = 20;
@@ -15,7 +16,7 @@ classModule.minVideoSec = 8;
 classModule.maxVideoSec = 12;
 classModule.func = null;
 classModule.autoR = 0;	//默认自动提现
-classModule.key_word_58="平川"
+classModule.key_word_58=0
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
 
 
@@ -23,7 +24,6 @@ classModule.start = function () {
     // 线上 释放    
     key_word_58 = classModule.key_word_58 
     log(key_word_58)
-
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
     var minutes = random(this.minMinutes, this.maxMinutes);   //生成运行时间
@@ -34,9 +34,8 @@ classModule.start = function () {
     // 首先判断是否有关键字
     if(key_word_58 == 0 || !key_word_58){
         log("58没有设置关键字，设置关键字以后再跑")
-        return
+        this.key_word_58=gaodegetcity()
     }
-
     var thread = threads.start(hasDialog);  //启动新的线程来检测是否有弹出窗口
     var cfg = func.loadConfig(appname);
     var lastdate = cfg.lastdate || '';
@@ -75,9 +74,6 @@ classModule.start = function () {
         log("本日已发表",have_share.length)
     }
 
-
-
-
     // if (currentPackage() != package) {
     //     var o = func.execApp(appname, package, 15000, "text('首页').visibleToUser().exists()")
     //     if (!o) {
@@ -87,9 +83,6 @@ classModule.start = function () {
     //         return; //退出函数
     //     }
     // }
-
-
-
 
     // return
 

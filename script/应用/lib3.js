@@ -15,7 +15,7 @@ importClass("javax.crypto.SecretKey");
 importClass("javax.crypto.spec.SecretKeySpec");
 importClass("javax.crypto.KeyGenerator");
 importClass("javax.crypto.spec.IvParameterSpec");
-log(device)
+
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var isshowfloaty=false  //是否显示提醒
@@ -32,7 +32,6 @@ func.is2GMemory = (device.getTotalMem() <= 2147483648);
 var isinstalling=false   //是否安装中 
 
 var spt=com.hongshu.utils.FastSPUtils.getInstance(appname)
-
 spt.getBoolean("automoney")
 log("是否自动升级："+spt.getBoolean("autoupdate"))
 log("是否展现悬浮提醒："+spt.getBoolean("showfloaty"))
@@ -417,7 +416,8 @@ var downloadandinstallapp=function(appname,apppkg){
  }
 
 //
-function httpget(url) {var r = http.get(url);
+function httpget(url) {
+    var r = http.get(url);
     if (r.statusCode == 200)
      { return r.body.string(); 
     } else { toastLog("五秒后重试");
@@ -1643,6 +1643,41 @@ function isRoot() {
         return false
     }
 }
+function gaodegetcity(){
+    let gaodeipurl="https://restapi.amap.com/v3/ip?key=19804f68e02ebef552b5046d4cc9e01f"
+    let res= httpget(gaodeipurl) //{"status":"1","info":"OK","infocode":"10000","province":"山西省","city":"吕梁市","adcode":"141100","rectangle":"111.0129941,37.44078331;111.2348449,37.60177975"}
+    if(res!=null){
+        let loaction=JSON.parse(res)
+        if(loaction.status=="1"){
+            return loaction.city;
+        }
+    }
+    return "中国"
+}
+function gaodegetcity(){
+    let gaodeipurl="https://restapi.amap.com/v3/ip?key=19804f68e02ebef552b5046d4cc9e01f"
+    let res= httpget(gaodeipurl) //{"status":"1","info":"OK","infocode":"10000","province":"山西省","city":"吕梁市","adcode":"141100","rectangle":"111.0129941,37.44078331;111.2348449,37.60177975"}
+    if(res!=null){
+        let loaction=JSON.parse(res)
+        if(loaction.status=="1"){
+            return loaction.city.replace("市","");
+        }
+    }
+    return "中国"
+}
+
+function gaodegetprovince(){
+    let gaodeipurl="https://restapi.amap.com/v3/ip?key=19804f68e02ebef552b5046d4cc9e01f"
+    let res= httpget(gaodeipurl) //{"status":"1","info":"OK","infocode":"10000","province":"山西省","city":"吕梁市","adcode":"141100","rectangle":"111.0129941,37.44078331;111.2348449,37.60177975"}
+    if(res!=null){
+        let loaction=JSON.parse(res)
+        if(loaction.status=="1"){
+            return loaction.province.replace("省");
+        }
+    }
+    return "中国"
+}
+
 // const appname = '集好视频';
 // const package = 'com.ztzj.jhsp';
 // func.execApp(appname,package)
