@@ -492,11 +492,15 @@ let st = setInterval(() => {
     //下载状态
     let status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
     if (status == DownloadManager.STATUS_SUCCESSFUL){
-        toastLog("下载已完成");
-        clearInterval(st);//取消定时器
+       
         if(isinstall){
+            toastLog("下载已完成开始安装");
             install_app(files.getSdcardPath()+"/download/"+filename,filename)
+        }else{
+            toastLog("下载已完成");
         }
+        clearInterval(st);//取消定时器
+    
      }
 }, 1500);
 
