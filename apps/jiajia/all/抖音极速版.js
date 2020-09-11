@@ -1,7 +1,6 @@
 
 var appname = '抖音极速版';
 var pkg = 'com.ss.android.ugc.aweme.lite'; 
-
 var classModule = {};
 classModule.appname = '';
 classModule.minMinutes = 25;
@@ -35,10 +34,8 @@ classModule.start = function(){
             return; //退出函数
         }
     }
-
     func.openWaiting(['.LauncherActivity']);
     sign();
-
     var x = device.width / 2;
     var y = device.height / 2;
     try{
