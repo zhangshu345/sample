@@ -1,7 +1,6 @@
-/**
- * 适配6.7.4 
- * 2019.12.3适配6.7.8
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '聚看点';
 const package = 'com.xiangzi.jukandian'; 
 

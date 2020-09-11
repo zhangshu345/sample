@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '小糖糕';
 const package = 'com.jifen.ponycamera';
 

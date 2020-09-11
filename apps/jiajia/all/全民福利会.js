@@ -1,3 +1,7 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
+
 const appname = '全民福利会';
 const package = 'com.qx.qmflh';
 

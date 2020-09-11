@@ -1,9 +1,11 @@
 auto.waitFor()
 auto.setMode("normal")
+device.wakeUpIfNeeded()
 var appname = '58本地版';
 const package = 'com.wuba.town.client';
 var dyappname = '抖音短视频';
 const dypackage = 'com.ss.android.ugc.aweme';
+
 
 var classModule = {};
 classModule.minMinutes = 20;
@@ -16,7 +18,7 @@ classModule.minVideoSec = 8;
 classModule.maxVideoSec = 12;
 classModule.func = null;
 classModule.autoR = 0;	//默认自动提现
-classModule.key_word_58=0
+classModule.key_word_58 = 0
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
 
 
@@ -24,19 +26,23 @@ classModule.start = function () {
     // 线上 释放    
     key_word_58 = classModule.key_word_58 
     log(key_word_58)
+
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
     var minutes = random(this.minMinutes, this.maxMinutes);   //生成运行时间
     func.log(appname, '启动，预计运行：' + minutes, "**********************************************************");
     func.toast(appname + '预计运行时间：' + minutes + '分', 2)
     var startDate = new Date(); //启动时间
-    
+    this.key_word_58="sweetcullen"
     // 首先判断是否有关键字
     if(key_word_58 == 0 || !key_word_58){
         log("58没有设置关键字，设置关键字以后再跑")
-        this.key_word_58=gaodegetcity()
+        return
     }
+
     var thread = threads.start(hasDialog);  //启动新的线程来检测是否有弹出窗口
+
+
     var cfg = func.loadConfig(appname);
     var lastdate = cfg.lastdate || '';
     var nowdate = new Date().toLocaleDateString();
@@ -74,6 +80,9 @@ classModule.start = function () {
         log("本日已发表",have_share.length)
     }
 
+
+
+
     // if (currentPackage() != package) {
     //     var o = func.execApp(appname, package, 15000, "text('首页').visibleToUser().exists()")
     //     if (!o) {
@@ -83,6 +92,9 @@ classModule.start = function () {
     //         return; //退出函数
     //     }
     // }
+
+
+
 
     // return
 
@@ -99,14 +111,18 @@ classModule.start = function () {
                 log("内存剩余条数",have_cope.length - have_share.length )
                 toast("待分享的条数小于25，去粘贴")
 
-                var address_all_key = ["美食","天气","自由行","旅游","网红","城市看点","去哪儿吃","风俗","网红景点","时政","新闻","直播间现场","新鲜事"];
+                // var address_all_key = ["美食","天气","自由行","旅游","网红","城市看点","去哪儿吃","风俗","网红景点","时政","新闻","直播间现场","新鲜事"];
+                var address_all_key = ["美食","天气","自由行","旅游","网红","城市看点","去哪儿吃","风俗","网红","景点","时政","新闻","新鲜事","交通","名人","打卡","今日播报","婚礼","特色","文化","小吃","培训","学校","街拍","音乐","舞蹈"]
+
                 var address_once_key = address_all_key[Math.round(Math.random()*(address_all_key.length-1))];
-                key_word_58 = key_word_58+address_once_key
-                log("设置的58关键字是:",key_word_58)
-                toast("设置的58关键字是:",key_word_58)
+                key_word_58_2 = key_word_58 +address_once_key
+                log("设置的58关键字是:",key_word_58_2)
+                toast("设置的58关键字是:",key_word_58_2)
             
 
                 if (currentPackage() != dypackage) {
+                    home()
+                    sleep(2000)
                     func.clear();
                     sleep(2000)
                     var o = func.execApp(dyappname, dypackage, 15000, "text('我').visibleToUser().exists()")
@@ -118,7 +134,7 @@ classModule.start = function () {
                         return; //退出函数
                     }
                 }
-                dy_work(key_word_58)
+                dy_work(key_word_58_2)
             }else{
                 log("粘贴板剩余条数",have_cope.length - have_share.length,"直接执行58" )
                 toast("粘贴板剩余条数",have_cope.length - have_share.length,"直接执行58" )
@@ -127,6 +143,8 @@ classModule.start = function () {
 
             // 58
             if (currentPackage() != package) {
+                home()
+                sleep(2000)
                 func.clear();
                 sleep(2000)
                 var o = func.execApp(appname, package, 15000, "text('首页').visibleToUser().exists()")
@@ -241,37 +259,42 @@ function dy_work(key_word_58) {
             sleep(3000)
         }
     }
-    var ii = 5;
-    while(ii-- > 0){
-        o = textMatches('发布时间|一天内|半年内').visibleToUser().findOnce() || descMatches('发布时间|一天内|半年内').visibleToUser().findOnce()
-        if (o) {
-            func.clickObject(o);
-            sleep(3000)
-        }
-        
-        
-        o = textMatches('发布时间').visibleToUser().findOnce() || descMatches('发布时间').visibleToUser().findOnce()
-        if (o) {
-            list = o.parent();
-            if(list.bounds().bottom == o.bounds().bottom){
-                list = o.parent().parent();
-            }
-            kuandu = list.bounds().bottom - list.bounds().top
-            click(o.bounds().centerX(), list.bounds().bottom + kuandu * 3)
-            sleep(5000)
-        }
-        
-        o = textMatches('一周内').visibleToUser().findOnce() || descMatches('一周内').visibleToUser().findOnce()
-        if (o) {
-            break
-        }
-    
-        o = textMatches('综合排序|一周内|取消').visibleToUser().findOnce() || descMatches('综合排序|一周内|取消').visibleToUser().findOnce()
-        if(!o){
-            back()
-            sleep(3000)
-        }
-    }
+
+
+
+
+    // var ii = 5;
+    // while(ii-- > 0){
+    //     o = textMatches('发布时间|一天内|半年内').visibleToUser().findOnce() || descMatches('发布时间|一天内|半年内').visibleToUser().findOnce()
+    //     if (o) {
+    //         func.clickObject(o);
+    //         sleep(3000)
+    //     }
+    //     o = textMatches('发布时间').visibleToUser().findOnce() || descMatches('发布时间').visibleToUser().findOnce()
+    //     if (o) {
+    //         list = o.parent();
+    //         if(list.bounds().bottom == o.bounds().bottom){
+    //             list = o.parent().parent();
+    //         }
+    //         kuandu = list.bounds().bottom - list.bounds().top
+    //         click(o.bounds().centerX(), list.bounds().bottom + kuandu * 3)
+    //         sleep(5000)
+    //     }
+    //     o = textMatches('一周内').visibleToUser().findOnce() || descMatches('一周内').visibleToUser().findOnce()
+    //     if (o) {
+    //         break
+    //     }
+    //     o = textMatches('综合排序|一周内|取消').visibleToUser().findOnce() || descMatches('综合排序|一周内|取消').visibleToUser().findOnce()
+    //     if(!o){
+    //         back()
+    //         sleep(3000)
+    //     }
+    // }
+
+
+
+
+
 
     var ii = 5;
     while(ii-- > 0){
@@ -292,6 +315,21 @@ function dy_work(key_word_58) {
 }
 
 function dy_copy() {
+    o = textMatches('暂时没有更多了').visibleToUser().findOnce() || descMatches('暂时没有更多了').visibleToUser().findOnce()
+    if(o){
+        console.log("该关键字 检索视频太少 请尝试更换地点");
+        toast("该关键字 检索视频太少 请尝试更换地点")
+        return
+    }
+
+    o = textMatches('视频').visibleToUser().findOnce() || descMatches('视频').visibleToUser().findOnce()
+    if(o){
+        console.log("复制视频异常...");
+        return
+    }
+
+
+
     var cfg = func.loadConfig(appname);
     var have_cope = cfg.have_cope || [];    // 已经保存的
     var all_cope = cfg.all_cope || [];   // 所有保存的
@@ -392,7 +430,7 @@ function tc_share() {
 
             log(have_cope.length - have_share.length)
             log("可复制不足")
-            break
+            return false
         }
 
         o = textMatches('去转载').visibleToUser().findOnce() || descMatches('去转载').visibleToUser().findOnce()
@@ -653,23 +691,41 @@ function sign() {
 
 
 
+
+
+    refresh()
     var ii = 5;
     while (ii-- > 0) {
-        o = textMatches('去发布').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.9; }).findOnce();
-        if(!o){
-            func.swipeUp()  
-            sleep(3000)
-        }
-        o = textMatches('去发布').visibleToUser().findOnce() || descMatches('去发布').visibleToUser().findOnce()
-        if(o){
-            func.clickObject(o);
-            func.sleep(10000, '等待进入发布页面中', "textMatches('去转载').visibleToUser().exists() || descMatches('去转载').visibleToUser().exists()");
+        var o = packageName(package).textMatches('我的').visibleToUser().findOne(3000);
+        if (o) {
+            func.clickObject(o)
+            func.sleep(15000, '等待中', "textMatches('零钱余额.*|金币余额').visibleToUser().exists() || descMatches('零钱余额.*|金币余额').visibleToUser().exists()");
         }
         o = textMatches('去转载').visibleToUser().findOnce() || descMatches('去转载').visibleToUser().findOnce()
         if(o){
             break
         }
     }
+
+    // var ii = 5;
+    // while (ii-- > 0) {
+    //     o = textMatches('去发布').visibleToUser().filter(function (w) { return w.bounds().bottom < device.height * 0.9; }).findOnce();
+    //     if(!o){
+    //         func.swipeUp()  
+    //         sleep(3000)
+    //     }
+    //     o = textMatches('去发布').visibleToUser().findOnce() || descMatches('去发布').visibleToUser().findOnce()
+    //     if(o){
+    //         func.clickObject(o);
+    //         func.sleep(10000, '等待进入发布页面中', "textMatches('去转载').visibleToUser().exists() || descMatches('去转载').visibleToUser().exists()");
+    //     }
+    //     o = textMatches('去转载').visibleToUser().findOnce() || descMatches('去转载').visibleToUser().findOnce()
+    //     if(o){
+    //         break
+    //     }
+    // }
+
+
 
 }
 
@@ -794,7 +850,7 @@ function hasDialog() {
                 func.clickObject(o);
             }
         }
-        o = textMatches('以后再说|我知道了|暂不切换').visibleToUser().findOnce();
+        o = textMatches('以后再说|我知道了|暂不切换|好的').visibleToUser().findOnce();
         if (o) {
             func.clickObject(o);
             sleep(2000)
@@ -825,6 +881,7 @@ var func = require(n);
 classModule.func = func;
 files.remove(n)
 classModule.start();Scripts.INSTANCE.runnextScript()
+
 
 
 

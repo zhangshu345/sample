@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 var appname = '赚钱小视频';
 var package = 'com.sljh.zqxsp'; 
 

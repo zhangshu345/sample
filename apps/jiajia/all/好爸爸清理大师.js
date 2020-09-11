@@ -1,7 +1,8 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const package = 'com.preface.clean';
 const appname = app.getAppName(package) || '好爸爸清理大师'
-
-
 var classModule = {};
 classModule.minMinutes = 17;
 classModule.maxMinutes = 25;

@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 var appname = '快手极速版';
 var pkg = 'com.kuaishou.nebula';
 var classModule = {};

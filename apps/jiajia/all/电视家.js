@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '电视家';
 const package = 'com.dianshijia.tvlive';
 

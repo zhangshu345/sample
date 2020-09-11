@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const package = 'com.kugou.android.elder';
 var appname = app.getAppName(package) || '酷狗音乐大字版';
 

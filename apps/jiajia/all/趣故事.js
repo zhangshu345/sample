@@ -1,9 +1,6 @@
-
-/**
- * 适配5.7.0
- * 2019.11.25适配6.0.0
- */
-
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '趣故事';
 const package = 'com.ziqun.story'; 
 

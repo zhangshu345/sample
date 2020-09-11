@@ -1,9 +1,6 @@
-/**
- * 适配5.4.1.9
- * 2019.11.25适配5.4.7.3
- * 2019.11.30适配5.5.0.1
- * 2020.02.05适配5.5.5.9
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 
 const appname = '闪电盒子';
 const package = 'c.l.a'; 

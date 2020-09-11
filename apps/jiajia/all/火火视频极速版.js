@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '火火视频极速版';
 const package = 'com.jt.hanhan.video';
 

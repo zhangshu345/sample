@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const package = 'com.xiaoqiao.qclean'; 
 var appname = app.getAppName(package) || '天天爱清理';
 var classModule = {};

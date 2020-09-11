@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '快7浏览器';
 const package = 'com.jifen.browserq';
  

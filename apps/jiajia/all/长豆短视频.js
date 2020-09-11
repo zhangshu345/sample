@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '长豆短视频';
 const package = 'com.zf.shuashua';
 

@@ -1,3 +1,7 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
+
 const appname = '红包盒子';
 const package = 'com.bang.redbox'; 
 

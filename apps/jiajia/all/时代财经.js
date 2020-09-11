@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '时代财经';
 const package = 'com.timeweekly.timefinance';
 

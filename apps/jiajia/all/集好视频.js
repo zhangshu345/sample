@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '集好视频';
 const package = 'com.ztzj.jhsp';
 

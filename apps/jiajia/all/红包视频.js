@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '红包视频';
 const package = 'com.sanmiao.sound';
 var classModule = {};

@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '新晴天气';
 const package = 'com.nineton.weatherforecast'
 

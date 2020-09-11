@@ -1,13 +1,6 @@
-
-/**
- * 适配1.07.0.1104.2148
- * 2019.11.25适配1.08.2.1114.2141
- * 2019.11.27适配1.09.0.1125.1710
- * 2019.11.30适配1.10.0.1128.2318
- * 2019.12.06适配1.10.1.1203.1555
- * 
- */
-
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '彩蛋视频';
 const package = 'com.jifen.dandan'; 
 

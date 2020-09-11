@@ -1,7 +1,6 @@
-/**
- * 适应6.3.6
- * 2019.12.07适应6.5.0
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '趣看天下'; 
 const package = 'com.yanhui.qktx';
 

@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '蚂蚁看点';
 const package = 'com.ldzs.zhangxin';
 

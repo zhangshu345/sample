@@ -1,7 +1,6 @@
-/**
- * 适应6.3.0
- * 2019.11.30适应6.4.0
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '火山极速版';
 const package = 'com.ss.android.ugc.livelite';
 

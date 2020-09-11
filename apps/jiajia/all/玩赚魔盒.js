@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '玩赚魔盒';
 const package = 'com.lucky.magicbox'
 

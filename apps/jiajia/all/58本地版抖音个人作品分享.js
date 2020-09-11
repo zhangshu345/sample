@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 var appname = '58本地版';
 const package = 'com.wuba.town.client';
 var dyappname = '抖音短视频';

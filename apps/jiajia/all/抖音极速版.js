@@ -1,4 +1,6 @@
-
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 var appname = '抖音极速版';
 var pkg = 'com.ss.android.ugc.aweme.lite'; 
 var classModule = {};

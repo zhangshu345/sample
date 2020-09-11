@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '浮浮雷达';
 const package = 'com.kugou.shiqutouch';
 

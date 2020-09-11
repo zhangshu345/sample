@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '酷狗儿歌';
 const package = 'com.kugou.android.child';
 

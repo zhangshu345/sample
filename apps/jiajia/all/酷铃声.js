@@ -1,7 +1,8 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '酷铃声';
 const package = 'com.zheyun.bumblebee.kls';
-
-
 var classModule = {};
 classModule.minMinutes = 20; 
 classModule.maxMinutes = 30;

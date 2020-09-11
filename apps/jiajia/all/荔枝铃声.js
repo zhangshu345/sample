@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '荔枝铃声';
 const package = 'com.preface.megatron';
 

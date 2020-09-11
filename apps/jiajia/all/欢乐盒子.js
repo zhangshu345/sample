@@ -1,7 +1,6 @@
-/**
- * 适配5.5.1.3
- */
-
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '欢乐盒子';
 const package = 'c.l.d'; 
 

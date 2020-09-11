@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '淘小说-阅读赚钱';
 const package = 'com.martian.ttbook';
 

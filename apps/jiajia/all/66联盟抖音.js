@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '66联盟';
 const package = 'com.toutiaozuqiu.and.liuliu';
 var dypackage = 'com.ss.android.ugc.aweme';

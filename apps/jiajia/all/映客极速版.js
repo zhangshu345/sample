@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '映客极速版';
 const package = 'com.ingkee.lite'; 
 

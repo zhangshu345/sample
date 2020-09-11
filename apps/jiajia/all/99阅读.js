@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '99阅读';
 const package = 'com.shoubang.vxread';
 var dypackage = 'com.ss.android.ugc.aweme';

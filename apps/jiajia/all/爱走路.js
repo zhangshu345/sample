@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const package = 'com.love.walk.qsport';
 var appname = app.getAppName(package) || '爱走路';
 var classModule = {};

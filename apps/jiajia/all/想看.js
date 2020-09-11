@@ -1,14 +1,6 @@
-
-/**
- * 适配4.8.00
- * 2019.11.25适配4.8.21
- * 2019.11.27适配4.8.31
- * 2019.12.3适配4.8.42
- * 2020.02.01适配4.8.82
- * :id/coin_img_big
- * :id/tv_left_time
- */
-
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 
 const package = 'com.xiangkan.android'; 
 var appname = app.getAppName(package) || '想看';

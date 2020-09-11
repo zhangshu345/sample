@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '94新';
 const package = 'com.haozhuan.scriptnew';
 

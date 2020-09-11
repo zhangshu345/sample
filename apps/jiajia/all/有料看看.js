@@ -1,7 +1,6 @@
-/**
- * 适应6.3.6
- * 2019.12.07适应6.5.0
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '有料看看';
 const package = 'com.youliao.topic';
 

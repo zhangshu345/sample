@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '天天短视频';
 const package = 'com.tiantian.video';
 var classModule = {};

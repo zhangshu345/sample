@@ -1,8 +1,6 @@
-/**
- * 适应1.6.3
- * 2019.11.24适应1.6.6
- * 2019.12.07适应1.6.7
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const package = 'cn.weli.story';
 var appname = app.getAppName(package) || '微鲤看看';
 

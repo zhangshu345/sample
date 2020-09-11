@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '趣看视频';
 const package = 'com.baomihua.qukan';
 

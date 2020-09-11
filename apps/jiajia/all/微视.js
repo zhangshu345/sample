@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '微视';
 const package = 'com.tencent.weishi';
 var classModule = {};

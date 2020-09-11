@@ -1,7 +1,6 @@
-/**
- * 适配2.0.3.203
- * 2019.12.06适配2.0.4.206
- */
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 
  const appname = '快看点';
 const package = 'com.yuncheapp.android.pearl'; 

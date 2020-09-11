@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '东方头条';
 const package = 'com.songheng.eastnews'; 
 

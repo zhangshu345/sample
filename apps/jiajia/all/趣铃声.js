@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '趣铃声';
 const package = 'com.zheyun.bumblebee';
 

@@ -1,7 +1,8 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '趣来电';
 const package = 'com.maiya.qulaidian';
-
-
 var classModule = {};
 classModule.minMinutes = 15;
 classModule.maxMinutes = 25;

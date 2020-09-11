@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '铃声秀';
 const package = 'com.zheyun.bumblebee.lsx';
 

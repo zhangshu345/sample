@@ -1,3 +1,6 @@
+auto.waitFor()
+auto.setMode("normal")
+device.wakeUpIfNeeded()
 const appname = '快音';
 const package = 'com.kuaiyin.player';
 var classModule = {};

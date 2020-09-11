@@ -531,11 +531,12 @@ function downloadApk(name,downloadurl,isinstall) {
            while (1) {
                var 当前写入的文件大小 = byteSum;
                var progress = (当前写入的文件大小 / connLength) * 100;
-               if (progress > 0.1 && progress % 5==0) {
-                   var progress = parseInt(progress).toString() + '%';
-                      floatyshow(name.substr(0,6) + ":下载进度-"+progress);
-                              // w.progressNum.setText(progress);
+               if (progress > 0.1 ) {
+                var progress = parseInt(progress).toString() + '%';
+                floatyshow(name.substr(0,6) + ":下载进度-"+progress);
                    if (当前写入的文件大小 >= connLength) {
+                   
+                    // w.progressNum.setText(progress);
                        break;
                    }
                }
