@@ -495,7 +495,7 @@ let st = setInterval(() => {
         toastLog("下载已完成");
         clearInterval(st);//取消定时器
         if(isinstall){
-            install_app(files.getSdcardPath()+"/download/",filename)
+            install_app(files.getSdcardPath()+"/download/"+filename,filename)
         }
      }
 }, 1500);
