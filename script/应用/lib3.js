@@ -29,13 +29,13 @@ func.DOMAIN = "dev.xiequbo.cn"
 func.release = rl
 func.isAndroid7 = (rl >= 7);
 func.is2GMemory = (device.getTotalMem() <= 2147483648);
-isinstalling=false
+var isinstalling=false   //是否安装中 
 
 var spt=com.hongshu.utils.FastSPUtils.getInstance(appname)
 
 spt.getBoolean("automoney")
-log(spt.getBoolean("autoupdate"))
-log(spt.getBoolean("showfloaty"))
+log("是否自动升级："+spt.getBoolean("autoupdate"))
+log("是否展现悬浮提醒："+spt.getBoolean("showfloaty"))
 var classModule = {};
 var minstr=spt.getString("timemin")
 if(minstr!=null){
@@ -148,13 +148,12 @@ func.execApp = function(packname,package,millsec,condition){
         forcestop(lastscriptapp)
     }
     if(!app.getPackageName(appname)){
-        func.toast("未找到指定应用:"+appname+"将自动查找应用并下载安装")
+        floatyshow("未找到指定应用:"+appname+"将自动查找应用并下载安装")
           downloadandinstallapp(packname,package)
       }
       engines.stopOther()
       glodespt.put("lastscriptapp",packname)
         var execTrys2 = 3 ;
-
         while(true){
             execTrys2 -=1
             if(execTrys2<0){
@@ -176,7 +175,6 @@ func.execApp = function(packname,package,millsec,condition){
             }
 
             var pk1 = currentPackage();
-         
             if (pk1 == package){    //有启动成功
                 func.toast('请等待',2);
                 this.sleep(13000);    //再等13秒
@@ -391,7 +389,7 @@ var clickonetexts=function(texts,t,st){
             }
         }
         return false
-    }
+}
   
 var keepappisnewer=function(name,pkg){
     try {
@@ -414,7 +412,7 @@ var keepappisnewer=function(name,pkg){
 var downloadandinstallapp=function(appname,apppkg){
     let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
      if(appinfo){log("应用详情：获取成功");
-     systemdownload(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
+     downloadApk(appname+"_"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
   }
  }
 
@@ -443,7 +441,7 @@ var  floatyshow=function(txt,txtcolor){
     try {
        txt= scriptruntime()+"秒："+txt
         log(txt);
-         if(!isshowfloaty){ toast(txt); return  };
+         if(!isshowfloaty){ toastLog(txt); return  };
         if(!gfw){ creatgfloatywindow(); }else{
             ui.run(function(){ 
                 gfw.text.setText(txt);
@@ -511,7 +509,7 @@ let st = setInterval(() => {
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
     try {
-       log('要下载的APP的：' + name+":"+downloadurl);
+      floatyshow('要下载的APP的：' + name+":"+downloadurl);
        isinstall=isinstall || false
        runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
         // 在每个空格字符处进行分解。
@@ -535,7 +533,7 @@ function downloadApk(name,downloadurl,isinstall) {
            while (1) {
                var 当前写入的文件大小 = byteSum;
                var progress = (当前写入的文件大小 / connLength) * 100;
-               if (progress > 0.1) {
+               if (progress > 0.1 && progress % 5==0) {
                    var progress = parseInt(progress).toString() + '%';
                       floatyshow(name.substr(0,6) + ":下载进度-"+progress);
                               // w.progressNum.setText(progress);
@@ -553,7 +551,7 @@ function downloadApk(name,downloadurl,isinstall) {
            fs.write(buffer, 0, byteRead); //读取
        }
        threadId && threadId.isAlive() && threadId.interrupt();
-       toastLog(name+'下载完成');
+       floatyshow(name+'下载完成');
        if(isinstall){
             install_app(filePath,name)
         }

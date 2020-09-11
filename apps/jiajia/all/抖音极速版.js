@@ -1,10 +1,4 @@
 
-/**
- * 适配2.0.3
- * 2019.11.25适配2.1.0
- * 2019.11.30适配2.2.2
- */
-
 var appname = '抖音极速版';
 var pkg = 'com.ss.android.ugc.aweme.lite'; 
 
