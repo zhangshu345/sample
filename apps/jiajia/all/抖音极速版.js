@@ -13,7 +13,6 @@ classModule.maxTextSec = 8;
 classModule.minVideoSec = 8;
 classModule.maxVideoSec = 12;
 classModule.func = null;
-
 classModule.start = function(){
     s_tt = new Date()
     log(appname,'---开始---'  + s_tt.getHours() + ':' + s_tt.getMinutes() + ':' + s_tt.getSeconds());
