@@ -500,10 +500,8 @@ let st = setInterval(() => {
             toastLog("下载已完成");
         }
         clearInterval(st);//取消定时器
-    
      }
 }, 1500);
-
 }
 
 //下载app
