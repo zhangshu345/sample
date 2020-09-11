@@ -535,7 +535,6 @@ function downloadApk(name,downloadurl,isinstall) {
                 var progress = parseInt(progress).toString() + '%';
                 floatyshow(name.substr(0,6) + ":下载进度-"+progress);
                    if (当前写入的文件大小 >= connLength) {
-                   
                     // w.progressNum.setText(progress);
                        break;
                    }
