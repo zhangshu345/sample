@@ -1,0 +1,139 @@
+auto.waitFor()
+auto.setMode("normal")
+var actions="auto.waitFor();\nauto.setMode(\"normal\");"
+var script="";
+var downTime;
+var actiontime=new Date().getTime();
+var minactiontime=300
+var 间隔时间=function(){
+    return new Date().getTime()-actiontime
+}
+var screenactionwindow
+
+//最小间隔时间
+function addnewactions(newactionstr){
+    let t=间隔时间()
+    if(t>minactiontime){
+      actions=actions+"sleep("+t+");"+newactionstr+";";
+    }else{
+       actions= actions+"sleep("+minactiontime+");"+newactionstr+";";
+    }
+   log(actions)
+}
+   
+function startscreenrecord(){
+//利用了悬浮窗
+ screenactionwindow = floaty.rawWindow(
+    <frame id="action" w="{{device.width}}" h="{{device.height}}">
+    </frame>
+);
+setInterval(()=>{}, 1000);
+var x = 0, y = 0;
+screenactionwindow.action.setOnTouchListener(function(view, event){
+    switch(event.getAction()){
+        case event.ACTION_DOWN:
+            x = event.getRawX();
+            y = event.getRawY();
+            downTime = new Date().getTime();
+            return true;
+        case event.ACTION_UP:
+            if(new Date().getTime() - downTime > 1000&&(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5)){
+               长按(x,y);
+            }
+           else {
+               if(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5){
+               点击(x,y);
+                }
+                else{
+                   滑动(x,y,event.getRawX(),event.getRawY()); 
+                 }
+                }
+            return true;
+    }
+    return true;
+});
+}
+      
+function 点击(x,y){
+         log("点击("+x+","+y+")");
+         addnewactions("click("+x+","+y+")")
+      threads.start(function(){
+           screenactionwindow.setTouchable(false);
+           sleep(60);
+           press(x,y,1);
+           screenactionwindow.setTouchable(true);
+           actiontime= new Date().getTime();
+       });
+   }
+
+function 长按(x,y){
+    log("长按("+x+","+y+")");
+    addnewactions("press("+x+","+y+",1000)")
+    threads.start(function(){
+           screenactionwindow.setTouchable(false);
+           sleep(60);
+           press(x,y,1000);
+           screenactionwindow.setTouchable(true);
+           actiontime= new Date().getTime();
+           });
+           }
+           
+function 滑动(x,y,x1,y1){
+     log("从("+x+","+y+")滑到("+x1+","+y1+")");
+     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
+    threads.start(function(){
+           screenactionwindow.setTouchable(false);
+           sleep(60);
+           swipe(x,y,x1,y1,350);
+           screenactionwindow.setTouchable(true);
+           actiontime= new Date().getTime();
+           });
+    }
+
+
+//开始物理按键记录
+function startkeyrecord(){
+//启用按键监听
+events.observeKey();
+//监听音量上键按下
+events.onKeyDown("volume_up", function(event){
+    log("音量上键被按下了");
+    
+});
+
+//监听音量下键按下
+events.onKeyDown("volume_down", function(event){
+    log("音量上键被按下了");
+  
+});
+//监听菜单键按下
+events.onKeyDown("menu", function(event){
+    log("菜单键被按下了");
+    
+});
+//返回键按下
+events.onKeyDown("back", function(event){
+    log("返回键被按下了");
+    addnewactions("back()")
+});
+
+//返回键按下
+events.onKeyDown("home", function(event){
+    log("主页被按下了");
+    addnewactions("home()")
+});
+
+}
+
+//
+function startrecord(){
+    startkeyrecord()
+    startscreenrecord()
+    
+}
+
+function stoprecord(){
+
+}
+
+startrecord()

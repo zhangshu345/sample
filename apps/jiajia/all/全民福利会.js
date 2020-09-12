@@ -94,7 +94,6 @@ classModule.start = function () {
                 }
             }
 
-
             sleep(3000)
             o = textMatches('重播').visibleToUser().findOnce();
             nn +=1

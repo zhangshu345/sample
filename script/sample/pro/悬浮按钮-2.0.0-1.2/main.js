@@ -1,29 +1,6 @@
-/*
- * @Author: 大柒
- * @QQ: 531310591@qq.com
- * @Version: Auto.Js Pro
- * @LastEditors: 大柒
- * @Date: 2019-05-12 17:08:18
- * @LastEditTime: 2019-05-13 18:00:12
- * @Description: 
- * 第二版Aotu.JS悬浮窗
- * 推荐使用Auto,JS Pro版本
- * 不知到在哪里下载PRO版本的请加群 662377009
- * 修复了上一版的BUG,优化了部分细节
- * 当屏幕方向发生变化时,悬浮窗自动调整位置
- * 修复快速双击主按钮,产生的错误
- * 数据更加直观,常量值可修改全局变量不可修改
- * 优化了停靠动画衔接,拖动按钮时更加流畅
- *  菜单触发事件全部集中在 menuOnClick() 函数
- *  自行添加响应功能
- *  如果发现BUG请联系我
- *  QQ:531310591
- */
-
 importClass(android.animation.ObjectAnimator)
 importClass(android.animation.AnimatorSet)
 importClass(android.view.animation.BounceInterpolator)
-
 importClass(android.content.BroadcastReceiver);
 importClass(android.content.ContextWrapper);
 importClass(android.content.IntentFilter);
@@ -48,7 +25,7 @@ const animation_time_1 = 300
 const but_data = {
     'logo': {
         name: "logo",//不可修改
-        src: "https://pro.autojs.org/images/logo.png",
+        src: "@drawable/ic_perm_identity_black_48dp",
     },
     'menu_1': {
         name: "菜单1",
@@ -139,10 +116,7 @@ function menuOnClick(view) {
     }
     animation_menu();
 }
-
-
 /**************以下为系统函数 */
-
 //菜单展开状态记录值
 var menu_switch = false;
 //按钮左右方向记录值 false:左 true:右
@@ -303,7 +277,6 @@ function getScreenDirection() {
         })
     }, 50);
 }
-
 //菜单展开收起动画
 function animation_menu(event, E) {
     //如果展开状态为假  则重新定位菜单menu位置 
@@ -361,7 +334,6 @@ function animation_menu(event, E) {
         }, animation_time);
     }, 50);
 }
-
 /**
  * 动画 logo停靠动画
  */
@@ -454,7 +426,6 @@ w_logo._but.setOnTouchListener(function (view, event) {
     }
     return true
 });
-
 //exit()退出事件
 events.on('exit', function () {
     if (intent_CHANGED != null) {
@@ -462,5 +433,4 @@ events.on('exit', function () {
         new ContextWrapper(context).unregisterReceiver(intent_CHANGED);
     }
 });
-
 setInterval(() => { }, 1000);

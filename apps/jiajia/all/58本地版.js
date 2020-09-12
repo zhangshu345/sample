@@ -21,7 +21,6 @@ classModule.autoR = 0;	//默认自动提现
 classModule.key_word_58 = 0
 var keys = '下载|点击重播|点击下载|点击打开|关闭';
 
-
 classModule.start = function () {
     // 线上 释放    
     key_word_58 = classModule.key_word_58 
@@ -33,7 +32,7 @@ classModule.start = function () {
     func.log(appname, '启动，预计运行：' + minutes, "**********************************************************");
     func.toast(appname + '预计运行时间：' + minutes + '分', 2)
     var startDate = new Date(); //启动时间
-    this.key_word_58="sweetcullen"
+   key_word_58="sweetcullen"
     // 首先判断是否有关键字
     if(key_word_58 == 0 || !key_word_58){
         log("58没有设置关键字，设置关键字以后再跑")
@@ -41,7 +40,6 @@ classModule.start = function () {
     }
 
     var thread = threads.start(hasDialog);  //启动新的线程来检测是否有弹出窗口
-
 
     var cfg = func.loadConfig(appname);
     var lastdate = cfg.lastdate || '';
@@ -79,10 +77,6 @@ classModule.start = function () {
     }else{
         log("本日已发表",have_share.length)
     }
-
-
-
-
     // if (currentPackage() != package) {
     //     var o = func.execApp(appname, package, 15000, "text('首页').visibleToUser().exists()")
     //     if (!o) {
@@ -92,14 +86,8 @@ classModule.start = function () {
     //         return; //退出函数
     //     }
     // }
-
-
-
-
     // return
-
     func.openWaiting();
-
     var idx = 1;
     var x = device.width / 2;
     var y = device.height / 2;
@@ -113,7 +101,7 @@ classModule.start = function () {
 
                 // var address_all_key = ["美食","天气","自由行","旅游","网红","城市看点","去哪儿吃","风俗","网红景点","时政","新闻","直播间现场","新鲜事"];
                 var address_all_key = ["美食","天气","自由行","旅游","网红","城市看点","去哪儿吃","风俗","网红","景点","时政","新闻","新鲜事","交通","名人","打卡","今日播报","婚礼","特色","文化","小吃","培训","学校","街拍","音乐","舞蹈"]
-
+0
                 var address_once_key = address_all_key[Math.round(Math.random()*(address_all_key.length-1))];
                 key_word_58_2 = key_word_58 +address_once_key
                 log("设置的58关键字是:",key_word_58_2)
@@ -422,12 +410,9 @@ function tc_share() {
     var have_cope = cfg.have_cope || [];    // 已经保存的
     var all_cope = cfg.all_cope || [];   // 所有保存的
     var have_share = cfg.have_share || [];    // 已经分享到
-
-
     var ii = 50;
     while (ii-- > 0) {
         if (have_cope.length - have_share.length < 3) {
-
             log(have_cope.length - have_share.length)
             log("可复制不足")
             return false
@@ -469,16 +454,13 @@ function tc_share() {
         if (o) {
             back()
             func.sleep(15000, '等待下一次转发');
-
         }
         if(have_share.length>130){
             log("今日发布已到上限")
             return false
         }
-
     }
     return true
-
 }
 
 

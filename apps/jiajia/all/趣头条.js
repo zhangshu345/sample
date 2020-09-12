@@ -23,7 +23,6 @@ classModule.func = null;
 var keys = '点击重播|点击下载|点击下载|点击打开';
 
 
-
 classModule.start = function(){
     var me = this;
     //先判断当前是不是运行的app，不是的话就要打开
@@ -246,8 +245,6 @@ classModule.start = function(){
                                 func.toast('本次视频完成',2)
                             }
                             else if (type == 2){ 
-
-
                                 if(dd>5){
                                     dd = 0
                                     var finds = packageName(package).className('android.widget.FrameLayout').depth(1).visibleToUser().find();
@@ -261,11 +258,7 @@ classModule.start = function(){
                                             closeDialog()
                                         }
                                     }
-
-
                                 }
-
-
                                 var max = random(mod.minSwipe,mod.maxSwipe);
                                 //log('max=' + max)
                                 for (var i = 0; i < max; i++){
@@ -290,8 +283,6 @@ classModule.start = function(){
                                     func.sleep(150);
                                 }
                                 func.toast('本篇已经阅读完成！',2)
-
-
                             }
                             else if (type == 3){    //图集 
                                 func.sleep(random(me.minTextSec * 1000,me.maxTextSec * 1000));   //随机阅读3到6秒
@@ -323,7 +314,6 @@ classModule.start = function(){
                                 }
                                 func.toast('本篇已经阅读完成！',2)
                             }
-
                             if (app.versionCode == 1){
                                 o = className('ImageView').visibleToUser().depth(5).findOnce();
                             }
@@ -349,8 +339,7 @@ classModule.start = function(){
                                     this.func.sleep(1000);
                                 }
                             }
-            
-                            if (idx % 5 == 0)
+                                        if (idx % 5 == 0)
                                 func.toast(appname + '已运行' + String(parseInt((new Date().getTime() - startDate.getTime()) / 1000 / 60)) + '分钟',2)
                             if (idx % 11 == 0)
                                 needRefresh = true;

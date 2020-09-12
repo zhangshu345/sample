@@ -1,14 +1,10 @@
-
 //利用了悬浮窗
-
 var window = floaty.rawWindow(
     <frame id="action" w="{{device.width}}" h="{{device.height}}">
     </frame>
 );
 
 setInterval(()=>{}, 1000);
-
-
 
 var x = 0, y = 0;
 var downTime;
@@ -47,6 +43,7 @@ function 点击(x,y){
            window.setTouchable(true);
        });
    }
+
 function 长按(x,y){
     toastLog("长按("+x+","+y+")");
     threads.start(function(){
@@ -56,6 +53,7 @@ function 长按(x,y){
            window.setTouchable(true);
            });
            }
+           
 function 滑动(x,y,x1,y1){
      toastLog("从("+x+","+y+")滑到("+x1+","+y1+")");
     threads.start(function(){

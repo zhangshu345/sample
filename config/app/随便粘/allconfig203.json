@@ -21,7 +21,7 @@
     "barbuttons":{"ui":{"type":1,"orientation":0,"size":4,"reverselayout":false},
     "data":[{"name":"新手指南","open":false,"icon":"@drawable/ic_home_center_book","back":"@drawable/im_round_red","event":-1,"uipath":"","script":"scriptname:userguide"},
     {"name":"设置","open":true,"icon":"@drawable/ic_home_center_setting","back":"@drawable/im_round_green","event":-1,"uipath":"/script/settings","script":"scriptname:settingdescription"},
-  
+    {"name":"动作录制","open":false,"icon":"@drawable/ic_record","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"},
     {"name":"自动化编辑","open":true,"icon":"@drawable/ic_home_center_code","back":"@drawable/im_round_blue","event":-1,"uipath":"/script/develop","script":""},
     {"name":"视频剪辑","open":true,"icon":"@drawable/ic_home_center_videoedit","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
     {"name":"联系我们","open":false,"icon":"@drawable/ic_home_center_aboutme","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},

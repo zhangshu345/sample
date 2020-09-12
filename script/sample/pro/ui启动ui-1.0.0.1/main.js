@@ -1,5 +1,4 @@
 "ui";
-"ui";
 
 ui.layout(
     <vertical padding="16">
