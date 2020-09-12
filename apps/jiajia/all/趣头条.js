@@ -476,7 +476,6 @@ classModule.start = function(){
         var bol = true;
         ii = 0
         while (bol) {
-        
             var datediff = new Date().getTime() - startDate.getTime();
             if (datediff > minutes * 60 * 1000) {
                 bol = false;
@@ -523,7 +522,6 @@ classModule.start = function(){
             }
         }
 
-
         // o = packageName(package).textMatches('任务|赚钱').visibleToUser().findOnce();
         // if (o){
         //     ii = 5
@@ -563,8 +561,6 @@ classModule.start = function(){
         else
             this.func.clickObject(o);
     }
-
-
 }
 
 

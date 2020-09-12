@@ -18,7 +18,7 @@ function addnewactions(newactionstr){
     }else{
        actions= actions+"sleep("+minactiontime+");"+newactionstr+";";
     }
-   log(actions)
+//    log(actions)
 }
    
 function startscreenrecord(){
@@ -42,13 +42,17 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
             }
            else {
                if(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5){
-               点击(x,y);
+                     点击(x,y);
                 }
                 else{
                    滑动(x,y,event.getRawX(),event.getRawY()); 
                  }
                 }
             return true;
+            case event.ACTION_MOVE:
+                    log("滑动"+event.getRawX()+","+event.getRawY())
+                    addnewpath(event.getRawX(),event.getRawY())
+                return true
     }
     return true;
 });
