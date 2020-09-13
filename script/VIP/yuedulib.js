@@ -815,7 +815,7 @@ var toPkgandClass=function(pkg,classname){
          context.startActivity(i);
 }
 var toPkgandClassWithData=function(pkg,classname,putdate){
-    let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"],data:putdate});
+    let i = app.intent({packageName: pkg, className:classname ,flags:["activity_new_task"],data:putdate});
      context.startActivity(i);
 }
 

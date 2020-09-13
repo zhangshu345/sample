@@ -8,10 +8,16 @@ var minactiontime=300
 var 间隔时间=function(){
     return new Date().getTime()-actiontime
 }
+
+var 动作时间间隔=function(){
+    return new Date().getTime()-downTime
+}
 var screenactionwindow
+var points=[1000];
 
 //最小间隔时间
 function addnewactions(newactionstr){
+    log(newactionstr)
     let t=间隔时间()
     if(t>minactiontime){
       actions=actions+"sleep("+t+");"+newactionstr+";";
@@ -39,25 +45,43 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
         case event.ACTION_UP:
             if(new Date().getTime() - downTime > 1000&&(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5)){
                长按(x,y);
-            }
-           else {
+            }else{
                if(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5){
                      点击(x,y);
                 }
                 else{
-                   滑动(x,y,event.getRawX(),event.getRawY()); 
-                 }
-                }
+                //    滑动(x,y,event.getRawX(),event.getRawY()); 
+                手势()
+               }
+           }
             return true;
-            case event.ACTION_MOVE:
+        case event.ACTION_MOVE:
                     log("滑动"+event.getRawX()+","+event.getRawY())
                     addnewpath(event.getRawX(),event.getRawY())
-                return true
+            return true
     }
     return true;
 });
 }
-      
+
+function addnewpath(pointx,pointy){
+    points[0]=动作时间间隔()
+    points.push([pointx,pointy])
+    log(points)
+}
+
+function 手势(){
+    addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
+    threads.start(function(){
+           screenactionwindow.setTouchable(false);
+           sleep(60);
+           gesture.apply(null,points)
+           screenactionwindow.setTouchable(true);
+           actiontime= new Date().getTime();
+           points=[1000];
+       }); 
+}
+
 function 点击(x,y){
          log("点击("+x+","+y+")");
          addnewactions("click("+x+","+y+")")
@@ -126,7 +150,6 @@ events.onKeyDown("home", function(event){
     log("主页被按下了");
     addnewactions("home()")
 });
-
 }
 
 //
@@ -140,4 +163,19 @@ function stoprecord(){
 
 }
 
+function saveScriptRecord(){
+    let td=new Date();
+    // rawInput("请输入录制动作文件名", td.toLocaleTimeString(), name => {
+        n =files.join(files.getSdcardPath(),"/脚本/"+td.toLocaleTimeString() + ".js")
+        files.write(n, actions)
+        log("写入成功")
+//    });
+
+}
+
 startrecord()
+
+
+events.on("exit", function(){
+   saveScriptRecord()
+});
