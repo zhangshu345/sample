@@ -49,6 +49,7 @@
     "scripts":[
         { "name":"userguide","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
         { "name": "settingdescription","path":"设置描述的脚本"},
+        { "name": "developrecord","path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
         { "name":"lineme","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}
     ],
     "privacy":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/privacy.md",

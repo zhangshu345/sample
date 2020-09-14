@@ -20,7 +20,7 @@ function addnewactions(newactionstr){
     log(newactionstr)
     let t=间隔时间()
     if(t>minactiontime){
-      actions=actions+"sleep("+t+");"+newactionstr+";";
+      actions=actions+"sleep("+t+");"+newactionstr+";\n";
     }else{
        actions= actions+"sleep("+minactiontime+");"+newactionstr+";";
     }
@@ -165,15 +165,21 @@ function stoprecord(){
 
 function saveScriptRecord(){
     let td=new Date();
-        n =files.join(files.getSdcardPath(),"/脚本/"+td.toLocaleTimeString() + ".js")
-        files.write(n, actions)
-        alert("录制完成","录制脚本保存在 根目录下"+"/脚本/"+td.toLocaleTimeString() + ".js")
-
+    // rawInput("请输入录制动作文件名", td.toLocaleTimeString(), name => {
+         n =files.getSdcardPath()+"/脚本/"+td.toLocaleTimeString() + ".js"
+        // n="/脚本/"+td.toLocaleTimeString() + ".js"
+        if(files.create(n)){
+            files.write(n, actions)
+            alert("录制完成","录制脚本保存在 根目录下"+n)
+        }else{
+            setClip(actions)
+            alert("录制完成","录制脚本保存文件无法创建,已复制录制代码到剪贴板,请自行创建文件！！")
+        }
+//    });
 
 }
 
 startrecord()
-
 
 events.on("exit", function(){
    saveScriptRecord()
