@@ -82,18 +82,68 @@
         {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":100000000,"money":50000,"experience":100000,"son1":2000,"son2":35000,"son3":100000},
         {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":100000000,"money":100000,"experience":100000,"son1":5000,"son2":500000,"son3":500000}
     ],
-    "rewardevent":[{"name":"横幅展示","eventid":13,"coin":10,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"横幅点击","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"开屏展示","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"开屏点击","eventid":14,"coin":10,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"插屏展示","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"插屏点击","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"原生展示","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"原生点击","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"激励展示","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"激励点击","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"视频展示","eventid":14,"coin":10,"money":0,"extra":""}
-        ,{"name":"视频点击","eventid":14,"coin":10,"money":0,"extra":""}
+    "rewardevent":[{"name":"横幅展示","eventid":5,"coin":10,"money":0,"extra":"","requestcoin":1000}
+        ,{"name":"横幅点击","eventid":4,"coin":50,"money":0,"extra":"","requestcoin":1000}
+        ,{"name":"开屏展示","eventid":1,"coin":30,"money":0,"extra":"","requestcoin":1000}
+        ,{"name":"开屏点击","eventid":2,"coin":100,"money":0,"extra":"","requestcoin":1000}
+        ,{"name":"插屏展示","eventid":5,"coin":10,"money":0,"extra":""}
+        ,{"name":"插屏点击","eventid":6,"coin":50,"money":0,"extra":""}
+        ,{"name":"原生展示","eventid":7,"coin":10,"money":0,"extra":""}
+        ,{"name":"原生点击","eventid":8,"coin":100,"money":0,"extra":""}
+        ,{"name":"激励展示","eventid":9,"coin":20,"money":0,"extra":""}
+        ,{"name":"激励点击","eventid":10,"coin":100,"money":0,"extra":""}
+        ,{"name":"激励奖励","eventid":12,"coin":100,"money":0,"extra":""}
+        ,{"name":"视频开始播放","eventid":15,"coin":10,"money":0,"extra":""}
+        ,{"name":"视频播放完成","eventid":16,"coin":30,"money":0,"extra":""}
+        ,{"name":"视频点击","eventid":17,"coin":100,"money":0,"extra":""}
+        ,{"name":"每日签到","eventid":51,"coin":100,"money":0,"extra":""}
+        ,{"name":"每日分享","eventid":52,"coin":100,"money":0,"extra":""}
+        ,{"name":"每日邀请","eventid":53,"coin":1000,"money":0,"extra":""}
+        ,{"name":"每日邀请","eventid":53,"coin":1000,"money":0,"extra":""}
+        ,{"name":"升级1级","eventid":101,"coin":1000,"money":0,"extra":""}
+        ,{"name":"升级2级","eventid":102,"coin":10000,"money":0,"extra":""}
+        ,{"name":"升级3级","eventid":103,"coin":30000,"money":0,"extra":""}
+        ,{"name":"升级4级","eventid":104,"coin":100000,"money":0,"extra":""}
+        ,{"name":"升级5级","eventid":105,"coin":388888,"money":0,"extra":""}
+        ,{"name":"升级6级","eventid":106,"coin":888888,"money":0,"extra":""}
+        ,{"name":"升级7级","eventid":107,"coin":2888888,"money":0,"extra":""}
+        ,{"name":"升级8级","eventid":108,"coin":5888888,"money":0,"extra":""}
+        ,{"name":"升级9级","eventid":109,"coin":10888888,"money":0,"extra":""}
+        ,{"name":"升级10级","eventid":110,"coin":28888888,"money":0,"extra":""}
+        ,{"name":"升级11级","eventid":111,"coin":58888888,"money":0,"extra":""}
+        ,{"name":"升级12级","eventid":112,"coin":88888888,"money":0,"extra":""}
+        ,{"name":"步数100步","eventid":121,"coin":100,"money":0,"extra":""}
+        ,{"name":"步数1000步","eventid":122,"coin":288,"money":0,"extra":""}
+        ,{"name":"步数3000步","eventid":123,"coin":588,"money":0,"extra":""}
+        ,{"name":"步数10000步","eventid":124,"coin":666,"money":0,"extra":""}
+        ,{"name":"步数20000步","eventid":125,"coin":888,"money":0,"extra":""}
+        ,{"name":"步数30000步","eventid":126,"coin":888,"money":0,"extra":""}
+        ,{"name":"步数50000步","eventid":127,"coin":1688,"money":0,"extra":""}
+        ,{"name":"步数100000步","eventid":128,"coin":2888,"money":0,"extra":""}
+        ,{"name":"喝水1杯","eventid":131,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水2杯","eventid":132,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水3杯","eventid":133,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水4杯","eventid":134,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水5杯","eventid":135,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水6杯","eventid":136,"coin":50,"money":0,"extra":""}
+        ,{"name":"喝水7杯","eventid":137,"coin":150,"money":0,"extra":""}
+        ,{"name":"喝水8杯","eventid":138,"coin":1000,"money":0,"extra":""}
+        ,{"name":"看新闻1分钟","eventid":141,"coin":30,"money":0,"extra":""}
+        ,{"name":"看新闻3分钟","eventid":142,"coin":60,"money":0,"extra":""}
+        ,{"name":"看新闻5分钟","eventid":143,"coin":100,"money":0,"extra":""}
+        ,{"name":"看新闻10分钟","eventid":144,"coin":200,"money":0,"extra":""}
+        ,{"name":"看新闻20分钟","eventid":145,"coin":200,"money":0,"extra":""}
+        ,{"name":"看新闻30分钟","eventid":146,"coin":588,"money":0,"extra":""}
+        ,{"name":"看新闻60分钟","eventid":147,"coin":888,"money":0,"extra":""}
+        ,{"name":"看视频每个","eventid":151,"coin":50,"money":0,"extra":""}
+        ,{"name":"看视频1个","eventid":152,"coin":100,"money":0,"extra":""}
+        ,{"name":"看视频5个","eventid":153,"coin":100,"money":0,"extra":""}
+        ,{"name":"看视频10个","eventid":154,"coin":188,"money":0,"extra":""}
+        ,{"name":"看视频20个","eventid":155,"coin":288,"money":0,"extra":""}
+        ,{"name":"看视频30个","eventid":156,"coin":388,"money":0,"extra":""}
+        ,{"name":"看视频60个","eventid":154,"coin":588,"money":0,"extra":""}
+ 
+      
     ],
     "tag":[{"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json","img":""},
         {"name":"记录","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"icon":"","level":0,"source":4,"desc":"工具使用记录","url":"","img":""},

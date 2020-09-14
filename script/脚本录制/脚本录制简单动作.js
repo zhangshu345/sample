@@ -158,7 +158,6 @@ function startrecord(){
     toastLog("开始录制脚本")
     startkeyrecord()
     startscreenrecord()
-    
 }
 
 function stoprecord(){
