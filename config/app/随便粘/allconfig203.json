@@ -205,6 +205,7 @@
             "cpuallurl":"https://cpu.baidu.com/1032/d70695f9?scid=67396"
         }
     },
+    
     "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
     "uiconfig":{"login":"登录页",
         "register":"注册页",
