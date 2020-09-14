@@ -25,7 +25,7 @@
     {"name":"自动化编辑","open":true,"icon":"@drawable/ic_home_center_code","back":"@drawable/im_round_blue","event":-1,"uipath":"/script/develop","script":""},
     {"name":"视频剪辑","open":true,"icon":"@drawable/ic_home_center_videoedit","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
     {"name":"联系我们","open":false,"icon":"@drawable/ic_home_center_aboutme","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
-"pages":[{"name":"用户主页","url":"/script/usermain"}
+    "pages":[{"name":"用户主页","url":"/script/usermain"}
         ,{"name":"开发者页面","url":"/script/develop"}
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
