@@ -165,13 +165,10 @@ function stoprecord(){
 
 function saveScriptRecord(){
     let td=new Date();
-    // rawInput("请输入录制动作文件名", td.toLocaleTimeString(), name => {
         n =files.join(files.getSdcardPath(),"/脚本/"+td.toLocaleTimeString() + ".js")
         files.write(n, actions)
         alert("录制完成","录制脚本保存在 根目录下"+"/脚本/"+td.toLocaleTimeString() + ".js")
-       
 
-//    });
 
 }
 
