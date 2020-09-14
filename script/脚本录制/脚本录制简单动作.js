@@ -71,6 +71,7 @@ function addnewpath(pointx,pointy){
 }
 
 function 手势(){
+    toastLog("执行手势")
     addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -83,7 +84,7 @@ function 手势(){
 }
 
 function 点击(x,y){
-         log("点击("+x+","+y+")");
+    toastLog("点击("+x+","+y+")");
          addnewactions("click("+x+","+y+")")
       threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -95,7 +96,7 @@ function 点击(x,y){
    }
 
 function 长按(x,y){
-    log("长按("+x+","+y+")");
+    toastLog("长按("+x+","+y+")");
     addnewactions("press("+x+","+y+",1000)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -107,7 +108,7 @@ function 长按(x,y){
            }
            
 function 滑动(x,y,x1,y1){
-     log("从("+x+","+y+")滑到("+x1+","+y1+")");
+     toastLog("从("+x+","+y+")滑到("+x1+","+y1+")");
      addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -154,6 +155,7 @@ events.onKeyDown("home", function(event){
 
 //
 function startrecord(){
+    toastLog("开始录制脚本")
     startkeyrecord()
     startscreenrecord()
     
