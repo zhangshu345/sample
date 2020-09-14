@@ -71,12 +71,12 @@ function addnewpath(pointx,pointy){
 }
 
 function 手势(){
-    toastLog("执行手势")
     addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
            sleep(60);
            gesture.apply(null,points)
+           toastLog("执行手势")
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            points=[1000];
@@ -84,36 +84,36 @@ function 手势(){
 }
 
 function 点击(x,y){
-    toastLog("点击("+x+","+y+")");
-         addnewactions("click("+x+","+y+")")
+      addnewactions("click("+x+","+y+")")
       threads.start(function(){
            screenactionwindow.setTouchable(false);
            sleep(60);
            press(x,y,1);
+           toastLog("点击("+x+","+y+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
        });
    }
 
 function 长按(x,y){
-    toastLog("长按("+x+","+y+")");
     addnewactions("press("+x+","+y+",1000)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
            sleep(60);
            press(x,y,1000);
+           toastLog("长按("+x+","+y+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
            }
            
 function 滑动(x,y,x1,y1){
-     toastLog("从("+x+","+y+")滑到("+x1+","+y1+")");
-     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
+    addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
            sleep(60);
            swipe(x,y,x1,y1,350);
+           toastLog("从("+x+","+y+")滑到("+x1+","+y1+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
