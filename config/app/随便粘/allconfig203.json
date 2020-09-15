@@ -12,6 +12,7 @@
     "bmobpush":false,
     "jpush":false,
     "showad":true,
+    "showaccessibilityalter":false,
     "channeladvice":"",
     "reward":true,
     "mta":false,
