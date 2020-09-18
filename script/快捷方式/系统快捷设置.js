@@ -26,6 +26,10 @@ ui.layout(
              <button id="screen" w="auto" h="auto" text="显示" />
             <button id="lang" w="auto" h="auto" text="显示语音" />
         </horizontal>
+        <horizontal > 
+             <button id="notificationlistener" w="auto" h="auto" text="应用管理" />
+       
+        </horizontal>
         <horizontal >
             <button id="exit" w="auto" h="auto" text="退出" />  
             <button id="rewardad" w="auto" h="auto" text="创意视频" />
@@ -62,6 +66,9 @@ ui.refreshad.on("click",function(){
 ui.uninstall.on("click",function(){
    admanager.showFullVideo(ui.rewardad.getContext(),null)
 })
+ui.notificationlistener.on("click",function(){
+    totificationlistenersetting()
+ })
 
 ui.systemsetting.on("click",function(){
     tomangerwritesetting()
@@ -188,6 +195,16 @@ var  tofloatysetting=function(){
  }
  
  
+ var totificationlistenersetting=function(actionname){
+    let i = app.intent({
+        action: "android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS",
+        flags:["activity_new_task"]
+        // data: "file:///sdcard/1.png"
+    });
+    context.startActivity(i);
+}
+
+
  var toairpalnemodesetting=function(){
      tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
  }
