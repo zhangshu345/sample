@@ -27,7 +27,7 @@ ui.layout(
             <button id="lang" w="auto" h="auto" text="显示语音" />
         </horizontal>
         <horizontal > 
-             <button id="notificationlistener" w="auto" h="auto" text="应用管理" />
+             <button id="notificationlistener" w="auto" h="auto" text="通知管理" />
        
         </horizontal>
         <horizontal >
