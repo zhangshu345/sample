@@ -117,7 +117,8 @@ function 滑动(x,y,x1,y1){
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
-    }
+}
+
 
 
 //开始物理按键记录
