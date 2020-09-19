@@ -684,10 +684,10 @@ function 找图测试() {
     try {
         let t = new Date().getTime();
         let img = 图形渲染.图像.图片;
-        // let p = images.findImage(img, 数据存储.图片, {
-        //     threshold: [0.9],
-        // });
-        let p = images.findImage(img, 数据存储.图片);
+        let p = images.findImage(img, 数据存储.图片, {
+            threshold: [0.9],
+        });
+        // let p = images.findImage(img, 数据存储.图片);
         if (p) {
             系统提示("找到图片:" + p + " 耗时:" + (new Date().getTime() - t) + "毫秒");
             图片定位(p);
