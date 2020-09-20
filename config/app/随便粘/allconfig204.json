@@ -31,7 +31,7 @@
         ,{"name":"视频编辑","url":"/script/videoedit"}
        ],
     "keys":[{"name":"inviteword","value":"赚钱停不下来,快来下载【{appname}】填我邀请码","summary":"邀请码识别格式"},
-        {"name":"usermainfragment","value":"首页-本地脚本-工具-任务管理-我","summary":"说明"},
+        {"name":"usermainfragment","value":"首页-脚本文件-工具-任务管理-我","summary":"说明"},
         {"name":"developfragment","value":"本地脚本-教程-任务-管理-市场","summary":"说明"},
         {"name":"qqproducturl","value":"https://support.qq.com/products/179319","summary":"说明"}
     ,   {"name":"company","value":"https://support.qq.com/products/179319","summary":"说明"}
