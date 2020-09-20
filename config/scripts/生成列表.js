@@ -75,6 +75,32 @@ requestapi:10,
 icon:"",
 app:{name:"",pkg:"",icon:"",downloadurl:"", version:"",versioni:0}
 }
+//版本204的脚本数据类
+var scriptobj204={name:"脚本模板",
+desc:{summary:"脚本模板简介",html:"",script:""},
+tags:["推荐"],
+devices:["xiaomi","samsung","HONOR","Meizu","OPPO"],
+features:[],
+open:true,
+install:true,
+keys:[{name:"测试",value:"值"}],
+layout:{type:1,orientation:1,width:0,height:0,back:"@color/red",fore:"",reverselayout:false,size:0,textsize:6,buttons:[{name:"下载",eventid:-1,script:"",uipath:"",icon:"",key:""}]},
+pay:{coin:0,daycoin:0,monthcoin:0,yearcoin:0,money:0,daymoney:0.01,monthmoney:0.01,yearmoney:0.01},
+download:false,
+runconfig:{},
+root:false,password:"",key:"",code:"",
+reward:{coin:0,"money":0,experience:10,achievement:"成就"},
+money:{perhourmoney:0.3,perdaymoney:0.38,permonthmoney:60.1,peryearmoney:360.0},
+path:"http://zhangshuhong888.iask.in:8989/加密脚本/加密推荐上滑.js",
+source:1,
+author:{name:"作者",id:"",icon:"",qq:"11226677",weixin:"jiajiajia",phone:"1871768888"},
+level:0,
+version:0,
+appversioni:10,
+requestapi:10,
+icon:"",
+app:{name:"",pkg:"",icon:"",downloadurl:"", version:"",versioni:0}
+}
 
 function createconfigjsonfile(filedir,filename,data){
     console.log("dir:"+filedir)
