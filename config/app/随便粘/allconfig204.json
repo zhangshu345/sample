@@ -22,7 +22,7 @@
     "barbuttons":{"ui":{"type":1,"orientation":0,"size":4,"reverselayout":false},
     "data":[{"name":"新手指南","open":false,"level":0,"icon":"@drawable/ic_home_center_book","icontint":"#ffffff","back":"@drawable/im_round_red","event":-1,"uipath":"","script":"scriptname:userguide"},
     {"name":"设置","open":true,"level":0,"icon":"@drawable/ic_home_center_setting","icontint":"#ffffff","back":"@drawable/im_round_green","event":-1,"uipath":"/script/settings","script":"scriptname:settingdescription"},
-    {"name":"动作录制","open":true,"level":2,"icon":"@drawable/ic_record","icontint":"#ffffff","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
+    {"name":"动作录制","open":true,"level":0,"icon":"@drawable/ic_record","icontint":"#ffffff","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
     {"name":"自动化编辑","open":true,"level":0,"icon":"@drawable/ic_home_center_code","icontint":"#ffffff","back":"@drawable/im_round_blue","event":-1,"uipath":"/script/develop","script":""},
     {"name":"视频剪辑","open":true,"level":0,"icon":"@drawable/ic_home_center_videoedit","icontint":"#ff00ff","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
     {"name":"联系我们","open":false,"level":0,"icon":"@drawable/ic_home_center_aboutme","icontint":"#ff00ff","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
@@ -48,7 +48,7 @@
     "userloginpath":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
     "rewardcoinscript":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
     "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_200.apk",
-    "scripts":[
+    "scripts":[ { "name":"clickpoint","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
         { "name":"userguide","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
         { "name": "settingdescription","path":"设置描述的脚本"},
         { "name": "developrecord","path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},

@@ -1,4 +1,4 @@
-"ui";
+"uicon";
 
 ui.layout(
     <frame bg="#4fc3f7">

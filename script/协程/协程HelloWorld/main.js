@@ -39,7 +39,7 @@ setTimeout(()=>{
 }, 3000);
 
 // 你可以尝试把delay更换成sleep，看会发生什么！
-delay(6000);
+sleep(1000);
 toastLog("6秒后...");
 
 try {
