@@ -28,12 +28,12 @@
     {"name":"联系我们","open":false,"level":0,"icon":"@drawable/ic_home_center_aboutme","icontint":"#ff00ff","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
    
     "actionbuttons":{"ui":{"type":1,"orientation":0,"size":4,"reverselayout":false},
-    "data":[{"name":"扫描","open":false,"level":0,"icon":"@drawable/ic_scan_black_24dp","icontint":"#ffffff","back":"","event":-1,"uipath":"","script":"scriptname:userguide"},
+    "data":[{"name":"扫描","open":true,"level":0,"icon":"@drawable/ic_scan_black_24dp","icontint":"#ffffff","back":"","event":-1,"uipath":"","script":"scriptname:userguide"},
     {"name":"添加","open":true,"level":0,"icon":"@drawable/ic_add_circle_outline_black_48dp","icontint":"#ffffff","back":"","event":-1,"uipath":"/script/settings","script":"scriptname:settingdescription"},
     {"name":"动作录制","open":true,"level":0,"icon":"@drawable/ic_record","icontint":"#ffffff","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
     {"name":"点击小手","open":true,"level":0,"icon":"@drawable/ic_click_blue_48dp","icontint":"#ffffff","back":"","event":-1,"uipath":"/script/develop","script":""},
     {"name":"位置","open":true,"level":0,"icon":"@drawable/ic_room_black_48dp","icontint":"#ff00ff","back":"","event":-1,"uipath":"/script/videoedit","script":""},
-    {"name":"配置","open":false,"level":0,"icon":"@drawable/ic_circular_menu_settings","icontint":"#ff00ff","back":"","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]
+    {"name":"配置","open":true,"level":0,"icon":"@drawable/ic_circular_menu_settings","icontint":"#ff00ff","back":"","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]
     },
    
     "pages":[{"name":"用户主页","url":"/script/usermain"}
