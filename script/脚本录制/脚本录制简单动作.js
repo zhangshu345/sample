@@ -1,13 +1,16 @@
 auto.waitFor()
-auto.setMode("normal")
-var actions="auto.waitFor();\nauto.setMode(\"normal\");"
+auto.setMode("normal");
+const waitaction="auto.waitFor();\nauto.setMode(\"normal\");"
+
 var script="";
 var downTime;
 var actiontime=new Date().getTime();
+var actions=waitaction;//+new Date().toLocaleDateString
 var minactiontime=300
 var 间隔时间=function(){
     return new Date().getTime()-actiontime
 }
+log(device)
 
 var 动作时间间隔=function(){
     return new Date().getTime()-downTime
@@ -30,9 +33,11 @@ function addnewactions(newactionstr){
 function startscreenrecord(){
 //利用了悬浮窗
  screenactionwindow = floaty.rawWindow(
-    <frame id="action" w="{{device.width}}" h="{{device.height}}">
+    <frame id="action" w="{{device.width}}" h="{{device.height}}"  bg="#44ffcc00">
     </frame>
 );
+
+screenactionwindow.setSize(-1, -1);
 setInterval(()=>{}, 1000);
 var x = 0, y = 0;
 screenactionwindow.action.setOnTouchListener(function(view, event){
@@ -166,6 +171,10 @@ function stoprecord(){
 }
 
 function saveScriptRecord(){
+    if(actions.length<waitaction.length+6){
+        toastLog("没有录制到动作")
+        return
+    }
     let td=new Date();
     // rawInput("请输入录制动作文件名", td.toLocaleTimeString(), name => {
          n =files.getSdcardPath()+"/脚本/"+td.toLocaleTimeString() + ".js"
