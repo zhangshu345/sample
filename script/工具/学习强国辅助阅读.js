@@ -206,6 +206,7 @@ var app_xiaobailing=function(){
     if(textclick(cs[randomint(0,cs.length)])){
         sleep(2000)
     }
+    click(device.width/2,device.height/2)
     let n=1
     doactionmaxtime(function(){
         toastLog("查看"+10*n+"秒")
