@@ -235,7 +235,7 @@
             "hudong":"" 
         },
         "mintegral":{
-            "open":true,
+            "open":false,
             "appid":"129079",
             "appkey":"d62bd37b8de85bf80b176dc68fcbf05f",
             "splash":"306662",

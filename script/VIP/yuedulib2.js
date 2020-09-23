@@ -15,7 +15,6 @@ importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
 // importPackage(moe.shizuku.api)
 // importClass(moe.shizuku.api.ShizukuService)
-
 log("脚本app名："+scriptappname)
 log(device)
 device.wakeUpIfNeeded()
@@ -3291,8 +3290,6 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
     runurlscript(scriptname,scriptpath)
 }
 
-
-
 var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
     let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
@@ -3397,6 +3394,7 @@ var doappinvite=function(person,appname,gailv){
 var shizukuinstall=function(){
     systemdownloadApk("Shizuku",shizukuweburl,true)
 }
+
 //无效
 var shizukuuninstallPkg=function(apppkg){
     execcmd("adb uninstall "+apppkg)
@@ -3446,6 +3444,7 @@ var enableshizuku=function(){
         return false
     }
 }
+
 // console.log("shikuzu:"+enableshizuku())
 // shizukuinstall()
 
