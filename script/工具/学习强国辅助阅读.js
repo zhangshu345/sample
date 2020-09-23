@@ -83,6 +83,7 @@ var app_run=function(){
     app_radio()
     app_article()
     app_video()
+    app_xiaobailing()
 }
 
 
@@ -395,6 +396,6 @@ var app_login=function(){
               downloadandinstallapp(appname,apppkg)
           }
 
-          app_xiaobailing()
+
  app_run()
    
