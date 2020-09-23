@@ -42,8 +42,8 @@ var onlyscript=true  //仅允许当前一个脚本运行
 var loopn=0
 var lasttitle=""
 var today_coin=上次今日金币(appname)
-var today_order=getintvalue(appname+"_ordern",0)
-var today_share=getbooleanvalue(appname+"_share",false)
+var today_order=0
+var today_share=0
 var articlenumber=10
 var videonumber=10
 var radiostarttime=nowdate().getTime()
@@ -200,7 +200,18 @@ var app_video=function(){
     },videonumber)
 }
 
-
+var app_xiaobailing=function(){
+    app_go_home(2)
+    const cs=['推荐','竖','炫','窗','藏','靓','秀','美食']
+    if(textclick(cs[randomint(0,cs.length)])){
+        sleep(2000)
+    }
+    let n=1
+    doactionmaxtime(function(){
+        toastLog("查看"+10*n+"秒")
+        n=n+1
+    },360000,10000)
+}
 var app_article=function(){
 
     function isarticlebottom(){
@@ -260,7 +271,7 @@ var app_article=function(){
                          back()
                         return true
                     }
-                },30000)
+                },20000)
             }
         }else{
             sleep(1000)
@@ -383,6 +394,6 @@ var app_login=function(){
               downloadandinstallapp(appname,apppkg)
           }
 
-         
+          app_xiaobailing()
  app_run()
    

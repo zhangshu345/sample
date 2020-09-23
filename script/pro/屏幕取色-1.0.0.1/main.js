@@ -1,8 +1,3 @@
-/**
- *作者QQ: 1811588980
-**/
-
-toastLog("Are you ready？");
 var IMG, img;
 
 if (!requestScreenCapture()) {

@@ -8,7 +8,7 @@ ui.layout(
     </vertical>
 )
 
-var src = "/storage/emulated/0/1.png"
+var src = "/storage/emulated/0/1.jpg"
 
 
 
