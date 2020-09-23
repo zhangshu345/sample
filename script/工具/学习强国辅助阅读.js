@@ -207,7 +207,7 @@ var app_xiaobailing=function(){
         sleep(2000)
     }
     click(device.width/2,device.height/2)
-    let n=1
+    let n=0
     doactionmaxtime(function(){
         toastLog("查看"+10*n+"秒")
         n=n+1
