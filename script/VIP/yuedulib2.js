@@ -3,12 +3,12 @@ importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(com.hongshu.utils.IntentUtils)
 importClass(android.net.Uri)
 importClass(android.graphics.Bitmap)
+importClass(java.io.File)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.FastSPUtils)
 importClass(com.hongshu.utils.AppUtils)
 importClass(com.hongshu.utils.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
@@ -27,8 +27,8 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 const alldelectdirs=["yysdk","yy_video1","91AV"]
 var readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":164,"东东随便":0}
-var shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
+var scriptapps={"随便粘":204,"东东随便":0}
+const shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
 var sdavailablesize=function(){
@@ -49,7 +49,7 @@ var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttim
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
-var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"
+var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
 log("当前系统版本："+device.sdkInt+"--手势滑动："+enablegenius)
 
 const scriptapppkg=context.getPackageName()
@@ -77,12 +77,20 @@ var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
 const debugip="zhangshuhong888.iask.in"
 
+var 记录=function(name,key,n){   if(name){
+    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,n)
+}else{
+    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,n)
+} 
+}
+var 获取记录=function(name,key,defaultvalue){ if(name){
+    return com.hongshu.utils.FastSPUtils.getInstance(name).get(key,defaultvalue)
+}else{
+    return com.hongshu.utils.FastSPUtils.getInstance().get(key,defaultvalue)
+}}
 
-var 记录=function(name,key,n){      storages.create(name).put(key,n)}
-var 获取记录=function(name,key,defaultvalue){   return storages.create(name).get(key,defaultvalue)}
-
-var 今日记录=function(name,key,n){   storages.create(name).put(key+"_"+today(),n)}
-var 获取今日记录=function(name,key,defaultvalue){ return storages.create(name).get(key+"_"+today(),defaultvalue)}
+var 今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
+var 获取今日记录=function(name,key,defaultvalue){ return 获取今日记录(name,key+"_"+today(),defaultvalue)}
 
 var 应用登录=function(name){return 获取今日记录(name,"login",false)}
 var 应用已登录=function(name){今日记录(name,"login",true)}
@@ -105,14 +113,12 @@ var 上次今日金币=function(name){ return 获取今日记录(name,"coin",0);
 var 记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
 var 上次金币=function(name){ return 获取记录(name,"coin",0); } 
 
-
  //可以通过上次的金币来判断是否 还可以获取金币
 var 记录现在余额=function(name,f){记录(name,"money",f);} 
 var 上次余额=function(name){ return 获取记录(name,"money");} 
 
 var  记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
-
 
 var 记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
@@ -257,7 +263,34 @@ var 微信加好友=function(weixinhao,phone){
     }
 }
 
+//返回 Bitmap 对象
+var 生成二维码=function(content,width){
+  return  com.king.zxing.util.CodeUtils.createQRCode(content,width)
+}
 
+var 生成二维码保存到=function(content,width,savepath,format){
+    let coder=生成二维码(content,width)
+    saveimg(coder,savepath,format)
+}
+
+var 解析二维码=function(imgpath){
+  return com.king.zxing.util.CodeUtils.parseQRCode("/sdcard/"+imgpath)
+}
+//
+function saveimg(bitmap,imgpath,format){
+    imgformat=android.graphics.Bitmap.CompressFormat.JPEG
+    if(format==1){
+        imgformat=android.graphics.Bitmap.CompressFormat.JPEG
+    }else if(format==2){
+        imgformat=android.graphics.Bitmap.CompressFormat.PNG
+    }else if(format==3){
+        imgformat=android.graphics.Bitmap.CompressFormat.WEBP
+    }
+    if(com.blankj.utilcode.util.ImageUtils.save(bitmap,"/sdcard/"+imgpath,imgformat,false)){
+        //        toastLog("保存成功")
+        context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imgpath))));
+     }
+}
 var 微信聊天页发送消息=function(friend,message,isclick){
     if(friend=="微信团队"){
         doactionmaxtime(function(){
@@ -391,7 +424,7 @@ var 视频重复次数=2
 var ratio=1
 var gfw,gsfw
 var isshowfloaty=false  //是否显示提醒
-var spt=FastSPUtils.getInstance()  //保证和APP交互 使用同一个
+var spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
 var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
 var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
 var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
@@ -719,6 +752,11 @@ var alter=sync(function(txt,t,left,top,width,height){
 
 //
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
+
+var shizukuforcestopPkg=function(apppkg){
+    shell("am force-stop "+apppkg,{adb:true,root:false})
+}
+
 
 var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
@@ -1517,6 +1555,63 @@ var firstrunapp=function(appname){
     }
     return true
 }
+function systemdownloadApk(filename,fileuri,isinstall){
+    systemdownload(filename,fileuri,isinstall,"application/vnd.android.package-archive")
+}
+
+function systemdownload(filename,fileuri,isinstall,MimeType){
+    let isinstall = isinstall || true
+    importClass(android.os.Environment);
+    importClass(android.net.Uri);
+    importClass(android.app.DownloadManager);
+let uri = fileuri;
+let request = new DownloadManager.Request(Uri.parse(uri));
+//指定下载目录与文件名
+request.setDestinationInExternalPublicDir("/download/", filename);
+//指定在WIFI状态下，执行下载操作。
+request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
+//指定在MOBILE状态下，执行下载操作
+//request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE);
+//是否允许漫游状态下，执行下载操作
+request.setAllowedOverRoaming(false);
+//是否允许“计量式的网络连接”执行下载操作
+request.setAllowedOverMetered(true); //默认是允许的。
+//设置Notification的标题和描述
+request.setTitle(filename);  
+request.setDescription(filename+"正在下载"); 
+//设置Notification的显示，和隐藏。
+request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+//设置下载文件类型
+MimeType=MimeType||"application/vnd.android.package-archive"
+request.setMimeType(MimeType);//apk类型
+//设置网络请求头
+//request.addRequestHeader(header, value)；
+let downloadManager = context.getSystemService(context.DOWNLOAD_SERVICE);
+let id = downloadManager.enqueue(request);
+let query = new DownloadManager.Query();
+//删除下载任务，会同时删除文件
+//downloadManager.remove(id);
+let st = setInterval(() => {
+    let cursor = downloadManager.query(query.setFilterById(id));
+    if (!(cursor != null && cursor.moveToFirst())) return toastLog("下载任务不存在");
+    let bytes_downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));//已下载字节
+    let totalSize = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
+    log("下载进度:"+Math.ceil(bytes_downloaded/totalSize*100)+"%");
+    //下载状态
+    let status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
+    if (status == DownloadManager.STATUS_SUCCESSFUL){
+        if(isinstall){
+            toastLog("下载已完成开始安装");
+            install_app(files.getSdcardPath()+"/download/"+filename,filename,120000,false,true)
+        }else{
+            toastLog("下载已完成");
+        }
+        clearInterval(st);//取消定时器
+     }
+}, 1500);
+}
+
+
 
 //下载app
 function downloadApk(name,downloadurl,isinstall) {
@@ -1577,7 +1672,6 @@ function downloadApk(name,downloadurl,isinstall) {
      if(isinstall){
         install_app(filePath,name)
      } 
-    
  }
  
  function install_app(filePath, name,maxtime,isopen,delect) {
@@ -1630,30 +1724,29 @@ function downloadApk(name,downloadurl,isinstall) {
              }
              back()
          }
-
          if (textoneexist(["完成","打开"])){  
+             if(delect){
+                 files.remove(filePath)
+             }
              if(isopen){
                 textclick("打开")
                 sleep(5000)
-                true
+                return true
              }else{
                 return true  
              }
-            
             }
-        
         //系统可以获取到app 的包名的时候就
         if(name){
             if(app.getPackageName(name)){  sleep(1000);  return true}
         }
-       
      },maxtime)
-    
      back()
      sleep(300)
      back()
      return false
  }
+ //检测运行APP是否是新版版本
  var checkinstallapp=function(){
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
@@ -2870,7 +2963,6 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
         runurlscript(oneapp.app.name,oneapp.path)
 }
 
-
 //佳佳的脚本
 var startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
@@ -2995,9 +3087,6 @@ var startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enablea
         runurlscript(oneapp.app.name,oneapp.path)
 }
 
-
-
-
 //云端配置启用脚本
 var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
@@ -3070,19 +3159,9 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
     })
     //清空非阅读 app
     listapp(appwhiteapps,true)
-
     let nowtime=nowdate()
     let xiaoshi=nowtime.getHours()
     let fen=nowtime.getMinutes()+3
-
-    //下载应用 并保持最新
-    // runapps.forEach(app=>{
-    //     if(!getPackageName(app.app.name)){
-    //         downloadandinstallapp(app.app.name,app.app.pkg)
-    //     }else{
-    //         keepappisnewer(app.app.name,app.app.pkg)
-    //     }
-    // })
     log("xiaoshi:"+xiaoshi+"--fen:"+fen)
         runapps= shuffleArray(runapps)
         runapps.forEach(app => {
@@ -3273,7 +3352,7 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     } catch (error) {
         
     }
-}
+    }
 }
 
 var nodesexists=function(nodes){
@@ -3315,10 +3394,14 @@ var doappinvite=function(person,appname,gailv){
 
 }
 
+var shizukuinstall=function(){
+    systemdownloadApk("Shizuku",shizukuweburl,true)
+}
 //无效
 var shizukuuninstallPkg=function(apppkg){
     execcmd("adb uninstall "+apppkg)
 }
+
 var shizukuuninstallApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
@@ -3329,6 +3412,7 @@ var shizukuuninstallApp=function(appname){
 var shizukuforcestopPkg=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
 }
+
 var shizukuforcestopApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
@@ -3362,8 +3446,8 @@ var enableshizuku=function(){
         return false
     }
 }
-console.log("shikuzu:"+enableshizuku())
-
+// console.log("shikuzu:"+enableshizuku())
+// shizukuinstall()
 
 // var enableshishizu=function(){
 //     return ShizukuService.pingBinder()
@@ -3380,9 +3464,11 @@ console.log("shikuzu:"+enableshizuku())
 
 // randomSwipe(500,1800,500,300,2000,3000)
 
-// 微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
+ //微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
 // log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
 // startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json")
 
 // 微信打开链接("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
 // 微信加好友("zhangshuhong345")
+//  生成二维码保存到("你好这是一个二维码保存到三生三世",device.width/2,"测试二维码2.png",2)
+//  toastLog('解析结果：'+解析二维码("测试二维码2.png"))

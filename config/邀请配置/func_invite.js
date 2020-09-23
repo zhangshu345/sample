@@ -1,7 +1,6 @@
-
-function funcinvite(){
-    
+function finvite(){
+  
 }
 
 
-module.exports = funcinvite;
+// module.exports = funcinvite;

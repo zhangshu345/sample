@@ -1,7 +1,5 @@
 "ui";
 importClass(android.graphics.Bitmap)
-importClass(com.king.zxing.util.CodeUtils)
-importClass(com.blankj.utilcode.util.ImageUtils)
 importClass(com.blankj.utilcode.util.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
 importClass(android.content.Intent)
@@ -10,12 +8,11 @@ importClass(android.net.Uri)
 importClass(java.io.File)
 importClass(com.hongshu.utils.SPUtils)
 var admanager=AdviceManager.getInstance();
-
 showLoginUI();
 ui.statusBarColor("#000000")
 w=device.width
 h=device.height
-imgw=""+w/2
+imgw=w/2
 var dewm
 var  spt= SPUtils.getInstance("makecode")
 
@@ -40,6 +37,7 @@ function showLoginUI(){
              <button id="rewardad"  text="保存到相册" />
              <button id="exit"  text="退出" />
           </linear>
+          <text id="log" w="auto" gravity="center" color="#111111" size="16sp" text=""/>
           <vertical id="advice" w="*" h="auto">
 
           </vertical>
@@ -51,7 +49,7 @@ function showLoginUI(){
         if(ui.content.getText()==""){
             return
         }
-        dewm=CodeUtils.createQRCode(ui.content.getText(),imgw)
+        dewm=com.king.zxing.util.CodeUtils.createQRCode(ui.content.getText(),imgw)
         ui.erweima.setImageBitmap(dewm)
     });
     ui.reset.on("click", () => {
@@ -80,10 +78,13 @@ function showLoginUI(){
      })
      ui.rewardad.on("click",function(){
         //admanager.showRewardVideoAd(ui.ll.getContext(),null)
-      
         if(dewm){
-            rawInput("请输入图片保存名称", "1").then(savename =>{
-                saveimg2(dewm,"/sdcard/"+savename+".jpg");
+            rawInput("请输入图片保存名称,以/为目录分割 举例 \"777/888/99\" 保存文件存放在根目录下方777文件夹中的888文件夹的文件99", "1").then(savename =>{
+                // saveimg2(dewm,savename+".jpg");
+                saveimg2(dewm,savename+".jpg");
+                ui.run(function(){
+                    ui.log.text("二维码图片保存路径:"+savename+".jpg")
+                })
             });
             
         //    if( ImageUtils.save(dewm,"/sdcard/1.jpg",Bitmap.CompressFormat.JPEG,false)){
@@ -112,17 +113,16 @@ log("imgurl:"+imguri)
 }
 
 function saveimg2(bitmap,imgpath,format){
-    imgformat=Bitmap.CompressFormat.JPEG
+    imgformat=android.graphics.Bitmap.CompressFormat.JPEG
     if(format==1){
-        imgformat=Bitmap.CompressFormat.JPEG
+        imgformat=android.graphics.Bitmap.CompressFormat.JPEG
     }else if(format==2){
-        imgformat=Bitmap.CompressFormat.PNG
+        imgformat=android.graphics.Bitmap.CompressFormat.PNG
     }else if(format==3){
-        imgformat=Bitmap.CompressFormat.WEBP
+        imgformat=android.graphics.Bitmap.CompressFormat.WEBP
     }
-    if(ImageUtils.save(bitmap,imgpath,imgformat,false)){
+    if(com.blankj.utilcode.util.ImageUtils.save(bitmap,"/sdcard/"+imgpath,imgformat,false)){
         //        toastLog("保存成功")
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imgpath))));
      }
-    
 }
