@@ -396,6 +396,5 @@ var app_login=function(){
               downloadandinstallapp(appname,apppkg)
           }
 
-
  app_run()
    
