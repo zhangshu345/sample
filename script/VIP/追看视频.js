@@ -1,5 +1,3 @@
-const { text } = require("express");
-
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
@@ -23,7 +21,6 @@ toastLog("公共函数实例化成功")
 toastLog("公共函数实例化失败,程序返回")
 }
 //微信链接邀请绑定 之后登陆 需要绑定手机和 身份证号  放弃
-
 
 /*配置  放置在公有库初始化之后避免被公有库公用变量覆盖 */
 

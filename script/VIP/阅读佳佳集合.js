@@ -22,7 +22,7 @@ alltest()
 floaty.closeAll()
 creatgfloatywindow()
 creatsetfloatywindow()  //创建设置悬浮窗
-show("开始定时套餐5")
+
 if(!gfw){
     show("悬浮未定义")
 }

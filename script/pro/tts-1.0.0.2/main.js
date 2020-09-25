@@ -34,7 +34,6 @@ var obj = {
 //手动实现(感谢群里I'm zz 大佬)
 tts = new TextToSpeech(context, TextToSpeech.OnInitListener(obj))
 
-
 sleep(1000)
 //必须先用sleep暂停一下
 var a = tts.speak(str, TextToSpeech.QUEUE_ADD, null);
@@ -43,18 +42,16 @@ if (a != TextToSpeech.SUCCESS) {
     toast("朗读失败")
 }else{
     toast("朗读成功")
-    }
+}
 
 //下面是储存方法
-
-
 
 var 保存 = tts.synthesizeToFile(str, java.util.HashMap(), "/storage/emulated/0/脚本tts.wav")
 if(保存 != TextToSpeech.SUCCESS){
     toast("保存失败")
     }else{
         toast("保存成功，路径/storage/emulated/0/脚本tts.wav")
-        }
+ }
 
 
 //同样在level21被删除，另一种在研究

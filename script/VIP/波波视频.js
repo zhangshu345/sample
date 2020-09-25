@@ -11,7 +11,6 @@ function httpget(url) {
         return httpget(url)
     }
 }
-
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
@@ -62,7 +61,6 @@ var app_run=function(){
 
 
 var app_login_check=function(){
-    
     doactionmaxtime(function(){
         show("检测"+appname+"登录状况")
         clicktexts(["同意","允许","允许","始终允许","始终允许"],200,1500)
@@ -113,7 +111,6 @@ var app_sign=function(){
 }
 
 var app_see_video=function(){
-   
     doactionmaxtime(function(){
         if(!idoneexist(["com.jifen.ponycamera:id/image_gold_egg","com.jifen.ponycamera:id/tv_like"])){
             show(appname+"不在视频页 回到视频页")
@@ -147,7 +144,6 @@ var app_see_video=function(){
             小视频广告翻倍次数=小视频广告翻倍次数+1
         }
         clickgold()
-
         滑动(20,10,17,10,3,500,300)
         sleep(2000)
         txt_like=getTextfromid("com.jifen.ponycamera:id/tv_like")

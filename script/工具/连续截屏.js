@@ -29,6 +29,7 @@ function textclick(i,t,left,top,right,bottom){
     return clicknode(f)
 }
 
+
 var checkscreencapture=function(){
     //    captureScreen("/sdcard/screencapture" + i + ".png");
   // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v2/base/requestscreencapture.js"),{})
@@ -49,7 +50,6 @@ if (!requestScreenCapture()) {
     captureScreen("/sdcard/ce.png");
 }
 }
-
 
 
 
@@ -100,10 +100,40 @@ var clickchilds=function(v){
    }
    return false 
 }
+function findwebImgPoint(imgurl,trytime,isclick){
+    try {
+        if(!requestScreenCapture()){
+            checkscreencapture()
+        }
+        trytime=trytime||10
+        log("1")
+        let urlimg=images.load(imgurl)
+        log("2")
+        let i=0
+        let pp
+        while(i<trytime){
+            i=i+1;
+            log("3")
+            pp=images.findImage(captureScreen(),urlimg)
+            log("4")
+            log("查找次数:"+i)
+            if(pp){
+                log("pp:"+pp.x+","+pp.y)
+                if(isclick){
+                    click(pp.x,pp.y)
+                }
+                return pp
+            }
+           sleep(1000)
+        }
+       
+    } catch (error) {
+        
+    }
+}
 
 
-DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
-
+// DevPluginService.getInstance().debugtoip("zhangshuhong888.iask.in");
 checkscreencapture()
 n=1
 while(n<1000){
