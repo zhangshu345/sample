@@ -157,9 +157,7 @@
         ,{"name":"看视频10个","eventid":154,"coin":188,"money":0,"extra":""}
         ,{"name":"看视频20个","eventid":155,"coin":288,"money":0,"extra":""}
         ,{"name":"看视频30个","eventid":156,"coin":388,"money":0,"extra":""}
-        ,{"name":"看视频60个","eventid":154,"coin":588,"money":0,"extra":""}
- 
-      
+        ,{"name":"看视频60个","eventid":154,"coin":588,"money":0,"extra":""}      
     ],
     "tag":[{"id":0,"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"state":1,"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json","img":""},
         {"id":1,"name":"记录","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":1,"icon":"","level":0,"source":4,"desc":"工具使用记录","url":"","img":""},
