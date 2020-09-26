@@ -36,8 +36,8 @@
     {"name":"配置","open":true,"level":0,"icon":"@drawable/ic_circular_menu_settings","icontint":"","back":"","event":-1,"uipath":"","script":""}]
     },
    "shortcuts":[{"order":0,"id":"扫描","open":true,"level":0,"shortlabel":"扫描","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_scan_black_24dp","uipath":"/common/scan","script":""},
-    {"order":1,"id":"动作录制","open":true,"level":0,"shortlabel":"录制","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_scan_black_24dp","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
-    {"order":2,"id":"点击小手","open":true,"level":0,"shortlabel":"点击","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_scan_black_24dp","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/点击小手.js"},
+    {"order":1,"id":"动作录制","open":true,"level":0,"shortlabel":"录制","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_record","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
+    {"order":2,"id":"点击小手","open":true,"level":0,"shortlabel":"点击","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_click_blue_48dp","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/点击小手.js"},
     {"order":3,"id":"工具库","open":true,"level":0,"shortlabel":"工具库","longlabel":"打开工具库","icon":"@drawable/ic_scan_black_24dp","uipath":"/script/develop","script":""}  
     ],
     "pages":[{"name":"用户主页","url":"/script/usermain"}
