@@ -1,7 +1,7 @@
 auto.waitFor()
 auto.setMode("normal");
-engine.stopOthers()
-const waitaction="auto.waitFor();\nauto.setMode(\"normal\");"
+engines.stopOther()
+const waitaction="auto.waitFor();\nauto.setMode(\"normal\");var sleepspeed=1.0;var actionspeed=1.0;"
 
 var script="";
 var downTime;
@@ -11,6 +11,8 @@ var minactiontime=300
 var 间隔时间=function(){
     return new Date().getTime()-actiontime
 }
+var sleepspeed=1.0
+var actionspeed=1.0
 log(device)
 
 var 动作时间间隔=function(){
@@ -24,9 +26,9 @@ function addnewactions(newactionstr){
     log(newactionstr)
     let t=间隔时间()
     if(t>minactiontime){
-      actions=actions+"sleep("+t+");"+newactionstr+";\n";
+      actions=actions+"sleep("+t+"*sleepspeed);"+newactionstr+";\n";
     }else{
-       actions= actions+"sleep("+minactiontime+");"+newactionstr+";";
+       actions= actions+"sleep("+minactiontime+"*sleepspeed);"+newactionstr+";";
     }
 //    log(actions)
 }
@@ -71,12 +73,15 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
 }
 
 function addnewpath(pointx,pointy){
-    points[0]=动作时间间隔()
+    points[0] = 动作时间间隔()
     points.push([pointx,pointy])
     log(points)
 }
 
 function 手势(){
+    if(points.length<3){
+        return
+    }
     addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -99,7 +104,7 @@ function 点击(x,y){
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
        });
-   }
+}
 
 function 长按(x,y){
     addnewactions("press("+x+","+y+",1000)")
@@ -111,7 +116,7 @@ function 长按(x,y){
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
-           }
+}
            
 function 滑动(x,y,x1,y1){
     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
@@ -134,18 +139,15 @@ events.observeKey();
 //监听音量上键按下
 events.onKeyDown("volume_up", function(event){
     log("音量上键被按下了");
-    
 });
 
 //监听音量下键按下
 events.onKeyDown("volume_down", function(event){
     log("音量上键被按下了");
-  
 });
 //监听菜单键按下
 events.onKeyDown("menu", function(event){
     log("菜单键被按下了");
-    
 });
 //返回键按下
 events.onKeyDown("back", function(event){
@@ -188,7 +190,6 @@ function saveScriptRecord(){
             alert("录制完成","录制脚本保存文件无法创建,已复制录制代码到剪贴板,请自行创建文件！！")
         }
 //    });
-
 }
 
 startrecord()
