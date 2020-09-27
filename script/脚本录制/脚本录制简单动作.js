@@ -1,5 +1,6 @@
 auto.waitFor()
 auto.setMode("normal");
+engine.stopOthers()
 const waitaction="auto.waitFor();\nauto.setMode(\"normal\");"
 
 var script="";
