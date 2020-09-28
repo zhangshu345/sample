@@ -1,8 +1,8 @@
-var storage = storages.create("Auto.js例子:复杂数据");
+var storage = storages.create("AutoTool例子:复杂数据");
 var arr = [1, 4, 2, 5];
 var obj = {
-    name: "Auto.js",
-    url: "www.autojs.org"
+    name: "AutoTool",
+    url: "www.hongdong.info"
 };
 //保存
 storage.put("arr", arr);
