@@ -306,8 +306,9 @@ var 打开快手极速左边框=function(){
     return false
 }
 
+//关闭弹窗
 var app_close_alter=function(){
-    show(appname+":关闭弹窗")
+    log(appname+":关闭弹窗")
     clickids(快手极速弹窗id集合,200)
     clicktexts(快手极速弹窗文本集合,200)
     if(text("立即邀请").findOne(100)){
@@ -317,7 +318,7 @@ var app_close_alter=function(){
     if (textclick("立即重播",100)){
         app_swipe_up()
     }
-    show(appname+"关闭弹窗完毕")
+    log(appname+"关闭弹窗完毕")
 }
 
 var app_sign=function(){
@@ -502,7 +503,7 @@ var app_go_home=function(index){
                 sleep(3000)
             }
 
-        },60000)
+        },10000)
 }
 
 
@@ -597,7 +598,6 @@ var app_login=function(){
                      show("请手动登录账号,暂停5分钟")
                      sleep(30000)
                  }
-                 
              }
            }
         }else{
@@ -630,28 +630,16 @@ var app_tomoney=function(){
 var app_video_swipe=function(){
 let swipenumber=0
     doactionmaxnumber(function(n){
-        // if(swipenumber>2){
-        //     vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne(300)
-        //     if(vp){
-        //         log("找到快手滑动vp")
-        //         vp.scrollForward()
-        //     }
-        // }else{
-    
-
-        // }
+        show("视频滑动："+n)
         node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
         if(node_tab){
             if(!node_tab.selected()){
                clicknode(node_tab,0,0,100,2,300)
             }
         }else{
+            show("视频滑动 找不到nodetab")
             app_go_home(3)
         }
-
-        // if(!idoneexist(快手极速版视频页标志集合id)){
-        //     app_go_home(3)
-        // }
         app_swipe_up()
          swipenumber=swipenumber+1
          sleep(2000)
@@ -736,8 +724,6 @@ var app_get_coin_money=function(){
    }
    return false
 }
-
-
 
 function app_run(){
     if(invite && !应用登录(appname)){

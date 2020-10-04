@@ -203,7 +203,7 @@
         "rewardvideo":"1081105757283360"
         },
         "toutiao":{
-        "open":true,
+        "open":false,
         "appid":"5058937",
         "nativeid":"945124236",
         "banner600300":"945124237",

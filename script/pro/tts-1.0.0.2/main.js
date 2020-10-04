@@ -8,9 +8,9 @@ importClass(java.util.Locale);
 importClass(android.speech.tts.TextToSpeech)
 importClass(android.speech.tts.TextToSpeech.OnInitListener)
 
-var str ="这是一个语音合成事例"//要读的
-var pitch = 1.0//语音尖度，有一个限制
-var speechRate = 1.0//语速，同上
+var str ="abcds"//要读的
+var pitch = 2.0//语音尖度，有一个限制
+var speechRate = 0.3//语速，同上
 
 
 var obj = {
@@ -20,7 +20,13 @@ var obj = {
         if (status == TextToSpeech.SUCCESS) {
             toast("创建成功，正在初始化")
             //   ↓如果不成功的话，八成是语言不适用，改成ENGLISH或者看看api吧
-            if (tts.setLanguage(Locale.CHINESE) == TextToSpeech.SUCCESS && tts.setPitch(pitch) == TextToSpeech.SUCCESS && tts.setSpeechRate(speechRate) == TextToSpeech.SUCCESS) {
+            //
+            if(tts.setLanguage(Locale.CHINESE) == TextToSpeech.SUCCESS){
+                toast("语音设置成功")
+            }else{
+                toast("语音设置失败")
+            }
+            if ( tts.setPitch(pitch) == TextToSpeech.SUCCESS && tts.setSpeechRate(speechRate) == TextToSpeech.SUCCESS) {
                 toast("初始化成功")
             }else{
                 toast("初始化失败")
@@ -35,8 +41,8 @@ var obj = {
 tts = new TextToSpeech(context, TextToSpeech.OnInitListener(obj))
 
 sleep(1000)
-//必须先用sleep暂停一下
-var a = tts.speak(str, TextToSpeech.QUEUE_ADD, null);
+//必须先用sleep暂停一下 TextToSpeech.QUEUE_ADD=1
+var a = tts.speak(str, 0, null);
 //在level 21被弃用，另一种研究中
 if (a != TextToSpeech.SUCCESS) {
     toast("朗读失败")
@@ -46,12 +52,12 @@ if (a != TextToSpeech.SUCCESS) {
 
 //下面是储存方法
 
-var 保存 = tts.synthesizeToFile(str, java.util.HashMap(), "/storage/emulated/0/脚本tts.wav")
-if(保存 != TextToSpeech.SUCCESS){
-    toast("保存失败")
-    }else{
-        toast("保存成功，路径/storage/emulated/0/脚本tts.wav")
- }
+// var 保存 = tts.synthesizeToFile(str, java.util.HashMap(), "/storage/emulated/0/脚本tts.wav")
+// if(保存 != TextToSpeech.SUCCESS){
+//     toast("保存失败")
+//     }else{
+//         toast("保存成功，路径/storage/emulated/0/脚本tts.wav")
+//  }
 
 
 //同样在level21被删除，另一种在研究

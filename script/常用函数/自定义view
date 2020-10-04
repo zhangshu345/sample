@@ -1,0 +1,8 @@
+
+class stextview extend android.widget.TextView{
+
+    constructor(contex){
+
+        
+    }
+}
