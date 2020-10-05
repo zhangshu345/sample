@@ -10,7 +10,7 @@ importClass(android.provider.Settings);
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
 importClass(com.hongshu.utils.AppUtils)
-importClass(com.hongshu.utils.SDCardUtils)
+importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
 // importPackage(moe.shizuku.api)
