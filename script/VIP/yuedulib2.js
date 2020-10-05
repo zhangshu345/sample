@@ -90,7 +90,8 @@ var 获取记录=function(name,key,defaultvalue){ if(name){
 }}
 
 var 今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
-var 获取今日记录=function(name,key,defaultvalue){ return 获取今日记录(name,key+"_"+today(),defaultvalue)}
+var 获取今日记录=function(name,key,defaultvalue){ 
+    return 获取记录(name,key+"_"+today(),defaultvalue)}
 
 var 应用登录=function(name){return 获取今日记录(name,"login",false)}
 var 应用已登录=function(name){今日记录(name,"login",true)}
@@ -3567,7 +3568,7 @@ var enableshizuku=function(){
 // log("时长："+(nowdate().getTime()-starttime))
 
 
-//shizukuforcestopApp("天天爱清理")
+// shizukuforcestopApp("快手极速版")
 //  滑动(20,10,18,10,3,500,200)
 // sleep(3000)
 // // 滑动(20,10,17,10,3,500,200)

@@ -18,8 +18,7 @@ var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
 show("公共函数实例化成功")
-}
-else {
+}else{
 show("公共函数实例化失败,程序返回")
 }
 
@@ -33,15 +32,20 @@ var appliveactivity="com.yxcorp.gifshow.detail.PhotoDetailActivity"  //直播页
 var invite=true
 var tomoney=false
 var onlyscript=true
+toastLog(35)
 var todaysign=今日签到(appname)
+toastLog(351)
 var coin=上次今日金币(appname)
+toastLog(36)
 var money=上次余额(appname)
+toastLog(37)
 var like=true
 var minlike=3000000  //仅点赞百万喜欢的视频
 var maxlike=10000000  //千万 超级热门 视频
 var keepappnewer=true
 var lastdesc=""
 var loopn=今日滑动次数(appname)
+toastLog(45)
 /** 
  * 识别滑块位置
  * 
@@ -575,6 +579,7 @@ var app_swipe_up=function(){
 var 滑动次数=今日滑动次数(appname)
 var islogin=false
 
+toastLog(577)
 var app_login=function(){
     show(appname+"登录")
     doactionmaxtime(function(){
@@ -988,7 +993,5 @@ var isdevicemanager=false
 var iskeepappnewer=false
 var isonlayscript=true
 var appdownloadurl=null
-
-startapp(appname,apppkg,floatyx,floatyy,
-    isshowsettingfloaty,isdevicemanager,
-    iskeepappnewer,isonlayscript,appdownloadurl)
+toastLog("开始")
+startapp(appname,apppkg,floatyx,floatyy, isshowsettingfloaty,isdevicemanager, iskeepappnewer,isonlayscript,appdownloadurl)
