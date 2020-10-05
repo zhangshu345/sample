@@ -32,20 +32,16 @@ var appliveactivity="com.yxcorp.gifshow.detail.PhotoDetailActivity"  //直播页
 var invite=true
 var tomoney=false
 var onlyscript=true
-toastLog(35)
 var todaysign=今日签到(appname)
-toastLog(351)
 var coin=上次今日金币(appname)
-toastLog(36)
 var money=上次余额(appname)
-toastLog(37)
 var like=true
 var minlike=3000000  //仅点赞百万喜欢的视频
 var maxlike=10000000  //千万 超级热门 视频
 var keepappnewer=true
 var lastdesc=""
 var loopn=今日滑动次数(appname)
-toastLog(45)
+
 /** 
  * 识别滑块位置
  * 
