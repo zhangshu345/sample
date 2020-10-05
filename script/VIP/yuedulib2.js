@@ -3586,4 +3586,4 @@ var enableshizuku=function(){
 //  生成二维码保存到("你好这是一个二维码保存到三生三世",device.width/2,"测试二维码2.png",2)
 //  toastLog('解析结果：'+解析二维码("测试二维码2.png"))
 // captureScreen()
- findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
+//  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)

@@ -77,7 +77,6 @@ while(true){
        back()
        sleep(1000)
    }
-
     sleep(8000)
   //  id("af").findOne().scrollBackward()
 
@@ -88,9 +87,7 @@ while(true){
       vp.scrollForward()
   }
     i=i+1
-    show("第"+i+"次上滑")
-
-
+    toastLog("第"+i+"次上滑")
 }
 
 // vp=id("com.kuaishou.nebula:id/view_pager").findOne()  //快手极速版  这个是那个
