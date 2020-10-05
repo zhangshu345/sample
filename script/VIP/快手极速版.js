@@ -680,6 +680,8 @@ let swipenumber=0
                         log(nowdesc+"总时长:"+zt+"--"+ttxet)
                         if(zt>13){
                             sleepr(9000,11000)
+                        }else if(zt>4){
+                            sleep((zt-3)*1000)
                         }
                     }
                 }
