@@ -42,7 +42,6 @@ var 快手极速版首页标志=[快手极速首页奖励悬浮,快手极速摄�
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
 
-
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")
     downloadandinstallapp(appname,apppkg)
@@ -50,7 +49,7 @@ if(!app.getPackageName(appname)){
 
 app.launch(apppkg)
 
-i=0
+var loopntime=0
 while(true){
     if(!idContains(apppkg).findOne(1000)){
         show(appname+"不在前台")
@@ -60,7 +59,7 @@ while(true){
     if(idoneexist(快手极速版首页标志)){
         log("找到快手首页悬浮标记")
         //快手actionbar "com.kuaishou.nebula:id/action_bar"
-        if(i%3==0){
+        if(loopntime%10==0){
             if(id("com.kuaishou.nebula:id/tabs").exists()){
                 childs= id("com.kuaishou.nebula:id/tabs").findOne().children()
                   childs.forEach(e => {
@@ -71,7 +70,6 @@ while(true){
                   });
               }
         }
-
    }else{
         log("没有找到快手首页悬浮标记")
        back()
@@ -81,13 +79,12 @@ while(true){
   //  id("af").findOne().scrollBackward()
 
  vp=  id("com.kuaishou.nebula:id/slide_play_view_pager").findOne()
-
   if(vp){
       log("找到快手滑动vp")
       vp.scrollForward()
   }
-    i=i+1
-    toastLog("第"+i+"次上滑")
+  loopntime=loopntime+1
+    toastLog("第"+loopntime+"次上滑")
 }
 
 // vp=id("com.kuaishou.nebula:id/view_pager").findOne()  //快手极速版  这个是那个
