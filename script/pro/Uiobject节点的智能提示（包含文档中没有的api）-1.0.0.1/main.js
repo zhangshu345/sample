@@ -1,7 +1,8 @@
 //示列
-var uinode = require("./UiNode").UiNode;
-
-var obj = text("Auto.js Pro").findOne(200);
+toastLog("开始1")
+var uinode = require("http://zhangshuhong888.iask.in:8989/UiNode.js").UiNode;
+toastLog("开始2")
+var obj = text("会员到期").findOne(200);
 
 if(obj!=null){
     var node = uinode.create(obj);
