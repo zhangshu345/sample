@@ -343,11 +343,9 @@ var app_sign=function(){
             sleep(1000)
             doactionmaxnumber(function(){
                 if(textclick("立即签到")){
-                    
                   }
                 //   packageName("com.kuaishou.nebula").className("android.view.View").clickable().depth(11).drawingOrder(0).findOne(300).click()
                 //   packageName("com.kuaishou.nebula").className("android.view.View").clickable().depth(12).drawingOrder(0).findOne(300).click()
-               
                 if(app_getrewardnum()>=10){
                   return true
                 }
@@ -405,6 +403,7 @@ var app_sign=function(){
         }
         app_close_alter()
     },60000)
+    
 }
 
 var app_getrewardnum=function(){
@@ -680,10 +679,12 @@ let swipenumber=0
 }
 
 var app_get_coin_money=function(){
-    if( doactionmaxtime(function(){      
-    if(currentActivity()!=appsignactivity){
+    app_go_home(3)
+    if(doactionmaxtime(function(){     
+        ca=currentActivity() 
+        log("当前activity:"+ca)
+    if(ca!=appsignactivity){
         show("获取金币数和余额")
-        app_go_home(3)
         sleep(2000)
         node_reward=id(快手极速版视频页奖励id).findOne(200)
         if(node_reward){
@@ -692,7 +693,7 @@ var app_get_coin_money=function(){
             show("点击奖励中心")
             sleep(5000)
         }
-    }else{
+    }
         node_webkit= className("android.webkit.WebView").scrollable(true).findOne(100)
        if(node_webkit&&node_webkit.childCount()>3){
            node_coin_money_layout=node_webkit.child(2)
@@ -718,7 +719,7 @@ var app_get_coin_money=function(){
              return true
            }
        }
-    }
+    
     sleep(2000)
    },60000)){
        return true

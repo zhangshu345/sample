@@ -2493,7 +2493,7 @@ var close_ad_kk=function(apppkg){
                 back()
                 sleep(1000)
             }
-            if(maytextclick("网络异常")){
+            if(maytextclick("网络异常","刷新")){
                 log(apppkg+":运行时 网络异常")
             }
             if(currentActivity()!="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
