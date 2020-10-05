@@ -654,32 +654,46 @@ let swipenumber=0
                 if(n_like >maxlike){
                     idclick(快手极速版喜欢按钮id)
                     //@快手千万喜欢视频
-                    sleep(10000)
+                   
                 }else if(n_like >minlike){
                     idclick(快手极速版喜欢按钮id)
                      //@快手百万百万喜欢视频
-                    sleep(10000)
+                  
                 }else if(n_like>500000){
-                   sleep(9000)
+               
                 }else if(n_like>300000){
-                    sleep(9000)
+                
                  }else if(n_like>10000){
-                    sleep(8000)
+                
                  }else if(n_like>1000){
-                    sleep(7000)
+                  
                  }else{
                     app_video_swipe()
                 }
+                click(500,300)
+                sleep(2000)
+                ttxet=getTextfromid("com.kuaishou.nebula:id/player_duration")
+                if(ttxet){
+                    tt=ttxet.split(":")
+                    if(tt.length==2){
+                        zt=parseInt(tt[0])*60+parseInt(tt[1])
+                        log(nowdesc+"总时长:"+zt+"--"+ttxet)
+                        if(zt>15){
+                            sleepr(900,11000)
+                        }
+                    }
+                }
+                sleep(2000)
                 swipenumber=0
                 lastdesc=nowdesc
-                 sleep(10000)
+                
              }
            }
     },100)
 }
 
 var app_get_coin_money=function(){
-    app_go_home(3)
+
     if(doactionmaxtime(function(){     
         ca=currentActivity() 
         log("当前activity:"+ca)
@@ -721,7 +735,7 @@ var app_get_coin_money=function(){
        }
     
     sleep(2000)
-   },60000)){
+   },10000)){
        return true
    }
    return false
