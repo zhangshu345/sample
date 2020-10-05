@@ -84,9 +84,9 @@ var 记录=function(name,key,n){   if(name){
 } 
 }
 var 获取记录=function(name,key,defaultvalue){ if(name){
-    return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,defaultvalue)
+    return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,""+defaultvalue)
 }else{
-    return com.hongshu.utils.FastSPUtils.getInstance().getString(key,defaultvalue)
+    return com.hongshu.utils.FastSPUtils.getInstance().getString(key,""+defaultvalue)
 }}
 
 var 今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
