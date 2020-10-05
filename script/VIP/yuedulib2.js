@@ -78,34 +78,36 @@ var changesetting=false //是否改变亮度和音量的标识
 const debugip="zhangshuhong888.iask.in"
 
 var 记录=function(name,key,n){   if(name){
-    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,n)
+    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,""+n)
 }else{
-    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,n)
+    com.hongshu.utils.FastSPUtils.getInstance(name).put(key,""+n)
 } 
 }
 var 获取记录=function(name,key,defaultvalue){ if(name){
-    return com.hongshu.utils.FastSPUtils.getInstance(name).get(key,defaultvalue)
+    return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,defaultvalue)
 }else{
-    return com.hongshu.utils.FastSPUtils.getInstance().get(key,defaultvalue)
+    return com.hongshu.utils.FastSPUtils.getInstance().getString(key,defaultvalue)
 }}
 
 var 今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
 var 获取今日记录=function(name,key,defaultvalue){ 
     return 获取记录(name,key+"_"+today(),defaultvalue)}
 
-var 应用登录=function(name){return 获取今日记录(name,"login",false)}
-var 应用已登录=function(name){今日记录(name,"login",true)}
+var 应用登录=function(name){return 获取今日记录(name,"login",false)=="true"}
+var 应用已登录=function(name){ 今日记录(name,"login",true)}
 
-var 今日签到=function(name){return 获取今日记录(name,"sign",false);  }
+var 今日签到=function(name){return 获取今日记录(name,"sign",false)=="true"  }
 var 今日已签到=function(name){今日记录(name,"sign",true)}
 
-var 今日时长=function(name){return 获取今日记录(name,"time",0);}
-var 记录今日时长=function(name,t){ 今日记录(name,"time",t)}
+var 今日时长=function(name){return parseInt(获取今日记录(name,"time",0));}
+var 记录今日时长=function(name,t){ 
+    今日记录(name,"time",t)
+}
 
-var 今日滑动次数=function(name){return 获取今日记录(name,"swipe",0);}
+var 今日滑动次数=function(name){return parseInt(获取今日记录(name,"swipe",0));}
 var 记录今日滑动次数=function(name,i){今日记录(name,"swipe",i);}
 
-var 今日提现=function(name){      return 获取今日记录(name,"cashout",false);}
+var 今日提现=function(name){      return  获取今日记录(name,"cashout",false)=="true";}
 var 今日已提现=function(name){   今日记录(name,"cashout",true); }
 
 var 记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
