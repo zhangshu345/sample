@@ -11,7 +11,7 @@ function httpget(url) {
 loopn=0
 var logintype="weixin"  //weixin 是微信登录 phone 是手机号登录
 //engines.stopOther()
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -582,10 +582,6 @@ var app_home_swipe=function(){
     },20000)
 }
 
-
-
-app_tomoney()
-
-startapp(appname,apppkg,0,device.height-200,false,false,true,true)
+startapp(appname,apppkg,0,device.height-200,false,false,true,true,null)
 
 

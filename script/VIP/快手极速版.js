@@ -695,7 +695,6 @@ let swipenumber=0
 }
 
 var app_get_coin_money=function(){
-
     if(doactionmaxtime(function(){     
         ca=currentActivity() 
         log("当前activity:"+ca)
@@ -735,7 +734,6 @@ var app_get_coin_money=function(){
              return true
            }
        }
-    
     sleep(2000)
    },10000)){
        return true
@@ -935,6 +933,7 @@ var app_live_hongbao=function(){
             //普通红包
             sleep(2000)
         }
+
         node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
         if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
             show(appname+"找到红包弹窗")
@@ -963,6 +962,7 @@ var app_live_hongbao=function(){
                 return true
             }
         }
+
       //倒计时的红包
         if(text("手慢了，红包派完了").exists()){
             idclick("com.kuaishou.nebula:id/live_red_packet_close_view")
@@ -998,7 +998,6 @@ var app_see_live=function(){
     },1000)
 }
 
-
 var floatyx=0
 var floatyy=0
 var isshowsettingfloaty=false
@@ -1006,5 +1005,7 @@ var isdevicemanager=false
 var iskeepappnewer=false
 var isonlayscript=true
 var appdownloadurl=null
+
 toastLog("开始")
+
 startapp(appname,apppkg,floatyx,floatyy, isshowsettingfloaty,isdevicemanager, iskeepappnewer,isonlayscript,appdownloadurl)

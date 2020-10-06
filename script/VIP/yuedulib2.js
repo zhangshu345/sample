@@ -1771,15 +1771,15 @@ let st = setInterval(() => {
     if (!(cursor != null && cursor.moveToFirst())) return toastLog("下载任务不存在");
     let bytes_downloaded = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_BYTES_DOWNLOADED_SO_FAR));//已下载字节
     let totalSize = cursor.getLong(cursor.getColumnIndex(DownloadManager.COLUMN_TOTAL_SIZE_BYTES));
-    log("下载进度:"+Math.ceil(bytes_downloaded/totalSize*100)+"%");
+    show("下载进度:"+Math.ceil(bytes_downloaded/totalSize*100)+"%");
     //下载状态
     let status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS));
     if (status == DownloadManager.STATUS_SUCCESSFUL){
         if(isinstall){
-            toastLog("下载已完成开始安装");
+            show("下载已完成开始安装");
             install_app(files.getSdcardPath()+"/download/"+filename,filename,120000,false,true)
         }else{
-            toastLog("下载已完成");
+            show("下载已完成");
         }
         clearInterval(st);//取消定时器
      }
@@ -1939,7 +1939,7 @@ function downloadApk(name,downloadurl,isinstall) {
  var downloadandinstallapp=function(appname,apppkg){
    let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){log("应用详情：获取成功");
-    systemdownloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
+        systemdownloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
  }
 }
 //关闭其他应用
@@ -3592,3 +3592,4 @@ var enableshizuku=function(){
 //  toastLog('解析结果：'+解析二维码("测试二维码2.png"))
 // captureScreen()
 //  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
+downloadandinstallapp("刷宝短视频","com.jm.video")
