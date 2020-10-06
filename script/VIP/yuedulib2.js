@@ -3388,7 +3388,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
 
 //开始运行单个应用
 var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
-    let runscriptapp= spt.getString("hongshuyuedu_run_app",null)
+    let runscriptapp=spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
     if(runscriptapp==appname && isreaderunning){

@@ -31,10 +31,7 @@ var login=getbooleanvalue(appname+"_login",false)
 var appminelikeactivity="com.jm.video.ui.mine.MineLikeVideoActivity"
 var appvideolistactivity="com.jm.video.ui.videolist.list.ListVideoActivity"
 var appwebactivity="com.jm.video.ui.web.WebViewActivity" //我的钱包
-
 var appliveactivity="com.jm.video.ui.live.guest.LiveGuestActivity" //直播页
-
-刷宝邀请()
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 var 视频次数=0
 var 刷宝视频广告跳过按钮id="com.jm.video:id/tt_top_skip"
@@ -48,8 +45,9 @@ var 刷宝首页视频点赞可点击id="com.jm.video:id/praise"
 var 刷宝首页标记id集合=[刷宝首页奖励id,刷宝首页视频点赞可点击id]
 var lastdesc=""
 var loopn=0
-//回到视频页
 
+//回到视频页
+刷宝邀请()
 var  app_run=function(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
@@ -57,11 +55,10 @@ var  app_run=function(){
     app_checklogin()
     app_tomoney()
     app_sign()
-  app_see_video()
+    app_see_video()
 }
 
 var app_see_video=function(){
-   
     doactionmaxnumber(function(n){
     show("循环次数:"+(n))
     closeappundostate()
@@ -97,7 +94,9 @@ var app_see_video=function(){
      }
     },300)
 }
+
 var  app_go_home=function(index){
+
     index=index||1
    if(doactionmaxtime(function(){
        closeappundostate()
@@ -247,15 +246,11 @@ var app_sign=function(){
                               }
                 },20)
             }   
-            
             if(textclick("点击领取",300)){
                 sleep(1000)
              }
-     
     },45000)
 }
-
-
 
 
 var app_checklogin=function(){
@@ -359,7 +354,6 @@ var app_login_phone=function(){
     }
 }
 
-
 var app_login_weixin=function(){
     i=0
     while (i<10){
@@ -374,7 +368,6 @@ var app_login_weixin=function(){
         i=i+1
     }
 }
-
 
 function app_getcoinnumber(){
     let n_coin=0
@@ -397,7 +390,6 @@ function app_getcoinnumber(){
      return n_coin
  }
         
-
 var app_getmoneyinfo=function(){
     f_money=0
     doactionmaxtime(function(){
@@ -415,7 +407,6 @@ var app_getmoneyinfo=function(){
 
     },20000)
     return f_money
-
 }
 
 //直接界面获取元素判断
@@ -447,8 +438,7 @@ var cantomoney=function(){
 }
 
 var app_tomoney=function(){
-  
-    try {
+      try {
         if(今日提现(appname)){
             return true
         }
@@ -513,7 +503,6 @@ var app_tomoney=function(){
     }
 }
 
-
 function app_go_likevideolist(){
     doactionmaxtime(function(){
         ca=currentActivity()
@@ -530,6 +519,7 @@ function app_go_likevideolist(){
         }
     },60000)
 }
+
 var app_home_swipe=function(){
     doactionmaxtime(function(){
         show(appname+"滑动")
