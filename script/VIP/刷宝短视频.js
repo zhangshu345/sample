@@ -50,7 +50,6 @@ var lastdesc=""
 var loopn=0
 //回到视频页
 
-
 var  app_run=function(){
     toastLog(appname+"---apprun")
     app.launchApp(appname)
@@ -66,7 +65,6 @@ var app_see_video=function(){
     doactionmaxnumber(function(n){
     show("循环次数:"+(n))
     closeappundostate()
-
     if(!idallexist(["com.jm.video:id/image_view","com.jm.video:id/comment","com.jm.video:id/imgUp"])){
         if(text("点击进入直播间").exists()){
             滑动(20,10,16,10,3,500,300)
@@ -75,8 +73,7 @@ var app_see_video=function(){
           show("不是视频页")
           app_go_home(1)
           clickonetexts(["推荐","等待"],300,1500)
-   
-     }else{
+        }else{
         show("视频页关闭弹窗")
         idclick(刷宝视频广告关闭按钮1id)
         idclick("com.jm.video:id/btn_close")
@@ -87,12 +84,9 @@ var app_see_video=function(){
         if( textclick("等待")){
             sleep(1000)
         }
-
         app_home_swipe()
-
         maytextclick("继续看视频")
         idclick("com.jm.video:id/imgClose")
-     
         if(text("空空如也").exists()){
             // 脚本完成了
             app_go_likevideolist()
@@ -106,7 +100,6 @@ var app_see_video=function(){
 var  app_go_home=function(index){
     index=index||1
    if(doactionmaxtime(function(){
-
        closeappundostate()
       if( selectnavi(index)){
           return true
@@ -180,7 +173,7 @@ var selectnavi=function(index){
     node_ll=className("android.widget.RelativeLayout").drawingOrder(index).depth(9).clickable().visibleToUser().findOne(500)
     if(node_ll){
         bd=node_ll.bounds()
-        show("点击导航位置"+bd.centerX()+","+bd.centerY())
+        // show("点击导航位置"+bd.centerX()+","+bd.centerY())
         press(bd.centerX(),bd.centerY(),50)
         return true
     }else{
@@ -269,7 +262,6 @@ var app_checklogin=function(){
     try {
         doactionmaxtime(function(){
             show(appname+"登录")
-      
              sleep(2000)
              idclick("com.jm.video:id/imgClose")
              clicktexts(["确认","跳过","去授权","允许","允许","允许","我","同意并继续"],200,1500)
@@ -278,7 +270,7 @@ var app_checklogin=function(){
                  spt.put(appname+"_login",true)
                  return true
              }
-             clicktexts(["微信账号登录","同意","同意并继续"],500,2500)
+             clicktexts(["微信账号登录","同意","同意并继续","允许"],500,2500)
              closeappundostate()
                if(currentPackage()!=apppkg){
                    app.launch(apppkg)
@@ -319,7 +311,6 @@ var app_checklogin=function(){
     } catch (error) {
         
     }
-
       // 
 }
 
