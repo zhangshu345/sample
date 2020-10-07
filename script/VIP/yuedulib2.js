@@ -3608,4 +3608,4 @@ var enableshizuku=function(){
 //  toastLog('解析结果：'+解析二维码("测试二维码2.png"))
 // captureScreen()
 //  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
-微信加好友("zhangshuhong345")
+
