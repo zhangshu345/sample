@@ -13,8 +13,7 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
-// importPackage(moe.shizuku.api)
-// importClass(moe.shizuku.api.ShizukuService)
+var checkbatterythread=null //电池电量检测线程
 const scriptapppkg=context.getPackageName()
 const scriptappname=app.getAppName(scriptapppkg)
 log("脚本app名："+scriptappname+"--"+scriptapppkg)
@@ -246,6 +245,8 @@ var 微信加好友=function(weixinhao,phone){
                 滑动(20,10,5,10,15,500,500)
             }
             text("添加朋友").waitFor()
+            textclick("添加朋友")
+            text("微信号/手机号").waitFor()
             textclick("微信号/手机号")
             sleep(1500)
             setText(weixinhao)
@@ -2364,6 +2365,25 @@ var checkbattery=function(btyn,sleeptime1,sleeptime2){
     }
 }
 
+function startcheckbattery(){
+    if(checkbatterythread!=null){
+        return 
+    }
+    checkbatterythread = threads.start(function(){
+        while(true){
+            sleep(60000)
+            checkbattery(30)
+        }
+    });
+}
+
+function stopcheckbattery(){
+    if(checkbatterythread!=null ){
+         checkbatterythread.interrupt()
+         checkbatterythread=null
+    }
+}
+
 //通过通知获取验证码有缺点  后期改为java代码原生获取
 function get_phone_code(app_name,reg,startwords,endwords){
   let  contet = ""
@@ -2466,7 +2486,6 @@ var close_ad_toutiao=function(apppkg,clickgailv){
             if( idclick(apppkg+":id/tt_video_ad_close",100)){
                 return true
             }
-            
             sleep(1000)
             if(!idContains(apppkg).findOne(100)){
                 return true
@@ -2493,7 +2512,6 @@ var close_ad_kk=function(apppkg){
                 back()
                 sleep(1000)
             }
-         
             clickonemaytexts(["刷新","继续观看"])
             if(maytextclick("网络异常")){
                 log(apppkg+":运行时 网络异常")
@@ -2562,7 +2580,6 @@ var close_ad_qq=function(apppkg,clickgailv){
             if(!idContains(apppkg).findOne(100)){
                 return false
             }
-           
         },60000)){
             return true
         }else{
@@ -2763,7 +2780,7 @@ function deleteAllFiles(dir,houzhui){
             }
         }
     }
- //   log("所有后缀:"+allhouzhui)
+
 }
 
 //微信同意加好友
@@ -3376,7 +3393,6 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
             spt.remove("lastscriptapp")
             spt.put("hongshuyuedu_run_app",ap.app.name)
             spt.put("hongshuyuedu_running",true)
-            
             evalscript(ap.app.name,ap.path)
         } catch (error) {
             console.log(error);
@@ -3592,4 +3608,4 @@ var enableshizuku=function(){
 //  toastLog('解析结果：'+解析二维码("测试二维码2.png"))
 // captureScreen()
 //  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
-downloadandinstallapp("刷宝短视频","com.jm.video")
+微信加好友("zhangshuhong345")

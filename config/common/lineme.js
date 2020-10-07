@@ -3193,18 +3193,5 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 
-//  滑动(20,10,18,10,3,500,200)
-// sleep(3000)
-// // 滑动(20,10,17,10,3,500,200)
-// // sleep(3000)
-// // 滑动(20,10,18,10,3,500,200)
-// // sleep(3000)
 
-// randomSwipe(500,1800,500,300,2000,3000)
-
-// 微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
-// log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
-// startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json")
-
-// 微信打开链接("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
 微信加好友("zhangshuhong345")

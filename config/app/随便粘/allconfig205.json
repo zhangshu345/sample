@@ -176,13 +176,13 @@
         "jgbanner":30,
         "jgnative":3,
         "sign":"",
-        "ratio":"bd-10",
-        "ratiosplash":"bd-10",
-        "ratiobanner":"bd-10",
-        "ratiochaping":"bd-10",
-        "rationative":"bd-10",
-        "ratiorewardvideo":"bd-10",
-        "ratiofullvideo":"tt-10|bd-10",
+        "ratio":"tt-10",
+        "ratiosplash":"tt-10",
+        "ratiobanner":"tt-10",
+        "ratiochaping":"tt-10",
+        "rationative":"tt-10",
+        "ratiorewardvideo":"tt-10",
+        "ratiofullvideo":"tt-10",
         "gdt":{
         "open":false,
         "appid":"1107959332",
@@ -205,7 +205,7 @@
         "rewardvideo":"1081105757283360"
         },
         "toutiao":{
-        "open":false,
+        "open":true,
         "appid":"5058937",
         "nativeid":"945124236",
         "banner600300":"945124237",
@@ -255,7 +255,7 @@
             "appwallplace":"237196"
         }, 
         "baidu":{
-            "open":true,
+            "open":false,
             "appid":"aaca1dd1",
             "splash":"7195617",
             "banner203":"7195616",

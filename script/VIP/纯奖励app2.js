@@ -111,13 +111,7 @@ var  shuffleArray=function(array) {
 }
 
 // addbmobchannel("rewardad")
-var thread = threads.start(function(){
-    while(true){
-        
-        sleep(60000)
-        checkbattery(30)
-    }
-});
+
 //停止线程执行
 
 Scripts.INSTANCE.delectAllTask()
