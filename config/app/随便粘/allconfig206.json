@@ -1,302 +1,1633 @@
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "version":"2.0.5",
-    "versioni":205,
-    "channel":"androidjs",
-    "mtaappkey":"A1KT37D8APGM",
-    "bmobappid":"e63e8bcad7f4ca8893f3785f75d352f4",
-    "umengappkey":"",
-    "umengappsecretkey":"",
-    "jpushkey":"39ec1b5977dba399606a45e6",
-    "userlogin":false,
-    "bmobpush":false,
-    "jpush":false,
-    "showad":true,
-    "showaccessibilityalter":false,
-    "channeladvice":"",
-    "reward":true,
-    "mta":false,
-    "bugly":true,
-    "cardcharge":false,
-    "cardexchange":false,
-    "barbuttons":{"ui":{"type":1,"orientation":0,"size":4,"reverselayout":false},
-    "data":[{"name":"新手指南","open":false,"level":0,"icon":"@drawable/ic_home_center_book","icontint":"#ffffff","back":"@drawable/im_round_red","event":-1,"uipath":"","script":"scriptname:userguide"},
-    {"name":"设置","open":true,"level":0,"icon":"@drawable/ic_home_center_setting","icontint":"#ffffff","back":"@drawable/im_round_green","event":-1,"uipath":"/script/settings","script":"scriptname:settingdescription"},
-    {"name":"动作录制","open":true,"level":0,"icon":"@drawable/ic_record","icontint":"#ffffff","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
-    {"name":"自动化编辑","open":true,"level":2,"icon":"@drawable/ic_home_center_code","icontint":"#ffffff","back":"@drawable/im_round_blue","event":-1,"uipath":"/script/develop","script":""},
-    {"name":"视频剪辑","open":true,"level":0,"icon":"@drawable/ic_home_center_videoedit","icontint":"#ffffff","back":"@drawable/im_round_red","event":-1,"uipath":"/script/videoedit","script":""},
-    {"name":"联系我们","open":false,"level":0,"icon":"@drawable/ic_home_center_aboutme","icontint":"#ff00ff","back":"@drawable/im_round_green","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}]},
-    "actionbuttons":{"ui":{"type":1,"orientation":0,"size":8,"reverselayout":false},
-    "data":[ {"name":"配置","open":true,"level":0,"icon":"@drawable/ic_script_pref","icontint":"#ffffff","back":"","event":35,"uipath":"","script":""},
-        {"name":"扫描","open":true,"level":0,"icon":"@drawable/ic_scan_black_24dp","icontint":"#ffffff","back":"","event":-1,"uipath":"","script":"scriptname:userguide"},
-    {"name":"添加","open":true,"level":0,"icon":"@drawable/ic_add_circle_outline_black_48dp","icontint":"#ffffff","back":"","event":-1,"uipath":"/script/settings","script":"scriptname:settingdescription"},
-    {"name":"动作录制","open":true,"level":0,"icon":"@drawable/ic_record","icontint":"#ffffff","back":"#0000ff","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
-    {"name":"点击小手","open":true,"level":0,"icon":"@drawable/ic_click_blue_48dp","icontint":"#ff0000","back":"","event":-1,"uipath":"/script/develop","script":""},
-    {"name":"位置","open":true,"level":0,"icon":"@drawable/ic_room_black_48dp","icontint":"#ffffff","back":"","event":-1,"uipath":"/script/videoedit","script":""},
-    {"name":"微信联系","open":true,"level":0,"icon":"@drawable/ic_add_wechat_48dp","icontint":"#00ff00","back":"","event":-1,"uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"},
-    {"name":"配置","open":true,"level":0,"icon":"@drawable/ic_circular_menu_settings","icontint":"","back":"","event":-1,"uipath":"","script":""}]
+{
+    "name": "随便粘",
+    "pkg": "com.dongdong.jiantie",
+    "version": "2.0.5",
+    "versioni": 205,
+    "channel": "androidjs",
+    "mtaappkey": "A1KT37D8APGM",
+    "bmobappid": "e63e8bcad7f4ca8893f3785f75d352f4",
+    "umengappkey": "",
+    "umengappsecretkey": "",
+    "jpushkey": "39ec1b5977dba399606a45e6",
+    "userlogin": false,
+    "bmobpush": false,
+    "jpush": false,
+    "showad": true,
+    "showaccessibilityalter": false,
+    "channeladvice": "",
+    "reward": true,
+    "mta": false,
+    "bugly": true,
+    "cardcharge": false,
+    "cardexchange": false,
+    "barbuttons": {
+        "ui": {
+            "type": 1,
+            "orientation": 0,
+            "size": 4,
+            "reverselayout": false
+        },
+        "data": [
+            {
+                "name": "新手指南",
+                "open": false,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_book",
+                "icontint": "#ffffff",
+                "back": "@drawable/im_round_red",
+                "event": -1,
+                "uipath": "",
+                "script": "scriptname:userguide"
+            },
+            {
+                "name": "设置",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_setting",
+                "icontint": "#ffffff",
+                "back": "@drawable/im_round_green",
+                "event": -1,
+                "uipath": "/script/settings",
+                "script": "scriptname:settingdescription"
+            },
+            {
+                "name": "动作录制",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_record",
+                "icontint": "#ffffff",
+                "back": "#0000ff",
+                "event": -1,
+                "uipath": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
+            },
+            {
+                "name": "自动化编辑",
+                "open": true,
+                "level": 2,
+                "icon": "@drawable/ic_home_center_code",
+                "icontint": "#ffffff",
+                "back": "@drawable/im_round_blue",
+                "event": -1,
+                "uipath": "/script/develop",
+                "script": ""
+            },
+            {
+                "name": "视频剪辑",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_videoedit",
+                "icontint": "#ffffff",
+                "back": "@drawable/im_round_red",
+                "event": -1,
+                "uipath": "/script/videoedit",
+                "script": ""
+            },
+            {
+                "name": "联系我们",
+                "open": false,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_aboutme",
+                "icontint": "#ff00ff",
+                "back": "@drawable/im_round_green",
+                "event": -1,
+                "uipath": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
+            }
+        ]
     },
-   "shortcuts":[{"order":0,"id":"扫描","open":true,"level":0,"shortlabel":"扫描","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_scan_black_24dp","uipath":"/common/scan","script":""},
-    {"order":1,"id":"动作录制","open":true,"level":0,"shortlabel":"录制","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_record","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
-    {"order":2,"id":"点击小手","open":true,"level":0,"shortlabel":"点击","longlabel":"扫描二维码，识别文本，导入脚本，导入配置","icon":"@drawable/ic_click_blue_48dp","uipath":"","script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/点击小手.js"},
-    {"order":3,"id":"工具库","open":true,"level":0,"shortlabel":"工具库","longlabel":"打开工具库","icon":"@drawable/ic_scan_black_24dp","uipath":"/script/develop","script":""}  
-    ],
-    "pages":[{"name":"用户主页","url":"/script/usermain"}
-        ,{"name":"开发者页面","url":"/script/develop"}
-        ,{"name":"视频编辑","url":"/script/videoedit"}
-       ],
-    "keys":[{"name":"inviteword","value":"赚钱停不下来,快来下载【{appname}】填我邀请码","summary":"邀请码识别格式"},
-        {"name":"usermainfragment","value":"首页-本地脚本-工具-任务管理-我","summary":"说明"},
-        {"name":"developfragment","value":"本地脚本-教程-任务-管理-市场","summary":"说明"},
-        {"name":"qqproducturl","value":"https://support.qq.com/products/179319","summary":"说明"}
-    ,   {"name":"company","value":"https://support.qq.com/products/179319","summary":"说明"}
-    ,   {"name":"showcharge","value":"false","summary":"说明"}
-    ,   {"name":"qq","value":"3450559631","summary":"说明"}
-    ,   {"name":"email","value":"zhangshuhong888@gmail.com","summary":"说明"}
-    ,   {"name":"github","value":"https://github.com/zhangshu345","summary":"说明"}
-    ,   {"name":"repositories","value":"https://github.com/zhangshu345/autotools","summary":"说明"}
-    ,   {"name":"developer","value":"红薯","summary":"说明"}],
-    "baseurl":"http://zhangshuhong888.iask.in:1337/",
-    "rewardconfigurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
-    "runurl":"https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
-    "shareword":"赚钱停不下来,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
-    "userloginpath":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
-    "rewardcoinscript":"https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
-    "downloadurl":"http://zhangshuhong888.iask.in:8989/随便粘_200.apk",
-    "scripts":[ { "name":"clickpoint","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
-        { "name":"userguide","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"},
-        { "name": "settingdescription","path":"设置描述的脚本"},
-        { "name": "developrecord","path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"},
-        { "name":"lineme","path":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"}
-    ],
-    "privacy":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/privacy.md",
-    "permission":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
-    "announce":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
-    "notificationsurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
-    "messagesurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
-    "historys":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/apphistory.json",
-    "activity":[
-        {"id":0,"title":"新用户登录","summary":"新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取","level":0,"open":false,"coin":10000,"money":0,"event":7,"time":0,"interval":0,"finishname":"领取奖励","nofinishname":"领取奖励","icon":"","rewardtype":0,"key":"key_action_first_login","script":""},
-        {"id":1,"title":"填写邀请人","summary":"新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效","level":0,"open":false,"coin":10000,"money":0,"event":25,"time":0,"interval":0,"finishname":"已领取","nofinishname":"填写邀请码","icon":"","rewardtype":0,"key":"key_action_set_parent","script":""},
-        {"id":2,"title":"每日签到","summary":"每日签到，连续签到更有大礼","level":0,"open":true,"coin":100,"money":0,"event":7,"time":1,"interval":0,"finishname":"领取奖励","nofinishname":"每日签到","icon":"","rewardtype":1,"key":"key_action_day_sign","script":""},
-        {"id":3,"title":"看福利视频","summary":"每日看福利视频，既有机会获取100金币，每日奖励20次","level":0,"open":false,"coin":100,"money":0,"event":125,"time":20,"interval":150,"finishname":"福利视频","nofinishname":"福利视频","icon":"","rewardtype":1,"key":"key_action_full_advice_video","script":""},
-        {"id":4,"title":"刷小视频","summary":"每日看小视频，既有机会获取10000金币","level":0,"open":true,"coin":100,"money":0,"event":222,"time":20,"interval":150,"finishname":"看小视频","nofinishname":"看小视频","icon":"","rewardtype":1,"key":"key_action_small_video","script":""},
-        {"id":5,"title":"看资讯","summary":"每日看资讯，既有机会获取10000金币","level":0,"open":true,"coin":100,"money":0,"event":223,"time":20,"interval":150,"finishname":"看资讯","nofinishname":"阅读资讯","icon":"","rewardtype":1,"key":"key_action_small_video","script":""},
-        {"id":6,"title":"看视频广告获取海量金币","summary":"每日看广告视频，每次可获取100金币，每日不限次数","level":0,"open":true,"coin":100,"money":0,"event":150,"time":100,"interval":90,"finishname":"领取奖励","nofinishname":"激励奖励","icon":"","rewardtype":1,"key":"key_action_reward_advice_video","script":""},
-        {"id":7,"title":"幸运转盘抽奖","summary":"每日转盘抽奖，轻轻松松中大奖","level":0,"open":false,"coin":100,"money":0,"event":202,"time":100,"interval":600,"finishname":"领取奖励","nofinishname":"每日抽奖","icon":"","rewardtype":1,"key":"key_action_reward_luck","script":""},
-        {"id":8,"title":"每日分享","summary":"每日分享App给好友，分享到朋友圈，独乐乐不如众乐乐","level":0,"open":true,"coin":100,"money":0,"event":203,"time":5,"interval":1800,"finishname":"领取奖励","nofinishname":"每日分享","icon":"","rewardtype":1,"key":"key_action_reward_share","script":""}
-    ],
-    "level":[{"level":0,"nickname":"0级","maxmoney":5.0,"daymoney":0.5,"separate":0.2,"tax":17,"coin":100,"money":0,"experience":100000,"son1":3,"son2":10,"son3":20},
-        {"level":1,"nickname":"一级","maxmoney":10.0,"daymoney":1.2,"separate":0.22,"tax":15,"coin":1000,"money":100,"experience":100000,"son1":5,"son2":20,"son3":300},
-        {"level":2,"nickname":"二级","maxmoney":15.0,"daymoney":1.9,"separate":0.25,"tax":15,"coin":10000,"money":300,"experience":100000,"son1":10,"son2":70,"son3":1500},
-        {"level":3,"nickname":"三级","maxmoney":20.0,"daymoney":2.5,"separate":0.28,"tax":13,"coin":100000,"money":500,"experience":100000,"son1":20,"son2":100,"son3":3000},
-        {"level":4,"nickname":"四级","maxmoney":35.0,"daymoney":4,"separate":0.30,"tax":13,"coin":1000000,"money":800,"experience":100000,"son1":50,"son2":300,"son3":10000},
-        {"level":5,"nickname":"五级","maxmoney":40.0,"daymoney":5,"separate":0.32,"tax":12,"coin":1000000,"money":1000,"experience":100000,"son1":70,"son2":500,"son3":15000},
-        {"level":6,"nickname":"六级","maxmoney":45.0,"daymoney":8,"separate":0.33,"tax":12,"coin":10000000,"money":2000,"experience":100000,"son1":100,"son2":1000,"son3":15000},
-        {"level":7,"nickname":"七级","maxmoney":50.0,"daymoney":7,"separate":0.34,"tax":11,"coin":10000000,"money":3000,"experience":100000,"son1":150,"son2":2000,"son3":30000},
-        {"level":8,"nickname":"八级","maxmoney":55.0,"daymoney":8,"separate":0.35,"tax":10,"coin":10000000,"money":5000,"experience":100000,"son1":300,"son2":5000,"son3":33000},
-        {"level":9,"nickname":"九级","maxmoney":60.0,"daymoney":9,"separate":0.36,"tax":10,"coin":10000000,"money":10000,"experience":100000,"son1":500,"son2":10000,"son3":50000},
-        {"level":10,"nickname":"10级","maxmoney":70.0,"daymoney":10,"separate":0.38,"tax":10,"coin":100000000,"money":20000,"experience":100000,"son1":1000,"son2":20000,"son3":50000},
-        {"level":11,"nickname":"11级","maxmoney":80.0,"daymoney":11,"separate":0.5,"tax":10,"coin":100000000,"money":50000,"experience":100000,"son1":2000,"son2":35000,"son3":100000},
-        {"level":12,"nickname":"12级","maxmoney":888.0,"daymoney":30,"separate":0.7,"tax":20,"coin":100000000,"money":100000,"experience":100000,"son1":5000,"son2":500000,"son3":500000}
-    ],
-    "rewardevent":[{"name":"横幅展示","eventid":5,"coin":10,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"横幅点击","eventid":4,"coin":50,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"开屏展示","eventid":1,"coin":30,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"开屏点击","eventid":2,"coin":100,"money":0,"extra":"","requestcoin":1000}
-        ,{"name":"插屏展示","eventid":5,"coin":10,"money":0,"extra":""}
-        ,{"name":"插屏点击","eventid":6,"coin":50,"money":0,"extra":""}
-        ,{"name":"原生展示","eventid":7,"coin":10,"money":0,"extra":""}
-        ,{"name":"原生点击","eventid":8,"coin":100,"money":0,"extra":""}
-        ,{"name":"激励展示","eventid":9,"coin":20,"money":0,"extra":""}
-        ,{"name":"激励点击","eventid":10,"coin":100,"money":0,"extra":""}
-        ,{"name":"激励奖励","eventid":12,"coin":100,"money":0,"extra":""}
-        ,{"name":"视频开始播放","eventid":15,"coin":10,"money":0,"extra":""}
-        ,{"name":"视频播放完成","eventid":16,"coin":30,"money":0,"extra":""}
-        ,{"name":"视频点击","eventid":17,"coin":100,"money":0,"extra":""}
-        ,{"name":"每日签到","eventid":51,"coin":100,"money":0,"extra":""}
-        ,{"name":"每日分享","eventid":52,"coin":100,"money":0,"extra":""}
-        ,{"name":"每日邀请","eventid":53,"coin":1000,"money":0,"extra":""}
-        ,{"name":"每日邀请","eventid":53,"coin":1000,"money":0,"extra":""}
-        ,{"name":"升级1级","eventid":101,"coin":1000,"money":0,"extra":""}
-        ,{"name":"升级2级","eventid":102,"coin":10000,"money":0,"extra":""}
-        ,{"name":"升级3级","eventid":103,"coin":30000,"money":0,"extra":""}
-        ,{"name":"升级4级","eventid":104,"coin":100000,"money":0,"extra":""}
-        ,{"name":"升级5级","eventid":105,"coin":388888,"money":0,"extra":""}
-        ,{"name":"升级6级","eventid":106,"coin":888888,"money":0,"extra":""}
-        ,{"name":"升级7级","eventid":107,"coin":2888888,"money":0,"extra":""}
-        ,{"name":"升级8级","eventid":108,"coin":5888888,"money":0,"extra":""}
-        ,{"name":"升级9级","eventid":109,"coin":10888888,"money":0,"extra":""}
-        ,{"name":"升级10级","eventid":110,"coin":28888888,"money":0,"extra":""}
-        ,{"name":"升级11级","eventid":111,"coin":58888888,"money":0,"extra":""}
-        ,{"name":"升级12级","eventid":112,"coin":88888888,"money":0,"extra":""}
-        ,{"name":"步数100步","eventid":121,"coin":100,"money":0,"extra":""}
-        ,{"name":"步数1000步","eventid":122,"coin":288,"money":0,"extra":""}
-        ,{"name":"步数3000步","eventid":123,"coin":588,"money":0,"extra":""}
-        ,{"name":"步数10000步","eventid":124,"coin":666,"money":0,"extra":""}
-        ,{"name":"步数20000步","eventid":125,"coin":888,"money":0,"extra":""}
-        ,{"name":"步数30000步","eventid":126,"coin":888,"money":0,"extra":""}
-        ,{"name":"步数50000步","eventid":127,"coin":1688,"money":0,"extra":""}
-        ,{"name":"步数100000步","eventid":128,"coin":2888,"money":0,"extra":""}
-        ,{"name":"喝水1杯","eventid":131,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水2杯","eventid":132,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水3杯","eventid":133,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水4杯","eventid":134,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水5杯","eventid":135,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水6杯","eventid":136,"coin":50,"money":0,"extra":""}
-        ,{"name":"喝水7杯","eventid":137,"coin":150,"money":0,"extra":""}
-        ,{"name":"喝水8杯","eventid":138,"coin":1000,"money":0,"extra":""}
-        ,{"name":"看新闻1分钟","eventid":141,"coin":30,"money":0,"extra":""}
-        ,{"name":"看新闻3分钟","eventid":142,"coin":60,"money":0,"extra":""}
-        ,{"name":"看新闻5分钟","eventid":143,"coin":100,"money":0,"extra":""}
-        ,{"name":"看新闻10分钟","eventid":144,"coin":200,"money":0,"extra":""}
-        ,{"name":"看新闻20分钟","eventid":145,"coin":200,"money":0,"extra":""}
-        ,{"name":"看新闻30分钟","eventid":146,"coin":588,"money":0,"extra":""}
-        ,{"name":"看新闻60分钟","eventid":147,"coin":888,"money":0,"extra":""}
-        ,{"name":"看视频每个","eventid":151,"coin":50,"money":0,"extra":""}
-        ,{"name":"看视频1个","eventid":152,"coin":100,"money":0,"extra":""}
-        ,{"name":"看视频5个","eventid":153,"coin":100,"money":0,"extra":""}
-        ,{"name":"看视频10个","eventid":154,"coin":188,"money":0,"extra":""}
-        ,{"name":"看视频20个","eventid":155,"coin":288,"money":0,"extra":""}
-        ,{"name":"看视频30个","eventid":156,"coin":388,"money":0,"extra":""}
-        ,{"name":"看视频60个","eventid":154,"coin":588,"money":0,"extra":""}      
-    ],
-    "tag":[{"id":0,"name":"帮助","ui":{"type":2,"orientation":1,"size":2,"reverselayout":false},"state":1,"icon":"","level":0,"source":2,"desc":"app内脚本的使用教程","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json","img":""},
-        {"id":1,"name":"记录","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":1,"icon":"","level":0,"source":4,"desc":"工具使用记录","url":"","img":""},
-        {"id":2,"name":"VIP","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"},
-        {"id":3,"name":"视频","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"视频自动滑动","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新视频.json"},
-        {"id":4,"name":"推荐","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"推荐使用的脚本","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新推荐.json"},
-        {"id":5,"name":"快捷方式","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"设置快捷方式","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新快捷方式.json"},
-        {"id":6,"name":"阅读","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"网友共享的阅读App工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json"},
-        {"id":7,"name":"工具","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"小工具","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新工具.json"},
-        {"id":8,"name":"签到","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"App签到 自动每天定时签到","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新签到.json"},
-        {"id":9,"name":"二维码","ui":{"type":1,"orientation":1,"size":3,"reverselayout":false},"state":0,"icon":"","level":0,"source":2,"desc":"二维码搜索，二维码生成，二维码解析，二维码连续输入","img":"","url":"https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"}
-    ],
-    "advice":{
-        "jgchaping":60,
-        "jgbanner":30,
-        "jgnative":3,
-        "sign":"",
-        "ratio":"tt-10",
-        "ratiosplash":"tt-10",
-        "ratiobanner":"tt-10",
-        "ratiochaping":"tt-10",
-        "rationative":"tt-10",
-        "ratiorewardvideo":"tt-10",
-        "ratiofullvideo":"tt-10",
-        "gdt":{
-        "open":false,
-        "appid":"1107959332",
-        "splash":"5030244961701296",
-        "banner":"7070855994085631",
-        "fullvideo":"4041909737582259",
-        "chaping":"4091204717889208",
-        "nativestxw":"6071504797889311" ,
-        "nativeswxt":"8051701747989322",
-        "nativeztyw":"5021308727386323",
-        "nativezwyt":"9011709737683364",
-        "nativestsw":"2001704747580355",
-        "nativect1280720":"9031106777388346",
-        "nativect8001200":"1051600777481357",
-        "nativesxt":"4031807737489368",
-        "nativewswxt":"4041908737881490",
-        "nativewstxw":"6021606767183379",
-        "nativewdt":"9081801737884421",
-        "nativect10801920":"1091106727584422",
-        "rewardvideo":"1081105757283360"
+    "actionbuttons": {
+        "ui": {
+            "type": 1,
+            "orientation": 0,
+            "size": 8,
+            "reverselayout": false
         },
-        "toutiao":{
-        "open":true,
-        "appid":"5058937",
-        "nativeid":"945124236",
-        "banner600300":"945124237",
-        "banner600400":"945124238",
-        "banner600500":"945124239",
-        "banner600260":"945124241",
-        "banner60090":"945124243",
-        "banner600150":"945124244",
-        "banner640100":"945124245",
-        "banner690388":"945124246",
-        "chaping11":"945124247",
-        "chaping23":"945124249" ,
-        "chaping32":"945124250",
-        "fullvideov":"945124251",
-        "fullvideoh":"945124252",
-        "splash":"887313924",
-        "rewardvideov":"945124253",
-        "rewardvideoh":"945124254" ,
-        "drawvideo":"945124255",
-        "nativevideo":"945124256"
+        "data": [
+            {
+                "name": "配置",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_script_pref",
+                "icontint": "#ffffff",
+                "back": "",
+                "event": 35,
+                "uipath": "",
+                "script": ""
+            },
+            {
+                "name": "扫描",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_scan_black_24dp",
+                "icontint": "#ffffff",
+                "back": "",
+                "event": -1,
+                "uipath": "",
+                "script": "scriptname:userguide"
+            },
+            {
+                "name": "添加",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_add_circle_outline_black_48dp",
+                "icontint": "#ffffff",
+                "back": "",
+                "event": -1,
+                "uipath": "/script/settings",
+                "script": "scriptname:settingdescription"
+            },
+            {
+                "name": "动作录制",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_record",
+                "icontint": "#ffffff",
+                "back": "#0000ff",
+                "event": -1,
+                "uipath": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
+            },
+            {
+                "name": "点击小手",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_click_blue_48dp",
+                "icontint": "#ff0000",
+                "back": "",
+                "event": -1,
+                "uipath": "/script/develop",
+                "script": ""
+            },
+            {
+                "name": "位置",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_room_black_48dp",
+                "icontint": "#ffffff",
+                "back": "",
+                "event": -1,
+                "uipath": "/script/videoedit",
+                "script": ""
+            },
+            {
+                "name": "微信联系",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_add_wechat_48dp",
+                "icontint": "#00ff00",
+                "back": "",
+                "event": -1,
+                "uipath": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
+            },
+            {
+                "name": "配置",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_circular_menu_settings",
+                "icontint": "",
+                "back": "",
+                "event": -1,
+                "uipath": "",
+                "script": ""
+            }
+        ]
+    },
+    "shortcuts": [
+        {
+            "order": 0,
+            "id": "扫描",
+            "open": true,
+            "level": 0,
+            "shortlabel": "扫描",
+            "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
+            "icon": "@drawable/ic_scan_black_24dp",
+            "uipath": "/common/scan",
+            "script": ""
         },
-        "adview":
-        {   "open":false,
-            "appid":"",
-             "splash":"",
-            "banner":"",
-            "chaping":"",
-            "native":"",
-            "video":"",
-            "hudong":"" 
+        {
+            "order": 1,
+            "id": "动作录制",
+            "open": true,
+            "level": 0,
+            "shortlabel": "录制",
+            "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
+            "icon": "@drawable/ic_record",
+            "uipath": "",
+            "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
         },
-        "mintegral":{
-            "open":false,
-            "appid":"129079",
-            "appkey":"d62bd37b8de85bf80b176dc68fcbf05f",
-            "splash":"306662",
-            "splashplace":"222065",
-            "banner":"255846",
-            "bannerplace":"200750",
-            "chaping":"255836",
-            "chapingplace":"200742",
-            "native":"283676",
-            "nativeplace":"212406",
-            "rewardvideo":"255842",
-            "rewardvideoplace":"200747",
-            "appwall":"342305",
-            "appwallplace":"237196"
-        }, 
-        "baidu":{
-            "open":false,
-            "appid":"aaca1dd1",
-            "splash":"7195617",
-            "banner203":"7195616",
-            "banner32":"7195619",
-            "banner73":"7195620",
-            "banner21":"7195621",
-            "chaping":"7195618",
-            "fullchaping":"7195622",
-            "prevideo":"7195623",
-            "rewardvideo":"7195624",
-            "rewardvideo2":"7195625",
-            "cpuurl":"https://cpu.baidu.com/1022/aaca1dd1/i?pu=1&promotion_media_channel=67442",
-            "cpuallurl":"https://cpu.baidu.com/1032/d70695f9?scid=67396"
+        {
+            "order": 2,
+            "id": "点击小手",
+            "open": true,
+            "level": 0,
+            "shortlabel": "点击",
+            "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
+            "icon": "@drawable/ic_click_blue_48dp",
+            "uipath": "",
+            "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/点击小手.js"
+        },
+        {
+            "order": 3,
+            "id": "工具库",
+            "open": true,
+            "level": 0,
+            "shortlabel": "工具库",
+            "longlabel": "打开工具库",
+            "icon": "@drawable/ic_scan_black_24dp",
+            "uipath": "/script/develop",
+            "script": ""
+        }
+    ],
+    "pages": [
+        {
+            "name": "用户主页",
+            "url": "/script/usermain"
+        },
+        {
+            "name": "开发者页面",
+            "url": "/script/develop"
+        },
+        {
+            "name": "视频编辑",
+            "url": "/script/videoedit"
+        }
+    ],
+    "keys": [
+        {
+            "name": "inviteword",
+            "value": "赚钱停不下来,快来下载【{appname}】填我邀请码",
+            "summary": "邀请码识别格式"
+        },
+        {
+            "name": "usermainfragment",
+            "value": "首页-本地脚本-工具-任务管理-我",
+            "summary": "说明"
+        },
+        {
+            "name": "developfragment",
+            "value": "本地脚本-教程-任务-管理-市场",
+            "summary": "说明"
+        },
+        {
+            "name": "qqproducturl",
+            "value": "https://support.qq.com/products/179319",
+            "summary": "说明"
+        },
+        {
+            "name": "company",
+            "value": "https://support.qq.com/products/179319",
+            "summary": "说明"
+        },
+        {
+            "name": "showcharge",
+            "value": "false",
+            "summary": "说明"
+        },
+        {
+            "name": "qq",
+            "value": "3450559631",
+            "summary": "说明"
+        },
+        {
+            "name": "email",
+            "value": "zhangshuhong888@gmail.com",
+            "summary": "说明"
+        },
+        {
+            "name": "github",
+            "value": "https://github.com/zhangshu345",
+            "summary": "说明"
+        },
+        {
+            "name": "repositories",
+            "value": "https://github.com/zhangshu345/autotools",
+            "summary": "说明"
+        },
+        {
+            "name": "developer",
+            "value": "红薯",
+            "summary": "说明"
+        }
+    ],
+    "baseurl": "http://zhangshuhong888.iask.in:1337/",
+    "rewardconfigurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
+    "runurl": "https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
+    "shareword": "赚钱停不下来,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
+    "userloginpath": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
+    "rewardcoinscript": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
+    "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_200.apk",
+    "scripts": [
+        {
+            "name": "clickpoint",
+            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
+        },
+        {
+            "name": "userguide",
+            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
+        },
+        {
+            "name": "settingdescription",
+            "path": "设置描述的脚本"
+        },
+        {
+            "name": "developrecord",
+            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
+        },
+        {
+            "name": "lineme",
+            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
+        }
+    ],
+    "privacy": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/privacy.md",
+    "permission": "访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
+    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
+    "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
+    "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
+    "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/apphistory.json",
+    "activity": [
+        {
+            "id": 100,
+            "title": "支付宝红包",
+            "summary": "每日领取支付宝红包，支付时抵现金",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 204,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此领取",
+            "nofinishname": "点此领取",
+            "icon": "@drawable/ic_alipay_reward_48dp",
+            "rewardtype": 1,
+            "key": "key_action_reward_alipayreward",
+            "script": ""
+        },
+        {
+            "id": 200,
+            "title": "新用户登录",
+            "summary": "新用户首次使用赠送10000金币，新用户登录七天内可以获取改奖励，超过七天将无法领取",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": false,
+            "coin": 10000,
+            "money": 0,
+            "event": 7,
+            "time": 0,
+            "interval": 0,
+            "finishname": "领取奖励",
+            "nofinishname": "领取奖励",
+            "icon": "",
+            "rewardtype": 0,
+            "key": "key_action_first_login",
+            "script": ""
+        },
+        {
+            "id": 300,
+            "title": "填写邀请人",
+            "summary": "新用户填写邀请人邀请码，新用户登录七天内可以填写，超过七天未填写该奖励将失效",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": false,
+            "coin": 10000,
+            "money": 0,
+            "event": 25,
+            "time": 0,
+            "interval": 0,
+            "finishname": "已领取",
+            "nofinishname": "填写邀请码",
+            "icon": "",
+            "rewardtype": 0,
+            "key": "key_action_set_parent",
+            "script": ""
+        },
+        {
+            "id": 400,
+            "title": "每日签到",
+            "summary": "每日签到，连续签到更有大礼",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 7,
+            "time": 1,
+            "interval": 0,
+            "finishname": "领取奖励",
+            "nofinishname": "每日签到",
+            "icon": "",
+            "rewardtype": 1,
+            "key": "key_action_day_sign",
+            "script": ""
+        },
+        {
+            "id": 500,
+            "title": "看福利视频",
+            "summary": "每日看福利视频，既有机会获取100金币，每日奖励20次",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": false,
+            "coin": 100,
+            "money": 0,
+            "event": 125,
+            "time": 20,
+            "interval": 150,
+            "finishname": "福利视频",
+            "nofinishname": "福利视频",
+            "icon": "@drawable/ic_video_48dp",
+            "rewardtype": 1,
+            "key": "key_action_full_advice_video",
+            "script": ""
+        },
+        {
+            "id": 600,
+            "title": "刷小视频",
+            "summary": "每日看小视频，既有机会获取10000金币",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 222,
+            "time": 20,
+            "interval": 150,
+            "finishname": "看小视频",
+            "nofinishname": "看小视频",
+            "icon": "@drawable/ic_video_48dp",
+            "rewardtype": 1,
+            "key": "key_action_small_video",
+            "script": ""
+        },
+        {
+            "id": 700,
+            "title": "看资讯",
+            "summary": "每日看资讯，既有机会获取10000金币",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 223,
+            "time": 20,
+            "interval": 150,
+            "finishname": "看资讯",
+            "nofinishname": "阅读资讯",
+            "icon": "@drawable/ic_news_48dp",
+            "rewardtype": 1,
+            "key": "key_action_small_video",
+            "script": ""
+        },
+        {
+            "id": 900,
+            "title": "幸运转盘抽奖",
+            "summary": "每日转盘抽奖，轻轻松松中大奖",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": false,
+            "coin": 100,
+            "money": 0,
+            "event": 202,
+            "time": 100,
+            "interval": 600,
+            "finishname": "领取奖励",
+            "nofinishname": "每日抽奖",
+            "icon": "@drawable/ic_luckpan_48dp",
+            "rewardtype": 1,
+            "key": "key_action_reward_luck",
+            "script": ""
+        },
+        {
+            "id": 990,
+            "title": "功能建议",
+            "summary": "功能和界面建议",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此提交",
+            "nofinishname": "点此提交",
+            "icon": "@drawable/ic_suggest_48dp",
+            "rewardtype": 1,
+            "key": "key_action_suggestion",
+            "script": ""
+        },
+        {
+            "id": 990,
+            "title": "问题反馈",
+            "summary": "点此反馈问题",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此反馈",
+            "nofinishname": "点此反馈",
+            "icon": "@drawable/ic_faceback_48dp",
+            "rewardtype": 1,
+            "key": "key_action_fackback",
+            "script": ""
+        },
+        {
+            "id": 990,
+            "title": "互动交流",
+            "summary": "点此进入：QQ交流群",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此进群",
+            "nofinishname": "点此进群",
+            "icon": "@drawable/ic_qq_group_48dp",
+            "rewardtype": 1,
+            "key": "key_action_reward_share",
+            "script": ""
+        },
+        {
+            "id": 1000,
+            "title": "快手号",
+            "summary": "关注快手号，获取最新文字教程和视频教程",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此关注",
+            "nofinishname": "点此关注",
+            "icon": "@drawable/ic_kuaishou_48dp",
+            "rewardtype": 1,
+            "key": "key_action_reward_share",
+            "script": ""
+        },
+        {
+            "id": 1100,
+            "title": "抖音号",
+            "summary": "关注抖音号，获取最新文字教程和视频教程",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此关注",
+            "nofinishname": "点此关注",
+            "icon": "@drawable/ic_douyin_48dp",
+            "rewardtype": 1,
+            "key": "key_action_order_kuaishou",
+            "script": ""
+        },
+        {
+            "id": 1200,
+            "title": "微信公众号",
+            "summary": "关注微信公众号,获取最新文字教程和视频教程",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此关注",
+            "nofinishname": "点此关注",
+            "icon": "@drawable/ic_weixin_ordergroup_48dp",
+            "rewardtype": 1,
+            "key": "key_action_order_douyin",
+            "script": ""
+        },
+        {
+            "id": 1300,
+            "title": "软件分享",
+            "summary": "觉得软件还不错,将软件分享给身边的朋友",
+            "titlecolor": "",
+            "summarycolor": "#ffffff",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此分享",
+            "nofinishname": "点此分享",
+            "icon": "@drawable/ic_share_48dp",
+            "rewardtype": 1,
+            "key": "key_action_reward_share",
+            "script": ""
+        },
+        {
+            "id": 1400,
+            "title": "服务协议",
+            "summary": "请在使用本软件前认真阅读服务协议",
+            "titlecolor": "",
+            "summarycolor": "#ff0000",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此阅读",
+            "nofinishname": "点此阅读",
+            "icon": "@drawable/ic_server_agreement_48dp",
+            "rewardtype": 1,
+            "key": "key_action_read_server_agreement",
+            "script": ""
+        },
+        {
+            "id": 1500,
+            "title": "隐私政策",
+            "summary": "请在使用本软件前认真阅读隐私政策",
+            "titlecolor": "",
+            "summarycolor": "#ff0000",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此阅读",
+            "nofinishname": "点此阅读",
+            "icon": "@drawable/ic_privacy_agreement_48dp",
+            "rewardtype": 1,
+            "key": "key_action_read_privacy_agreement",
+            "script": ""
+        },
+        {
+            "id": 1600,
+            "title": "加盟赚钱",
+            "summary": "更多盈利模式等你开启",
+            "titlecolor": "",
+            "summarycolor": "",
+            "level": 0,
+            "open": true,
+            "coin": 100,
+            "money": 0,
+            "event": 203,
+            "time": 5,
+            "interval": 1800,
+            "finishname": "点此联系",
+            "nofinishname": "点此联系",
+            "icon": "",
+            "rewardtype": 1,
+            "key": "key_action_joinus",
+            "script": ""
+        }
+    ],
+    "level": [
+        {
+            "level": 0,
+            "nickname": "0级",
+            "maxmoney": 5.0,
+            "daymoney": 0.5,
+            "separate": 0.2,
+            "tax": 17,
+            "coin": 100,
+            "money": 0,
+            "experience": 100000,
+            "son1": 3,
+            "son2": 10,
+            "son3": 20
+        },
+        {
+            "level": 1,
+            "nickname": "一级",
+            "maxmoney": 10.0,
+            "daymoney": 1.2,
+            "separate": 0.22,
+            "tax": 15,
+            "coin": 1000,
+            "money": 100,
+            "experience": 100000,
+            "son1": 5,
+            "son2": 20,
+            "son3": 300
+        },
+        {
+            "level": 2,
+            "nickname": "二级",
+            "maxmoney": 15.0,
+            "daymoney": 1.9,
+            "separate": 0.25,
+            "tax": 15,
+            "coin": 10000,
+            "money": 300,
+            "experience": 100000,
+            "son1": 10,
+            "son2": 70,
+            "son3": 1500
+        },
+        {
+            "level": 3,
+            "nickname": "三级",
+            "maxmoney": 20.0,
+            "daymoney": 2.5,
+            "separate": 0.28,
+            "tax": 13,
+            "coin": 100000,
+            "money": 500,
+            "experience": 100000,
+            "son1": 20,
+            "son2": 100,
+            "son3": 3000
+        },
+        {
+            "level": 4,
+            "nickname": "四级",
+            "maxmoney": 35.0,
+            "daymoney": 4,
+            "separate": 0.30,
+            "tax": 13,
+            "coin": 1000000,
+            "money": 800,
+            "experience": 100000,
+            "son1": 50,
+            "son2": 300,
+            "son3": 10000
+        },
+        {
+            "level": 5,
+            "nickname": "五级",
+            "maxmoney": 40.0,
+            "daymoney": 5,
+            "separate": 0.32,
+            "tax": 12,
+            "coin": 1000000,
+            "money": 1000,
+            "experience": 100000,
+            "son1": 70,
+            "son2": 500,
+            "son3": 15000
+        },
+        {
+            "level": 6,
+            "nickname": "六级",
+            "maxmoney": 45.0,
+            "daymoney": 8,
+            "separate": 0.33,
+            "tax": 12,
+            "coin": 10000000,
+            "money": 2000,
+            "experience": 100000,
+            "son1": 100,
+            "son2": 1000,
+            "son3": 15000
+        },
+        {
+            "level": 7,
+            "nickname": "七级",
+            "maxmoney": 50.0,
+            "daymoney": 7,
+            "separate": 0.34,
+            "tax": 11,
+            "coin": 10000000,
+            "money": 3000,
+            "experience": 100000,
+            "son1": 150,
+            "son2": 2000,
+            "son3": 30000
+        },
+        {
+            "level": 8,
+            "nickname": "八级",
+            "maxmoney": 55.0,
+            "daymoney": 8,
+            "separate": 0.35,
+            "tax": 10,
+            "coin": 10000000,
+            "money": 5000,
+            "experience": 100000,
+            "son1": 300,
+            "son2": 5000,
+            "son3": 33000
+        },
+        {
+            "level": 9,
+            "nickname": "九级",
+            "maxmoney": 60.0,
+            "daymoney": 9,
+            "separate": 0.36,
+            "tax": 10,
+            "coin": 10000000,
+            "money": 10000,
+            "experience": 100000,
+            "son1": 500,
+            "son2": 10000,
+            "son3": 50000
+        },
+        {
+            "level": 10,
+            "nickname": "10级",
+            "maxmoney": 70.0,
+            "daymoney": 10,
+            "separate": 0.38,
+            "tax": 10,
+            "coin": 100000000,
+            "money": 20000,
+            "experience": 100000,
+            "son1": 1000,
+            "son2": 20000,
+            "son3": 50000
+        },
+        {
+            "level": 11,
+            "nickname": "11级",
+            "maxmoney": 80.0,
+            "daymoney": 11,
+            "separate": 0.5,
+            "tax": 10,
+            "coin": 100000000,
+            "money": 50000,
+            "experience": 100000,
+            "son1": 2000,
+            "son2": 35000,
+            "son3": 100000
+        },
+        {
+            "level": 12,
+            "nickname": "12级",
+            "maxmoney": 888.0,
+            "daymoney": 30,
+            "separate": 0.7,
+            "tax": 20,
+            "coin": 100000000,
+            "money": 100000,
+            "experience": 100000,
+            "son1": 5000,
+            "son2": 500000,
+            "son3": 500000
+        }
+    ],
+    "rewardevent": [
+        {
+            "name": "横幅展示",
+            "eventid": 5,
+            "coin": 10,
+            "money": 0,
+            "extra": "",
+            "requestcoin": 1000
+        },
+        {
+            "name": "横幅点击",
+            "eventid": 4,
+            "coin": 50,
+            "money": 0,
+            "extra": "",
+            "requestcoin": 1000
+        },
+        {
+            "name": "开屏展示",
+            "eventid": 1,
+            "coin": 30,
+            "money": 0,
+            "extra": "",
+            "requestcoin": 1000
+        },
+        {
+            "name": "开屏点击",
+            "eventid": 2,
+            "coin": 100,
+            "money": 0,
+            "extra": "",
+            "requestcoin": 1000
+        },
+        {
+            "name": "插屏展示",
+            "eventid": 5,
+            "coin": 10,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "插屏点击",
+            "eventid": 6,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "原生展示",
+            "eventid": 7,
+            "coin": 10,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "原生点击",
+            "eventid": 8,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "激励展示",
+            "eventid": 9,
+            "coin": 20,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "激励点击",
+            "eventid": 10,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "激励奖励",
+            "eventid": 12,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "视频开始播放",
+            "eventid": 15,
+            "coin": 10,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "视频播放完成",
+            "eventid": 16,
+            "coin": 30,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "视频点击",
+            "eventid": 17,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "每日签到",
+            "eventid": 51,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "每日分享",
+            "eventid": 52,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "每日邀请",
+            "eventid": 53,
+            "coin": 1000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "每日邀请",
+            "eventid": 53,
+            "coin": 1000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级1级",
+            "eventid": 101,
+            "coin": 1000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级2级",
+            "eventid": 102,
+            "coin": 10000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级3级",
+            "eventid": 103,
+            "coin": 30000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级4级",
+            "eventid": 104,
+            "coin": 100000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级5级",
+            "eventid": 105,
+            "coin": 388888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级6级",
+            "eventid": 106,
+            "coin": 888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级7级",
+            "eventid": 107,
+            "coin": 2888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级8级",
+            "eventid": 108,
+            "coin": 5888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级9级",
+            "eventid": 109,
+            "coin": 10888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级10级",
+            "eventid": 110,
+            "coin": 28888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级11级",
+            "eventid": 111,
+            "coin": 58888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "升级12级",
+            "eventid": 112,
+            "coin": 88888888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数100步",
+            "eventid": 121,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数1000步",
+            "eventid": 122,
+            "coin": 288,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数3000步",
+            "eventid": 123,
+            "coin": 588,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数10000步",
+            "eventid": 124,
+            "coin": 666,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数20000步",
+            "eventid": 125,
+            "coin": 888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数30000步",
+            "eventid": 126,
+            "coin": 888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数50000步",
+            "eventid": 127,
+            "coin": 1688,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "步数100000步",
+            "eventid": 128,
+            "coin": 2888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水1杯",
+            "eventid": 131,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水2杯",
+            "eventid": 132,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水3杯",
+            "eventid": 133,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水4杯",
+            "eventid": 134,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水5杯",
+            "eventid": 135,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水6杯",
+            "eventid": 136,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水7杯",
+            "eventid": 137,
+            "coin": 150,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "喝水8杯",
+            "eventid": 138,
+            "coin": 1000,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻1分钟",
+            "eventid": 141,
+            "coin": 30,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻3分钟",
+            "eventid": 142,
+            "coin": 60,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻5分钟",
+            "eventid": 143,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻10分钟",
+            "eventid": 144,
+            "coin": 200,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻20分钟",
+            "eventid": 145,
+            "coin": 200,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻30分钟",
+            "eventid": 146,
+            "coin": 588,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看新闻60分钟",
+            "eventid": 147,
+            "coin": 888,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频每个",
+            "eventid": 151,
+            "coin": 50,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频1个",
+            "eventid": 152,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频5个",
+            "eventid": 153,
+            "coin": 100,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频10个",
+            "eventid": 154,
+            "coin": 188,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频20个",
+            "eventid": 155,
+            "coin": 288,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频30个",
+            "eventid": 156,
+            "coin": 388,
+            "money": 0,
+            "extra": ""
+        },
+        {
+            "name": "看视频60个",
+            "eventid": 154,
+            "coin": 588,
+            "money": 0,
+            "extra": ""
+        }
+    ],
+    "tag": [
+        {
+            "id": 0,
+            "name": "帮助",
+            "ui": {
+                "type": 2,
+                "orientation": 1,
+                "size": 2,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "app内脚本的使用教程",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json",
+            "img": ""
+        },
+        {
+            "id": 1,
+            "name": "记录",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 0,
+            "source": 4,
+            "desc": "工具使用记录",
+            "url": "",
+            "img": ""
+        },
+        {
+            "id": 2,
+            "name": "VIP",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "推荐使用的脚本",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"
+        },
+        {
+            "id": 3,
+            "name": "视频",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "视频自动滑动",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新视频.json"
+        },
+        {
+            "id": 4,
+            "name": "推荐",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "推荐使用的脚本",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新推荐.json"
+        },
+        {
+            "id": 5,
+            "name": "快捷方式",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "设置快捷方式",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新快捷方式.json"
+        },
+        {
+            "id": 6,
+            "name": "阅读",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "网友共享的阅读App工具",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json"
+        },
+        {
+            "id": 7,
+            "name": "工具",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "小工具",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新工具.json"
+        },
+        {
+            "id": 8,
+            "name": "签到",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "App签到 自动每天定时签到",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新签到.json"
+        },
+        {
+            "id": 9,
+            "name": "二维码",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "二维码搜索，二维码生成，二维码解析，二维码连续输入",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
+        }
+    ],
+    "advice": {
+        "jgchaping": 60,
+        "jgbanner": 30,
+        "jgnative": 3,
+        "sign": "",
+        "ratio": "tt-10",
+        "ratiosplash": "tt-10",
+        "ratiobanner": "tt-10",
+        "ratiochaping": "tt-10",
+        "rationative": "tt-10",
+        "ratiorewardvideo": "tt-10",
+        "ratiofullvideo": "tt-10",
+        "gdt": {
+            "open": false,
+            "appid": "1107959332",
+            "splash": "5030244961701296",
+            "banner": "7070855994085631",
+            "fullvideo": "4041909737582259",
+            "chaping": "4091204717889208",
+            "nativestxw": "6071504797889311",
+            "nativeswxt": "8051701747989322",
+            "nativeztyw": "5021308727386323",
+            "nativezwyt": "9011709737683364",
+            "nativestsw": "2001704747580355",
+            "nativect1280720": "9031106777388346",
+            "nativect8001200": "1051600777481357",
+            "nativesxt": "4031807737489368",
+            "nativewswxt": "4041908737881490",
+            "nativewstxw": "6021606767183379",
+            "nativewdt": "9081801737884421",
+            "nativect10801920": "1091106727584422",
+            "rewardvideo": "1081105757283360"
+        },
+        "toutiao": {
+            "open": true,
+            "appid": "5058937",
+            "nativeid": "945124236",
+            "banner600300": "945124237",
+            "banner600400": "945124238",
+            "banner600500": "945124239",
+            "banner600260": "945124241",
+            "banner60090": "945124243",
+            "banner600150": "945124244",
+            "banner640100": "945124245",
+            "banner690388": "945124246",
+            "chaping11": "945124247",
+            "chaping23": "945124249",
+            "chaping32": "945124250",
+            "fullvideov": "945124251",
+            "fullvideoh": "945124252",
+            "splash": "887313924",
+            "rewardvideov": "945124253",
+            "rewardvideoh": "945124254",
+            "drawvideo": "945124255",
+            "nativevideo": "945124256"
+        },
+        "adview": {
+            "open": false,
+            "appid": "",
+            "splash": "",
+            "banner": "",
+            "chaping": "",
+            "native": "",
+            "video": "",
+            "hudong": ""
+        },
+        "mintegral": {
+            "open": false,
+            "appid": "129079",
+            "appkey": "d62bd37b8de85bf80b176dc68fcbf05f",
+            "splash": "306662",
+            "splashplace": "222065",
+            "banner": "255846",
+            "bannerplace": "200750",
+            "chaping": "255836",
+            "chapingplace": "200742",
+            "native": "283676",
+            "nativeplace": "212406",
+            "rewardvideo": "255842",
+            "rewardvideoplace": "200747",
+            "appwall": "342305",
+            "appwallplace": "237196"
+        },
+        "baidu": {
+            "open": false,
+            "appid": "aaca1dd1",
+            "splash": "7195617",
+            "banner203": "7195616",
+            "banner32": "7195619",
+            "banner73": "7195620",
+            "banner21": "7195621",
+            "chaping": "7195618",
+            "fullchaping": "7195622",
+            "prevideo": "7195623",
+            "rewardvideo": "7195624",
+            "rewardvideo2": "7195625",
+            "cpuurl": "https://cpu.baidu.com/1022/aaca1dd1/i?pu=1&promotion_media_channel=67442",
+            "cpuallurl": "https://cpu.baidu.com/1032/d70695f9?scid=67396"
         }
     },
-
-    "moneycoin":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
-    "uiconfig":{"login":"登录页",
-        "register":"注册页",
-        "help":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/随便粘_help200.json",
-        "welcome":"欢迎页",
-        "splash":"https://gitee.com/zhangshu345012/sample/raw/v2/config/common/ui/splash/随便粘_splash_200.json",
-        "guide":"引导页",
-        "main":"主页",
-        "privacy":"隐私协议页",
-        "userservice":"用户服务页",
-        "settings":"设置页",
-        "invite":"邀请页",
-        "task":"任务页",
-        "userinfo":"用户信息页",
-        "coin":"金币信息页",
-        "charge":"商品购买页",
-        "exchange":"交换页",
-        "cash":"提现页",
-        "content":"内容页"
+    "moneycoin": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
+    "uiconfig": {
+        "login": "登录页",
+        "register": "注册页",
+        "help": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/随便粘_help200.json",
+        "welcome": "欢迎页",
+        "splash": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/ui/splash/随便粘_splash_200.json",
+        "guide": "引导页",
+        "main": "主页",
+        "privacy": "隐私协议页",
+        "userservice": "用户服务页",
+        "settings": "设置页",
+        "invite": "邀请页",
+        "task": "任务页",
+        "userinfo": "用户信息页",
+        "coin": "金币信息页",
+        "charge": "商品购买页",
+        "exchange": "交换页",
+        "cash": "提现页",
+        "content": "内容页"
     },
-      "splash":{"title":"随便粘 随便赚","logo":"","background":"","welcomeword":"赚钱如此简单","showlogo":true,"runscript":false,"showsplashad":true,"waittime":3,"permission":["STORAGE"],
-        "img":"http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
-        "nextactivityurl":"/script/usermain","runningscript":"",
-        "nextscript":"https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js",
-        "desc":"随便粘200的开屏页配置"},
-        "scriptconfig":"运行脚本的配置"
+    "splash": {
+        "title": "随便粘 随便赚",
+        "logo": "",
+        "background": "",
+        "welcomeword": "赚钱如此简单",
+        "showlogo": true,
+        "runscript": false,
+        "showsplashad": true,
+        "waittime": 3,
+        "permission": [
+            "STORAGE"
+        ],
+        "img": "http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
+        "nextactivityurl": "/script/usermain",
+        "runningscript": "",
+        "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js",
+        "desc": "随便粘200的开屏页配置"
+    },
+    "scriptconfig": "运行脚本的配置"
 }
