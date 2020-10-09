@@ -192,8 +192,9 @@ function saveScriptRecord(){
 //    });
 }
 
+events.on("exit", function(){
+    saveScriptRecord()
+});
+
 startrecord()
 
-events.on("exit", function(){
-   saveScriptRecord()
-});

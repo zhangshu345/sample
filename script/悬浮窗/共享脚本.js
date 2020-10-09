@@ -1,5 +1,5 @@
 var w = floaty.rawWindow(
-    <com.hongshu.autotools.core.widget.ScriptMarketView w="*" h="*" gravity="center" bg="#44ffcc00"/>
+    <com.hongshu.autotools.core.widget.ScriptMarketView w="*" h="*" gravity="center" bg="#FFFFFF"/>
 );
 
 w.setSize(-1, -1);
