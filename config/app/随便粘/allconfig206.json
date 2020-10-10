@@ -274,7 +274,7 @@
         {"id":16,"name":"用户我","title":"我","icon":"","icontint":"","type":0,"script":""},
         {"id":17,"name":"教程","title":"教程","icon":"","icontint":"","type":0,"script":""},
         {"id":18,"name":"帮助","title":"帮助","icon":"","icontint":"","type":0,"script":""},
-        {"id":19,"name":"测试脚本1","title":"帮助","icon":"","icontint":"","type":1,"script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"}
+        {"id":19,"name":"fragment脚本","title":"帮助","icon":"","icontint":"","type":1,"script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"}
     ],
     "keys": [
         {
@@ -289,7 +289,7 @@
         },
         {
             "name": "usermainfragment",
-            "value": "首页-本地脚本-工具箱-任务管理-我",
+            "value": "fragment脚本-本地脚本-工具箱-任务管理-我",
             "summary": "说明"
         },
         {

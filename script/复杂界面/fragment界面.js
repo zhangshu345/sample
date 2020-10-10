@@ -1,4 +1,4 @@
-"fragment";
+"fragment"
 fragment.layout(
     <vertical>
     <button id="bt1" text="第一个按钮"/>
