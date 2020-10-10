@@ -240,6 +240,7 @@
             "script": ""
         }
     ],
+    
     "pages": [
         {
             "name": "用户主页",
@@ -254,6 +255,27 @@
             "url": "/script/videoedit"
         }
     ],
+    "fragment":[{"id":0,"name":"首页","title":"首页","icon":"","icontint":"","type":0,"script":""},
+        {"id":1,"name":"任务管理","title":"任务管理","icon":"","icontint":"","type":0,"script":""},
+        {"id":2,"name":"管理","title":"任务管理","icon":"","icontint":"","type":0,"script":""},
+        {"id":3,"name":"任务","title":"任务","icon":"","icontint":"","type":0,"script":""},
+        {"id":4,"name":"本地脚本","title":"本地","icon":"","icontint":"","type":0,"script":""},
+        {"id":5,"name":"脚本文件","title":"脚本文件","icon":"","icontint":"","type":0,"script":""},
+        {"id":6,"name":"市场","title":"市场","icon":"","icontint":"","type":0,"script":""},
+        {"id":7,"name":"工具箱","title":"工具","icon":"","icontint":"","type":0,"script":""},
+        {"id":8,"name":"共享","title":"市场","icon":"","icontint":"","type":0,"script":""},
+        {"id":9,"name":"赚钱","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
+        {"id":10,"name":"赚钱首页","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
+        {"id":11,"name":"服务","title":"服务","icon":"","icontint":"","type":0,"script":""},
+        {"id":12,"name":"消息","title":"消息","icon":"","icontint":"","type":0,"script":""},
+        {"id":13,"name":"视频","title":"视频","icon":"","icontint":"","type":0,"script":""},
+        {"id":14,"name":"脚本我","title":"我","icon":"","icontint":"","type":0,"script":""},
+        {"id":15,"name":"我","title":"我","icon":"","icontint":"","type":0,"script":""},
+        {"id":16,"name":"用户我","title":"我","icon":"","icontint":"","type":0,"script":""},
+        {"id":17,"name":"教程","title":"教程","icon":"","icontint":"","type":0,"script":""},
+        {"id":18,"name":"帮助","title":"帮助","icon":"","icontint":"","type":0,"script":""},
+        {"id":19,"name":"测试脚本1","title":"帮助","icon":"","icontint":"","type":1,"script":""}
+    ],
     "keys": [
         {
             "name": "splashpermission",
@@ -267,7 +289,7 @@
         },
         {
             "name": "usermainfragment",
-            "value": "首页-本地脚本-工具-任务管理-我",
+            "value": "测试脚本1-本地脚本-工具-任务管理-我",
             "summary": "说明"
         },
         {
