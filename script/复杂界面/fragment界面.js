@@ -5,5 +5,7 @@ fragment.layout(
     <button id="bt2" text="第二个按钮"/>
 </vertical>
 )
-fragment.bt1.on("click",v => toastLog("你好"))
-fragment.bt2.on("click",v => toastLog("你好"))
+fragment.emitter.on("resume",()=>{
+    fragment.bt1.on("click",v => toastLog("你好"))
+    fragment.bt2.on("click",v => toastLog("你好"))
+})
