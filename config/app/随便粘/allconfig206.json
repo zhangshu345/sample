@@ -74,7 +74,7 @@
             },
             {
                 "name": "视频剪辑",
-                "open": true,
+                "open": false,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_videoedit",
                 "icontint": "#ffffff",
@@ -85,7 +85,7 @@
             },
             {
                 "name": "联系我们",
-                "open": false,
+                "open": true,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_aboutme",
                 "icontint": "#ff00ff",
@@ -289,7 +289,7 @@
         },
         {
             "name": "usermainfragment",
-            "value": "首页-本地脚本-工具箱-任务管理-我",
+            "value": "fragment脚本-本地脚本-工具箱-任务管理-我",
             "summary": "说明"
         },
         {
@@ -386,10 +386,6 @@
         {"id":140,"title":"桌面快捷键权限","summary":"作用：用于创建桌面快捷方式","pkey":"SHORTCUT","import":0,"titlecolor":"","summarycolor":""},
         {"id":150,"title":"位置权限","summary":"作用：访问获取位置信息，定位,导航，路径查询等需要地理位置信息的服务","pkey":"LOCATION","import":2,"titlecolor":"","summarycolor":""},
         {"id":160,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":170,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":180,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":190,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":200,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
         {"id":200,"title":"注：承诺以上所有权限均用于程序的运行需要，您可以根据自己实际使用需求开启或关闭部分敏感权限。如果您对所申请的权限有任何疑问，欢迎您百度android权限 和 APP 功能相关的联系","summary":"","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""}
     ],
     "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
