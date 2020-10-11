@@ -1,5 +1,4 @@
 "ui";
-
 showLoginUI();
 ui.statusBarColor("#000000")
 //显示登录界面
