@@ -1725,8 +1725,8 @@
         "background": "",
         "welcomeword": "赚钱如此简单",
         "showlogo": true,
-        "runscript": true,
-        "showsplashad": false,
+        "runscript": false,
+        "showsplashad": true,
         "waittime": 3,
         "permission": [
             "STORAGE"

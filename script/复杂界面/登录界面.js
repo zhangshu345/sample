@@ -7,7 +7,7 @@ function showLoginUI(){
       <frame>
         <vertical h="auto" align="center" margin="0 50">
           <linear>
-             <text w="56" gravity="center" color="#111111" size="16">用户名</text>
+             <text w="56" gravity="center" color="#111111" size="16" xxl__nihao="测试用户名">用户名</text>
              <input id="name" w="*" h="40"/>
           </linear>
           <linear>
