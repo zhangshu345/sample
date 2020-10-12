@@ -50,7 +50,7 @@ ui.emitter.on("options_item_selected", (e, item)=>{
             aroutergourl("\/script\/usermain") 
             break;
         case "关于":
-            alert("关于", "Auto.js界面模板 v1.0.0");
+            alert("关于", "AutoTool界面模板 v1.0.0");
             break;
     }
     e.consumed = true;
