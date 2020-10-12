@@ -1725,8 +1725,8 @@
         "background": "",
         "welcomeword": "赚钱如此简单",
         "showlogo": true,
-        "runscript": false,
-        "showsplashad": true,
+        "runscript": true,
+        "showsplashad": false,
         "waittime": 3,
         "permission": [
             "STORAGE"
@@ -1734,7 +1734,7 @@
         "img": "http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
-        "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/sample/复杂界面/用户调查.js",
+        "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/界面模板一.js",
         "desc": "随便粘200的开屏页配置"
     },
     "scriptconfig": "运行脚本的配置"
