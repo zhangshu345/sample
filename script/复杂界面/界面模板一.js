@@ -37,6 +37,7 @@ ui.layout(
 //创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
     menu.add("设置");
+    menu.add("主页");
     menu.add("关于");
 });
 //监听选项菜单点击
@@ -44,6 +45,9 @@ ui.emitter.on("options_item_selected", (e, item)=>{
     switch(item.getTitle()){
         case "设置":
             toast("还没有设置");
+            break;
+        case "主页":
+            aroutergourl("\/script\/usermain") 
             break;
         case "关于":
             alert("关于", "Auto.js界面模板 v1.0.0");
