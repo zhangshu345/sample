@@ -279,7 +279,11 @@
         {"id":22,"name":"任务悬浮","title":"管理","icon":"","icontint":"","type":0,"script":""},
         {"id":21,"name":"fragment脚本","title":"帮助","icon":"","icontint":"","type":1,"script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"}
     ],
-    "keys": [
+    "keys": [{
+        "name": "userid",
+        "value": "id:",
+        "summary": "用户id前缀"
+    },
         {
             "name": "splashpermission",
             "value": "访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
