@@ -1,0 +1,5960 @@
+[
+    {
+        "name": "globals",
+        "url": "globals.html",
+        "level": 0,
+        "type": 0,
+        "summary": "全局函数",
+        "properties": [
+            {
+                "key": "sleep",
+                "url": "globals.html#globals_sleep_n",
+                "summary": "暂停运行",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "sleep()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "currentPackage",
+                "url": "globals.html#globals_currentpackage",
+                "summary": "当前包名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "currentPackage()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "currentActivity",
+                "url": "globals.html#globals_currentactivity",
+                "summary": "当前活动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "currentActivity()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setClip",
+                "url": "globals.html#globals_setclip_text",
+                "summary": "设置剪贴板",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "setClip()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getClip",
+                "url": "globals.html#globals_getclip",
+                "summary": "获取剪贴板",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "getClip()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "toast",
+                "url": "globals.html#globals_toast_message",
+                "summary": "气泡提示",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "toast()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "toastLog",
+                "url": "globals.html#globals_toastlog_messagep",
+                "summary": "提示&打印",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "toastLog()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "waitForActivity",
+                "url": "globals.html#globals_waitforactivity_activity_period_200",
+                "summary": "等待活动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "waitForActivity()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "waitForPackage",
+                "url": "globals.html#globals_waitforpackage_package_period_200",
+                "summary": "等待包名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "waitForPackage()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "exit",
+                "url": "globals.html#globals_exit",
+                "summary": "退出",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "exit()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "random",
+                "url": "globals.html#globals_random_min_max",
+                "summary": "随机数",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "random()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "context",
+                "url": "globals.html#globals_context",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "context()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "app",
+        "url": "app.html",
+        "level": 0,
+        "type": 0,
+        "summary": "应用",
+        "properties": [
+            {
+                "key": "uninstall",
+                "url": "app.html#app_app_uninstall_packagename",
+                "summary": "卸载",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.uninstall()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "viewFile",
+                "url": "app.html#app_app_viewfile_path",
+                "summary": "查看文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.viewFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "editFile",
+                "url": "app.html#app_app_editfile_path",
+                "summary": "编辑文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.editFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "openUrl",
+                "url": "app.html#app_app_openurl_url",
+                "summary": "打开链接",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.openUrl()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "launchPackage",
+                "url": "app.html#app_app_launchpackage_packagename",
+                "summary": "启动包名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.launchPackage()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "launch",
+                "url": "app.html#app_app_launch_packagename",
+                "summary": "启动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "launch()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "launchApp",
+                "url": "app.html#app_app_launchapp_appname",
+                "summary": "启动应用",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "launchApp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getPackageName",
+                "url": "globals.html#globals_getpackagename_appname",
+                "summary": "获取包名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.getPackageName()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getAppName",
+                "url": "app.html#app_app_getappname_packagename",
+                "summary": "获取应用名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.getAppName()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "openAppSetting",
+                "url": "app.html#app_app_openappsetting_packagename",
+                "summary": "应用设置页",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.openAppSetting()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "sendEmail",
+                "url": "app.html#app_app_sendemail_options",
+                "summary": "发送邮件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.sendEmail()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "intent",
+                "url": "app.html#app_app_intent_options",
+                "summary": "意图",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.intent()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "startActivity",
+                "url": "app.html#app_app_startactivity_options",
+                "summary": "启动活动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.startActivity()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "sendBroadcast",
+                "url": "app.html#app_app_sendbroadcast_options",
+                "summary": "发送广播",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "app.sendBroadcast()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "automator",
+        "url": "widgets-based-automation.html",
+        "level": 0,
+        "type": 0,
+        "summary": "自动操作",
+        "properties": [
+            {
+                "key": "click",
+                "url": "widgets-based-automation.html#widgets_based_automation_click_text_i",
+                "summary": "点击",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "click()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "longClick",
+                "url": "widgets-based-automation.html#widgets_based_automation_longclick_text_i",
+                "summary": "长按",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "longClick()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "press",
+                "url": "",
+                "summary": "按住",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "press()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "swipe",
+                "url": "",
+                "summary": "滑动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "swipe()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "gesture",
+                "url": "",
+                "summary": "手势",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "gesture()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "gestures",
+                "url": "",
+                "summary": "异步手势",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "gestures()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "gestureAsync",
+                "url": "",
+                "summary": "多手势",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "gestureAsync()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "gesturesAsync",
+                "url": "",
+                "summary": "异步多手势",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "gesturesAsync()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "scrollDown",
+                "url": "widgets-based-automation.html#widgets_based_automation_scrollup_i",
+                "summary": "下滑",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "scrollDown()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "scrollUp",
+                "url": "widgets-based-automation.html#widgets_based_automation_scrollup_i",
+                "summary": "上滑",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "scrollUp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "input",
+                "url": "widgets-based-automation.html#widgets_based_automation_input_i_text",
+                "summary": "输入文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "input()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setText",
+                "url": "widgets-based-automation.html#widgets_based_automation_settext_i_text",
+                "summary": "设置文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "setText()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "console",
+        "url": "console.html",
+        "level": 0,
+        "type": 0,
+        "summary": "控制台",
+        "properties": [
+            {
+                "key": "show",
+                "url": "console.html#console_console_show",
+                "summary": "显示",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.show()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "hide",
+                "url": "console.html#console_console_hide",
+                "summary": "隐藏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.hide()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clear",
+                "url": "console.html#console_console_clear",
+                "summary": "清空",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.clear()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "verbose",
+                "url": "console.html#console_console_verbose_data_args",
+                "summary": "不重要日志",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.verbose()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "info",
+                "url": "console.html#console_console_info_data_args",
+                "summary": "打印信息",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.info()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "log",
+                "url": "console.html#console_console_log_data_args",
+                "summary": "打印日志",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "log()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "warn",
+                "url": "console.html#console_console_warn_data_args",
+                "summary": "打印警告",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.warn()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "error",
+                "url": "console.html#console_console_error_data_args",
+                "summary": "打印错误",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.error()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "assert",
+                "url": "console.html#console_console_assert_value_message",
+                "summary": "断言",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.assert()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "input",
+                "url": "console.html#console_console_input_data_args",
+                "summary": "输入",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.input()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "rawInput",
+                "url": "console.html#console_console_rawinput_data_args",
+                "summary": "输入字符串",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.rawInput()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setSize",
+                "url": "console.html#console_console_setsize_w_h",
+                "summary": "输入字符串",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.setSize()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setPosition",
+                "url": "console.html#console_console_setposition_x_y",
+                "summary": "设置位置",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "console.setPosition()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "dialogs",
+        "url": "dialogs.html",
+        "level": 0,
+        "type": 0,
+        "summary": "对话框",
+        "properties": [
+            {
+                "key": "select",
+                "url": "dialogs.html#dialogs_dialogs_select_title_items_callback",
+                "summary": "选择",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.select()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "singleChoice",
+                "url": "dialogs.html#dialogs_dialogs_singlechoice_title_items_index_callback",
+                "summary": "单选",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.singleChoice()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "multiChoice",
+                "url": "dialogs.html#dialogs_dialogs_multichoice_title_items_indices_callback",
+                "summary": "多选",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.multiChoice()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "rawInput",
+                "url": "dialogs.html#dialogs_dialogs_rawinput_title_prefill_callback",
+                "summary": "输入字符串",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.rawInput()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "input",
+                "url": "dialogs.html#dialogs_dialogs_input_title_prefill_callback",
+                "summary": "输入",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.input()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "alert",
+                "url": "dialogs.html#dialogs_dialogs_alert_title_content_callback",
+                "summary": "消息框",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.alert()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "confirm",
+                "url": "dialogs.html#dialogs_dialogs_confirm_title_content_callback",
+                "summary": "确认框",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.confirm()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "prompt",
+                "url": "dialogs.html#dialogs_dialogs_prompt_title_prefill_callback",
+                "summary": "输入字符串",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "dialogs.prompt()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "images",
+        "url": "images.html",
+        "level": 0,
+        "type": 0,
+        "summary": "图色",
+        "properties": [
+            {
+                "key": "save",
+                "url": "images.html#images_images_save_image_path",
+                "summary": "保存图片",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.save()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "pixel",
+                "url": "images.html#images_images_pixel_image_x_y",
+                "summary": "取色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.pixel()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "read",
+                "url": "images.html#images_images_read_path",
+                "summary": "读取图片",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.read()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "load",
+                "url": "images.html#images_images_load_url",
+                "summary": "加载图片",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.load()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clip",
+                "url": "images.html#images_images_clip_img_x_y_w_h",
+                "summary": "剪切图片",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.clip()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "requestScreenCapture",
+                "url": "images.html#images_images_requestscreencapture_landscape",
+                "summary": "请求截屏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "requestScreenCapture()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "captureScreen",
+                "url": "images.html#images_capturescreen",
+                "summary": "截屏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "captureScreen()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findColor",
+                "url": "images.html#images_images_findcolor_image_color_options",
+                "summary": "找色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findColor()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findColorInRegion",
+                "url": "images.html#images_images_findcolorinregion_img_color_x_y_width_height_threads_algorithm_threshold",
+                "summary": "区域找色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findColorInRegion()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findColorEquals",
+                "url": "images.html#images_images_findcolorequals_img_color_x_y_width_height_threads",
+                "summary": "精确找色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findColorEquals()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findMultiColors",
+                "url": "images.html#images_images_clip_img_x_y_w_h",
+                "summary": "多点找色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findMultiColors()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "detectsColor",
+                "url": "images.html#images_images_detectscolor_image_color_x_y_threshold_16_algorithm_diff",
+                "summary": "颜色检测",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "images.detectsColor()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findImage",
+                "url": "images.html#images_images_findimage_img_template_options",
+                "summary": "找图",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findImage()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "findImageInRegion",
+                "url": "images.html#images_images_findimageinregion_img_template_x_y_width_height_threshold",
+                "summary": "区域找图",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "findImageInRegion()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "colors",
+        "url": "colors.html",
+        "level": 0,
+        "type": 0,
+        "summary": "颜色",
+        "properties": [
+            {
+                "key": "red",
+                "url": "images.html#images_colors_red_color",
+                "summary": "R值",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.red()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "green",
+                "url": "images.html#images_colors_green_color",
+                "summary": "G值",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.green()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "blue",
+                "url": "images.html#images_colors_blue_color",
+                "summary": "B值",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.blue()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "alpha",
+                "url": "images.html#images_colors_alpha_color",
+                "summary": "透明度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.alpha()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "toString",
+                "url": "images.html#images_colors_tostring_color",
+                "summary": "颜色转字符串",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.toString()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "rgb",
+                "url": "images.html#images_colors_rgb_red_green_blue",
+                "summary": "RGB",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.rgb()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "argb",
+                "url": "images.html#images_colors_argb_alpha_red_green_blue",
+                "summary": "ARGB",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.argb()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "parseColor",
+                "url": "images.html#images_colors_parsecolor_colorstr",
+                "summary": "字符串转颜色",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.parseColor()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isSimilar",
+                "url": "images.html#images_colors_issimilar_color2_color2_threshold_algorithm",
+                "summary": "颜色相似",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.isSimilar()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "equals",
+                "url": "images.html#images_colors_equals_color1_color2",
+                "summary": "颜色相等",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "colors.equals()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "events",
+        "url": "events.html",
+        "level": 0,
+        "type": 0,
+        "summary": "事件",
+        "properties": [
+            {
+                "key": "emitter",
+                "url": "events.html#events_events_emitter",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.emitter()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "observeKey",
+                "url": "events.html#events_events_observekey",
+                "summary": "监听按键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.observeKey()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setKeyInterceptionEnabled",
+                "url": "events.html#events_events_setkeyinterceptionenabled_key_enabled",
+                "summary": "屏蔽按键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.setKeyInterceptionEnabled()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "observeTouch",
+                "url": "events.html#events_events_observetouch",
+                "summary": "监听触摸",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.observeTouch()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "observeNotification",
+                "url": "events.html#events_obversenotification",
+                "summary": "监听通知",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.observeNotification()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onKeyDown",
+                "url": "events.html#events_events_onkeydown_keyname_listener",
+                "summary": "按键按下事件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onKeyDown()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onKeyUp",
+                "url": "events.html#events_events_onkeyup_keyname_listener",
+                "summary": "按键弹起事件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onKeyUp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onceKeyDown",
+                "url": "events.html#events_events_oncekeydown_keyname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onceKeyDown()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onceKeyUp",
+                "url": "events.html#events_events_oncekeyup_keyname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onceKeyUp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onToast",
+                "url": "events.html#events_toast",
+                "summary": "toast事件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onToast()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onNotification",
+                "url": "events.html#events_notification",
+                "summary": "通知事件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onNotification()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeAllKeyDownListeners",
+                "url": "events.html#events_events_removeallkeydownlisteners_keyname",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.removeAllKeyDownListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeAllKeyUpListeners",
+                "url": "events.html#events_events_removeallkeyuplisteners_keyname",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.removeAllKeyUpListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "onTouch",
+                "url": "events.html#events_events_ontouch_listener",
+                "summary": "触摸事件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.onTouch()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeAllTouchListeners",
+                "url": "events.html#events_events_removealltouchlisteners",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.removeAllTouchListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getTouchEventTimeout",
+                "url": "events.html#events_events_gettoucheventtimeout",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.getTouchEventTimeout()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setTouchEventTimeout",
+                "url": "events.html#events_events_settoucheventtimeout_timeout",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.setTouchEventTimeout()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "on",
+                "url": "events.html#events_eventemitter_on_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.on()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "once",
+                "url": "events.html#events_eventemitter_once_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.once()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "emit",
+                "url": "events.html#events_eventemitter_emit_eventname_args",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.emit()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getListeners",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.getListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "addListener",
+                "url": "events.html#events_eventemitter_addlistener_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.addListener()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "eventNames",
+                "url": "events.html#events_eventemitter_eventnames",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.eventNames()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "listenerCount",
+                "url": "events.html#events_eventemitter_listenercount_eventname",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.listenerCount()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "listeners",
+                "url": "events.html#events_eventemitter_listeners_eventname",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.listeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "prependListener",
+                "url": "events.html#events_eventemitter_prependlistener_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.prependListener()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "prependOnceListener",
+                "url": "events.html#events_eventemitter_prependoncelistener_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.prependOnceListener()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeAllListeners",
+                "url": "events.html#events_eventemitter_removealllisteners_eventname",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.removeAllListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeListener",
+                "url": "events.html#events_eventemitter_removelistener_eventname_listener",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.removeListener()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setMaxListeners",
+                "url": "events.html#events_eventemitter_setmaxlisteners_n",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.setMaxListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMaxListeners",
+                "url": "events.html#events_eventemitter_getmaxlisteners",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.getMaxListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "defaultMaxListeners",
+                "url": "events.html#events_eventemitter_defaultmaxlisteners",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "events.defaultMaxListeners()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "files",
+        "url": "files.html",
+        "level": 0,
+        "type": 0,
+        "summary": "文件",
+        "properties": [
+            {
+                "key": "isFile",
+                "url": "files.html#files_files_isfile_path",
+                "summary": "文件判断",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.isFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isDir",
+                "url": "files.html#files_files_isdir_path",
+                "summary": "文件夹判断",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.isDir()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isEmptyDir",
+                "url": "files.html#files_files_isemptydir_path",
+                "summary": "空文件夹判断",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.isEmptyDir()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "join",
+                "url": "files.html#files_files_join_parent_child",
+                "summary": "连接路径",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.join()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "create",
+                "url": "files.html#files_files_create_path",
+                "summary": "创建文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.create()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "createWithDirs",
+                "url": "files.html#files_files_createwithdirs_path",
+                "summary": "创建文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.createWithDirs()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "exists",
+                "url": "files.html#files_files_exists_path",
+                "summary": "判断文件存在",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.exists()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "ensureDir",
+                "url": "files.html#files_files_ensuredir_path",
+                "summary": "确保文件夹",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.ensureDir()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "read",
+                "url": "files.html#files_files_read_path_encoding_utf_8",
+                "summary": "读取文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.read()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "readBytes",
+                "url": "files.html#files_files_readbytes_path",
+                "summary": "读取字节",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.readBytes()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "write",
+                "url": "files.html#files_files_write_path_text_encoding_utf_8",
+                "summary": "写入文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.write()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "writeBytes",
+                "url": "files.html#files_files_writebytes_path_bytes",
+                "summary": "写入字节",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.writeBytes()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "append",
+                "url": "files.html#files_files_append_path_text_encoding_utf_8",
+                "summary": "附加文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.append()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "appendBytes",
+                "url": "files.html#files_files_appendbytes_path_text_encoding_utf_8",
+                "summary": "附加字节",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.appendBytes()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "copy",
+                "url": "files.html#files_files_copy_frompath_topath",
+                "summary": "复制",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.copy()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "move",
+                "url": "files.html#files_files_move_frompath_topath",
+                "summary": "移动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.move()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "rename",
+                "url": "files.html#files_files_rename_path_newname",
+                "summary": "重命名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.rename()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "renameWithoutExtension",
+                "url": "files.html#files_files_renamewithoutextension_path_newname",
+                "summary": "重命名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.renameWithoutExtension()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getName",
+                "url": "files.html#files_files_getname_path",
+                "summary": "获取文件名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.getName()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getNameWithoutExtension",
+                "url": "files.html#files_files_getnamewithoutextension_path",
+                "summary": "获取文件名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.getNameWithoutExtension()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getExtension",
+                "url": "files.html#files_files_getextension_path",
+                "summary": "获取拓展名",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.getExtension()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "remove",
+                "url": "files.html#files_files_remove_path",
+                "summary": "删除",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.remove()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "removeDir",
+                "url": "files.html#files_files_removedir_path",
+                "summary": "删除文件夹",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.removeDir()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getSdcardPath",
+                "url": "files.html#files_files_getsdcardpath",
+                "summary": "SD卡路径",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.getSdcardPath()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "cwd",
+                "url": "files.html#files_files_cwd",
+                "summary": "当前文件夹",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.cwd()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "path",
+                "url": "files.html#files_files_path_relativepath",
+                "summary": "解析路径",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.path()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "listDir",
+                "url": "files.html#files_files_listdir_path_filter",
+                "summary": "列表文件夹",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "files.listDir()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "open",
+                "url": "files.html#files_open_path_mode_r_encoding_utf_8_buffersize_8192",
+                "summary": "打开文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "open()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "timers",
+        "url": "timers.html",
+        "level": 0,
+        "type": 0,
+        "summary": "定时器",
+        "properties": [
+            {
+                "key": "setTimeout",
+                "url": "timers.html#timers_settimeout_callback_delay_args",
+                "summary": "定时执行",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "setTimeout()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clearTimeout",
+                "url": "timers.html#timers_cleartimeout_id",
+                "summary": "取消定时",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "clearTimeout()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setInterval",
+                "url": "timers.html#timers_setinterval_callback_delay_args",
+                "summary": "循环执行",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "setInterval()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clearInterval",
+                "url": "timers.html#timers_clearinterval_id",
+                "summary": "清除循环",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "clearInterval()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setImmediate",
+                "url": "timers.html#timers_setimmediate_callback_args",
+                "summary": "\"立即\"执行",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "setImmediate()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clearImmediate",
+                "url": "timers.html#timers_clearimmediate_id",
+                "summary": "清除\"立即\"",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "clearImmediate()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "selector",
+        "url": "widgets-based-automation.html",
+        "level": 0,
+        "type": 0,
+        "summary": "选择器",
+        "properties": [
+            {
+                "key": "id",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "id()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "idContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "idContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "idStartsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "idStartsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "idEndsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "idEndsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "idMatches",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "idMatches()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "text",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "text()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "textContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "textContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "textStartsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "textStartsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "textEndsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "textEndsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "textMatches",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "textMatches()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "desc",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "desc()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "descContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "descContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "descStartsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "descStartsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "descEndsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "descEndsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "descMatches",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "descMatches()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "className",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "className()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "classNameContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "classNameContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "classNameStartsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "classNameStartsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "classNameEndsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "classNameEndsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "classNameMatches",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "classNameMatches()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "packageName",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "packageName()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "packageNameContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "packageNameContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "packageNameStartsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "packageNameStartsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "packageNameEndsWith",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "packageNameEndsWith()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "packageNameMatches",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "packageNameMatches()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "bounds",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "bounds()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "boundsInside",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "boundsInside()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "boundsContains",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "boundsContains()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "drawingOrder",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "drawingOrder()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "checkable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "checkable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "checked",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "checked()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "focusable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "focusable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "focused",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "focused()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "visibleToUser",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "visibleToUser()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "accessibilityFocused",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "accessibilityFocused()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "selected",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "selected()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "clickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "longClickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "longClickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "enabled",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "enabled()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "password",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "password()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "scrollable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "scrollable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "editable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "editable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "contentInvalid",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "contentInvalid()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "contextClickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "contextClickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "multiLine",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "multiLine()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "dismissable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "dismissable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "checkable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "checkable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "checked",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "checked()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "focusable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "focusable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "focused",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "focused()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "visibleToUser",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "visibleToUser()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "accessibilityFocused",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "accessibilityFocused()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "selected",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "selected()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "clickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "clickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "longClickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "longClickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "enabled",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "enabled()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "password",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "password()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "scrollable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "scrollable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "editable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "editable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "contentInvalid",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "contentInvalid()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "contextClickable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "contextClickable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "multiLine",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "multiLine()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "dismissable",
+                "url": "",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "dismissable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "floaty",
+        "url": "floaty.html",
+        "level": 0,
+        "type": 0,
+        "summary": "悬浮窗",
+        "properties": [
+            {
+                "key": "window",
+                "url": "floaty.html#floaty_floaty_window_layout",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "floaty.window()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "closeAll",
+                "url": "floaty.html#floaty_floaty_closeall",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "floaty.closeAll()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "device",
+        "url": "device.html",
+        "level": 0,
+        "type": 0,
+        "summary": "设备",
+        "properties": [
+            {
+                "key": "width",
+                "url": "device.html#device_device_width",
+                "summary": "屏幕宽度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.width()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "height",
+                "url": "device.html#device_device_height",
+                "summary": "屏幕高度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.height()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "buildId",
+                "url": "device.html#device_device_buildid",
+                "summary": "修订版本号",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.buildId()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "broad",
+                "url": "device.html#device_device_broad",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.broad()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "brand",
+                "url": "device.html#device_device_brand",
+                "summary": "品牌",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.brand()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "device",
+                "url": "device.html#device_device_device",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.device()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "model",
+                "url": "device.html#device_deivce_model",
+                "summary": "设备型号",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.model()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "product",
+                "url": "device.html#device_device_product",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.product()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "bootloader",
+                "url": "device.html#device_device_bootloader",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.bootloader()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "hardware",
+                "url": "device.html#device_device_hardware",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.hardware()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "fingerprint",
+                "url": "device.html#device_device_fingerprint",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.fingerprint()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "serial",
+                "url": "device.html#device_device_serial",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.serial()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "sdkInt",
+                "url": "device.html#device_device_sdkint",
+                "summary": "安卓API版本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.sdkInt()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "incremental",
+                "url": "device.html#device_device_incremental",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.incremental()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "release",
+                "url": "device.html#device_device_release",
+                "summary": "安卓版本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.release()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "baseOS",
+                "url": "device.html#device_device_baseos",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.baseOS()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "securityPatch",
+                "url": "device.html#device_device_securitypatch",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.securityPatch()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "codename",
+                "url": "device.html#device_device_codename",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.codename()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getIMEI",
+                "url": "device.html#device_device_getimei",
+                "summary": "IMEI",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getIMEI()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getAndroidId",
+                "url": "device.html#device_device_getandroidid",
+                "summary": "AndroidID",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getAndroidId()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMacAddress",
+                "url": "device.html#device_device_getmacaddress",
+                "summary": "MAC地址",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getMacAddress()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getBrightness",
+                "url": "device.html#device_device_getbrightness",
+                "summary": "屏幕亮度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getBrightness()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getBrightnessMode",
+                "url": "device.html#device_device_getbrightnessmode",
+                "summary": "亮度模式",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getBrightnessMode()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setBrightness",
+                "url": "device.html#device_device_setbrightness_b",
+                "summary": "设置亮度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.setBrightness()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setBrightnessMode",
+                "url": "device.html#device_device_setbrightnessmode_mode",
+                "summary": "设亮度模式",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.setBrightnessMode()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMusicVolume",
+                "url": "device.html#device_device_getmusicvolume",
+                "summary": "媒体音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getMusicVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getNotificationVolume",
+                "url": "device.html#device_device_getnotificationvolume",
+                "summary": "通知音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getNotificationVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getAlarmVolume",
+                "url": "device.html#device_device_getalarmvolume",
+                "summary": "闹钟音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getAlarmVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMusicMaxVolume",
+                "url": "device.html#device_device_getmusicmaxvolume",
+                "summary": "媒体最大音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getMusicMaxVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getNotificationMaxVolume",
+                "url": "device.html#device_device_getnotificationmaxvolume",
+                "summary": "通知最大音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getNotificationMaxVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getAlarmMaxVolume",
+                "url": "device.html#device_device_getalarmmaxvolume",
+                "summary": "闹钟最大音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getAlarmMaxVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setMusicVolume",
+                "url": "device.html#device_device_setmusicvolume_volume",
+                "summary": "设媒体音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.setMusicVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setNotificationVolume",
+                "url": "device.html#device_device_setnotificationvolume_volume",
+                "summary": "设通知音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.setNotificationVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "setAlarmVolume",
+                "url": "device.html#device_device_setalarmvolume_volume",
+                "summary": "设闹钟音量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.setAlarmVolume()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getBattery",
+                "url": "device.html#device_device_getbattery",
+                "summary": "获取电量",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getBattery()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isCharging",
+                "url": "device.html#device_device_ischarging",
+                "summary": "是否充电",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.isCharging()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getTotalMem",
+                "url": "device.html#device_device_gettotalmem",
+                "summary": "全部内存",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getTotalMem()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getAvailMem",
+                "url": "device.html#device_device_getavailmem",
+                "summary": "可用内存",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.getAvailMem()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isScreenOn",
+                "url": "device.html#device_device_isscreenon",
+                "summary": "屏幕是否亮",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.isScreenOn()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "wakeUp",
+                "url": "device.html#device_device_wakeup",
+                "summary": "唤醒设备",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.wakeUp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "wakeUpIfNeeded",
+                "url": "device.html#device_device_wakeupifneeded",
+                "summary": "唤醒",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.wakeUpIfNeeded()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "keepScreenOn",
+                "url": "device.html#device_device_keepscreenon_timeout",
+                "summary": "屏幕常亮",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.keepScreenOn()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "keepScreenDim",
+                "url": "device.html#device_device_keepscreendim_timeout",
+                "summary": "屏幕常半亮",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.keepScreenDim()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "cancelKeepingAwake",
+                "url": "device.html#device_device_cancelkeepingawake",
+                "summary": "取消保持唤醒",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.cancelKeepingAwake()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "vibrate",
+                "url": "device.html#device_device_vibrate_millis",
+                "summary": "震动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.vibrate()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "cancelVibration",
+                "url": "device.html#device_device_cancelvibration",
+                "summary": "取消震动",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "device.cancelVibration()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "http",
+        "url": "http.html",
+        "level": 0,
+        "type": 0,
+        "summary": "HTTP",
+        "properties": [
+            {
+                "key": "get",
+                "url": "http.html#http_http_get_url_options_callback",
+                "summary": "GET请求",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "http.get()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "post",
+                "url": "http.html#http_http_post_url_data_options_callback",
+                "summary": "POST请求",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "http.post()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "postJson",
+                "url": "http.html#http_http_postjson_url_data_options_callback",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "http.postJson()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "postMultipart",
+                "url": "http.html#http_http_postmultipart_url_files_options_callback",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "http.postMultipart()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "request",
+                "url": "http.html#http_http_request_url_options_callback",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "http.request()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "keys",
+        "url": "keys.html",
+        "level": 0,
+        "type": 0,
+        "summary": "按键",
+        "properties": [
+            {
+                "key": "back",
+                "url": "keys.html#keys_back",
+                "summary": "返回",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "back()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "home",
+                "url": "keys.html#keys_home",
+                "summary": "HOME键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "home()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "powerDialog",
+                "url": "keys.html#keys_powerdialog",
+                "summary": "电源菜单",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "powerDialog()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "notifications",
+                "url": "keys.html#keys_notifications",
+                "summary": "拉通知栏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "notifications()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "quickSettings",
+                "url": "keys.html#keys_quicksettings",
+                "summary": "长拉通知栏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "quickSettings()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "recents",
+                "url": "keys.html#keys_recents",
+                "summary": "最近任务",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "recents()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "splitScreen",
+                "url": "keys.html#keys_splitscreen",
+                "summary": "分屏",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "splitScreen()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Home",
+                "url": "keys.html#keys_home_1",
+                "summary": "HOME键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Home()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Back",
+                "url": "keys.html#keys_back_1",
+                "summary": "返回键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Back()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Power",
+                "url": "keys.html#keys_power",
+                "summary": "电源键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Power()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Menu",
+                "url": "keys.html#keys_menu",
+                "summary": "菜单键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Menu()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "VolumeUp",
+                "url": "keys.html#keys_volumeup",
+                "summary": "音量上键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "VolumeUp()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "VolumeDown",
+                "url": "keys.html#keys_volumedown",
+                "summary": "音量下键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "VolumeDown()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Camera",
+                "url": "keys.html#keys_camera",
+                "summary": "照相键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Camera()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Up",
+                "url": "keys.html#keys_up",
+                "summary": "上键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Up()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Down",
+                "url": "keys.html#keys_down",
+                "summary": "下键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Down()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Left",
+                "url": "keys.html#keys_left",
+                "summary": "左键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Left()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Right",
+                "url": "keys.html#keys_right",
+                "summary": "右键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Right()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "OK",
+                "url": "keys.html#keys_ok",
+                "summary": "确定键",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "OK()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "Text",
+                "url": "keys.html#keys_text_text",
+                "summary": "输入文本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "Text()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "KeyCode",
+                "url": "keys.html#keys_keycode_code",
+                "summary": "键值模拟",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "global": true,
+                "content": "KeyCode()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "storages",
+        "url": "storages.html",
+        "level": 0,
+        "type": 0,
+        "summary": "本地存储",
+        "properties": [
+            {
+                "key": "create",
+                "url": "storages.html#storages_storages_create_name",
+                "summary": "创建",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "storages.create()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "remove",
+                "url": "storages.html#storages_storages_remove_name",
+                "summary": "移除",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "storages.remove()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "threads",
+        "url": "threads.html",
+        "level": 0,
+        "type": 0,
+        "summary": "多线程",
+        "properties": [
+            {
+                "key": "start",
+                "url": "threads.html#threads_threads_start_action",
+                "summary": "新线程",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.start()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "shutDownAll",
+                "url": "threads.html#threads_threads_shutdownall",
+                "summary": "关闭所有线程",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.shutDownAll()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "currentThread",
+                "url": "threads.html#threads_threads_currentthread",
+                "summary": "当前线程",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.currentThread()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "disposable",
+                "url": "threads.html#threads_threads_disposable",
+                "summary": "",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.disposable()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "atomic",
+                "url": "threads.html#threads_threads_atomic_initialvalue",
+                "summary": "原子整数",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.atomic()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "lock",
+                "url": "threads.html#threads_threads_lock",
+                "summary": "创建锁",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "threads.lock()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "media",
+        "url": "media.html",
+        "level": 0,
+        "type": 0,
+        "summary": "多媒体",
+        "properties": [
+            {
+                "key": "scanFile",
+                "url": "media.html#media_media_scanfile_path",
+                "summary": "扫描文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.scanFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "playMusic",
+                "url": "media.html#media_media_playmusic_path_volume_looping",
+                "summary": "播放音乐",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.playMusic()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "musicSeekTo",
+                "url": "media.html#media_media_musicseekto_msec",
+                "summary": "调整进度",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.musicSeekTo()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "pauseMusic",
+                "url": "media.html#media_media_pausemusic",
+                "summary": "暂停音乐",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.pauseMusic()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "resumeMusic",
+                "url": "media.html#media_media_resumemusic",
+                "summary": "继续播放",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.resumeMusic()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "stopMusic",
+                "url": "media.html#media_media_stopmusic",
+                "summary": "停止音乐",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.stopMusic()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "isMusicPlaying",
+                "url": "media.html#media_media_ismusicplaying",
+                "summary": "是否在播放",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.isMusicPlaying()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMusicDuration",
+                "url": "media.html#media_media_getmusicduration",
+                "summary": "音乐时长",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.getMusicDuration()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "getMusicCurrentPosition",
+                "url": "media.html#media_media_getmusiccurrentposition",
+                "summary": "当前位置",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "media.getMusicCurrentPosition()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "sensors",
+        "url": "sensors.html",
+        "level": 0,
+        "type": 0,
+        "summary": "传感器",
+        "properties": [
+            {
+                "key": "register",
+                "url": "sensors.html#sensors_sensors_register_sensorname_delay",
+                "summary": "注册监听",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "sensors.register()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "unregister",
+                "url": "sensors.html#sensors_sensors_unregister_emitter",
+                "summary": "注销监听",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "sensors.unregister()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "unregisterAll",
+                "url": "sensors.html#sensors_sensors_unregisterall",
+                "summary": "注销所有",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "sensors.unregisterAll()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "ignoresUnsupportedSensor",
+                "url": "sensors.html#sensors_sensors_ignoresunsupportedsensor",
+                "summary": "忽略不支持传感器",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "sensors.ignoresUnsupportedSensor()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "engines",
+        "url": "engines.html",
+        "level": 0,
+        "type": 0,
+        "summary": "脚本引擎",
+        "properties": [
+            {
+                "key": "execScript",
+                "url": "engines.html#engines_engines_execscript_name_script_config",
+                "summary": "执行脚本",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.execScript()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "execScriptFile",
+                "url": "engines.html#engines_engines_execscriptfile_path_config",
+                "summary": "执行脚本文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.execScriptFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "execAutoFile",
+                "url": "engines.html#engines_engines_execautofile_path_config",
+                "summary": "执行录制文件",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.execAutoFile()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "stopAll",
+                "url": "engines.html#engines_engines_stopall",
+                "summary": "停止全部",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.stopAll()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "stopAllAndToast",
+                "url": "engines.html#engines_engines_stopallandtoast",
+                "summary": "停止并提示",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.stopAllAndToast()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "myEngine",
+                "url": "engines.html#engines_engines_myengine",
+                "summary": "当前引擎",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.myEngine()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            },
+            {
+                "key": "all",
+                "url": "engines.html#engines_engines_all",
+                "summary": "所有引擎",
+                "level": 0,
+                "type": 0,
+                "variable": false,
+                "content": "engines.all()",
+                "params": [
+                    {
+                        "name": "参数名",
+                        "type": "参数类型",
+                        "summary": "",
+                        "must": false,
+                        "defulatkey": "默认值"
+                    }
+                ]
+            }
+        ]
+    }
+]
