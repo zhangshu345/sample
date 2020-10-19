@@ -54,7 +54,7 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
             if(new Date().getTime() - downTime > 1000&&(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5)){
                长按(x,y);
             }else{
-               if(Math.abs(event.getRawY() - y) < 5 && Math.abs(event.getRawX() - x) < 5){
+               if(Math.abs(event.getRawY() - y) < 10 && Math.abs(event.getRawX() - x) < 10){
                      点击(x,y);
                 }
                 else{
@@ -73,11 +73,11 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
 }
 
 function addnewpath(pointx,pointy){
-    pointx=parseInt(pointx)
-    pointy=parseInt(pointy)
+let  mx=parseInt(pointx)
+ let   my=parseInt(pointy)
     points[0] = 动作时间间隔()
-    points.push([pointx,pointy])
-    log(points)
+    points.push([mx,my])
+    // log(points)
 }
 
 function 手势(){
