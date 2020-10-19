@@ -73,6 +73,8 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
 }
 
 function addnewpath(pointx,pointy){
+    pointx=parseInt(pointx)
+    pointy=parseInt(pointy)
     points[0] = 动作时间间隔()
     points.push([pointx,pointy])
     log(points)
@@ -95,6 +97,8 @@ function 手势(){
 }
 
 function 点击(x,y){
+    x=parseInt(x)
+    y=parseInt(y)
       addnewactions("click("+x+","+y+")")
       threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -107,6 +111,8 @@ function 点击(x,y){
 }
 
 function 长按(x,y){
+    x=parseInt(x)
+    y=parseInt(y)
     addnewactions("press("+x+","+y+",1000)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
@@ -119,6 +125,10 @@ function 长按(x,y){
 }
            
 function 滑动(x,y,x1,y1){
+    x=parseInt(x)
+    y=parseInt(y)
+    x1=parseInt(x1)
+    y1=parseInt(y1)
     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
