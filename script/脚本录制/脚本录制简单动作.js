@@ -81,7 +81,8 @@ function addnewpath(pointx,pointy){
 }
 
 function 手势(){
-    if(points.length<3){
+    if(points.length<4){
+        点击(point=points[1][0],point=points[1][1])
         return
     }
     addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
