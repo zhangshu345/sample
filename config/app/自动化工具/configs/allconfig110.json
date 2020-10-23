@@ -1,14 +1,14 @@
 {
-    "name": "随便粘",
-    "pkg": "com.dongdong.jiantie",
-    "version": "2.0.5",
-    "versioni": 205,
-    "channel": "androidjs",
+    "name": "自动化工具",
+    "pkg": "com.hongdong.autotools",
+    "version": "1.1.0",
+    "versioni": 10,
+    "channel": "qq",
     "mtaappkey": "A1KT37D8APGM",
     "bmobappid": "e63e8bcad7f4ca8893f3785f75d352f4",
     "umengappkey": "",
     "umengappsecretkey": "",
-    "jpushkey": "39ec1b5977dba399606a45e6",
+    "jpushkey": "6888708fa641d82c6bdd1b97",
     "userlogin": false,
     "bmobpush": false,
     "jpush": false,
@@ -123,8 +123,8 @@
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
-                "uipath": "",
-                "script": "scriptname:userguide"
+                "uipath": "/common/scan",
+                "script": ""
             },
             {    "index":2,
                 "name": "添加",
@@ -156,7 +156,7 @@
                 "icontint": "#ff0000",
                 "back": "",
                 "event": -1,
-                "uipath": "/script/develop",
+                "uipath": "",
                 "script": ""
             },
             {    "index":5,
@@ -167,7 +167,7 @@
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
-                "uipath": "/script/videoedit",
+                "uipath": "",
                 "script": ""
             },
             {    "index":6,
@@ -345,7 +345,7 @@
             "summary": "说明"
         }
     ],
-    "baseurl": "http://zhangshuhong888.iask.in:1337/",
+    "baseurl": "http://www.hongdong.info:1337/",
     "rewardconfigurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
     "runurl": "https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
     "shareword": "赚钱停不下来,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",

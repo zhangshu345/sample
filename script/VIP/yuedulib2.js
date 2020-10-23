@@ -76,11 +76,12 @@ var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
 const debugip="zhangshuhong888.iask.in"
 
-var 记录=function(name,key,n){   if(name){
+var 记录=function(name,key,n){   
+if(name){
     com.hongshu.utils.FastSPUtils.getInstance(name).put(key,""+n)
 }else{
     com.hongshu.utils.FastSPUtils.getInstance().put(key,""+n)
-} 
+}
 }
 var 获取记录=function(name,key,defaultvalue){ if(name){
     return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,""+defaultvalue)

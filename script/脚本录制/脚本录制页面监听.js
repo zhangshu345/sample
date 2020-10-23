@@ -142,7 +142,6 @@ function 滑动(x,y,x1,y1){
 }
 
 
-
 //开始物理按键记录
 function startkeyrecord(){
 //启用按键监听
