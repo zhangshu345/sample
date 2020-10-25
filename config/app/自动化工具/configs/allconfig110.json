@@ -291,8 +291,8 @@
         },
         {
             "name": "helpurl",
-            "value": "帮助文档配置连接",
-            "summary": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/doc/帮助文档.json"
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/doc/帮助文档.json",
+            "summary": "帮助文档配置连接"
         },
         {
             "name": "inviteword",
