@@ -1,0 +1,50 @@
+[{"title":"新手必读","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/新手必读.png","textsize":"16","textcolor":"#ff0000ff",
+    "ui": {
+        "type": 1,
+        "orientation": 0,
+        "size": 4,
+        "reverselayout": false
+    },
+    "articles": [{"title":"什么是自动化？","textcolor":"#ff0000","summary":"","script":"","contenturl":""},
+        {"title":"能做些什么","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"},
+        {"title":"对手机的要求","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}
+    ]
+},
+{"title":"快速入门","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/快速入门.png","textsize":"16","textcolor":"#ff0000ff",
+    "ui": {
+        "type": 1,
+        "orientation": 0,
+        "size": 4,
+        "reverselayout": false
+    },
+    "articles": [{"title":"如何新建自动化？","textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+        ,{"title":"触发自动化？","textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+        ,{"title":"停止自动化","textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+        ,{"title":"权限使用说明","textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+        ,{"title":"权限使用说明","textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+        ,{"title":"权限使用说明","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
+        ,{"title":"权限使用说明","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
+        ,{"title":"权限使用说明","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
+    ]
+
+},
+{"title":"常见问题","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/常见问题.png","textsize":"16","textcolor":"#ff0000ff",
+    "ui": {
+        "type": 1,
+        "orientation": 0,
+        "size": 4,
+        "reverselayout": false
+    },
+    "articles": [{"title":"每次都要开无障碍？","textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+
+},
+{"title":"特色功能","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/特色功能.png","textsize":"16","textcolor":"#ff0000ff",
+    "ui": {
+        "type": 1,
+        "orientation": 0,
+        "size": 4,
+        "reverselayout": false
+    },
+    "articles": [{"title":"无限点击小手","textcolor":"#ff0000","summary":"悬浮球","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
+}
+]
