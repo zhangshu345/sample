@@ -283,11 +283,16 @@
         "name": "userid",
         "value": "id:",
         "summary": "用户id前缀"
-    },
+        },
         {
             "name": "splashpermission",
             "value": "访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
             "summary": "开屏第一次splash请求权限"
+        },
+        {
+            "name": "helpurl",
+            "value": "帮助文档配置连接",
+            "summary": "https://gitee.com/zhangshu345012/sample/blob/v2/config/common/help/doc/帮助文档.json"
         },
         {
             "name": "inviteword",
@@ -1603,7 +1608,6 @@
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
         }
     ],
-   
     "advice": {
         "jgchaping": 60,
         "jgbanner": 30,
