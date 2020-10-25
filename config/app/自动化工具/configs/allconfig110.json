@@ -64,7 +64,7 @@
             {
                 "name": "自动化编辑",
                 "open": true,
-                "level": 2,
+                "level": 0,
                 "icon": "@drawable/ic_home_center_code",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_blue",
