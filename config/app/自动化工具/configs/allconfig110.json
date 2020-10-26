@@ -290,6 +290,21 @@
             "summary": "开屏第一次splash请求权限"
         },
         {
+            "name": "alipayrewardsearch",
+            "value": "3491405----打开支付宝首页搜“3491405”领红包，领到大红包的小伙伴赶紧使用哦！",
+            "summary": "打开支付宝首页搜“3491405”领红包，领到大红包的小伙伴赶紧使用哦！"
+        },
+        {
+            "name": "alipayrewardqrcodeimg",
+            "value": "",
+            "summary": "支付宝红包二维码扫描"
+        },
+        {
+            "name": "qqgroup",
+            "value": "kgEScXtjGXb7rBLP3KUvpryYnD2U99he",
+            "summary": "自动化工具(114122126)"
+        },
+        {
             "name": "helpurl",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/doc/帮助文档.json",
             "summary": "帮助文档配置连接"
@@ -413,7 +428,7 @@
             "titlecolor": "",
             "summarycolor": "#ffff00",
             "level": 0,
-            "open": true,
+            "open": false,
             "coin": 100,
             "money": 0,
             "event": 204,
@@ -755,7 +770,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 211,
             "time": 5,
             "interval": 1800,
             "finishname": "检查更新",
@@ -775,7 +790,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 208,
             "time": 5,
             "interval": 1800,
             "finishname": "点此阅读",
@@ -795,7 +810,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 209,
             "time": 5,
             "interval": 1800,
             "finishname": "点此阅读",
@@ -815,7 +830,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 212,
             "time": 5,
             "interval": 1800,
             "finishname": "点此联系",
