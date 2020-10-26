@@ -437,6 +437,7 @@
             "finishname": "点此领取",
             "nofinishname": "点此领取",
             "icon": "@drawable/ic_alipay_reward_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_alipayreward",
             "script": ""
@@ -456,6 +457,7 @@
             "finishname": "点此实现",
             "nofinishname": "点此实现",
             "icon": "@drawable/ic_alipay_reward_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_alipayreward",
             "script": ""
@@ -476,6 +478,7 @@
             "finishname": "领取奖励",
             "nofinishname": "领取奖励",
             "icon": "",
+            "imgsize":36,
             "rewardtype": 0,
             "key": "key_action_first_login",
             "script": ""
@@ -496,6 +499,7 @@
             "finishname": "已领取",
             "nofinishname": "填写邀请码",
             "icon": "",
+            "imgsize":36,
             "rewardtype": 0,
             "key": "key_action_set_parent",
             "script": ""
@@ -516,6 +520,7 @@
             "finishname": "领取奖励",
             "nofinishname": "每日签到",
             "icon": "",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_day_sign",
             "script": ""
@@ -527,7 +532,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 125,
@@ -536,6 +541,7 @@
             "finishname": "福利视频",
             "nofinishname": "福利视频",
             "icon": "@drawable/ic_video_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_full_advice_video",
             "script": ""
@@ -547,7 +553,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 222,
@@ -556,6 +562,7 @@
             "finishname": "看小视频",
             "nofinishname": "看小视频",
             "icon": "@drawable/ic_video_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_small_video",
             "script": ""
@@ -567,7 +574,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 223,
@@ -576,6 +583,7 @@
             "finishname": "看资讯",
             "nofinishname": "阅读资讯",
             "icon": "@drawable/ic_news_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_small_video",
             "script": ""
@@ -596,6 +604,7 @@
             "finishname": "领取奖励",
             "nofinishname": "每日抽奖",
             "icon": "@drawable/ic_luckpan_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_luck",
             "script": ""
@@ -610,12 +619,13 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 207,
             "time": 5,
             "interval": 1800,
             "finishname": "点此提交",
             "nofinishname": "点此提交",
             "icon": "@drawable/ic_suggest_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_suggestion",
             "script": ""
@@ -630,12 +640,13 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 206,
             "time": 5,
             "interval": 1800,
             "finishname": "点此反馈",
             "nofinishname": "点此反馈",
             "icon": "@drawable/ic_faceback_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_fackback",
             "script": ""
@@ -656,6 +667,7 @@
             "finishname": "点此进群",
             "nofinishname": "点此进群",
             "icon": "@drawable/ic_qq_group_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -676,6 +688,7 @@
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_kuaishou_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -690,12 +703,13 @@
             "open": false,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 231,
             "time": 5,
             "interval": 1800,
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_douyin_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_order_kuaishou",
             "script": ""
@@ -710,12 +724,13 @@
             "open":false,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 280,
             "time": 5,
             "interval": 1800,
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_weixin_ordergroup_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_order_douyin",
             "script": ""
@@ -736,6 +751,7 @@
             "finishname": "点此分享",
             "nofinishname": "点此分享",
             "icon": "@drawable/ic_share_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -756,6 +772,7 @@
             "finishname": "点此查看",
             "nofinishname": "点此查看",
             "icon": "@drawable/ic_app_permission_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -776,6 +793,7 @@
             "finishname": "检查更新",
             "nofinishname": "检查更新",
             "icon": "@drawable/ic_version_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -796,6 +814,7 @@
             "finishname": "点此阅读",
             "nofinishname": "点此阅读",
             "icon": "@drawable/ic_server_agreement_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_read_server_agreement",
             "script": ""
@@ -816,6 +835,7 @@
             "finishname": "点此阅读",
             "nofinishname": "点此阅读",
             "icon": "@drawable/ic_privacy_agreement_48dp",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_read_privacy_agreement",
             "script": ""
@@ -836,6 +856,7 @@
             "finishname": "点此联系",
             "nofinishname": "点此联系",
             "icon": "",
+            "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_joinus",
             "script": ""
