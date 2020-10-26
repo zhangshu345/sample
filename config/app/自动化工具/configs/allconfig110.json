@@ -625,7 +625,7 @@
             "finishname": "点此提交",
             "nofinishname": "点此提交",
             "icon": "@drawable/ic_suggest_48dp",
-            "imgsize":36,
+            "imgsize":48,
             "rewardtype": 1,
             "key": "key_action_suggestion",
             "script": ""
@@ -856,7 +856,7 @@
             "finishname": "点此联系",
             "nofinishname": "点此联系",
             "icon": "",
-            "imgsize":36,
+            "imgsize":48,
             "rewardtype": 1,
             "key": "key_action_joinus",
             "script": ""
