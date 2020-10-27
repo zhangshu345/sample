@@ -3530,11 +3530,39 @@ var shizukuforcestopPkg=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
 }
 
+var shizukuclearappcache=function(appname){
+    let apppkg=app.getPackageName(appname)
+    if(apppkg){
+        shizukuclearpkgcache(apppkg)
+    }
+   
+}
+
+
+var shizukuclearpkgcache=function(apppkg){
+    
+   shell("rm /data/data/"+apppkg+"/cache/",{adb:true,root:false})
+   shell("rm /data/data/"+apppkg+"/app_baidu_ad_sdk/",{adb:true,root:false})
+}
+
+
 var shizukuforcestopApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
        shizukuforcestopPkg(apppkg)
     }
+}
+
+var shizukudisableappuntilused=function(appname){
+    apppkg=app.getPackageName(appname)
+    if(apppkg){
+        shizukudisablepkguntilused(apppkg)
+    }
+}
+
+var shizukudisablepkguntilused=function(apppkg){
+    shell("am force-stop "+apppkg,{adb:true,root:false})
+    shell("pm disable-until-used "+apppkg,{adb:true,root:false}) 
 }
 
 function shellcmd(cmd){
@@ -3610,3 +3638,11 @@ var enableshizuku=function(){
 // captureScreen()
 //  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
 
+// shizukudisableappuntilused("快手")
+// sleep(5000)
+// app.launchApp("快手")
+// console.log("启动快手")
+
+
+//  shizukuclearappcache("自动化工具")
+//  shell("monkey -v -p com.hongdong.autotools 5000",{adb:true,root:false})
