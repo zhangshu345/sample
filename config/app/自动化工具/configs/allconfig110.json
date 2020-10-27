@@ -20,6 +20,11 @@
     "bugly": true,
     "cardcharge": false,
     "cardexchange": false,
+    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
+    "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
+    "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
+    "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
+    "inviteaction":[{"name":"快手极速版","pkg":"com.kuaishou.nebula","open":true,"action":[""]}],
     "barbuttons": {
         "ui": {
             "type": 1,
@@ -415,11 +420,7 @@
         {"id":160,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
         {"id":200,"title":"注：承诺以上所有权限均用于程序的运行需要，您可以根据自己实际使用需求开启或关闭部分敏感权限。如果您对所申请的权限有任何疑问，欢迎您百度android权限 和 APP 功能相关的联系","summary":"","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""}
     ],
-    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
-    "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
-    "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
-    "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/apphistory.json",
-    "inviteaction":[{"name":"快手极速版","pkg":"com.kuaishou.nebula","open":true,"action":[""]}],
+
     "activity": [
         {
             "id": 100,
