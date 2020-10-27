@@ -554,7 +554,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": true,
+            "open": false,
             "coin": 100,
             "money": 0,
             "event": 222,
@@ -1674,9 +1674,26 @@
             "icon": "",
             "level": 0,
             "source": 2,
-            "desc": "本地存储",
+            "desc": "常用函数",
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/常用函数/1常用函数.json"
+        },
+        {
+            "id": 11,
+            "name": "复杂界面",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "复杂界面",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/复杂界面.json"
         }
     ],
     "advice": {
