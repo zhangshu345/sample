@@ -20,7 +20,8 @@
     "bugly": true,
     "cardcharge": false,
     "cardexchange": false,
-    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/announcement.md",
+    "privacy": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/隐私政策.md",
+    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/服务协议.md",
     "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
     "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
     "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
@@ -398,7 +399,7 @@
             "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
         }
     ],
-    "privacy": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/privacy.md",
+    
     "permission": [
         {"id":0,"title":"必须权限:以下权限需开启后才能正常运行","summary":"","pkey":"","import":3,"titlecolor":"","summarycolor":""},
         {"id":10,"title":"无障碍权限","summary":"作用：用于模拟返回、模拟点击、模拟滑动","pkey":"ACCESSIBILITY","import":2,"titlecolor":"","summarycolor":""},
