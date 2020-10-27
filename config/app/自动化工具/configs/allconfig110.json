@@ -79,6 +79,17 @@
                 "script": ""
             },
             {
+                "name": "编写教程",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_book",
+                "icontint": "#ffffff",
+                "back": "@drawable/im_round_red",
+                "event": -1,
+                "uipath": "",
+                "script": ""
+            },
+            {
                 "name": "视频剪辑",
                 "open": false,
                 "level": 0,
@@ -91,7 +102,7 @@
             },
             {
                 "name": "联系我们",
-                "open": true,
+                "open": false,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_aboutme",
                 "icontint": "#ff00ff",
@@ -167,13 +178,24 @@
             },
             {    "index":5,
                 "name": "位置",
-                "open": true,
+                "open": false,
                 "level": 0,
                 "icon": "@drawable/ic_room_black_48dp",
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
                 "uipath": "",
+                "script": ""
+            },
+            {    "index":5,
+                "name": "教程",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_home_center_book",
+                "icontint": "#ffffff",
+                "back": "",
+                "event": 38,
+                "uipath": "/script/model-fragmenttype:教程",
                 "script": ""
             },
             {    "index":6,
