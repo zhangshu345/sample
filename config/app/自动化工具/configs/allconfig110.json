@@ -1485,7 +1485,7 @@
             },
             "state": 1,
             "icon": "",
-            "level": 0,
+            "level": 200,
             "source": 2,
             "desc": "app内脚本的使用教程",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json",
@@ -1519,7 +1519,7 @@
             },
             "state": 0,
             "icon": "",
-            "level": 0,
+            "level": 200,
             "source": 2,
             "desc": "推荐使用的脚本",
             "img": "",
@@ -1587,7 +1587,7 @@
             },
             "state": 0,
             "icon": "",
-            "level": 0,
+            "level": 200,
             "source": 2,
             "desc": "网友共享的阅读App工具",
             "img": "",
@@ -1643,6 +1643,40 @@
             "desc": "二维码搜索，二维码生成，二维码解析，二维码连续输入",
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
+        },
+        {
+            "id": 10,
+            "name": "本地存储",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "本地存储",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/本地存储/1本地存储.json"
+        },
+        {
+            "id": 11,
+            "name": "常用函数",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "本地存储",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/常用函数/1常用函数.json"
         }
     ],
     "advice": {
