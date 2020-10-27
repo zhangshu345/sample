@@ -794,7 +794,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 210,
             "time": 5,
             "interval": 1800,
             "finishname": "点此查看",
