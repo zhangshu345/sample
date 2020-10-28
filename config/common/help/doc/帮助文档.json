@@ -1,58 +1,228 @@
-[{"title":"新手必读","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/新手必读.png","textsize":"16","textcolor":"#ff0000ff",
-    "level":0,"open":true,
-    "ui": {
-        "type": 2,
-        "orientation": 1,
-        "size": 2,
-        "reverselayout": false
+[
+    {
+        "title": "新手必读",
+        "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/新手必读.png",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": true,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "什么是自动化？",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "能做些什么",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            },
+            {
+                "title": "对手机的要求",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            }
+        ]
     },
-    "articles": [{"title":"什么是自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""},
-        {"title":"能做些什么", "level":0,"open":true,"textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"},
-        {"title":"对手机的要求", "level":0,"open":true,"textcolor":"#ff0000","summary":"详细说明权限使用，使用时间","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}
-    ]
-},
-{"title":"快速入门","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/快速入门.png","textsize":"16","textcolor":"#ff0000ff",
-    "level":0,"open":true,
-    "ui": {
-        "type": 2,
-        "orientation": 1,
-        "size": 2,
-        "reverselayout": false
+    {
+        "title": "快速入门",
+        "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/快速入门.png",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": true,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "如何新建自动化？",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "如何新建自动化？",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "如何新建自动化？",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "触发自动化？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "停止自动化",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "动作录制",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "动作录制脚本修改循环次数",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "",
+                "script": "",
+                "contenturl": ""
+            }
+        ]
     },
-    "articles": [
-        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""},
-        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""},
-        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""}
-        ,{"title":"触发自动化？", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
-        ,{"title":"停止自动化", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
-        ,{"title":"动作录制", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
-        ,{"title":"动作录制脚本修改循环次数", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
-        ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
-        ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
-        ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
-    ]
-
-},
-{"title":"常见问题","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/常见问题.png","textsize":"16","textcolor":"#ff0000ff",
-    "level":0,"open":true,
-    "ui": {
-        "type": 2,
-        "orientation": 1,
-        "size": 2,
-        "reverselayout": false
+    {
+        "title": "常见问题",
+        "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/常见问题.png",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": true,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "每次都要开无障碍？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            },
+            {
+                "title": "每次都要开无障碍？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            },
+            {
+                "title": "每次都要开无障碍？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            },
+            {
+                "title": "权限使用说明",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "权限使用说明",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "权限使用说明",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "详细说明权限使用，使用时间",
+                "script": "",
+                "contenturl": ""
+            }
+        ]
     },
-    "articles": [{"title":"每次都要开无障碍？", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间",
-        "script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}
-    ]
-},
-{"title":"特色功能","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/特色功能.png","textsize":"16","textcolor":"#ff0000ff",
-    "level":0,"open":false,
-    "ui": {
-        "type": 2,
-        "orientation": 1,
-        "size": 2,
-        "reverselayout": false
-    },
-    "articles": [{"title":"无限点击小手", "level":0,"open":true,"textcolor":"#ff0000","summary":"悬浮球","script":"","contenturl":"详细说明的内容部分 简单的可以使用这个"}]
-}
+    {
+        "title": "特色功能",
+        "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/特色功能.png",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": false,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "无限点击小手",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "悬浮球",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            },
+            {
+                "title": "连续点击小手",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "悬浮球",
+                "script": "",
+                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+            }
+        ]
+    }
 ]

@@ -794,7 +794,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 210,
+            "event": -1,
             "time": 5,
             "interval": 1800,
             "finishname": "点此查看",
@@ -803,7 +803,7 @@
             "imgsize":36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
-            "script": ""
+            "script": "/script/model-fragmenttype:权限说明"
         },
         {
             "id": 1320,
