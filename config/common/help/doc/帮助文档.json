@@ -19,11 +19,14 @@
         "size": 2,
         "reverselayout": false
     },
-    "articles": [{"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""}
+    "articles": [
+        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""},
+        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""},
+        {"title":"如何新建自动化？", "level":0,"open":true,"textcolor":"#ff0000","summary":"","script":"","contenturl":""}
         ,{"title":"触发自动化？", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
         ,{"title":"停止自动化", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
         ,{"title":"动作录制", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
-        ,{"title":"动作录制修改次数", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
+        ,{"title":"动作录制脚本修改循环次数", "level":0,"open":true,"textcolor":"","summary":"","script":"","contenturl":""}
         ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
         ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
         ,{"title":"权限使用说明", "level":0,"open":true,"textcolor":"","summary":"详细说明权限使用，使用时间","script":"","contenturl":""}
@@ -43,7 +46,7 @@
     ]
 },
 {"title":"特色功能","icon":"https://gitee.com/zhangshu345012/sample/raw/v2/img/特色功能.png","textsize":"16","textcolor":"#ff0000ff",
-    "level":0,"open":true,
+    "level":0,"open":false,
     "ui": {
         "type": 2,
         "orientation": 1,

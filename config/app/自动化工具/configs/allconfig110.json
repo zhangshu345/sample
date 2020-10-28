@@ -79,14 +79,14 @@
                 "script": ""
             },
             {
-                "name": "编写教程",
+                "name": "教程",
                 "open": true,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_book",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_red",
                 "event": -1,
-                "uipath": "",
+                "uipath": "/script/model-fragmenttype:教程",
                 "script": ""
             },
             {
@@ -194,7 +194,7 @@
                 "icon": "@drawable/ic_home_center_book",
                 "icontint": "#ffffff",
                 "back": "",
-                "event": 38,
+                "event": -1,
                 "uipath": "/script/model-fragmenttype:教程",
                 "script": ""
             },
