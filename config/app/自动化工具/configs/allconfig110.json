@@ -410,6 +410,10 @@
             "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
         },
         {
+            "name": "clickfloat",
+            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js"
+        },
+        {
             "name": "userguide",
             "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
         },
