@@ -200,7 +200,7 @@
             },
             {    "index":6,
                 "name": "微信联系",
-                "open": true,
+                "open": false,
                 "level": 0,
                 "icon": "@drawable/ic_add_wechat_48dp",
                 "icontint": "#00ff00",
