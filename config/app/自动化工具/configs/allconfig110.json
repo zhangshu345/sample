@@ -304,6 +304,7 @@
         {"id":19,"name":"记录","title":"记录","icon":"","icontint":"","type":0,"script":""},
         {"id":20,"name":"历史记录","title":"历史记录","icon":"","icontint":"","type":0,"script":""},
         {"id":22,"name":"任务悬浮","title":"管理","icon":"","icontint":"","type":0,"script":""},
+        {"id":23,"name":"权限说明","title":"权限说明","icon":"","icontint":"","type":0,"script":""},
         {"id":21,"name":"fragment脚本","title":"帮助","icon":"","icontint":"","type":1,"script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"}
     ],
     "keys": [{
