@@ -27,7 +27,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff0000",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "实现定时启动，手势模拟，文件修改，使用rhino 直接调用原生功能实现多样化工具",
                 "script": "",
                 "contenturl": ""
             },
@@ -36,7 +36,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff0000",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "android7.0 以上系统，内存2g 有多有可运行的内存。",
                 "script": "",
                 "contenturl": ""
             }
@@ -56,30 +56,13 @@
             "reverselayout": false
         },
         "articles": [
+           
             {
                 "title": "如何新建自动化？",
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff0000",
-                "summary": "",
-                "script": "",
-                "contenturl": ""
-            },
-            {
-                "title": "如何新建自动化？",
-                "level": 0,
-                "open": true,
-                "textcolor": "#ff0000",
-                "summary": "",
-                "script": "",
-                "contenturl": ""
-            },
-            {
-                "title": "如何新建自动化？",
-                "level": 0,
-                "open": true,
-                "textcolor": "#ff0000",
-                "summary": "",
+                "summary": "通过动作录制功能或者是自行添加脚本文件，或者启用悬浮球点击唤醒指定动作",
                 "script": "",
                 "contenturl": ""
             },
@@ -88,7 +71,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "",
+                "summary": "自动化：您录制的手势动作流程化脚本文件或者您编写的脚本js文件，可设置定时启动，条件唤醒启动等条件，具体条件请操作文件所在列 点击定时按钮打开启动设置页自行查看",
                 "script": "",
                 "contenturl": ""
             },
@@ -97,7 +80,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "",
+                "summary": "音量下键按压 即可关闭",
                 "script": "",
                 "contenturl": ""
             },
@@ -106,7 +89,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "",
+                "summary": "动作录制功能提供了录制您操作的功能，会完整的复现您在屏幕上的手势点击 滑动能操作，不过您要达到您预想的效果，请先保证录制的初始调试时候一致（录制启动页面和网络状况和操作的第三方服务是否一致）",
                 "script": "",
                 "contenturl": ""
             },
@@ -115,7 +98,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "",
+                "summary": "在录制下的文件中 自己添加循环函数即可",
                 "script": "",
                 "contenturl": ""
             }
@@ -140,52 +123,34 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "不是每次都需要开启开障碍服务，只有您使用需要无障碍功能的工具时才需要开启。每次应用关闭后都会是无障碍功能失效，可以将应用设置为设备管理者，避免应用关闭，可以免除每次启动开启重复操作。",
                 "script": "",
                 "contenturl": ""
             },
             {
-                "title": "每次都要开无障碍？",
+                "title": "没有我想要的工具怎么办？",
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "应用处于不断完善工具中，您有需要可以在反馈中提出需求，开发者和网友会尽快在您提出需求之后共享和提交。",
                 "script": "",
                 "contenturl": ""
             },
             {
-                "title": "每次都要开无障碍？",
+                "title": "工具启动怎么关闭？",
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "请按音量下键关闭，音量下键按压会关闭当前运行的工具。此配置可以配置中找到",
                 "script": "",
                 "contenturl": ""
             },
             {
-                "title": "权限使用说明",
+                "title": "怎么学习编写工具呢",
                 "level": 0,
                 "open": true,
                 "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
-                "script": "",
-                "contenturl": ""
-            },
-            {
-                "title": "权限使用说明",
-                "level": 0,
-                "open": true,
-                "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
-                "script": "",
-                "contenturl": ""
-            },
-            {
-                "title": "权限使用说明",
-                "level": 0,
-                "open": true,
-                "textcolor": "",
-                "summary": "详细说明权限使用，使用时间",
+                "summary": "工具使用es语言为基础，编写之前请先熟练es语法规则，之后请先查看脚本，脚本在文件页上方工具栏按钮中可找到，仔细查看教程后，在文件页面添加一个新文件，点击编写按钮，打开编写界面，界面中输入会有函数提醒和教程辅助 ，脚本",
                 "script": "",
                 "contenturl": ""
             }
@@ -210,7 +175,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff0000",
-                "summary": "悬浮球",
+                "summary": "拖到哪里点哪里  循环无限模拟点击所在位置，可以自行配置点击间隔",
                 "script": "",
                 "contenturl": ""
             },
@@ -219,7 +184,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff0000",
-                "summary": "悬浮球",
+                "summary": "拖到哪里点哪里  循环无限模拟点击所在位置，可以自行配置点击间隔和点击次数 抢礼物利器",
                 "script": "",
                 "contenturl": ""
             }
