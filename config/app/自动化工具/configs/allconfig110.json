@@ -544,7 +544,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": true,
+            "open": false,
             "coin": 100,
             "money": 0,
             "event": 7,
