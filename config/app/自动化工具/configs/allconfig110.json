@@ -1758,7 +1758,7 @@
         "ratiorewardvideo": "tt-10",
         "ratiofullvideo": "tt-10",
         "gdt": {
-            "open": true,
+            "open": false,
             "appid": "1111153990",
             "splash": "",
             "banner": "",
@@ -1779,7 +1779,7 @@
             "rewardvideo": ""
         },
         "toutiao": {
-            "open": false,
+            "open": true,
             "appid": "5116156",
             "nativeid": "945578247",
             "banner600300": "945578250",
