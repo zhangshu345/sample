@@ -12,7 +12,7 @@
     "userlogin": false,
     "bmobpush": false,
     "jpush": false,
-    "showad": true,
+    "showad": false,
     "showaccessibilityalter": false,
     "channeladvice": "",
     "reward": false,
