@@ -29,7 +29,7 @@
                 "textcolor": "#ff0000",
                 "summary": "详细说明权限使用，使用时间",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             },
             {
                 "title": "对手机的要求",
@@ -38,7 +38,7 @@
                 "textcolor": "#ff0000",
                 "summary": "详细说明权限使用，使用时间",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             }
         ]
     },
@@ -142,7 +142,7 @@
                 "textcolor": "",
                 "summary": "详细说明权限使用，使用时间",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             },
             {
                 "title": "每次都要开无障碍？",
@@ -151,7 +151,7 @@
                 "textcolor": "",
                 "summary": "详细说明权限使用，使用时间",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             },
             {
                 "title": "每次都要开无障碍？",
@@ -160,7 +160,7 @@
                 "textcolor": "",
                 "summary": "详细说明权限使用，使用时间",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             },
             {
                 "title": "权限使用说明",
@@ -212,7 +212,7 @@
                 "textcolor": "#ff0000",
                 "summary": "悬浮球",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             },
             {
                 "title": "连续点击小手",
@@ -221,7 +221,7 @@
                 "textcolor": "#ff0000",
                 "summary": "悬浮球",
                 "script": "",
-                "contenturl": "详细说明的内容部分 简单的可以使用这个"
+                "contenturl": ""
             }
         ]
     }
