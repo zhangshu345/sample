@@ -262,7 +262,6 @@ function sclick2(px,py){
     [5, 38, [px+randint(-15,15), py+randint(-15,15)], [px+randint(-15,15), py+randint(-15,15)]],
     [10, 30, [px+randint(-20,20), py+randint(-20,20)], [px+randint(-20,20),py+randint(-20,20)]]
        );
-
 }
 
 //开始点击

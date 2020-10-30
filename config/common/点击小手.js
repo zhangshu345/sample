@@ -33,7 +33,8 @@ var keeptoedge=false
 const but_data = {
     'logo': {
         name: "logo",//不可修改
-        src: "@drawable/click03",  
+        src: "@drawable/click03" , 
+         bg: "#009687"
     },
     'menu_1': {
         name: "开始",
@@ -159,8 +160,11 @@ var butLogoLayout = (function () {
         })
         this.defineAttr("bg", (view, attr, value, defineSetter) => {
             view._bg.attr("cardBackgroundColor", value)
-            view._img.attr("tint", "#ffffff")
+             view._img.attr("tint", "#ffffff")
             menu_view[menu_view.length] = view;
+        })
+        this.defineAttr("imbg", (view, attr, value, defineSetter) => {
+            view._img.attr("tint", value)
         })
     };
     butLogoLayout.prototype.render = function () {
@@ -215,7 +219,7 @@ var w_menu = floaty.rawWindow(
 //主按钮悬浮窗  无需更改
 //不能设置bg参数
 var w_logo = floaty.rawWindow(
-    <butLogo-layout id="_but" name="{{but_data.logo.name}}" src="{{but_data.logo.src}}" alpha="0.4" visibility="invisible" />
+    <butLogo-layout id="_but" name="{{but_data.logo.name}}" cardBackgroundColor="#00000000"  src="{{but_data.logo.src}}" alpha="0.4" visibility="invisible" />
 )
 
 //主按钮动画悬浮窗  无需更改
@@ -360,16 +364,15 @@ function animation_menu(event, E) {
      //定位悬浮窗
             w_menu.setPosition(X + but_logo_r - but_rrr, Y)
         }else{
-
              //Y值定位
              let but_rrr = dp2px(menu_r / 2) - (but_r * 2)
              let X = event.getRawX()
              , Y = (windowY + (event.getRawY() - y)) - (dp2px(menu_r / 2) - but_r)
            //X值定位
-           
-             X = X-but_rrr>0?X-but_rrr:0
-             
-            log("按钮悬浮的宽度："+w_menu.getWidth())
+             X = X- dp2px(menu_r / 2)
+            if((X+dp2px(menu_r)>_w)||X<0 ){
+                X= _w/2-dp2px(menu_r / 2)
+            }
            //定位悬浮窗
             w_menu.setPosition(X, Y)
 
@@ -531,4 +534,4 @@ setInterval(() => {
     clickX=w_logo.getX()+w_logo.getWidth()/2
     clickY=w_logo.getY()+w_logo.getHeight()/2
     log("当前点击的位置:"+clickX+","+clickY)
-}, 1000);
+}, 3000);
