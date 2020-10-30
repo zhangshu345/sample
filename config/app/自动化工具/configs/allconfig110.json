@@ -1471,7 +1471,7 @@
         "ratiorewardvideo": "tt-10",
         "ratiofullvideo": "tt-10",
         "gdt": {
-            "open": false,
+            "open": true,
             "appid": "1111153990",
             "splash": "8061132942833732",
             "banner": "3001734942448169",
@@ -1492,7 +1492,7 @@
             "rewardvideo": "3051130992846191"
         },
         "toutiao": {
-            "open": false,
+            "open": true,
             "appid": "5116156",
             "nativeid": "945578247",
             "banner600300": "945578250",
@@ -1542,7 +1542,7 @@
             "appwallplace": "237196"
         },
         "baidu": {
-            "open": false,
+            "open": true,
             "appid": "d419834b",
             "splash": "7261030",
             "banner203": "7261105",
