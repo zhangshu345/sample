@@ -1,7 +1,7 @@
 importClass(android.animation.ObjectAnimator)
 importClass(android.animation.AnimatorSet)
 importClass(android.view.animation.BounceInterpolator)
-importClass(android.content.BroadcastReceiver);
+// importClass(android.content.BroadcastReceiver);
 importClass(android.content.ContextWrapper);
 importClass(android.content.IntentFilter);
 /**************可修改参数 */
