@@ -4,7 +4,7 @@ engines.stopOther()
 const waitaction="auto.waitFor();\nauto.setMode(\"normal\");var sleepspeed=1.0;var actionspeed=1.0;"
 
 var script="";
-var downTime;
+var downTime=new Date().getTime();
 var actiontime=new Date().getTime();
 var actions=waitaction;//+new Date().toLocaleDateString
 var minactiontime=300
@@ -13,8 +13,10 @@ var 间隔时间=function(){
 }
 var sleepspeed=1.0
 var actionspeed=1.0
+var gfw   //调试悬浮窗口
+var recording=false;
 log(device)
-
+var x = 0, y = 0;
 var 动作时间间隔=function(){
     return new Date().getTime()-downTime
 }
@@ -32,17 +34,44 @@ function addnewactions(newactionstr){
     }
 //    log(actions)
 }
-   
+var  creatgfloatywindow=function(){
+
+    gfw=floaty.rawWindow(
+        <horizontal>
+            <text  id="text" w="*" h="*" gravity="center" textSize="18sp" background="#22ffff00">提醒</text>
+        </horizontal>
+    );
+    gfw.setSize(device.width, 120)
+    gfw.setTouchable(false)
+    gfw.setPosition(0,80)
+
+ }
+
+var show=function(txt,txtcolor){ 
+    try {
+     
+        log(txt);
+        if(!gfw){ creatgfloatywindow(); }else{
+            ui.run(function(){ 
+                gfw.text.setText(txt);
+            })
+        }
+    } catch (error) {
+        log(error)
+    }
+}
+
+
 function startscreenrecord(){
 //利用了悬浮窗
+log("开始录屏")
  screenactionwindow = floaty.rawWindow(
-    <frame id="action" w="{{device.width}}" h="{{device.height}}"  bg="#44ffcc00">
-    </frame>
-);
+    <frame id="action" w="{{device.width}}" h="{{device.height}}"  bg="#44ffcc00"/>
 
+);
+log("开始录屏1")
 screenactionwindow.setSize(-1, -1);
-setInterval(()=>{}, 1000);
-var x = 0, y = 0;
+log("开始录屏2")
 screenactionwindow.action.setOnTouchListener(function(view, event){
     switch(event.getAction()){
         case event.ACTION_DOWN:
@@ -68,6 +97,7 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
                     addnewpath(event.getRawX(),event.getRawY())
             return true
     }
+    log("开始录屏3")
     return true;
 });
 }
@@ -90,7 +120,7 @@ function 手势(){
            screenactionwindow.setTouchable(false);
            sleep(60);
            gesture.apply(null,points)
-           toastLog("执行手势")
+           show("执行手势")
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            points=[1000];
@@ -105,7 +135,7 @@ function 点击(x,y){
            screenactionwindow.setTouchable(false);
            sleep(60);
            press(x,y,1);
-           toastLog("点击("+x+","+y+")");
+           show("点击("+x+","+y+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
        });
@@ -119,7 +149,7 @@ function 长按(x,y){
            screenactionwindow.setTouchable(false);
            sleep(60);
            press(x,y,1000);
-           toastLog("长按("+x+","+y+")");
+           show("长按("+x+","+y+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
@@ -135,53 +165,65 @@ function 滑动(x,y,x1,y1){
            screenactionwindow.setTouchable(false);
            sleep(60);
            swipe(x,y,x1,y1,350);
-           toastLog("从("+x+","+y+")滑到("+x1+","+y1+")");
+           show("从("+x+","+y+")滑到("+x1+","+y1+")");
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            });
 }
 
-
-
 //开始物理按键记录
 function startkeyrecord(){
+    log("启动监听")
 //启用按键监听
 events.observeKey();
 //监听音量上键按下
 events.onKeyDown("volume_up", function(event){
-    log("音量上键被按下了");
+    show("音量上键被按下了");
 });
 
 //监听音量下键按下
 events.onKeyDown("volume_down", function(event){
-    log("音量上键被按下了");
+    show("音量上键被按下了");
 });
 //监听菜单键按下
 events.onKeyDown("menu", function(event){
-    log("菜单键被按下了");
+    show("菜单键被按下了");
 });
 //返回键按下
 events.onKeyDown("back", function(event){
-    log("返回键被按下了");
-    addnewactions("back()")
+    show("返回键被按下了");
+    if(recording){
+        addnewactions("back()")
+    }
+   
 });
 
 //返回键按下
 events.onKeyDown("home", function(event){
-    log("主页被按下了");
-    addnewactions("home()")
+    show("主页被按下了");
+    if(recording){
+        addnewactions("home()")
+    }
+  
 });
+
+log("启动监听后")
+
 }
 
 //
 function startrecord(){
-    toastLog("开始录制脚本")
+    recording=true;
+    show("开始录制脚本")
     startkeyrecord()
     startscreenrecord()
 }
 
 function stoprecord(){
-
+    recording=false
+    screenactionwindow.close()
+    screenactionwindow=null
+    saveScriptRecord()
 }
 
 function saveScriptRecord(){
@@ -204,8 +246,51 @@ function saveScriptRecord(){
 }
 
 events.on("exit", function(){
+    events.removeAllTouchListeners()
     saveScriptRecord()
 });
 
-startrecord()
+function showcontrolfloaty(){
+    var controlw = floaty.rawWindow(
+        <horizontal gravity="center" bg="#44ffcc00" w="auto" h="auto" >
+            <text id="setstart" text="设置起始页" w="auto" h="auto" marginRight="16" padding="8"/>
+            <text id="start" text="开始" w="auto" h="auto" padding="8"/>
+         </horizontal>
+    );
+    
+    controlw.setSize(-2, -2);
+    controlw.setTouchable(true);
+    controlw.setPosition(20,device.height/2)
+    controlw.setstart.on("click",function(v){
+        log("ks1")
+        pkg=currentPackage()
+        log("ks2")
+        activity=currentActivity()
+        log("ks3")
+        actions=actions+"app.launch("+pkg+")/n;waitForPackage("+pkg+");/n"
+    })
+    controlw.start.on("click",function(v){
+        log("ks4")
+        if(recording){
+            log("ks5")
+            controlw.start.setText("开始")
+            log("ks6")
+            stoprecord()
+            log("ks7")
+        }else{
+            log("ks8")
+            controlw.start.setText("停止")
+            log("ks9")
+            startrecord()
+            log("ks10")
+        }
+        
+        
+    })
+}
 
+showcontrolfloaty()
+// startrecord()
+setInterval(()=>{
+    show("等待:"+动作时间间隔()+"ms")
+}, 1000);

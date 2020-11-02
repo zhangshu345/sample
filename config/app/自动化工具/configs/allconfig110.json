@@ -290,6 +290,7 @@
         {"id":5,"name":"脚本文件","title":"脚本文件","icon":"","icontint":"","type":0,"script":""},
         {"id":6,"name":"市场","title":"市场","icon":"","icontint":"","type":0,"script":""},
         {"id":7,"name":"工具箱","title":"工具","icon":"","icontint":"","type":0,"script":""},
+        {"id":24,"name":"工具","title":"工具","icon":"","icontint":"","type":0,"script":""},
         {"id":8,"name":"共享","title":"市场","icon":"","icontint":"","type":0,"script":""},
         {"id":9,"name":"赚钱","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
         {"id":10,"name":"赚钱首页","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
