@@ -22,7 +22,7 @@ var 动作时间间隔=function(){
 }
 var screenactionwindow
 var points=[1000];
-
+var recordthread //录制线程
 //最小间隔时间
 function addnewactions(newactionstr){
     log(newactionstr)
@@ -132,6 +132,7 @@ function 点击(x,y){
     y=parseInt(y)
       addnewactions("click("+x+","+y+")")
       threads.start(function(){
+          
            screenactionwindow.setTouchable(false);
            sleep(60);
            press(x,y,1);
@@ -215,14 +216,22 @@ log("启动监听后")
 function startrecord(){
     recording=true;
     show("开始录制脚本")
-    startkeyrecord()
-    startscreenrecord()
+    
+    recordthread=threads.start(function(){
+        startkeyrecord()
+        startscreenrecord()
+    })
+   
 }
 
 function stoprecord(){
     recording=false
-    screenactionwindow.close()
-    screenactionwindow=null
+    if(recordthread){
+        recordthread.interrupt()
+        recordthread=null
+    }
+    screenactionwindow.setSize(1,1)
+    
     saveScriptRecord()
 }
 
@@ -247,7 +256,10 @@ function saveScriptRecord(){
 
 events.on("exit", function(){
     events.removeAllTouchListeners()
-    saveScriptRecord()
+    if(recording){
+        saveScriptRecord()
+    }
+    
 });
 
 function showcontrolfloaty(){
