@@ -351,12 +351,12 @@
         {
             "name": "usermainfragment",
             "value": "首页-本地脚本-工具箱-任务悬浮-用户我",
-            "summary": "说明"
+            "summary": "普通用户主页"
         },
         {
             "name": "developfragment",
-            "value": "本地脚本-教程-任务-管理-市场",
-            "summary": "说明"
+            "value": "本地脚本-教程-管理-市场",
+            "summary": "开发者用户主页"
         },
         {
             "name": "qqproducturl",
@@ -1299,7 +1299,7 @@
             },
             "state": 0,
             "icon": "",
-            "level": 0,
+            "level": 10,
             "source": 2,
             "desc": "推荐使用的脚本",
             "img": "",
