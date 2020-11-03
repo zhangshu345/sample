@@ -2,54 +2,21 @@
 	{
 		"name": "学习强国简单版2",
 		"desc": {
-			"summary": "测试脚本 功能不全 测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试",
+			"summary": "测试内容补全 是否正常显示测试测试",
 			"html": ""
 		},
-		"tags": [
-			"短视频",
-			"赚钱"
-		],
-		"devices": [
-			"xiaomi",
-			"samsung",
-			"HONOR",
-			"Meizu",
-			"OPPO"
-		],
-		"features": [],
 		"open": true,
 		"install": true,
-		"keys": [
-			{
-				"name": "测试",
-				"value": "值"
-			},
-			{
-				"name": "测试2",
-				"value": "值2"
-			}
-		],
 		"layout": {
 			"type": 1,
 			"orientation": 1,
 			"width": 0,
 			"height": 0,
 			"back": "@color/red",
-			"fore": "",
 			"reverselayout": false,
 			"size": 0,
-			"textsize": 6,
-			"buttons": [
-				{
-					"name": "下载",
-					"eventid": -1,
-					"script": "",
-					"uipath": "",
-					"icon": "",
-					"key": ""
-				}
-			]
-		},
+			"textsize": 6
+			},
 		"root": false,
 		"path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/学习强国辅助阅读.js",
 		"source": 2,
