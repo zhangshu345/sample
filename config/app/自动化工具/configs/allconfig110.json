@@ -360,23 +360,23 @@
         },
         {
             "name": "qqproducturl",
-            "value": "https://support.qq.com/products/179319",
-            "summary": "说明"
+            "value": "https://support.qq.com/product/291338",
+            "summary": "腾讯兔小巢的产品反馈页面"
         },
         {
             "name": "company",
-            "value": "https://support.qq.com/products/179319",
+            "value": "https://support.qq.com/product/291338",
             "summary": "说明"
         },
         {
             "name": "showcharge",
             "value": "false",
-            "summary": "说明"
+            "summary": "充值入口开放"
         },
         {
             "name": "qq",
             "value": "3450559631",
-            "summary": "说明"
+            "summary": "客服联系的qq"
         },
         {
             "name": "email",
@@ -396,16 +396,16 @@
         {
             "name": "developer",
             "value": "红薯",
-            "summary": "说明"
+            "summary": "开发者展示作者名"
         }
     ],
-    "baseurl": "http://www.hongdong.info:1337/",
+    "baseurl": "http://www.hongdong.info/",
     "rewardconfigurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
     "runurl": "https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合1.js",
     "shareword": "赚钱停不下来,快来下载【{appname}】填我邀请码【1234567890】【下载地址：{downloadurl}】",
     "userloginpath": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
     "rewardcoinscript": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
-    "downloadurl": "http://zhangshuhong888.iask.in:8989/随便粘_200.apk",
+    "downloadurl": "https://imtt.dd.qq.com/16891/apk/A434BD6535C1F6F239F7A8A024E7E565.apk",
     "scripts": [
         {
             "name": "clickpoint",
@@ -1333,7 +1333,7 @@
             },
             "state": 0,
             "icon": "",
-            "level": 500,
+            "level": 200,
             "source": 2,
             "desc": "网友共享的阅读App工具",
             "img": "",
