@@ -756,9 +756,9 @@ function app_run(){
         sleep(3000)
     }
 
-    if(今日签到(appname)!="true"){
-        app_sign()
-    }
+    // if(今日签到(appname)!="true"){
+    //     app_sign()
+    // }
     todaysign=true
     loopn=0
     while(true){
