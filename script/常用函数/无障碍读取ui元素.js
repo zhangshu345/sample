@@ -1,7 +1,7 @@
 
 var w = floaty.rawWindow(
     <frame w="*" h="*">
-       <com.hongshu.automator.analy.layoutinfoview.UIAnalyView
+       <com.hongshu.autotools.core.analy.layoutinfoview.UIAnalyView
        id="uianaly"
         w="*"  h="*"/> 
     
@@ -11,7 +11,7 @@ w.setPosition(-1, com.blankj.utilcode.util.BarUtils.getStatusBarHeight());
 w.setSize(-1, -1);
 
 
-let acc=com.hongshu.autojs.core.accessibility.AccessibilityService.Companion.getInstance()
+let acc=runtime.accessibilityBridge.getService()
 log("ss")
 log(acc)
 let nos=acc.readNode()

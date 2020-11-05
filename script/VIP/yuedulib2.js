@@ -120,7 +120,7 @@ var 上次金币=function(name){ return 获取记录(name,"coin",0); }
 var 记录现在余额=function(name,f){记录(name,"money",f);} 
 var 上次余额=function(name){ return 获取记录(name,"money");} 
 
-var  记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
+var 记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
 var 上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
 
 var 记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
@@ -139,14 +139,14 @@ var agourl=function(url){
             "url": url
           },
           packageName: context.packageName,
-            className: "com.hongshu.ui.scheme.SchemeFilterActivity"
+          className: "com.hongshu.ui.scheme.SchemeFilterActivity"
     });
 }
 
 //开启调试
 var startdebug=function(ip){
   ip=ip||debugip
-    DevPluginService.getInstance().debugtoip(debugip);
+  DevPluginService.getInstance().debugtoip(debugip);
 }
 
 //判断是否是设备管理者
@@ -1019,11 +1019,13 @@ var  tofloatysetting=function(){
     });
     context.startActivity(i);
 }
+
 var  todevelopersetting=function(){
     let i = app.intent({ action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS", flags:["activity_new_task"] // data: "file:///sdcard/1.png"  
 });
   context.startActivity(i);
- }
+}
+
  
 var toPkgandClass=function(pkg,classname){
         let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"]});

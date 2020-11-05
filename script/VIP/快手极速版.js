@@ -403,7 +403,6 @@ var app_sign=function(){
         }
         app_close_alter()
     },60000)
-    
 }
 
 var app_getrewardnum=function(){
@@ -448,8 +447,6 @@ var app_getreward=function(){
     },60000)
 }
 
-
-
 var selectnavi=function(index){
    node_tab= className("android.view.View").depth(9).drawingOrder(index).clickable().findOne(300)
     if(node_tab){
@@ -462,12 +459,7 @@ var selectnavi=function(index){
     }else{
         show(appname+"没有找到导航"+index)
     }
-    // node_tabs=id("com.kuaishou.nebula:id/tabs").depth(7).findOne(200)
-    // if(node_tabs){
-    //     if( node_tabs.child(0).child(index-1)){
-    //         node_tabs.child(0).child(index-1).click()
-    //     }
-    // }
+
 }
 
 var app_go_home=function(index){
@@ -501,9 +493,9 @@ var app_go_home=function(index){
                 app.launch(apppkg)
                 sleep(3000)
             }
-
         },10000)
 }
+
 
 
 var app_invite=function(){
@@ -560,6 +552,8 @@ var app_swipe_up=function(){
          return -1
      }
  }
+
+
  var app_swipe_down=function(){
     if(enablegenius){
         滑动(20,10,3,10,18,400,400)
@@ -574,7 +568,7 @@ var app_swipe_up=function(){
 var 滑动次数=今日滑动次数(appname)
 var islogin=false
 
-toastLog(577)
+
 var app_login=function(){
     show(appname+"登录")
     doactionmaxtime(function(){
@@ -613,8 +607,7 @@ var app_login=function(){
             }
            return true
        }
-   
-    },120000)
+    },90000)
 }
 
 var app_tomoney=function(){
@@ -688,7 +681,6 @@ let swipenumber=0
                 sleep(2000)
                 swipenumber=0
                 lastdesc=nowdesc
-                
              }
            }
     },100)
@@ -755,7 +747,6 @@ function app_run(){
         app.launch(apppkg)
         sleep(3000)
     }
-
     // if(今日签到(appname)!="true"){
     //     app_sign()
     // }

@@ -3,6 +3,7 @@
 ui.layout(
     <vertical>
         <canvas id="board" layout_weight="1"/>
+        <text  w="*" h="auto" id="start">开始</text>
         <relative h="120">
             <button id="up" text="↑" w="60" h="60" layout_alignParentTop="true" layout_centerHorizontal="true"/>
             <button id="left" text="←" w="60" h="60" layout_alignParentBottom="true" layout_toLeftOf="@id/down"/>
@@ -99,7 +100,9 @@ ui.left.on("click", ()=> direction = DIRECTION_LEFT);
 ui.right.on("click", ()=> direction = DIRECTION_RIGHT);
 ui.up.on("click", ()=> direction = DIRECTION_UP);
 ui.down.on("click", ()=> direction = DIRECTION_DOWN);
-
+// ui.start.on("click",(v)=>{
+//     gameThread = threads.start(game);
+// })
 
 function game(){
     //每隔一段时间让蛇自动前进

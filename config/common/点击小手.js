@@ -5,6 +5,7 @@ importClass(android.view.animation.BounceInterpolator)
 // importClass(android.content.BroadcastReceiver);
 importClass(android.content.ContextWrapper);
 importClass(android.content.IntentFilter);
+// glide=com.hongshu.utils.GlideUtils
 /**************可修改参数 */
 //按钮大小
 const but_w_h = 42;
@@ -37,22 +38,22 @@ const but_data = {
          bg: "#009687"
     },
     'menu_1': {
-        name: "开始",
-        src: "@drawable/ic_play_arrow_black_48dp",
+        name: "点击间隔",
+        src: "@drawable/ic_script_pref",
         bg: "#009687"
     },
     'menu_2': {
         name: "停止",
-        src: "@drawable/ic_assignment_black_48dp",
+        src: "@drawable/ic_stop",
         bg: "#ee534f"
     },
     'menu_3': {
-        name: "点击间隔",
+        name: "开始",
         src: "@drawable/ic_play_arrow_black_48dp",
         bg: "#40a5f3"
     },
     'menu_4': {
-        name: "点击次数",
+        name: "关闭",
         src: "@drawable/ic_clear_black_48dp",
         bg: "#fbd834"
     },
@@ -84,8 +85,8 @@ function menuOnClick(view) {
         case "点击间隔":
             setclickinterval()
             break;
-        case "点击次数":
-
+        case "关闭":
+            exit()
             break;
         case "设置":
             let arr = ["打开无障碍服务", "当前应用包名:", "当前活动:", "打开主页面", "指针位置", "退出悬浮窗"]
@@ -152,6 +153,7 @@ var butLogoLayout = (function () {
     util.extend(butLogoLayout, ui.Widget);
     function butLogoLayout() {
         ui.Widget.call(this);
+      
         this.defineAttr("name", (view, attr, value, defineSetter) => {
             view._name.setText(value)
         })
@@ -166,6 +168,9 @@ var butLogoLayout = (function () {
         this.defineAttr("imbg", (view, attr, value, defineSetter) => {
             view._img.attr("tint", value)
         })
+        // this.setIcon=function(imgurl){
+        //     glide.setImage(context,imgurl,view._img)
+        // }
     };
     butLogoLayout.prototype.render = function () {
         return (
@@ -208,11 +213,11 @@ var px2dp = function (px) {
  */
 var w_menu = floaty.rawWindow(
     <frame id="menu" w="{{dp2px(menu_r)}}px" h="{{dp2px(menu_r)}}px" visibility="gone" >//
-        <butLogo-layout name="{{but_data.menu_1.name}}" src="{{but_data.menu_1.src}}" bg="{{but_data.menu_1.bg}}" layout_gravity="center" />
-        <butLogo-layout name="{{but_data.menu_2.name}}" src="{{but_data.menu_2.src}}" bg="{{but_data.menu_2.bg}}" layout_gravity="center" />
-        <butLogo-layout name="{{but_data.menu_3.name}}" src="{{but_data.menu_3.src}}" bg="{{but_data.menu_3.bg}}" layout_gravity="center" />
-        <butLogo-layout name="{{but_data.menu_4.name}}" src="{{but_data.menu_4.src}}" bg="{{but_data.menu_4.bg}}" layout_gravity="center" />
-        <butLogo-layout name="{{but_data.menu_5.name}}" src="{{but_data.menu_5.src}}" bg="{{but_data.menu_5.bg}}" layout_gravity="center" />
+        <butLogo-layout   name="{{but_data.menu_1.name}}" src="{{but_data.menu_1.src}}" bg="{{but_data.menu_1.bg}}" layout_gravity="center" />
+        <butLogo-layout   name="{{but_data.menu_2.name}}" src="{{but_data.menu_2.src}}" bg="{{but_data.menu_2.bg}}" layout_gravity="center" />
+        <butLogo-layout   name="{{but_data.menu_3.name}}" src="{{but_data.menu_3.src}}" bg="{{but_data.menu_3.bg}}" layout_gravity="center" />
+        <butLogo-layout   name="{{but_data.menu_4.name}}" src="{{but_data.menu_4.src}}" bg="{{but_data.menu_4.bg}}" layout_gravity="center" />
+        <butLogo-layout    name="{{but_data.menu_5.name}}" src="{{but_data.menu_5.src}}" bg="{{but_data.menu_5.bg}}" layout_gravity="center" />
     </frame>
 )
 
@@ -240,7 +245,6 @@ for (let i = 0; i < 4; i++) {
     }else{
         degree = 90;
     }
-    
     menu_X[i] = [];
     menu_Y[i] = [];
     for (let j = 0; j < menu_view.length; j++) {
@@ -252,7 +256,10 @@ for (let i = 0; i < 4; i++) {
 
 //开始点击
 function startclick(){
-    stopclick()
+    if(clickthread!=null){
+        stopclick()
+        return
+    }
     clickthread=threads.start(
         function(){
             if(interval>50){
@@ -286,6 +293,8 @@ function startclick(){
         }
     )
 }
+
+
 //停止点击
 function stopclick(){
     if(clickthread){
@@ -296,12 +305,11 @@ function stopclick(){
 }
 
 function setclickinterval(){
-    let time = dialogs.input("请输入点击间隔时间", "1000");
-    if(time>0){
-        interval=time
-    }
+    rawInput("请输入点击间隔时间", ""+interval, timelong => {
+        interval=parseInt(timelong)
+        alert("您的设置时长" + interval+"ms");
+   });
 }
-
 
 //注册监听屏幕旋转广播
 var intent_CHANGED
@@ -312,7 +320,7 @@ new ContextWrapper(context).registerReceiver(intent_CHANGED = new BroadcastRecei
         log("屏幕方向发生变化\n" + intent_CHANGED)
         getScreenDirection()
     }
-}), filter)
+}),filter)
 
 
 //按钮停靠时隐藏到屏幕的X值
@@ -351,6 +359,7 @@ function getScreenDirection() {
         })
     }, 50);
 }
+
 //菜单展开收起动画
 function animation_menu(event, E) {
     //如果展开状态为假  则重新定位菜单menu位置 
@@ -375,7 +384,6 @@ function animation_menu(event, E) {
             }
            //定位悬浮窗
             w_menu.setPosition(X, Y)
-
         }
         w_logo._but.attr("alpha", "1")
     } else {
@@ -390,7 +398,6 @@ function animation_menu(event, E) {
         }else{
             w_logo.getY()>w_menu.getHeight()+100>_h ? e=2 :e=3;
         }
-        
         if (menu_switch) {
             // log("关闭动画")
             for (let i = 0; i < menu_view.length; i++) {
@@ -523,6 +530,7 @@ w_logo._but.setOnTouchListener(function (view, event) {
     }
     return true
 });
+
 //exit()退出事件
 events.on('exit', function () {
     if (intent_CHANGED != null) {
@@ -530,6 +538,7 @@ events.on('exit', function () {
         new ContextWrapper(context).unregisterReceiver(intent_CHANGED);
     }
 });
+
 setInterval(() => { 
     clickX=w_logo.getX()+w_logo.getWidth()/2
     clickY=w_logo.getY()+w_logo.getHeight()/2
