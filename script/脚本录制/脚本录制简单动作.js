@@ -5,6 +5,7 @@ const waitaction="auto.waitFor();\nauto.setMode(\"normal\");var sleepspeed=1.0;v
 
 var script="";
 var downTime=new Date().getTime();
+var clicknumber=0;
 var actiontime=new Date().getTime();
 var actions=waitaction;//+new Date().toLocaleDateString
 var minactiontime=300
@@ -84,7 +85,14 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
                长按(x,y);
             }else{
                if(Math.abs(event.getRawY() - y) < 10 && Math.abs(event.getRawX() - x) < 10){
-                     点击(x,y);
+                点击(x,y);
+                // clicknumber=clicknumber+1
+                //    if(clicknumber>1){
+                //         点击(x,y,clicknumber);
+                //    }else{
+                       
+                //    }
+                     
                 }
                 else{
                 //    滑动(x,y,event.getRawX(),event.getRawY()); 
@@ -118,26 +126,30 @@ function 手势(){
     addnewactions("gesture.apply(null,"+JSON.stringify(points)+")")
     threads.start(function(){
            screenactionwindow.setTouchable(false);
+           show("执行手势")
            sleep(60);
            gesture.apply(null,points)
-           show("执行手势")
+           sleep(60);
            screenactionwindow.setTouchable(true);
            actiontime= new Date().getTime();
            points=[1000];
        }); 
 }
 
-function 点击(x,y){
+function 点击(x,y,n){
     x=parseInt(x)
     y=parseInt(y)
-      addnewactions("click("+x+","+y+")")
       threads.start(function(){
-          
-           screenactionwindow.setTouchable(false);
+        ui.run(function(){
+            screenactionwindow.setTouchable(false);
+            })
+            show("点击("+x+","+y+")");
            sleep(60);
-           press(x,y,1);
-           show("点击("+x+","+y+")");
-           screenactionwindow.setTouchable(true);
+           press(x,y,5);
+         
+           ui.run(function(){
+            screenactionwindow.setTouchable(true);
+            })
            actiontime= new Date().getTime();
        });
 }
@@ -147,11 +159,17 @@ function 长按(x,y){
     y=parseInt(y)
     addnewactions("press("+x+","+y+",1000)")
     threads.start(function(){
-           screenactionwindow.setTouchable(false);
+        ui.run(function(){
+            screenactionwindow.setTouchable(false);
+        })
+          
            sleep(60);
            press(x,y,1000);
            show("长按("+x+","+y+")");
-           screenactionwindow.setTouchable(true);
+           ui.run(function(){
+            screenactionwindow.setTouchable(true);
+            })
+          
            actiontime= new Date().getTime();
            });
 }
@@ -163,11 +181,15 @@ function 滑动(x,y,x1,y1){
     y1=parseInt(y1)
     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
     threads.start(function(){
-           screenactionwindow.setTouchable(false);
+        ui.run(function(){
+            screenactionwindow.setTouchable(false);
+            })
            sleep(60);
            swipe(x,y,x1,y1,350);
            show("从("+x+","+y+")滑到("+x1+","+y1+")");
-           screenactionwindow.setTouchable(true);
+           ui.run(function(){
+            screenactionwindow.setTouchable(true);
+            })
            actiontime= new Date().getTime();
            });
 }
@@ -196,7 +218,6 @@ events.onKeyDown("back", function(event){
     if(recording){
         addnewactions("back()")
     }
-   
 });
 
 //返回键按下

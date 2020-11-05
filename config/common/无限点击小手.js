@@ -1,5 +1,3 @@
-const { sleep } = require("yarn/lib/cli")
-
 toast("点击小手工具")
 auto()
 auto.waitFor()
@@ -268,7 +266,7 @@ function startclick(){
         function(){
             if(interval>100){
                 while(true){
-                    w_logo.setTouchable(false)
+                   w_logo.setTouchable(false)
                    sleep(interval/2)
                    press(clickX,clickY,5)
                    w_logo.setTouchable(true)
@@ -278,7 +276,7 @@ function startclick(){
                 //            return 
                 //        }
                 //    }
-                   sleep(interval/2)
+                   sleep(interval/2-5)
                }
             }else{
                 w_logo.setTouchable(false)
@@ -291,7 +289,7 @@ function startclick(){
                 //            return 
                 //        }
                 //    }
-                   sleep(interval/2)
+                   sleep(interval/2-5)
                }
             }
         }
