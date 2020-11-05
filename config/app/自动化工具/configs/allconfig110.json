@@ -195,7 +195,7 @@
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
-                "uipath": "/script/model-fragmenttype:教程",
+                "uipath": "/script/documentation",
                 "script": ""
             },
             {    "index":6,
@@ -214,7 +214,7 @@
                 "open": true,
                 "level": 0,
                 "icon": "@drawable/ic_circular_menu_settings",
-                "icontint": "",
+                "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
                 "uipath": "",
