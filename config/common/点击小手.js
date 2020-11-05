@@ -1,4 +1,6 @@
 toast("点击小手工具")
+auto()
+auto.waitFor()
 importClass(android.animation.ObjectAnimator)
 importClass(android.animation.AnimatorSet)
 importClass(android.view.animation.BounceInterpolator)
@@ -302,6 +304,7 @@ function stopclick(){
         clickthread=null
     }
     w_logo.setTouchable(true)
+    toastLog("停止点击")
 }
 
 function setclickinterval(){
