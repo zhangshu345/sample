@@ -174,7 +174,7 @@
                 "back": "",
                 "event": -1,
                 "uipath": "",
-                "script": ""
+                "script": "scriptname:clickfloat"
             },
             {    "index":5,
                 "name": "位置",
