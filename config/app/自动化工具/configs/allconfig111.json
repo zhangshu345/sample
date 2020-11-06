@@ -1,8 +1,8 @@
 {
     "name": "自动化工具",
     "pkg": "com.hongdong.autotools",
-    "version": "1.1.0",
-    "versioni": 10,
+    "version": "1.1.1",
+    "versioni": 11,
     "channel": "qq",
     "mtaappkey": "A1KT37D8APGM",
     "bmobappid": "e63e8bcad7f4ca8893f3785f75d352f4",
@@ -453,6 +453,7 @@
         {"id":160,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
         {"id":200,"title":"注：承诺以上所有权限均用于程序的运行需要，您可以根据自己实际使用需求开启或关闭部分敏感权限。如果您对所申请的权限有任何疑问，欢迎您百度android权限 和 APP 功能相关的联系","summary":"","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""}
     ],
+
     "activity": [
         {
             "id": 1,
@@ -475,7 +476,6 @@
             "key": "key_action_reward_user_invite",
             "script": ""
         },
-      
         {
             "id": 100,
             "title": "支付宝红包",
