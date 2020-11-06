@@ -226,7 +226,6 @@ events.onKeyDown("home", function(event){
     if(recording){
         addnewactions("home()")
     }
-  
 });
 
 log("启动监听后")

@@ -471,7 +471,7 @@
             "finishname": "已经填写",
             "nofinishname": "点此填写",
             "icon": "@drawable/ic_alipay_reward_48dp",
-            "imgsize":36,
+            "imgsize":234,
             "rewardtype": 1,
             "key": "key_action_reward_user_invite",
             "script": ""
