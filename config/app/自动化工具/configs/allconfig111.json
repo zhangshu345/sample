@@ -848,28 +848,7 @@
         }
     ],
     "activity": [
-        {
-            "id": 1,
-            "title": "填写邀请码",
-            "summary": "填写邀请人的邀请码获取邀请人赠送礼物",
-            "titlecolor": "",
-            "summarycolor": "#ffff00",
-            "level": 0,
-            "open": true,
-            "coin": 0,
-            "money": 0,
-            "event": 204,
-            "time": 5,
-            "interval": -1,
-            "finishname": "已经填写",
-            "nofinishname": "点此填写",
-            "icon": "@drawable/ic_alipay_reward_48dp",
-            "imgsize": 234,
-            "rewardtype": 1,
-            "key": "key_action_reward_user_invite",
-            "script": ""
-        },
-        {
+         {
             "id": 100,
             "title": "支付宝红包",
             "summary": "每日领取支付宝红包，支付时抵现金",
