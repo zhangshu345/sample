@@ -25,7 +25,16 @@
     "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
     "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
     "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
-    "inviteaction":[{"name":"快手极速版","pkg":"com.kuaishou.nebula","open":true,"action":[""]}],
+    "inviteaction": [
+        {
+            "name": "快手极速版",
+            "pkg": "com.kuaishou.nebula",
+            "open": true,
+            "action": [
+                ""
+            ]
+        }
+    ],
     "barbuttons": {
         "ui": {
             "type": 1,
@@ -121,7 +130,8 @@
             "reverselayout": false
         },
         "data": [
-            {   "index":0,
+            {
+                "index": 0,
                 "name": "配置",
                 "open": true,
                 "level": 0,
@@ -132,7 +142,8 @@
                 "uipath": "",
                 "script": ""
             },
-            {    "index":1,
+            {
+                "index": 1,
                 "name": "扫描",
                 "open": true,
                 "level": 0,
@@ -143,7 +154,8 @@
                 "uipath": "/common/scan",
                 "script": ""
             },
-            {    "index":2,
+            {
+                "index": 2,
                 "name": "添加",
                 "open": true,
                 "level": 0,
@@ -154,7 +166,8 @@
                 "uipath": "/script/settings",
                 "script": "scriptname:settingdescription"
             },
-            {   "index":3,
+            {
+                "index": 3,
                 "name": "动作录制",
                 "open": true,
                 "level": 0,
@@ -165,7 +178,8 @@
                 "uipath": "",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
             },
-            {    "index":4,
+            {
+                "index": 4,
                 "name": "点击小手",
                 "open": true,
                 "level": 0,
@@ -176,7 +190,8 @@
                 "uipath": "",
                 "script": "scriptname:clickfloat"
             },
-            {    "index":5,
+            {
+                "index": 5,
                 "name": "位置",
                 "open": false,
                 "level": 0,
@@ -187,7 +202,8 @@
                 "uipath": "",
                 "script": ""
             },
-            {    "index":5,
+            {
+                "index": 5,
                 "name": "教程",
                 "open": true,
                 "level": 0,
@@ -198,7 +214,8 @@
                 "uipath": "/script/documentation",
                 "script": ""
             },
-            {    "index":6,
+            {
+                "index": 6,
                 "name": "微信联系",
                 "open": false,
                 "level": 0,
@@ -209,7 +226,8 @@
                 "uipath": "",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
             },
-            {   "index":7,
+            {
+                "index": 7,
                 "name": "配置",
                 "open": true,
                 "level": 0,
@@ -282,36 +300,268 @@
             "url": "/script/videoedit"
         }
     ],
-    "fragment":[{"id":0,"name":"首页","title":"首页","icon":"","icontint":"","type":0,"script":""},
-        {"id":1,"name":"任务管理","title":"任务管理","icon":"","icontint":"","type":0,"script":""},
-        {"id":2,"name":"管理","title":"任务管理","icon":"","icontint":"","type":0,"script":""},
-        {"id":3,"name":"任务","title":"任务","icon":"","icontint":"","type":0,"script":""},
-        {"id":4,"name":"本地脚本","title":"本地","icon":"","icontint":"","type":0,"script":""},
-        {"id":5,"name":"脚本文件","title":"脚本文件","icon":"","icontint":"","type":0,"script":""},
-        {"id":6,"name":"市场","title":"市场","icon":"","icontint":"","type":0,"script":""},
-        {"id":7,"name":"工具箱","title":"工具","icon":"","icontint":"","type":0,"script":""},
-        {"id":24,"name":"工具","title":"工具","icon":"","icontint":"","type":0,"script":""},
-        {"id":8,"name":"共享","title":"市场","icon":"","icontint":"","type":0,"script":""},
-        {"id":9,"name":"赚钱","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
-        {"id":10,"name":"赚钱首页","title":"赚钱","icon":"","icontint":"","type":0,"script":""},
-        {"id":11,"name":"服务","title":"服务","icon":"","icontint":"","type":0,"script":""},
-        {"id":12,"name":"消息","title":"消息","icon":"","icontint":"","type":0,"script":""},
-        {"id":13,"name":"视频","title":"视频","icon":"","icontint":"","type":0,"script":""},
-        {"id":14,"name":"脚本我","title":"我","icon":"","icontint":"","type":0,"script":""},
-        {"id":15,"name":"我","title":"我","icon":"","icontint":"","type":0,"script":""},
-        {"id":16,"name":"用户我","title":"我","icon":"","icontint":"","type":0,"script":""},
-        {"id":17,"name":"教程","title":"教程","icon":"","icontint":"","type":0,"script":""},
-        {"id":18,"name":"帮助","title":"帮助","icon":"","icontint":"","type":0,"script":""},
-        {"id":19,"name":"记录","title":"记录","icon":"","icontint":"","type":0,"script":""},
-        {"id":20,"name":"历史记录","title":"历史记录","icon":"","icontint":"","type":0,"script":""},
-        {"id":22,"name":"任务悬浮","title":"管理","icon":"","icontint":"","type":0,"script":""},
-        {"id":23,"name":"权限说明","title":"权限说明","icon":"","icontint":"","type":0,"script":""},
-        {"id":21,"name":"fragment脚本","title":"帮助","icon":"","icontint":"","type":1,"script":"https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"}
+    "fragment": [
+        {
+            "id": 0,
+            "name": "首页",
+            "title": "首页",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 1,
+            "name": "任务管理",
+            "title": "任务管理",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 2,
+            "name": "管理",
+            "title": "任务管理",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 3,
+            "name": "任务",
+            "title": "任务",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 4,
+            "name": "本地脚本",
+            "title": "本地",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 5,
+            "name": "脚本文件",
+            "title": "脚本文件",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 6,
+            "name": "市场",
+            "title": "市场",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 7,
+            "name": "工具箱",
+            "title": "工具",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 24,
+            "name": "工具",
+            "title": "工具",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 8,
+            "name": "共享",
+            "title": "市场",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 9,
+            "name": "赚钱",
+            "title": "赚钱",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 10,
+            "name": "赚钱首页",
+            "title": "赚钱",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 11,
+            "name": "服务",
+            "title": "服务",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 12,
+            "name": "消息",
+            "title": "消息",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 13,
+            "name": "视频",
+            "title": "视频",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 14,
+            "name": "脚本我",
+            "title": "我",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 15,
+            "name": "我",
+            "title": "我",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 16,
+            "name": "用户我",
+            "title": "我",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 17,
+            "name": "教程",
+            "title": "教程",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 18,
+            "name": "帮助",
+            "title": "帮助",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 19,
+            "name": "记录",
+            "title": "记录",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 20,
+            "name": "历史记录",
+            "title": "历史记录",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 22,
+            "name": "任务悬浮",
+            "title": "管理",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 23,
+            "name": "权限说明",
+            "title": "权限说明",
+            "icon": "",
+            "icontint": "",
+            "type": 0,
+            "script": ""
+        },
+        {
+            "id": 21,
+            "name": "fragment脚本",
+            "title": "帮助",
+            "icon": "",
+            "icontint": "",
+            "type": 1,
+            "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/fragment界面.js"
+        }
     ],
-    "keys": [{
-        "name": "userid",
-        "value": "id:",
-        "summary": "用户id前缀"
+    "keys": [
+        {
+            "name": "autotoolsdocurl",
+            "value": "http://zhangshu345012.gitee.io/autotools-doc",
+            "summary": "教程文档地址"
+        },
+        {
+            "name": "userid",
+            "value": "id:",
+            "summary": "用户id前缀"
+        },
+        {
+            "name": "developerqq",
+            "value": "180666069:",
+            "summary": "开发者qq"
+        },
+        {
+            "name": "developer",
+            "value": "红薯",
+            "summary": "开发者"
+        },
+        {
+            "name": "my_github",
+            "value": "",
+            "summary": "开源仓库地址"
+        },
+        {
+            "name": "developeremail",
+            "value": "zhangshuhong888@gmail.com",
+            "summary": "我的邮箱地址"
+        },
+        {
+            "name": "copyright",
+            "value": "Copyright©2020-2030 HONGDONG. All right reserves.",
+            "summary": "所有权标识"
         },
         {
             "name": "popup_permissiondebug",
@@ -394,10 +644,11 @@
             "summary": "说明"
         },
         {
-            "name": "developer",
-            "value": "红薯",
-            "summary": "开发者展示作者名"
+            "name": "hosturl",
+            "value": "http://www.hongdong.info/",
+            "summary": "说明"
         }
+
     ],
     "baseurl": "http://www.hongdong.info/",
     "rewardconfigurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json",
@@ -432,28 +683,170 @@
             "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
         }
     ],
-    
     "permission": [
-        {"id":0,"title":"必须权限:以下权限需开启后才能正常运行","summary":"","pkey":"","import":3,"titlecolor":"","summarycolor":""},
-        {"id":10,"title":"无障碍权限","summary":"作用：用于模拟返回、模拟点击、模拟滑动","pkey":"ACCESSIBILITY","import":2,"titlecolor":"","summarycolor":""},
-        {"id":20,"title":"悬浮窗权限","summary":"作用：用于悬浮球，悬浮通知磁贴等相关功能","pkey":"FLOATY","import":2,"titlecolor":"","summarycolor":""},
-        {"id":30,"title":"系统设置权限","summary":"作用：用于设置静音、屏幕亮度、系统设置等","pkey":"SETTING","import":2,"titlecolor":"","summarycolor":""},
-        {"id":40,"title":"通知栏权限","summary":"作用：用于通知栏触发、接收通知、分享、拦截垃圾通知等","pkey":"NOTIFICATION","import":2,"titlecolor":"","summarycolor":""},
-        {"id":50,"title":"忽略电池优化","summary":"作用：用于App稳定运行，不被杀死","pkey":"IGNOREBATTERY","import":2,"titlecolor":"","summarycolor":""},
-        {"id":60,"title":"设备管理器","summary":"作用：激活设备管理功能 可以使用锁屏等功能","pkey":"DEVICEADMIN","import":0,"titlecolor":"","summarycolor":""},
-        {"id":70,"title":"应用使用情况","summary":"","pkey":"USAGESTATE","import":2,"titlecolor":"","summarycolor":""},
-        {"id":80,"title":"可选权限:以下权限可选择性开启","summary":"","pkey":"","import":3,"titlecolor":"","summarycolor":""},
-        {"id":90,"title":"相机权限","summary":"作用：用于二维码扫描、添加工具、激活卡密等","pkey":"CAMMER","import":2,"titlecolor":"","summarycolor":""},
-        {"id":100,"title":"录音权限","summary":"作用：用于语音唤醒、语音下发指令、录音等","pkey":"VOICE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":110,"title":"通讯录权限","summary":"作用：用于联系人创建、删除、修改、通讯录整理等","pkey":"","import":2,"titlecolor":"","summarycolor":""},
-        {"id":120,"title":"电话权限","summary":"作用：用于快捷拨号","pkey":"CALL","import":0,"titlecolor":"","summarycolor":""},
-        {"id":130,"title":"短信权限","summary":"作用：用于用户一键发送信息、垃圾短信屏蔽、伪装等","pkey":"MESSAGE","import":2,"titlecolor":"","summarycolor":""},
-        {"id":140,"title":"桌面快捷键权限","summary":"作用：用于创建桌面快捷方式","pkey":"SHORTCUT","import":0,"titlecolor":"","summarycolor":""},
-        {"id":150,"title":"位置权限","summary":"作用：访问获取位置信息，定位,导航，路径查询等需要地理位置信息的服务","pkey":"LOCATION","import":2,"titlecolor":"","summarycolor":""},
-        {"id":160,"title":"存储","summary":"访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""},
-        {"id":200,"title":"注：承诺以上所有权限均用于程序的运行需要，您可以根据自己实际使用需求开启或关闭部分敏感权限。如果您对所申请的权限有任何疑问，欢迎您百度android权限 和 APP 功能相关的联系","summary":"","pkey":"STORAGE","import":0,"titlecolor":"","summarycolor":""}
+        {
+            "id": 0,
+            "title": "必须权限:以下权限需开启后才能正常运行",
+            "summary": "",
+            "pkey": "",
+            "import": 3,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 10,
+            "title": "无障碍权限",
+            "summary": "作用：用于模拟返回、模拟点击、模拟滑动",
+            "pkey": "ACCESSIBILITY",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 20,
+            "title": "悬浮窗权限",
+            "summary": "作用：用于悬浮球，悬浮通知磁贴等相关功能",
+            "pkey": "FLOATY",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 30,
+            "title": "系统设置权限",
+            "summary": "作用：用于设置静音、屏幕亮度、系统设置等",
+            "pkey": "SETTING",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 40,
+            "title": "通知栏权限",
+            "summary": "作用：用于通知栏触发、接收通知、分享、拦截垃圾通知等",
+            "pkey": "NOTIFICATION",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 50,
+            "title": "忽略电池优化",
+            "summary": "作用：用于App稳定运行，不被杀死",
+            "pkey": "IGNOREBATTERY",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 60,
+            "title": "设备管理器",
+            "summary": "作用：激活设备管理功能 可以使用锁屏等功能",
+            "pkey": "DEVICEADMIN",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 70,
+            "title": "应用使用情况",
+            "summary": "",
+            "pkey": "USAGESTATE",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 80,
+            "title": "可选权限:以下权限可选择性开启",
+            "summary": "",
+            "pkey": "",
+            "import": 3,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 90,
+            "title": "相机权限",
+            "summary": "作用：用于二维码扫描、添加工具、激活卡密等",
+            "pkey": "CAMMER",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 100,
+            "title": "录音权限",
+            "summary": "作用：用于语音唤醒、语音下发指令、录音等",
+            "pkey": "VOICE",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 110,
+            "title": "通讯录权限",
+            "summary": "作用：用于联系人创建、删除、修改、通讯录整理等",
+            "pkey": "",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 120,
+            "title": "电话权限",
+            "summary": "作用：用于快捷拨号",
+            "pkey": "CALL",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 130,
+            "title": "短信权限",
+            "summary": "作用：用于用户一键发送信息、垃圾短信屏蔽、伪装等",
+            "pkey": "MESSAGE",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 140,
+            "title": "桌面快捷键权限",
+            "summary": "作用：用于创建桌面快捷方式",
+            "pkey": "SHORTCUT",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 150,
+            "title": "位置权限",
+            "summary": "作用：访问获取位置信息，定位,导航，路径查询等需要地理位置信息的服务",
+            "pkey": "LOCATION",
+            "import": 2,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 160,
+            "title": "存储",
+            "summary": "访问内部存储权限：用户应用缓存数据保存和数据本地化\n读取设备状态信息：用于设备状态标识",
+            "pkey": "STORAGE",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        },
+        {
+            "id": 200,
+            "title": "注：承诺以上所有权限均用于程序的运行需要，您可以根据自己实际使用需求开启或关闭部分敏感权限。如果您对所申请的权限有任何疑问，欢迎您百度android权限 和 APP 功能相关的联系",
+            "summary": "",
+            "pkey": "STORAGE",
+            "import": 0,
+            "titlecolor": "",
+            "summarycolor": ""
+        }
     ],
-
     "activity": [
         {
             "id": 1,
@@ -471,7 +864,7 @@
             "finishname": "已经填写",
             "nofinishname": "点此填写",
             "icon": "@drawable/ic_alipay_reward_48dp",
-            "imgsize":234,
+            "imgsize": 234,
             "rewardtype": 1,
             "key": "key_action_reward_user_invite",
             "script": ""
@@ -492,11 +885,12 @@
             "finishname": "点此领取",
             "nofinishname": "点此领取",
             "icon": "@drawable/ic_alipay_reward_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_alipayreward",
             "script": ""
-        },{
+        },
+        {
             "id": 110,
             "title": "合作定制",
             "summary": "有想法！有需求！联系开发者！",
@@ -512,7 +906,7 @@
             "finishname": "点此实现",
             "nofinishname": "点此实现",
             "icon": "@drawable/ic_alipay_reward_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_alipayreward",
             "script": ""
@@ -533,7 +927,7 @@
             "finishname": "领取奖励",
             "nofinishname": "领取奖励",
             "icon": "",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 0,
             "key": "key_action_first_login",
             "script": ""
@@ -554,7 +948,7 @@
             "finishname": "已领取",
             "nofinishname": "填写邀请码",
             "icon": "",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 0,
             "key": "key_action_set_parent",
             "script": ""
@@ -575,7 +969,7 @@
             "finishname": "领取奖励",
             "nofinishname": "每日签到",
             "icon": "",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_day_sign",
             "script": ""
@@ -596,7 +990,7 @@
             "finishname": "福利视频",
             "nofinishname": "福利视频",
             "icon": "@drawable/ic_video_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_full_advice_video",
             "script": ""
@@ -617,7 +1011,7 @@
             "finishname": "看小视频",
             "nofinishname": "看小视频",
             "icon": "@drawable/ic_video_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_small_video",
             "script": ""
@@ -629,7 +1023,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open":true,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 223,
@@ -638,7 +1032,7 @@
             "finishname": "看资讯",
             "nofinishname": "阅读资讯",
             "icon": "@drawable/ic_news_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_small_video",
             "script": ""
@@ -659,7 +1053,7 @@
             "finishname": "领取奖励",
             "nofinishname": "每日抽奖",
             "icon": "@drawable/ic_luckpan_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_luck",
             "script": ""
@@ -680,7 +1074,7 @@
             "finishname": "点此提交",
             "nofinishname": "点此提交",
             "icon": "@drawable/ic_suggest_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_suggestion",
             "script": ""
@@ -701,7 +1095,7 @@
             "finishname": "点此反馈",
             "nofinishname": "点此反馈",
             "icon": "@drawable/ic_faceback_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_fackback",
             "script": ""
@@ -722,7 +1116,7 @@
             "finishname": "点此进群",
             "nofinishname": "点此进群",
             "icon": "@drawable/ic_qq_group_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -734,7 +1128,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open":false,
+            "open": false,
             "coin": 100,
             "money": 0,
             "event": 203,
@@ -743,7 +1137,7 @@
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_kuaishou_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -764,7 +1158,7 @@
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_douyin_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_order_kuaishou",
             "script": ""
@@ -776,7 +1170,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open":false,
+            "open": false,
             "coin": 100,
             "money": 0,
             "event": 280,
@@ -785,7 +1179,7 @@
             "finishname": "点此关注",
             "nofinishname": "点此关注",
             "icon": "@drawable/ic_weixin_ordergroup_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_order_douyin",
             "script": ""
@@ -806,7 +1200,7 @@
             "finishname": "点此分享",
             "nofinishname": "点此分享",
             "icon": "@drawable/ic_share_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -827,7 +1221,7 @@
             "finishname": "点此查看",
             "nofinishname": "点此查看",
             "icon": "@drawable/ic_app_permission_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": "/script/model-fragmenttype:权限说明"
@@ -848,7 +1242,7 @@
             "finishname": "检查更新",
             "nofinishname": "检查更新",
             "icon": "@drawable/ic_version_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_reward_share",
             "script": ""
@@ -869,7 +1263,7 @@
             "finishname": "点此阅读",
             "nofinishname": "点此阅读",
             "icon": "@drawable/ic_server_agreement_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_read_server_agreement",
             "script": ""
@@ -890,7 +1284,7 @@
             "finishname": "点此阅读",
             "nofinishname": "点此阅读",
             "icon": "@drawable/ic_privacy_agreement_48dp",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_read_privacy_agreement",
             "script": ""
@@ -911,7 +1305,7 @@
             "finishname": "点此联系",
             "nofinishname": "点此联系",
             "icon": "",
-            "imgsize":36,
+            "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_joinus",
             "script": ""
