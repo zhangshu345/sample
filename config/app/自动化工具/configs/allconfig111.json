@@ -1888,6 +1888,8 @@
         "ratiofullvideo": "tt-1|gdt-1|bd-1",
         "gdt": {
             "open": true,
+            "nativevideoradio":"stxw-1|swxt-1|stsw-1|cth-1",
+            "nativeradio":"ztyw-1|zwyt-1|stxww-1|swxtw-1|dtdww-1|sxtsw-1",
             "appid": "1111153990",
             "splash": "8061132942833732",
             "banner": "3001734942448169",
