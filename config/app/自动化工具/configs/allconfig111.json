@@ -858,7 +858,7 @@
             "open": true,
             "coin": 0,
             "money": 0,
-            "event": 223,
+            "event": 234,
             "time": 5,
             "interval": 10000000,
             "finishname": "已经填写",
