@@ -1,5 +1,3 @@
-const { sleep } = require("yarn/lib/cli")
-
 toast("点击小手工具")
 auto()
 auto.waitFor()
@@ -132,7 +130,6 @@ function menuOnClick(view) {
             break;
     }
     animation_menu();
-  
 }
 /**************以下为系统函数 */
 //菜单展开状态记录值
@@ -269,7 +266,7 @@ function startclick(){
             if(interval>100){
                 while(true){
                     w_logo.setTouchable(false)
-                   sleep(interval/2)
+                   sleep(interval/2-5)
                    press(clickX,clickY,5)
                    w_logo.setTouchable(true)
                 //    if(clicksumtime>0){
@@ -283,7 +280,7 @@ function startclick(){
             }else{
                 w_logo.setTouchable(false)
                 while(true){
-                   sleep(interval/2)
+                   sleep(interval/2-5)
                    press(clickX,clickY,5)
                 //    if(clicksumtime>0){
                 //        clicktime=clicktime+1
@@ -372,20 +369,26 @@ function animation_menu(event, E) {
         if(keeptoedge){
      //Y值定位
              let but_rrr = dp2px(menu_r / 2) - (but_r * 2)
-             let X = 0, Y = (windowY + (event.getRawY() - y)) - (dp2px(menu_r / 2) - but_r)
+             let X = 0, Y = (windowY + (event.getRawY() - y)) - (dp2px(menu_r / 2) - but_r) -dp2px(36)
+             if(Y<0){
+                Y=100
+            }
      //X值定位
              but_orientation ? X = _w - but_rrr - (but_r) + (but_logo_r * 2) : X = 0;
      //定位悬浮窗
-            w_menu.setPosition(X + but_logo_r - but_rrr, Y)
+            w_menu.setPosition(X + but_logo_r - but_rrr, Y-but_r)
         }else{
              //Y值定位
              let but_rrr = dp2px(menu_r / 2) - (but_r * 2)
              let X = event.getRawX()
-             , Y = (windowY + (event.getRawY() - y)) - (dp2px(menu_r / 2) - but_r)
+             , Y = (windowY + (event.getRawY() - y)) - (dp2px(menu_r / 2) - but_r) - dp2px(36)
            //X值定位
              X = X- dp2px(menu_r / 2)
             if((X+dp2px(menu_r)>_w)||X<0 ){
                 X= _w/2-dp2px(menu_r / 2)
+            }
+            if(Y<0){
+                Y=100
             }
            //定位悬浮窗
             w_menu.setPosition(X, Y)
