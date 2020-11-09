@@ -1891,7 +1891,7 @@
         "rationative": "tt-1|gdt-1",
         "ratiorewardvideo": "tt-1|gdt-1",
         "ratiofullvideo": "tt-1|gdt-1",
-        "gdt": {
+        "gdt":{
             "open": true,
             "nativevideoradio":"stxw-1|swxt-1|stsw-1|cth-1",
             "nativeradio":"ztyw-1|zwyt-1|stxww-1|swxtw-1|dtdww-1|sxtsw-1",
@@ -2006,7 +2006,7 @@
         "title": "一次操作 后续无忧",
         "logo": "",
         "background": "",
-        "welcomeword": "自动化服务创建者 ",
+        "welcomeword": "自动化服务创建者",
         "showlogo": true,
         "runscript": false,
         "showsplashad": true,
@@ -2018,7 +2018,7 @@
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
         "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/界面模板一.js",
-        "desc": "随便粘206的开屏页配置"
+        "desc": ""
     },
     "scriptconfig": "运行脚本的配置"
 }
