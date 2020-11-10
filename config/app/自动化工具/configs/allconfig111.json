@@ -1725,7 +1725,7 @@
                 "size": 3,
                 "reverselayout": false
             },
-            "state": 0,
+            "state": 1,
             "icon": "",
             "level": 2,
             "source": 2,
@@ -1902,24 +1902,8 @@
             "desc": "复杂界面",
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/1复杂界面.json"
-        },
-        {
-            "id": 11,
-            "name": "复杂界面",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "复杂界面",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/1工具.json"
         }
+       
     ],
     "advice": {
         "jgchaping": 60,
