@@ -288,6 +288,10 @@
     ],
     "pages": [
         {
+            "name": "应用主页",
+            "url": "/script/usermain"
+        },
+        {
             "name": "用户主页",
             "url": "/script/usermain"
         },
@@ -1689,7 +1693,7 @@
             },
             "state": 1,
             "icon": "",
-            "level": 0,
+            "level": 2,
             "source": 2,
             "desc": "东东学习分析",
             "url": "https://gitee.com/wenshuihongdong/wenshuihongdong/raw/v1/标签/王东.json",
