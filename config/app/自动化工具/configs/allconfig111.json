@@ -538,6 +538,12 @@
             "summary": "教程文档地址"
         },
         {
+            "name": " scriptmoreactions",
+            "value": "刷新标签",
+            "summary": "应用市场更多按钮"
+        },
+       
+        {
             "name": "userid",
             "value": "id:",
             "summary": "用户id前缀"
