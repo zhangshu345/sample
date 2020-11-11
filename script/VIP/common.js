@@ -1,3 +1,5 @@
+module.exports = function(){
+
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(com.hongshu.utils.IntentUtils)
@@ -5,7 +7,6 @@ importClass(android.net.Uri)
 importClass(android.graphics.Bitmap)
 importClass(java.io.File)
 importClass(com.hongshu.advice.AdviceManager)
-importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
@@ -13,122 +14,108 @@ importClass(com.hongshu.utils.AppUtils)
 importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
-var checkbatterythread=null //电池电量检测线程
-const scriptapppkg=context.getPackageName()
-const scriptappname=app.getAppName(scriptapppkg)
-device.wakeUpIfNeeded()
-var allrewardappurl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"
-var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
-var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
+checkbatterythread=null //电池电量检测线程
+global.scriptapppkg=context.getPackageName()
+global.scriptappname=app.getAppName(scriptapppkg)
+global.aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
+global.whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","手机营业厅"
 ]
-const alldelectdirs=["yysdk","yy_video1","91AV"]
-var readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
+global.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":204,"东东随便":0}
-const shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
-const sdtotalsize=SDCardUtils.getExternalTotalSize()
+
+//shizuku 的下载地址
+global.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
+global.sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
-var sdavailablesize=function(){
+global.sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
-log("可用:"+sdavailablesize()+"\n比例:"+sdavailablesize()/sdtotalsize)
-const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
+
+global.sdavailablesizeratio=function(){
+ let ratio=sdavailablesize()/sdtotalsize
+ log("可用:"+sdavailablesize()+"\n比例:"+ratio)
+ return ratio;
+}
+
+
+global.disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
 
-var shizukuok=false
-var 多分分身邀请码=["FA9X9K"]
-var admanager=AdviceManager.getInstance();
-var 数据库= storages.create("hongshuyuedu");
-var nowdate=function(){return new Date()};
-var scriptstarttime=nowdate().getTime()
-var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
-var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
-var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
-var enablegenius=device.sdkInt>=24
-var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
-var 刷宝邀请码=["96ZWEN","Q4FVDZ","APV3EA3","9X4T2X"]  //我的 9X4T2X
-var 快手极速版邀请码=["xps8bz","8ca66w","2gz5jwv","2bu24wu","26b2w7z","2bn23jb","26bmyff"]
-var 趣多多邀请码=["89797906"]
-var 快手极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/快手极速版/invitecode.txt"
-var 刷宝短视频邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/invitecode.txt"
-var 火山极速版邀请集合="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/invitecode.txt"
-var bbshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/baba.txt"
-var mmshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/mm.txt"
-var hongshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/1081.txt"
-var hong2shuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/3841.txt"
-var bbhuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/bb.txt"
-var yanghuoshanjisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/火山极速版/yang.txt"
-var yangshuabao="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/刷宝/yang.txt"
-var bbkuaishoujisuurl="https://gitee.com/zhangshu345012/sample/raw/v2/base/邀请码/快手极速版/invitecode.txt"
-var 刷宝邀请链接=[bbshuabao,mmshuabao,yangshuabao,hongshuabao,hong2shuabao]
-var 火山极速版邀请链接=[bbhuoshanjisuurl,yanghuoshanjisuurl]
-var 快手极速版邀请链接=[bbkuaishoujisuurl,yanghuoshanjisuurl]
-var dpm
-var deviceadmincomponent
-var changesetting=false //是否改变亮度和音量的标识
-const debugip="zhangshuhong888.iask.in"
+global.admanager=AdviceManager.getInstance();
+global.nowdate=function(){return new Date()};
+global.scriptstarttime=nowdate().getTime()
+global.scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
+global.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
+global.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
+global.enablegenius=device.sdkInt>=24
+global.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
+global.dpm
+global.deviceadmincomponent
+global.changesetting=false //是否改变亮度和音量的标识
+global.debugip="zhangshuhong888.iask.in"
 
-var 记录=function(name,key,n){   
+global.记录=function(name,key,n){   
 if(name){
     com.hongshu.utils.FastSPUtils.getInstance(name).put(key,""+n)
 }else{
     com.hongshu.utils.FastSPUtils.getInstance().put(key,""+n)
 }
+
 }
-var 获取记录=function(name,key,defaultvalue){ if(name){
+global.获取记录=function(name,key,defaultvalue){ if(name){
     return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,""+defaultvalue)
 }else{
     return com.hongshu.utils.FastSPUtils.getInstance().getString(key,""+defaultvalue)
 }}
 
-var 今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
-var 获取今日记录=function(name,key,defaultvalue){ 
+global.今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
+global.获取今日记录=function(name,key,defaultvalue){ 
     return 获取记录(name,key+"_"+today(),defaultvalue)}
 
-var 应用登录=function(name){return 获取今日记录(name,"login",false)=="true"}
-var 应用已登录=function(name){ 今日记录(name,"login",true)}
+global.应用登录=function(name){return 获取今日记录(name,"login",false)=="true"}
+global.应用已登录=function(name){ 今日记录(name,"login",true)}
 
-var 今日签到=function(name){return 获取今日记录(name,"sign",false)=="true"  }
-var 今日已签到=function(name){今日记录(name,"sign",true)}
+global.今日签到=function(name){return 获取今日记录(name,"sign",false)=="true"  }
+global.今日已签到=function(name){今日记录(name,"sign",true)}
 
-var 今日时长=function(name){return parseInt(获取今日记录(name,"time",0));}
-var 记录今日时长=function(name,t){ 
+global.今日时长=function(name){return parseInt(获取今日记录(name,"time",0));}
+global.记录今日时长=function(name,t){ 
     今日记录(name,"time",t)
 }
 
-var 今日滑动次数=function(name){return parseInt(获取今日记录(name,"swipe",0));}
-var 记录今日滑动次数=function(name,i){今日记录(name,"swipe",i);}
+global.今日滑动次数=function(name){return parseInt(获取今日记录(name,"swipe",0));}
+global.记录今日滑动次数=function(name,i){今日记录(name,"swipe",i);}
 
-var 今日提现=function(name){      return  获取今日记录(name,"cashout",false)=="true";}
-var 今日已提现=function(name){   今日记录(name,"cashout",true); }
+global.今日提现=function(name){      return  获取今日记录(name,"cashout",false)=="true";}
+global.今日已提现=function(name){   今日记录(name,"cashout",true); }
 
-var 记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
-var 上次今日金币=function(name){ return 获取今日记录(name,"coin",0); } 
+global.记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
+global.上次今日金币=function(name){ return 获取今日记录(name,"coin",0); } 
 
-var 记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
-var 上次金币=function(name){ return 获取记录(name,"coin",0); } 
+global.记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
+global.上次金币=function(name){ return 获取记录(name,"coin",0); } 
 
  //可以通过上次的金币来判断是否 还可以获取金币
-var 记录现在余额=function(name,f){记录(name,"money",f);} 
-var 上次余额=function(name){ return 获取记录(name,"money");} 
+ global.记录现在余额=function(name,f){记录(name,"money",f);} 
+ global.上次余额=function(name){ return 获取记录(name,"money");} 
 
-var 记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
+ global.记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
+ global.上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
 
-var 记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
+ global.记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
+ global.上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
 
-var 记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
-var 上次观看文章数=function(name){ return 获取今日记录(name,"article",0); } 
+ global.记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
+ global.上次观看文章数=function(name){ return 获取今日记录(name,"article",0); } 
 
-var lastscriptapp=function(){return spt.getString("lastscriptapp")}
-var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
-var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
+ global.lastscriptapp=function(){return spt.getString("lastscriptapp")}
+ global.closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
+ global.getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 
-var agourl=function(url){
+ global.agourl=function(url){
     app.startActivity({
         extras: {
             "url": url
@@ -139,18 +126,18 @@ var agourl=function(url){
 }
 
 //开启调试
-var startdebug=function(ip){
+global.startdebug=function(ip){
   ip=ip||debugip
   DevPluginService.getInstance().debugtoip(debugip);
 }
 
 //判断是否是设备管理者
-var isdeviceadmin=function(){
+global.isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
     dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);
 }
 
-var 微信扫一扫=function(){
+global.微信扫一扫=function(){
     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.ui.LauncherUI",true)
     intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
     intent.setFlags(335544320);
@@ -158,16 +145,16 @@ var 微信扫一扫=function(){
     context.startActivity(intent);
 }
 
-// var 微信打开链接=function(weburl){
-//     //.plugin.webview.ui.tools.WebViewUI
-//     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
-//     intent.putExtra("data", weburl); //"weixin://"+
-//     intent.setFlags(335544320);
-//     intent.setAction("android.intent.action.VIEW");
-//     context.startActivity(intent);
-// }
+global.微信打开链接=function(weburl){
+    //.plugin.webview.ui.tools.WebViewUI
+    var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
+    intent.putExtra("data", "weixin://"+weburl);
+    intent.setFlags(335544320);
+    intent.setAction("android.intent.action.VIEW");
+    context.startActivity(intent);
+}
 
-var 微信浏览=function(url){
+global.微信浏览=function(url){
   let  weixinpkg=getPackageName("微信")
  if(weixinpkg){
      app.launch(weixinpkg)
@@ -234,7 +221,7 @@ var 微信浏览=function(url){
   }
 }
 
-var 微信加好友=function(weixinhao,phone){
+global.微信加好友=function(weixinhao,phone){
     if(微信回到首页()){
         if(textclick("通讯录")){
             while(!textclick("新的朋友")){
@@ -263,20 +250,20 @@ var 微信加好友=function(weixinhao,phone){
 }
 
 //返回 Bitmap 对象
-var 生成二维码=function(content,width){
+global.生成二维码=function(content,width){
   return  com.king.zxing.util.CodeUtils.createQRCode(content,width)
 }
 
-var 生成二维码保存到=function(content,width,savepath,format){
+global.生成二维码保存到=function(content,width,savepath,format){
     let coder=生成二维码(content,width)
     saveimg(coder,savepath,format)
 }
 
-var 解析二维码=function(imgpath){
+global.解析二维码=function(imgpath){
   return com.king.zxing.util.CodeUtils.parseQRCode("/sdcard/"+imgpath)
 }
 //
-function saveimg(bitmap,imgpath,format){
+global.saveimg=function(bitmap,imgpath,format){
     imgformat=android.graphics.Bitmap.CompressFormat.JPEG
     if(format==1){
         imgformat=android.graphics.Bitmap.CompressFormat.JPEG
@@ -290,7 +277,7 @@ function saveimg(bitmap,imgpath,format){
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imgpath))));
      }
 }
-var 微信聊天页发送消息=function(friend,message,isclick){
+global.微信聊天页发送消息=function(friend,message,isclick){
     if(friend=="微信团队"){
         doactionmaxtime(function(){
             clicknode(desc("消息").findOne(500))
@@ -324,7 +311,7 @@ var 微信聊天页发送消息=function(friend,message,isclick){
     }
 }
 
-var 微信到聊天界面=function(friend){
+global.微信到聊天界面=function(friend){
   if(微信回到首页()){
     if(textclick("通讯录")){
         sleep(1500)
@@ -341,7 +328,7 @@ var 微信到聊天界面=function(friend){
   }
 }
 
-var 微信回到首页=function(){
+global.微信回到首页=function(){
     let  weixinpkg=getPackageName("微信")
     if(weixinpkg){
        if(doactionmaxtime(function(){
@@ -391,12 +378,12 @@ var 微信回到首页=function(){
      }
 }
 
-var 微信发消息=function(friend,message,isclick){
+global.微信发消息=function(friend,message,isclick){
     if(微信到聊天界面(friend)){
            微信聊天页发送消息(friend,message,isclick)
     }
 }
-var 微信搜索打开链接=function(searchword){
+global.微信搜索打开链接=function(searchword){
     if(微信回到首页()){
         if(textclick("微信")){
             sleep(1500)
@@ -421,16 +408,17 @@ var 微信搜索打开链接=function(searchword){
 
 var 视频重复次数=2
 var ratio=1
-var gfw,gsfw
-var isshowfloaty=false  //是否显示提醒
-var spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
-var getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
-var getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
-var getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
-var getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
-var getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
-var getstrsetvalue=function(key){   return spt.getStringSet(key)}
-var  creatgfloatywindow=function(){
+global.gfw=null,
+global.gsfw=null
+global.isshowfloaty=false  //是否显示提醒
+global.spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
+global.getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
+global.getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
+global.getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+global.getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+global.getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
+global.getstrsetvalue=function(key){   return spt.getStringSet(key)}
+global.creatgfloatywindow=function(){
     log("createdfloaty")
     gfw=floaty.rawWindow(
         <horizontal>
@@ -443,7 +431,7 @@ var  creatgfloatywindow=function(){
     isshowfloaty=true
  }
 
-var  creatsetfloatywindow=function(){
+ global.creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false"  >
               <vertical  w="90" h="65" >
@@ -518,26 +506,12 @@ var  creatsetfloatywindow=function(){
 }
 
 //列出所有应用 delectapp  删除非应用
-function listapp(keepapps,isforcestop,delectapp){
+global.listapp=function(keepapps,isforcestop,delectapp){
     let allapps=[]
     let  appnames=whiteapps
     if(keepapps){
         appnames=keepapps
     }
-    // if(device.brand=="samsung"){
-    //     delectapp=delectapp||true
-    //     if(delectapp){
-    //         var appconfig=httpget(allrewardappurl)
-    //         apps=JSON.parse(appconfig)
-    //         apps.forEach(app =>{
-    //          if(app.install){
-    //             appnames.push(app.app.name)
-    //          }
-    //         })
-    //     }
-    // }else{
-    //     delectapp=false
-    // }
     //列出app
     var packageManager=context.getPackageManager()
     var packageInfos = packageManager.getInstalledPackages(0);
@@ -587,7 +561,7 @@ function listapp(keepapps,isforcestop,delectapp){
 
 
 //获取
-function getapp(){
+global.getapp=function(){
     let allapps=[]
     //列出app
     var packageManager=context.getPackageManager()
@@ -620,7 +594,7 @@ function getapp(){
     return allapps
 }
 //获取禁用的应用
-function getstopedapps(){
+global.getstopedapps=function(){
     let allapps=[]
     //列出app
     var packageManager=context.getPackageManager()
@@ -658,7 +632,7 @@ function getstopedapps(){
 }
 
 //获取
-function getrunningapp(){
+global.getrunningapp=function(){
     let allapps=[]
     var am=context.getSystemService("activity")
     let appprocesses=am.getRunningAppProcesses()
@@ -671,35 +645,7 @@ function getrunningapp(){
         for(let c=0;c<pkglist.length;c++){
             log(pkglist[c])
         }
-    // for(var i = 0; i < packageInfos.size(); i++) {
-    //     var packageInfo = packageInfos.get(i);
-    //         //todo 压缩只对保存有效果bitmap还是原来的大小
-    //     //第一次安装时间
-    //     dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    //     appDate = packageInfo.firstInstallTime;
-    //     app_name=packageInfo.applicationInfo.loadLabel(packageManager),
-    //     app_version= packageInfo.versionName,
-    //     app_versioncode= packageInfo.versionCode;
-    //     app_packageName= packageInfo.packageName;
-    //     app_firstInstall=  dateFormat.format(appDate);
-    //     let ai=packageManager.getApplicationInfo(app_packageName,0)
-    //     app_issystem= ai != null && (ai.flags & 1) != 0 ;
-    //     app_isrunning= ai != null && (ai.flags & 1) != 0 && (ai.flags &2097152) != 0;
-    //     app_isselect=false
-    //     if(app_isrunning){
-    //         allapps.push({
-    //             name: app_name,
-    //             version:  app_version,
-    //             versioncode:app_versioncode,
-    //             packageName: app_packageName,
-    //             firstInstall: app_firstInstall,
-    //             isselect:app_isselect,
-    //             issystem:app_issystem,
-    //             isrunning:app_isrunning
-    //         });
-    //     }
-    //     };
-    };
+    }
     log("应用数量:"+allapps.length)
     return allapps
 }
@@ -707,7 +653,7 @@ function getrunningapp(){
 
 
 //获取
-function getrunningapp2(){
+global.getrunningapp2=function(){
     let allapps=[]
     //列出app
     var am=context.getSystemService("activity")
@@ -726,39 +672,12 @@ function getrunningapp2(){
             }
         }
     }
- 
-    // //列出app
-    // var packageManager=context.getPackageManager()
-    // var packageInfos = packageManager.getInstalledPackages(1);
-    // for(var i = 0; i < packageInfos.size(); i++) {
-    //     var packageInfo = packageInfos.get(i);
-    //         //todo 压缩只对保存有效果bitmap还是原来的大小
-    //     //第一次安装时间
-    //     dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    //     appDate = packageInfo.firstInstallTime;
-    //     app_name=packageInfo.applicationInfo.loadLabel(packageManager),
-    //     app_version= packageInfo.versionName,
-    //     app_versioncode= packageInfo.versionCode;
-    //     app_packageName= packageInfo.packageName;
-    //     app_firstInstall=  dateFormat.format(appDate);
-    //     let ai=packageManager.getApplicationInfo(app_packageName,0)
-    //     app_issystem= ai != null && (ai.flags & 1) != 0;
-    //     app_isselect=false
-    //     allapps.push({
-    //         name: app_name,
-    //         version:  app_version,
-    //         versioncode:app_versioncode,
-    //         packageName: app_packageName,
-    //         firstInstall: app_firstInstall,
-    //         isselect:app_isselect,
-    //         issystem:app_issystem
-    //     });
-    // };
     log("应用数量:"+allapps.length)
     return allapps
 }
 
-function keepappclear(url){
+//
+global.keepappclear=function(url){
     var appconfig=httpget(url)
     var allapps=[]
     appnames=whiteapps
@@ -810,7 +729,7 @@ function keepappclear(url){
 }
 
 
-var appstophander=function(){
+global.appstophander=function(){
     if( device.brand=="samsung"){clicktexts(["关闭应用","关闭应用程序"]) }
     else if(device.brand=="HONOR"){ clicktexts(["关闭应用","关闭应用程序"])}
     else if(device.brand=="DOCOMO"){clicktexts(["关闭应用","关闭应用程序"])}
@@ -820,7 +739,7 @@ var appstophander=function(){
     else{if(textoneexist(["关闭应用","关闭应用程序"])){clickonetexts(["确定","关闭应用","关闭应用程序"])}}
 }
 
-var closerecentapp=function(){
+global.closerecentapp=function(){
     return 
     recents()
     if(device.brand=="samsung"){
@@ -835,7 +754,7 @@ var closerecentapp=function(){
 }
 
 //指定app 运行脚本
-var runscriptIntent=function(apppkg,scriptsurl){
+global.runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
         packageName:apppkg,
         className:"com.hongshu.autojs.external.open.RunIntentActivity",
@@ -852,7 +771,7 @@ var runscriptIntent=function(apppkg,scriptsurl){
     context.startActivity(i);
 }
 // 发送强制关闭所有脚本给其他脚本APP
-var sendforcestopIntent=function(apppkg){
+global.sendforcestopIntent=function(apppkg){
     let i = app.intent({
         packageName:apppkg,
         className:"com.hongshu.autojs.external.open.RunIntentActivity",
@@ -867,8 +786,8 @@ var sendforcestopIntent=function(apppkg){
     context.startActivity(i);
 }
 
-var runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
-var show=function(txt,txtcolor){ 
+global.runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
+global.show=function(txt,txtcolor){ 
     try {
        txt= scriptruntime()+"秒："+txt
         log(txt);
@@ -884,9 +803,9 @@ var show=function(txt,txtcolor){
 }
 
 
-var 上滑=function(){滑动(20,13,17,10,4,500,500);}
-var 下滑=function(){滑动(20,10,3,13,17,500,500);}
-var alter=sync(function(txt,t,left,top,width,height){
+global.上滑=function(){滑动(20,13,17,10,4,500,500);}
+global.下滑=function(){滑动(20,10,3,13,17,500,500);}
+global.alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
     left= left ||0
@@ -924,13 +843,13 @@ var alter=sync(function(txt,t,left,top,width,height){
 //
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 
-var shizukuforstopAllApp=function(){
+global.shizukuforstopAllApp=function(){
 
 }
 
 
 
-var forcestop=function(appname,st,isclearcache){
+global.forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
     if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
@@ -942,7 +861,7 @@ var forcestop=function(appname,st,isclearcache){
       }
 }
 
-var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
+global.forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     if(enableshizuku()){
         return shizukuforcestopPkg(apppkg)
     }
@@ -976,7 +895,7 @@ var forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     }
 }
 
-var  clearappcache=function(appname,apppkg,fromforcestop){
+global.clearappcache=function(appname,apppkg,fromforcestop){
     if(!apppkg&&!appname){
         return false
     }
@@ -1007,7 +926,7 @@ var  clearappcache=function(appname,apppkg,fromforcestop){
     back()
 }
 
-var  tofloatysetting=function(){
+global.tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
         flags:["activity_new_task"]
@@ -1015,27 +934,27 @@ var  tofloatysetting=function(){
     context.startActivity(i);
 }
 
-var  todevelopersetting=function(){
+global.todevelopersetting=function(){
     let i = app.intent({ action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS", flags:["activity_new_task"] // data: "file:///sdcard/1.png"  
 });
   context.startActivity(i);
 }
 
  
-var toPkgandClass=function(pkg,classname){
+global.toPkgandClass=function(pkg,classname){
         let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"]});
          context.startActivity(i);
 }
-var toPkgandClassWithData=function(pkg,classname,putdate){
+global.toPkgandClassWithData=function(pkg,classname,putdate){
     let i = app.intent({packageName: pkg, className:classname ,flags:["activity_new_task"],data:putdate});
      context.startActivity(i);
 }
-
-var todeviceadmin=function(){
+//到设置管理者设置
+global.todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
 
-var toinputsettings=function(){
+global.toinputsettings=function(){
     let i = app.intent({
         action: "android.settings.INPUT_METHOD_SETTINGS",
         flags:["activity_new_task"]
@@ -1044,10 +963,10 @@ var toinputsettings=function(){
     context.startActivity(i);
 }
 
-var toinputmethodsubtypesetting=function(){
+global.toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
-var tolanguagesetting=function(){
+global.tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
         flags:["activity_new_task"]
@@ -1056,7 +975,7 @@ var tolanguagesetting=function(){
     context.startActivity(i);
 }
 
-var tosettingsbyaction=function(actionname){
+global.tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
         flags:["activity_new_task"]
@@ -1065,33 +984,33 @@ var tosettingsbyaction=function(actionname){
     context.startActivity(i);
 }
 
-var toairpalnemodesetting=function(){
+global.toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
 
-var tosearchsetting=function(){
+global.tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
  //到android设置页面
- var  toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
+ global.toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
-var tousagestate=function(){    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")}
-var toaccessibilitysetting=function(){    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")}
-var tosystemsetting=function(){    tosettingsbyaction("android.settings.SETTINGS")}
-var towifisetting=function(){    tosettingsbyaction("android.settings.WIFI_SETTINGS")}
-var toapnsetting=function(){    tosettingsbyaction("android.settings.APN_SETTINGS")}
-var todatesetting=function(){    tosettingsbyaction("android.settings.DATE_SETTINGS")}
-var towifiipsetting=function(){    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")}
-var tovpnsetting=function(){    tosettingsbyaction("android.settings.VPN_SETTINGS")}
-var tophonenetsetting=function(){    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")}
-var tosecuritysetting=function(){    tosettingsbyaction("android.settings.SECURITY_SETTINGS")}
-var todisplaysetting=function(){    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")}
-var toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")}
-var toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
-var tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
-var toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
-var isfloaty=function(){  return Settings.canDrawOverlays(context)}
-var checkfloaty=function(appname){
+ global.tousagestate=function(){    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")}
+ global.toaccessibilitysetting=function(){    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")}
+ global.tosystemsetting=function(){    tosettingsbyaction("android.settings.SETTINGS")}
+ global.towifisetting=function(){    tosettingsbyaction("android.settings.WIFI_SETTINGS")}
+ global.toapnsetting=function(){    tosettingsbyaction("android.settings.APN_SETTINGS")}
+ global.todatesetting=function(){    tosettingsbyaction("android.settings.DATE_SETTINGS")}
+ global.towifiipsetting=function(){    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")}
+ global.tovpnsetting=function(){    tosettingsbyaction("android.settings.VPN_SETTINGS")}
+ global.tophonenetsetting=function(){    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")}
+ global.tosecuritysetting=function(){    tosettingsbyaction("android.settings.SECURITY_SETTINGS")}
+ global.todisplaysetting=function(){    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")}
+ global.toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")}
+ global.toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
+ global.tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
+ global.toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
+ global.isfloaty=function(){  return Settings.canDrawOverlays(context)}
+ global.checkfloaty=function(appname){
     toastLog("自动开启悬浮权限")
      appname=appname||app.getAppName(context.getPackageName())
      log("当前应用名:"+appname)
@@ -1119,14 +1038,14 @@ var checkfloaty=function(appname){
    toastLog("悬浮开启结束")
 }
 
-var sleepr=function(short,long){
+global.sleepr=function(short,long){
     long=long||short+1000
   let  rt=random(short,long)
     log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
-var getTextfromid=function(idstr,defaulttext,findtime){
+global.getTextfromid=function(idstr,defaulttext,findtime){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
     findtime=findtime||500
@@ -1134,7 +1053,7 @@ var getTextfromid=function(idstr,defaulttext,findtime){
     if(node_id){ return node_id.text(); }else{ return defaulttext;}
 }
 
-function idclick(idstr,t,left,top,right,bottom){
+global.idclick=function(idstr,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1148,7 +1067,7 @@ function idclick(idstr,t,left,top,right,bottom){
     return false
 }
 
-function descclick(desctext,t,left,top,right,bottom){
+global.descclick=function(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1163,7 +1082,7 @@ function descclick(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-function textclick(txt,t,left,top,right,bottom){
+global.textclick=function(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
@@ -1180,7 +1099,7 @@ function textclick(txt,t,left,top,right,bottom){
     return clicknode(f)
 }
 
-function maytextclick(maytext,t,left,top,right,bottom){
+global.maytextclick=function(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false; }
     t=t || 200
     left = left || 0;
@@ -1199,7 +1118,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
+global.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
     dx=dx||0
     dy=dy||0
     clicknumber=clicknumber||1
@@ -1218,16 +1137,15 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
           
         }else{
            if(b.top>0&& b.left>0){
-            log("点击控件左上角")
+            // log("点击控件左上角")
             for(let n=0;n<clicknumber;n++){
                 press(b.left+dx,b.top+dy+dy,time)
                 sleep(intervaltime)
             }
             return true
-              
            }
            if(b.right<device.width&&b.bottom<device.height&&b.bottom>0&&b.right>0){
-            log("点击控件右下角"+(b.right)+","+(b.bottom))
+            // log("点击控件右下角"+(b.right)+","+(b.bottom))
             for(let n=0;n<clicknumber;n++){
                 press(b.right+dx,b.bottom+dy,time)
                 sleep(intervaltime)
@@ -1238,8 +1156,6 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
            }
            return false
         }
-     }else{
-      //  toastLog("不可以手势点击")
      }
          r=v.bounds()
           var w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
@@ -1249,7 +1165,7 @@ var clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
 }
 
 //一直找到可以点击控件向上查找
-var clickparents=function(v,n){
+global.clickparents=function(v,n){
     if(!v){
         return false
     }
@@ -1268,7 +1184,7 @@ var clickparents=function(v,n){
 }
 
 //找到子类 点击下去
-var clickchilds=function(v){
+global.clickchilds=function(v){
    if(v.childCount()>0){
        for(i=0;i<v.childCount();i++){
            c=v.child(i)
@@ -1290,7 +1206,7 @@ var clickchilds=function(v){
 }
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
-var clickids=function(ids,t,st){
+global.clickids=function(ids,t,st){
     t=t||100
     st=st||500
     ids.forEach(idstr => {
@@ -1300,7 +1216,7 @@ var clickids=function(ids,t,st){
     });
 }
 
-var clickalls=function(allids,alltexts,alldescs){
+global.clickalls=function(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
         clickids(allids)
     }
@@ -1313,7 +1229,7 @@ var clickalls=function(allids,alltexts,alldescs){
 }
 
 //点击文本集合
-var clicktexts=function(texts,t,st,left,top,right,bottom){
+global.clicktexts=function(texts,t,st,left,top,right,bottom){
     log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
@@ -1328,7 +1244,7 @@ var clicktexts=function(texts,t,st,left,top,right,bottom){
     }
 }
 
-var clickdescs=function(descs,t,st){
+global.clickdescs=function(descs,t,st){
    log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
@@ -1339,7 +1255,7 @@ var clickdescs=function(descs,t,st){
     }
 }
 
-var clickalltexts=function(texts,t,st){
+global.clickalltexts=function(texts,t,st){
     log("开始点击文本集合:"+texts)
     st=st || 1500
     t=t || 100
@@ -1353,7 +1269,7 @@ var clickalltexts=function(texts,t,st){
     return n==texts.length
 }
 //点击仁意一个id就是真真
-var clickoneids=function(ids,t,st){
+global.clickoneids=function(ids,t,st){
     log("开始点击id集合:"+ids)
     st=st || 500
     t=t || 500
@@ -1366,7 +1282,7 @@ var clickoneids=function(ids,t,st){
     return false
 }
 
-var clickonetexts=function(texts,t,st){
+global.clickonetexts=function(texts,t,st){
   log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 200
@@ -1379,7 +1295,7 @@ var clickonetexts=function(texts,t,st){
     return false
 }
 
-var clickonemaytexts=function(texts,t,st){
+global.clickonemaytexts=function(texts,t,st){
     log("开始点击文本集合:"+texts)
       st=st || 500
       t=t || 500
@@ -1394,7 +1310,7 @@ var clickonemaytexts=function(texts,t,st){
 
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认一分钟无点击效果就退出 发现stop 文本出现就退出
-var whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
+global.whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
     maxtime=maxtime||60000  
     isclickshowtext=isclickshowtext||false
    doactionmaxtime(function(){
@@ -1409,7 +1325,7 @@ var whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshow
  }
 
 //在文本标志出现之前一直点击id的 t 是最长等待时间
-var whileclickidsbeforeids=function(ids,stopids,t){
+global.whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
     st=nowdate().getTime()
     while(true){
@@ -1423,7 +1339,7 @@ var whileclickidsbeforeids=function(ids,stopids,t){
     }
  }
 
-function control_click(button, vlause, left, top, right, bottom) {
+ global.control_click=function(button, vlause, left, top, right, bottom) {
     // 功能---点击控件
     // 输入---参数1:元素[id、text 、desc、className],参数2:元素值,剩余参数:left, top, right, buttom
     // 默认后四位为当前屏幕
@@ -1467,7 +1383,7 @@ function control_click(button, vlause, left, top, right, bottom) {
     }
 }
 //  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
-function 滑动(z,x1,y1,x2,y2,t,r) {
+global.滑动=function(z,x1,y1,x2,y2,t,r) {
     t=t||500
     r=r||500
     if(z>0){
@@ -1484,20 +1400,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
         endy=y2
     }
      if(enablegenius){
-        // r=r||1000
-        //  log("滑动"+x1+","+y1+"->"+x2+","+y2)
-        // points=[]
-        // zx=startx
-        // zy=starty
-        // points.push([startx,starty])
-        // for(let i=0;i<z;i++){
-        //     points.push([zx+i*randomint(w/2,w*3/2),zy+randomint(h/2,h/2*3)])
-        // }
-        // points.push([endx,endy])
-        // delay=t+random(0, r)
-        // gestures(delay,delay/z,points)
         swipe(startx, starty , endx , endy, t+randomint(0, r))
-        // randomSwipe(startx, starty , endx , endy,t,r)
     }else{
         if(startx>=endx){
             left=endx
@@ -1524,7 +1427,7 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     }
 }
 
-function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
+global.bezierCreate=function(x1,y1,x2,y2,x3,y3,x4,y4){
     if(!x2){
         x2=x1
     }
@@ -1582,7 +1485,7 @@ function bezierCreate(x1,y1,x2,y2,x3,y3,x4,y4){
  * 传入值：起点终点坐标
  * 效果：模拟真人滑动
  */
-function randomSwipe(sx,sy,ex,ey,t,r){
+global.randomSwipe=function(sx,sy,ex,ey,t,r){
     log(sx+","+sy+","+ex+","+ey+","+t+","+r)
     //设置随机滑动时长范围
     var timeMin=t||500
@@ -1610,20 +1513,17 @@ function randomSwipe(sx,sy,ex,ey,t,r){
         var y2=sy+ly/2+random(0,ly)
         var y3=sy+ly+ly/2+random(0,ly)
     }
-
     //获取运行轨迹，及参数
-
     var time=[0,random(timeMin,timeMax)] 
     var track=bezierCreate(sx,sy,x2,y2,x3,y3,ex,ey)
-    
-    log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1]+"最小:"+timeMin+"::最长:"+timeMax)
+   log("随机控制点A坐标："+x2+","+y2+"\n"+"随机控制点B坐标："+x3+","+y3+"\n"+"随机滑动时长："+time[1]+"最小:"+timeMin+"::最长:"+timeMax)
     //滑动
     gestures(time.concat(track))
     
 }
 
 /*所有文本存在才返回真 */
-var textallexist=function(texts){
+global.textallexist=function(texts){
     if(!texts){
         return false
     }
@@ -1636,7 +1536,7 @@ var textallexist=function(texts){
 }
 
 /* 所有id都存在才返回真  只要有一个不存在就返回false */
-var idallexist=function(ids){
+global.idallexist=function(ids){
     if(!ids){
         return false
     }
@@ -1650,7 +1550,7 @@ var idallexist=function(ids){
 }
 
 /* 所有id都存在才返回真  只要有一个不存在就返回false */
-var descallexist=function(descs){
+global.descallexist=function(descs){
     if(!descs){
         return false
     }
@@ -1664,17 +1564,17 @@ var descallexist=function(descs){
 }
 
 /*文本只要存在一个就返回真 */
-var textoneexist=function(texts){
+global.textoneexist=function(texts){
      if(texts.length>0){for(i=0;i<texts.length;i++){ if(text(texts[i]).visibleToUser().exists()){  return true }  } }
     return false
 }
 /**只要存在一个id就返回真 */
-var idoneexist=function(ids){
+global.idoneexist=function(ids){
      if(ids.length>0){for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }    }
     return false
 }
 
-var forbidapps=function(apps){
+global.forbidapps=function(apps){
    let apps=apps||disableapps
     apps.forEach(appname=>{
         let apppkg=getPackageName(appname)
@@ -1686,7 +1586,7 @@ var forbidapps=function(apps){
     })
 }
 
-var forbidapp=function(appname,apppkg){
+global.forbidapp=function(appname,apppkg){
     apppkg=apppkg||getPackageName(appname)
     if(apppkg){
         app.openAppSetting(apppkg);
@@ -1709,7 +1609,7 @@ var forbidapp=function(appname,apppkg){
 }
 
 
-var firstrunapp=function(appname){
+global.firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
@@ -1729,11 +1629,12 @@ var firstrunapp=function(appname){
     }
     return true
 }
-function systemdownloadApk(filename,fileuri,isinstall){
+
+global.systemdownloadApk=function(filename,fileuri,isinstall){
     systemdownload(filename,fileuri,isinstall,"application/vnd.android.package-archive")
 }
 
-function systemdownload(filename,fileuri,isinstall,MimeType){
+global.systemdownload=function(filename,fileuri,isinstall,MimeType){
     let isinstall = isinstall || true
     importClass(android.os.Environment);
     importClass(android.net.Uri);
@@ -1788,7 +1689,7 @@ let st = setInterval(() => {
 
 
 //下载app
-function downloadApk(name,downloadurl,isinstall) {
+global.downloadApk=function(name,downloadurl,isinstall) {
      try {
         log('要下载的APP的：' + name+":"+downloadurl);
         isinstall=isinstall || false
@@ -1848,7 +1749,7 @@ function downloadApk(name,downloadurl,isinstall) {
      } 
  }
  
- function install_app(filePath, name,maxtime,isopen,delect) {
+ global.install_app=function(filePath, name,maxtime,isopen,delect) {
      maxtime=maxtime||180000
      isopen=isopen||false
      delect=delect||true
@@ -1921,7 +1822,7 @@ function downloadApk(name,downloadurl,isinstall) {
      return false
  }
  //检测运行APP是否是新版版本
- var checkinstallapp=function(){
+ global.checkinstallapp=function(){
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -1935,20 +1836,20 @@ function downloadApk(name,downloadurl,isinstall) {
   }
 
  //根据app名下载并安装应用
- var downloadandinstallapp=function(appname,apppkg){
+ global.downloadandinstallapp=function(appname,apppkg){
    let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){log("应用详情：获取成功");
         systemdownloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
  }
 }
 //关闭其他应用
-var stopOtherScript=function(){
+global.stopOtherScript=function(){
     var thisengs=engines.myEngine()
     var allengs=engines.all()
     allengs.forEach(e =>{        if(e.getId()!=thisengs.getId()){engines.stop(e.getId());  }
     })
 }
-var runurlscript=function(name,url){
+global.runurlscript=function(name,url){
     try {
         show("运行:"+name+"--"+url)
         content=httpget(url)
@@ -1963,7 +1864,7 @@ var runurlscript=function(name,url){
 }
 
 
-var evalscript=function(name,url){
+global.evalscript=function(name,url){
     try {
         show("运行:"+name+"--"+url)
         content=httpget(url)
@@ -1977,7 +1878,7 @@ var evalscript=function(name,url){
  
 }
 
-var phonenumber=function(){
+global.phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
@@ -1986,7 +1887,7 @@ var phonenumber=function(){
      if(pnumber){ return pnumber;     }else{return null;     }
 }
 //本地配置启用脚本
-var startallapp = function(){
+global.startallapp = function(){
     addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
@@ -2024,10 +1925,10 @@ var startallapp = function(){
       }
     })
 }
-var clickscreencapture=function(){
+global.clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
-var checkscreencapture=function(){
+global.checkscreencapture=function(){
   threads.start(function() {
     n_t=0
       while(n_t<5){
@@ -2049,17 +1950,16 @@ if (!requestScreenCapture()) {
 }
 }
 
-var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
-var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
-var addbmobchannel=function(channels){    // BmobPushUtils.getInstance().addchannel(channels) 
-}
-var removebmobchannel=function(channels){  // BmobPushUtils.getInstance().removechannel(channels)
-}
-var bmobpushmessage=function(channels,message){
-    // BmobPushUtils.getInstance().pushmessage(channels,message)
-}
+global.isNotificationManager=function(){    
+    importClass(com.hongshu.utils.PermissionUtils);  
+      return PermissionUtils.isnotificationListenerEnable()
+    }
+global.toNotificationManager=function(){ 
+       tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+    }
+
 //启动deviceadmin
-var startdeviceadmin=function(){
+global.startdeviceadmin=function(){
     toastLog("检测设备管理器是否激活")
     if(isdeviceadmin()){
         show("设备管理器激活了")
@@ -2093,7 +1993,7 @@ var startdeviceadmin=function(){
 }
 
 //检测权限
-var checkpermission=function(permissions){
+global.checkpermission=function(permissions){
     permissions.forEach(p =>{
         switch (p) {
             case "悬浮":
@@ -2115,7 +2015,7 @@ var checkpermission=function(permissions){
 }
 
 //执行函数 在一定时间内 最小10秒
-var doactionmaxtime=function(action,maxtime,intertime){
+global.doactionmaxtime=function(action,maxtime,intertime){
     if(!action){
         return false
     }
@@ -2131,7 +2031,7 @@ var doactionmaxtime=function(action,maxtime,intertime){
     return false
 }
 //执行函数 几次  
-var doactionmaxnumber=function(action,maxnumber){
+global.doactionmaxnumber=function(action,maxnumber){
     if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
     while(n_doaction<maxnumber){ if (action(n_doaction)){return true }; n_doaction=n_doaction+1; }
@@ -2139,7 +2039,7 @@ var doactionmaxnumber=function(action,maxnumber){
 }
 
 //执行函数 
-var doactionnumberontime=function(action,maxnumber,maxtime,intertime){
+global.doactionnumberontime=function(action,maxnumber,maxtime,intertime){
     if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
     maxtime=maxtime||10000
@@ -2150,7 +2050,7 @@ var doactionnumberontime=function(action,maxnumber,maxtime,intertime){
 }
 
 //卸载应用
-var uninstallapp=function(appname){
+global.uninstallapp=function(appname){
   pkg=getPackageName(appname)
   if(!pkg){ return false }
   if(appname){
@@ -2174,7 +2074,7 @@ var uninstallapp=function(appname){
   }
 }
 
-var uninstallpackage=function(packageName){
+global.uninstallpackage=function(packageName){
     name=app.getAppName(packageName)
     if(!name){return false }
     let i = app.intent({
@@ -2187,13 +2087,14 @@ var uninstallpackage=function(packageName){
           if(textclick("卸载")){  return  }
       }
 }
-  
-var issystemsettings=function(){
+  //判断是否可以写入系统设置
+global.issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
-
-var checksystemsettings=function(){
-    if(issystemsettings()){ log("有系统设置权限"); return true    }
+//检测系统设置
+global.checksystemsettings=function(){
+    if(issystemsettings()){ log("有系统设置权限"); 
+    return true    }
     else{ log("没有系统设置权限");
     systemtexts=[]
     if( device.brand=="samsung"){ systemtexts= ["强制停止","强制停止"];}
@@ -2222,18 +2123,17 @@ var checksystemsettings=function(){
         }
     }
 }
-// 
-var alltest=function(){
+// 不同机型手机进行的不同的检测配置
+global.alltest=function(){
     log("全部测试")
     device.wakeUpIfNeeded()
-    
     if( device.brand=="samsung"){
         checkfloaty()
     checksystemsettings()
         startdeviceadmin()}
     else if(device.brand=="HONOR"){
         checkfloaty()
-    checksystemsettings()
+        checksystemsettings()
         startdeviceadmin() }
     else if(device.brand=="DOCOMO"){
         checkfloaty()
@@ -2243,8 +2143,8 @@ var alltest=function(){
     else if(device.brand=="xiaomi"){  }
     else if(device.brand=="OPPO"){   }
 }
-
-var checkdevicemanager=function(){
+//检测是否开启了设备管理者权限
+global.checkdevicemanager=function(){
     if( device.brand=="samsung"){startdeviceadmin()}
     else if(device.brand=="HONOR"){startdeviceadmin() }
     else if(device.brand=="DOCOMO"){startdeviceadmin()}
@@ -2252,7 +2152,7 @@ var checkdevicemanager=function(){
     else if(device.brand=="xiaomi"){  }
     else if(device.brand=="OPPO"){   }
 }
-var 随机邀请文本=function(url){
+global.随机邀请文本=function(url){
     let content=httpget(url);
     log("返回随机邀请文本："+content)
     if(content.indexOf("------")==-1){
@@ -2281,27 +2181,24 @@ var 随机邀请文本=function(url){
     }
 }
 
-var randomint=function(min,max){
-    let num = Math.floor(Math.random()*(max - min) + min);
-    return num
-}
 
-var 刷宝邀请=function(){
+
+global.刷宝邀请=function(){
     随机邀请文本(刷宝短视频邀请集合)
 }
 
-var 火山极速版邀请=function(){
+global.火山极速版邀请=function(){
     随机邀请文本(火山极速版邀请集合)
     // var h=httpget(getrandforstrs(火山极速版邀请链接))
     // setClip(h)
 }
 
-var 快手极速版邀请=function(){
+global.快手极速版邀请=function(){
     随机邀请文本(快手极速版邀请集合)
 }
 
 //直接从应用宝获取应用信息
-var getAppInfobyAppNameAndPkg=function(appname,apppkg){
+global.getAppInfobyAppNameAndPkg=function(appname,apppkg){
     log("应用宝查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
     if(appinfos){
@@ -2335,7 +2232,7 @@ var getAppInfobyAppNameAndPkg=function(appname,apppkg){
 }
 
 //检测电量低停止脚本
-var checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
+global.checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
     toastLog("检测电池电量:"+btyn)
     btn=btyn||30
     bigbatterysleeptime=bigbatterysleeptime||600000
@@ -2363,7 +2260,7 @@ var checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
     }
 }
 
-function startcheckbattery(){
+global.startcheckbattery= function(){
     if(checkbatterythread!=null){
         return 
     }
@@ -2375,78 +2272,18 @@ function startcheckbattery(){
     });
 }
 
-function stopcheckbattery(){
+global.stopcheckbattery=function(){
     if(checkbatterythread!=null ){
          checkbatterythread.interrupt()
          checkbatterythread=null
     }
 }
 
-//通过通知获取验证码有缺点  后期改为java代码原生获取
-function get_phone_code(app_name,reg,startwords,endwords){
-  let  contet = ""
-  let  packname = ""
-   let code = ""
-   let reg=reg|| /\d{4}/ig
-    //--------------------------*******************--------------------------//
-   let thread = threads.start(function (app_name) {
-        events.observeNotification();
-        events.onNotification(function (notification) {
-            printNotification(notification);
-        });
-        toastLog("监听中，请在日志中查看记录的通知及其内容");
-        function printNotification(notification) {
-            log("应用包名: " + notification.getPackageName()+"/n通知文本: " + notification.getText()+"/n通知优先级: " + notification.priority+"/n通知目录: " + notification.category+ "/n通知时间: " + new Date(notification.when)+"/n通知数: " + notification.number+ "/n通知摘要: " + notification.tickerText);
-            if(notification.getText()){
-                contet = notification.getText()
-            } 
-            if (notification.tickerText){
-                contet = notification.tickerText
-            }
-            packname = notification.getPackageName()
-        }
-    });
-    num = 0
-    while (true) {
-        num +=1 
-        if(num > 30){
-            toastLog("监听时长1.5分钟,接受短信失败,退出自动登录"); 
-            thread.interrupt();
-            return
-        } 
-        toastLog("短信监听中...");
-        sleep(2000);
-        if(!contet){
-            continue
-        }
-        if(contet.includes(appname)){
-            if(startwords){
-                startindex=contet.indexOf(startwords)+startwords.length
-                if(startindex>-1){
-                    contet=contet.substr(startindex)
-                }
-            }
-            if(endwords){
-                endindex=contet.indexOf(endwords)
-                if(endindex>-1){
-                    contet=contet.substr(0,endindex)
-                }
-            }
-            toastLog("找到对应的短信");
-            code =contet.match(reg)[0]
-            toastLog("停止监听")
-        thread.interrupt();
-            break
-        } 
-    }
-    show("接受的验证码是:"+code)
-    setClip(code)
-    return code
-}
 
-var isadviceactivity=function(ca){
+
+global.isadviceactivity=function(ca){
     ca=ca||currentActivity()
- var   adviceActivitys=[
+    var   adviceActivitys=[
     "com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
     "com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity",
     "com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity",
@@ -2462,7 +2299,7 @@ var isadviceactivity=function(ca){
 }
 
 //关闭穿山甲激励视频广告
-var close_ad_toutiao=function(apppkg,clickgailv){
+global.close_ad_toutiao=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     let ca=currentActivity()
   //  show("关闭穿山甲:activity:"+ca)
@@ -2499,7 +2336,7 @@ var close_ad_toutiao=function(apppkg,clickgailv){
     return false
 }
 
-var close_ad_kk=function(apppkg){
+global.close_ad_kk=function(apppkg){
     if(currentActivity()=="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
         doactionmaxtime(function(){
             show("关闭快手广告")
@@ -2525,7 +2362,7 @@ var close_ad_kk=function(apppkg){
     }
 }
 
-var close_ad_liquid=function(apppkg,clickgailv){
+global.close_ad_liquid=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
          return  doactionmaxtime(function(){
@@ -2540,7 +2377,7 @@ var close_ad_liquid=function(apppkg,clickgailv){
     }
 }
 
-var close_ad_qq=function(apppkg,clickgailv){
+global.close_ad_qq=function(apppkg,clickgailv){
     // ccj_file_paths 
         clickgailv=clickgailv||-1
      let  ca=currentActivity()
@@ -2598,7 +2435,7 @@ var close_ad_qq=function(apppkg,clickgailv){
 }
 
 //未知广告商
-var close_ad_iclicash=function(apppkg,clickgailv){
+global.close_ad_iclicash=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     ca=currentActivity()
     if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"||ca=="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"){
@@ -2633,13 +2470,13 @@ var close_ad_iclicash=function(apppkg,clickgailv){
 }
 
 
-var closeappundostate=function(){
+global.closeappundostate=function(){
   return  clickonemaytexts(["关闭","关闭应用","重新打开"],200,1500)
 }
 
 
 //看激励视频  概率点击
-var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
+global.seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
     gailv=gailv||2
     installgailv=installgailv||2
     let isclickad=isclickad||false
@@ -2675,12 +2512,12 @@ var seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
     },60000)
 }
 
-var runtimerscript=function(){
+global.runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/定时套餐.js")
 }
 
 //检测存储状态 
-var checkstoragestate=function(minsize){
+global.checkstoragestate=function(minsize){
     minsize=minsize||sdtotalsize/10
     let nowsize=sdavailablesize()
     if(nowsize<minsize){
@@ -2691,13 +2528,13 @@ var checkstoragestate=function(minsize){
     }
 }
 
-var delectalltmpfiles=function(){
+global.delectalltmpfiles=function(){
     let alltmphouzhui=["txt","log","apk","dat","inf","zip","rar","qlog","info","dump"]
     deleteAllFiles(files.getSdcardPath(),alltmphouzhui)
 }
 
 //判断屏幕是否有字
-var textexists=function(t){
+global.textexists=function(t){
     if(text(t).visibleToUser().exists()){
         return true
     }else{
@@ -2709,7 +2546,7 @@ var textexists=function(t){
 }
 
 //删除目录下的所有
-function deleteAllEmptyDirs(dir){
+global.deleteAllEmptyDirs=function(dir){
     dir=dir||files.getSdcardPath()
     let list = files.listDir(dir);
     let len = list.length;
@@ -2725,18 +2562,18 @@ function deleteAllEmptyDirs(dir){
     }
 }
 //删除目录
-function delectdirs(dirs){
+global.delectdirs=function(dirs){
     dirs.forEach(dir=>{
         files.removeDir(dir)
     })
 }
 //删除存储的垃圾文件
-function delectapkfile(){
+global.delectapkfile=function(){
     let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
 }
 // 随机打乱数组
-var  shuffleArray=function(array) {
+global.shuffleArray=function(array) {
     n=array.length - 1
     for (let i =0 ; i <n; i++) {
          j = Math.floor(Math.random() * (n + 1));
@@ -2747,7 +2584,7 @@ var  shuffleArray=function(array) {
 
 //删除所有文件
 var allhouzhui=[]
-function deleteAllFiles(dir,houzhui){
+global.deleteAllFiles=function(dir,houzhui){
     log("删除目录："+dir+":"+houzhui)
      dir=dir||files.getSdcardPath()
     if(!houzhui||houzhui.length==0){return}
@@ -2782,7 +2619,7 @@ function deleteAllFiles(dir,houzhui){
 }
 
 //微信同意加好友
-var weixin_allow_friend=function(weixinname,shenqing){
+global.weixin_allow_friend=function(weixinname,shenqing){
     app.launchApp("微信")
     doactionmaxtime(function(){
       if(  textclick("通讯录")){
@@ -2796,7 +2633,7 @@ var weixin_allow_friend=function(weixinname,shenqing){
 }
 
 //保持应用是最新的
-var keepappisnewer=function(name,pkg){
+global.keepappisnewer=function(name,pkg){
     try {
         var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
         if(appinfo){
@@ -2813,7 +2650,7 @@ var keepappisnewer=function(name,pkg){
     }
 }
 //检测app是否为最新app
-var checkscriptversion=function(){
+global.checkscriptversion=function(){
     try {
         let ver=scriptapps[scriptappname]
         log(scriptappname+":最新版本号:"+ver)
@@ -2835,7 +2672,7 @@ var checkscriptversion=function(){
     }
 }
 
-var readercheck=function(){
+global.readercheck=function(){
     if(device.brand=="samsung"){
         alltest()
         listapp(readerapps)
@@ -2847,7 +2684,7 @@ var readercheck=function(){
     }
 }
 
-function findwebImgPoint(imgurl,trytime,isclick){
+global.findwebImgPoint=function(imgurl,trytime,isclick){
     try {
         if(!requestScreenCapture()){
             checkscreencapture()
@@ -2879,7 +2716,7 @@ function findwebImgPoint(imgurl,trytime,isclick){
     }
 }
 
-var checkweixin=function(){
+global.checkweixin=function(){
     let weixinpkg=getPackageName("微信")
     if(!weixinpkg){
         spt.put("weixinlogin",false)
@@ -2952,7 +2789,7 @@ var checkweixin=function(){
 }
 
 //本地配置启用脚本
-var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
+global.localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
@@ -3077,7 +2914,7 @@ var localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableap
 }
 
 //佳佳的脚本
-var startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
+global.startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
@@ -3201,7 +3038,7 @@ var startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enablea
 }
 
 //云端配置启用脚本
-var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
+global.startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -3314,7 +3151,7 @@ var startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enab
 }
 
 //云端配置启用脚本
-var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
+global.runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -3401,7 +3238,7 @@ var runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enable
 }
 
 //开始运行单个应用
-var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
+global.startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
     let runscriptapp=spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
@@ -3463,7 +3300,7 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     }
 }
 
-var nodesexists=function(nodes){
+global.nodesexists=function(nodes){
         if(nodes){
             if(textallexist(nodes["texts"])){
                 return true
@@ -3482,7 +3319,7 @@ var nodesexists=function(nodes){
     return false
 }
 
-var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivityaction,onetime,chixutime){
+global.sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivityaction,onetime,chixutime){
     doactionmaxtime(function(){
        if(currentPackage()==pkg){
             if(nodesexists(biaozhis)){
@@ -3498,27 +3335,28 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
     },chixutime)
 }
 
-var doappinvite=function(person,appname,gailv){
+//执行应用邀请
+global.doappinvite=function(person,appname,gailv){
 
 }
 
-var installshizuku=function(){
+global.installshizuku=function(){
     systemdownloadApk("Shizuku",shizukuweburl,true)
 }
 
 //无效
-var shizukuuninstallPkg=function(apppkg){
+global.shizukuuninstallPkg=function(apppkg){
     shell("adb uninstall "+apppkg,{adb:true,root:false})
 }
 
-var shizukuuninstallApp=function(appname){
+global.shizukuuninstallApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
        shizukuuninstallPkg(apppkg)
     }
 }
 
-var shizukuforcestopPkg=function(apppkg){
+global.shizukuforcestopPkg=function(apppkg){
     log("shizuku停止运行"+apppkg)
     if(apppkg==scriptapppkg){
         log("shizuku停止运行当前APP ")
@@ -3527,7 +3365,7 @@ var shizukuforcestopPkg=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
 }
 
-var shizukuclearappcache=function(appname){
+global.shizukuclearappcache=function(appname){
     let apppkg=app.getPackageName(appname)
     if(apppkg){
         shizukuclearpkgcache(apppkg)
@@ -3536,33 +3374,33 @@ var shizukuclearappcache=function(appname){
 }
 
 
-var shizukuclearpkgcache=function(apppkg){
+global.shizukuclearpkgcache=function(apppkg){
     
    shell("rm /data/data/"+apppkg+"/cache/",{adb:true,root:false})
    shell("rm /data/data/"+apppkg+"/app_baidu_ad_sdk/",{adb:true,root:false})
 }
 
 
-var shizukuforcestopApp=function(appname){
+global.shizukuforcestopApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
        shizukuforcestopPkg(apppkg)
     }
 }
 
-var shizukudisableappuntilused=function(appname){
+global.shizukudisableappuntilused=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
         shizukudisablepkguntilused(apppkg)
     }
 }
 
-var shizukudisablepkguntilused=function(apppkg){
+global.shizukudisablepkguntilused=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
     shell("pm disable-until-used "+apppkg,{adb:true,root:false}) 
 }
 
-function shellcmd(cmd){
+global.shellcmd=function(cmd){
     try {
         let re= shell(cmd,{adb:true,root:false})
         log(JSON.stringify(re))
@@ -3572,7 +3410,7 @@ function shellcmd(cmd){
     }
 }
 
-var enableshizuku=function(){
+global.enableshizuku=function(){
     try {
         let shizukupkg=app.getPackageName("Shizuku");
         if(!shizukupkg){
@@ -3592,46 +3430,5 @@ var enableshizuku=function(){
         return false
     }
 }
-// forcestop("刷宝短视频")
-// shizukuuninstallApp("马克笔记")
-// getapp()
-// getrunningapp()
-// let apps=getrunningapp2()
-// apps.forEach(function(ap){
-//     // log(app)
-//     log(app.getAppName(ap.packageName)+"--"+ com.blankj.utilcode.util.AppUtils.isAppRunning(ap.packageName))
-//     shizukuforcestopPkg(ap.packageName)
-//     log(app.getAppName(ap.packageName)+"--"+ com.blankj.utilcode.util.AppUtils.isAppRunning(ap.packageName))
-// })
-// console.log("shikuzu:"+enableshizuku())
-// shizukuinstall()
-// var enableshishizu=function(){
-//     return ShizukuService.pingBinder()
-// }
-// starttime=nowdate().getTime()
-// console.log("shizuku 是否可用："+enableshizuku())
-// log("时长："+(nowdate().getTime()-starttime))
-// shizukuforcestopApp("快手极速版")
-//  滑动(20,10,18,10,3,500,200)
-// sleep(3000)
-// // 滑动(20,10,17,10,3,500,200)
-// // sleep(3000)
-// // 滑动(20,10,18,10,3,500,200)
-// // sleep(3000)
-// randomSwipe(500,1800,500,300,2000,3000)
-// 微信发消息("微信团队","http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80",true)
-// log(isadviceactivity("com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"))
-// startreaderapps("阅读集合2","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读集合2.js","https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json")
 
-// 微信浏览("http://xiaoma.cmsswkj.cn/s5i/QmLB.html?pid=634ee0f0&app_id=80")
-// 微信加好友("zhangshuhong345")
-//  生成二维码保存到("你好这是一个二维码保存到三生三世",device.width/2,"测试二维码2.png",2)
-//  toastLog('解析结果：'+解析二维码("测试二维码2.png"))
-// captureScreen()
-//  findwebImgPoint("http://zhangshuhong888.iask.in:8989/img/刷宝图标.jpg",1,true)
-// shizukudisableappuntilused("快手")
-// sleep(5000)
-// app.launchApp("快手")
-// console.log("启动快手")
-//  shizukuclearappcache("自动化工具")
-//  shell("monkey -v -p com.hongdong.autotools 5000",{adb:true,root:false})
+}

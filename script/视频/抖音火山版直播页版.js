@@ -44,7 +44,6 @@ var 直播页红包倒计时id="com.ss.android.ugc.live:id/dq9"    //
 var 直播页列表开播按钮id="com.ss.android.ugc.live:id/dla"
 var 直播页列表地址id="com.ss.android.ugc.live:id/brv"
 var 直播页红包下面数字="com.ss.android.ugc.live:id/a4y"
-
 var 直播页福袋倒计时id="com.ss.android.ugc.live:id/a4s"   //
   //  没有头像的红包同时多个 android.widget.TextView
 var 直播页红包背景有头像id="com.ss.android.ugc.live:id/lt"  //不支持点击
@@ -69,9 +68,7 @@ var x=500,y=1000
 // checksystemsettings()
 floaty.closeAll()
 creatgfloatywindow()
-
 gfw.setPosition(0,388)
-
 
 if(changesetting){
     device.setMusicVolume(0)
@@ -84,7 +81,6 @@ if(!app.getPackageName(appname)){
 }else{
     show(appname+"已经安装")
 }
-
 
 engines.stopOther()
 //关闭最新的app
