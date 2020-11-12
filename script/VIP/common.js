@@ -20,25 +20,25 @@ var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷�
 var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","手机营业厅"
 ]
-this.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
+var readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
 
 //shizuku 的下载地址
-this.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
-this.sdtotalsize=SDCardUtils.getExternalTotalSize()
+var shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
+var sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
-this.sdavailablesize=function(){
+var sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
 
-this.sdavailablesizeratio=function(){
+var sdavailablesizeratio=function(){
  let ratio=sdavailablesize()/sdtotalsize
  log("可用:"+sdavailablesize()+"\n比例:"+ratio)
  return ratio;
 }
 
 
-this.disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
+var disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
