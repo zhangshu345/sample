@@ -14,8 +14,8 @@ importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
 var checkbatterythread=null //电池电量检测线程
-this.scriptapppkg=context.getPackageName()
-this.scriptappname=app.getAppName(scriptapppkg)
+
+var scriptappname=app.getAppName(context.getPackageName())
 this.aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
 this.whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","手机营业厅"
@@ -25,7 +25,9 @@ this.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支�
 
 //shizuku 的下载地址
 this.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
-this.sdtotalsize=SDCardUtils.getExternalTotalSize()
+this.sdtotalsize=function(){
+    return SDCardUtils.getExternalTotalSize()
+}
 log("内存总大小:"+sdtotalsize)
 this.sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
@@ -1972,10 +1974,10 @@ this.startdeviceadmin=function(){
         if(isdeviceadmin()){
             return true
         }
-        if(currentPackage()==scriptapppkg){
+        if(currentPackage()==context.getPackageName()){
             return true
         }else{
-            app.launch(scriptapppkg)
+            app.launch(context.getPackageName())
             sleep(5000)
             engines.execScript("uiname",ui函数,{})
             sleep(2000)
@@ -3359,7 +3361,7 @@ this.shizukuuninstallApp=function(appname){
 
 this.shizukuforcestopPkg=function(apppkg){
     log("shizuku停止运行"+apppkg)
-    if(apppkg==scriptapppkg){
+    if(apppkg==context.getPackageName()){
         log("shizuku停止运行当前APP ")
         return
     }
