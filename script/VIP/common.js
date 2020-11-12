@@ -1,5 +1,4 @@
-var func= function(){
-
+module.exports = function(){
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
 importClass(com.hongshu.utils.IntentUtils)
@@ -243,8 +242,6 @@ this.微信加好友=function(weixinhao,phone){
                     return true
                 }
             },20000,1000)
-           
-            
         }
     }
 }
@@ -288,7 +285,6 @@ this.微信聊天页发送消息=function(friend,message,isclick){
     }else{
         className("android.widget.EditText").visibleToUser().editable(true).waitFor()
     }
-    
     node_edit= className("android.widget.EditText").visibleToUser().editable(true).findOne(300)
     if(node_edit){
         node_edit.setText(message)
@@ -401,7 +397,6 @@ this.微信搜索打开链接=function(searchword){
                  maytextclick("访问网页")
               }
             }
-        
         }
     }
 }
@@ -418,6 +413,7 @@ this.getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  r
 this.getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
 this.getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
 this.getstrsetvalue=function(key){   return spt.getStringSet(key)}
+
 this.creatgfloatywindow=function(){
     log("createdfloaty")
     gfw=floaty.rawWindow(
@@ -3400,12 +3396,12 @@ this.shizukudisableappuntilused=function(appname){
     }
 }
 
-this.shizukudisablepkguntilused=function(apppkg){
+shizukudisablepkguntilused=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
     shell("pm disable-until-used "+apppkg,{adb:true,root:false}) 
 }
 
-this.shellcmd=function(cmd){
+shellcmd=function(cmd){
     try {
         let re= shell(cmd,{adb:true,root:false})
         log(JSON.stringify(re))
@@ -3415,7 +3411,7 @@ this.shellcmd=function(cmd){
     }
 }
 
-this.enableshizuku=function(){
+enableshizuku=function(){
     try {
         let shizukupkg=app.getPackageName("Shizuku");
         if(!shizukupkg){
@@ -3438,4 +3434,3 @@ this.enableshizuku=function(){
 
 }
 
-module.exports =func
