@@ -1082,7 +1082,7 @@ function descclick(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-function textclick(txt,t,left,top,right,bottom){
+textclick: function(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
