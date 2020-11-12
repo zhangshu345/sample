@@ -1943,6 +1943,7 @@ global.checkscreencapture=function(){
         sleep(1500)
       }
 })
+
 while(!requestScreenCapture()){
     sleep(2000)
 }
