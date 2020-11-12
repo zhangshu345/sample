@@ -54,8 +54,8 @@ var enablegenius=device.sdkInt>=24
 this.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
 
 this.deviceadmincomponent
-this.changesetting=false //是否改变亮度和音量的标识
-this.debugip="zhangshuhong888.iask.in"
+var changesetting=false //是否改变亮度和音量的标识
+var debugip="zhangshuhong888.iask.in"
 
 this.记录=function(name,key,n){   
 if(name){
