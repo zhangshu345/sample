@@ -1076,7 +1076,7 @@ this.descclick=function(desctext,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    this.f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
+    let f=desc(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
     if(!f){ 
         f=text(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
         if(!f){ return f}  
