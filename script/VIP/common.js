@@ -403,7 +403,7 @@ var 微信搜索打开链接=function(searchword){
 
 var 视频重复次数=2
 var ratio=1
-var gfw=null,
+var gfw=null
 var gsfw=null
 var isshowfloaty=false  //是否显示提醒
 var spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
