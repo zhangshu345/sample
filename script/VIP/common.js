@@ -14,10 +14,10 @@ importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
 checkbatterythread=null //电池电量检测线程
-this.scriptapppkg=context.getPackageName()
-this.scriptappname=app.getAppName(scriptapppkg)
-this.aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
-this.whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
+var scriptapppkg=context.getPackageName()
+var scriptappname=app.getAppName(scriptapppkg)
+var aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
+var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","手机营业厅"
 ]
 this.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
@@ -1082,7 +1082,7 @@ function descclick(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-textclick: function(txt,t,left,top,right,bottom){
+this.textclick=function(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
