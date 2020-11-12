@@ -1081,7 +1081,7 @@ this.descclick=function(desctext,t,left,top,right,bottom){
         f=text(desctext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t); //.visibleToUser()
         if(!f){ return f}  
     }
-    return clicknode(f)
+    return this.clicknode(f)
 }
 
 //文本点击
