@@ -50,7 +50,7 @@ this.scriptstarttime=nowdate().getTime()
 this.scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
 this.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 this.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
-this.enablegenius=device.sdkInt>=24
+var enablegenius=device.sdkInt>=24
 this.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
 
 this.deviceadmincomponent
