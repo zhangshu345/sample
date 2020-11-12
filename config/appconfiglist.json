@@ -1,4 +1,13 @@
 [{"name":"自动化工具",
+    "pkg":"com.hongdong.autotools",
+    "channel":"qq",
+    "versioni":12,
+    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+    "version":"1.1.2",
+    "downloadurl":"",
+    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig112.json"
+},
+    {"name":"自动化工具",
         "pkg":"com.hongdong.autotools",
         "channel":"qq",
         "versioni":10,

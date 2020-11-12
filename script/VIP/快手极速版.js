@@ -855,8 +855,6 @@ var clickhongbao=function(sleeptime,cx,cy){
         log(appname+"出错:点击红包")
     }
 }
-
-
 var app_hongbao_daojishi=function(){
     log("查找倒计时")
     node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)

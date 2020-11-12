@@ -50,8 +50,6 @@ this.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/new
 this.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius = device.sdkInt >= 24
 this.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
-
-
 var changesetting=false //是否改变亮度和音量的标识
 var debugip="zhangshuhong888.iask.in"
 
