@@ -1,4 +1,4 @@
-module.exports = function(){
+var func= function(){
 
 importClass(android.content.ComponentName)
 importClass(com.hongshu.receiver.DeviceReceiver)
@@ -15,49 +15,49 @@ importClass(com.blankj.utilcode.util.SDCardUtils)
 importClass(com.hongshu.utils.PermissionUtils)
 //仅涉及函数 不涉及数据 数据和函数分离
 checkbatterythread=null //电池电量检测线程
-global.scriptapppkg=context.getPackageName()
-global.scriptappname=app.getAppName(scriptapppkg)
-global.aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
-global.whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
+func.scriptapppkg=context.getPackageName()
+func.scriptappname=app.getAppName(scriptapppkg)
+func.aduiscripturl="https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js"
+func.whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付","QQ浏览器","支付宝","多开分身","哪吒","Shizuku",
 "快手","抖音","微视","QQ","拼多多","应用宝","酷安","搜狗输入法","讯飞输入法","一个就够","随便粘","手机营业厅"
 ]
-global.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
+func.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
 
 //shizuku 的下载地址
-global.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
-global.sdtotalsize=SDCardUtils.getExternalTotalSize()
+func.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
+func.sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
-global.sdavailablesize=function(){
+func.sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
 
-global.sdavailablesizeratio=function(){
+func.sdavailablesizeratio=function(){
  let ratio=sdavailablesize()/sdtotalsize
  log("可用:"+sdavailablesize()+"\n比例:"+ratio)
  return ratio;
 }
 
 
-global.disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
+func.disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
 
-global.admanager=AdviceManager.getInstance();
-global.nowdate=function(){return new Date()};
-global.scriptstarttime=nowdate().getTime()
-global.scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
-global.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
-global.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
-global.enablegenius=device.sdkInt>=24
-global.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
-global.dpm
-global.deviceadmincomponent
-global.changesetting=false //是否改变亮度和音量的标识
-global.debugip="zhangshuhong888.iask.in"
+func.admanager=AdviceManager.getInstance();
+func.nowdate=function(){return new Date()};
+func.scriptstarttime=nowdate().getTime()
+func.scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
+func.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
+func.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
+func.enablegenius=device.sdkInt>=24
+func.weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //微信登录界面
+func.dpm
+func.deviceadmincomponent
+func.changesetting=false //是否改变亮度和音量的标识
+func.debugip="zhangshuhong888.iask.in"
 
-global.记录=function(name,key,n){   
+func.记录=function(name,key,n){   
 if(name){
     com.hongshu.utils.FastSPUtils.getInstance(name).put(key,""+n)
 }else{
@@ -65,57 +65,57 @@ if(name){
 }
 
 }
-global.获取记录=function(name,key,defaultvalue){ if(name){
+func.获取记录=function(name,key,defaultvalue){ if(name){
     return com.hongshu.utils.FastSPUtils.getInstance(name).getString(key,""+defaultvalue)
 }else{
     return com.hongshu.utils.FastSPUtils.getInstance().getString(key,""+defaultvalue)
 }}
 
-global.今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
-global.获取今日记录=function(name,key,defaultvalue){ 
+func.今日记录=function(name,key,n){  记录(name,key+"_"+today(),n)}
+func.获取今日记录=function(name,key,defaultvalue){ 
     return 获取记录(name,key+"_"+today(),defaultvalue)}
 
-global.应用登录=function(name){return 获取今日记录(name,"login",false)=="true"}
-global.应用已登录=function(name){ 今日记录(name,"login",true)}
+func.应用登录=function(name){return 获取今日记录(name,"login",false)=="true"}
+func.应用已登录=function(name){ 今日记录(name,"login",true)}
 
-global.今日签到=function(name){return 获取今日记录(name,"sign",false)=="true"  }
-global.今日已签到=function(name){今日记录(name,"sign",true)}
+func.今日签到=function(name){return 获取今日记录(name,"sign",false)=="true"  }
+func.今日已签到=function(name){今日记录(name,"sign",true)}
 
-global.今日时长=function(name){return parseInt(获取今日记录(name,"time",0));}
-global.记录今日时长=function(name,t){ 
+func.今日时长=function(name){return parseInt(获取今日记录(name,"time",0));}
+func.记录今日时长=function(name,t){ 
     今日记录(name,"time",t)
 }
 
-global.今日滑动次数=function(name){return parseInt(获取今日记录(name,"swipe",0));}
-global.记录今日滑动次数=function(name,i){今日记录(name,"swipe",i);}
+func.今日滑动次数=function(name){return parseInt(获取今日记录(name,"swipe",0));}
+func.记录今日滑动次数=function(name,i){今日记录(name,"swipe",i);}
 
-global.今日提现=function(name){      return  获取今日记录(name,"cashout",false)=="true";}
-global.今日已提现=function(name){   今日记录(name,"cashout",true); }
+func.今日提现=function(name){      return  获取今日记录(name,"cashout",false)=="true";}
+func.今日已提现=function(name){   今日记录(name,"cashout",true); }
 
-global.记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
-global.上次今日金币=function(name){ return 获取今日记录(name,"coin",0); } 
+func.记录今日金币=function(name,coinnumber){    今日记录(name,"coin",coinnumber);}
+func.上次今日金币=function(name){ return 获取今日记录(name,"coin",0); } 
 
-global.记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
-global.上次金币=function(name){ return 获取记录(name,"coin",0); } 
+func.记录金币=function(name,coinnumber){    记录(name,"coin",coinnumber);}
+func.上次金币=function(name){ return 获取记录(name,"coin",0); } 
 
  //可以通过上次的金币来判断是否 还可以获取金币
- global.记录现在余额=function(name,f){记录(name,"money",f);} 
- global.上次余额=function(name){ return 获取记录(name,"money");} 
+ func.记录现在余额=function(name,f){记录(name,"money",f);} 
+ func.上次余额=function(name){ return 获取记录(name,"money");} 
 
- global.记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
- global.上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
+ func.记录现在滑动次数=function(name,f){  今日记录(name,"swipe",n);} //可以通过上次的金币来判断是否 还可以获取金币
+ func.上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
 
- global.记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
- global.上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
+ func.记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
+ func.上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
 
- global.记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
- global.上次观看文章数=function(name){ return 获取今日记录(name,"article",0); } 
+ func.记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
+ func.上次观看文章数=function(name){ return 获取今日记录(name,"article",0); } 
 
- global.lastscriptapp=function(){return spt.getString("lastscriptapp")}
- global.closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
- global.getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
+ func.lastscriptapp=function(){return spt.getString("lastscriptapp")}
+ func.closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
+ func.getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 
- global.agourl=function(url){
+ func.agourl=function(url){
     app.startActivity({
         extras: {
             "url": url
@@ -126,18 +126,18 @@ global.上次金币=function(name){ return 获取记录(name,"coin",0); }
 }
 
 //开启调试
-global.startdebug=function(ip){
+func.startdebug=function(ip){
   ip=ip||debugip
   DevPluginService.getInstance().debugtoip(debugip);
 }
 
 //判断是否是设备管理者
-global.isdeviceadmin=function(){
+func.isdeviceadmin=function(){
     deviceadmincomponent=new ComponentName(context.getPackageName(),"com.hongshu.receiver.DeviceReceiver");
     dpm=context.getSystemService("device_policy");    return dpm.isAdminActive( deviceadmincomponent);
 }
 
-global.微信扫一扫=function(){
+func.微信扫一扫=function(){
     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.ui.LauncherUI",true)
     intent.putExtra("LauncherUI.From.Scaner.Shortcut", true);
     intent.setFlags(335544320);
@@ -145,7 +145,7 @@ global.微信扫一扫=function(){
     context.startActivity(intent);
 }
 
-global.微信打开链接=function(weburl){
+func.微信打开链接=function(weburl){
     //.plugin.webview.ui.tools.WebViewUI
     var intent = com.hongshu.utils.IntentUtils.getComponentIntent("com.tencent.mm","com.tencent.mm.plugin.base.stub.WXCustomSchemeEntryActivity",true)
     intent.putExtra("data", "weixin://"+weburl);
@@ -154,7 +154,7 @@ global.微信打开链接=function(weburl){
     context.startActivity(intent);
 }
 
-global.微信浏览=function(url){
+func.微信浏览=function(url){
   let  weixinpkg=getPackageName("微信")
  if(weixinpkg){
      app.launch(weixinpkg)
@@ -221,7 +221,7 @@ global.微信浏览=function(url){
   }
 }
 
-global.微信加好友=function(weixinhao,phone){
+func.微信加好友=function(weixinhao,phone){
     if(微信回到首页()){
         if(textclick("通讯录")){
             while(!textclick("新的朋友")){
@@ -250,20 +250,20 @@ global.微信加好友=function(weixinhao,phone){
 }
 
 //返回 Bitmap 对象
-global.生成二维码=function(content,width){
+func.生成二维码=function(content,width){
   return  com.king.zxing.util.CodeUtils.createQRCode(content,width)
 }
 
-global.生成二维码保存到=function(content,width,savepath,format){
+func.生成二维码保存到=function(content,width,savepath,format){
     let coder=生成二维码(content,width)
     saveimg(coder,savepath,format)
 }
 
-global.解析二维码=function(imgpath){
+func.解析二维码=function(imgpath){
   return com.king.zxing.util.CodeUtils.parseQRCode("/sdcard/"+imgpath)
 }
 //
-global.saveimg=function(bitmap,imgpath,format){
+func.saveimg=function(bitmap,imgpath,format){
     imgformat=android.graphics.Bitmap.CompressFormat.JPEG
     if(format==1){
         imgformat=android.graphics.Bitmap.CompressFormat.JPEG
@@ -277,7 +277,7 @@ global.saveimg=function(bitmap,imgpath,format){
         context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new File(imgpath))));
      }
 }
-global.微信聊天页发送消息=function(friend,message,isclick){
+func.微信聊天页发送消息=function(friend,message,isclick){
     if(friend=="微信团队"){
         doactionmaxtime(function(){
             clicknode(desc("消息").findOne(500))
@@ -311,7 +311,7 @@ global.微信聊天页发送消息=function(friend,message,isclick){
     }
 }
 
-global.微信到聊天界面=function(friend){
+func.微信到聊天界面=function(friend){
   if(微信回到首页()){
     if(textclick("通讯录")){
         sleep(1500)
@@ -328,7 +328,7 @@ global.微信到聊天界面=function(friend){
   }
 }
 
-global.微信回到首页=function(){
+func.微信回到首页=function(){
     let  weixinpkg=getPackageName("微信")
     if(weixinpkg){
        if(doactionmaxtime(function(){
@@ -378,12 +378,12 @@ global.微信回到首页=function(){
      }
 }
 
-global.微信发消息=function(friend,message,isclick){
+func.微信发消息=function(friend,message,isclick){
     if(微信到聊天界面(friend)){
            微信聊天页发送消息(friend,message,isclick)
     }
 }
-global.微信搜索打开链接=function(searchword){
+func.微信搜索打开链接=function(searchword){
     if(微信回到首页()){
         if(textclick("微信")){
             sleep(1500)
@@ -408,17 +408,17 @@ global.微信搜索打开链接=function(searchword){
 
 var 视频重复次数=2
 var ratio=1
-global.gfw=null,
-global.gsfw=null
-global.isshowfloaty=false  //是否显示提醒
-global.spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
-global.getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
-global.getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
-global.getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
-global.getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
-global.getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
-global.getstrsetvalue=function(key){   return spt.getStringSet(key)}
-global.creatgfloatywindow=function(){
+func.gfw=null,
+func.gsfw=null
+func.isshowfloaty=false  //是否显示提醒
+func.spt=com.hongshu.utils.FastSPUtils.getInstance()  //保证和APP交互 使用同一个
+func.getstrvalue=function(key,defaultvalue){ defaultvalue=defaultvalue||"";   return spt.getString(key,defaultvalue)}
+func.getintvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getInt(key,defaultvalue)}
+func.getlongvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+func.getfloatvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||-1;  return spt.getLong(key,defaultvalue)}
+func.getbooleanvalue=function(key,defaultvalue){  defaultvalue=defaultvalue||false;   return spt.getBoolean(key,defaultvalue)}
+func.getstrsetvalue=function(key){   return spt.getStringSet(key)}
+func.creatgfloatywindow=function(){
     log("createdfloaty")
     gfw=floaty.rawWindow(
         <horizontal>
@@ -431,7 +431,7 @@ global.creatgfloatywindow=function(){
     isshowfloaty=true
  }
 
- global.creatsetfloatywindow=function(){
+ func.creatsetfloatywindow=function(){
     gsfw=floaty.rawWindow(
         <horizontal clickable="false"  >
               <vertical  w="90" h="65" >
@@ -506,7 +506,7 @@ global.creatgfloatywindow=function(){
 }
 
 //列出所有应用 delectapp  删除非应用
-global.listapp=function(keepapps,isforcestop,delectapp){
+func.listapp=function(keepapps,isforcestop,delectapp){
     let allapps=[]
     let  appnames=whiteapps
     if(keepapps){
@@ -561,7 +561,7 @@ global.listapp=function(keepapps,isforcestop,delectapp){
 
 
 //获取
-global.getapp=function(){
+func.getapp=function(){
     let allapps=[]
     //列出app
     var packageManager=context.getPackageManager()
@@ -594,7 +594,7 @@ global.getapp=function(){
     return allapps
 }
 //获取禁用的应用
-global.getstopedapps=function(){
+func.getstopedapps=function(){
     let allapps=[]
     //列出app
     var packageManager=context.getPackageManager()
@@ -632,7 +632,7 @@ global.getstopedapps=function(){
 }
 
 //获取
-global.getrunningapp=function(){
+func.getrunningapp=function(){
     let allapps=[]
     var am=context.getSystemService("activity")
     let appprocesses=am.getRunningAppProcesses()
@@ -653,7 +653,7 @@ global.getrunningapp=function(){
 
 
 //获取
-global.getrunningapp2=function(){
+func.getrunningapp2=function(){
     let allapps=[]
     //列出app
     var am=context.getSystemService("activity")
@@ -677,7 +677,7 @@ global.getrunningapp2=function(){
 }
 
 //
-global.keepappclear=function(url){
+func.keepappclear=function(url){
     var appconfig=httpget(url)
     var allapps=[]
     appnames=whiteapps
@@ -729,7 +729,7 @@ global.keepappclear=function(url){
 }
 
 
-global.appstophander=function(){
+func.appstophander=function(){
     if( device.brand=="samsung"){clicktexts(["关闭应用","关闭应用程序"]) }
     else if(device.brand=="HONOR"){ clicktexts(["关闭应用","关闭应用程序"])}
     else if(device.brand=="DOCOMO"){clicktexts(["关闭应用","关闭应用程序"])}
@@ -739,7 +739,7 @@ global.appstophander=function(){
     else{if(textoneexist(["关闭应用","关闭应用程序"])){clickonetexts(["确定","关闭应用","关闭应用程序"])}}
 }
 
-global.closerecentapp=function(){
+func.closerecentapp=function(){
     return 
     recents()
     if(device.brand=="samsung"){
@@ -754,7 +754,7 @@ global.closerecentapp=function(){
 }
 
 //指定app 运行脚本
-global.runscriptIntent=function(apppkg,scriptsurl){
+func.runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
         packageName:apppkg,
         className:"com.hongshu.autojs.external.open.RunIntentActivity",
@@ -771,7 +771,7 @@ global.runscriptIntent=function(apppkg,scriptsurl){
     context.startActivity(i);
 }
 // 发送强制关闭所有脚本给其他脚本APP
-global.sendforcestopIntent=function(apppkg){
+func.sendforcestopIntent=function(apppkg){
     let i = app.intent({
         packageName:apppkg,
         className:"com.hongshu.autojs.external.open.RunIntentActivity",
@@ -786,9 +786,9 @@ global.sendforcestopIntent=function(apppkg){
     context.startActivity(i);
 }
 
-global.runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
+func.runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
 
-global.show=function(txt,txtcolor){ 
+func.show=function(txt,txtcolor){ 
     try {
         txtcolor= textColor||android.graphics.Color.GRAY 
        txt= scriptruntime()+"秒："+txt
@@ -807,9 +807,9 @@ global.show=function(txt,txtcolor){
 }
 
 
-global.上滑=function(){滑动(20,13,17,10,4,500,500);}
-global.下滑=function(){滑动(20,10,3,13,17,500,500);}
-global.alter=sync(function(txt,t,left,top,width,height){
+func.上滑=function(){滑动(20,13,17,10,4,500,500);}
+func.下滑=function(){滑动(20,10,3,13,17,500,500);}
+func.alter=sync(function(txt,t,left,top,width,height){
     var issleep=false
     t=t||5000
     left= left ||0
@@ -847,13 +847,13 @@ global.alter=sync(function(txt,t,left,top,width,height){
 //
 function httpget(url) {var r = http.get(url);if (r.statusCode == 200) { return r.body.string();  } else { toastLog("五秒后重试");sleep(5000);  return "";}  }
 
-global.shizukuforstopAllApp=function(){
+func.shizukuforstopAllApp=function(){
 
 }
 
 
 
-global.forcestop=function(appname,st,isclearcache){
+func.forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
     if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
@@ -865,7 +865,7 @@ global.forcestop=function(appname,st,isclearcache){
       }
 }
 
-global.forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
+func.forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     if(enableshizuku()){
         return shizukuforcestopPkg(apppkg)
     }
@@ -899,7 +899,7 @@ global.forcestoppkg=function(apppkg,st,isclearcache,isnewtask){
     }
 }
 
-global.clearappcache=function(appname,apppkg,fromforcestop){
+func.clearappcache=function(appname,apppkg,fromforcestop){
     if(!apppkg&&!appname){
         return false
     }
@@ -930,7 +930,7 @@ global.clearappcache=function(appname,apppkg,fromforcestop){
     back()
 }
 
-global.tofloatysetting=function(){
+func.tofloatysetting=function(){
    let i = app.intent({
         action: "android.settings.action.MANAGE_OVERLAY_PERMISSION",
         flags:["activity_new_task"]
@@ -938,27 +938,27 @@ global.tofloatysetting=function(){
     context.startActivity(i);
 }
 
-global.todevelopersetting=function(){
+func.todevelopersetting=function(){
     let i = app.intent({ action: "android.settings.APPLICATION_DEVELOPMENT_SETTINGS", flags:["activity_new_task"] // data: "file:///sdcard/1.png"  
 });
   context.startActivity(i);
 }
 
  
-global.toPkgandClass=function(pkg,classname){
+func.toPkgandClass=function(pkg,classname){
         let i = app.intent({  packageName: pkg, className:classname ,flags:["activity_new_task"]});
          context.startActivity(i);
 }
-global.toPkgandClassWithData=function(pkg,classname,putdate){
+func.toPkgandClassWithData=function(pkg,classname,putdate){
     let i = app.intent({packageName: pkg, className:classname ,flags:["activity_new_task"],data:putdate});
      context.startActivity(i);
 }
 //到设置管理者设置
-global.todeviceadmin=function(){
+func.todeviceadmin=function(){
        toandroidsetting("com.android.settings.DeviceAdminSettings")
 }
 
-global.toinputsettings=function(){
+func.toinputsettings=function(){
     let i = app.intent({
         action: "android.settings.INPUT_METHOD_SETTINGS",
         flags:["activity_new_task"]
@@ -967,10 +967,10 @@ global.toinputsettings=function(){
     context.startActivity(i);
 }
 
-global.toinputmethodsubtypesetting=function(){
+func.toinputmethodsubtypesetting=function(){
     tosettingsbyaction("android.settings.INPUT_METHOD_SUBTYPE_SETTINGS")
 }
-global.tolanguagesetting=function(){
+func.tolanguagesetting=function(){
     let i = app.intent({
         action: "android.settings.LOCALE_SETTINGS",
         flags:["activity_new_task"]
@@ -979,7 +979,7 @@ global.tolanguagesetting=function(){
     context.startActivity(i);
 }
 
-global.tosettingsbyaction=function(actionname){
+func.tosettingsbyaction=function(actionname){
     let i = app.intent({
         action: actionname,
         flags:["activity_new_task"]
@@ -988,33 +988,33 @@ global.tosettingsbyaction=function(actionname){
     context.startActivity(i);
 }
 
-global.toairpalnemodesetting=function(){
+func.toairpalnemodesetting=function(){
     tosettingsbyaction("android.settings.AIRPLANE_MODE_SETTINGS")
 }
 
-global.tosearchsetting=function(){
+func.tosearchsetting=function(){
     tosettingsbyaction("android.search.action.SEARCH_SETTINGS")
 }
  //到android设置页面
- global.toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
+ func.toandroidsetting=function(classname){     toPkgandClass("com.android.settings",classname) }
  //到用户使用情况页面
- global.tousagestate=function(){    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")}
- global.toaccessibilitysetting=function(){    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")}
- global.tosystemsetting=function(){    tosettingsbyaction("android.settings.SETTINGS")}
- global.towifisetting=function(){    tosettingsbyaction("android.settings.WIFI_SETTINGS")}
- global.toapnsetting=function(){    tosettingsbyaction("android.settings.APN_SETTINGS")}
- global.todatesetting=function(){    tosettingsbyaction("android.settings.DATE_SETTINGS")}
- global.towifiipsetting=function(){    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")}
- global.tovpnsetting=function(){    tosettingsbyaction("android.settings.VPN_SETTINGS")}
- global.tophonenetsetting=function(){    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")}
- global.tosecuritysetting=function(){    tosettingsbyaction("android.settings.SECURITY_SETTINGS")}
- global.todisplaysetting=function(){    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")}
- global.toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")}
- global.toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
- global.tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
- global.toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
- global.isfloaty=function(){  return Settings.canDrawOverlays(context)}
- global.checkfloaty=function(appname){
+ func.tousagestate=function(){    tosettingsbyaction("android.settings.USAGE_ACCESS_SETTINGS")}
+ func.toaccessibilitysetting=function(){    tosettingsbyaction("android.settings.ACCESSIBILITY_SETTINGS")}
+ func.tosystemsetting=function(){    tosettingsbyaction("android.settings.SETTINGS")}
+ func.towifisetting=function(){    tosettingsbyaction("android.settings.WIFI_SETTINGS")}
+ func.toapnsetting=function(){    tosettingsbyaction("android.settings.APN_SETTINGS")}
+ func.todatesetting=function(){    tosettingsbyaction("android.settings.DATE_SETTINGS")}
+ func.towifiipsetting=function(){    tosettingsbyaction("android.settings.WIFI_IP_SETTINGS")}
+ func.tovpnsetting=function(){    tosettingsbyaction("android.settings.VPN_SETTINGS")}
+ func.tophonenetsetting=function(){    tosettingsbyaction("android.settings.DATA_ROAMING_SETTINGS")}
+ func.tosecuritysetting=function(){    tosettingsbyaction("android.settings.SECURITY_SETTINGS")}
+ func.todisplaysetting=function(){    tosettingsbyaction("android.settings.DISPLAY_SETTINGS")}
+ func.toappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_APPLICATIONS_SETTINGS")}
+ func.toallappmanagesetting=function(){    tosettingsbyaction("android.settings.MANAGE_ALL_APPLICATIONS_SETTINGS")}
+ func.tomangerwritesetting=function(){    tosettingsbyaction("android.settings.action.MANAGE_WRITE_SETTINGS")}
+ func.toignorebatteryoptintizationsetting=function(){   tosettingsbyaction("android.settings.IGNORE_BATTERY_OPTIMIZATION_SETTINGS")}
+ func.isfloaty=function(){  return Settings.canDrawOverlays(context)}
+ func.checkfloaty=function(appname){
     toastLog("自动开启悬浮权限")
      appname=appname||app.getAppName(context.getPackageName())
      log("当前应用名:"+appname)
@@ -1042,14 +1042,14 @@ global.tosearchsetting=function(){
    toastLog("悬浮开启结束")
 }
 
-global.sleepr=function(short,long){
+func.sleepr=function(short,long){
     long=long||short+1000
   let  rt=random(short,long)
     log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
-global.getTextfromid=function(idstr,defaulttext,findtime){
+func.getTextfromid=function(idstr,defaulttext,findtime){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
     findtime=findtime||500
@@ -1057,7 +1057,7 @@ global.getTextfromid=function(idstr,defaulttext,findtime){
     if(node_id){ return node_id.text(); }else{ return defaulttext;}
 }
 
-global.idclick=function(idstr,t,left,top,right,bottom){
+func.idclick=function(idstr,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1071,7 +1071,7 @@ global.idclick=function(idstr,t,left,top,right,bottom){
     return false
 }
 
-global.descclick=function(desctext,t,left,top,right,bottom){
+func.descclick=function(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1086,7 +1086,7 @@ global.descclick=function(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-global.textclick=function(txt,t,left,top,right,bottom){
+func.textclick=function(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
@@ -1103,7 +1103,7 @@ global.textclick=function(txt,t,left,top,right,bottom){
     return clicknode(f)
 }
 
-global.maytextclick=function(maytext,t,left,top,right,bottom){
+func.maytextclick=function(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false; }
     t=t || 200
     left = left || 0;
@@ -1122,7 +1122,7 @@ global.maytextclick=function(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-global.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
+func.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
     dx=dx||0
     dy=dy||0
     clicknumber=clicknumber||1
@@ -1169,7 +1169,7 @@ global.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
 }
 
 //一直找到可以点击控件向上查找
-global.clickparents=function(v,n){
+func.clickparents=function(v,n){
     if(!v){
         return false
     }
@@ -1188,7 +1188,7 @@ global.clickparents=function(v,n){
 }
 
 //找到子类 点击下去
-global.clickchilds=function(v){
+func.clickchilds=function(v){
    if(v.childCount()>0){
        for(i=0;i<v.childCount();i++){
            c=v.child(i)
@@ -1210,7 +1210,7 @@ global.clickchilds=function(v){
 }
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
-global.clickids=function(ids,t,st){
+func.clickids=function(ids,t,st){
     t=t||100
     st=st||500
     ids.forEach(idstr => {
@@ -1220,7 +1220,7 @@ global.clickids=function(ids,t,st){
     });
 }
 
-global.clickalls=function(allids,alltexts,alldescs){
+func.clickalls=function(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
         clickids(allids)
     }
@@ -1233,7 +1233,7 @@ global.clickalls=function(allids,alltexts,alldescs){
 }
 
 //点击文本集合
-global.clicktexts=function(texts,t,st,left,top,right,bottom){
+func.clicktexts=function(texts,t,st,left,top,right,bottom){
     log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
@@ -1248,7 +1248,7 @@ global.clicktexts=function(texts,t,st,left,top,right,bottom){
     }
 }
 
-global.clickdescs=function(descs,t,st){
+func.clickdescs=function(descs,t,st){
    log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
@@ -1259,7 +1259,7 @@ global.clickdescs=function(descs,t,st){
     }
 }
 
-global.clickalltexts=function(texts,t,st){
+func.clickalltexts=function(texts,t,st){
     log("开始点击文本集合:"+texts)
     st=st || 1500
     t=t || 100
@@ -1273,7 +1273,7 @@ global.clickalltexts=function(texts,t,st){
     return n==texts.length
 }
 //点击仁意一个id就是真真
-global.clickoneids=function(ids,t,st){
+func.clickoneids=function(ids,t,st){
     log("开始点击id集合:"+ids)
     st=st || 500
     t=t || 500
@@ -1286,7 +1286,7 @@ global.clickoneids=function(ids,t,st){
     return false
 }
 
-global.clickonetexts=function(texts,t,st){
+func.clickonetexts=function(texts,t,st){
   log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 200
@@ -1299,7 +1299,7 @@ global.clickonetexts=function(texts,t,st){
     return false
 }
 
-global.clickonemaytexts=function(texts,t,st){
+func.clickonemaytexts=function(texts,t,st){
     log("开始点击文本集合:"+texts)
       st=st || 500
       t=t || 500
@@ -1314,7 +1314,7 @@ global.clickonemaytexts=function(texts,t,st){
 
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认一分钟无点击效果就退出 发现stop 文本出现就退出
-global.whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
+func.whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
     maxtime=maxtime||60000  
     isclickshowtext=isclickshowtext||false
    doactionmaxtime(function(){
@@ -1329,7 +1329,7 @@ global.whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclicks
  }
 
 //在文本标志出现之前一直点击id的 t 是最长等待时间
-global.whileclickidsbeforeids=function(ids,stopids,t){
+func.whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
     st=nowdate().getTime()
     while(true){
@@ -1343,7 +1343,7 @@ global.whileclickidsbeforeids=function(ids,stopids,t){
     }
  }
 
- global.control_click=function(button, vlause, left, top, right, bottom) {
+ func.control_click=function(button, vlause, left, top, right, bottom) {
     // 功能---点击控件
     // 输入---参数1:元素[id、text 、desc、className],参数2:元素值,剩余参数:left, top, right, buttom
     // 默认后四位为当前屏幕
@@ -1387,7 +1387,7 @@ global.whileclickidsbeforeids=function(ids,stopids,t){
     }
 }
 //  0就是控件滑动 x1 < x2  向后滑动  x>x2 向前滑动  y1>y2 向上滑动 向前    y1 <y2 向下滑动 向后 
-global.滑动=function(z,x1,y1,x2,y2,t,r) {
+func.滑动=function(z,x1,y1,x2,y2,t,r) {
     t=t||500
     r=r||500
     if(z>0){
@@ -1431,7 +1431,7 @@ global.滑动=function(z,x1,y1,x2,y2,t,r) {
     }
 }
 
-global.bezierCreate=function(x1,y1,x2,y2,x3,y3,x4,y4){
+func.bezierCreate=function(x1,y1,x2,y2,x3,y3,x4,y4){
     if(!x2){
         x2=x1
     }
@@ -1489,7 +1489,7 @@ global.bezierCreate=function(x1,y1,x2,y2,x3,y3,x4,y4){
  * 传入值：起点终点坐标
  * 效果：模拟真人滑动
  */
-global.randomSwipe=function(sx,sy,ex,ey,t,r){
+func.randomSwipe=function(sx,sy,ex,ey,t,r){
     log(sx+","+sy+","+ex+","+ey+","+t+","+r)
     //设置随机滑动时长范围
     var timeMin=t||500
@@ -1527,7 +1527,7 @@ global.randomSwipe=function(sx,sy,ex,ey,t,r){
 }
 
 /*所有文本存在才返回真 */
-global.textallexist=function(texts){
+func.textallexist=function(texts){
     if(!texts){
         return false
     }
@@ -1540,7 +1540,7 @@ global.textallexist=function(texts){
 }
 
 /* 所有id都存在才返回真  只要有一个不存在就返回false */
-global.idallexist=function(ids){
+func.idallexist=function(ids){
     if(!ids){
         return false
     }
@@ -1554,7 +1554,7 @@ global.idallexist=function(ids){
 }
 
 /* 所有id都存在才返回真  只要有一个不存在就返回false */
-global.descallexist=function(descs){
+func.descallexist=function(descs){
     if(!descs){
         return false
     }
@@ -1568,17 +1568,17 @@ global.descallexist=function(descs){
 }
 
 /*文本只要存在一个就返回真 */
-global.textoneexist=function(texts){
+func.textoneexist=function(texts){
      if(texts.length>0){for(i=0;i<texts.length;i++){ if(text(texts[i]).visibleToUser().exists()){  return true }  } }
     return false
 }
 /**只要存在一个id就返回真 */
-global.idoneexist=function(ids){
+func.idoneexist=function(ids){
      if(ids.length>0){for(i=0;i<ids.length;i++){  if(id(ids[i]).exists()){ return true;  }  }    }
     return false
 }
 
-global.forbidapps=function(apps){
+func.forbidapps=function(apps){
    let apps=apps||disableapps
     apps.forEach(appname=>{
         let apppkg=getPackageName(appname)
@@ -1590,7 +1590,7 @@ global.forbidapps=function(apps){
     })
 }
 
-global.forbidapp=function(appname,apppkg){
+func.forbidapp=function(appname,apppkg){
     apppkg=apppkg||getPackageName(appname)
     if(apppkg){
         app.openAppSetting(apppkg);
@@ -1613,7 +1613,7 @@ global.forbidapp=function(appname,apppkg){
 }
 
 
-global.firstrunapp=function(appname){
+func.firstrunapp=function(appname){
     importClass(com.hongshu.utils.AppUtils);
     packagename=app.getPackageName(appname)
     app.launchPackage(packagename)
@@ -1634,11 +1634,11 @@ global.firstrunapp=function(appname){
     return true
 }
 
-global.systemdownloadApk=function(filename,fileuri,isinstall){
+func.systemdownloadApk=function(filename,fileuri,isinstall){
     systemdownload(filename,fileuri,isinstall,"application/vnd.android.package-archive")
 }
 
-global.systemdownload=function(filename,fileuri,isinstall,MimeType){
+func.systemdownload=function(filename,fileuri,isinstall,MimeType){
     let isinstall = isinstall || true
     importClass(android.os.Environment);
     importClass(android.net.Uri);
@@ -1693,7 +1693,7 @@ let st = setInterval(() => {
 
 
 //下载app
-global.downloadApk=function(name,downloadurl,isinstall) {
+func.downloadApk=function(name,downloadurl,isinstall) {
      try {
         log('要下载的APP的：' + name+":"+downloadurl);
         isinstall=isinstall || false
@@ -1753,7 +1753,7 @@ global.downloadApk=function(name,downloadurl,isinstall) {
      } 
  }
  
- global.install_app=function(filePath, name,maxtime,isopen,delect) {
+ func.install_app=function(filePath, name,maxtime,isopen,delect) {
      maxtime=maxtime||180000
      isopen=isopen||false
      delect=delect||true
@@ -1826,7 +1826,7 @@ global.downloadApk=function(name,downloadurl,isinstall) {
      return false
  }
  //检测运行APP是否是新版版本
- global.checkinstallapp=function(){
+ func.checkinstallapp=function(){
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -1840,20 +1840,20 @@ global.downloadApk=function(name,downloadurl,isinstall) {
   }
 
  //根据app名下载并安装应用
- global.downloadandinstallapp=function(appname,apppkg){
+ func.downloadandinstallapp=function(appname,apppkg){
    let appinfo=getAppInfobyAppNameAndPkg(appname,apppkg)
     if(appinfo){log("应用详情：获取成功");
         systemdownloadApk(appname+"-"+appinfo.appDetail.versionCode,appinfo.appDetail.apkUrl,true);   
  }
 }
 //关闭其他应用
-global.stopOtherScript=function(){
+func.stopOtherScript=function(){
     var thisengs=engines.myEngine()
     var allengs=engines.all()
     allengs.forEach(e =>{        if(e.getId()!=thisengs.getId()){engines.stop(e.getId());  }
     })
 }
-global.runurlscript=function(name,url){
+func.runurlscript=function(name,url){
     try {
         show("运行:"+name+"--"+url)
         content=httpget(url)
@@ -1868,7 +1868,7 @@ global.runurlscript=function(name,url){
 }
 
 
-global.evalscript=function(name,url){
+func.evalscript=function(name,url){
     try {
         show("运行:"+name+"--"+url)
         content=httpget(url)
@@ -1882,7 +1882,7 @@ global.evalscript=function(name,url){
  
 }
 
-global.phonenumber=function(){
+func.phonenumber=function(){
     runtime.requestPermissions(["READ_PHONE_STATE"])
     var telephoneservice = context.getSystemService("phone")
      pnumber = telephoneservice.getLine1Number()
@@ -1891,7 +1891,7 @@ global.phonenumber=function(){
      if(pnumber){ return pnumber;     }else{return null;     }
 }
 //本地配置启用脚本
-global.startallapp = function(){
+func.startallapp = function(){
     addbmobchannel("hongshuyuedu")
     let apps=数据库.get("runlist","")
     var last
@@ -1929,10 +1929,10 @@ global.startallapp = function(){
       }
     })
 }
-global.clickscreencapture=function(){
+func.clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
-global.checkscreencapture=function(){
+func.checkscreencapture=function(){
   threads.start(function() {
     n_t=0
       while(n_t<5){
@@ -1955,16 +1955,16 @@ if (!requestScreenCapture()) {
 }
 }
 
-global.isNotificationManager=function(){    
+func.isNotificationManager=function(){    
     importClass(com.hongshu.utils.PermissionUtils);  
       return PermissionUtils.isnotificationListenerEnable()
     }
-global.toNotificationManager=function(){ 
+func.toNotificationManager=function(){ 
        tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
     }
 
 //启动deviceadmin
-global.startdeviceadmin=function(){
+func.startdeviceadmin=function(){
     toastLog("检测设备管理器是否激活")
     if(isdeviceadmin()){
         show("设备管理器激活了")
@@ -1998,7 +1998,7 @@ global.startdeviceadmin=function(){
 }
 
 //检测权限
-global.checkpermission=function(permissions){
+func.checkpermission=function(permissions){
     permissions.forEach(p =>{
         switch (p) {
             case "悬浮":
@@ -2020,7 +2020,7 @@ global.checkpermission=function(permissions){
 }
 
 //执行函数 在一定时间内 最小10秒
-global.doactionmaxtime=function(action,maxtime,intertime){
+func.doactionmaxtime=function(action,maxtime,intertime){
     if(!action){
         return false
     }
@@ -2036,7 +2036,7 @@ global.doactionmaxtime=function(action,maxtime,intertime){
     return false
 }
 //执行函数 几次  
-global.doactionmaxnumber=function(action,maxnumber){
+func.doactionmaxnumber=function(action,maxnumber){
     if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
     while(n_doaction<maxnumber){ if (action(n_doaction)){return true }; n_doaction=n_doaction+1; }
@@ -2044,7 +2044,7 @@ global.doactionmaxnumber=function(action,maxnumber){
 }
 
 //执行函数 
-global.doactionnumberontime=function(action,maxnumber,maxtime,intertime){
+func.doactionnumberontime=function(action,maxnumber,maxtime,intertime){
     if(!action){return false}
     maxnumber=maxnumber||1; n_doaction=0;
     maxtime=maxtime||10000
@@ -2055,7 +2055,7 @@ global.doactionnumberontime=function(action,maxnumber,maxtime,intertime){
 }
 
 //卸载应用
-global.uninstallapp=function(appname){
+func.uninstallapp=function(appname){
   pkg=getPackageName(appname)
   if(!pkg){ return false }
   if(appname){
@@ -2079,7 +2079,7 @@ global.uninstallapp=function(appname){
   }
 }
 
-global.uninstallpackage=function(packageName){
+func.uninstallpackage=function(packageName){
     name=app.getAppName(packageName)
     if(!name){return false }
     let i = app.intent({
@@ -2093,11 +2093,11 @@ global.uninstallpackage=function(packageName){
       }
 }
   //判断是否可以写入系统设置
-global.issystemsettings=function(){
+func.issystemsettings=function(){
    return PermissionUtils.isGrantedWriteSettings()
 }
 //检测系统设置
-global.checksystemsettings=function(){
+func.checksystemsettings=function(){
     if(issystemsettings()){ log("有系统设置权限"); 
     return true    }
     else{ log("没有系统设置权限");
@@ -2129,7 +2129,7 @@ global.checksystemsettings=function(){
     }
 }
 // 不同机型手机进行的不同的检测配置
-global.alltest=function(){
+func.alltest=function(){
     log("全部测试")
     device.wakeUpIfNeeded()
     if( device.brand=="samsung"){
@@ -2149,7 +2149,7 @@ global.alltest=function(){
     else if(device.brand=="OPPO"){   }
 }
 //检测是否开启了设备管理者权限
-global.checkdevicemanager=function(){
+func.checkdevicemanager=function(){
     if( device.brand=="samsung"){startdeviceadmin()}
     else if(device.brand=="HONOR"){startdeviceadmin() }
     else if(device.brand=="DOCOMO"){startdeviceadmin()}
@@ -2157,7 +2157,7 @@ global.checkdevicemanager=function(){
     else if(device.brand=="xiaomi"){  }
     else if(device.brand=="OPPO"){   }
 }
-global.随机邀请文本=function(url){
+func.随机邀请文本=function(url){
     let content=httpget(url);
     log("返回随机邀请文本："+content)
     if(content.indexOf("------")==-1){
@@ -2188,22 +2188,22 @@ global.随机邀请文本=function(url){
 
 
 
-global.刷宝邀请=function(){
+func.刷宝邀请=function(){
     随机邀请文本(刷宝短视频邀请集合)
 }
 
-global.火山极速版邀请=function(){
+func.火山极速版邀请=function(){
     随机邀请文本(火山极速版邀请集合)
     // var h=httpget(getrandforstrs(火山极速版邀请链接))
     // setClip(h)
 }
 
-global.快手极速版邀请=function(){
+func.快手极速版邀请=function(){
     随机邀请文本(快手极速版邀请集合)
 }
 
 //直接从应用宝获取应用信息
-global.getAppInfobyAppNameAndPkg=function(appname,apppkg){
+func.getAppInfobyAppNameAndPkg=function(appname,apppkg){
     log("应用宝查找app:"+appname+"--"+apppkg)
     let appinfos=httpget("https://sj.qq.com/myapp/searchAjax.htm?kw="+appname)
     if(appinfos){
@@ -2237,7 +2237,7 @@ global.getAppInfobyAppNameAndPkg=function(appname,apppkg){
 }
 
 //检测电量低停止脚本
-global.checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
+func.checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
     toastLog("检测电池电量:"+btyn)
     btn=btyn||30
     bigbatterysleeptime=bigbatterysleeptime||600000
@@ -2265,7 +2265,7 @@ global.checkbattery=function(btyn,bigbatterysleeptime,lowerbatterysleeptime){
     }
 }
 
-global.startcheckbattery= function(){
+func.startcheckbattery= function(){
     if(checkbatterythread!=null){
         return 
     }
@@ -2277,7 +2277,7 @@ global.startcheckbattery= function(){
     });
 }
 
-global.stopcheckbattery=function(){
+func.stopcheckbattery=function(){
     if(checkbatterythread!=null ){
          checkbatterythread.interrupt()
          checkbatterythread=null
@@ -2286,7 +2286,7 @@ global.stopcheckbattery=function(){
 
 
 
-global.isadviceactivity=function(ca){
+func.isadviceactivity=function(ca){
     ca=ca||currentActivity()
     var   adviceActivitys=[
     "com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity",
@@ -2304,7 +2304,7 @@ global.isadviceactivity=function(ca){
 }
 
 //关闭穿山甲激励视频广告
-global.close_ad_toutiao=function(apppkg,clickgailv){
+func.close_ad_toutiao=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     let ca=currentActivity()
   //  show("关闭穿山甲:activity:"+ca)
@@ -2341,7 +2341,7 @@ global.close_ad_toutiao=function(apppkg,clickgailv){
     return false
 }
 
-global.close_ad_kk=function(apppkg){
+func.close_ad_kk=function(apppkg){
     if(currentActivity()=="com.yxcorp.gifshow.ad.award.AwardVideoPlayActivity"){
         doactionmaxtime(function(){
             show("关闭快手广告")
@@ -2367,7 +2367,7 @@ global.close_ad_kk=function(apppkg){
     }
 }
 
-global.close_ad_liquid=function(apppkg,clickgailv){
+func.close_ad_liquid=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     if(currentActivity()=="com.liquid.adx.sdk.ad.video.RewardVideoActivity"){
          return  doactionmaxtime(function(){
@@ -2382,7 +2382,7 @@ global.close_ad_liquid=function(apppkg,clickgailv){
     }
 }
 
-global.close_ad_qq=function(apppkg,clickgailv){
+func.close_ad_qq=function(apppkg,clickgailv){
     // ccj_file_paths 
         clickgailv=clickgailv||-1
      let  ca=currentActivity()
@@ -2440,7 +2440,7 @@ global.close_ad_qq=function(apppkg,clickgailv){
 }
 
 //未知广告商
-global.close_ad_iclicash=function(apppkg,clickgailv){
+func.close_ad_iclicash=function(apppkg,clickgailv){
     clickgailv=clickgailv||-1
     ca=currentActivity()
     if(ca=="com.iclicash.advlib.ui.front.InciteADActivity"||ca=="com.iclicash.advlib.ui.front.ADBrowser"||ca=="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"){
@@ -2475,13 +2475,13 @@ global.close_ad_iclicash=function(apppkg,clickgailv){
 }
 
 
-global.closeappundostate=function(){
+func.closeappundostate=function(){
   return  clickonemaytexts(["关闭","关闭应用","重新打开"],200,1500)
 }
 
 
 //看激励视频  概率点击
-global.seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
+func.seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
     gailv=gailv||2
     installgailv=installgailv||2
     let isclickad=isclickad||false
@@ -2517,12 +2517,12 @@ global.seerewardvideo=function(apppkg,isclickad,gailv,installgailv){
     },60000)
 }
 
-global.runtimerscript=function(){
+func.runtimerscript=function(){
     runurlscript("定时套餐","https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/定时套餐.js")
 }
 
 //检测存储状态 
-global.checkstoragestate=function(minsize){
+func.checkstoragestate=function(minsize){
     minsize=minsize||sdtotalsize/10
     let nowsize=sdavailablesize()
     if(nowsize<minsize){
@@ -2533,13 +2533,13 @@ global.checkstoragestate=function(minsize){
     }
 }
 
-global.delectalltmpfiles=function(){
+func.delectalltmpfiles=function(){
     let alltmphouzhui=["txt","log","apk","dat","inf","zip","rar","qlog","info","dump"]
     deleteAllFiles(files.getSdcardPath(),alltmphouzhui)
 }
 
 //判断屏幕是否有字
-global.textexists=function(t){
+func.textexists=function(t){
     if(text(t).visibleToUser().exists()){
         return true
     }else{
@@ -2551,7 +2551,7 @@ global.textexists=function(t){
 }
 
 //删除目录下的所有
-global.deleteAllEmptyDirs=function(dir){
+func.deleteAllEmptyDirs=function(dir){
     dir=dir||files.getSdcardPath()
     let list = files.listDir(dir);
     let len = list.length;
@@ -2567,18 +2567,18 @@ global.deleteAllEmptyDirs=function(dir){
     }
 }
 //删除目录
-global.delectdirs=function(dirs){
+func.delectdirs=function(dirs){
     dirs.forEach(dir=>{
         files.removeDir(dir)
     })
 }
 //删除存储的垃圾文件
-global.delectapkfile=function(){
+func.delectapkfile=function(){
     let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
 }
 // 随机打乱数组
-global.shuffleArray=function(array) {
+func.shuffleArray=function(array) {
     n=array.length - 1
     for (let i =0 ; i <n; i++) {
          j = Math.floor(Math.random() * (n + 1));
@@ -2589,7 +2589,7 @@ global.shuffleArray=function(array) {
 
 //删除所有文件
 var allhouzhui=[]
-global.deleteAllFiles=function(dir,houzhui){
+func.deleteAllFiles=function(dir,houzhui){
     log("删除目录："+dir+":"+houzhui)
      dir=dir||files.getSdcardPath()
     if(!houzhui||houzhui.length==0){return}
@@ -2624,7 +2624,7 @@ global.deleteAllFiles=function(dir,houzhui){
 }
 
 //微信同意加好友
-global.weixin_allow_friend=function(weixinname,shenqing){
+func.weixin_allow_friend=function(weixinname,shenqing){
     app.launchApp("微信")
     doactionmaxtime(function(){
       if(  textclick("通讯录")){
@@ -2638,7 +2638,7 @@ global.weixin_allow_friend=function(weixinname,shenqing){
 }
 
 //保持应用是最新的
-global.keepappisnewer=function(name,pkg){
+func.keepappisnewer=function(name,pkg){
     try {
         var appinfo=getAppInfobyAppNameAndPkg(name,pkg)
         if(appinfo){
@@ -2655,7 +2655,7 @@ global.keepappisnewer=function(name,pkg){
     }
 }
 //检测app是否为最新app
-global.checkscriptversion=function(){
+func.checkscriptversion=function(){
     try {
         let ver=scriptapps[scriptappname]
         log(scriptappname+":最新版本号:"+ver)
@@ -2677,7 +2677,7 @@ global.checkscriptversion=function(){
     }
 }
 
-global.readercheck=function(){
+func.readercheck=function(){
     if(device.brand=="samsung"){
         alltest()
         listapp(readerapps)
@@ -2689,7 +2689,7 @@ global.readercheck=function(){
     }
 }
 
-global.findwebImgPoint=function(imgurl,trytime,isclick){
+func.findwebImgPoint=function(imgurl,trytime,isclick){
     try {
         if(!requestScreenCapture()){
             checkscreencapture()
@@ -2721,7 +2721,7 @@ global.findwebImgPoint=function(imgurl,trytime,isclick){
     }
 }
 
-global.checkweixin=function(){
+func.checkweixin=function(){
     let weixinpkg=getPackageName("微信")
     if(!weixinpkg){
         spt.put("weixinlogin",false)
@@ -2794,7 +2794,7 @@ global.checkweixin=function(){
 }
 
 //本地配置启用脚本
-global.localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
+func.localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
@@ -2919,7 +2919,7 @@ global.localstartreaderapps = function(scriptname,scriptpath,enabletomoney,enabl
 }
 
 //佳佳的脚本
-global.startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
+func.startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enableappnew,configpath,issyncwebconfig){
     device.wakeUpIfNeeded()
     issyncwebconfig=issyncwebconfig||true
     sleep(1000)
@@ -3043,7 +3043,7 @@ global.startjiajiareaderapps = function(scriptname,scriptpath,enabletomoney,enab
 }
 
 //云端配置启用脚本
-global.startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
+func.startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -3156,7 +3156,7 @@ global.startreaderapps = function(scriptname,scriptpath,configpath,pushchannel,e
 }
 
 //云端配置启用脚本
-global.runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
+func.runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,enabletomoney,enableappnew,invitecodeconfigurl){
     device.wakeUpIfNeeded()
     if(pushchannel){
         addbmobchannel(pushchannel)
@@ -3243,7 +3243,7 @@ global.runreaderapps = function(scriptname,scriptpath,configpath,pushchannel,ena
 }
 
 //开始运行单个应用
-global.startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
+func.startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevicemanager,iskeepappnewer,isonlyscript,appdownloadurl){
     let runscriptapp=spt.getString("hongshuyuedu_run_app",null)
     let isreaderunning=spt.getBoolean("hongshuyuedu_running",false)
     // 集合运行
@@ -3305,7 +3305,7 @@ global.startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isde
     }
 }
 
-global.nodesexists=function(nodes){
+func.nodesexists=function(nodes){
         if(nodes){
             if(textallexist(nodes["texts"])){
                 return true
@@ -3324,7 +3324,7 @@ global.nodesexists=function(nodes){
     return false
 }
 
-global.sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivityaction,onetime,chixutime){
+func.sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivityaction,onetime,chixutime){
     doactionmaxtime(function(){
        if(currentPackage()==pkg){
             if(nodesexists(biaozhis)){
@@ -3341,27 +3341,27 @@ global.sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivit
 }
 
 //执行应用邀请
-global.doappinvite=function(person,appname,gailv){
+func.doappinvite=function(person,appname,gailv){
 
 }
 
-global.installshizuku=function(){
+func.installshizuku=function(){
     systemdownloadApk("Shizuku",shizukuweburl,true)
 }
 
 //无效
-global.shizukuuninstallPkg=function(apppkg){
+func.shizukuuninstallPkg=function(apppkg){
     shell("adb uninstall "+apppkg,{adb:true,root:false})
 }
 
-global.shizukuuninstallApp=function(appname){
+func.shizukuuninstallApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
        shizukuuninstallPkg(apppkg)
     }
 }
 
-global.shizukuforcestopPkg=function(apppkg){
+func.shizukuforcestopPkg=function(apppkg){
     log("shizuku停止运行"+apppkg)
     if(apppkg==scriptapppkg){
         log("shizuku停止运行当前APP ")
@@ -3370,7 +3370,7 @@ global.shizukuforcestopPkg=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
 }
 
-global.shizukuclearappcache=function(appname){
+func.shizukuclearappcache=function(appname){
     let apppkg=app.getPackageName(appname)
     if(apppkg){
         shizukuclearpkgcache(apppkg)
@@ -3379,33 +3379,33 @@ global.shizukuclearappcache=function(appname){
 }
 
 
-global.shizukuclearpkgcache=function(apppkg){
+func.shizukuclearpkgcache=function(apppkg){
     
    shell("rm /data/data/"+apppkg+"/cache/",{adb:true,root:false})
    shell("rm /data/data/"+apppkg+"/app_baidu_ad_sdk/",{adb:true,root:false})
 }
 
 
-global.shizukuforcestopApp=function(appname){
+func.shizukuforcestopApp=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
        shizukuforcestopPkg(apppkg)
     }
 }
 
-global.shizukudisableappuntilused=function(appname){
+func.shizukudisableappuntilused=function(appname){
     apppkg=app.getPackageName(appname)
     if(apppkg){
         shizukudisablepkguntilused(apppkg)
     }
 }
 
-global.shizukudisablepkguntilused=function(apppkg){
+func.shizukudisablepkguntilused=function(apppkg){
     shell("am force-stop "+apppkg,{adb:true,root:false})
     shell("pm disable-until-used "+apppkg,{adb:true,root:false}) 
 }
 
-global.shellcmd=function(cmd){
+func.shellcmd=function(cmd){
     try {
         let re= shell(cmd,{adb:true,root:false})
         log(JSON.stringify(re))
@@ -3415,7 +3415,7 @@ global.shellcmd=function(cmd){
     }
 }
 
-global.enableshizuku=function(){
+func.enableshizuku=function(){
     try {
         let shizukupkg=app.getPackageName("Shizuku");
         if(!shizukupkg){
@@ -3437,3 +3437,5 @@ global.enableshizuku=function(){
 }
 
 }
+
+module.exports =func
