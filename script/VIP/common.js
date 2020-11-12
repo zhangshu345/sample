@@ -1038,14 +1038,14 @@ this.tosearchsetting=function(){
    toastLog("悬浮开启结束")
 }
 
-this.sleepr=function(short,long){
+function sleepr(short,long){
     long=long||short+1000
   let  rt=random(short,long)
     log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
-this.getTextfromid=function(idstr,defaulttext,findtime){
+function getTextfromid(idstr,defaulttext,findtime){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
     findtime=findtime||500
@@ -1053,7 +1053,7 @@ this.getTextfromid=function(idstr,defaulttext,findtime){
     if(node_id){ return node_id.text(); }else{ return defaulttext;}
 }
 
-this.idclick=function(idstr,t,left,top,right,bottom){
+function idclick(idstr,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1067,7 +1067,7 @@ this.idclick=function(idstr,t,left,top,right,bottom){
     return false
 }
 
-this.descclick=function(desctext,t,left,top,right,bottom){
+function descclick(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1082,7 +1082,7 @@ this.descclick=function(desctext,t,left,top,right,bottom){
 }
 
 //文本点击
-this.textclick=function(txt,t,left,top,right,bottom){
+function textclick(txt,t,left,top,right,bottom){
     t=t || 200
     left = left || 0;
     top = top || 0;
@@ -1099,7 +1099,7 @@ this.textclick=function(txt,t,left,top,right,bottom){
     return clicknode(f)
 }
 
-this.maytextclick=function(maytext,t,left,top,right,bottom){
+function maytextclick(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false; }
     t=t || 200
     left = left || 0;
@@ -1118,7 +1118,7 @@ this.maytextclick=function(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-this.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
+function clicknode(v,dx,dy,time,clicknumber,intervaltime){
     dx=dx||0
     dy=dy||0
     clicknumber=clicknumber||1
@@ -1165,7 +1165,7 @@ this.clicknode=function(v,dx,dy,time,clicknumber,intervaltime){
 }
 
 //一直找到可以点击控件向上查找
-this.clickparents=function(v,n){
+function clickparents(v,n){
     if(!v){
         return false
     }
@@ -1184,7 +1184,7 @@ this.clickparents=function(v,n){
 }
 
 //找到子类 点击下去
-this.clickchilds=function(v){
+function clickchilds(v){
    if(v.childCount()>0){
        for(i=0;i<v.childCount();i++){
            c=v.child(i)
@@ -1206,7 +1206,7 @@ this.clickchilds=function(v){
 }
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
-this.clickids=function(ids,t,st){
+function clickids(ids,t,st){
     t=t||100
     st=st||500
     ids.forEach(idstr => {
@@ -1216,7 +1216,7 @@ this.clickids=function(ids,t,st){
     });
 }
 
-this.clickalls=function(allids,alltexts,alldescs){
+function clickalls(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
         clickids(allids)
     }
@@ -1229,7 +1229,7 @@ this.clickalls=function(allids,alltexts,alldescs){
 }
 
 //点击文本集合
-this.clicktexts=function(texts,t,st,left,top,right,bottom){
+function clicktexts(texts,t,st,left,top,right,bottom){
     log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
@@ -1244,7 +1244,7 @@ this.clicktexts=function(texts,t,st,left,top,right,bottom){
     }
 }
 
-this.clickdescs=function(descs,t,st){
+function clickdescs(descs,t,st){
    log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
@@ -1255,7 +1255,7 @@ this.clickdescs=function(descs,t,st){
     }
 }
 
-this.clickalltexts=function(texts,t,st){
+function clickalltexts(texts,t,st){
     log("开始点击文本集合:"+texts)
     st=st || 1500
     t=t || 100
@@ -1269,7 +1269,7 @@ this.clickalltexts=function(texts,t,st){
     return n==texts.length
 }
 //点击仁意一个id就是真真
-this.clickoneids=function(ids,t,st){
+function clickoneids(ids,t,st){
     log("开始点击id集合:"+ids)
     st=st || 500
     t=t || 500
@@ -1282,7 +1282,7 @@ this.clickoneids=function(ids,t,st){
     return false
 }
 
-this.clickonetexts=function(texts,t,st){
+function clickonetexts(texts,t,st){
   log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 200
@@ -1295,7 +1295,7 @@ this.clickonetexts=function(texts,t,st){
     return false
 }
 
-this.clickonemaytexts=function(texts,t,st){
+function clickonemaytexts(texts,t,st){
     log("开始点击文本集合:"+texts)
       st=st || 500
       t=t || 500
