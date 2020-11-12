@@ -787,12 +787,16 @@ global.sendforcestopIntent=function(apppkg){
 }
 
 global.runadui=function(pkg){ runscriptIntent(pkg,aduiscripturl)}
+
 global.show=function(txt,txtcolor){ 
     try {
+        txtcolor= textColor||android.graphics.Color.GRAY 
        txt= scriptruntime()+"秒："+txt
         log(txt);
          if(!isshowfloaty){ toast(txt); return  };
-        if(!gfw){ creatgfloatywindow(); }else{
+        if(!gfw){ 
+            creatgfloatywindow(); 
+        }else{
             ui.run(function(){ 
                 gfw.text.setText(txt);
             })
