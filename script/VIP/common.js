@@ -25,9 +25,8 @@ this.readerapps=["微信","京东","冰箱","开发者助手","云闪付","支�
 
 //shizuku 的下载地址
 this.shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
-this.sdtotalsize=function(){
-    return SDCardUtils.getExternalTotalSize()
-}
+var sdtotalsize= SDCardUtils.getExternalTotalSize()
+
 log("内存总大小:"+sdtotalsize)
 this.sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
