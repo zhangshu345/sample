@@ -1041,14 +1041,14 @@ this.tosearchsetting=function(){
    toastLog("悬浮开启结束")
 }
 
-function sleepr(short,long){
+this.sleepr = function(short,long){
     long=long||short+1000
   let  rt=random(short,long)
     log("等待:"+rt +" 毫秒")
     sleep(rt)
 }
 
-function getTextfromid(idstr,defaulttext,findtime){
+this.getTextfromid=function(idstr,defaulttext,findtime){
     if(!idstr){ return ""}
     defaulttext=defaulttext||""
     findtime=findtime||500
@@ -1056,7 +1056,7 @@ function getTextfromid(idstr,defaulttext,findtime){
     if(node_id){ return node_id.text(); }else{ return defaulttext;}
 }
 
-function idclick(idstr,t,left,top,right,bottom){
+this.idclick = function(idstr,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1070,7 +1070,7 @@ function idclick(idstr,t,left,top,right,bottom){
     return false
 }
 
-function descclick(desctext,t,left,top,right,bottom){
+this.descclick=function(desctext,t,left,top,right,bottom){
     t= t|| 200;
     left = left || 0;
     top = top || 0;
@@ -1102,7 +1102,7 @@ this.textclick=function(txt,t,left,top,right,bottom){
     return clicknode(f)
 }
 
-function maytextclick(maytext,t,left,top,right,bottom){
+this.maytextclick = function(maytext,t,left,top,right,bottom){
     if(!maytext){  return  false; }
     t=t || 200
     left = left || 0;
@@ -1121,7 +1121,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
 }
 
 //node 执行点击 
-function clicknode(v,dx,dy,time,clicknumber,intervaltime){
+this.clicknode = function(v,dx,dy,time,clicknumber,intervaltime){
     dx=dx||0
     dy=dy||0
     clicknumber=clicknumber||1
@@ -1168,7 +1168,7 @@ function clicknode(v,dx,dy,time,clicknumber,intervaltime){
 }
 
 //一直找到可以点击控件向上查找
-function clickparents(v,n){
+this.clickparents = function(v,n){
     if(!v){
         return false
     }
@@ -1187,7 +1187,7 @@ function clickparents(v,n){
 }
 
 //找到子类 点击下去
-function clickchilds(v){
+this.clickchilds = function (v){
    if(v.childCount()>0){
        for(i=0;i<v.childCount();i++){
            c=v.child(i)
@@ -1209,7 +1209,7 @@ function clickchilds(v){
 }
 
 //ids id集合 t 查找id的时间 st 每次点击完成休息时间  
-function clickids(ids,t,st){
+this.clickids = function(ids,t,st){
     t=t||100
     st=st||500
     ids.forEach(idstr => {
@@ -1219,7 +1219,7 @@ function clickids(ids,t,st){
     });
 }
 
-function clickalls(allids,alltexts,alldescs){
+this.clickalls = function(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
         clickids(allids)
     }
@@ -1232,7 +1232,7 @@ function clickalls(allids,alltexts,alldescs){
 }
 
 //点击文本集合
-function clicktexts(texts,t,st,left,top,right,bottom){
+this.clicktexts = function (texts,t,st,left,top,right,bottom){
     log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 500
@@ -1247,7 +1247,7 @@ function clicktexts(texts,t,st,left,top,right,bottom){
     }
 }
 
-function clickdescs(descs,t,st){
+this.clickdescs =function(descs,t,st){
    log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
@@ -1258,7 +1258,7 @@ function clickdescs(descs,t,st){
     }
 }
 
-function clickalltexts(texts,t,st){
+this.clickalltexts =function(texts,t,st){
     log("开始点击文本集合:"+texts)
     st=st || 1500
     t=t || 100
@@ -1272,7 +1272,7 @@ function clickalltexts(texts,t,st){
     return n==texts.length
 }
 //点击仁意一个id就是真真
-function clickoneids(ids,t,st){
+this.clickoneids =function(ids,t,st){
     log("开始点击id集合:"+ids)
     st=st || 500
     t=t || 500
@@ -1285,7 +1285,7 @@ function clickoneids(ids,t,st){
     return false
 }
 
-function clickonetexts(texts,t,st){
+this.clickonetexts = function(texts,t,st){
   log("开始点击文本集合:"+texts)
     st=st || 500
     t=t || 200
@@ -1298,7 +1298,7 @@ function clickonetexts(texts,t,st){
     return false
 }
 
-function clickonemaytexts(texts,t,st){
+this.clickonemaytexts = function (texts,t,st){
     log("开始点击文本集合:"+texts)
       st=st || 500
       t=t || 500
