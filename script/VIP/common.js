@@ -45,7 +45,7 @@ this.disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play �
 
 this.admanager=AdviceManager.getInstance();
 var nowdate=function(){return new Date()};
-this.scriptstarttime=nowdate().getTime()
+var scriptstarttime=nowdate().getTime()
 this.scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
 this.rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 this.today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
@@ -1099,7 +1099,7 @@ this.textclick=function(txt,t,left,top,right,bottom){
             return false
         }
     }
-    return clicknode(f)
+    return this.clicknode(f)
 }
 
 this.maytextclick = function(maytext,t,left,top,right,bottom){
@@ -1163,8 +1163,8 @@ this.clicknode = function(v,dx,dy,time,clicknumber,intervaltime){
          r=v.bounds()
           this.w = boundsInside(r.left, r.top, r.right, r.bottom).clickable().findOne(time)
           if(w&&w.click()){ return true;}
-          if(clickparents(v)){ return true }
-          if(clickchilds(v)){  return true}
+          if(this.clickparents(v)){ return true }
+          if(this.clickchilds(v)){  return true}
 }
 
 //一直找到可以点击控件向上查找
@@ -1195,7 +1195,7 @@ this.clickchilds = function (v){
             if(c.clickable()){
                 return c.click()
             }else{
-              if(clickchilds(v.child(i))){
+              if(this.clickchilds(v.child(i))){
                  return true
               }
             }
@@ -1213,7 +1213,7 @@ this.clickids = function(ids,t,st){
     t=t||100
     st=st||500
     ids.forEach(idstr => {
-       if (idclick(idstr,t)){
+       if (this.idclick(idstr,t)){
             sleep(st)
        }
     });
@@ -1221,13 +1221,13 @@ this.clickids = function(ids,t,st){
 
 this.clickalls = function(allids,alltexts,alldescs){
     if(allids&&allids.length>0){
-        clickids(allids)
+        this.clickids(allids)
     }
     if(alltexts&&alltexts.length>0){
-        clicktexts(alltexts)
+        this.clicktexts(alltexts)
     }
     if(alldescs&&alldescs.length>0){
-        clickdescs(alldescs)
+        this.clickdescs(alldescs)
     }
 }
 
@@ -1241,7 +1241,7 @@ this.clicktexts = function (texts,t,st,left,top,right,bottom){
     right = bottom || device.width;
     bottom = bottom || device.height;
     for(i=0;i<texts.length;i++){
-        if(textclick(texts[i],t,left,top,right,bottom)){
+        if(this.textclick(texts[i],t,left,top,right,bottom)){
             sleep(st)
         }
     }
@@ -1252,7 +1252,7 @@ this.clickdescs =function(descs,t,st){
     st=st || 500
     t= t||500
     for(i=0;i<descs.length;i++){
-        if(descclick(descs[i],t)){
+        if(this.descclick(descs[i],t)){
             sleep(st)
         }
     }
@@ -1264,7 +1264,7 @@ this.clickalltexts =function(texts,t,st){
     t=t || 100
     n=0
     for(i=0;i<texts.length;i++){
-        if(textclick(texts[i],t)){
+        if(this.textclick(texts[i],t)){
             sleep(st)
             n=n+1
         }
@@ -1290,7 +1290,7 @@ this.clickonetexts = function(texts,t,st){
     st=st || 500
     t=t || 200
     for(i=0;i<texts.length;i++){
-        if(textclick(texts[i],t)){
+        if(this.textclick(texts[i],t)){
             sleep(st)
             return true
         }
@@ -1303,7 +1303,7 @@ this.clickonemaytexts = function (texts,t,st){
       st=st || 500
       t=t || 500
       for(i=0;i<texts.length;i++){
-          if(maytextclick(texts[i],t)){
+          if(this.maytextclick(texts[i],t)){
               sleep(st)
               return true
           }
@@ -1316,11 +1316,11 @@ this.clickonemaytexts = function (texts,t,st){
 this.whileclicktextsbeforetexts=function(clicktexts,stoptexts,maxtime,isclickshowtext){
     maxtime=maxtime||60000  
     isclickshowtext=isclickshowtext||false
-   doactionmaxtime(function(){
-    clicktexts(clicktexts)
-    if(textoneexist(stoptexts)){
+    this.doactionmaxtime(function(){
+        this.clicktexts(clicktexts)
+    if(this.textoneexist(stoptexts)){
         if(isclickshowtext){
-            clickonetexts(stoptexts)
+            this.clickonetexts(stoptexts)
         }
         return true
     }
@@ -1332,8 +1332,8 @@ this.whileclickidsbeforeids=function(ids,stopids,t){
     t=t||10000
     st=nowdate().getTime()
     while(true){
-       clickids(ids)
-       if(idoneexist(stopids)){
+        this.clickids(ids)
+       if(this.idoneexist(stopids)){
            return true
        }
        if(nowdate().getTime()-st>t){
