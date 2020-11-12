@@ -2039,14 +2039,12 @@
         "title": "一次操作 后续无忧",
         "logo": "",
         "background": "",
-        "welcomeword": "自动化服务创建者",
+        "welcomeword": "自动化服务创造者",
         "showlogo": true,
         "runscript": false,
         "showsplashad": true,
         "waittime": 3,
-        "permission": [
-            "STORAGE"
-        ],
+        "permission": [],
         "img": "http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
