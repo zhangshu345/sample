@@ -106,6 +106,7 @@ this.上次金币=function(name){ return 获取记录(name,"coin",0); }
  this.上次滑动次数=function(name){return 获取今日记录(name,"swipe",0);} 
 
  this.记录现在观看视频数=function(name,f){ 今日记录(name,"video",f)} //可以通过上次的金币来判断是否 还可以获取金币
+ 
  this.上次观看视频数=function(name){ return 获取今日记录(name,"video",0); } 
 
  this.记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)} //可以通过上次的金币来判断是否 还可以获取金币
@@ -1089,7 +1090,7 @@ this.textclick=function(txt,t,left,top,right,bottom){
     top = top || 0;
     right = right|| device.width;
     bottom = bottom || device.height;
-    this.f=text(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+   let f=text(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
         log("text："+txt+":没找到了")
         f=desc(txt).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
@@ -1107,7 +1108,7 @@ function maytextclick(maytext,t,left,top,right,bottom){
     top = top || 0;
     right = right || device.width;
     bottom = bottom || device.height;
-    this.f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
+    let f=text(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t);
     if(!f){
          f=textContains(maytext).boundsInside(left, top, right, bottom).visibleToUser().findOne(t)
          if(!f){
