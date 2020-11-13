@@ -1,6 +1,6 @@
 
 var ss=["sss","ss","s"]
 
-for(i=0 ;i<ss.length;i++){
-    log(ss[i])
+for(i=0 ;i<10;i++){
+    ss.forEach(s => log(s))
 }

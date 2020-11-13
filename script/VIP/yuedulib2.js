@@ -125,7 +125,8 @@ var 记录现在观看文章数=function(name,f){ 今日记录(name,"article",f)
 var 上次观看文章数=function(name){ return 获取今日记录(name,"article",0); } 
 
 var lastscriptapp=function(){return spt.getString("lastscriptapp")}
-var closelastscriptapp=function(){ let app=lastscriptapp();toastLog("关闭最近运行应用+"+app); forcestop(app)}
+var closelastscriptapp=function(){ let app=lastscriptapp();
+    toastLog("关闭最近运行应用+"+app); forcestop(app)}
 var getrandforstrs=function(strs){    if(strs==null||strs.length==0){ return ""    };    let r=Math.floor(random()*strs.length);    return strs[r];}
 
 var agourl=function(url){
@@ -1281,8 +1282,7 @@ var clickchilds=function(v){
               }
             }
            }
-        
-       }
+      }
    }else{
        return false
    }
@@ -1298,6 +1298,7 @@ var clickids=function(ids,t,st){
             sleep(st)
        }
     });
+  
 }
 
 var clickalls=function(allids,alltexts,alldescs){
@@ -1332,11 +1333,12 @@ var clickdescs=function(descs,t,st){
    log("开始点击desc集合:"+texts)
     st=st || 500
     t= t||500
-    for(i=0;i<descs.length;i++){
-        if(descclick(descs[i],t)){
+    descs.forEach(de => {
+        if(descclick(de,t)){
             sleep(st)
         }
-    }
+    })
+
 }
 
 var clickalltexts=function(texts,t,st){
@@ -1352,6 +1354,7 @@ var clickalltexts=function(texts,t,st){
     }
     return n==texts.length
 }
+
 //点击仁意一个id就是真真
 var clickoneids=function(ids,t,st){
     log("开始点击id集合:"+ids)
@@ -1390,7 +1393,7 @@ var clickonemaytexts=function(texts,t,st){
           }
       }
       return false
-  }
+}
 
 
 //在文本标志出现之前一直点击文本的 t 是最长等待时间 默认一分钟无点击效果就退出 发现stop 文本出现就退出
@@ -1959,7 +1962,7 @@ var runurlscript=function(name,url){
     } catch (error) {
         log("run脚本出错:"+name+"--"+url)
     }
- 
+    
 }
 
 
@@ -2051,6 +2054,7 @@ if (!requestScreenCapture()) {
 
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
+
 var addbmobchannel=function(channels){    // BmobPushUtils.getInstance().addchannel(channels) 
 }
 var removebmobchannel=function(channels){  // BmobPushUtils.getInstance().removechannel(channels)
@@ -3537,7 +3541,6 @@ var shizukuclearappcache=function(appname){
 
 
 var shizukuclearpkgcache=function(apppkg){
-    
    shell("rm /data/data/"+apppkg+"/cache/",{adb:true,root:false})
    shell("rm /data/data/"+apppkg+"/app_baidu_ad_sdk/",{adb:true,root:false})
 }
@@ -3592,6 +3595,7 @@ var enableshizuku=function(){
         return false
     }
 }
+
 // forcestop("刷宝短视频")
 // shizukuuninstallApp("马克笔记")
 // getapp()
