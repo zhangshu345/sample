@@ -3,7 +3,6 @@ function mongodata(){
 
     //用户注册
      this.user_register=function(respon,username,userpassword,parentcode){
-        
     }
 
     this.user_login=function(respon,username,password){
