@@ -25,65 +25,8 @@
     "version":"1.1.0",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/佳人记账/allconfig10.json"
-},
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":200,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.0",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig200.json"
-},
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":201,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.1",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig201.json"
 }
-,
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":202,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.2",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig202.json"
-}
-,
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":203,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.3",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig203.json"
-}
-,
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":204,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.4",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig204.json"
-}
-,
-{"name":"随便粘",
-    "pkg":"com.dongdong.jiantie",
-    "channel":"androidjs",
-    "versioni":205,
-    "icon":"http://img3.anzhi.com/data1/icon/201805/02/com.dongdong.fileManage_00646400_72.png",
-    "version":"2.0.5",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/随便粘/allconfig205.json"
-}
+
 ,
 {"name":"随便粘",
     "pkg":"com.dongdong.jiantie",
