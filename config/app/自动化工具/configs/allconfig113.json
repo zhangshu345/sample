@@ -997,7 +997,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 7,
+            "event": -1,
             "time": 1,
             "interval": 0,
             "uipath":"/script/sign",
