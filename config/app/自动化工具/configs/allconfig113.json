@@ -1899,23 +1899,6 @@
         },
         {
             "id": 11,
-            "name": "常用函数",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "常用函数",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/常用函数/1常用函数.json"
-        },
-        {
-            "id": 11,
             "name": "复杂界面",
             "ui": {
                 "type": 1,
