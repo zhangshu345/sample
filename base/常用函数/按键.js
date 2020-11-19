@@ -1,2 +1,2 @@
-performGlobalAction()
+aroutergourl("\/script\/sign")
 

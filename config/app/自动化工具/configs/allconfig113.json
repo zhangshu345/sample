@@ -1000,6 +1000,7 @@
             "event": 7,
             "time": 1,
             "interval": 0,
+            "uipath":"/script/sign",
             "finishname": "领取奖励",
             "nofinishname": "每日签到",
             "icon": "",
@@ -1024,6 +1025,7 @@
             "finishname": "福利视频",
             "nofinishname": "福利视频",
             "icon": "@drawable/ic_video_48dp",
+
             "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_full_advice_video",
