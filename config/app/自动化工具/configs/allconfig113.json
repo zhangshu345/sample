@@ -638,7 +638,7 @@
             "summary": "充值入口开放"
         },
         {
-            "name": "showMoneyCoinExperience",
+            "name": "showuserdevicestate",
             "value": "true",
             "summary": "用户页显示金币和余额 经验"
         },
