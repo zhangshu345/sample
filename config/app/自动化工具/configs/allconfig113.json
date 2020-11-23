@@ -179,6 +179,18 @@
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
             },
             {
+                "index": 3,
+                "name": "语音唤醒自动化",
+                "open": true,
+                "level": 0,
+                "icon": "@drawable/ic_record",
+                "icontint": "#ffffff",
+                "back": "#0000ff",
+                "event": -1,
+                "uipath": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
+            },
+            {
                 "index": 4,
                 "name": "点击小手",
                 "open": true,
@@ -579,7 +591,7 @@
         },
         {
             "name": "popup_permissiondebug",
-            "value": "权限-无障碍服务-稳定模式-截屏-通知所有权-通知栏快捷键-使用统计权限-忽略电池优化-Shizuku-开发-开发悬浮球-快捷悬浮球-位置悬浮-音量下键控制-连接电脑-调试传输-应用管理",
+            "value": "权限-无障碍服务-稳定模式-截屏-通知所有权-通知栏快捷键-使用统计权限-忽略电池优化-语音唤醒-Shizuku-开发-开发悬浮球-快捷悬浮球-位置悬浮-音量下键控制-连接电脑-调试传输-应用管理",
             "summary": "开屏第一次splash请求权限"
         },
         {
