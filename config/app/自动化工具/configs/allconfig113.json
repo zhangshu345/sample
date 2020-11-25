@@ -544,6 +544,21 @@
     ],
     "keys": [
         {
+            "name": "baiduappid",
+            "value": "TGt1p5hjUkaHUt7bIO22Fm9v",
+            "summary": "百度ak"
+        },
+        {
+            "name": "baiduak",
+            "value": "TGt1p5hjUkaHUt7bIO22Fm9v",
+            "summary": "百度ak"
+        },
+        {
+            "name": "baidusk",
+            "value": "ECUhQy4loeEdWST4fLkGLeGGsgIXp42M",
+            "summary": "百度语音sk"
+        },
+        {
             "name": "autotoolsdocurl",
             "value": "http://zhangshu345012.gitee.io/autotools-doc",
             "summary": "教程文档地址"

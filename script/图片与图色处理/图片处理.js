@@ -1,6 +1,6 @@
 "ui";
 
-var url = "http://zhangshuhong888.iask.in:8989/img_hjj/kanguanggao.png";
+var url = "http://zhangshuhong888.iask.in:8989/img/哔哩哔哩.png";
 var logo = null;
 var currentImg = null;
 
@@ -54,15 +54,20 @@ var imgProcess = threads.start(function () {
 
 //处理图片的函数，把任务交给图片处理线程处理
 function processImg(process) {
-    imgProcess.setTimeout(() => {
-        if (logo == null) {
-            logo = images.load(url);
-        }
-        //处理图片
-        var result = process(logo);
-        //把处理后的图片设置到图片控件中
-        setImage(result);
-    }, 0);
+    try {
+        imgProcess.setTimeout(() => {
+            if (logo == null) {
+                logo = images.load(url);
+            }
+            //处理图片
+            var result = process(logo);
+            //把处理后的图片设置到图片控件中
+            setImage(result);
+        }, 0);
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 var degress = 0;
@@ -70,6 +75,9 @@ var degress = 0;
 ui.rotate.on("click", () => {
     processImg(img => {
         degress += 90;
+        if(degress>=360){
+            degress=degress-360
+        }
         //旋转degress角度
         return images.rotate(img, degress);
     });
