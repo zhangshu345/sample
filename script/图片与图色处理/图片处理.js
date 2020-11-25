@@ -73,14 +73,19 @@ function processImg(process) {
 var degress = 0;
 
 ui.rotate.on("click", () => {
-    processImg(img => {
-        degress += 90;
-        if(degress>=360){
-            degress=degress-360
-        }
-        //旋转degress角度
-        return images.rotate(img, degress);
-    });
+    try {
+        processImg(img => {
+            degress += 90;
+            if(degress>=360){
+                degress=degress-360
+            }
+            //旋转degress角度
+            return images.rotate(img, degress);
+        });
+    } catch (error) {
+        console.log("旋转错误:"+error)
+    }
+  
 });
 
 ui.concat.on("click", () => {
