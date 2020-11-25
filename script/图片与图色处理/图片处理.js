@@ -85,7 +85,6 @@ ui.rotate.on("click", () => {
     } catch (error) {
         console.log("旋转错误:"+error)
     }
-  
 });
 
 ui.concat.on("click", () => {
