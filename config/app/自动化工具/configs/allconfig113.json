@@ -1059,28 +1059,6 @@
             "script": ""
         },
         {
-            "id": 400,
-            "title": "每日签到",
-            "summary": "每日签到，连续签到更有大礼",
-            "titlecolor": "",
-            "summarycolor": "",
-            "level": 0,
-            "open": true,
-            "coin": 100,
-            "money": 0,
-            "event": -1,
-            "time": 1,
-            "interval": 0,
-            "uipath":"/script/sign",
-            "finishname": "领取奖励",
-            "nofinishname": "每日签到",
-            "icon": "",
-            "imgsize": 36,
-            "rewardtype": 1,
-            "key": "key_action_day_sign",
-            "script": ""
-        },
-        {
             "id": 500,
             "title": "福利视频",
             "summary": "每日看福利视频，既有机会获取100金币，每日奖励20次",
