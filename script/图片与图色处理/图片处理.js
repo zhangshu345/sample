@@ -58,11 +58,13 @@ function processImg(process) {
         imgProcess.setTimeout(() => {
             if (logo == null) {
                 logo = images.load(url);
+            }else{
+     //处理图片
+     var result = process(logo);
+     //把处理后的图片设置到图片控件中
+     setImage(result);
             }
-            //处理图片
-            var result = process(logo);
-            //把处理后的图片设置到图片控件中
-            setImage(result);
+       
         }, 0);
     } catch (error) {
         console.log(error)
