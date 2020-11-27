@@ -187,8 +187,8 @@
                 "icontint": "#ffffff",
                 "back": "#0000ff",
                 "event": -1,
-                "uipath": "",
-                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
+                "uipath": "/script/voicecontrol",
+                "script": ""
             },
             {
                 "index": 4,
