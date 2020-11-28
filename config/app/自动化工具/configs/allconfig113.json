@@ -545,16 +545,16 @@
     "keys": [
         {
             "name": "baiduappid",
+            "value": "22980934",
+            "summary": "百度ak"
+        },
+        {
+            "name": "baiduapikey",
             "value": "TGt1p5hjUkaHUt7bIO22Fm9v",
             "summary": "百度ak"
         },
         {
-            "name": "baiduak",
-            "value": "TGt1p5hjUkaHUt7bIO22Fm9v",
-            "summary": "百度ak"
-        },
-        {
-            "name": "baidusk",
+            "name": "baidusecretkey",
             "value": "ECUhQy4loeEdWST4fLkGLeGGsgIXp42M",
             "summary": "百度语音sk"
         },
