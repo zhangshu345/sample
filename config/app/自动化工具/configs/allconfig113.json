@@ -183,7 +183,7 @@
                 "name": "语音唤醒自动化",
                 "open": true,
                 "level": 0,
-                "icon": "@drawable/ic_voice_control",
+                "icon": "@drawable/ic_mic_black_48dp",
                 "icontint": "#ffffff",
                 "back": "#0000ff",
                 "event": -1,
