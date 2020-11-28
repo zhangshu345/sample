@@ -544,6 +544,21 @@
     ],
     "keys": [
         {
+            "name": "voicecontroltitile",
+            "value": "语音控制",
+            "summary": ""
+        },
+        {
+            "name": "voicecontroldesc",
+            "value": "打开后获取语音唤醒识别命令启动工具，实现语音控制手机",
+            "summary": ""
+        },
+        {
+            "name": "voicecontrolicon",
+            "value": "@drawable/ic_wakeup_48dp",
+            "summary": "语音控制图标"
+        },
+        {
             "name": "baiduappid",
             "value": "22980934",
             "summary": "百度ak"
