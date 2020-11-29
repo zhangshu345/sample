@@ -561,7 +561,7 @@
         {
             "name": "baiduappid",
             "value": "22980934",
-            "summary": "百度ak"
+            "summary": "百度appid"
         },
         {
             "name": "baiduapikey",
