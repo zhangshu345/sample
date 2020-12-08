@@ -560,17 +560,17 @@
         },
         {
             "name": "baiduappid",
-            "value": "22980934",
+            "value": "23082942",
             "summary": "百度appid"
         },
         {
             "name": "baiduapikey",
-            "value": "TGt1p5hjUkaHUt7bIO22Fm9v",
+            "value": "gVGK1vmFoTrl8TCiEZU4RvET",
             "summary": "百度ak"
         },
         {
             "name": "baidusecretkey",
-            "value": "ECUhQy4loeEdWST4fLkGLeGGsgIXp42M",
+            "value": "I2c0tfHBjrMZbQuACwZaIoguG1RlbdDP",
             "summary": "百度语音sk"
         },
         {

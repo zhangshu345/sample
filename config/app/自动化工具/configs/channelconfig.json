@@ -1,0 +1,384 @@
+{
+    "name": "自动化工具",
+    "pkg": "com.hongdong.autotools",
+    "version": "1.1.3",
+    "versioni": 13,
+    "channel": "qq",
+    "mtaappkey": "A1KT37D8APGM",
+    "bmobappid": "e63e8bcad7f4ca8893f3785f75d352f4",
+    "umengappkey": "",
+    "umengappsecretkey": "",
+    "jpushkey": "6888708fa641d82c6bdd1b97",
+    "userlogin": false,
+    "bmobpush": false,
+    "jpush": false,
+    "showad": true,
+    "showaccessibilityalter": false,
+    "channeladvice": "",
+    "reward": false,
+    "mta": false,
+    "bugly": true,
+    "cardcharge": false,
+    "cardexchange": false,
+    "privacy": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/隐私政策.md",
+    "announce": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/服务协议.md",
+    "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
+    "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
+    "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
+    "inviteaction": [
+        {
+            "name": "快手极速版",
+            "pkg": "com.kuaishou.nebula",
+            "open": true,
+            "action": [
+                ""
+            ]
+        }
+    ],
+  
+       "tag": [
+        {
+            "id": 0,
+            "name": "帮助",
+            "ui": {
+                "type": 2,
+                "orientation": 1,
+                "size": 2,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 200,
+            "source": 2,
+            "desc": "app内脚本的使用教程",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json",
+            "img": ""
+        },
+        {
+            "id": 0,
+            "name": "网友分享",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 2,
+            "source": 2,
+            "desc": "东东学习分析",
+            "url": "https://gitee.com/wenshuihongdong/wenshuihongdong/raw/v1/标签/王东.json",
+            "img": ""
+        },
+        {
+            "id": 1,
+            "name": "记录",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 2,
+            "source": 4,
+            "desc": "工具使用记录",
+            "url": "",
+            "img": ""
+        },
+        {
+            "id": 2,
+            "name": "VIP",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 2,
+            "source": 2,
+            "desc": "推荐使用的脚本",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"
+        },
+      
+        {
+            "id": 3,
+            "name": "推荐",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 1,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "推荐使用的脚本",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新推荐.json"
+        },
+        {
+            "id": 4,
+            "name": "视频",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "视频自动滑动",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新视频.json"
+        },
+        {
+            "id": 5,
+            "name": "快捷设置",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "设置快捷方式",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新快捷方式.json"
+        },
+        {
+            "id": 6,
+            "name": "阅读",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 200,
+            "source": 2,
+            "desc": "网友共享的阅读App工具",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新阅读.json"
+        },
+        {
+            "id": 7,
+            "name": "工具",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "小工具",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新工具.json"
+        },
+        {
+            "id": 8,
+            "name": "签到",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "App签到 自动每天定时签到",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新签到.json"
+        },
+        {
+            "id": 9,
+            "name": "二维码",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "二维码搜索，二维码生成，二维码解析，二维码连续输入",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
+        },
+        {
+            "id": 10,
+            "name": "本地存储",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "本地存储",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/本地存储/1本地存储.json"
+        },
+        {
+            "id": 11,
+            "name": "复杂界面",
+            "ui": {
+                "type": 1,
+                "orientation": 1,
+                "size": 3,
+                "reverselayout": false
+            },
+            "state": 0,
+            "icon": "",
+            "level": 0,
+            "source": 2,
+            "desc": "复杂界面",
+            "img": "",
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/1复杂界面.json"
+        }
+       
+    ],
+    "advice": {
+        "jgchaping": 60,
+        "jgbanner": 30,
+        "jgnative": 3,
+        "sign": "",
+        "ratio": "gdt-1",
+        "ratiosplash": "gdt-1",
+        "ratiobanner": "gdt-1",
+        "ratiochaping": "gdt-1",
+        "rationative": "gdt-1",
+        "ratiorewardvideo": "gdt-1",
+        "ratiofullvideo": "gdt-1",
+        "gdt":{
+            "open": true,
+            "nativevideoradio":"stxw-1|swxt-1|stsw-1|cth-1",
+            "nativeradio":"ztyw-1|zwyt-1|stxww-1|swxtw-1|dtdww-1|sxtsw-1",
+            "appid": "1111153990",
+            "splash": "8061132942833732",
+            "banner": "3001734942448169",
+            "fullvideo": "7071332952648240",
+            "chaping": "9081334982749202",
+            "nativestxw": "9031130952035813",
+            "nativeswxt": "5021731972134868",
+            "nativeztyw": "7081130992633778",
+            "nativezwyt": "9081638912632871",
+            "nativestsw": "7041532982837900",
+            "nativect1280720": "4071338942430944",
+            "nativect8001200": "",
+            "nativesxt": "8071630982137987",
+            "nativewswxt": "9051533912749062",
+            "nativewstxw": "2071539972948080",
+            "nativewdt": "1081638932644036",
+            "nativect10801920": "",
+            "rewardvideo": "3051130992846191"
+        },
+        "toutiao": {
+            "open": false,
+            "appid": "5116156",
+            "nativeid": "945578247",
+            "banner600300": "945578250",
+            "banner600400": "945578275",
+            "banner600500": "945578331",
+            "banner600260": "945578338",
+            "banner60090": "945578270",
+            "banner600150": "945578290",
+            "banner640100": "945578345",
+            "banner690388": "945578352",
+            "chaping11": "945578267",
+            "chaping23": "945578269",
+            "chaping32": "945578268",
+            "fullvideov": "945578265",
+            "fullvideoh": "945578266",
+            "splash": "887396855",
+            "rewardvideov": "945578255",
+            "rewardvideoh": "945578261",
+            "drawvideo": "945578264",
+            "nativevideo": "945124256"
+        },
+        "adview": {
+            "open": false,
+            "appid": "",
+            "splash": "",
+            "banner": "",
+            "chaping": "",
+            "native": "",
+            "video": "",
+            "hudong": ""
+        },
+        "mintegral": {
+            "open": false,
+            "appid": "129079",
+            "appkey": "d62bd37b8de85bf80b176dc68fcbf05f",
+            "splash": "306662",
+            "splashplace": "222065",
+            "banner": "255846",
+            "bannerplace": "200750",
+            "chaping": "255836",
+            "chapingplace": "200742",
+            "native": "283676",
+            "nativeplace": "212406",
+            "rewardvideo": "255842",
+            "rewardvideoplace": "200747",
+            "appwall": "342305",
+            "appwallplace": "237196"
+        },
+        "baidu": {
+            "open": true,
+            "appid": "d419834b",
+            "splash": "7261030",
+            "banner203": "7261105",
+            "banner32": "7261106",
+            "banner73": "7261107",
+            "banner21": "7261108",
+            "chaping": "7261101",
+            "fullchaping": "7261102",
+            "prevideo": "7261103",
+            "rewardvideo": "7261100",
+            "rewardvideo2": "7261104",
+            "cpuurl": "https://cpu.baidu.com/1022/d419834b/i?pu=1&promotion_media_channel=72119",
+            "cpuallurl": "https://cpu.baidu.com/1032/d419834b?scid=72120"
+        }
+    },
+    "moneycoin": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
+    "splash": {
+        "title": "一次操作 后续无忧",
+        "logo": "",
+        "background": "",
+        "welcomeword": "自动化服务创造者",
+        "showlogo": true,
+        "runscript": false,
+        "showsplashad": true,
+        "waittime": 3,
+        "permission": [ "STORAGE"],
+        "img": "http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
+        "nextactivityurl": "/script/usermain",
+        "runningscript": "",
+        "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/界面模板一.js",
+        "desc": ""
+    },
+    "scriptconfig": "运行脚本的配置"
+}

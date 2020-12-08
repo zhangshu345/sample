@@ -16,7 +16,7 @@ log("ss")
 log(acc)
 let nos=acc.readNode()
 log("是否为空"+(nos!=null))
-w.uianaly.setNodes(nos)
+// w.uianaly.setNodes(nos)
 
 // log(com.alibaba.fastjson.JSON.toJSONString(nos))
 log("结束")

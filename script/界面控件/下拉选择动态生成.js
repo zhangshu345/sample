@@ -1,7 +1,7 @@
 "ui";
 
 ui.layout(
-    <vertical id="layout" padding="16">
+    <vertical id="root" padding="16">
         <button text="普通按钮" w="auto" bl_corners_radius="4dp"    bl_solid_color="#E3B666"  bl_stroke_color="#8c6822"     bl_stroke_width="2dp"/>
         <button text="带颜色按钮" style="Widget.AppCompat.Button.Colored" w="auto"/>
         <button text="无边框按钮" style="Widget.AppCompat.Button.Borderless" w="auto"/>
@@ -12,9 +12,20 @@ ui.layout(
 );
 
 ui.click_me.on("click", ()=>{
-    toast("我被点啦");
+   ui.root.addView(changedata(["你好","你不好","21222","ssss"]))
 });
 
 ui.click_me.on("long_click", ()=>{
     toast("我被长按啦");
 });
+
+function changedata(datas){
+    var spinner = new android.widget.Spinner(context)
+    var arrayadapter = new android.widget.ArrayAdapter(context,android.R.layout.simple_spinner_dropdown_item,datas)
+    spinner.setAdapter(arrayadapter)
+    spinner.setOnItemClickListenerInt(function(parent,view,position,id){
+        toastLog("选中position"+position+"--"+datas[position])
+    })
+    return spinner;
+    
+}

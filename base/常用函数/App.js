@@ -11,3 +11,8 @@ app.sendEmail({
     text: "这是邮件正文"
 });
 */
+app.startActivity({
+    packageName: "com.hongdong.autotools",
+    className: "com.baidu.aip.asrwakeup3.core.ActivityMain"
+   
+});
