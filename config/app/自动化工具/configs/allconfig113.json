@@ -554,7 +554,7 @@
             "summary": "上传脚本须知"
         },
         {
-            "name": "uploadScript",
+            "name": "uploadscript",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
             "summary": "查看我的上传脚本"
         },
@@ -563,7 +563,6 @@
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
             "summary": "查看我的上传脚本"
         },
-
         {
             "name": "clickfloat",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js",
@@ -626,7 +625,7 @@
         },
         {
             "name": "scriptmoreactions",
-            "value": "刷新标签-添加自定义工具源",
+            "value": "上传须知-上传自动化-我的自动化-刷新标签-添加自定义工具源",
             "summary": "应用市场更多按钮"
         },
         {
@@ -637,7 +636,7 @@
         {
             "name": "appsign",
             "value": "E6:C3:48:5B:F3:BD:33:4F:03:27:72:31:43:B7:5B:FD:F8:13:0D:E6",
-            "summary": "签名"
+            "summary": "应用签名"
         },
         {
             "name": "developerqq",
@@ -1252,7 +1251,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": 203,
+            "event": 205,
             "time": 5,
             "interval": 1800,
             "finishname": "点此进群",
