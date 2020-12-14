@@ -544,6 +544,52 @@
     ],
     "keys": [
         {
+            "name": "importtag",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "summary": "导入脚本源"
+        },
+        {
+            "name": "uploadscriptagreement",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "summary": "上传脚本须知"
+        },
+        {
+            "name": "uploadScript",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "summary": "查看我的上传脚本"
+        },
+        {
+            "name": "myuploadedscript",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "summary": "查看我的上传脚本"
+        },
+
+        {
+            "name": "clickfloat",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js",
+            "summary": "点击小手"
+        },
+        {
+            "name": "userguide",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "summary": "用户引导"
+        },
+        {
+            "name": "settingdescription",
+            "value": "设置描述的脚本",
+            "summary": ""
+        },
+        {
+            "name": "developrecord",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js",
+            "summary": "脚本录制"
+        },
+        {
+            "name": "lineme",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js",
+            "summary": "微信联系我"
+        },
+        {
             "name": "voicecontroltitile",
             "value": "语音控制",
             "summary": ""
@@ -575,7 +621,7 @@
         },
         {
             "name": "autotoolsdocurl",
-            "value": "http://zhangshu345012.gitee.io/autotools-doc",
+            "value": "http://zhangshu345012.gitee.io/autotools-doc/",
             "summary": "教程文档地址"
         },
         {
@@ -722,6 +768,8 @@
             "name": "hosturl",
             "value": "http://www.hongdong.info/",
             "summary": "说明"
+        },{
+
         }
 
     ],
@@ -732,32 +780,6 @@
     "userloginpath": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_userlogin.js",
     "rewardcoinscript": "https://gitee.com/zhangshu345012/sample/raw/v2/config/script/随便粘_200_rewardcoin.js",
     "downloadurl": "https://imtt.dd.qq.com/16891/apk/A434BD6535C1F6F239F7A8A024E7E565.apk",
-    "scripts": [
-        {
-            "name": "clickpoint",
-            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
-        },
-        {
-            "name": "clickfloat",
-            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js"
-        },
-        {
-            "name": "userguide",
-            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js"
-        },
-        {
-            "name": "settingdescription",
-            "path": "设置描述的脚本"
-        },
-        {
-            "name": "developrecord",
-            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
-        },
-        {
-            "name": "lineme",
-            "path": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
-        }
-    ],
     "permission": [
         {
             "id": 0,
@@ -1367,8 +1389,7 @@
             "key": "key_action_reward_share",
             "script": ""
         },
-        {
-            "id": 1400,
+        {  "id": 1400,
             "title": "服务协议",
             "summary": "请在使用本软件前认真阅读服务协议",
             "titlecolor": "",
