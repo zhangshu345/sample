@@ -39,6 +39,15 @@
                 "summary": "android7.0 以上系统，内存2g 有多有可运行的内存。",
                 "script": "",
                 "contenturl": ""
+            },
+            {
+                "title": "教程在哪里找到",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "抖音，快手 搜索自动化工具即可",
+                "script": "",
+                "contenturl": ""
             }
         ]
     },
@@ -162,7 +171,7 @@
         "textsize": "16",
         "textcolor": "#ff0000ff",
         "level": 0,
-        "open": false,
+        "open": true,
         "ui": {
             "type": 2,
             "orientation": 1,
@@ -199,7 +208,7 @@
         "textsize": "16",
         "textcolor": "#ff0000ff",
         "level": 0,
-        "open": false,
+        "open": true,
         "ui": {
             "type": 2,
             "orientation": 1,
