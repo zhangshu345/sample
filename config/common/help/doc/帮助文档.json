@@ -188,5 +188,41 @@
                 "contenturl": ""
             }
         ]
+    },
+    {
+        "title": "抖音视频教程",
+        "icon": "https://pp.myapp.com/ma_icon/0/icon_42350811_1608107988/96",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": false,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "测试视频",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ffff00",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":"douyinvideo:6906053018739920140"
+            },
+            {
+                "title": "测试主页",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":"douyinuser:106731108401"
+            }
+        ]
     }
 ]
