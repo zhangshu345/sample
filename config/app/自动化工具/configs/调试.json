@@ -1,3 +1,5 @@
+客户端握手 
+
 {
     "type": "hello",
     "data": {
@@ -11,4 +13,21 @@
     }
 }
 
-{protocol=http/1.1, code=101, message=Switching Protocols, url=http://192.168.3.2:9317/}
+{ protocol=http/1.1, code=101, message=Switching Protocols, url=http://192.168.3.2:9317/}
+
+│ JsonWebSocket
+│ onOpen: response = 
+│{"redirect":false,"successful":false}
+
+
+onMessage: text = {"type":"hello","data":{"server_version":2}}
+
+
+run js脚本 
+{"type":"command",
+    "data":{"id":"d:\\autojs\\AutoTools_js\\script\\语音控制\\语音监听.js",
+        "name":"d:\\autojs\\AutoTools_js\\script\\语音控制\\语音监听.js",
+        "script":"toast("脚本内容")",
+        "command":"run"
+    }
+}

@@ -4,5 +4,5 @@ setInterval(function(){
 
 events.observeVoice()
 events.onVoice(function(voiceEvent){
-    log(voiceEvent)
+    log(JSON.stringify(voiceEvent))
 })
