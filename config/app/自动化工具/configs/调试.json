@@ -1,0 +1,14 @@
+{
+    "type": "hello",
+    "data": {
+        "device_name": "samsung SAMSUNG-SM-G891A",
+        "app_version": "1.1.3",
+        "app_version_code": 13,
+        "client_version": 2,
+        "userid": "c85dec0bfa",
+        "userinfo": "User{code='null', level=3888, coin=100000, money=10000.0, experience=10000, achivements=null, extra='null', config='null', parent='null', installationid='D7ABBDE844A767C061F0528B25601FCD', endtime=cn.bmob.v3.datatype.BmobDate@c3cfb54, deviceid='2f235e6756bce37c79fc226dee98e656d'}",
+        "username": "c85dec0bfa"
+    }
+}
+
+{protocol=http/1.1, code=101, message=Switching Protocols, url=http://192.168.3.2:9317/}
