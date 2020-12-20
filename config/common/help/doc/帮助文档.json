@@ -198,6 +198,16 @@
                 "script": "",
                 "contenturl": "",
                 "videourl":""
+            },
+            {
+                "title": "语音声控",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "唤醒",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
 
             }
         ]
@@ -235,6 +245,62 @@
                 "script": "",
                 "contenturl": "",
                 "videourl":"douyinuser:106731108401"
+            }
+        ]
+    },
+    {
+        "title": "未开发功能",
+        "icon": "https://pp.myapp.com/ma_icon/0/icon_42350811_1608107988/96",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": true,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "调试服务器",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ffff00",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "自定义脚本源",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "脚本搜索",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "邀请奖励",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
             }
         ]
     }

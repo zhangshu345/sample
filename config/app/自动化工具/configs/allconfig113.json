@@ -543,6 +543,12 @@
         }
     ],
     "keys": [
+        
+        {
+            "name": "script_autoinstall",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/自动点击安装应用.js",
+            "summary": "自动安装应用"
+        },
         {
             "name": "importtag",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
