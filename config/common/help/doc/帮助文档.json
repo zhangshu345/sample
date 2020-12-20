@@ -249,7 +249,7 @@
         ]
     },
     {
-        "title": "未开发功能",
+        "title": "敬请期待更多",
         "icon": "https://pp.myapp.com/ma_icon/0/icon_42350811_1608107988/96",
         "textsize": "16",
         "textcolor": "#ff0000ff",
@@ -266,18 +266,38 @@
                 "title": "调试服务器",
                 "level": 0,
                 "open": true,
-                "textcolor": "#ffff00",
-                "summary": "",
+                "textcolor": "#ff00ff",
+                "summary": "充当群控主机功能,控制接入设备实现工具任务的分发启动",
                 "script": "",
                 "contenturl": "",
                 "videourl":""
             },
             {
-                "title": "自定义脚本源",
+                "title": "可视化和语音控制编写脚本",
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff00ff",
-                "summary": "",
+                "summary": "可视化动作录制 和语音输入动作函数",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "自定义工具源",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "实现工具源自主添加,以获取更多共享工具实现更丰富的功能",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "独立工具包",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "实现工具独立打包，实现工具的快速分发和使用",
                 "script": "",
                 "contenturl": "",
                 "videourl":""
@@ -287,7 +307,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff00ff",
-                "summary": "",
+                "summary": "便捷查找和启动所需工具",
                 "script": "",
                 "contenturl": "",
                 "videourl":""
@@ -297,7 +317,7 @@
                 "level": 0,
                 "open": true,
                 "textcolor": "#ff00ff",
-                "summary": "",
+                "summary": "共享应用增加价值",
                 "script": "",
                 "contenturl": "",
                 "videourl":""
