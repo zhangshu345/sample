@@ -25,7 +25,7 @@
     "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
     "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
     "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
-    "inviteaction": [
+    "inviteactions": [
         {
             "name": "快手极速版",
             "pkg": "com.kuaishou.nebula",
