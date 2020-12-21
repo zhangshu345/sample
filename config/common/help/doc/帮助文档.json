@@ -261,7 +261,7 @@
     },
     {
         "title": "敬请期待更多",
-        "icon": "https://pp.myapp.com/ma_icon/0/icon_42350811_1608107988/96",
+        "icon": "@mipmap/app_icon",
         "textsize": "16",
         "textcolor": "#ff0000ff",
         "level": 0,
