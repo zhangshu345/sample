@@ -209,6 +209,17 @@
                 "contenturl": "",
                 "videourl":""
 
+            },
+            {
+                "title": "语音唤醒工具",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "语音唤醒之后直接念出您已经设置过的任务名，会自动查找相关任务并启动运行",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+
             }
         ]
     },
@@ -256,7 +267,7 @@
         "level": 0,
         "open": true,
         "ui": {
-            "type": 2,
+            "type": 1,
             "orientation": 1,
             "size": 2,
             "reverselayout": false
