@@ -16,7 +16,7 @@
     "showaccessibilityalter": false,
     "channeladvice": "",
     "reward": false,
-    "mta": false,
+
     "bugly": true,
     "cardcharge": false,
     "cardexchange": false,
@@ -542,7 +542,16 @@
         }
     ],
     "keys": [
-        
+        {
+            "name": "baiduconfigurl",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/baidu/configs.json",
+            "summary": "APP邀请配置列表"
+        },
+        {
+            "name": "inviteurl",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/invite/doc/invite.json",
+            "summary": "APP邀请配置列表"
+        },
         {
             "name": "script_autoinstall",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/自动点击安装应用.js",
