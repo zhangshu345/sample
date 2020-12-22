@@ -16,7 +16,6 @@
     "showaccessibilityalter": false,
     "channeladvice": "",
     "reward": false,
-
     "bugly": true,
     "cardcharge": false,
     "cardexchange": false,
@@ -270,7 +269,6 @@
             "shortlabel": "录制",
             "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
             "icon": "@drawable/ic_record",
-          
             "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
         },
         {
