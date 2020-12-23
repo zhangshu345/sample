@@ -541,9 +541,15 @@
     ],
     "keys": [
         {
+            "name": "moneycoin",
+            "value":  "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
+            "summary": "兑换"
+        },
+        
+        {
             "name": "baiduconfigurl",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/baidu/configs.json",
-            "summary": "APP邀请配置列表"
+            "summary": "APP百度语音配置列表"
         },
         {
             "name": "inviteurl",
@@ -557,7 +563,7 @@
         },
         {
             "name": "importtag",
-            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "value": "/script/importtag",
             "summary": "导入脚本源"
         },
         {
@@ -2108,27 +2114,7 @@
             "cpuallurl": "https://cpu.baidu.com/1032/d419834b?scid=72120"
         }
     },
-    "moneycoin": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
-    "uiconfig": {
-        "login": "登录页",
-        "register": "注册页",
-        "help": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/help/随便粘_help200.json",
-        "welcome": "欢迎页",
-        "splash": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/ui/splash/随便粘_splash_200.json",
-        "guide": "引导页",
-        "main": "主页",
-        "privacy": "隐私协议页",
-        "userservice": "用户服务页",
-        "settings": "设置页",
-        "invite": "邀请页",
-        "task": "任务页",
-        "userinfo": "用户信息页",
-        "coin": "金币信息页",
-        "charge": "商品购买页",
-        "exchange": "交换页",
-        "cash": "提现页",
-        "content": "内容页"
-    },
+ 
     "splash": {
         "title": "一次操作 后续无忧",
         "logo": "",
@@ -2144,6 +2130,5 @@
         "runningscript": "",
         "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/界面模板一.js",
         "desc": ""
-    },
-    "scriptconfig": "运行脚本的配置"
+    }
 }
