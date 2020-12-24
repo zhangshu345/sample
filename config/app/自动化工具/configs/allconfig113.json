@@ -647,7 +647,7 @@
         },
         {
             "name": "scriptmoreactions",
-            "value": "上传须知-上传自动化-我的自动化-刷新标签-添加自定义工具源-共享工具源",
+            "value": "上传须知:uploadscriptagreement-上传自动化:uploadscript-我的自动化:myuploadedscript-刷新标签-添加自定义工具源:importtag-共享工具源:myuploadedscript",
             "summary": "应用市场更多按钮"
         },
         {
