@@ -657,7 +657,7 @@
         },
         {
             "name": "forceupdate",
-            "value": "true",
+            "value": "false",
             "summary": "应用更新提醒是否强制显示"
         },
         {
