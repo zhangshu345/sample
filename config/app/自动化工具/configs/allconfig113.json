@@ -568,13 +568,13 @@
         },
         {
             "name": "uploadscriptagreement",
-            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/usersharescriptruler.js",
             "summary": "上传脚本须知"
         },
         {
             "name": "uploadscript",
-            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
-            "summary": "查看我的上传脚本"
+            "value": "/script/scriptupload",
+            "summary": "上传脚本"
         },
         {
             "name": "myuploadedscript",
