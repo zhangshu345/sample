@@ -656,6 +656,11 @@
             "summary": "用户id前缀"
         },
         {
+            "name": "forceupdate",
+            "value": "true",
+            "summary": "应用更新提醒是否强制显示"
+        },
+        {
             "name": "appsign",
             "value": "E6:C3:48:5B:F3:BD:33:4F:03:27:72:31:43:B7:5B:FD:F8:13:0D:E6",
             "summary": "应用签名"
