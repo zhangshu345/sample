@@ -5,7 +5,7 @@ importClass(android.net.Uri)
 importClass(android.graphics.Bitmap)
 importClass(java.io.File)
 importClass(com.hongshu.advice.AdviceManager)
-importClass(com.hongshu.bmob.push.BmobPushUtils)
+
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
@@ -2055,13 +2055,7 @@ if (!requestScreenCapture()) {
 var isNotificationManager=function(){    importClass(com.hongshu.utils.PermissionUtils);    return PermissionUtils.isnotificationListenerEnable()}
 var toNotificationManager=function(){    tosettingsbyaction("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")}
 
-var addbmobchannel=function(channels){    // BmobPushUtils.getInstance().addchannel(channels) 
-}
-var removebmobchannel=function(channels){  // BmobPushUtils.getInstance().removechannel(channels)
-}
-var bmobpushmessage=function(channels,message){
-    // BmobPushUtils.getInstance().pushmessage(channels,message)
-}
+
 //启动deviceadmin
 var startdeviceadmin=function(){
     toastLog("检测设备管理器是否激活")
