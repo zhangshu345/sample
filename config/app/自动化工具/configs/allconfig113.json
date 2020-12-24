@@ -578,7 +578,7 @@
         },
         {
             "name": "myuploadedscript",
-            "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/userguide.js",
+            "value": "/script/mywebscripts",
             "summary": "查看我的上传脚本"
         },
         {
