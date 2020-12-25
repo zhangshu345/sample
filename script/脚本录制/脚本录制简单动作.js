@@ -67,7 +67,7 @@ function startscreenrecord(){
 //利用了悬浮窗
 log("开始录屏")
  screenactionwindow = floaty.rawWindow(
-    <frame id="action" w="{{device.width}}" h="{{device.height}}"  bg="#44ffcc00"/>
+    <frame id="action" w="{{device.width}}" h="{{device.height}}"  bg="#22ffcc00"/>
 
 );
 log("开始录屏1")
