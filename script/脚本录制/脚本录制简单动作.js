@@ -112,7 +112,13 @@ screenactionwindow.action.setOnTouchListener(function(view, event){
 
 function addnewpath(pointx,pointy){
 let  mx=parseInt(pointx)
- let   my=parseInt(pointy)
+if(mx<0){
+    mx=0
+}
+ let my=parseInt(pointy)
+ if(my<0){
+     my=0
+ }
     points[0] = 动作时间间隔()
     points.push([mx,my])
     // log(points)
@@ -138,7 +144,13 @@ function 手势(){
 
 function 点击(x,y,n){
     x=parseInt(x)
+    if(x<0){
+        x=0
+    }
     y=parseInt(y)
+    if(y<0){
+        y=0
+    }
       threads.start(function(){
         ui.run(function(){
             screenactionwindow.setTouchable(false);
@@ -155,8 +167,15 @@ function 点击(x,y,n){
 }
 
 function 长按(x,y){
+    
     x=parseInt(x)
+    if(x<0){
+        x=0
+    }
     y=parseInt(y)
+    if(y<0){
+        y=0
+    }
     addnewactions("press("+x+","+y+",1000)")
     threads.start(function(){
         ui.run(function(){
@@ -176,9 +195,21 @@ function 长按(x,y){
            
 function 滑动(x,y,x1,y1){
     x=parseInt(x)
+    if(x<0){
+        x=0
+    }
     y=parseInt(y)
+    if(y<0){
+        y=0
+    }
     x1=parseInt(x1)
+    if(x1<0){
+        x1=0
+    }
     y1=parseInt(y1)
+    if(y1<0){
+        y1=0
+    }
     addnewactions("swipe("+x+","+y+","+x1+","+y1+",350)")
     threads.start(function(){
         ui.run(function(){
@@ -315,8 +346,6 @@ function showcontrolfloaty(){
             startrecord()
             log("ks10")
         }
-        
-        
     })
 }
 
@@ -324,4 +353,4 @@ showcontrolfloaty()
 // startrecord()
 setInterval(()=>{
     show("等待:"+动作时间间隔()+"ms")
-}, 1000);
+}, 500);
