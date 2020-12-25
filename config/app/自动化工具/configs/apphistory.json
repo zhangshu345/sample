@@ -1,13 +1,13 @@
 [{
     "name":"自动化工具",
     "pkg":"com.hongdong.autotools",
-    "version":"1.1.0",
-    "versioni":10,
+    "version":"1.1.3",
+    "versioni":13,
     "channel":"qq",
-    "downloadurl":"https://b6741b5a2c358e3643d5d656a8eaf0db.dlied1.cdntips.net/imtt.dd.qq.com/16891/apk/A434BD6535C1F6F239F7A8A024E7E565.apk",
+    "downloadurl":"http://imtt.dd.qq.com/16891/apk/0375DD84B2B1440793E0D6FB4620A16F.apk",
     "updatedescription":"",
     "icon":"",
-    "back":"",
+    "back":"帮助页收缩\n修复部分api使用bug\n增加自定义工具源\n增加工具云备份\n增加smarttable表格api\n增加语音控制和语音识别api",
     "isforce":false
 }
 ]
