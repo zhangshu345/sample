@@ -236,8 +236,7 @@ log("启动监听后")
 function startrecord(){
     recording=true;
     show("开始录制脚本")
-    
-    recordthread=threads.start(function(){
+        recordthread=threads.start(function(){
         startkeyrecord()
         startscreenrecord()
     })
@@ -299,7 +298,7 @@ function showcontrolfloaty(){
         log("ks2")
         activity=currentActivity()
         log("ks3")
-        actions=actions+"app.launch("+pkg+")/n;waitForPackage("+pkg+");/n"
+        actions=actions+"app.launch(\""+pkg+"\")/n;waitForPackage(\""+pkg+"\");\n"
     })
     controlw.start.on("click",function(v){
         log("ks4")

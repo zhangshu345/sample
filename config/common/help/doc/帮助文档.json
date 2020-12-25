@@ -274,6 +274,16 @@
         },
         "articles": [
             {
+                "title": "投屏控制",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff00ff",
+                "summary": "辅助老年人操作手机",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
                 "title": "调试服务器",
                 "level": 0,
                 "open": true,
