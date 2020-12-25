@@ -332,20 +332,15 @@ function showcontrolfloaty(){
         actions=actions+"app.launch(\""+pkg+"\")\n;waitForPackage(\""+pkg+"\");\n"
     })
     controlw.start.on("click",function(v){
-        log("ks4")
+    
         if(recording){
-            log("ks5")
             controlw.start.setText("开始")
-            log("ks6")
             stoprecord()
-            log("ks7")
+   
         }else{
-            log("ks8")
-            controlw.start.setText("停止")
-            log("ks9")
-            startrecord()
-            log("ks10")
-        }
+                  controlw.start.setText("停止")
+              startrecord()
+                }
     })
 }
 
