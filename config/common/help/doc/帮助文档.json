@@ -229,7 +229,7 @@
         "textsize": "16",
         "textcolor": "#ff0000ff",
         "level": 0,
-        "open": true,
+        "open": false,
         "ui": {
             "type": 2,
             "orientation": 1,
