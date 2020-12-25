@@ -329,7 +329,7 @@ function showcontrolfloaty(){
         log("ks2")
         activity=currentActivity()
         log("ks3")
-        actions=actions+"app.launch(\""+pkg+"\")/n;waitForPackage(\""+pkg+"\");\n"
+        actions=actions+"app.launch(\""+pkg+"\")\n;waitForPackage(\""+pkg+"\");\n"
     })
     controlw.start.on("click",function(v){
         log("ks4")
