@@ -19,4 +19,3 @@ ocr.init(files.getSdcardPath(),"chi_sim")
 var s=ocr.ocrFile(files.getSdcardPath()+"/DCIM/Screenshots/你就.jpg")
 log("识别结果:"+s)
 
-corRect()
