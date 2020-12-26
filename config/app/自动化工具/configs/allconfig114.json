@@ -1863,7 +1863,6 @@
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"
         },
-      
         {
             "id": 3,
             "name": "推荐",
@@ -1982,42 +1981,7 @@
             "desc": "二维码搜索，二维码生成，二维码解析，二维码连续输入",
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
-        },
-        {
-            "id": 10,
-            "name": "本地存储",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "本地存储",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/本地存储/1本地存储.json"
-        },
-        {
-            "id": 11,
-            "name": "复杂界面",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "复杂界面",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/1复杂界面.json"
         }
-       
     ],
     "advice": {
         "jgchaping": 60,
