@@ -1,7 +1,7 @@
 "ui";
 ui.layout(
     <vertical>
-        <text id="myText" line="3">
+        <text id="myText" line="3"/>
     </vertical>
 )
 //通过\n换行

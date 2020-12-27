@@ -539,6 +539,11 @@
     ],
     "keys": [
         {
+            "name": "closewakeuppackages",
+            "value":  "com.tencent.mm|com.tencent.mobileqq",
+            "summary": "关闭监听停止录音占用"
+        },
+        {
             "name": "moneycoin",
             "value":  "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
             "summary": "兑换"

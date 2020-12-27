@@ -72,7 +72,7 @@ ui.layout(
          
         </appbar>
 
-        <com.hongshu.autojs.core.widget.RewardAppListView 
+        <com.hongshu.autotools.core.widget.RewardAppListView 
         layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
         id="rewardview"
             w="*" h="auto"/>

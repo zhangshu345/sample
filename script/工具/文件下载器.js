@@ -15,7 +15,7 @@ function httpget(url) {
 floaty.closeAll()
 engines.stopOther()
 
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib2.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -28,7 +28,7 @@ var fileurl=dialogs.rawInput("请输入文件下载链接","" , )
 
 show("开始自动安装应用")
 creatsetfloatywindow()  //创建设置悬浮窗
-toastLog("指定："+appname+"即将启动")
+toastLog("指定："+fileurl+"即将启动下载")
 home()
 if(!app.getPackageName(appname)){
     toastLog("未找到指定应用:"+appname+"将自动查找应用并下载安装")

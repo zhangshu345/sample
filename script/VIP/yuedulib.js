@@ -31,15 +31,16 @@ var scriptapps={"随便粘":164,"东东随便":0}
 var shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
+
 var sdavailablesize=function(){
     return SDCardUtils.getExternalAvailableSize()
 }
+
 log("可用:"+sdavailablesize()+"\n比例:"+sdavailablesize()/sdtotalsize)
 const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play 商店","Samsung Gear","简报","Lookout",
 "AT&T Remote Support","ANT + DUT","Gmail","YP","Google Play 音乐","myAT&T","游戏工具","云端硬盘","地图",
 "Call Log Backup/Restore","Google 备份传输","环聊","YouTube","Google","DIRECTV","游戏中心","Smart Limits","Remote"
 ]
-
 var 多分分身邀请码=["FA9X9K"]
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
@@ -1654,7 +1655,8 @@ function downloadApk(name,downloadurl,isinstall) {
      back()
      return false
  }
- var checkinstallapp=function(){
+
+var checkinstallapp=function(){
     runtime.requestPermissions(["WRITE_EXTERNAL_STORAGE","READ_EXTERNAL_STORAGE"])
      var appconfigs=httpget(rewardapplisturl)
      var apps=JSON.parse(appconfigs)
@@ -1665,7 +1667,7 @@ function downloadApk(name,downloadurl,isinstall) {
             downloadandinstallapp(app.name,app.package)
          }
      })
-  }
+}
 
  //根据app名下载并安装应用
  var downloadandinstallapp=function(appname,apppkg){
@@ -1692,8 +1694,8 @@ var runurlscript=function(name,url){
     } catch (error) {
         log("run脚本出错:"+name+"--"+url)
     }
- 
 }
+
 
 
 var evalscript=function(name,url){
@@ -1718,6 +1720,7 @@ var phonenumber=function(){
      if(pnumber.startsWith("+86")){pnumber=pnumber.substr(3);     }
      if(pnumber){ return pnumber;     }else{return null;     }
 }
+
 //本地配置启用脚本
 var startallapp = function(){
     addbmobchannel("hongshuyuedu")
@@ -1761,8 +1764,8 @@ var clickscreencapture=function(){
     while(true){  if(clicktexts(["不再提醒","不在显示"])){  } ; if(textclick("立即开始")){break  };  sleep(2000); }
 }
 var checkscreencapture=function(){
-    //    captureScreen("/sdcard/screencapture" + i + ".png");
-  // engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v2/base/requestscreencapture.js"),{})
+//    captureScreen("/sdcard/screencapture" + i + ".png");
+// engines.execScript("requestscreencapture",httpget("https://gitee.com/zhangshu345012/sample/raw/v2/base/requestscreencapture.js"),{})
   threads.start(function() {
     n_t=0
       while(n_t<5){
