@@ -7,11 +7,9 @@ importClass(com.hongshu.utils.SPUtils)
 importClass(android.graphics.Bitmap)
 importClass(com.hongshu.utils.KeyboardUtils)
 importClass(com.hongshu.advice.AdviceManager)
-importClass(com.hongshu.bmob.push.BmobPushUtils)
 importClass(android.provider.Settings);  
 importClass(android.icu.text.SimpleDateFormat);
 importClass(java.util.HashSet);
-importClass(com.hongshu.utils.GsonUtils)
 importClass(com.hongshu.utils.AppUtils)
 
 device.wakeUpIfNeeded()

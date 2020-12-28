@@ -1,1 +1,39 @@
-[]
+[    {
+    "name": "循环上滑",
+    "desc": {
+        "summary": "循环上滑 ，不断上滑 间隔 8秒到 12秒随机",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环上滑.js",
+    "source": 2,
+    "level": 0
+},
+{
+    "name": "循环下滑",
+    "desc": {
+        "summary": "循环下滑 ，不断上滑 间隔 8秒到 12秒随机",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环下滑.js",
+    "source": 2,
+    "level": 0
+}
+,
+{
+    "name": "循环上滑可调节速度",
+    "desc": {
+        "summary": "全局循环上滑 可以调整间隔时间 ",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/循环上滑可调节速度.js",
+    "source": 2,
+    "level": 0
+}
+
+]

@@ -76,8 +76,7 @@ floaty.closeAll()
 engines.stopOther()
 
 
-
-var appname=dialogs.rawInput("请输入指定操作应用名称","刷宝短视频" , )
+var appname=dialogs.rawInput("请输入指定操作应用名称","刷宝短视频", )
 toastLog("指定："+appname+"即将启动")
 app.launchApp(appname)
 if(!app.getPackageName(appname)){

@@ -166,6 +166,58 @@
         ]
     },
     {
+        "title": "脚本编辑常见错误",
+        "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/常见问题.png",
+        "textsize": "16",
+        "textcolor": "#ff0000ff",
+        "level": 0,
+        "open": true,
+        "ui": {
+            "type": 2,
+            "orientation": 1,
+            "size": 2,
+            "reverselayout": false
+        },
+        "articles": [
+            {
+                "title": "redeclaration of var xxx",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "请检测脚本内部是否 重新定义了 xxx  一般该情况都是编写ide工具 自动导入库 导入了 nodejs 同名库所致，删除即可",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "没有我想要的工具怎么办？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "应用处于不断完善工具中，您有需要可以在反馈中提出需求，开发者和网友会尽快在您提出需求之后共享和提交。",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "工具启动怎么关闭？",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "请按音量下键关闭，音量下键按压会关闭当前运行的工具。此配置可以配置中找到",
+                "script": "",
+                "contenturl": ""
+            },
+            {
+                "title": "怎么学习编写工具呢",
+                "level": 0,
+                "open": true,
+                "textcolor": "",
+                "summary": "工具使用es语言为基础，编写之前请先熟练es语法规则，之后请先查看脚本，脚本在文件页上方工具栏按钮中可找到，仔细查看教程后，在文件页面添加一个新文件，点击编写按钮，打开编写界面，界面中输入会有函数提醒和教程辅助 ，脚本",
+                "script": "",
+                "contenturl": ""
+            }
+        ]
+    },
+    {
         "title": "特色功能",
         "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/特色功能.png",
         "textsize": "16",
