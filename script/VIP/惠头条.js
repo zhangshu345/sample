@@ -6,8 +6,7 @@ buttom = device.height;
 w = device.width;
 h = device.height;
 function instantiation() {
-  
-    yunurl = "https://gitee.com/zhangshu345012/sample/raw/v2/apps/jiajia/fucation_lib1.js"
+      yunurl = "https://gitee.com/zhangshu345012/sample/raw/v2/apps/jiajia/fucation_lib1.js"
     var r = http.get(yunurl);
     if (r.statusCode == 200) {
             return r.body.string()
