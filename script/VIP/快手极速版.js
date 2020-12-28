@@ -568,7 +568,6 @@ var app_swipe_up=function(){
 var 滑动次数=今日滑动次数(appname)
 var islogin=false
 
-
 var app_login=function(){
     show(appname+"登录")
     doactionmaxtime(function(){
@@ -665,6 +664,7 @@ let swipenumber=0
                 }
                 click(500,300)
                 sleep(2000)
+                // com.kuaishou.nebula:id/player_current_position  当前进度
                 ttxet=getTextfromid("com.kuaishou.nebula:id/player_duration")
                 if(ttxet){
                     tt=ttxet.split(":")
@@ -832,14 +832,6 @@ var canqianghongbao=function(coin,livenum,waittime){
 }
 var clickhongbao=function(sleeptime,cx,cy){
     try {
-        // toastLog("等待时间"+sleeptime)
-        // if(sleeptime>=60){
-        //         while(app_hongbao_daojishi()>10){
-        //             toastLog(appname+"抢红包等待中"+app_hongbao_daojishi())
-        //             sleep(2000)
-        //         }
-        // }
-       
         while(true){
                 sleeptime=app_hongbao_daojishi()
                 toastLog("等待："+sleeptime)
@@ -855,6 +847,7 @@ var clickhongbao=function(sleeptime,cx,cy){
         log(appname+"出错:点击红包")
     }
 }
+
 var app_hongbao_daojishi=function(){
     log("查找倒计时")
     node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
@@ -994,7 +987,5 @@ var isdevicemanager=false
 var iskeepappnewer=false
 var isonlayscript=true
 var appdownloadurl=null
-
-toastLog("开始")
 
 startapp(appname,apppkg,floatyx,floatyy, isshowsettingfloaty,isdevicemanager, iskeepappnewer,isonlayscript,appdownloadurl)
