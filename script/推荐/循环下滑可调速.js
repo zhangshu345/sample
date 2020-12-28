@@ -19,10 +19,10 @@ var gfw
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
         <horizontal >
-           <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#33ff0000" >停止</text>
-           <text id="jiasu" w="45" h="45" gravity="center" textSize="16sp" background="#33ff0000" >加速</text>
-           <text id="jiansu" w="45" h="45" gravity="center" textSize="16sp" background="#33ff0000">减速</text>
-            <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#33ffff00">提醒</text>
+           <text id="stop" w="45" h="45" gravity="center" textSize="18sp" background="#55ff0000" >停止</text>
+           <text id="jiasu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000" >加速</text>
+           <text id="jiansu" w="45" h="45" gravity="center" textSize="16sp" background="#55ff0000">减速</text>
+            <text id="text" w="*" h="*" gravity="center" textSize="18sp" background="#55ffff00">提醒</text>
         </horizontal>
         
     );
@@ -62,10 +62,8 @@ var 下滑=function(){
     滑动(20,10,3,13,17,500,500)
 }
 滑动次数=0
-floaty.closeAll()
-engines.stopOther()
 while(true){
-    上滑()
+    下滑()
     sleepr(8000*ratio,12000*ratio)
     滑动次数=滑动次数+1
 }
