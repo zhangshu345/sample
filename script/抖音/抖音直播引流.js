@@ -208,9 +208,7 @@ function 单一直播引流(){
                 log("直播间人数过少 切换下一直播间")
                 rswipe(20,10,17,10,3,500,300)
             }else{
-                观众列表私信()
-               
-
+                观众列表私信(liven)
             }
         }
         names.forEach(name => {
@@ -220,11 +218,12 @@ function 单一直播引流(){
     },onelivetime*60*1000)
 }
 
-function 观众列表私信(){
+function 观众列表私信(currentperson){
     let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
     clicknode(n_liveman)
-    doactionmaxtime(function(){
-
+    let i=0
+    doactionmaxnumber(function(){
+        i=i+1
     if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
       let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
        if(n_b){
@@ -235,8 +234,10 @@ function 观众列表私信(){
        }
         rswipe(20,10,17,10,15,500,300)
     }
-
-},onelivetime*60*1000)
+    if(i>currentperson){
+        return true
+    }
+},200)
 
 }
 
