@@ -10,12 +10,19 @@ ui.layout(
                 <tabs id="tabs"/>
             </appbar>
             <viewpager id="viewpager">
-                <frame>
-                    <text text="第一页内容" textColor="black" textSize="16sp"/>
-                </frame>
-                <frame>
-                    <text text="第二页内容" textColor="red" textSize="16sp"/>
-                </frame>
+                <vertical>
+                    <text text="输入搜索直播商品名称，输入多个名称时，以 - 分割。 举例 酒-白酒-红酒-葡萄酒" textColor="black" textSize="16sp"/>
+                    <input id="in_spm" hint="在此输入商品分类" ></input>
+                    <text  text="单一直播间引流时间设置 最长时间(以分钟为单位)。举例 10分钟 输入数字 10"></text>
+                    <input id="in_onelivetime" inputType="number" hint="在此输入时间 （分钟）" ></input>
+                    <text  text="直播间观看人数最小起,低于该数字直接跳过，切换下一直播间"></text>
+                    <input id="in_livepersonmin" inputType="number" hint="在此输入人数"  text="50"></input>
+                   
+                </vertical>
+                <vertical>
+                    <text text="输入私信内容名称，输入多条话语。以 | 分割， 举例 引流话语1|引流话语2|引流 " textColor="black" textSize="16sp"/>
+                    <input id="in_language" hint="在此输入引流语" ></input>
+                </vertical>
                 <frame>
                     <text text="第三页内容" textColor="green" textSize="16sp"/>
                 </frame>
@@ -36,8 +43,8 @@ ui.layout(
 
 //创建选项菜单(右上角)
 ui.emitter.on("create_options_menu", menu=>{
-    menu.add("设置");
-    menu.add("主页");
+    // menu.add("设置");
+    // menu.add("主页");
     menu.add("关于");
 });
 //监听选项菜单点击
@@ -46,11 +53,11 @@ ui.emitter.on("options_item_selected", (e, item)=>{
         case "设置":
             toast("还没有设置");
             break;
-        case "主页":
+         case "主页":
             aroutergourl("\/script\/usermain") 
             break;
         case "关于":
-            alert("关于", "AutoTool界面模板 v1.0.0");
+            alert("关于", "抖音引流v1.0.0");
             break;
     }
     e.consumed = true;
@@ -58,7 +65,7 @@ ui.emitter.on("options_item_selected", (e, item)=>{
 activity.setSupportActionBar(ui.toolbar);
 
 //设置滑动页面的标题
-ui.viewpager.setTitles(["标签一", "标签二", "标签三"]);
+ui.viewpager.setTitles(["引流配置", "引流术语", "暂定"]);
 //让滑动页面和标签栏联动
 ui.tabs.setupWithViewPager(ui.viewpager);
 
@@ -91,3 +98,5 @@ ui.menu.on("item_click", item => {
             break;
     }
 })
+
+

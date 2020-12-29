@@ -46,8 +46,10 @@ return 0;
 function 获取当前视频播放进度(){
     ttxet=gettextFromid("com.kuaishou.nebula:id/player_current_position")
     if(ttxet){
-        tt=ttxet.split(":")
+        //分割文本为两部分
+       let  tt=ttxet.split(":")
         if(tt.length==2){
+            // 解析文本为整数 
             zt=parseInt(tt[0])*60+parseInt(tt[1])
           return zt
         }
@@ -56,18 +58,13 @@ function 获取当前视频播放进度(){
 }
 
 while(true){
-    if(currentPackage()==apppkg){
-        if(currentActivity()==apphomeactivity){
             // 检测是否是 目标页面
-            node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
+            node_tab= packageName(apppkg).className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
             if(node_tab){
                 if(node_tab.selected()){
                  
                     检测视频进度()
-
-                }
-            }    
-        }
+            }
     }else{
         log("快手极速版未在前台")
         sleep(30000)
