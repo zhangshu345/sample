@@ -289,7 +289,7 @@
             "longlabel": "打开工具库",
             "icon": "@drawable/ic_scan_black_24dp",
           
-            "script": "/script/develop"
+            "script": "/script/scriptmarket"
         }
     ],
     "pages": [
