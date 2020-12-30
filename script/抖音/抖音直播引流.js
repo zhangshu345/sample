@@ -506,8 +506,8 @@ function getSaveConfig(){
 function run(){
     threads.start(function(){
         //在新线程执行的代码
-        // start()
-        setInterval(function(){toast("你好")},1000)
+      start()
+        // setInterval(function(){toast("你好")},1000)
     });
 
 }
