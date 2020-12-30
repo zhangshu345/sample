@@ -1,8 +1,7 @@
-
+"ui";
+var color = "#009688";
 function showui(){
-    "ui";
-
-    var color = "#009688";
+      
     ui.layout(
         <drawer id="drawer">
             <vertical>
@@ -196,24 +195,24 @@ function 直播页搜索(){
 function 单一直播引流(){
     doactionmaxtime(function(){
         log("抓取")
-      let names=  id("com.ss.android.ugc.aweme:id/text").className("android.widget.TextView").clickable(true).depth(18).find()
+    //   let names=  id("com.ss.android.ugc.aweme:id/text").className("android.widget.TextView").clickable(true).depth(18).find()
         // if(name){
         //     log(name.text())
         // }else{
         //     log("没有找到")
         // }
-        let liven=直播间获取直播观看人数()
+        let liven = 直播间获取直播观看人数()
         if(liven){
             if(liven<livepersonmin){
-                log("直播间人数过少 切换下一直播间")
+                log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin)
                 rswipe(20,10,17,10,3,500,300)
             }else{
                 观众列表私信(liven)
             }
         }
-        names.forEach(name => {
-            log(name.text())
-        });
+        // names.forEach(name => {
+        //     log(name.text())
+        // });
         sleep(3000)
     },onelivetime*60*1000)
 }
@@ -222,15 +221,18 @@ function 观众列表私信(currentperson){
     let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
     clicknode(n_liveman)
     let i=0
+    let authorname=""
     doactionmaxnumber(function(){
         i=i+1
     if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
       let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
        if(n_b){
-           let authorname=n_b.desc()
-        clicknode(n_b)
-        text("主页").waitFor()
-        直播间私信(authorname)
+           if(n_b.desc()!=authorname){
+            authorname=n_b.desc()
+            clicknode(n_b)
+            text("主页").waitFor()
+            直播间私信(authorname)
+           }
        }
         rswipe(20,10,17,10,15,500,300)
     }
@@ -504,7 +506,8 @@ function getSaveConfig(){
 function run(){
     threads.start(function(){
         //在新线程执行的代码
-        start()
+        // start()
+        setInterval(function(){toast("你好")},1000)
     });
 
 }
@@ -528,7 +531,7 @@ getSaveConfig()
 
 //---------------------------------------------------
 
- start()
+showui()
 // 直播间获取主播信息()
 // 直播间私信()
 
