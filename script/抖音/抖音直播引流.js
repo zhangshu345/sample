@@ -335,8 +335,6 @@ function getSaveConfig(){
                 if(textclick("主页")){
                     直播间私信(authorname)
                 }
-                
-                
                }
            }
            //用户的下滑
@@ -346,7 +344,7 @@ function getSaveConfig(){
             return true
         }
         },200)
-    }
+}
     
 function 直播间获取主播信息(){
     while(true){
