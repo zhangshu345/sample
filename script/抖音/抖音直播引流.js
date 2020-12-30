@@ -170,10 +170,6 @@ function showui(){
     }
 
 
-
-
-
-
 function 抖音直播引流(){
     var storage = storages.create("hd_dyyl");
     var 引流话语=[]
@@ -302,12 +298,14 @@ function getSaveConfig(){
             log("抓取")
             let liven = 直播间获取直播观看人数()
             if(liven){
-                if(liven<livepersonmin){
-                    log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin)
-                    rswipe(20,10,17,10,3,500,300)
-                }else{
+                if(liven>livepersonmin){
+                   
                     观众列表私信(liven)
+                }else{
+                    log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin) 
                 }
+               
+                rswipe(20,10,17,10,3,500,300)
             }
             sleep(3000)
         },onelivetime*60*1000)
@@ -323,7 +321,10 @@ function getSaveConfig(){
         if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
           let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
            if(n_b){
-               if(n_b.desc()!=authorname){
+               if(n_b.desc().indexOf("***")>-1){
+                    toastLog("主播设置了不可见切换下一个")
+                    return 
+               }else  if(n_b.desc()!=authorname){
                 authorname=n_b.desc()
                 clicknode(n_b)
                 text("主页").waitFor()
