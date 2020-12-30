@@ -152,6 +152,12 @@ function 直播页搜索(){
             进入直播页()
         }
         if(textclick("更多直播")){
+            sleep(1000)
+            let n_search=packageName('com.ss.android.ugc.aweme').className('android.widget.ImageView').visibleToUser(true).depth(12).drawingOrder(1).findOne(300)
+            if(n_search){
+                clicknode(n_search)
+                sleep(300)
+            }
             break
         }else{
          sleep(3000)
