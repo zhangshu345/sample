@@ -121,10 +121,60 @@ function showui(){
     })
 
 }
+   
+    //获取保存的脚本
+    function getSaveConfig(){
+        引流内容=storage.get("yinliucontent")
+        if(引流内容){
+           let 内容数组= 引流内容.split("|")
+            if(内容数组){
+                引流话语=[]
+                内容数组.forEach(s=>{
+                    if(s.trim()){
+                        引流话语.push(s.trim())
+                    }
+                })
+            }
+        }else{
+            引流内容="引流话语1|引流话语2|引流话语3"
+            toastLog("引流话语为空")
+        }
+         商品内容=storage.get("shangpincontent")
+        if(商品内容){
+                let sps=商品内容.split("-")
+                if(sps){
+                    商品名=[]
+                    sps.forEach(s=>{
+                        if(s.trim()){
+                            商品名.push(s.trim())
+                        }
+                    })
+                }
+        }else{
+            商品内容="商品1-商品2-商品3"
+            toastLog("搜索商品为空") 
+        }
+        onetime=storage.get("onelivetime")
+        if(onetime){
+            onelivetime = parseInt(onetime);
+        }else{
+            onelivetime=10;
+        }
+        
+        personmin = storage.get("livepersonmin")
+        if(livepersonmin){
+            livepersonmin = parseInt(personmin);
+        }else{
+            livepersonmin =50;
+        }
+    }
+
+
+
+
 
 
 function 抖音直播引流(){
-
     var storage = storages.create("hd_dyyl");
     var 引流话语=[]
     var 引流内容=""
@@ -138,8 +188,53 @@ function 抖音直播引流(){
     var livepersonmin= 50;  //直播间最小在线人数 才去引流
     var searchword=false; // 代表精确查找输入的文字  false  表示 点击出现的推荐文字
     var yinliutype=1;  //
-    getSaveConfig()
-
+    
+    //获取保存的脚本
+function getSaveConfig(){
+    引流内容=storage.get("yinliucontent")
+    if(引流内容){
+       let 内容数组= 引流内容.split("|")
+        if(内容数组){
+            引流话语=[]
+            内容数组.forEach(s=>{
+                if(s.trim()){
+                    引流话语.push(s.trim())
+                }
+            })
+        }
+    }else{
+        引流内容="引流话语1|引流话语2|引流话语3"
+        toastLog("引流话语为空")
+    }
+     商品内容=storage.get("shangpincontent")
+    if(商品内容){
+            let sps=商品内容.split("-")
+            if(sps){
+                商品名=[]
+                sps.forEach(s=>{
+                    if(s.trim()){
+                        商品名.push(s.trim())
+                    }
+                })
+            }
+    }else{
+        商品内容="商品1-商品2-商品3"
+        toastLog("搜索商品为空") 
+    }
+    onetime=storage.get("onelivetime")
+    if(onetime){
+        onelivetime = parseInt(onetime);
+    }else{
+        onelivetime=10;
+    }
+    
+    personmin = storage.get("livepersonmin")
+    if(livepersonmin){
+        livepersonmin = parseInt(personmin);
+    }else{
+        livepersonmin =50;
+    }
+}
 
     function 进入直播页(){
         回到抖音首页(1)
@@ -278,7 +373,6 @@ function 直播间获取直播观看人数(){
        return parseInt(n_liveman.text())
    }
   }
-  
 
 // 一次私信 传入username
 function 直播间私信(username){
@@ -338,9 +432,6 @@ function 回到抖音首页(index){
         
     }
 }
-
-
-
 //通过长连接 获取用户id 
 function parseUserIdWithLongUrl(url)
 {
@@ -436,6 +527,9 @@ function getUserInfo(secuid){
     var userInfoJson = JSON.parse(res);
     log(userInfoJson)
 }
+
+getSaveConfig()
+
     toastLog("开始抖音引流")
     auto.waitFor()
         直播页搜索()
@@ -450,19 +544,13 @@ function getUserInfo(secuid){
 
 
 
-
-
-
 function saveconfig1(){
    let sp= ui.in_spm.text()
    storage.put("shangpincontent",sp)
-//    let hs=ui.in_chatlanguage.text()
-//    storage.put("yinliucontent",hs)
    let onetime=ui.in_onelivetime.text()||10
    storage.put("onelivetime", onetime)
    let personmin=ui.in_livepersonmin.text() || 50
-  
-   storage.put("livepersonmin",personmin)
+     storage.put("livepersonmin",personmin)
 
    
 }
@@ -473,52 +561,7 @@ function savehuashu(){
     storage.put("yinliucontent",hs)
 }
 
-//获取保存的脚本
-function getSaveConfig(){
-    引流内容=storage.get("yinliucontent")
-    if(引流内容){
-       let 内容数组= 引流内容.split("|")
-        if(内容数组){
-            引流话语=[]
-            内容数组.forEach(s=>{
-                if(s.trim()){
-                    引流话语.push(s.trim())
-                }
-            })
-        }
-    }else{
-        引流内容="引流话语1|引流话语2|引流话语3"
-        toastLog("引流话语为空")
-    }
-     商品内容=storage.get("shangpincontent")
-    if(商品内容){
-            let sps=商品内容.split("-")
-            if(sps){
-                商品名=[]
-                sps.forEach(s=>{
-                    if(s.trim()){
-                        商品名.push(s.trim())
-                    }
-                })
-            }
-    }else{
-        商品内容="商品1-商品2-商品3"
-        toastLog("搜索商品为空") 
-    }
-    onetime=storage.get("onelivetime")
-    if(onetime){
-        onelivetime = parseInt(onetime);
-    }else{
-        onelivetime=10;
-    }
-    
-    personmin = storage.get("livepersonmin")
-    if(livepersonmin){
-        livepersonmin = parseInt(personmin);
-    }else{
-        livepersonmin =50;
-    }
-}
+
 
 //启动一个悬浮窗开始
 function run(){
@@ -528,8 +571,8 @@ function run(){
     //     // setInterval(function(){toast("你好")},1000)
     // });
 
-    log(抖音直播引流.toString()+";start();")
-    // engines.execScript("抖音直播引流",抖音直播引流.toString()+";抖音直播引流();")
+    log(抖音直播引流.toString()+";抖音直播引流();")
+     engines.execScript("抖音直播引流",抖音直播引流.toString()+";抖音直播引流();")
 }
 // ------------------------------------------------------
 
