@@ -1,7 +1,6 @@
 "ui";
 var color = "#009688";
 function showui(){
-      
     ui.layout(
         <drawer id="drawer">
             <vertical>
@@ -124,131 +123,126 @@ function showui(){
 }
 
 
-function start(){
+function 抖音直播引流(){
 
-    toastLog("开始抖音引流")
-    auto.waitFor()
-        直播页搜索()
-    //
-    doactionmaxnumber(function(){
-        log("一次循环")
-        单一直播引流()
-    },100)
-}
+    var storage = storages.create("hd_dyyl");
+    var 引流话语=[]
+    var 引流内容=""
+    var 商品内容=""
+    var 商品名=[]  // 
+    const dypkg="com.ss.android.ugc.aweme"
+    const dyhome="com.ss.android.ugc.aweme.main.MainActivity"
+    const dylive="com.ss.android.ugc.aweme.live.LivePlayActivity"
+    const dychat ="com.ss.android.ugc.aweme.im.sdk.chat.ChatRoomActivity" //  私信对话框页
+    var onelivetime=10
+    var livepersonmin= 50;  //直播间最小在线人数 才去引流
+    var searchword=false; // 代表精确查找输入的文字  false  表示 点击出现的推荐文字
+    var yinliutype=1;  //
+    getSaveConfig()
 
-function 进入直播页(){
-    回到抖音首页(1)
-    let node_live = packageName("com.ss.android.ugc.aweme").className("android.widget.ImageView").depth(17).drawingOrder(1).findOne(300)
-    if(node_live){
-        clicknode(node_live)
-        sleep(2000)
-    }
-}
 
-function 直播页搜索(){
-    while(true){
-        toastLog("回到抖音主页")
-        if(currentActivity()!=dylive){
-            进入直播页()
+    function 进入直播页(){
+        回到抖音首页(1)
+        let node_live = packageName("com.ss.android.ugc.aweme").className("android.widget.ImageView").depth(17).drawingOrder(1).findOne(300)
+        if(node_live){
+            clicknode(node_live)
+            sleep(2000)
         }
-        if(textclick("更多直播")){
-            sleep(1000)
-            let n_search=packageName('com.ss.android.ugc.aweme').className('android.widget.ImageView').visibleToUser(true).depth(12).drawingOrder(1).findOne(300)
-            if(n_search){
-                clicknode(n_search)
-                sleep(300)
+    }
+    function 直播页搜索(){
+        while(true){
+            toastLog("回到抖音主页")
+            if(currentActivity()!=dylive){
+                进入直播页()
             }
-            break
-        }else{
-         sleep(3000)
-        }
-    }
-    editable().waitFor()
-    // text("搜索直播").waitFor()
-    // textclick("搜索直播")
-    sleep(1000)
-    editable().findOne().click()
-    while(true){
-        let spm=商品名[random(0,商品名.length-1)]
-        let et= editable().findOne(300)
-        if(et){
-            clicknode(et)
-            sleep(1000)
-            et= editable().findOne(300)
-            et.setText(spm+"直播")
-            let b =et.bounds()
-            sleep(1000)
-            log(b)
-            if(searchword){
-                textclick("搜索|提交")
+            if(textclick("更多直播")){
+                sleep(1000)
+                let n_search=packageName('com.ss.android.ugc.aweme').className('android.widget.ImageView').visibleToUser(true).depth(12).drawingOrder(1).findOne(300)
+                if(n_search){
+                    clicknode(n_search)
+                    sleep(300)
+                }
+                break
             }else{
-                // 点击出现的提醒词
-                click(device.width*2/5,b.bottom+50)
+             sleep(3000)
+            }
+        }
+        editable().waitFor()
+    
+        sleep(1000)
+        editable().findOne().click()
+        while(true){
+            let spm=商品名[random(0,商品名.length-1)]
+            let et= editable().findOne(300)
+            if(et){
+                clicknode(et)
+                sleep(1000)
+                et= editable().findOne(300)
+                et.setText(spm+"直播")
+                let b =et.bounds()
+                sleep(1000)
+                log(b)
+                if(searchword){
+                    textclick("搜索|提交")
+                }else{
+                    // 点击出现的提醒词
+                    click(device.width*2/5,b.bottom+50)
+                }
+                sleep(3000)
+               
+                if(textoneexist("搜索无结果，猜你想看以下内容")){
+                    商品名.pop(spm)
+                }else{
+                    click(device.width*2/5,b.bottom+50)
+                     log("进入直播")
+                     return
+                }
+            }
+        }
+     }
+
+
+     function 单一直播引流(){
+        doactionmaxtime(function(){
+            log("抓取")
+            let liven = 直播间获取直播观看人数()
+            if(liven){
+                if(liven<livepersonmin){
+                    log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin)
+                    rswipe(20,10,17,10,3,500,300)
+                }else{
+                    观众列表私信(liven)
+                }
             }
             sleep(3000)
-           
-            if(textoneexist("搜索无结果，猜你想看以下内容")){
-                商品名.pop(spm)
-            }else{
-                click(device.width*2/5,b.bottom+50)
-                 log("进入直播")
-                 return
-            }
-        }
+        },onelivetime*60*1000)
     }
- }
 
-function 单一直播引流(){
-    doactionmaxtime(function(){
-        log("抓取")
-    //   let names=  id("com.ss.android.ugc.aweme:id/text").className("android.widget.TextView").clickable(true).depth(18).find()
-        // if(name){
-        //     log(name.text())
-        // }else{
-        //     log("没有找到")
-        // }
-        let liven = 直播间获取直播观看人数()
-        if(liven){
-            if(liven<livepersonmin){
-                log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin)
-                rswipe(20,10,17,10,3,500,300)
-            }else{
-                观众列表私信(liven)
-            }
-        }
-        // names.forEach(name => {
-        //     log(name.text())
-        // });
-        sleep(3000)
-    },onelivetime*60*1000)
-}
-
-function 观众列表私信(currentperson){
-    let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
-    clicknode(n_liveman)
-    let i=0
-    let authorname=""
-    doactionmaxnumber(function(){
-        i=i+1
-    if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
-      let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
-       if(n_b){
-           if(n_b.desc()!=authorname){
-            authorname=n_b.desc()
-            clicknode(n_b)
-            text("主页").waitFor()
-            直播间私信(authorname)
+    function 观众列表私信(currentperson){
+        let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
+        clicknode(n_liveman)
+        let i=0
+        let authorname=""
+        doactionmaxnumber(function(){
+            i=i+1
+        if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
+          let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
+           if(n_b){
+               if(n_b.desc()!=authorname){
+                authorname=n_b.desc()
+                clicknode(n_b)
+                text("主页").waitFor()
+                直播间私信(authorname)
+               }
            }
-       }
-        rswipe(20,10,17,10,15,500,300)
+            rswipe(20,10,17,10,15,500,300)
+        }
+        if(i>currentperson){
+            return true
+        }
+    },200)
     }
-    if(i>currentperson){
-        return true
-    }
-},200)
-
-}
-
+    
 function 直播间获取主播信息(){
     while(true){
         if(currentActivity()!=dylive){
@@ -260,10 +254,6 @@ function 直播间获取主播信息(){
          let authorname= tname.text()
             clicknode(tname)
             sleep(1500)
-        //   let tfs=  textStartsWith("粉丝").className('android.widget.TextView').depth(13).findOne(300);
-        //     if(tfs){
-        //         粉丝
-        //     }
         textclick("主页")
         sleep(2000)
         waitForActivity("com.ss.android.ugc.aweme.profile.ui.UserProfileActivity",500)
@@ -279,13 +269,16 @@ function 直播间获取主播信息(){
     return ""
 }
 
+
+
 function 直播间获取直播观看人数(){
-  let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
- if(n_liveman){
-      log("直播人数:"+n_liveman.text())
-     return parseInt(n_liveman.text())
- }
-}
+    let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
+   if(n_liveman){
+        log("直播人数:"+n_liveman.text())
+       return parseInt(n_liveman.text())
+   }
+  }
+  
 
 // 一次私信 传入username
 function 直播间私信(username){
@@ -314,6 +307,7 @@ function 直播间私信(username){
     }
 
 }
+
 
 function 回到抖音首页(index){
     while(true){
@@ -345,6 +339,8 @@ function 回到抖音首页(index){
     }
 }
 
+
+
 //通过长连接 获取用户id 
 function parseUserIdWithLongUrl(url)
 {
@@ -368,6 +364,8 @@ function parseUserIdWithLongUrl(url)
     }     
     return "";
 }
+
+
 
 //短连接转化为 长连接
 function  parseUserIdWithShortUrl(url)
@@ -404,7 +402,6 @@ function shorturl2longurl(url){
     }
     }
     return ""
-
 }
 
 //https://www.iesdouyin.com/share/user/70934775922?did=60115118309&iid=3095873727762179&sec_uid=MS4wLjABAAAAGGRvXZO3LKrK5CkcEH-pe6xyl2Wr4bBzuVDdLE10z0A&u_code=187md2c6m&timestamp=1609236301&utm_source=copy&utm_campaign=client_share&utm_medium=android&share_app_name=douyin
@@ -439,6 +436,22 @@ function getUserInfo(secuid){
     var userInfoJson = JSON.parse(res);
     log(userInfoJson)
 }
+    toastLog("开始抖音引流")
+    auto.waitFor()
+        直播页搜索()
+    //
+    doactionmaxnumber(function(){
+        log("一次循环")
+        单一直播引流()
+    },100)
+
+}
+
+
+
+
+
+
 
 function saveconfig1(){
    let sp= ui.in_spm.text()
@@ -505,17 +518,18 @@ function getSaveConfig(){
     }else{
         livepersonmin =50;
     }
-        
 }
 
 //启动一个悬浮窗开始
 function run(){
-    threads.start(function(){
-        //在新线程执行的代码
-      start()
-        // setInterval(function(){toast("你好")},1000)
-    });
+    // threads.start(function(){
+    //     //在新线程执行的代码
+    //   start()
+    //     // setInterval(function(){toast("你好")},1000)
+    // });
 
+    log(抖音直播引流.toString()+";start();")
+    // engines.execScript("抖音直播引流",抖音直播引流.toString()+";抖音直播引流();")
 }
 // ------------------------------------------------------
 
