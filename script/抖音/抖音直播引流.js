@@ -321,22 +321,31 @@ function getSaveConfig(){
         if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
           let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
            if(n_b){
+               //判断是否设置不可见
                if(n_b.desc().indexOf("***")>-1){
                     toastLog("主播设置了不可见切换下一个")
-                    return 
+                    back()
+                    sleep(1000)
+                    return true
                }else  if(n_b.desc()!=authorname){
+                   log(n_b.desc()+"--"+authorname)
                 authorname=n_b.desc()
                 clicknode(n_b)
-                text("主页").waitFor()
-                直播间私信(authorname)
+                sleep(1000)
+                if(textclick("主页")){
+                    直播间私信(authorname)
+                }
+                
+                
                }
            }
+           //用户的下滑
             rswipe(20,10,17,10,15,500,300)
         }
         if(i>currentperson){
             return true
         }
-    },200)
+        },200)
     }
     
 function 直播间获取主播信息(){
@@ -377,6 +386,8 @@ function 直播间获取直播观看人数(){
 
 // 一次私信 传入username
 function 直播间私信(username){
+
+
     textclick("主页")
     sleep(2000)
     descclick("更多")
@@ -572,7 +583,7 @@ function run(){
     //     // setInterval(function(){toast("你好")},1000)
     // });
 
-    log(抖音直播引流.toString()+";抖音直播引流();")
+    // log(抖音直播引流.toString()+";抖音直播引流();")
      engines.execScript("抖音直播引流",抖音直播引流.toString()+";抖音直播引流();")
 }
 // ------------------------------------------------------
