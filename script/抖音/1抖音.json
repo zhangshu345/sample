@@ -9,5 +9,16 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音直播引流.js",
     "source": 2,
     "level": 10
+},{
+    "name": "抖音红包辅助",
+    "desc": {
+        "summary": "抖音红包 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包辅助.js",
+    "source": 2,
+    "level": 10
 }
 ]
