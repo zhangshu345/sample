@@ -154,7 +154,7 @@
             {
                 "index": 2,
                 "name": "群控",
-                "open": true,
+                "open": false,
                 "level": 0,
                 "icon": "@drawable/ic_group_control_64dp",
                 "icontint": "#ffffff",
