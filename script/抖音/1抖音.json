@@ -20,5 +20,38 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包辅助.js",
     "source": 2,
     "level": 10
+},{
+    "name": "抖音红包自动辅助",
+    "desc": {
+        "summary": "抖音红包 直播页面自动点开红包（非福袋） 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包自动辅助.js",
+    "source": 2,
+    "level": 10
+},{
+    "name": "抖音红包全自动辅助",
+    "desc": {
+        "summary": "抖音切换直播间顺序查找红包 直播页面自动点开红包，福袋自动 支付抖币 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包全自动辅助.js",
+    "source": 2,
+    "level": 10
+},{
+    "name": "抖音红包自定义全自动辅助",
+    "desc": {
+        "summary": "自定义流程参数 抖音切换直播间顺序查找红包 直播页面自动点开红包，福袋自动 支付抖币 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包全自动辅助.js",
+    "source": 2,
+    "level": 10
 }
 ]
