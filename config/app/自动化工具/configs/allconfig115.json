@@ -628,21 +628,7 @@
             "value": "@drawable/ic_wakeup_48dp",
             "summary": "语音控制图标"
         },
-        {
-            "name": "baiduappid",
-            "value": "23082942",
-            "summary": "百度appid"
-        },
-        {
-            "name": "baiduapikey",
-            "value": "gVGK1vmFoTrl8TCiEZU4RvET",
-            "summary": "百度ak"
-        },
-        {
-            "name": "baidusecretkey",
-            "value": "I2c0tfHBjrMZbQuACwZaIoguG1RlbdDP",
-            "summary": "百度语音sk"
-        },
+       
         {
             "name": "autotoolsdocurl",
             "value": "http://zhangshu345012.gitee.io/autotools-doc/",
@@ -1630,34 +1616,6 @@
             "son1": 1000,
             "son2": 20000,
             "son3": 50000
-        },
-        {
-            "level": 11,
-            "nickname": "11级",
-            "maxmoney": 80.0,
-            "daymoney": 11,
-            "separate": 0.5,
-            "tax": 10,
-            "coin": 100000000,
-            "money": 50000,
-            "experience": 100000,
-            "son1": 2000,
-            "son2": 35000,
-            "son3": 100000
-        },
-        {
-            "level": 12,
-            "nickname": "12级",
-            "maxmoney": 888.0,
-            "daymoney": 30,
-            "separate": 0.7,
-            "tax": 20,
-            "coin": 100000000,
-            "money": 100000,
-            "experience": 100000,
-            "son1": 5000,
-            "son2": 500000,
-            "son3": 500000
         }
     ],
     "rewardevent": [
