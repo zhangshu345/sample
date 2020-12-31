@@ -24,6 +24,18 @@
         "level": 0
     },
     {
+        "name": "通用循环切换应用限时滑动",
+        "desc": {
+            "summary": "选择手机安装的多个应用，自定义一个应用的运行时间 和下滑间隔时间",
+            "html": ""
+        },
+        "open": true,
+        "root": false,
+        "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/视频/通用循环切换应用限时滑动.js",
+        "source": 2,
+        "level": 0
+    },
+    {
         "name": "快手极速版辅助播放",
         "desc": {
             "summary": "快手极速版 发现页 视频播放完自动滑动到下一视频继续播放",
