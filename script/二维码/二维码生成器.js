@@ -100,7 +100,6 @@ function showLoginUI(){
     // ui.imsize.setOnSeekBarChangeListener( {
     
     // )
-
 }
 
 function saveimg(sbitmap,fileName,description){

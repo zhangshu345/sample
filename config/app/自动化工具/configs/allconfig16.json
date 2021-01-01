@@ -1,8 +1,8 @@
 {
     "name": "自动化工具",
     "pkg": "com.hongdong.autotools",
-    "version": "1.1.3",
-    "versioni": 13,
+    "version": "1.1.6",
+    "versioni": 16,
     "channel": "qq",
     "mtaappkey": "A1KT37D8APGM",
     "bmobappid": "e63e8bcad7f4ca8893f3785f75d352f4",
@@ -153,15 +153,15 @@
             },
             {
                 "index": 2,
-                "name": "添加",
-                "open": true,
+                "name": "群控",
+                "open": false,
                 "level": 0,
-                "icon": "@drawable/ic_add_circle_outline_black_48dp",
+                "icon": "@drawable/ic_group_control_64dp",
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
-                "uipath": "/script/settings",
-                "script": "scriptname:settingdescription"
+                "uipath": "/script/groupcontrol",
+                "script": ""
             },
             {
                 "index": 3,
@@ -244,8 +244,8 @@
                 "icontint": "#ffffff",
                 "back": "",
                 "event": -1,
-                "uipath": "",
-                "script": ""
+                "uipath": "/script/settings",
+                "script": "scriptname:settingdescription"
             }
         ]
     },
@@ -289,7 +289,7 @@
             "longlabel": "打开工具库",
             "icon": "@drawable/ic_scan_black_24dp",
           
-            "script": "/script/develop"
+            "script": "/script/scriptmarket"
         }
     ],
     "pages": [
@@ -539,6 +539,11 @@
     ],
     "keys": [
         {
+            "name": "closewakeuppackages",
+            "value":  "com.tencent.mm|com.tencent.mobileqq",
+            "summary": "关闭监听停止录音占用"
+        },
+        {
             "name": "moneycoin",
             "value":  "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
             "summary": "兑换"
@@ -623,21 +628,7 @@
             "value": "@drawable/ic_wakeup_48dp",
             "summary": "语音控制图标"
         },
-        {
-            "name": "baiduappid",
-            "value": "23082942",
-            "summary": "百度appid"
-        },
-        {
-            "name": "baiduapikey",
-            "value": "gVGK1vmFoTrl8TCiEZU4RvET",
-            "summary": "百度ak"
-        },
-        {
-            "name": "baidusecretkey",
-            "value": "I2c0tfHBjrMZbQuACwZaIoguG1RlbdDP",
-            "summary": "百度语音sk"
-        },
+       
         {
             "name": "autotoolsdocurl",
             "value": "http://zhangshu345012.gitee.io/autotools-doc/",
@@ -1390,7 +1381,7 @@
         {
             "id": 1320,
             "title": "软件版本",
-            "summary": "当前版本:V1.1.3",
+            "summary": "当前版本:V1.1.4",
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
@@ -1625,34 +1616,6 @@
             "son1": 1000,
             "son2": 20000,
             "son3": 50000
-        },
-        {
-            "level": 11,
-            "nickname": "11级",
-            "maxmoney": 80.0,
-            "daymoney": 11,
-            "separate": 0.5,
-            "tax": 10,
-            "coin": 100000000,
-            "money": 50000,
-            "experience": 100000,
-            "son1": 2000,
-            "son2": 35000,
-            "son3": 100000
-        },
-        {
-            "level": 12,
-            "nickname": "12级",
-            "maxmoney": 888.0,
-            "daymoney": 30,
-            "separate": 0.7,
-            "tax": 20,
-            "coin": 100000000,
-            "money": 100000,
-            "experience": 100000,
-            "son1": 5000,
-            "son2": 500000,
-            "son3": 500000
         }
     ],
     "rewardevent": [
@@ -1863,7 +1826,6 @@
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新会员.json"
         },
-      
         {
             "id": 3,
             "name": "推荐",
@@ -1879,7 +1841,7 @@
             "source": 2,
             "desc": "推荐使用的脚本",
             "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新推荐.json"
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/推荐/1推荐.json"
         },
         {
             "id": 4,
@@ -1896,7 +1858,7 @@
             "source": 2,
             "desc": "视频自动滑动",
             "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新视频.json"
+            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/视频/1视频.json"
         },
         {
             "id": 5,
@@ -1982,42 +1944,7 @@
             "desc": "二维码搜索，二维码生成，二维码解析，二维码连续输入",
             "img": "",
             "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新二维码.json"
-        },
-        {
-            "id": 10,
-            "name": "本地存储",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "本地存储",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/本地存储/1本地存储.json"
-        },
-        {
-            "id": 11,
-            "name": "复杂界面",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 0,
-            "icon": "",
-            "level": 0,
-            "source": 2,
-            "desc": "复杂界面",
-            "img": "",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/1复杂界面.json"
         }
-       
     ],
     "advice": {
         "jgchaping": 60,
@@ -2121,7 +2048,6 @@
             "cpuallurl": "https://cpu.baidu.com/1032/d419834b?scid=72120"
         }
     },
- 
     "splash": {
         "title": "一次操作 后续无忧",
         "logo": "",

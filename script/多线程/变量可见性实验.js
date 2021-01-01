@@ -3,6 +3,7 @@ var running = true;
 threads.start(function(){
     while(running){
         log("running = true");
+        sleep(1000)
     }
 });
 

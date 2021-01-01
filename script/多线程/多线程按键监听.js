@@ -1,4 +1,5 @@
-auto();
+
+auto.waitFor();
 
 threads.start(function(){
     //在子线程中调用observeKey()从而使按键事件处理在子线程执行

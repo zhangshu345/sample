@@ -380,12 +380,10 @@ function 直播间获取直播观看人数(){
         log("直播人数:"+n_liveman.text())
        return parseInt(n_liveman.text())
    }
-  }
+}
 
 // 一次私信 传入username
 function 直播间私信(username){
-
-
     textclick("主页")
     sleep(2000)
     descclick("更多")
@@ -409,7 +407,6 @@ function 直播间私信(username){
         back()
         sleep(1000)
     }
-
 }
 
 
