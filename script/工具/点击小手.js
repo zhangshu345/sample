@@ -545,5 +545,5 @@ events.on('exit', function () {
 setInterval(() => { 
     clickX=w_logo.getX()+w_logo.getWidth()/2
     clickY=w_logo.getY()+w_logo.getHeight()/2
-    log("当前点击的位置:"+clickX+","+clickY)
+    // log("当前点击的位置:"+clickX+","+clickY)
 }, 5000);

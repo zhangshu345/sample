@@ -1,6 +1,3 @@
-const { SSL_OP_EPHEMERAL_RSA } = require("constants")
-
-
 var 打开应用=function(){
 
 }
@@ -40,5 +37,4 @@ function 快手个人页私信(){
     sleep(1000)
     textclick("发私信")
     sleep(1000)
-    
 }

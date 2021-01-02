@@ -1,35 +1,8 @@
 auto.waitFor()
-auto.setMode("normal")
-/*---------------------------------lib-------------------------------*/
-function httpget(url) {
-    var r = http.get(url);
-       if (r.statusCode == 200) {
-        return r.body.string()
-    } else {
-        return ""
-    }
-}
-
-滑动次数=0
-floaty.closeAll()
-engines.stopOther()
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
-var  公共函数文本=httpget(公共函数url)
-if (公共函数文本 != "") {
-eval(公共函数文本)
-log("公共函数实例化成功")
-
-}else {
-log("公共函数实例化失败,程序返回")
-}
-show("开始刷宝短视频辅助滑动")
-gfw.setPosition(0,220)
-device.setMusicVolume(0)
-device.wakeUpIfNeeded()
-toastLog("自动设置音量为0")
-var 刷宝包名="com.jm.video"
-var 刷宝首页="com.jm.video.ui.main.MainActivity"
 var appname="刷宝短视频"
+var apppkg="com.jm.video"
+var apphome="com.jm.video.ui.main.MainActivity"
+
 
 creatsetfloatywindow()  //创建设置悬浮窗
 toastLog("指定："+appname+"即将启动")
@@ -40,7 +13,6 @@ if(!app.getPackageName(appname)){
 }
 
 toastLog("刷宝邀请完成")
-var apppkg= "com.jm.video"  //app.getPackageName(appname)
 app.launchApp(appname)
 var 刷宝视频恭喜获取关闭按钮id ="com.jm.video:id/imgClose"
 var 视频次数=0
@@ -177,4 +149,5 @@ if(!getbooleanvalue("shuabaologin")){
 }else{
     show("刷宝之前登陆过")
 }
+
 刷宝签到()

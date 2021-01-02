@@ -1,9 +1,7 @@
 auto.waitFor()
 
 
-
 function 快手红包辅助(){
-
    let n_djs= packageName('com.smile.gifmaker').id('live_red_pack_count_down_second_text_view').findOne(300)
     let djs=0;
    if(n_djs){

@@ -29,14 +29,17 @@ sensors.on("unsupported_sensor", function(sensorName, sensorType){
 sensors.register("accelerometer", sensors.delay.ui).on("change", (event, ax, ay, az)=>{
     ui.accelerometer.setText(util.format("x方向加速度: %d\ny方向加速度: %d\nz方向加速度: %d", ax, ay, az));
 });
+
 //方向传感器
 sensors.register("orientation", sensors.delay.ui).on("change", (event, dx, dy, dz)=>{
     ui.orientation.setText(util.format("绕x轴转过角度: %d\n绕y轴转过角度: %d\n绕z轴转过角度: %d", dx, dy, dz));
 });
+
 //陀螺仪传感器
 sensors.register("gyroscope", sensors.delay.ui).on("change", (event, wx, wy, wz)=>{
     ui.gyroscope.setText(util.format("绕x轴角速度: %d\n绕y轴角速度: %d\n绕z轴角速度: %d", wx, wy, wz));
 });
+
 //磁场传感器
 sensors.register("magnetic_field", sensors.delay.ui).on("change", (event, bx, by, bz)=>{
     ui.magnetic_field.setText(util.format("x方向磁场强度: %d\ny方向磁场强度: %d\nz方向磁场强度: %d", bx, by, bz));
