@@ -1,4 +1,4 @@
-auto()
+
 auto.waitFor()
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"

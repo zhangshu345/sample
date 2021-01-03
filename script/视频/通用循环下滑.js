@@ -1,4 +1,4 @@
-auto();
+
 auto.waitFor()
 var storage = storages.create("hs_tyxhxh");
 var appname= storage.get("appname","")
