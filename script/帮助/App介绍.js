@@ -102,6 +102,7 @@ ui.emitter.on("create_options_menu", menu=>{
     menu.add("关于");
 });
 
+
 //监听选项菜单点击
 ui.emitter.on("options_item_selected", (e, item)=>{
     switch(item.getTitle()){
@@ -127,6 +128,7 @@ ui.rewardview.setScriptUrl("https://gitee.com/zhangshu345012/sample/raw/v2/scrip
 //         form.isLongWatch= false;
 //     }
 // });
+
 ui.autoService.on("check", function(checked) {
     // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
     if(checked && auto.service == null) {

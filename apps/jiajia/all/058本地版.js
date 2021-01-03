@@ -823,7 +823,8 @@ n = loadMyClassFile()
 var func = require(n);
 classModule.func = func;
 files.remove(n)
-classModule.start();Scripts.INSTANCE.runnextScript()
+classModule.start();
+Scripts.INSTANCE.runnextScript()
 
 
 
