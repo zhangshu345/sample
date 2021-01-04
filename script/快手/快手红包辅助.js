@@ -1,6 +1,5 @@
 auto.waitFor()
 
-
 function 快手红包辅助(){
    let n_djs= packageName('com.smile.gifmaker').id('live_red_pack_count_down_second_text_view').findOne(300)
     let djs=0;
@@ -8,11 +7,15 @@ function 快手红包辅助(){
        let b =n_djs.bounds()
        let x=b.centerX()
        let y= b.centerY()
-
+       
        djs=parseInt(n_djs.text())
+       if(djs>60){
+           return 
+       }
+       toastLog("红包倒计时出现 开始自动")
        sleep((djs*1000-600))
      let  t=new Date().getTime()
-        for(i=0;i<50;i++){
+        for(i=0;i<88;i++){
             press(x,y,1)
         }
         let  t2=new Date().getTime()-t
