@@ -23,14 +23,7 @@
     "notificationsurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/notification.json",
     "messagesurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/messageurl.json",
     "historys": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/apphistory.json",
-    "inviteactions": [
-        {
-            "name": "快手极速版",
-            "pkg": "com.kuaishou.nebula",
-            "open": true,
-            "action": ["" ]
-        }
-    ],
+    "inviteactions":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/inviteactions.json",
     "barbuttons": {
         "ui": {
             "type": 1,
@@ -547,6 +540,11 @@
         }
     ],
     "keys": [
+        {
+            "name": "inviteratio",
+            "value":  "1:1",
+            "summary": "代理邀请比例"
+        },
         {
             "name": "closewakeuppackages",
             "value":  "com.tencent.mm|com.tencent.mobileqq",
