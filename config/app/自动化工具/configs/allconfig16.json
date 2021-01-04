@@ -540,8 +540,15 @@
         }
     ],
     "keys": [
-        {
-            "name": "inviteratio",
+        {  "name": "douyin",
+            "value":  "",
+            "summary": "抖音号"
+        },
+        {  "name": "kuaishou",
+            "value":  "",
+            "summary": "快手号"
+        },
+        {  "name": "inviteratio",
             "value":  "1:1",
             "summary": "代理邀请比例"
         },
@@ -1031,7 +1038,7 @@
             "open": false,
             "coin": 100,
             "money": 0,
-            "event": 204,
+            "event": 212,
             "time": 5,
             "interval": 1800,
             "finishname": "点此实现",
@@ -1301,7 +1308,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 203,
@@ -1312,7 +1319,7 @@
             "icon": "@drawable/ic_kuaishou_48dp",
             "imgsize": 36,
             "rewardtype": 1,
-            "key": "key_action_reward_share",
+            "key": "key_action_order_kuaishou",
             "script": ""
         },
         {
@@ -1322,10 +1329,10 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
-            "event": 231,
+            "event": -1,
             "time": 5,
             "interval": 1800,
             "finishname": "点此关注",
@@ -1333,7 +1340,7 @@
             "icon": "@drawable/ic_douyin_48dp",
             "imgsize": 36,
             "rewardtype": 1,
-            "key": "key_action_order_kuaishou",
+            "key": "key_action_order_douyin",
             "script": ""
         },
         {
@@ -1354,7 +1361,7 @@
             "icon": "@drawable/ic_weixin_ordergroup_48dp",
             "imgsize": 36,
             "rewardtype": 1,
-            "key": "key_action_order_douyin",
+            "key": "key_action_order_weixin",
             "script": ""
         },
         {
@@ -1396,13 +1403,13 @@
             "icon": "@drawable/ic_app_permission_48dp",
             "imgsize": 36,
             "rewardtype": 1,
-            "key": "key_action_reward_share",
+            "key": "",
             "script": "/script/model-fragmenttype:权限说明"
         },
         {
             "id": 1320,
             "title": "软件版本",
-            "summary": "当前版本:V1.1.4",
+            "summary": "当前版本:V1.1.6",
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
@@ -1468,7 +1475,7 @@
             "titlecolor": "",
             "summarycolor": "",
             "level": 0,
-            "open": false,
+            "open": true,
             "coin": 100,
             "money": 0,
             "event": 212,
