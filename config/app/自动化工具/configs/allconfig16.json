@@ -557,11 +557,25 @@
             "value":  "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
             "summary": "兑换"
         },
-        
         {
             "name": "baiduconfigurl",
             "value": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/baidu/configs.json",
             "summary": "APP百度语音配置列表"
+        },
+        {
+            "name": "baiduappid",
+            "value": "23082942",
+            "summary": "百度appid"
+        },
+        {
+            "name": "baiduapikey",
+            "value": "gVGK1vmFoTrl8TCiEZU4RvET",
+            "summary": "百度ak"
+        },
+        {
+            "name": "baidusecretkey",
+            "value": "I2c0tfHBjrMZbQuACwZaIoguG1RlbdDP",
+            "summary": "百度语音sk"
         },
         {
             "name": "inviteurl",
