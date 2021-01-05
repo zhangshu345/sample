@@ -669,7 +669,7 @@
         },
         {
             "name": "userid",
-            "value": "id:",
+            "value": "邀请码:",
             "summary": "用户id前缀"
         },
         {
@@ -1217,7 +1217,6 @@
             "key": "key_action_small_video",
             "script": ""
         },
-       
         {
             "id": 980,
             "title": "评价",
