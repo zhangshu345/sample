@@ -37,7 +37,7 @@
  {"name":"映客直播极速版",
     "pkg":"com.sss.ss",
     "level":0,
-    "invitetype":"微信绑定","open":false,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"支付宝","bindphone":true,
+    "invitetype":"微信绑定","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"支付宝","bindphone":true,
     "desc":"微信点击邀请链接进入绑定  首次可提现0.3元 无条件 需要审核",
     "step":"",
     "inviteurls":[{"name":"2264","code":"0","url":""}]
@@ -46,7 +46,7 @@
  {"name":"荔枝铃声",
     "pkg":"com.sss.ss",
     "level":0,
-    "invitetype":"邀请码填写","open":false,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
+    "invitetype":"邀请码填写","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
     "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
     "step":"",
     "inviteurls":[{"name":"2264","code":"518158748","url":"http://lizhi.amghako.cn/1D3tF5zT"}
@@ -56,7 +56,7 @@
  {"name":"58本地版",
     "pkg":"com.sss.ss",
     "level":0,
-    "invitetype":"剪贴板","open":false,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
+    "invitetype":"剪贴板","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
     "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
     "step":"",
     "inviteurls":[{"name":"2264","code":"518158748","url":"复制这段文字#0#10=d4t94R00#0#打开58本地版APP，接受邀请开始赚钱\n点击链接，下载58本地版https://i.58.com/42GbnD"}
@@ -66,7 +66,7 @@
  {"name":"刷宝短视频",
     "pkg":"com.sss.ss",
     "level":0,
-    "invitetype":"剪贴板","open":false,"firstreward":0.3,"sumreward":3.76,"tomoneytype":"微信","bindphone":false,
+    "invitetype":"剪贴板","open":true,"firstreward":0.3,"sumreward":3.76,"tomoneytype":"微信","bindphone":false,
     "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
     "step":"",
     "inviteurls":[{"name":"2264","code":"9X4T2X","url":"点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n填我邀请码【9X4T2X】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"}
