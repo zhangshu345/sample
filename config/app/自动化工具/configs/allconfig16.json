@@ -987,6 +987,27 @@
     ],
     "activity": [
         {
+            "id": 0,
+            "title": "应用邀请码配置",
+            "summary": "代理人 应用邀请码配置",
+            "titlecolor": "",
+            "summarycolor": "#ffff00",
+            "level": 99,
+            "open": true,
+            "coin": 0,
+            "money": 0,
+            "event": -1,
+            "time": 5,
+            "interval": 10000000,
+            "finishname": "已经填写",
+            "nofinishname": "点此填写",
+            "icon": "@drawable/ic_faceback_48dp",
+            "imgsize": 36,
+            "rewardtype": 1,
+            "key": "",
+            "script": "/script/appinviteconfig"
+        },
+        {
             "id": 1,
             "title": "填写邀请码",
             "summary": "填写邀请人的邀请码获取邀请人赠送礼物",
@@ -1196,27 +1217,7 @@
             "key": "key_action_small_video",
             "script": ""
         },
-        {
-            "id": 900,
-            "title": "幸运转盘抽奖",
-            "summary": "每日转盘抽奖，轻轻松松中大奖",
-            "titlecolor": "",
-            "summarycolor": "",
-            "level": 0,
-            "open": false,
-            "coin": 100,
-            "money": 0,
-            "event": 202,
-            "time": 100,
-            "interval": 600,
-            "finishname": "领取奖励",
-            "nofinishname": "每日抽奖",
-            "icon": "@drawable/ic_luckpan_48dp",
-            "imgsize": 36,
-            "rewardtype": 1,
-            "key": "key_action_reward_luck",
-            "script": ""
-        },
+       
         {
             "id": 980,
             "title": "评价",
