@@ -242,8 +242,8 @@
             {
                 "index": 8,
                 "name": "调试",
-                "open": true,
-                "level": 0,
+                "open": false,
+                "level": 11,
                 "icon": "@drawable/ic_circular_menu_settings",
                 "icontint": "#ffffff",
                 "back": "",
