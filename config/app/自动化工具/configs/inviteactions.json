@@ -1,78 +1,232 @@
 [
-{"name":"趣头条",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"微信绑定",
-    "open":true,"firstreward":1.0,"sumreward":0,"tomoneytype":"微信-支付宝","bindphone":true,
-    "desc":"微信点击邀请链接进入绑定邀请 首次可提现1元  无条件,绑定手机号设置密码会掉账号 重新一键微信登录 提现还可以支付宝 没有测试  邀请 新人9元三次 老用户找回 3-6",
-    "step":"",
-    "inviteurls":[{"name":"2264","code":"","url":"帮我点一下，咱俩都有钱，当天提现！http://8q.zqdzhs.com/R9oOM6aq/mbBL.html"}]
- },
- 
- {"name":"抖音极速版",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"剪贴板",
-    "open":true,"firstreward":0.3,
-    "sumreward":10.0,
-    "tomoneytype":"支付宝","bindphone":true,
-     "desc":"复制邀请链接进入弹出接收邀请页面 首次可提现1元 无条件,绑定手机号设置密码会掉账号  提现直接支付宝 没有测试  邀请 新人9元 完成任务 新人十元邀请任务再要一人立即提现",
-     "step":"",
-     "inviteurls":[{"name":"2264","code":"81480277","url":"红包邀请码【81480277】\n   下载【抖音极速版】，填我邀请码【81480277】，新用户当天必得5元现金红包，可直接提现"}]
- },
- 
- {"name":"快手极速版",
-    "pkg": "com.kuaishou.nebula",
-    "level":0,
-    "invitetype":"剪贴板","open":true,"firstreward":0.3,"sumreward":10.0,"tomoneytype":"微信-支付宝","bindphone":true,
-     "desc":"复制邀请链接进入弹出接收邀请页面 首次可提现1元 无条件,绑定手机号设置密码会掉账号  提现直接微信 去除第一个月每日两元  邀请 新人9元 完成任务 最高36元 账号不同 奖励不同",
-     "step":"",
-     "inviteurls":[
-         {"name":"1081","code":"848322072","url":"##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"},
-         {"name":"1081","code":"983385836","url":"##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"},
-         {"name":"1081","code":"968381130","url":"##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"}
-        ]
- },
- 
- {"name":"映客直播极速版",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"微信绑定","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"支付宝","bindphone":true,
-    "desc":"微信点击邀请链接进入绑定  首次可提现0.3元 无条件 需要审核",
-    "step":"",
-    "inviteurls":[{"name":"2264","code":"0","url":""}]
- },
- 
- {"name":"荔枝铃声",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"邀请码填写","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
-    "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
-    "step":"",
-    "inviteurls":[{"name":"2264","code":"518158748","url":"http://lizhi.amghako.cn/1D3tF5zT"}
-    ,{"name":"1081","code":"547085208","url":"http://lizhi.amghako.cn/1D3tF5zT"}]
- },
- 
- {"name":"58本地版",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"剪贴板","open":true,"firstreward":0.3,"sumreward":6.0,"tomoneytype":"微信","bindphone":true,
-    "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
-    "step":"",
-    "inviteurls":[{"name":"2264","code":"518158748","url":"复制这段文字#0#10=d4t94R00#0#打开58本地版APP，接受邀请开始赚钱\n点击链接，下载58本地版https://i.58.com/42GbnD"}
-    ,{"name":"1081","code":"547085208","url":"http://lizhi.amghako.cn/1D3tF5zT"}]
- },
- 
- {"name":"刷宝短视频",
-    "pkg":"com.sss.ss",
-    "level":0,
-    "invitetype":"剪贴板","open":true,"firstreward":0.3,"sumreward":3.76,"tomoneytype":"微信","bindphone":false,
-    "desc":"直接微信登录 绑定手机 绑定微信 提现成功 ",
-    "step":"",
-    "inviteurls":[{"name":"2264","code":"9X4T2X","url":"点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n填我邀请码【9X4T2X】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"}
-    ,{"name":"1081","code":"APV3EA3","url":"点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n 填我邀请码【APV3EA3】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"}]
- }
- 
- ]
- 
- 
+   {
+      "name": "趣头条",
+      "pkg": "com.jifen.qukan",
+      "level": 0,
+      "invitetype": "微信绑定",
+      "open": true,
+      "firstreward": 1,
+      "sumreward": 9,
+      "tomoneytype": "微信-支付宝",
+      "bindphone": true,
+      "desc": "微信点击邀请链接进入绑定邀请 首次可提现1元  无条件,绑定手机号设置密码会掉账号 重新一键微信登录 提现还可以支付宝 没有测试  邀请 新人9-13元 老用户找回 3-6元",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2999",
+            "code": "http://kqb9.jk-jt.cn/dmPg1Sfe/mbBL.html",
+            "url": "有事找你，帮个忙，登录趣头条，咱俩都有钱拿http://kqb9.jk-jt.cn/dmPg1Sfe/mbBL.html"
+         },
+         {
+            "name": "2264",
+            "code": "http://8q.zqdzhs.com/R9oOM6aq/mbBL.html",
+            "url": "帮我点一下，咱俩都有钱，当天提现！http://8q.zqdzhs.com/R9oOM6aq/mbBL.html"
+         }
+      ]
+   },
+   {
+      "name": "抖音极速版",
+      "pkg": "com.ss.android.ugc.aweme.lite",
+      "level": 0,
+      "invitetype": "剪贴板",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 10.0,
+      "tomoneytype": "支付宝",
+      "bindphone": true,
+      "desc": "复制邀请链接进入弹出接收邀请页面 首次可提现1元 无条件,绑定手机号设置密码会掉账号  提现直接支付宝 没有测试  邀请 新人9元 完成任务 新人十元邀请任务再要一人立即提现",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "81480277",
+            "url": "红包邀请码【81480277】\n   下载【抖音极速版】，填我邀请码【81480277】，新用户当天必得5元现金红包，可直接提现"
+         },
+         {
+            "name": "2999",
+            "code": "8783306741",
+            "url": "红包邀请码【8783306741】\n   下载【抖音极速版】，填我邀请码【8783306741】，新用户当天必得5元现金红包，可直接提现"
+         }
+      ]
+   },
+   {
+      "name": "快手极速版",
+      "pkg": "com.kuaishou.nebula",
+      "level": 0,
+      "invitetype": "剪贴板",
+      "open": true,
+      "firstreward": 1,
+      "sumreward": 10.0,
+      "tomoneytype": "微信-支付宝",
+      "bindphone": true,
+      "desc": "复制邀请链接进入弹出接收邀请页面 首次可提现1元 无条件,绑定手机号设置密码会掉账号  提现直接微信 去除第一个月每日两元  邀请 新人9元 完成任务 最高36元 账号不同 奖励不同",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "1081",
+            "code": "848322072",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"
+         },
+         {
+            "name": "2264",
+            "code": "983385836",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"
+         },
+         {
+            "name": "2999",
+            "code": "552600518",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：552600518"
+         }
+      ]
+   },
+   {
+      "name": "映客直播极速版",
+      "pkg": "com.sss.ss",
+      "level": 0,
+      "invitetype": "微信绑定",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 6.0,
+      "tomoneytype": "支付宝",
+      "bindphone": true,
+      "desc": "微信点击邀请链接进入绑定  首次可提现0.3元 无条件 需要审核",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "0",
+            "url": ""
+         }
+      ]
+   },
+   {
+      "name": "荔枝铃声",
+      "pkg": "com.sss.ss",
+      "level": 0,
+      "invitetype": "邀请码填写",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 6.0,
+      "tomoneytype": "微信",
+      "bindphone": true,
+      "desc": "直接微信登录 绑定手机 绑定微信 提现成功 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "518158748",
+            "url": "http://lizhi.amghako.cn/1D3tF5zT"
+         },
+         {
+            "name": "1081",
+            "code": "547085208",
+            "url": "http://lizhi.amghako.cn/1D3tF5zT"
+         }
+      ]
+   },
+   {
+      "name": "惠头条",
+      "pkg": 	"com.cashtoutiao",
+      "level": 0,
+      "invitetype": "邀请码",
+      "open": true,
+      "firstreward": 1,
+      "sumreward": 11,
+      "tomoneytype": "微信",
+      "bindphone": true,
+      "desc": "直接微信登录 绑定手机 绑定微信 提现成功 首邀好友填写邀请码双方各得3元  ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2999",
+            "code": "30147049",
+            "url": "【现金福利】填写我的邀请码30147049，你+3元，可直接提现微信，1秒到账↓↓点击现在提现哇↓↓http://a13.app.qq.com/o/simple.jsp?pkgname=com.cashtoutiao&ckey=CK1371495011623"
+         }
+      ]
+   },
+   {
+      "name": "惠运动",
+      "pkg": 	"com.cashwalk",
+      "level": 0,
+      "invitetype": "邀请码",
+      "open": true,
+      "firstreward": 0.36,
+      "sumreward": 3,
+      "tomoneytype": "微信",
+      "bindphone": true,
+      "desc": "直接微信登录 绑定手机 绑定微信 提现成功 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2999",
+            "code": "32742988",
+            "url": "【惠运动用户专享】来哇一起赚钱呀！填写我的邀请码32742988帮我助力,你可以免费拿1块钱哦http://a.app.qq.com/o/simple.jsp?pkgname=com.cashwalk&ckey=CK1445960612671"
+         }
+      ]
+   },
+   {
+      "name": "火山极速版",
+      "pkg": 		"com.ss.android.ugc.livelite",
+      "level": 0,
+      "invitetype": "邀请码",
+      "open": true,
+      "firstreward": 1,
+      "sumreward": 29,
+      "tomoneytype": "微信-支付宝",
+      "bindphone": true,
+      "desc": "直接微信登录  绑定微信 提现成功 可以绑定手机，邀请好友看视频最多可获得29元 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2999",
+            "code": "242249819",
+            "url": "下载【火山极速版】填我邀请码【242249819】即可领最高【29元】红包 红包可立即提现 复制此消息可自动填邀请码（，红包48小时内有效）"
+         }
+      ]
+   },
+   {
+      "name": "火火视频极速版",
+      "pkg": "com.jt.hanhan.video",
+      "level": 0,
+      "invitetype": "邀请码",
+      "open": true,
+      "firstreward": 1,
+      "sumreward": 29,
+      "tomoneytype": "微信-支付宝",
+      "bindphone": true,
+      "desc": "直接微信绑定 下载后微信登录 提现成功 可以不绑定手机，邀请好友立即得2元 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2999",
+            "code": "A198299533",
+            "url": "http://huohuo.wegoit.cn/mtev/Q5s5.html?pid=6032defa&app_id=50"
+         }
+      ]
+   },
+   {
+      "name": "刷宝短视频",
+      "pkg": "com.jm.video",
+      "level": 0,
+      "invitetype": "剪贴板",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 37.6,
+      "tomoneytype": "微信",
+      "bindphone": false,
+      "desc": "直接微信登录 可不绑定手机 绑定微信 提现0.3成功 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "9X4T2X",
+            "url": "点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n填我邀请码【9X4T2X】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"
+         },
+         {
+            "name": "2999",
+            "code": "AHX6BWM",
+            "url": "点击【http://t.cn/Ai18Qy3J】下载【刷宝APP】看视频赚零花钱一元可立即提现到微信填我邀请码【AHX6BWM】复制信息打开刷宝APP自动填邀请码立即赚钱！"
+         }
+      ]
+   }
+]

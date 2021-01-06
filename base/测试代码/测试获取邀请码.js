@@ -1,0 +1,1 @@
+log(getInviteCode("com.kuaishou.nebula"))
