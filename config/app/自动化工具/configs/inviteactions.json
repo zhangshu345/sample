@@ -79,27 +79,7 @@
          }
       ]
    },
-   {
-      "name": "映客直播极速版",
-      "pkg": "com.sss.ss",
-      "level": 0,
-      "invitetype": "微信绑定",
-      "open": true,
-      "firstreward": 0.3,
-      "sumreward": 6.0,
-      "tomoneytype": "支付宝",
-      "bindphone": true,
-      "desc": "微信点击邀请链接进入绑定  首次可提现0.3元 无条件 需要审核",
-      "step": "",
-      "inviteurls": [
-         {
-            "name": "2264",
-            "code": "0",
-            "url": ""
-         }
-      ]
-   },
-   {
+    {
       "name": "荔枝铃声",
       "pkg": "com.sss.ss",
       "level": 0,
