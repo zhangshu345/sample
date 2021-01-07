@@ -1787,57 +1787,6 @@
     ],
     "tag": [
         {
-            "id": 0,
-            "name": "帮助",
-            "ui": {
-                "type": 2,
-                "orientation": 1,
-                "size": 2,
-                "reverselayout": false
-            },
-            "state": 1,
-            "icon": "",
-            "level": 200,
-            "source": 2,
-            "desc": "app内脚本的使用教程",
-            "url": "https://gitee.com/zhangshu345012/sample/raw/v2/config/scripts/新帮助.json",
-            "img": ""
-        },
-        {
-            "id": 0,
-            "name": "网友分享",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 1,
-            "icon": "",
-            "level": 2,
-            "source": 2,
-            "desc": "东东学习分析",
-            "url": "https://gitee.com/wenshuihongdong/wenshuihongdong/raw/v1/标签/王东.json",
-            "img": ""
-        },
-        {
-            "id": 1,
-            "name": "记录",
-            "ui": {
-                "type": 1,
-                "orientation": 1,
-                "size": 3,
-                "reverselayout": false
-            },
-            "state": 1,
-            "icon": "",
-            "level": 2,
-            "source": 4,
-            "desc": "工具使用记录",
-            "url": "",
-            "img": ""
-        },
-        {
             "id": 2,
             "name": "VIP",
             "ui": {

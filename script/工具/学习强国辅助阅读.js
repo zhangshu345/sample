@@ -1,4 +1,4 @@
-auto();
+
 auto.waitFor()
 
 function httpget(url) {

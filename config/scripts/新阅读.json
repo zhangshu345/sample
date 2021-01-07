@@ -8,22 +8,8 @@
         "tags": [
             "推荐"
         ],
-        "devices": [
-            "xiaomi",
-            "samsung",
-            "HONOR",
-            "Meizu",
-            "OPPO"
-        ],
-        "features": [],
         "open": true,
         "install": true,
-        "keys": [
-            {
-                "name": "测试",
-                "value": "值"
-            }
-        ],
         "layout": {
             "type": 1,
             "orientation": 1,
@@ -62,7 +48,7 @@
             "runtime": 3600,
             "seenews": 0,
             "seevideo": 0,
-            "seeshortvideo": 0,
+            "seeshortvideo":0,
             "sign": true,
             "time": 3000,
             "devicemanager": false,
@@ -110,19 +96,7 @@
             "weixin": "jiajiajia",
             "phone": "1871768888"
         },
-        "level": 0,
-        "version": 0,
-        "appversioni": 10,
-        "requestapi": 10,
-        "icon": "",
-        "app": {
-            "name": "",
-            "pkg": "",
-            "icon": "",
-            "downloadurl": "",
-            "version": "",
-            "versioni": 0
-        }
+        "level": 0
     },
     {
         "name": "66联盟",
@@ -145,10 +119,7 @@
         "open": true,
         "install": true,
         "keys": [
-            {
-                "name": "测试",
-                "value": "值"
-            }
+          
         ],
         "layout": {
             "type": 1,
@@ -161,14 +132,6 @@
             "size": 0,
             "textsize": 6,
             "buttons": [
-                {
-                    "name": "下载",
-                    "eventid": -1,
-                    "script": "",
-                    "uipath": "",
-                    "icon": "",
-                    "key": ""
-                }
             ]
         },
         "pay": {
@@ -8054,15 +8017,8 @@
         "version": 0,
         "appversioni": 10,
         "requestapi": 10,
-        "icon": "",
-        "app": {
-            "name": "",
-            "pkg": "",
-            "icon": "",
-            "downloadurl": "",
-            "version": "",
-            "versioni": 0
-        }
+        "icon": ""
+  
     },
     {
         "name": "集好视频",
