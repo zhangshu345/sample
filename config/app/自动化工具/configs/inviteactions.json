@@ -83,7 +83,7 @@
       "name": "荔枝铃声",
       "pkg": "com.sss.ss",
       "level": 0,
-      "invitetype": "邀请码填写",
+      "invitetype": "邀请码",
       "open": true,
       "firstreward": 0.3,
       "sumreward": 6.0,

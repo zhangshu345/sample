@@ -83,9 +83,6 @@ ui.emitter.on("options_item_selected", (e, item)=>{
     e.consumed = true;
 });
 activity.setSupportActionBar(ui.toolbar);
-
-
-
 // ui.no_watch.on("check",function(check){
 //     if(check){
 //         form.isLongWatch= false;

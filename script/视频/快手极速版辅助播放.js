@@ -67,6 +67,6 @@ while(true){
             }
     }else{
         log("快手极速版未在前台")
-        sleep(30000)
+        sleep(15000)
     }
 }

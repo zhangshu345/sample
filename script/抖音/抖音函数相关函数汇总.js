@@ -15,7 +15,6 @@ function 抖音到视频页(awemeId){
     });
 }
 
-
 //通过长连接 获取用户id 
 function parseUserIdWithLongUrl(url)
 {
