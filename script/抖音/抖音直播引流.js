@@ -12,7 +12,7 @@ function showui(){
                 <viewpager id="viewpager">
                     <vertical>
                         <button id="bt_save1" text="保存本页配置"></button>
-                        <text text="输入搜索直播商品名称，输入多个名称时，以 - 分割。 举例 酒-白酒-红酒-葡萄酒" textColor="black" textSize="16sp"/>
+                        <text text="输入搜索直播商品名称，输入多个名称时，以 ， 分割。 举例 酒，白酒，红酒-葡萄酒" textColor="black" textSize="16sp"/>
                         <input id="in_spm" hint="在此输入商品分类" ></input>
                         <text  text="单一直播间引流时间设置 最长时间(以分钟为单位)。举例 10分钟 输入数字 10"></text>
                         <input id="in_onelivetime" inputType="number" hint="在此输入时间 （分钟）" ></input>
@@ -203,7 +203,7 @@ function getSaveConfig(){
     }
      商品内容=storage.get("shangpincontent")
     if(商品内容){
-            let sps=商品内容.split("-")
+            let sps=商品内容.split("，")
             if(sps){
                 商品名=[]
                 sps.forEach(s=>{

@@ -1,1 +1,2 @@
-aroutergourl("\/script\/videoedit") 
+// aroutergourl("\/script\/usermain") 
+weixinScan()

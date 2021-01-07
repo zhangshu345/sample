@@ -24,7 +24,7 @@ var whiteapps=["微信","京东","淘宝","冰箱","开发者助手","云闪付"
 
 var readerapps=["微信","京东","冰箱","开发者助手","云闪付","支付宝","多开分身","手机营业厅","哪吒","Shizuku","QQ浏览器",
 "快手","微视","QQ","拼多多","酷安","搜狗输入法","讯飞输入法","随便粘"]
-var scriptapps={"随便粘":204,"东东随便":0}
+var scriptapps={"随便粘":204}  // 应用版本号保持脚本一致
 const shizukuweburl="http://zhangshuhong888.iask.in:8989/shizuku5.0.apk"
 const sdtotalsize=SDCardUtils.getExternalTotalSize()
 log("内存总大小:"+sdtotalsize)
@@ -38,12 +38,13 @@ const disableapps=["AT&T ProTech","Caller Name ID","游戏中心","Google Play �
 ]
 
 var shizukuok=false
-var 多分分身邀请码=["FA9X9K"]
+
 var admanager=AdviceManager.getInstance();
 var 数据库= storages.create("hongshuyuedu");
 var nowdate=function(){return new Date()};
 var scriptstarttime=nowdate().getTime()
 var scriptruntime=function(){return parseInt((nowdate().getTime()-scriptstarttime)/1000)}
+
 var rewardapplisturl="https://gitee.com/zhangshu345012/sample/raw/v2/config/newrewardapplist.json"  //奖励app 运行的配置文件的路径
 var today=function(){let td=nowdate();return td.getFullYear()+"_"+td.getMonth()+"_"+td.getDate();}
 var enablegenius=device.sdkInt>=24
@@ -52,7 +53,6 @@ var weixinloginactivity="com.tencent.mm.plugin.webview.ui.tools.SDKOAuthUI"  //�
 var dpm
 var deviceadmincomponent
 var changesetting=false //是否改变亮度和音量的标识
-
 
 var 记录=function(name,key,n){   
 if(name){
@@ -3006,7 +3006,6 @@ var startapp=function(appname,apppkg,floatyx,floatyy,isshowsettingfloaty,isdevic
     try {
         app_run()
     }catch (error) {
-
     }
     }
 }
@@ -3044,8 +3043,6 @@ var  sweep_up_pkg_activity_content=function(pkg,biaozhis,sweepaction,goactivitya
         }
     },chixutime)
 }
-
-
 
 var installshizuku=function(){
     systemdownloadApk("Shizuku",shizukuweburl,true)

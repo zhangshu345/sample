@@ -19,7 +19,7 @@ log("是否为空"+(nos!=null))
 // w.uianaly.setNodes(nos)
 
 // log(com.alibaba.fastjson.JSON.toJSONString(nos))
-log("结束")
+// log("结束")
 
 events.onceKeyUp("KEYCODE_BACK",function(event){
     w.close()
