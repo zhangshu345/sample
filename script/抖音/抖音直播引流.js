@@ -213,7 +213,7 @@ function getSaveConfig(){
                 })
             }
     }else{
-        商品内容="商品1-商品2-商品3"
+        商品内容="商品1，商品2，商品3"
         toastLog("搜索商品为空") 
     }
     onetime=storage.get("onelivetime")
