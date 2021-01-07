@@ -1483,7 +1483,7 @@
             "interval": 1800,
             "finishname": "点此联系",
             "nofinishname": "点此联系",
-            "icon": "",
+            "icon": "@drawable/ic_coin",
             "imgsize": 36,
             "rewardtype": 1,
             "key": "key_action_joinus",
