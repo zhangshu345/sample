@@ -51,4 +51,6 @@ ui.layout(
     </vertical>
 )
 
-ui.webview.loadUrl("http://www.autojs.org");
+let ua=ui.webview.getSettings().getUserAgentString()
+log(ua)
+ui.webview.loadUrl("http://www.baidu.com");
