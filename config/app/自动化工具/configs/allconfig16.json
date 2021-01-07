@@ -1332,7 +1332,7 @@
             "open": true,
             "coin": 100,
             "money": 0,
-            "event": -1,
+            "event": 231,
             "time": 5,
             "interval": 1800,
             "finishname": "点此关注",
