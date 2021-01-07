@@ -538,7 +538,6 @@ function getUserInfo(secuid){
 }
 
 getSaveConfig()
-
     toastLog("开始抖音引流")
     auto.waitFor()
         直播页搜索()
@@ -547,7 +546,6 @@ getSaveConfig()
         log("一次循环")
         单一直播引流()
     },100)
-
 }
 
 

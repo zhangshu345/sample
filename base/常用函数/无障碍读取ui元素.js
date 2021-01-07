@@ -10,7 +10,6 @@ var w = floaty.rawWindow(
 w.setPosition(-1, com.blankj.utilcode.util.BarUtils.getStatusBarHeight());
 w.setSize(-1, -1);
 
-
 let acc=runtime.accessibilityBridge.getService()
 log("ss")
 log(acc)
