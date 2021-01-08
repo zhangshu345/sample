@@ -213,7 +213,7 @@ function main(url){
 }
 
 function 下载文件(fileurl,savefile){
-  log(typeof(fileurl))
+//   log(typeof(fileurl))
 
     var r = http.get(fileurl);
     if(r.statusCode == 200){
