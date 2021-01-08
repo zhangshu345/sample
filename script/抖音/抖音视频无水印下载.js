@@ -212,24 +212,44 @@ function main(url){
     }
 }
 
+function 下载文件(fileurl,savefile){
+  log(typeof(fileurl))
+
+    var r = http.get(fileurl);
+    if(r.statusCode == 200){
+    files.createWithDirs(savefile);
+    files.writeBytes(savefile, r.body.bytes());
+    toastLog("下载成功");
+    }
+}
+
 // var res =  main('https://v.douyin.com/JJTDEKL');
 //     console.log(res)
 
  var copyhistory=[]
-function 抖音无水印下载(content){
+ var sharetitle=""
+function 抖音无水印下载(content,savedir){
     // let content=getClip()
     if(content){
         // log(content)
         if(copyhistory.includes(content)){
             toastLog("已经存在了")
-            
         }else{
+            sharetitle=content.substring(0,6)
             copyhistory.push(content)
             url =url2shorturl(content)
-    if(url.startsWith("https://v.douyin.com")){
-        let res =  main(url);
-        toastLog(res.name+"   "+res.url)
-        setClip(res.name+"   "+res.url)
+        if(url && url.startsWith("https://v.douyin.com")){
+          let res =  main(url);
+         toastLog(res.name+"----"+res.url)
+         setClip(res.name+"---- "+res.url)
+            let savefile= "/sdcard/"+savedir+"/"
+            if(res.name){
+             savefile =savefile+res.name+".mp4"
+            }else{
+                savefile =savefile+sharetitle+".mp4"
+            }
+         下载文件(res.url+"",savefile)
+
     }else{
         // log("不是抖音链接")
     }
@@ -244,7 +264,7 @@ events.observeClip()
 events.on("clip",function(c){
     // log(c)
     threads.start(function(){
-        抖音无水印下载(c)
+        抖音无水印下载(c,savepath)
     })
 })
 setInterval(function(){},10000)
