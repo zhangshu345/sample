@@ -1,0 +1,169 @@
+{
+    "extra": {
+        "now": 1610033090000,
+        "logid": "20210107232450010198082072222C7673"
+    },
+    "status_code": 0,
+    "item_list": [
+        {
+            "image_infos": null,
+            "risk_infos": {
+                "warn": false,
+                "type": 0,
+                "content": ""
+            },
+            "long_video": null,
+            "group_id": 6828010107045957000,
+            "forward_id": "0",
+            "share_url": "https://www.iesdouyin.com/share/video/6828010107045956872/?region=&mid=6828010108912569102&u_code=48&titleType=title&did=0&iid=0",
+            "video_labels": null,
+            "is_preview": 0,
+            "is_live_replay": false,
+            "promotions": null,
+            "cha_list": null,
+            "share_info": {
+                "share_weibo_desc": "#在抖音，记录美好生活#特朗普又开怼了，这次是奥巴马。被问奥巴马批评其政府抗疫不力，特朗普：他是个无能的总统。",
+                "share_desc": "在抖音，记录美好生活",
+                "share_title": "特朗普又开怼了，这次是奥巴马。被问奥巴马批评其政府抗疫不力，特朗普：他是个无能的总统。"
+            },
+            "aweme_id": "6828010107045956872",
+            "desc": "特朗普又开怼了，这次是奥巴马。被问奥巴马批评其政府抗疫不力，特朗普：他是个无能的总统。",
+            "create_time": 1589769990,
+            "author": {
+                "unique_id": "rmrbxmt",
+                "followers_detail": null,
+                "platform_sync_info": null,
+                "geofencing": null,
+                "policy_version": null,
+                "type_label": null,
+                "signature": "参与、沟通、记录时代。",
+                "short_id": "1449765156",
+                "nickname": "人民日报",
+                "avatar_larger": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p29-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p1-dy-ipv6.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p26-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "avatar_thumb": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p9-dy.byteimg.com/aweme/100x100/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p1-dy-ipv6.byteimg.com/aweme/100x100/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p26-dy.byteimg.com/aweme/100x100/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "avatar_medium": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p26-dy.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p1-dy-ipv6.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p3-dy-ipv6.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "uid": "104255897823"
+            },
+            "geofencing": null,
+            "video_text": null,
+            "video": {
+                "vid": "v0200f6b0000br0vdu2j2bohn6fhk8v0",
+                "cover": {
+                    "uri": "tos-cn-p-0015/941ca05fca954592a4ac767db260af51_1589769993",
+                    "url_list": [
+                        "https://p29-dy.byteimg.com/img/tos-cn-p-0015/941ca05fca954592a4ac767db260af51_1589769993~c5_300x400.jpeg?from=2563711402_large",
+                        "https://p6-dy-ipv6.byteimg.com/img/tos-cn-p-0015/941ca05fca954592a4ac767db260af51_1589769993~c5_300x400.jpeg?from=2563711402_large",
+                        "https://p3-dy-ipv6.byteimg.com/img/tos-cn-p-0015/941ca05fca954592a4ac767db260af51_1589769993~c5_300x400.jpeg?from=2563711402_large"
+                    ]
+                },
+                "ratio": "540p",
+                "width": 720,
+                "dynamic_cover": {
+                    "uri": "tos-cn-p-0015/799d1106ec634900b7b16037b086e4e6_1589769992",
+                    "url_list": [
+                        "https://p5-dy-ipv6.byteimg.com/obj/tos-cn-p-0015/799d1106ec634900b7b16037b086e4e6_1589769992?from=2563711402_large",
+                        "https://p9-dy.byteimg.com/obj/tos-cn-p-0015/799d1106ec634900b7b16037b086e4e6_1589769992?from=2563711402_large",
+                        "https://p3-dy-ipv6.byteimg.com/obj/tos-cn-p-0015/799d1106ec634900b7b16037b086e4e6_1589769992?from=2563711402_large"
+                    ]
+                },
+                "origin_cover": {
+                    "uri": "tos-cn-p-0015/7ea0b56099b349e5b789817f9ba618e1_1589769992",
+                    "url_list": [
+                        "https://p26-dy.byteimg.com/tos-cn-p-0015/7ea0b56099b349e5b789817f9ba618e1_1589769992~tplv-dy-360p.jpeg?from=2563711402",
+                        "https://p6-dy-ipv6.byteimg.com/tos-cn-p-0015/7ea0b56099b349e5b789817f9ba618e1_1589769992~tplv-dy-360p.jpeg?from=2563711402",
+                        "https://p3-dy-ipv6.byteimg.com/tos-cn-p-0015/7ea0b56099b349e5b789817f9ba618e1_1589769992~tplv-dy-360p.jpeg?from=2563711402"
+                    ]
+                },
+                "has_watermark": true,
+                "bit_rate": null,
+                "duration": 12422,
+                "play_addr": {
+                    "url_list": [
+                        "https://aweme.snssdk.com/aweme/v1/play/?video_id=v0200f6b0000br0vdu2j2bohn6fhk8v0&ratio=720p&line=0"
+                    ],
+                    "uri": "v0200f6b0000br0vdu2j2bohn6fhk8v0"
+                },
+                "height": 1280
+            },
+            "duration": 12422,
+            "comment_list": null,
+            "author_user_id": 104255897823,
+            "music": {
+                "cover_large": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p29-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p6-dy-ipv6.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p9-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "cover_medium": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p6-dy-ipv6.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p1-dy-ipv6.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p3-dy-ipv6.byteimg.com/aweme/720x720/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "play_url": {
+                    "uri": "",
+                    "url_list": []
+                },
+                "position": null,
+                "status": 1,
+                "id": 6828010108912569000,
+                "mid": "6828010108912569102",
+                "title": "@人民日报创作的原声",
+                "duration": 12,
+                "author": "人民日报",
+                "cover_hd": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p29-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p6-dy-ipv6.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038",
+                        "https://p9-dy.byteimg.com/aweme/1080x1080/30ed2000aad26be101cad.jpeg?from=4010531038"
+                    ]
+                },
+                "cover_thumb": {
+                    "uri": "30ed2000aad26be101cad",
+                    "url_list": [
+                        "https://p3-dy-ipv6.byteimg.com/img/30ed2000aad26be101cad~c5_168x168.webp?from=4010531038",
+                        "https://p9-dy.byteimg.com/img/30ed2000aad26be101cad~c5_168x168.webp?from=4010531038",
+                        "https://p29-dy.byteimg.com/img/30ed2000aad26be101cad~c5_168x168.webp?from=4010531038",
+                        "https://p3-dy-ipv6.byteimg.com/img/30ed2000aad26be101cad~c5_168x168.jpeg?from=4010531038"
+                    ]
+                }
+            },
+            "aweme_type": 4,
+            "label_top_text": null,
+            "statistics": {
+                "play_count": 0,
+                "aweme_id": "6828010107045956872",
+                "comment_count": 84642,
+                "digg_count": 1856593
+            },
+            "text_extra": []
+        }
+    ]
+}

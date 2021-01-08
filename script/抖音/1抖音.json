@@ -8,7 +8,31 @@
     "root": false,
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音直播引流.js",
     "source": 2,
-    "level": 10
+    "level": 0
+},
+{
+    "name": "抖音视频转无水印",
+    "desc": {
+        "summary": "抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频转无水印.js",
+    "source": 2,
+    "level": 0
+},
+{
+    "name": "抖音视频转无水印下载",
+    "desc": {
+        "summary": "抖音视频复制分享链接自动转为无水印 并下载到指定文件夹",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频无水印下载.js",
+    "source": 2,
+    "level": 0
 },{
     "name": "抖音红包辅助",
     "desc": {
@@ -19,7 +43,7 @@
     "root": false,
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包辅助.js",
     "source": 2,
-    "level": 10
+    "level": 0
 },{
     "name": "抖音红包自动辅助",
     "desc": {

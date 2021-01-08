@@ -216,7 +216,7 @@ function main(url){
 //     console.log(res)
 
  var copyhistory=[]
-function 抖音无水印(content){
+function 抖音无水印下载(content){
     // let content=getClip()
     if(content){
         // log(content)
@@ -236,11 +236,15 @@ function 抖音无水印(content){
     }
  }
 }
+
+var savepath = rawInput("请输入无水印视频保存路径", "抖音无水印");
+alert("无水印保存路径为:"+savepath)
+
 events.observeClip()
 events.on("clip",function(c){
     // log(c)
     threads.start(function(){
-        抖音无水印(c)
+        抖音无水印下载(c)
     })
 })
 setInterval(function(){},10000)
