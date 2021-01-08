@@ -13,12 +13,24 @@
 {
     "name": "抖音视频转无水印",
     "desc": {
-        "summary": "抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
+        "summary": "android 10 以下可用 启动工具后，抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
         "html": ""
     },
     "open": true,
     "root": false,
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频转无水印.js",
+    "source": 2,
+    "level": 0
+},
+{
+    "name": "抖音视频手动转无水印",
+    "desc": {
+        "summary": "抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频转无水印UI.js",
     "source": 2,
     "level": 0
 },

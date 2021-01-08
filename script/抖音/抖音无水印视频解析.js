@@ -1,6 +1,6 @@
 var jsoup=org.jsoup.Jsoup
 const userAgent ='Mozilla/5.0 (Linux; Android '+device.release+' '+device.model+' Build/'+device.buildId+') AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.61 Mobile Safari/537.36';
-
+log(userAgent)
 // 短连接 通过网络 返回内容 获得长连接
 function shorturl2longurl(url){
     let shorturl=url2shorturl(url)
@@ -70,7 +70,7 @@ function requestNotRedirect(url){
     };
     let res= http.get(url,options)
     if(res.statusCode == 200){
-        // log("请求成功:"+res.url);
+        log("请求成功:"+res.url);
         
         return res
     }else{
@@ -217,12 +217,11 @@ function main(url){
 
  var copyhistory=[]
 function 抖音无水印(content){
-    // let content=getClip()
+     content=content || getClip()
     if(content){
-        // log(content)
+         log(content)
         if(copyhistory.includes(content)){
             toastLog("已经存在了")
-            
         }else{
             copyhistory.push(content)
             url =url2shorturl(content)
@@ -231,12 +230,16 @@ function 抖音无水印(content){
         toastLog(res.name+"   "+res.url)
         setClip(res.name+"   "+res.url)
     }else{
-        // log("不是抖音链接")
+         log("不是抖音链接")
     }
     }
+ }else{
+     log("content 为空")
  }
 }
-events.observeClip()
+
+function obstart(){
+    events.observeClip()
 events.on("clip",function(c){
     // log(c)
     threads.start(function(){
@@ -244,3 +247,13 @@ events.on("clip",function(c){
     })
 })
 setInterval(function(){},10000)
+}
+
+while(true){
+    let t1=new Date().getTime()
+    log("1")
+    抖音无水印(getClip())
+    log("2")
+    log("时间："+(new Date().getTime()-t1))
+    sleep(5000)
+}
