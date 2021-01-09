@@ -1,7 +1,9 @@
 "ui";
 var jsoup=org.jsoup.Jsoup
 const userAgent ='Mozilla/5.0 (Linux; Android '+device.release+' '+device.model+' Build/'+device.buildId+') AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/83.0.4103.61 Mobile Safari/537.36';
-
+var storage = storages.create("hs_dywsyxz");
+var lastsavedir=storage.get("lastsavedir")
+var autosetclip =storage.get("autosetclip")
 //分享出来的链接 获取 链接
 function url2shorturl(url){
     let urlRegex = /(https:\/\/v.douyin.com.*)/;
@@ -37,13 +39,14 @@ function requestNotRedirect(url){
     }
 }
 
-function 下载文件(fileurl,savefile){
+function 下载文件(fileurl,savedir,savefile){
     //   log(typeof(fileurl))
     
         var r = http.get(fileurl);
         if(r.statusCode == 200){
-        files.createWithDirs(savefile);
-        files.writeBytes(savefile, r.body.bytes());
+        files.createWithDirs(savedir+savefile);
+        files.writeBytes(savedir+savefile, r.body.bytes());
+        media.scanFile(savedir);
         toastLog("下载成功");
         }
     }
@@ -131,7 +134,10 @@ function 抖音无水印(content){
     if(url.startsWith("https://v.douyin.com")){
         let res =  main(url);
         toastLog(res.name+"   "+res.url)
-        setClip(res.name+"   "+res.url)
+        if(autosetclip){
+            setClip(res.name+"   "+res.url)
+        }
+        
     }else{
         // log("不是抖音链接")
     }
@@ -153,29 +159,43 @@ function obstart(){
 //显示界面
 function showUI(){
     ui.layout(
-    
+        <scroll>
         <vertical h="*"  margin="0 50">
-          
-             <text id="clip" w="*" gravity="center" color="#111111" size="16" >剪贴板内容</text>
+            <text  w="*"  color="#111111" gravity="center" size="16" >抖音视频无水印地址获取</text>
+             <text id="clip" w="*"  gravity="center" color="#111111" size="16" >剪贴板内容</text>
              <text  w="*"  color="#111111" size="16" >无水印地址</text>
 
-             <input id="novideo" w="*" h="40"/>
+             <input id="novideo" w="*" h="auto"/>
              <text  w="*" gravity="center" color="#111111" size="16" >视频保存目录</text>
              <input id="dir" w="*" h="40"/>
              <text  w="*" gravity="center" color="#111111" size="16" >视频保存文件名(自动添加后缀.mp4)</text>
              <input id="filename" w="*" h="40"/>
-   
-          <linear gravity="center">
-          <button id="getclip" text="获取剪贴板内容"/>
+             <checkbox id="autosetclip" marginLeft="4" marginRight="6"  text="复制无水印链接到剪贴板" />
+            <linear gravity="center">
+
+            <button id="getclip" text="获取剪贴板内容"/>
              <button id="change" text="获取无水印"/>
              <button id="download" text="下载"/>
           </linear>
+          <text >使用方式:先复制抖音分享链接到剪贴板，点击下方按钮 获取剪贴板内容，再点击 获取无水印 即可获取无水印地址 复制无水印地址到剪贴板 填写保存目录和保存文件名 点击下载自动下载视频到指定位置</text>
         </vertical>
+        </scroll>
      
     );
+    if(lastsavedir){
+        ui.dir.text(lastsavedir)
+    }
     ui.getclip.on("click",() =>{
         ui.clip.text(getClip())
     })
+
+ 
+    ui.autosetclip.setChecked(autosetclip)
+    ui.autosetclip.on("check", function (checked) {
+        //设置或取消中划线效果
+        autosetclip=checked
+       
+    });
     ui.change.on("click", () => {
       threads.start(function(){
           let content=ui.clip.getText()
@@ -188,7 +208,9 @@ function showUI(){
                 ui.novideo.setText(""+res.url)
             })
             toastLog(res.name+"   "+res.url)
-            setClip(res.name+"   "+res.url)
+            if(autosetclip){
+                setClip(res.name+"   "+res.url)
+            }
         }else{
             // log("不是抖音链接")
         }
@@ -197,10 +219,22 @@ function showUI(){
     
     function downloadfile(){
       let dir=ui.dir.text()
+      if(!dir){
+        alter("请填写好文件保存目录")
+        return 
+      }
       let filename=ui.filename.text()
+      if(!filename){
+          alert("请填写好文件保存名")
+          return
+      }
       let videourl=ui.novideo.text()
+      if(!videourl){
+          alert("请先获取无水印地址后再下载")
+          return
+      }
       threads.start(function(){
-          下载文件(videourl, "/sdcard/"+dir+"/"+filename+".mp4")
+          下载文件(videourl, "/sdcard/"+dir+"/",filename+".mp4")
       })
     }
 
@@ -210,6 +244,12 @@ function showUI(){
     ui.emitter.on("resume", () => {
         ui.clip.text(getClip())
     });
+   //当离开本界面时保存数据
+ui.emitter.on("pause", () => {
+    storage.put("lastsavedir", ui.dir.text());
+    storage.put("autosetclip", ui.autosetclip.isChecked());
+});
+
 }
 showUI()
 ui.statusBarColor("#000000")

@@ -6,7 +6,6 @@ var apphomeactivity="com.yxcorp.gifshow.HomeActivity"
 var appsignactivity="com.yxcorp.gifshow.webview.KwaiWebViewActivity" //金币展示页
 var appliveactivity="com.yxcorp.gifshow.detail.PhotoDetailActivity"  //直播页
 
-
 function 检测视频进度(){
     nowdesc=gettextFromid("com.kuaishou.nebula:id/label")
          if(nowdesc){

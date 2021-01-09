@@ -1,0 +1,25 @@
+[{
+    "name": "快手红包辅助",
+    "desc": {
+        "summary": " 出现红包倒计时对话框 自动识别时间 提前一秒开始连续快速点击 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/快手/1快手.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/快手/快手红包辅助.js",
+    "source": 2,
+    "level": 0
+},
+{
+    "name": "抖音直播引流",
+    "desc": {
+        "summary": "搜索相关 商品 进入直播间 私信 用户 ",
+        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音直播引流.js",
+    "source": 2,
+    "level": 0
+}
+]

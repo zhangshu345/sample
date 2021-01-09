@@ -79,7 +79,7 @@ ui.emitter.on("options_item_selected", (e, item)=>{
             app.startActivity('console');
             break;
         case "关于":
-            alert("关于", "强国助手 v1.0.5\n1.新增悬浮窗日志显示功能\n2.解决阅读时长任务的bug\n3.新增选项菜单");
+            alert("关于", "阅读助手 v1.0.5\n1.新增悬浮窗日志显示功能\n2.解决阅读时长任务的bug\n3.新增选项菜单");
             break;
     }
     e.consumed = true;
@@ -126,7 +126,6 @@ ui.stop.on("click",function(){
     exit();
     toast("已终止执行脚本");
 });
-
 
 function main() {
     // 这里写脚本的主逻辑

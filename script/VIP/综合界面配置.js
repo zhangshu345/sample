@@ -203,7 +203,7 @@ ui.layout(
 
 //#region 初始化方法
 
-initializeUI();
+ initializeUI();
 initializeData();
 initializeEvent();
 
@@ -218,9 +218,9 @@ function initializeUI() {
     ui.viewpager.overScrollMode = android.view.View.OVER_SCROLL_NEVER;//删除滑动到底时的边缘阴影
     //为页面设置渐变色背景
     permissionpage = ui.viewpager.childCount - 1 - 1;//授权页下标（启动页前一页）（启动页固定最后一页）
-    initializeFirstFrame();
+     initializeFirstFrame();
     initializeThreeFrame();
-    initializeRightMenu();
+     initializeRightMenu();
     initializeHeaderMenu();
 }
 /**
