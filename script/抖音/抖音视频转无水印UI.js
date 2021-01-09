@@ -49,7 +49,7 @@ function 下载文件(fileurl,savedir,savefile){
         media.scanFile(savedir);
         toastLog("下载成功");
         }
-    }
+}
     
 
 function getParam(url) {
@@ -141,7 +141,6 @@ function 抖音无水印(content){
     }else{
         // log("不是抖音链接")
     }
-    
  }
 }
 
