@@ -160,7 +160,7 @@ function showUI(){
     ui.layout(
         <scroll>
         <vertical h="*"  margin="0 50">
-            <text  w="*"  color="#111111" gravity="center" size="16" >抖音视频无水印地址获取</text>
+            <text  w="*"  color="#111111" gravity="center" size="16" >快手视频无水印地址获取</text>
              <text id="clip" w="*"  gravity="center" color="#111111" size="16" >剪贴板内容</text>
              <text  w="*"  color="#111111" size="16" >无水印地址</text>
 
@@ -176,7 +176,7 @@ function showUI(){
              <button id="change" text="获取无水印"/>
              <button id="download" text="下载"/>
           </linear>
-          <text >使用方式:先复制抖音分享链接到剪贴板，点击下方按钮 获取剪贴板内容，再点击 获取无水印 即可获取无水印地址 复制无水印地址到剪贴板 填写保存目录和保存文件名 点击下载自动下载视频到指定位置</text>
+          <text >使用方式:先复制快手分享链接到剪贴板，点击下方按钮 获取剪贴板内容，再点击 获取无水印 即可获取无水印地址 复制无水印地址到剪贴板 填写保存目录和保存文件名 点击下载自动下载视频到指定位置</text>
         </vertical>
         </scroll>
      

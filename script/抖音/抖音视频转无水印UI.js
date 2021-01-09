@@ -177,6 +177,7 @@ function showUI(){
              <button id="download" text="下载"/>
           </linear>
           <text >使用方式:先复制抖音分享链接到剪贴板，点击下方按钮 获取剪贴板内容，再点击 获取无水印 即可获取无水印地址 复制无水印地址到剪贴板 填写保存目录和保存文件名 点击下载自动下载视频到指定位置</text>
+
         </vertical>
         </scroll>
      
@@ -188,8 +189,12 @@ function showUI(){
         ui.clip.text(getClip())
     })
 
- 
-    ui.autosetclip.setChecked(autosetclip)
+    if(autosetclip){
+        ui.autosetclip.setChecked(true)
+    }else{
+        ui.autosetclip.setChecked(false)
+    }
+    
     ui.autosetclip.on("check", function (checked) {
         //设置或取消中划线效果
         autosetclip=checked
