@@ -198,7 +198,6 @@ function showUI(){
     ui.autosetclip.on("check", function (checked) {
         //设置或取消中划线效果
         autosetclip=checked
-       
     });
     ui.change.on("click", () => {
       threads.start(function(){
@@ -249,10 +248,10 @@ function showUI(){
         ui.clip.text(getClip())
     });
    //当离开本界面时保存数据
-ui.emitter.on("pause", () => {
-    storage.put("lastsavedir", ui.dir.text());
-    storage.put("autosetclip", ui.autosetclip.isChecked());
-});
+    ui.emitter.on("pause", () => {
+        storage.put("lastsavedir", ui.dir.text());
+        storage.put("autosetclip", ui.autosetclip.isChecked());
+    });
 
 }
 showUI()

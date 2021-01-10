@@ -188,8 +188,12 @@ function showUI(){
         ui.clip.text(getClip())
     })
 
- 
-    ui.autosetclip.setChecked(autosetclip)
+    if(autosetclip){
+        ui.autosetclip.setChecked(true)
+    }else{
+        ui.autosetclip.setChecked(false)
+    }
+   
     ui.autosetclip.on("check", function (checked) {
         //设置或取消中划线效果
         autosetclip=checked

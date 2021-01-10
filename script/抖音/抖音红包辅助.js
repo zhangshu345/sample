@@ -26,7 +26,6 @@ if(bt_hbdm){
             delay = parseInt(txt_time)
            
         }
-        
         sleep((delay-1)*1000)
        let  t1=new Date().getTime()
         for(i=0;i<200;i++){

@@ -9,8 +9,7 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音直播引流.js",
     "source": 2,
     "level": 0
-},
-{
+},{
     "name": "抖音视频转无水印",
     "desc": {
         "summary": "android 10 以下可用 启动工具后，抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
@@ -21,8 +20,29 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频转无水印.js",
     "source": 2,
     "level": 0
-},
-{
+},{
+    "name": "抖音取消关注",
+    "desc": {
+        "summary": "抖音取消关注：打开工具 抖音手动运行到关注页面  工具检测到屏幕上存在 已关注标志就会自动点击 找不到就上滑屏幕",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音取消关注.js",
+    "source": 2,
+    "level": 0
+},{
+    "name": "抖音互关粉丝",
+    "desc": {
+        "summary": "抖音粉丝回关：启动工具 回到粉丝关注页 自动开始点击回关 并循环下滑",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音互关粉丝.js",
+    "source": 2,
+    "level": 0
+},{
     "name": "抖音视频手动转无水印",
     "desc": {
         "summary": "抖音视频复制分享链接自动转为无水印 转化成功复制到剪贴板",
@@ -33,8 +53,7 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音视频转无水印UI.js",
     "source": 2,
     "level": 0
-},
-{
+},{
     "name": "抖音视频转无水印下载",
     "desc": {
         "summary": "抖音视频复制分享链接自动转为无水印 并下载到指定文件夹",
@@ -71,7 +90,7 @@
     "name": "抖音红包全自动辅助",
     "desc": {
         "summary": "抖音切换直播间顺序查找红包 直播页面自动点开红包，福袋自动 支付抖币 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
-        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+        "html": ""
     },
     "open": true,
     "root": false,
@@ -82,7 +101,7 @@
     "name": "抖音红包自定义全自动辅助",
     "desc": {
         "summary": "自定义流程参数 抖音切换直播间顺序查找红包 直播页面自动点开红包，福袋自动 支付抖币 红包倒计时页面自动识别倒计时时间 到点前一秒开始 辅助点击 ",
-        "html": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/1抖音.json"
+        "html": ""
     },
     "open": true,
     "root": false,
