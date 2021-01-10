@@ -11,7 +11,7 @@ while(true){
         }
     }else{
         if(text("查找好友并关注").exists()){
-            toastLog("已经运行到底了  抖音互关粉丝 执行完成")
+            toastLog("已经运行到底了  抖音取消关注 执行完成")
            break
         }
         sleep(3000)

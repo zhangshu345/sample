@@ -21,6 +21,17 @@
     "source": 2,
     "level": 0
 },{
+    "name": "抖音取消互相关注",
+    "desc": {
+        "summary": "抖音取消互相关注：打开工具 抖音手动运行到关注页面  工具检测到屏幕上存在 已关注标志就会自动点击 找不到就上滑屏幕",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音取消互相关注.js",
+    "source": 2,
+    "level": 0
+},{
     "name": "抖音取消关注",
     "desc": {
         "summary": "抖音取消关注：打开工具 抖音手动运行到关注页面  工具检测到屏幕上存在 已关注标志就会自动点击 找不到就上滑屏幕",
