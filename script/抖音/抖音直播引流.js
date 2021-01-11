@@ -18,6 +18,11 @@ function showui(){
                         <input id="in_onelivetime" inputType="number" hint="在此输入时间 （分钟）" ></input>
                         <text  text="直播间观看人数最小起,低于该数字直接跳过，切换下一直播间"></text>
                         <input id="in_livepersonmin" inputType="number" hint="在此输入人数"  text="50"></input>
+                   
+                        {/* <text  text="私信客户筛选"></text>
+                        <input id="in_livepersonmin" inputType="number" hint="用户作品数"  text="0"></input>
+                    */}
+
                     </vertical>
                     <vertical>
                          <button id="bt_save2" text="保存本页配置"></button>
@@ -298,7 +303,6 @@ function getSaveConfig(){
             let liven = 直播间获取直播观看人数()
             if(liven){
                 if(liven>livepersonmin){
-                   
                     观众列表私信(liven)
                 }else{
                     log("直播间人数过少 切换下一直播间 目前设置最小:"+livepersonmin) 
@@ -311,14 +315,15 @@ function getSaveConfig(){
     }
 
     function 观众列表私信(currentperson){
-        let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
+        let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').boundsInside(device.width*3/4, 0, device.width, device.height / 8).clickable(true).drawingOrder(1).findOne(300)
         clicknode(n_liveman)
         let i=0
         let authorname=""
         doactionmaxnumber(function(){
             i=i+1
         if(text("在线观众").depth(12).drawingOrder(2).className('android.widget.TextView').findOne(300)){
-          let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
+            log("在线观众找到了")
+            let n_b=  packageName('com.ss.android.ugc.aweme').className('android.widget.Button').visibleToUser().depth(13).findOne(300)
            if(n_b){
                //判断是否设置不可见
                if(n_b.desc().indexOf("***")>-1){
@@ -338,6 +343,9 @@ function getSaveConfig(){
            }
            //用户的下滑
             rswipe(20,10,17,10,15,500,300)
+        }else{
+            toastLog("在线观众没有找到了")
+            back()
         }
         if(i>currentperson){
             return true
@@ -374,7 +382,7 @@ function 直播间获取主播信息(){
 
 
 function 直播间获取直播观看人数(){
-    let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').clickable(true).depth(18).drawingOrder(1).findOne(300)
+    let n_liveman=  packageName("com.ss.android.ugc.aweme").className('android.widget.TextView').boundsInside(device.width*3/4, 0, device.width, device.height / 8).clickable(true).drawingOrder(1).findOne(300)
    if(n_liveman){
         log("直播人数:"+n_liveman.text())
        return parseInt(n_liveman.text())
@@ -383,21 +391,19 @@ function 直播间获取直播观看人数(){
 
 // 一次私信 传入username
 function 直播间私信(username){
-
-
     textclick("主页")
     sleep(2000)
     descclick("更多")
     sleep(1000)
     textclick("发私信")
     sleep(2000)
-    if(currentActivity()==dychat){
-        editable().findOne(300).click()
-        sleep(1000)
+  
+       if( editable().visibleToUser(true).findOne(300)){
+        
         let jz=引流话语[random(0,引流话语.length-1)]
-        editable().findOne(300).setText(jz)
+        editable().visibleToUser(true).findOne(300).setText(jz)
         sleep(500)
-        clicknode(className("android.widget.FrameLayout").depth(11).drawingOrder(7).clickable(false).findOne(300))
+        descclick("发送")
         sleep(1000)
         back()
         sleep(1000)
@@ -405,9 +411,10 @@ function 直播间私信(username){
         sleep(1000)
         back()
         sleep(1000)
-        back()
-        sleep(1000)
-    }
+     
+       }
+  
+    
 
 }
 
@@ -438,7 +445,6 @@ function 回到抖音首页(index){
             sleep(5000)
            
         }
-        
     }
 }
 //通过长连接 获取用户id 
