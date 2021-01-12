@@ -10,5 +10,18 @@
         "path": "https://gitee.com/zhangshu345012/sample/raw/v2/apps/三柚.zip",
         "source": 2,
         "level": 0
+    },
+    {
+        "name": "测试压缩包运行脚本",
+        "desc": {
+            "summary": "94",
+            "html": ""
+        },
+        "open": true,
+        "root": false,
+        "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/赚钱/project.zip",
+        "source": 2,
+        "level": 0
     }
 ]
+
