@@ -1,0 +1,34 @@
+{
+    "assets": [],
+    "build": {
+      "build_id": "8FE5D55B-11",
+      "build_number": 11,
+      "build_time": 1604065951296,
+      "release": false
+    },
+    "encryptLevel": 1,
+    "useFeatures": [],
+    "icon": "res/icon.png",
+    "launchConfig": {
+      "displaySplash": true,
+      "hideLogs": false,
+      "splashIcon": "res/splashIcon.png",
+      "splashText": "三柚直播管家",
+      "stableMode": true
+    },
+    "main": "main.js",
+    "name": "三柚直播管家",
+    "optimization": {
+      "removeOpenCv": false,
+      "unusedResources": false
+    },
+    "packageName": "com.kuaishuav4",
+    "scripts": {},
+    "signingConfig": {
+      "alias": "ks2020",
+      "keystore": "/storage/emulated/0/脚本/autojspro.jks",
+      "uuid": "b372a62c-8304-44aa-b45b-8c850b0cebcf"
+    },
+    "versionCode": 1,
+    "versionName": "1.0.0"
+  }

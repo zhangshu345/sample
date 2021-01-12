@@ -1,0 +1,11 @@
+{
+    "code": 200,
+    "msg": "成功",
+    "data": {
+        "version": "v1.1.5",
+        "forceUpdate": false,
+        "updateUrl": "https://94kk.oss-cn-shenzhen.aliyuncs.com/94_v1.1.5.apk",
+        "releaseNotes": "版本 v1.1.5\n *修改默认配置",
+        "tips": []
+    }
+}

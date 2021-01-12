@@ -1,0 +1,10 @@
+{
+    "name": "94新",
+    "main": "hzStart.js",
+    "ignore": [
+        "build"
+    ],
+    "packageName": "com.haozhuan.scriptnew",
+    "versionName": "5.1.0",  
+    "versionCode": 1
+}
