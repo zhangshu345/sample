@@ -119,5 +119,16 @@
     "path": "https://gitee.com/zhangshu345012/sample/raw/v2/script/抖音/抖音红包全自动辅助.js",
     "source": 2,
     "level": 10
+},{
+    "name": "uniapp测试",
+    "desc": {
+        "summary": "测试uniapp启动",
+        "html": ""
+    },
+    "open": true,
+    "root": false,
+    "path": "https://gitee.com/zhangshu345012/sample/raw/v2/apps/__UNI__A659FF3.wgt",
+    "source": 2,
+    "level": 0
 }
 ]

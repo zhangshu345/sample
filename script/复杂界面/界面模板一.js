@@ -9,6 +9,7 @@ ui.layout(
                 <toolbar id="toolbar" title="示例"/>
                 <tabs id="tabs"/>
             </appbar>
+
             <viewpager id="viewpager">
                 <vertical>
                     <text text="输入搜索直播商品名称，输入多个名称时，以 - 分割。 举例 酒-白酒-红酒-葡萄酒" textColor="black" textSize="16sp"/>
