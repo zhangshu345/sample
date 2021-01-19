@@ -6,8 +6,7 @@
     "version":"1.1.7",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
-},
-{"name":"自动化工具",
+},{"name":"自动化工具",
     "pkg":"com.hongdong.autotools.xiaomi",
     "channel":"xiaomi",
     "versioni":17,
@@ -15,8 +14,7 @@
     "version":"1.1.7",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
-},
-    {"name":"自动化工具",
+},{"name":"自动化工具",
     "pkg":"com.hongdong.autotools",
     "channel":"qq",
     "versioni":16,
@@ -24,8 +22,7 @@
     "version":"1.1.6",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig16.json"
-},
-    {"name":"自动化工具",
+},{"name":"自动化工具",
     "pkg":"com.hongdong.autotools",
     "channel":"qq",
     "versioni":15,
@@ -33,8 +30,7 @@
     "version":"1.1.5",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig115.json"
-},
-    {"name":"自动化工具",
+},{"name":"自动化工具",
     "pkg":"com.hongdong.autotools",
     "channel":"qq",
     "versioni":14,
@@ -42,8 +38,7 @@
     "version":"1.1.4",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig114.json"
-},
-{"name":"随便粘",
+},{"name":"随便粘",
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",
     "versioni":206,
