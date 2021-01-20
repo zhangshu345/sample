@@ -2026,7 +2026,7 @@
         "showsplashad": true,
         "waittime": 3,
         "permission": [ "STORAGE"],
-        "img": "http://b-ssl.duitang.com/uploads/item/201804/18/20180418163121_nLYmW.thumb.700_0.jpeg",
+        "img": "@drawable/splash",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
         "nextscript": "https://gitee.com/zhangshu345012/sample/raw/v2/script/复杂界面/界面模板一.js",
