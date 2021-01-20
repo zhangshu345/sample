@@ -49,7 +49,7 @@ function showLoginUI(){
         if(ui.content.getText()==""){
             return
         }
-        dewm=com.king.zxing.util.CodeUtils.createQRCode(ui.content.getText(),imgw)
+        dewm=com.hongshu.autotools.core.zxing.util.CodeUtils.createQRCode(ui.content.getText(),imgw)
         ui.erweima.setImageBitmap(dewm)
     });
     ui.reset.on("click", () => {
