@@ -120,9 +120,9 @@
     "source": 2,
     "level": 10
 },{
-    "name": "uniapp测试",
+    "name": "uniapp小程序 测试启动",
     "desc": {
-        "summary": "测试uniapp启动",
+        "summary": "测试uniapp启动和视频介绍 展示",
         "html": ""
     },
     "open": true,
