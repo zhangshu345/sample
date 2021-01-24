@@ -540,6 +540,10 @@
         }
     ],
     "keys": [
+        {  "name": "inviteinfoimg",
+            "value":"",
+            "summary": "邀请页面的海报"
+        },
         {  "name": "douyin",
             "value":"4283310327999328",
             "summary": "抖音号"
