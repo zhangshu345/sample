@@ -280,8 +280,8 @@
         "icon": "https://pp.myapp.com/ma_icon/0/icon_42350811_1608107988/96",
         "textsize": "16",
         "textcolor": "#ff0000ff",
-        "level": 0,
-        "open": false,
+        "level": 1,
+        "open": true,
         "ui": {
             "type": 2,
             "orientation": 1,
@@ -316,8 +316,8 @@
         "icon": "@drawable/ic_kuaishou_48dp",
         "textsize": "16",
         "textcolor": "#ff0000ff",
-        "level": 0,
-        "open": false,
+        "level": 1,
+        "open": true,
         "ui": {
             "type": 2,
             "orientation": 1,
