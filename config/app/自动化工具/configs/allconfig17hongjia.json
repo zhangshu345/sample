@@ -11,7 +11,7 @@
     "jpushkey": "e0c78e645fee5d46b263a898",
     "userlogin":false,
     "jpush":false,
-    "showad":true,
+    "showad":false,
     "showaccessibilityalter":false,
     "channeladvice":"",
     "reward":false,
