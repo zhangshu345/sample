@@ -2032,8 +2032,8 @@
         "img": "@drawable/splash",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
-        "nextscript": "uniappid:__UNI__057D317",
-        "desc": "",
+        "nextscript": "/script/usermain",
+        "desc": "uniappid:__UNI__057D317",
         "open": false
       }
 }
