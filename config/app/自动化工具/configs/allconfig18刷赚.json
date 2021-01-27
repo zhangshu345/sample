@@ -2025,7 +2025,7 @@
         "background": "",
         "welcomeword": "自动化阅读探索者",
         "showlogo": true,
-        "runscript": true,
+        "runscript": false,
         "showsplashad": true,
         "waittime": 3,
         "permission": ["STORAGE"],
