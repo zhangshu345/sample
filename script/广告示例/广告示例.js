@@ -141,7 +141,7 @@ var rewardListener=new  com.hongshu.advice.base.RewardListener({
 })
 
 ui.debugip.on("click",function(){
-    com.hongshu.autotools.core.floatmenu.FloatyWindowManger.getInstance().showDevelopCircularMenu()
+    com.hongshu.autotools.core.floatmenu.FloatyWindowManger.showDevelopCircularMenu()
 })
 var admanager=AdviceManager.getInstance();
 admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
