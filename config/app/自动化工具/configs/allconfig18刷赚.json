@@ -2025,7 +2025,7 @@
         "background": "",
         "welcomeword": "自动化阅读探索者",
         "showlogo": true,
-        "runscript": false,
+        "runscript": true,
         "showsplashad": true,
         "waittime": 3,
         "permission": ["STORAGE"],
@@ -2034,6 +2034,6 @@
         "runningscript": "",
         "nextscript": "/script/usermain",
         "desc": "uniappid:__UNI__057D317|uniappid:__UNI__7790C36",
-        "open": false
+        "open": true
       }
 }
