@@ -166,12 +166,13 @@ ui.screen.on("click",function(){
 ui.emitter.on("resume",function(){
    admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
 })
+
 ui.rewardad.on("click",function(){
    admanager.showRewardVideoAd(ui.rewardad.getContext(),rewardListener)
 })
 
 ui.splash.on("click",function(){
-    
+
 })
 ui.lang.on("click",function(){
     tolanguagesetting()
