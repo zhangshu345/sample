@@ -43,7 +43,7 @@ ui.layout(
             <button id="banner" w="auto" h="auto" text="横幅" />  
             <button id="splash" w="auto" h="auto" text="开屏" />
             <button id="chaping" w="auto" h="auto" text="插屏" />
-         
+            <button id="debugip" w="auto" h="auto" text="开启开发悬浮" />
         </horizontal>
         <vertical id="advice" />
         </vertical>
@@ -140,6 +140,9 @@ var rewardListener=new  com.hongshu.advice.base.RewardListener({
     }
 })
 
+ui.debugip.on("click",function(){
+    com.hongshu.autotools.core.floatmenu.FloatyWindowManger.getInstance().showDevelopCircularMenu()
+})
 var admanager=AdviceManager.getInstance();
 admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
 ui.refreshad.on("click",function(){
