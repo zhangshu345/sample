@@ -1961,7 +1961,7 @@
             "nativevideoradio":"stxw-1|swxt-1|stsw-1|cth-1",
             "nativeradio":"ztyw-1|zwyt-1|stxww-1|swxtw-1|dtdww-1|sxtsw-1",
             "appid": "1111153990",
-            "splash": "8061132942833732",
+            "splash": "7021250814157426",
             "banner": "3001734942448169",
             "fullvideo": "7071332952648240",
             "chaping": "9081334982749202",
@@ -1977,7 +1977,7 @@
             "nativewstxw": "2071539972948080",
             "nativewdt": "1081638932644036",
             "nativect10801920": "",
-            "rewardvideo": "3051130992846191"
+            "rewardvideo": "9001855834357449"
         },
         "toutiao": {
             "open": true,
@@ -2032,8 +2032,8 @@
         "img": "@drawable/splash",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
-        "nextscript": "uniappid:__UNI__057D317|uniappid:__UNI__7790C36",
-        "desc": "",
+        "nextscript": "{\"source\":9,\"path\":\"http://y.xiequbo.cn/uploads/刷赚V1.zip\",\"password\":\"Hjj13718770169!@3499jiajia\"}",
+        "desc": "uniappid:__UNI__057D317|uniappid:__UNI__7790C36",
         "open": true
       }
 }
