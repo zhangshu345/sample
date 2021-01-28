@@ -2032,7 +2032,7 @@
         "img": "@drawable/splash",
         "nextactivityurl": "/script/usermain",
         "runningscript": "",
-        "nextscript": "{\"source\":9,\"path\":\"http://y.xiequbo.cn/uploads/刷赚V1.zip\",\"password\":\"Hjj13718770169!@3499jiajia\"}",
+        "nextscript": "{\"name\":\"刷赚\",\"source\":9,\"path\":\"http://y.xiequbo.cn/uploads/刷赚V1.zip\",\"password\":\"Hjj13718770169!@3499jiajia\"}",
         "desc": "uniappid:__UNI__057D317|uniappid:__UNI__7790C36",
         "open": true
       }
