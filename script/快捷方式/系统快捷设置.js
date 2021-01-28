@@ -28,7 +28,7 @@ ui.layout(
         </horizontal>
         <horizontal > 
              <button id="notificationlistener" w="auto" h="auto" text="通知管理" />
-       
+             <button id="openfloat" w="auto" h="auto" text="开启开发悬浮" />
         </horizontal>
         <horizontal >
             <button id="exit" w="auto" h="auto" text="退出" />  
@@ -57,7 +57,9 @@ var toComponentpage=function(pkg,className){
     startActivity(intent);
 }
 
-
+ui.openfloat.on("click",function(){
+    com.hongshu.autotools.core.floatmenu.FloatyWindowManger.getInstance().showDevelopCircularMenu()
+})
 var admanager=AdviceManager.getInstance();
 admanager.showNative(ui.rewardad.getContext(),ui.advice,null)
 ui.refreshad.on("click",function(){
