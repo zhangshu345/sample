@@ -1,6 +1,5 @@
 "ui";
 importClass(com.hongshu.advice.AdviceManager)
-
 importClass(android.content.ComponentName)
 ui.layout(
     <vertical>
@@ -43,7 +42,6 @@ ui.layout(
             <button id="banner" w="auto" h="auto" text="横幅" />  
             <button id="splash" w="auto" h="auto" text="开屏" />
             <button id="chaping" w="auto" h="auto" text="插屏" />
-       
         </horizontal>
         <vertical id="advice" />
         </vertical>
@@ -104,7 +102,7 @@ var bannerListener = new com.hongshu.advice.base.BannerListener({
 //原生广告监听者
 var nativeListener =new com.hongshu.advice.base.NativeListener({
     onAdType:function(adtype){
-        log("原生： onAdtype"+adtype)
+        log("原生：onAdtype:"+adtype)
     },
     onNoAd:function(s){
         log("原生：没有返回广告:"+s)
@@ -164,7 +162,7 @@ var rewardListener=new  com.hongshu.advice.base.RewardListener({
 
 var intertitialListener =new com.hongshu.advice.base.InterstialListener({
     onAdType:function(adtype){
-                log("插屏：onAdType"+adtype)
+                log("插屏：onAdType:"+adtype)
     },
     onVideoCached:function(){
         log("插屏：onVideoCached")
@@ -303,7 +301,6 @@ ui.screen.on("click",function(){
 ui.emitter.on("resume",function(){
    admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
 })
-
 
 
 
