@@ -31,19 +31,19 @@ ui.layout(
         </horizontal>
         <horizontal > 
              <button id="notificationlistener" w="auto" h="auto" text="通知管理" />
-       
+             <button id="float" w="auto" h="auto" text="开启开发悬浮" />
         </horizontal>
         <horizontal >
             <button id="exit" w="auto" h="auto" text="退出" />  
-            <button id="rewardad" w="auto" h="auto" text="创意视频" />
-            <button id="uninstall" w="auto" h="auto" text="全屏视频" />
+            <button id="rewardad" w="auto" h="auto" text="激励视频" />
+            <button id="fullvideo" w="auto" h="auto" text="全屏视频" />
             <button id="refreshad" w="auto" h="auto" text="刷新" />
         </horizontal>
         <horizontal >
             <button id="banner" w="auto" h="auto" text="横幅" />  
             <button id="splash" w="auto" h="auto" text="开屏" />
             <button id="chaping" w="auto" h="auto" text="插屏" />
-            <button id="debugip" w="auto" h="auto" text="开启开发悬浮" />
+       
         </horizontal>
         <vertical id="advice" />
         </vertical>
@@ -69,7 +69,12 @@ var toComponentpage=function(pkg,className){
     intent.setAction("android.intent.action.VIEW");
     startActivity(intent);
 }
+
+//横幅的监听器
 var bannerListener = new com.hongshu.advice.base.BannerListener({
+    onAdType:function(adtype){
+        log("横幅:"+adtype)
+    },
      onClicked:function(){
         log("横幅点击")
     },
@@ -87,73 +92,202 @@ var bannerListener = new com.hongshu.advice.base.BannerListener({
     },
     onNoAd:function(s){
         log("横幅没有广告返回:"+s)
+    },
+    onAdReady:function(ad){
+        log("横幅接收到广告")
+    },
+    onAdFailed:function(s){
+        log("横幅失败:"+s)
     }
 })
 
 //原生广告监听者
 var nativeListener =new com.hongshu.advice.base.NativeListener({
+    onAdType:function(adtype){
+        log("原生： onAdtype"+adtype)
+    },
     onNoAd:function(s){
-        log("没有返回广告:"+s)
+        log("原生：没有返回广告:"+s)
     },
     onClosed:function(adview){
         // 返回是广告组件本身
-        log("closed")
+        log("原生：closed")
     },
     onRenderSuccess:function(adview){
-        log("rendersuccess")
+        log("原生：rendersuccess")
+    },
+    onRenderFail:function(adview){
+        log("原生：renderfail")
     },
     onExposure:function(adview){
-        log("exposure")
+        log("原生：exposure")
     },
     onClicked:function(adview){
-            log("clicked")
+            log("原生：clicked")
     },
     onLoaded:function(adview){
-        log("loaded")
+        log("原生：loaded")
     }
-
 })
 
 // 激励视频的监听状态
 var rewardListener=new  com.hongshu.advice.base.RewardListener({
-    reward:function(rewardcoin){
-        log("reward:"+rewardcoin)
-    }
-    ,show:function(s){
-        log("show:"+s)
-    }
-    ,loadsuccee:function(adview){
-        log("loadsuccee")
+    onAdType:function(adtype){
+        log("激励视频 onadtype："+adtype)
     },
-    loadfail:function(adview){
-        log("loadfail:")
+    onReward:function(rewardcoin){
+        log("激励视频reward:"+rewardcoin)
     }
-    ,rewardclose:function(){
-        log("奖励关闭")
+    ,onShow:function(s){
+        log("激励视频show:"+s)
     }
-    ,expose:function(){
-        log("expose")
-    },complete:function(){
-        log("complete")
-    },rewardfail:function(){
-        log("rewardfail")
+    ,onLoadSuccee:function(adview){
+        log("激励视频loadsuccee")
+    },
+    onLoadFail:function(adview){
+        log("激励视频loadfail:")
+    }
+    ,onRewardClose:function(){
+        log("激励视频奖励关闭")
+    }
+    ,onExposure:function(){
+        log("激励视频expose")
+    },onComplete:function(){
+        log("激励视频complete")
+    },onRewardFail:function(){
+        log("激励视频rewardfail")
+    },
+    onVideoCached:function(){
+        log("激励视频:onvideocached")
     }
 })
 
-ui.debugip.on("click",function(){
+var intertitialListener =new com.hongshu.advice.base.InterstialListener({
+    onAdType:function(adtype){
+                log("插屏：onAdType"+adtype)
+    },
+    onVideoCached:function(){
+        log("插屏：onVideoCached")
+},
+onClicked:function(){
+    log("插屏：onClicked")
+},
+onClosed:function(){
+    log("插屏：onClosed")
+},
+onNoAd:function(err){
+    log("插屏：onNoAd",err)
+},
+onExposure:function(){
+    log("插屏：onExposure")
+},
+onReceive:function(iad){
+    log("插屏：onReceive",iad)
+},
+onShow:function(){
+    log("插屏：onShow")
+},
+onRenderFail:function(s){
+    log("插屏：onRenderFail"+s)
+},
+onRenderSuccee:function(s){
+    log("onRenderSuccee"+s)
+}
+})
+
+var fullvideoListener=new com.hongshu.advice.base.FullVideoListener({
+onAdType:function(adtype){
+        log("全屏视频：onAdType"+adtype)
+},
+onLoad:function(){
+    log("全屏视频 onLoad")
+},
+onEnd:function(){
+    log("全屏视频 onEnd")
+},
+onStart:function(){
+log("全屏视频 onStart")
+},
+
+onVideoCached:function(){
+log("全屏视频：onVideoCached")
+},
+onClicked:function(){
+log("全屏视频：onClicked")
+},
+onClosed:function(){
+log("全屏视频：onClosed")
+},
+onNoAd:function(err){
+log("全屏视频：onNoAd",err)
+},
+onExposure:function(){
+log("全屏视频：onExposure")
+},
+onReceive:function(iad){
+log("全屏视频：onReceive",iad)
+},
+onVideoInit:function(){
+log("全屏视频：onVideoInit")
+},
+onVideoInit:function(){
+    log("全屏视频：onVideoInit")
+    },
+onVideoLoading:function(){
+        log("全屏视频：onVideoLoading")
+},
+onVideoReady:function(l){
+            log("全屏视频：onVideoReady",l)
+ },
+ onVideoStart:function(){
+                log("全屏视频：onVideoStart")
+ },
+ onVideoPause:function(){
+                    log("全屏视频：onVideoPause")
+                    },
+ onVideoComplete:function(){
+         log("全屏视频：onVideoComplete")
+   },
+onVideoError:function(){
+       log("全屏视频：onVideoError")
+   },
+
+   onVideoPageOpen:function(){
+    log("全屏视频：onVideoPageOpen")
+},
+onVideoPageClose:function(){
+    log("全屏视频：onVideoPageClose")
+}
+}
+)
+//
+ui.float.on("click",function(){
     com.hongshu.autotools.core.floatmenu.FloatyWindowManger.showDevelopCircularMenu()
 })
+
 var admanager=AdviceManager.getInstance();
 admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
+ui.splash.on("click",function(){
+    admanager.showOneSplash(ui.splash.getContext())
+})
 ui.refreshad.on("click",function(){
     admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
 })
 ui.banner.on("click",function(){
     admanager.showBanner(ui.banner.getContext(),ui.bannerll,bannerListener)
 })
-ui.uninstall.on("click",function(){
-   admanager.showFullVideo(ui.rewardad.getContext(),null)
+ui.fullvideo.on("click",function(){
+   admanager.showFullVideo(ui.rewardad.getContext(),fullvideoListener)
 })
+
+ui.chaping.on("click",function(){
+    admanager.showInterstial(activity,intertitialListener)
+})
+
+ui.rewardad.on("click",function(){
+    admanager.showRewardVideoAd(ui.rewardad.getContext(),rewardListener)
+ })
+
 ui.notificationlistener.on("click",function(){
     totificationlistenersetting()
  })
@@ -170,13 +304,9 @@ ui.emitter.on("resume",function(){
    admanager.showNative(ui.rewardad.getContext(),ui.advice,nativeListener)
 })
 
-ui.rewardad.on("click",function(){
-   admanager.showRewardVideoAd(ui.rewardad.getContext(),rewardListener)
-})
 
-ui.splash.on("click",function(){
 
-})
+
 ui.lang.on("click",function(){
     tolanguagesetting()
 })
