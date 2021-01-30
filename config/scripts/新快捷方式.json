@@ -7,7 +7,8 @@
      "path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/快捷方式/系统快捷设置.js",
      "source":2,
      "level":0}
-     ,{"name":"广告脚本示例","desc":{"summary":"广告示例","html":""},
+     ,
+     {"name":"广告脚本示例","desc":{"summary":"广告示例","html":""},
      "tags":["系统","设置","快捷"],
      "features":[],
      "open":true,
