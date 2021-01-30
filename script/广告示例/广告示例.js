@@ -274,6 +274,7 @@ ui.refreshad.on("click",function(){
 ui.banner.on("click",function(){
     admanager.showBanner(ui.banner.getContext(),ui.bannerll,bannerListener)
 })
+
 ui.fullvideo.on("click",function(){
    admanager.showFullVideo(ui.rewardad.getContext(),fullvideoListener)
 })

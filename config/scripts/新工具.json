@@ -59,9 +59,15 @@
         "level": 0,
         "appversioni": 10,
         "requestapi": 10
- 
-
-    },
+     },
+     {"name":"媒体更新",
+        "desc": {
+            "summary": "更新指定文件夹下的媒体文件",
+            "html": ""
+        },
+        "level":0,
+        "source": 2,
+        "path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/媒体更新文件夹.js"},
     {
         "name": "自动安装应用",
         "desc": {
