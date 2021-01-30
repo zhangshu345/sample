@@ -46,22 +46,6 @@
     "version":"1.1.6",
     "downloadurl":"",
     "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig16.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":15,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.5",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig115.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":14,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.4",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig114.json"
 },{"name":"随便粘",
     "pkg":"com.dongdong.jiantie",
     "channel":"androidjs",
