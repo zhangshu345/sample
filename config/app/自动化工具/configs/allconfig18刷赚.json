@@ -1,8 +1,8 @@
 {
     "name": "自动化工具",
     "pkg":"com.hongdong.autotools",
-    "version":"1.1.7",
-    "versioni":17,
+    "version":"1.1.8",
+    "versioni":18,
     "channel":"all",
     "mtaappkey":"A1KT37D8APGM",
     "bmobappid":"0d46b08e65c8da065d74b3029a1d9ace",

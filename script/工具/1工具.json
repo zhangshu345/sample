@@ -60,14 +60,73 @@
         "appversioni": 10,
         "requestapi": 10
      },
-     {"name":"媒体更新",
+     {
+
+        "name":"媒体更新",
         "desc": {
             "summary": "更新指定文件夹下的媒体文件",
             "html": ""
         },
         "level":0,
         "source": 2,
-        "path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/媒体更新文件夹.js"},
+        "path":"https://gitee.com/zhangshu345012/sample/raw/v2/script/工具/媒体更新文件夹.js"
+   
+        ,
+        "tags": [
+            "自动"
+        ],
+        "open": true,
+        "install": true,
+        "layout": {
+            "type": 1,
+            "orientation": 1,
+            "width": 0,
+            "height": 0,
+            "back": "@color/red",
+            "fore": "",
+            "reverselayout": false,
+            "size": 0,
+            "textsize": 6,
+            "buttons": [
+                {
+                    "name": "下载",
+                    "eventid": -1,
+                    "script": "",
+                    "uipath": "",
+                    "icon": "",
+                    "key": ""
+                }
+            ]
+        },
+
+        "download": false,
+        "root": false,
+        "reward": {
+            "coin": 0,
+            "money": 0,
+            "experience": 10,
+            "achievement": "成就"
+        },
+        "money": {
+            "perhourmoney": 0.3,
+            "perdaymoney": 0.38,
+            "permonthmoney": 60.1,
+            "peryearmoney": 360
+        },
+              
+        "author": {
+            "name": "作者",
+            "id": "",
+            "icon": "",
+            "qq": "11226677",
+            "weixin": "jiajiajia",
+            "phone": "1871768888"
+        },
+       
+        "appversioni": 10,
+        "requestapi": 10
+     },
+   
     {
         "name": "自动安装应用",
         "desc": {
