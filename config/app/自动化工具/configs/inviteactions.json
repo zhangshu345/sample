@@ -80,31 +80,37 @@
          }
       ]
    },
-    {
-      "name": "荔枝铃声",
-      "pkg": "com.sss.ss",
+   {
+      "name": "快手",
+      "pkg": "com.smile.gifmaker",
       "level": 0,
-      "invitetype": "邀请码",
+      "invitetype": "剪贴板",
       "open": true,
-      "firstreward": 0.3,
-      "sumreward": 6.0,
-      "tomoneytype": "微信",
+      "firstreward": 1.0,
+      "sumreward": 10.0,
+      "tomoneytype": "微信-支付宝",
       "bindphone": true,
-      "desc": "直接微信登录 绑定手机 绑定微信 提现成功 ",
+      "desc": "复制邀请链接进入弹出接收邀请页面 首次可提现1元 无条件,绑定手机号设置密码会掉账号  提现直接微信 去除第一个月每日两元  邀请 新人9元 完成任务 最高36元 账号不同 奖励不同",
       "step": "",
       "inviteurls": [
          {
-            "name": "2264",
-            "code": "518158748",
-            "url": "http://lizhi.amghako.cn/1D3tF5zT"
+            "name": "1081",
+            "code": "848322072",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"
          },
          {
-            "name": "1081",
-            "code": "547085208",
-            "url": "http://lizhi.amghako.cn/1D3tF5zT"
+            "name": "2264",
+            "code": "983385836",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：848322072"
+         },
+         {
+            "name": "2999",
+            "code": "552600518",
+            "url": "##YyUzmyH2_AO##\n第一步：复制这段消息\n第二步：咑開【快手极速版】http://t.cn/A6vTUJ8Z\n 无忧无虑，马到成功！\n我的邀请码：552600518"
          }
       ]
-   },
+   }
+    ,
    {
       "name": "惠头条",
       "pkg": 	"com.cashtoutiao",
@@ -147,7 +153,7 @@
    },
    {
       "name": "火山极速版",
-      "pkg": 		"com.ss.android.ugc.livelite",
+      "pkg": "com.ss.android.ugc.livelite",
       "level": 0,
       "invitetype": "邀请码",
       "open": true,

@@ -561,7 +561,7 @@ function downloadApk(name,downloadurl,isinstall) {
 
 function install_app(filePath, name,maxtime,isopen,delect) {
     isinstalling=true
-    maxtime=maxtime||180000
+    maxtime=maxtime||120000
     isopen=isopen||false
     delect=delect||true
     ////--------------安装--------------////
