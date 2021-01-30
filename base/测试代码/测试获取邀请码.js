@@ -1,5 +1,5 @@
 
- let d=getInviteCode("com.ss.android.ugc.aweme.lite")
+ let d=getInviteCode("com.cashwalk")
  log(d)
 d=getInviteCode("com.ss.android.ugc.aweme.lite")
  log(d)
