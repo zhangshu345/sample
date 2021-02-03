@@ -112,8 +112,7 @@
                 "contenturl": ""
             }
         ]
-    },
-    {
+    },{
         "title": "常见问题",
         "icon": "https://gitee.com/zhangshu345012/sample/raw/v2/img/常见问题.png",
         "textsize": "16",
@@ -260,7 +259,6 @@
                 "script": "",
                 "contenturl": "",
                 "videourl":""
-
             },
             {
                 "title": "语音唤醒工具",
