@@ -1,7 +1,7 @@
 "ui";
 importClass(com.blankj.utilcode.util.KeyboardUtils)
 ui.layout(
-    <frame id="root">
+    <frame id="root" >
       <vertical h="auto" align="center" margin="0 50">
       <text w="*" gravity="center" color="#111111" size="18">复利计算</text>
         <linear>
@@ -27,7 +27,6 @@ ui.layout(
         </vertical>
 
         </ScrollView>
-
 
       </vertical>
     </frame>

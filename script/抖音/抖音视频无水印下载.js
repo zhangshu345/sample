@@ -15,6 +15,7 @@ function shorturl2longurl(url){
     return ""
 }
 
+
 //分享出来的链接 获取 链接
 function url2shorturl(url){
     let urlRegex = /(https:\/\/v.douyin.com.*)/;
@@ -51,9 +52,7 @@ function getwushuiyin(url){
 if(doc){
    let  ds=doc.toString();
     let playaddr=ds.substring(ds.indexOf("playAddr:")).trim().split("\"")[1].replace("playwm","play");
-
     log("播放地址:"+playaddr)
-  
     return playaddr
 
 }
