@@ -3,7 +3,7 @@ importClass(com.hongshu.advice.AdviceManager)
 importClass(android.content.ComponentName)
 ui.layout(
     <vertical  >
-        <text id="close" text="关闭" gravity="center" w="*" h="auto"/>
+        <text id="closenative" text="关闭原生" gravity="center" w="*" h="auto"/>
         <vertical id="advice" />
         </vertical>
 );
@@ -37,7 +37,7 @@ var nativeListener =new com.hongshu.advice.base.NativeListener({
     }
 })
 //
-ui.close.on("click",function(){
+ui.closenative.on("click",function(){
    activity.finish()
 })
 var admanager=AdviceManager.getInstance();
