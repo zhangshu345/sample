@@ -29,11 +29,13 @@ function fuli(b,l,n){
     return b;
 }
 
+
 let an=100;
 let s="复利的伟大！";
 for(let i=1;i<=100;i++){
     s=s+"\n1.01 的"+10*i+"阶乘："+fuli(1,1.01,10*i)
 }
+
 ui.lizi.setText(s)
 
 ui.ok.on("click",function(){

@@ -60,7 +60,7 @@
                 "level": 0,
                 "icon": "@drawable/ic_record",
                 "icontint": "#ffffff",
-                "back": "#0000ff",
+                "back": "@drawable/im_round_blue",
                 "event": -1,
                 "uipath": "",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
