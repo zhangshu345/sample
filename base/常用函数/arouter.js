@@ -16,4 +16,4 @@ var agourl=function(url){
 // log("pa")
 // pa.navigation();
 
- aroutergourl("\/common\/webview") //common/webview
+ aroutergourl("\/script\/videoedit") //common/webview
