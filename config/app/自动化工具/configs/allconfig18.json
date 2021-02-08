@@ -11,7 +11,7 @@
     "jpushkey": "6888708fa641d82c6bdd1b97",
     "userlogin":false,
     "jpush":false,
-    "showad":true,
+    "showad":false,
     "showaccessibilityalter":false,
     "channeladvice":"",
     "reward":false,
@@ -89,7 +89,7 @@
             },
             {
                 "name": "视频剪辑",
-                "open": false,
+                "open": true,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_videoedit",
                 "icontint": "#ffffff",
