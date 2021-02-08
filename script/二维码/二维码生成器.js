@@ -6,7 +6,7 @@ importClass(android.content.Intent)
 importClass(android.provider.MediaStore)
 importClass(android.net.Uri)
 importClass(java.io.File)
-importClass(com.hongshu.utils.SPUtils)
+importClass(com.hongshu.utils.FastSPUtils)
 var admanager=AdviceManager.getInstance();
 showLoginUI();
 ui.statusBarColor("#000000")
@@ -14,7 +14,7 @@ w=device.width
 h=device.height
 imgw=w/2
 var dewm
-var  spt= SPUtils.getInstance("makecode")
+var  spt= FastSPUtils.getInstance("makecode")
 
 //显示登录界面
 function showLoginUI(){
@@ -74,7 +74,7 @@ function showLoginUI(){
      })
      ui.emitter.on("pause",function(){
          log("执行pause")
-       spt.put("last",ui.content.getText())
+       spt.put("last",ui.content.getText(),true)
      })
      ui.rewardad.on("click",function(){
         //admanager.showRewardVideoAd(ui.ll.getContext(),null)
