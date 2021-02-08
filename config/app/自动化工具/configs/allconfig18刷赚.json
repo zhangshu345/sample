@@ -67,7 +67,7 @@
             },
             {
                 "name": "自动化编辑",
-                "open": false,
+                "open": true,
                 "level": 0,
                 "icon": "@drawable/ic_home_center_code",
                 "icontint": "#ffffff",
