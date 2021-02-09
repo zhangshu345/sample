@@ -216,4 +216,56 @@
          }
       ]
    }
+   ,
+   {
+      "name": "刷宝短视",
+      "pkg": "com.jm.video1",
+      "level": 0,
+      "invitetype": "剪贴板",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 37.6,
+      "tomoneytype": "微信",
+      "bindphone": false,
+      "desc": "直接微信登录 可不绑定手机 绑定微信 提现0.3成功 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "9X4T2X",
+            "url": "点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n填我邀请码【9X4T2X】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"
+         },
+         {
+            "name": "2999",
+            "code": "AHX6BWM",
+            "url": "点击【http://t.cn/Ai18Qy3J】下载【刷宝APP】看视频赚零花钱一元可立即提现到微信填我邀请码【AHX6BWM】复制信息打开刷宝APP自动填邀请码立即赚钱！"
+         }
+      ]
+   }
+   ,
+   {
+      "name": "刷宝",
+      "pkg": "com.jm.vide",
+      "level": 0,
+      "invitetype": "剪贴板",
+      "open": true,
+      "firstreward": 0.3,
+      "sumreward": 37.6,
+      "tomoneytype": "微信",
+      "bindphone": false,
+      "desc": "直接微信登录 可不绑定手机 绑定微信 提现0.3成功 ",
+      "step": "",
+      "inviteurls": [
+         {
+            "name": "2264",
+            "code": "9X4T2X",
+            "url": "点击【http://www.6cd4.com/btzUzA】\n下载【刷宝APP】\n填我邀请码【9X4T2X】\n领取最高【18元】红包\n红包立即提现\n复制信息进入刷宝APP自动填邀请码领取"
+         },
+         {
+            "name": "2999",
+            "code": "AHX6BWM",
+            "url": "点击【http://t.cn/Ai18Qy3J】下载【刷宝APP】看视频赚零花钱一元可立即提现到微信填我邀请码【AHX6BWM】复制信息打开刷宝APP自动填邀请码立即赚钱！"
+         }
+      ]
+   }
 ]
