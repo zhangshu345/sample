@@ -573,6 +573,11 @@
             "summary": "关闭监听停止录音占用"
         },
         {
+            "name": "weatherurl",
+            "value":  "https://widget-page.qweather.net/h5/index.html?bg=1&md=0123456&lc=auto&key=270f74fec49149a7aa28062378f12bcc",
+            "summary": "和风天气的h5插件"
+        },
+        {
             "name": "moneycoin",
             "value":  "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/moneycoin.json",
             "summary": "兑换"
