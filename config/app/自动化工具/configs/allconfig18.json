@@ -52,7 +52,7 @@
                 "back": "@drawable/im_round_green",
                 "event": -1,
                 "uipath": "/script/settings",
-                "script": "scriptname:settingdescription"
+                "script": ""
             },
             {
                 "name": "动作录制",
@@ -226,30 +226,6 @@
                 "event": -1,
                 "uipath": "",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
-            },
-            {
-                "index": 7,
-                "name": "配置",
-                "open": true,
-                "level": 0,
-                "icon": "@drawable/ic_circular_menu_settings",
-                "icontint": "#ffffff",
-                "back": "",
-                "event": -1,
-                "uipath": "/script/settings",
-                "script": "scriptname:settingdescription"
-            },
-            {
-                "index": 8,
-                "name": "调试",
-                "open": false,
-                "level": 11,
-                "icon": "@drawable/ic_circular_menu_settings",
-                "icontint": "#ffffff",
-                "back": "",
-                "event": -1,
-                "uipath": "/script/settings",
-                "script": "scriptname:settingdescription"
             }
         ]
     },
@@ -648,7 +624,7 @@
         },
         {
             "name": "settingdescription",
-            "value": "设置描述的脚本",
+            "value": "",
             "summary": ""
         },
         {
