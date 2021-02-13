@@ -39,7 +39,6 @@
                 "icon": "@drawable/ic_home_center_book",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_red",
-            
                 "script": "scriptname:userguide"
             },
             {
@@ -49,7 +48,6 @@
                 "icon": "@drawable/ic_home_center_setting",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_green",
-         
                 "script": "/script/settings"
             },
             {
@@ -58,20 +56,8 @@
                 "level": 0,
                 "icon": "@drawable/ic_record",
                 "icontint": "#ffffff",
-                "back": "#0000ff",
-              
+                "back": "@drawable/im_round_green",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/script/脚本录制/脚本录制简单动作.js"
-            },
-            {
-                "name": "自动化编辑",
-                "open": false,
-                "level": 0,
-                "icon": "@drawable/ic_home_center_code",
-                "icontint": "#ffffff",
-                "back": "@drawable/im_round_blue",
-         
-                "uipath": "/script/develop",
-                "script": ""
             },
             {
                 "name": "教程",
@@ -80,9 +66,7 @@
                 "icon": "@drawable/ic_home_center_book",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_red",
-             
-                "uipath": "/script/model-fragmenttype:教程",
-                "script": ""
+                "script": "/script/model-fragmenttype:教程"
             },
             {
                 "name": "视频剪辑",
@@ -91,9 +75,7 @@
                 "icon": "@drawable/ic_home_center_videoedit",
                 "icontint": "#ffffff",
                 "back": "@drawable/im_round_red",
-              
-                "uipath": "/script/videoedit",
-                "script": ""
+                    "script": "/script/videoedit"
             },
             {
                 "name": "联系我们",
@@ -102,8 +84,6 @@
                 "icon": "@drawable/ic_home_center_aboutme",
                 "icontint": "#ff00ff",
                 "back": "@drawable/im_round_green",
-      
-                "uipath": "",
                 "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/lineme.js"
             }
         ]
