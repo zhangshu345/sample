@@ -269,6 +269,16 @@
             "longlabel": "打开工具库",
             "icon": "@drawable/ic_scan_black_24dp",
             "script": "/script/scriptmarket"
+        },
+        {
+            "order": 4,
+            "id": "开发悬浮球",
+            "open": true,
+            "level": 0,
+            "shortlabel": "开发悬浮球",
+            "longlabel": "开发悬浮球",
+            "icon": "@drawable/ic_info_outline_black_48dp",
+            "script": "appapi:opendevelopfloat"
         }
     ],
     "pages": [
