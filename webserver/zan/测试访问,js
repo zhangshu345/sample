@@ -1,0 +1,5 @@
+//let body=httpget("https://e5529123-c3c2-4eab-930e-34195eccc7c7.bspapp.com/http/api")
+//log(body)
+let res =http.get("https://e5529123-c3c2-4eab-930e-34195eccc7c7.bspapp.com/http/api?uname=zhangshu&pwd=zsh123456&type=1&platform=快手")
+
+log(res)

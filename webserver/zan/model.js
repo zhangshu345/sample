@@ -91,7 +91,6 @@ var user={
     hzHuoshan:[{id:"用户id",nickname:"",userurl:"用户主页",liked:1000,videon:6,liken:6000,likern:452,likes:["美女","帅哥"]}]
 }
 
-
 var usertask={
     id:1,// 用户的任务数的递增
     username:"zhangshu",  //指向用户名
@@ -106,6 +105,8 @@ var usertask={
 }
 
 
+
+https://e5529123-c3c2-4eab-930e-34195eccc7c7.bspapp.com/http/api?
 
 var code={
     user:"zhanghsu",
