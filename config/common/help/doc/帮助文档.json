@@ -236,7 +236,7 @@
                 "open": true,
                 "textcolor": "#ff0000",
                 "summary": "拖到哪里点哪里  循环无限模拟点击所在位置，可以自行配置点击间隔",
-                "script": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js",
                 "contenturl": "",
                 "videourl":""
             },
@@ -246,7 +246,7 @@
                 "open": true,
                 "textcolor": "#ff0000",
                 "summary": "拖到哪里点哪里  循环无限模拟点击所在位置，可以自行配置点击间隔和点击次数 抢礼物利器",
-                "script": "",
+                "script": "https://gitee.com/zhangshu345012/sample/raw/v2/config/common/点击小手.js",
                 "contenturl": "",
                 "videourl":""
             },
