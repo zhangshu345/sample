@@ -1,5 +1,4 @@
 toast("点击小手工具")
-auto()
 auto.waitFor()
 importClass(android.animation.ObjectAnimator)
 importClass(android.animation.AnimatorSet)
