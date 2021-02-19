@@ -1,16 +1,6 @@
 auto.waitFor()
 auto.setMode("normal")
 device.wakeUpIfNeeded()
-function httpget(url) {
-    var r = http.get(url);
-       if (r.statusCode == 200) {
-        return r.body.string()
-    } else {
-        toastLog("请检测网络是否畅通,五秒后再次尝试")
-        sleep(5000)
-        return httpget(url)
-    }
-}
 
 //快手极速版自动刷金币  签到 和 滑块验证 引流 自动私信 评论 
 var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib2.js"
@@ -324,7 +314,7 @@ var app_close_alter=function(){
 var app_sign=function(){
     show("快手签到")
     if(今日签到(appname)){return true}
-    app_go_home(3)
+    app_go_home(4)
     doactionmaxtime(function(){
         textclick("我知道了")
         log("快手签到内部")
@@ -422,7 +412,7 @@ var app_getrewardnum=function(){
 var app_getreward=function(){
     show("快手查看视频广告")
     if(今日签到(appname)){return true}
-    app_go_home(3)
+    app_go_home(4)
     doactionmaxtime(function(){
         log("快手签到内部")
         if(clickids([快手极速版首页奖励悬浮id,快手极速版视频页奖励id])){
@@ -459,7 +449,6 @@ var selectnavi=function(index){
     }else{
         show(appname+"没有找到导航"+index)
     }
-
 }
 
 var app_go_home=function(index){
@@ -478,8 +467,11 @@ var app_go_home=function(index){
                 }else if(index==3){
                     selectnavi(3)
                    return true
+                }else if(index==4){
+                    selectnavi(4)
+                   return true
                 }else{
-                    selectnavi(3)
+                    selectnavi(4)
                     return true
                 }
             }else if(ca==appliveactivity){
@@ -538,7 +530,7 @@ var app_swipe_up=function(){
  }
 
  var 快手极速版获取视频点赞数=function(){
-     text_n=getTextfromid(快手极速版喜欢数量id)
+     text_n=gettextfromid(快手极速版喜欢数量id)
      if(text_n){
          if(text_n.indexOf("w")>-1){
             let n_f=parseFloat(text_n.substr(0,text_n.length-1))
@@ -623,14 +615,14 @@ var app_video_swipe=function(){
 let swipenumber=0
     doactionmaxnumber(function(n){
         show("视频滑动："+n)
-        node_tab= className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
+        node_tab= className("android.view.View").depth(9).drawingOrder(4).clickable().findOne(300)
         if(node_tab){
             if(!node_tab.selected()){
                clicknode(node_tab,0,0,100,2,300)
             }
         }else{
             show("视频滑动 找不到nodetab")
-            app_go_home(3)
+            app_go_home(4)
         }
         app_swipe_up()
          swipenumber=swipenumber+1
@@ -639,7 +631,7 @@ let swipenumber=0
             app_swipe_up()
             sleep(1000)
          }
-         nowdesc=getTextfromid("com.kuaishou.nebula:id/label")
+         nowdesc=gettextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
              if(nowdesc!=lastdesc){
                 n_like=快手极速版获取视频点赞数()
@@ -665,7 +657,7 @@ let swipenumber=0
                 click(500,300)
                 sleep(2000)
                 // com.kuaishou.nebula:id/player_current_position  当前进度
-                ttxet=getTextfromid("com.kuaishou.nebula:id/player_duration")
+                ttxet=gettextfromid("com.kuaishou.nebula:id/player_duration")
                 if(ttxet){
                     tt=ttxet.split(":")
                     if(tt.length==2){
@@ -766,7 +758,7 @@ function app_run(){
 
 //同城看视频
 var app_video_city=function(){
-    app_go_home(1)
+    app_go_home(2)
     doactionmaxnumber(function(n){
         show(appname+"看同城视频")
         
@@ -853,7 +845,7 @@ var app_hongbao_daojishi=function(){
     node_count=id("com.kuaishou.nebula:id/count_down_view").findOne(1000)
     if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
         txt_time=node_count.text();
-        coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
+        coin=parseInt(gettextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
         if(txt_time!=""){
             log("找到的文本"+txt_time)
             if(txt_time.search("分钟")>-1){
@@ -882,7 +874,7 @@ var app_live_hongbao=function(){
         if(text("直播已结束").exists()){
             return true
         }
-        let cname=getTextfromid("com.kuaishou.nebula:id/live_name_text","",500)
+        let cname=gettextfromid("com.kuaishou.nebula:id/live_name_text","",500)
         if(cname!=""&&cname==livename){
             //
            log("主播名:"+cname)
@@ -890,7 +882,7 @@ var app_live_hongbao=function(){
             return true
         }
         //获取直播人数
-        txt_livenum=getTextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
+        txt_livenum=gettextfromid("com.kuaishou.nebula:id/live_audience_count_text","0",2000)
         if(txt_livenum!=""){
             show(appname+"直播间人数:"+txt_livenum)
             if(txt_livenum.search("w")>-1){
@@ -920,7 +912,7 @@ var app_live_hongbao=function(){
         if(node_count||id("com.kuaishou.nebula:id/live_red_packet_coin_num_view").exists()){
             show(appname+"找到红包弹窗")
             txt_time=node_count.text();
-            coin=parseInt(getTextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
+            coin=parseInt(gettextfromid("com.kuaishou.nebula:id/live_red_packet_coin_num_view","0",1000))
             toastLog("时间:"+txt_time+"--金币数:"+coin)
           
             if(txt_time!=""){

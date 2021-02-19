@@ -14,7 +14,7 @@ function httpget(url) {
 }
 滑动次数=0
 engines.stopOther()
-var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib.js"
+var 公共函数url="https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/yuedulib3.js"
 var  公共函数文本=httpget(公共函数url)
 if (公共函数文本 != "") {
 eval(公共函数文本)
@@ -102,7 +102,7 @@ var  shuffleArray=function(array) {
     return array
 }
 
-addbmobchannel("hongshureward")
+
 var thread = threads.start(function(){
     while(true){
         sleep(60000)

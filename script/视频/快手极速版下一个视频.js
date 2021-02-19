@@ -8,25 +8,34 @@ log(device)
 function 检测视频进度(){
     nowdesc=gettextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
+            click(device.width/2,device.height/2)
             log("标题:"+nowdesc)
          }else{
-            比例滑动(20,10,17,10,3,500,300)
-            return  
-         }
+             if(获取当前视频总时长()>0){
 
+             }else{
+                比例滑动(20,10,17,10,3,500,300)
+                return  
+             }
+     
+      
+         }
          if(text("点击进入直播间").visibleToUser().findOne(300)){
             比例滑动(20,10,17,10,3,500,300)
             return  
          }
-
-    click(device.width/2,device.height/2)
+    
    let delaytime=获取当前视频总时长()-获取当前视频播放进度()
     if(delaytime>0){
-        sleep(delaytime*1000-100)
-        比例滑动(20,10,17,10,3,500,300) 
-    }else{
-        比例滑动(20,10,17,10,3,500,300)
+        if(delaytime>20){
+
+        }else{
+            sleep(delaytime*1000-100)
+            比例滑动(20,10,17,10,3,500,300) 
+        }
+      
     }
+
 }
 
 function 获取当前视频总时长(){
@@ -57,15 +66,6 @@ function 获取当前视频播放进度(){
 
 while(true){
     clicktexts(["继续看视频"])
-            // 检测是否是 目标页面
- node_tab= packageName(apppkg).className("android.view.View").depth(9).drawingOrder(4).clickable().findOne(300)
-     if(node_tab){
-                if(node_tab.selected()){
-                 
-                    检测视频进度()
-            }
-    }else{
-        log("快手极速版未在前台")
-        sleep(15000)
-    }
+    检测视频进度()
+    sleep(5000)
 }

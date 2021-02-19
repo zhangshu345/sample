@@ -31,8 +31,6 @@ function url2shorturl(url){
 }
 
 
-
-
 function getwushuiyin(url){
     let shorturl=url2shorturl(url)
     let longurl=shorturl2longurl(shorturl)
