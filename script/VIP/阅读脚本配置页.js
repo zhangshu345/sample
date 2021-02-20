@@ -78,7 +78,6 @@ ui.layout(
             w="*" h="auto"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
         <vertical>
-    
         <linear gravity="center">
             <button id="start" text="开始运行" style="Widget.AppCompat.Button.Colored" w="auto"/>
             <button id="stop" text="停止运行"  w="auto"/>
@@ -90,8 +89,7 @@ ui.layout(
             <text text="Copyright©2020 by 红薯" gravity="center"/>
         </frame>
         </vertical>
- 
-    </vertical>
+     </vertical>
 );
 
 
@@ -119,14 +117,15 @@ ui.emitter.on("options_item_selected", (e, item)=>{
     }
     e.consumed = true;
 });
+
 activity.setSupportActionBar(ui.toolbar);
 ui.rewardview.setScriptUrl("https://gitee.com/zhangshu345012/sample/raw/v2/script/VIP/阅读脚本配置页.js")
-
 // ui.no_watch.on("check",function(check){
 //     if(check){
 //         form.isLongWatch= false;
 //     }
 // });
+
 ui.autoService.on("check", function(checked) {
     // 用户勾选无障碍服务的选项时，跳转到页面让用户去开启
     if(checked && auto.service == null) {

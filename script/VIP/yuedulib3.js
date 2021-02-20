@@ -720,7 +720,7 @@ var closerecentapp=function(){
 var runscriptIntent=function(apppkg,scriptsurl){
     let i = app.intent({
         packageName:apppkg,
-        className:"com.hongshu.autojs.external.open.RunIntentActivity",
+        className:"com.hongshu.autotools.external.open.RunIntentActivity",
            flags:["activity_new_task"],
         // data: "file:///sdcard/1.png"
         extras:{
@@ -737,7 +737,7 @@ var runscriptIntent=function(apppkg,scriptsurl){
 var sendforcestopIntent=function(apppkg){
     let i = app.intent({
         packageName:apppkg,
-        className:"com.hongshu.autojs.external.open.RunIntentActivity",
+        className:"com.hongshu.autotools.external.open.RunIntentActivity",
            flags:["activity_new_task"],
         extras:{
             "action":"forcestop",
@@ -2283,15 +2283,7 @@ function delectapkfile(){
     let houzhuis=['apk','tmp',"log"]
     deleteAllFiles(files.getSdcardPath(),houzhuis)
 }
-// 随机打乱数组
-var  shuffleArray=function(array) {
-    n=array.length - 1
-    for (let i =0 ; i <n; i++) {
-         j = Math.floor(Math.random() * (n + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
-    return array
-}
+
 
 //删除所有文件
 var allhouzhui=[]
@@ -2401,17 +2393,12 @@ function findwebImgPoint(imgurl,trytime,isclick){
             checkscreencapture()
         }
         trytime=trytime||1
-        log("1")
         let urlimg=images.load(imgurl)
-        log("2")
         let i=0
         let pp
         while(i<trytime){
             i=i+1;
-            log("3")
-            pp=images.findImage(captureScreen(),urlimg)
-            log("4")
-            log("查找次数:"+i)
+             pp=images.findImage(captureScreen(),urlimg)
             if(pp){
                 log("pp:"+pp.x+","+pp.y)
                 if(isclick){
@@ -3083,12 +3070,6 @@ var shizukuclearpkgcache=function(apppkg){
 }
 
 
-function shellcmd(cmd){
-    try {
-        let re= shell(cmd,{adb:true,root:false})
-        log(JSON.stringify(re))
-        return re.code==0
-    } catch (error) {
-        return false
-    }
-}
+
+// shizukuforcestopPkg(app.getPackageName("刷宝短视频"))
+log("shizuku"+enableshizuku())
