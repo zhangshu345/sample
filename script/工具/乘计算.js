@@ -2,7 +2,7 @@
 ui.layout(
     <vertical>
         <appbar>
-            <toolbar id="toolbar" title="阶乘计算器"/>
+            <toolbar id="toolbar" title="利息计算器"/>
         </appbar>
         <scroll >
             <vertical >
@@ -33,7 +33,7 @@ function fuli(b,l,n){
 let an=100;
 let s="复利的伟大！";
 for(let i=1;i<=100;i++){
-    s=s+"\n1.01 的"+10*i+"阶乘："+fuli(1,1.01,10*i)
+    s=s+"\n1.01 的"+10*i+"连乘："+fuli(1,1.01,10*i)
 }
 
 ui.lizi.setText(s)

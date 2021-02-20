@@ -9,6 +9,10 @@ function 检测视频进度(){
     nowdesc=gettextfromid("com.kuaishou.nebula:id/label")
          if(nowdesc){
             log("标题:"+nowdesc)
+            if(text("点击长图").exists()){
+                比例滑动(20,10,17,10,3,500,300)
+                return   
+             }
          }else{
             比例滑动(20,10,17,10,3,500,300)
             return  

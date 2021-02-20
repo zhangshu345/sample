@@ -1,4 +1,4 @@
-"fui"
+"ui";
 ui.layout(
     <vertical>
     <button id="bt1" text="第一个按钮"/>

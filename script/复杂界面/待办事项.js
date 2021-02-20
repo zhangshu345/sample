@@ -30,11 +30,11 @@ ui.layout(
 var materialColors = ["#e91e63", "#ab47bc", "#5c6bc0", "#7e57c2", "##2196f3", "#00bcd4",
     "#26a69a", "#4caf50", "#8bc34a", "#ffeb3b", "#ffa726", "#78909c", "#8d6e63"];
 
-var storage = storages.create("todoList");
+var storage = storages.create("todolist");
 //从storage获取todo列表
 var todoList = storage.get("items", [
     {
-        title: "写操作系统作业",
+        title: "计划第一步",
         summary: "明天第1～2节",
         color: "#f44336",
         done: false
@@ -46,14 +46,14 @@ var todoList = storage.get("items", [
         done: false
     },
     {
-        title: "发布Auto.js 5.0.0正式版",
-        summary: "2019年1月",
+        title: "计划任务",
+        summary: "2021年1月",
         color: "#4caf50",
         done: false
     },
     {
-        title: "完成毕业设计和论文",
-        summary: "2019年4月",
+        title: "标题4",
+        summary: "2021年4月",
         color: "#2196f3",
         done: false
     }

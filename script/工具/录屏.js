@@ -6,7 +6,6 @@ importClass(java.lang.System);
 importClass(android.os.Environment);
 importClass(android.hardware.display.DisplayManager);
 
-
 /*
 ￥￥无名小姐  制作
 QQ:1352187317
@@ -63,7 +62,7 @@ events.on("exit", function() {
 
 function createVirtualDisplay() {
     virtualDisplay = mediaProjection.createVirtualDisplay(
-        "无名小姐",
+        "自动化工具",
         width,
         height,
         dpi,
@@ -121,7 +120,6 @@ function stopRecord() {
     mediaProjection.stop();
     return true;
 }
-
 
 function getsaveDirectory() {
     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

@@ -10,8 +10,6 @@ var clickonetexts=function(texts,t,st){
       }
       return false
   }
-
-
   
 //文本点击
 function textclick(i,t,left,top,right,bottom){
