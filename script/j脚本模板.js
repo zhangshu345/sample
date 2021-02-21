@@ -282,7 +282,6 @@ var seead=function(){
     } catch (error) {
         
     }
-
 }
 
 startapp(appname,apppkg,0,device.height-200,false,false,true,true,"http://zhangshuhong888.iask.in:8989/com.taige.mygold.apk")

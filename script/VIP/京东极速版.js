@@ -26,7 +26,6 @@ toastLog("公共函数实例化失败,程序返回")
 //应用名
 var appname="京东极速版"
 var apppkg="com.jd.jdlite"
-
 var invitecodes=[]
 
 //应用登录
