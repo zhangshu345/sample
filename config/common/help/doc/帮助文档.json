@@ -269,7 +269,78 @@
                 "script": "",
                 "contenturl": "",
                 "videourl":""
+            },
+            {
+                "title": "uniapp小程序",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "可以直接运行uniapp小程序wgt资源包，具体有啥用 您细品 脑洞大开",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "ffmpeg命令执行",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "支持运行ffmpeg所有命令执行，和无障碍功能模拟操作可实现 自动化视频剪辑上传 发布 具体您怎么搞您慢慢搞",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
 
+            },
+            {
+                "title": "Ocr",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "支持Tessocr 不过需要您自行下载识别文件 使用时初始化后再识别文字 识别效率不咋的 有待优化",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+
+            },
+            {
+                "title": "OpenCV",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "OpenCv 已经集成 做个绿幕啊 视频人像追踪啊 图片处理啊 ！都是小意思 自己搞吧 ! 后续会出示例教程 （我也懵逼中 还在学！）",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "Jsoup",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "java 爬虫神器 反正很牛 做个数据爬虫很方便 做个小说阅读器 视频爬虫应该都是so easy 想要啥数据自己爬！",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "WebSocket",
+                "level": 0,
+                "open": false,
+                "textcolor": "#ff0000",
+                "summary": "",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
+            },
+            {
+                "title": "OpenCV",
+                "level": 0,
+                "open": true,
+                "textcolor": "#ff0000",
+                "summary": "OpenCv 已经集成 做个绿幕啊 视频人像追踪啊 图片处理啊 ！都是小意思 自己搞吧 ! 后续会出示例教程 （我也懵逼中 还在学！）",
+                "script": "",
+                "contenturl": "",
+                "videourl":""
             }
         ]
     },
