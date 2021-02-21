@@ -1,3 +1,4 @@
+"con system";
 auto.waitFor()
 auto.setMode("normal")
 /*---------------------------------lib-------------------------------*/
@@ -9,11 +10,13 @@ function 滑动(z,x1,y1,x2,y2,t,r) {
     show("滑动"+x1+","+y1+"->"+x2+","+y2)
     swipe(w * x1, h * y1 , w *x2 , h * y2, t+random(0, r))
 }
+
 var sleepr=function(short,long){
     rt=random(short,long)
     show("等待:"+rt +" 毫秒")
     sleep(rt)
 }
+
 var gfw
 var  creatgfloatywindow=function(){
     gfw=floaty.rawWindow(
