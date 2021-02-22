@@ -4,7 +4,7 @@ importClass(android.content.ComponentName)
 ui.layout(
     <vertical>
         <appbar>
-            <toolbar id="toolbar" title="系统快速设置"/>
+            <toolbar id="toolbar" title="广告使用示例"/>
         </appbar>
         <scroll ><vertical >
         <vertical id="bannerll" />
@@ -47,8 +47,7 @@ ui.layout(
         </vertical>
        
         </scroll>
-        
-      
+  
    </vertical>
 );
 
@@ -260,7 +259,13 @@ onVideoPageClose:function(){
 )
 //
 ui.float.on("click",function(){
-    com.hongshu.autotools.core.floatmenu.FloatyWindowManger.showDevelopCircularMenu()
+    try {
+        com.hongshu.autotools.core.floatmenu.FloatyWindowManger.showDevelopCircularMenu()
+        com.hongshu.autotools.core.floatmenu.FloatyWindowManger.Instace.showDevelopCircularMenu()
+    } catch (error) {
+        
+    }
+    
 })
 
 var admanager=AdviceManager.getInstance();

@@ -416,7 +416,6 @@
             }
         ]
     },
-   
     {
         "title": "快手视频教程",
         "icon": "@drawable/ic_kuaishou_48dp",
@@ -476,7 +475,7 @@
                 "script": "",
                 "contenturl": "",
                 "videourl":""
-            },
+            },                                                                                                                                                                                                                                                                                                                                                                                                  
             {
                 "title": "调试服务器",
                 "level": 0,
