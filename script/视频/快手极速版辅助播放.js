@@ -62,7 +62,7 @@ function 获取当前视频播放进度(){
 while(true){
     clicktexts(["继续看视频"])
             // 检测是否是 目标页面
- node_tab= packageName(apppkg).className("android.view.View").depth(9).drawingOrder(4).clickable().findOne(300)
+ node_tab= packageName(apppkg).className("android.view.View").depth(9).drawingOrder(3).clickable().findOne(300)
      if(node_tab){
                 if(node_tab.selected()){
                  

@@ -34,7 +34,7 @@ ui.layout(
 )
 var mOutterPaint = new Paint();
 mOutBmpPaint = new Paint();
-mOutBmpPaint.setColor(rndColor());
+// mOutBmpPaint.setColor(rndColor());
 mOutBmpPaint.setAntiAlias(true);
 mOutBmpPaint.setDither(true);
 mOutBmpPaint.setStrokeJoin(Paint.Join.ROUND);
@@ -119,7 +119,8 @@ ui.board.setOnTouchListener(function (view, event) {
 });
 
 function rndColor() {
-  return colors.rgb(random(0, 255), random(0, 255), random(0, 255))
+  // return colors.rgb(random(0, 255), random(0, 255), random(0, 255))
+  return colors.rgb(66, 66, 85)
 }
 
 function rndNum(min, max) {

@@ -815,12 +815,15 @@ var shizukuforstopAllApp=function(){
 var forcestop=function(appname,st,isclearcache){
     show("强制关闭应用:"+appname); 
     if(!appname){ return false}
-    if(!getPackageName(appname)){ show(appname+"：没有安装");return false};   
+  
      let st=st||1800;  
       let isclearcache=isclearcache||true
       let apppkg=app.getPackageName(appname);  
       if(apppkg){
-        forcestoppkg(apppkg,st,isclearcache,false)
+      return  forcestoppkg(apppkg,st,isclearcache,false)
+      }else{
+        show(appname+"：没有安装");
+        return false;
       }
 }
 
@@ -3072,4 +3075,33 @@ var shizukuclearpkgcache=function(apppkg){
 
 
 // shizukuforcestopPkg(app.getPackageName("刷宝短视频"))
-log("shizuku"+enableshizuku())
+//  log("shizuku"+enableshizuku())
+// Shell.getInstance().forstopApp("快手极速版")
+// forcestop("拼多多")
+// forcestop("抖音极速版")
+// 
+ t1=new Date().getTime()
+//  log(shell("input tap -1 -1 ",{adb:true,root:false}))
+// log(shizukuforcestoppkg("抖音极速版"))
+forcestop("快手极速版")
+ log("时间"+(new Date().getTime()-t1))
+//   Back()
+//  sleep(2000)
+// Back()
+// log(shell.toString())
+// sleep(1000)
+// try{
+    // Swipe(500,1600,600,300,1500)
+// }catch(e){
+//  log(e)
+// }
+
+
+// Swipe(500,1600,500,1200,1500)
+// sleep(3000)
+// toastLog("丢一次")
+// sleep(1000)
+// log("ssss")
+// Swipe(500,1600,600,1200,1500)
+
+

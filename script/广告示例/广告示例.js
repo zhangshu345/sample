@@ -260,8 +260,7 @@ onVideoPageClose:function(){
 //
 ui.float.on("click",function(){
     try {
-
-        com.hongshu.autotools.core.floatmenu.FloatyWindowManger.Instace.showDevelopCircularMenu()
+        com.hongshu.autotools.core.floatmenu.FloatyWindowManger.INSTANCE.showDevelopCircularMenu()
     } catch (error) {
         
     }

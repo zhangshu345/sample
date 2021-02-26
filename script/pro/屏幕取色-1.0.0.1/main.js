@@ -101,9 +101,6 @@ ad_.setLongClick(exit);
 
 
 
-
-
-
 var paint = new Paint;
 paint.setTextAlign(Paint.Align.CENTER);
 paint.setStrokeWidth(5);
@@ -449,9 +446,6 @@ function deepCopy(obj) {
     }
     return newobj;
 };
-
-
-
 
 
 

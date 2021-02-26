@@ -1,5 +1,3 @@
-const { text } = require("body-parser")
-
 auto.waitFor()
 var apppkg="com.kuaishou.nebula"
 var appname="快手极速版"
@@ -17,6 +15,10 @@ function 检测视频进度(){
             click(device.width/2,device.height/2)
             log("标题:"+nowdesc)
          }else{
+            if(clickid("com.kuaishou.nebula:id/slide_close_long_atlas_btn")){
+                比例滑动(20,10,17,10,3,500,300)
+                return 
+            }
              if(获取当前视频总时长()>0){
 
              }else{
@@ -31,13 +33,13 @@ function 检测视频进度(){
     
    let delaytime=获取当前视频总时长()-获取当前视频播放进度()
     if(delaytime>0){
-        if(delaytime>20){
-
+        log("剩余播放时间:"+delaytime)
+        if(delaytime>15){
+            
         }else{
             sleep(delaytime*1000-100)
             比例滑动(20,10,17,10,3,500,300) 
         }
-      
     }
 
 }

@@ -15,5 +15,5 @@
 // sleep(2000)
 // com.blankj.utilcode.util.ToastUtils.setGravity(1,200,0)
 // com.blankj.utilcode.util.ToastUtils.show("1,0,0",10000)
-点击文本集合(["信息","联系人"],200,1500)
-log(httpget("http://www.baidu.com"))
+// 点击文本集合(["信息","联系人"],200,1500)
+// log(httpget("http://www.baidu.com"))
