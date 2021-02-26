@@ -17,7 +17,6 @@ function 检测视频进度(){
             比例滑动(20,10,17,10,3,500,300)
             return  
          }
-
          if(text("点击进入直播间").visibleToUser().findOne(300)){
             比例滑动(20,10,17,10,3,500,300)
             return  
