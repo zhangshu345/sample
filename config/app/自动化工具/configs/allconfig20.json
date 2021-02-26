@@ -243,7 +243,7 @@
         {
             "order": 1,
             "id": "动作录制",
-            "open": true,
+            "open": false,
             "level": 0,
             "shortlabel": "录制",
             "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
