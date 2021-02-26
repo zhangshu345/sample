@@ -1,58 +1,72 @@
-[{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":20,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"2.0.0",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig20.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"google",
-    "versioni":19,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.9",
-    "downloadurl":"",
-    "configurl":"http://y.xiequbo.cn/uploads/shuazhuan/allconfig18.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":19,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.9",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig19.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":18,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.8",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig18.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":17,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.7",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools.xiaomi",
-    "channel":"xiaomi",
-    "versioni":17,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.7",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
-},{"name":"自动化工具",
-    "pkg":"com.hongdong.autotools",
-    "channel":"qq",
-    "versioni":16,
-    "icon":"http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
-    "version":"1.1.6",
-    "downloadurl":"",
-    "configurl":"https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig16.json"
-}
+[
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "qq",
+        "versioni": 20,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "2.0.0",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/config20.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "google",
+        "versioni": 19,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.9",
+        "downloadurl": "",
+        "configurl": "http://y.xiequbo.cn/uploads/shuazhuan/allconfig18.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "qq",
+        "versioni": 19,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.9",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig19.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "qq",
+        "versioni": 18,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.8",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig18.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "qq",
+        "versioni": 17,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.7",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools.xiaomi",
+        "channel": "xiaomi",
+        "versioni": 17,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.7",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig17.json"
+    },
+    {
+        "name": "自动化工具",
+        "pkg": "com.hongdong.autotools",
+        "channel": "qq",
+        "versioni": 16,
+        "icon": "http://img5.anzhi.com/data1/icon/201803/29/com.dongdong.suibian_34088700_72.png",
+        "version": "1.1.6",
+        "downloadurl": "",
+        "configurl": "https://gitee.com/zhangshu345012/sample/raw/v2/config/app/自动化工具/configs/allconfig16.json"
+    }
 ]
