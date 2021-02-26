@@ -253,7 +253,7 @@
         {
             "order": 2,
             "id": "点击小手",
-            "open": true,
+            "open": false,
             "level": 0,
             "shortlabel": "点击",
             "longlabel": "扫描二维码，识别文本，导入脚本，导入配置",
